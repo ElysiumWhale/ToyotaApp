@@ -16,6 +16,9 @@
 		A75946A42523ECF100312EBE /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A32523ECF100312EBE /* Auth.swift */; };
 		A75946A62523F05200312EBE /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A52523F05200312EBE /* Car.swift */; };
 		A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A72523F13E00312EBE /* MainMenuViewController.swift */; };
+		A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyCarViewController.swift */; };
+		A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServiceViewController.swift */; };
+		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		A75946A32523ECF100312EBE /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A75946A52523F05200312EBE /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		A75946A72523F13E00312EBE /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		A791FDDC2524E1B900A595BB /* MyCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarViewController.swift; sourceTree = "<group>"; };
+		A791FDDE2524E1D700A595BB /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
+		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A791FDD82524E17300A595BB /* MainMenu */,
 				A75946A22523ECD400312EBE /* Model */,
 				A759469F2523E7D200312EBE /* AuthorizationView */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
@@ -78,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
-				A75946A72523F13E00312EBE /* MainMenuViewController.swift */,
 			);
 			path = AuthorizationView;
 			sourceTree = "<group>";
@@ -90,6 +96,41 @@
 				A75946A52523F05200312EBE /* Car.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A791FDD82524E17300A595BB /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDDB2524E19B00A595BB /* Tech */,
+				A791FDDA2524E19300A595BB /* Service */,
+				A791FDD92524E18800A595BB /* MyCar */,
+				A75946A72523F13E00312EBE /* MainMenuViewController.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		A791FDD92524E18800A595BB /* MyCar */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDDC2524E1B900A595BB /* MyCarViewController.swift */,
+			);
+			path = MyCar;
+			sourceTree = "<group>";
+		};
+		A791FDDA2524E19300A595BB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDDE2524E1D700A595BB /* ServiceViewController.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A791FDDB2524E19B00A595BB /* Tech */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDE02524E1E400A595BB /* TechViewController.swift */,
+			);
+			path = Tech;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,11 +204,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */,
 				A75946A42523ECF100312EBE /* Auth.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				A75946A62523F05200312EBE /* Car.swift in Sources */,
 				A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
+				A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */,
+				A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -118,7 +118,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="myCarButtonTappedWithSender:" destination="IEp-xm-23e" eventType="touchUpInside" id="2Dq-N6-jur"/>
+                                            <segue destination="2co-qJ-AGd" kind="show" id="rLn-1M-eub"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fN5-pd-3tr">
@@ -131,6 +131,9 @@
                                         <state key="normal" title="ТО">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ADK-6I-s6s" kind="show" id="BN4-Yq-s4J"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-gP-ZZe">
                                         <rect key="frame" x="35" y="290" width="345" height="100"/>
@@ -142,6 +145,9 @@
                                         <state key="normal" title="Сервис">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="mbU-Ku-TOY" kind="show" id="dth-tb-KPU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -177,6 +183,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuo-Bk-Lgl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1794.2028985507247" y="138.61607142857142"/>
+        </scene>
+        <!--Сервис-->
+        <scene sceneID="5qa-QQ-ms5">
+            <objects>
+                <viewController id="mbU-Ku-TOY" customClass="ServiceViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bLC-6I-LJg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UTC-er-W21"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Сервис" id="B1C-Dp-NF3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RIL-qk-b2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="863"/>
+        </scene>
+        <!--Мое авто-->
+        <scene sceneID="ClY-yN-DOZ">
+            <objects>
+                <viewController id="2co-qJ-AGd" customClass="MyCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cGb-CI-iVV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fAF-Al-yPY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Мое авто" id="2Sq-R0-sDB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgR-vp-hB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="139"/>
+        </scene>
+        <!--Техосмотр-->
+        <scene sceneID="KuV-wG-ZKF">
+            <objects>
+                <viewController id="ADK-6I-s6s" customClass="TechViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hSm-Xm-KkX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="uoX-kN-CWc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Техосмотр" id="J4L-MC-bdN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drw-aN-Ofc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1794" y="863"/>
         </scene>
     </scenes>
     <resources>
