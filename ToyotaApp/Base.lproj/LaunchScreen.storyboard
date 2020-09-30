@@ -18,17 +18,20 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image3x" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
                                 <rect key="frame" x="87" y="265" width="240" height="128"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-LT-jqq">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-LT-jqq">
                                 <rect key="frame" x="197" y="412" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="469" id="2Sd-HX-Qnv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FE5-LT-jqq" secondAttribute="bottom" constant="430" id="Gqm-f8-KIi"/>
+                            <constraint firstItem="FE5-LT-jqq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="197" id="QAk-hC-xxF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FE5-LT-jqq" secondAttribute="trailing" constant="197" id="SzZ-yd-NaI"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="221" id="e24-Pd-qyQ"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="t63-i6-24g"/>
+                            <constraint firstItem="FE5-LT-jqq" firstAttribute="top" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="19" id="tqQ-Vh-gHn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2jo-7c-ro3" secondAttribute="trailing" constant="87" id="ynr-7r-Ngg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

@@ -1,6 +1,8 @@
 import UIKit
 
 class AuthViewController: UIViewController {
+    
+    @IBOutlet var loginButton: UIButton!
 
     @IBOutlet var userName: UITextField?
     
@@ -8,6 +10,8 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
     }
     
 
