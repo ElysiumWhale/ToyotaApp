@@ -39,7 +39,6 @@
                                         <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="Cd9-iv-i0n"/>
-                                            <constraint firstAttribute="width" constant="345" id="dtu-mG-9QW"/>
                                         </constraints>
                                         <state key="normal" title="Мое авто">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,7 +54,6 @@
                                         <rect key="frame" x="35" y="160" width="345" height="100"/>
                                         <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="345" id="7Qd-Sd-a71"/>
                                             <constraint firstAttribute="height" constant="100" id="fxY-0b-ezd"/>
                                         </constraints>
                                         <state key="normal" title="ТО">
@@ -72,7 +70,6 @@
                                         <rect key="frame" x="35" y="290" width="345" height="100"/>
                                         <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="345" id="8Mo-o2-pdt"/>
                                             <constraint firstAttribute="height" constant="100" id="K9f-2P-cxS"/>
                                         </constraints>
                                         <state key="normal" title="Сервис">
@@ -117,11 +114,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="myCarButton" destination="wZp-Ro-bcN" id="qiT-xs-KdV"/>
-                        <outlet property="serviceButton" destination="c4o-gP-ZZe" id="osN-gp-nZT"/>
-                        <outlet property="techButton" destination="fN5-pd-3tr" id="keW-o1-vOY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuo-Bk-Lgl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

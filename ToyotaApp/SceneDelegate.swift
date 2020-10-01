@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = mainMenuNavigationController
         } else {
             let authStoryboard = UIStoryboard(name: AppStoryboards.auth.rawValue, bundle: nil)
-            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.auth.rawValue)
+            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation.rawValue)
             window?.rootViewController = authController
         }
     }

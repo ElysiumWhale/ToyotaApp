@@ -8,6 +8,7 @@ public enum AppStoryboards : String {
 
 public enum AppViewControllers : String {
     case mainMenuNavigation = "MainMenuNavigationController"
+    case authNavigation = "AuthNavigationController"
     case auth = "AuthViewController"
     case mainMenu = "MainMenuViewController"
     case tech = "TechViewController"
