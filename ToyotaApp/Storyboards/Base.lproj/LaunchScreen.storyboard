@@ -15,23 +15,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image3x" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
                                 <rect key="frame" x="87" y="265" width="240" height="128"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-LT-jqq">
-                                <rect key="frame" x="197" y="412" width="20" height="20"/>
+                                <rect key="frame" x="164" y="409" width="87" height="79"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="469" id="2Sd-HX-Qnv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FE5-LT-jqq" secondAttribute="bottom" constant="430" id="Gqm-f8-KIi"/>
-                            <constraint firstItem="FE5-LT-jqq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="197" id="QAk-hC-xxF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FE5-LT-jqq" secondAttribute="trailing" constant="197" id="SzZ-yd-NaI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FE5-LT-jqq" secondAttribute="bottom" constant="374" id="Gqm-f8-KIi"/>
+                            <constraint firstItem="FE5-LT-jqq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="QAk-hC-xxF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FE5-LT-jqq" secondAttribute="trailing" constant="163" id="SzZ-yd-NaI"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="221" id="e24-Pd-qyQ"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="t63-i6-24g"/>
-                            <constraint firstItem="FE5-LT-jqq" firstAttribute="top" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="19" id="tqQ-Vh-gHn"/>
+                            <constraint firstItem="FE5-LT-jqq" firstAttribute="top" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="16" id="tqQ-Vh-gHn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2jo-7c-ro3" secondAttribute="trailing" constant="87" id="ynr-7r-Ngg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -39,10 +39,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Image3x" width="128" height="128"/>
+        <image name="ToyotaLogoWhite" width="128" height="128"/>
     </resources>
 </document>

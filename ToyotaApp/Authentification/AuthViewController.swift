@@ -1,8 +1,6 @@
 import UIKit
 
 class AuthViewController: UIViewController {
-    
-    @IBOutlet var loginButton: UIButton!
 
     @IBOutlet var userName: UITextField?
     
@@ -10,8 +8,6 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.cornerRadius = 10
-        loginButton.clipsToBounds = true
     }
     
 
@@ -21,8 +17,8 @@ class AuthViewController: UIViewController {
     }
 
     func loadHomeScreen() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainMenuVC = storyBoard.instantiateViewController(withIdentifier: "MainMenuNavigationController")
+        let storyBoard: UIStoryboard = UIStoryboard(name: AppStoryboards.main.rawValue, bundle: nil)
+        let mainMenuVC = storyBoard.instantiateViewController(withIdentifier: AppViewControllers.mainMenuNavigation.rawValue)
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainMenuVC)
     }
 }

@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  ToyotaApp
-//
-//  Created by Алексей Гурин on 30.09.2020.
-//  Copyright © 2020 Алексей Гурин. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -14,10 +6,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // if user is logged in before
+        if let loggedUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) {
+            let mainStoryboard = UIStoryboard(name: AppStoryboards.main.rawValue, bundle: nil)
+            let mainMenuNavigationController = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuNavigation.rawValue)
+            window?.rootViewController = mainMenuNavigationController
+        } else {
+            let authStoryboard = UIStoryboard(name: AppStoryboards.auth.rawValue, bundle: nil)
+            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.auth.rawValue)
+            window?.rootViewController = authController
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,7 +47,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+}
 
+//MARK: - Switch Root Controller with flip animation
+extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard let window = self.window else { return }
         window.rootViewController = vc
@@ -58,6 +61,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         animations: nil,
         completion: nil)
     }
-    
 }
 

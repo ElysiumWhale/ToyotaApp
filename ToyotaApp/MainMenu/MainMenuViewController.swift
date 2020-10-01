@@ -18,8 +18,15 @@ class MainMenuViewController: UIViewController {
         serviceButton.clipsToBounds = true
     }
     
-    @IBAction func myCarButtonTapped(sender: UIButton){
-        
+    @IBAction func logout(with sender: Any?) {
+        //
+        loadAuthScreen()
+    }
+
+    func loadAuthScreen() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: AppStoryboards.auth.rawValue, bundle: nil)
+        let viewController = storyBoard.instantiateViewController(withIdentifier: AppViewControllers.auth.rawValue)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(viewController)
     }
 
 }

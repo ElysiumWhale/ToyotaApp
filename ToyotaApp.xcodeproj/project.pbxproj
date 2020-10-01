@@ -19,6 +19,9 @@
 		A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyCarViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServiceViewController.swift */; };
 		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
+		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
+		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
+		A791FDEA25267A1A00A595BB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		A791FDDC2524E1B900A595BB /* MyCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
+		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
+		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A791FDE925267A1A00A595BB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,23 +76,22 @@
 			children = (
 				A791FDD82524E17300A595BB /* MainMenu */,
 				A75946A22523ECD400312EBE /* Model */,
-				A759469F2523E7D200312EBE /* AuthorizationView */,
+				A759469F2523E7D200312EBE /* Authentification */,
+				A791FDE225266F2700A595BB /* Storyboards */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
-				A75946912523E32F00312EBE /* Main.storyboard */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
-				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
 				A75946992523E33400312EBE /* Info.plist */,
 			);
 			path = ToyotaApp;
 			sourceTree = "<group>";
 		};
-		A759469F2523E7D200312EBE /* AuthorizationView */ = {
+		A759469F2523E7D200312EBE /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 			);
-			path = AuthorizationView;
+			path = Authentification;
 			sourceTree = "<group>";
 		};
 		A75946A22523ECD400312EBE /* Model */ = {
@@ -94,6 +99,7 @@
 			children = (
 				A75946A32523ECF100312EBE /* Auth.swift */,
 				A75946A52523F05200312EBE /* Car.swift */,
+				A791FDE925267A1A00A595BB /* Utils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +137,25 @@
 				A791FDE02524E1E400A595BB /* TechViewController.swift */,
 			);
 			path = Tech;
+			sourceTree = "<group>";
+		};
+		A791FDE225266F2700A595BB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDE8252672FA00A595BB /* Custom Controls */,
+				A75946912523E32F00312EBE /* Main.storyboard */,
+				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
+				A791FDE32526707100A595BB /* Authentification.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A791FDE8252672FA00A595BB /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDE5252672ED00A595BB /* RoundedButton.swift */,
+			);
+			path = "Custom Controls";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
+				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A75946932523E32F00312EBE /* Main.storyboard in Resources */,
 			);
@@ -205,11 +231,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */,
+				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				A75946A42523ECF100312EBE /* Auth.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				A75946A62523F05200312EBE /* Car.swift in Sources */,
 				A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
+				A791FDEA25267A1A00A595BB /* Utils.swift in Sources */,
 				A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
