@@ -1,10 +1,9 @@
 import UIKit
+import PhoneNumberKit
 
 class AuthViewController: UIViewController {
-
-    @IBOutlet var userName: UITextField?
     
-    @IBOutlet var password: UITextField?
+    @IBOutlet var phoneNumber: PhoneNumberTextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()

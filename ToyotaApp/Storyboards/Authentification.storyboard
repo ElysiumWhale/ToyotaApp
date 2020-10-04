@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kVB-pU-1QR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kVB-pU-1QR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +32,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="137" y="403" width="141" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
@@ -45,7 +47,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ps3-YR-5ER"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wRS-Ga-buk" firstAttribute="top" secondItem="LJH-As-hEM" secondAttribute="bottom" constant="20" id="BE1-wb-nNN"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="6ZA-bw-BOW" secondAttribute="trailing" constant="136" id="Ig7-T9-BzU"/>
@@ -62,12 +65,8 @@
                             <constraint firstItem="LJH-As-hEM" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="75" id="tgA-Wr-SaY"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="wRS-Ga-buk" secondAttribute="trailing" constant="51" id="w02-ss-t22"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ps3-YR-5ER"/>
                     </view>
                     <navigationItem key="navigationItem" id="f34-Z8-Ak9"/>
-                    <connections>
-                        <outlet property="userName" destination="1t0-20-RV7" id="d1V-Hs-t78"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUm-mU-6mf" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,7 +91,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-Vh-rJQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-Vh-rJQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="138" y="334" width="140" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
@@ -107,7 +106,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="0Rg-B1-f3B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="S3P-Vh-rJQ" firstAttribute="top" secondItem="0Rg-B1-f3B" secondAttribute="top" constant="194" id="0an-nK-zoS"/>
                             <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="S3P-Vh-rJQ" secondAttribute="trailing" constant="136" id="1Zl-qc-eM1"/>
@@ -121,7 +121,6 @@
                             <constraint firstItem="bwn-0n-Fd3" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="99" id="q5g-9c-Lgg"/>
                             <constraint firstItem="S3P-Vh-rJQ" firstAttribute="top" secondItem="bwn-0n-Fd3" secondAttribute="bottom" constant="30" id="tiO-U4-fdO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="0Rg-B1-f3B"/>
                     </view>
                     <navigationItem key="navigationItem" id="6mc-16-KPA">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="1Jx-aD-it0"/>
@@ -148,7 +147,18 @@
             <point key="canvasLocation" x="-638" y="139"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="6ZA-bw-BOW">
+            <size key="intrinsicContentSize" width="55" height="38"/>
+        </designable>
+        <designable name="S3P-Vh-rJQ">
+            <size key="intrinsicContentSize" width="55" height="38"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ToyotaLogoBlack" width="128" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

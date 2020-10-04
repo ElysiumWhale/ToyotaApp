@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
+		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
 		A75946932523E32F00312EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */,
+				A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +178,10 @@
 			dependencies = (
 			);
 			name = ToyotaApp;
+			packageProductDependencies = (
+				A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */,
+				A717CEB8252A210A00CFB6FF /* PhoneNumberKit */,
+			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
 			productType = "com.apple.product-type.application";
@@ -185,7 +193,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Алексей Гурин";
 				TargetAttributes = {
 					A75946872523E32F00312EBE = {
@@ -202,6 +210,9 @@
 				Base,
 			);
 			mainGroup = A759467F2523E32F00312EBE;
+			packageReferences = (
+				A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,6 +303,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -352,6 +364,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -438,6 +451,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = "PhoneNumberKit-Static";
+		};
+		A717CEB8252A210A00CFB6FF /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A75946802523E32F00312EBE /* Project object */;
 }
