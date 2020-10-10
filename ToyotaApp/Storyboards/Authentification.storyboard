@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Auth View Controller-->
+        <!-- -->
         <scene sceneID="c7X-OV-FpX">
             <objects>
                 <viewController storyboardIdentifier="AuthViewController" id="LPT-FS-7SW" customClass="AuthViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,10 +21,10 @@
                                 <rect key="frame" x="75" y="144" width="264" height="129"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneNumberTextFieldWithDefault" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="75" y="342" width="264" height="69"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneNumberTextFieldWithDefault" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="75" y="322" width="264" height="54"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="zry-fJ-VN7"/>
+                                    <constraint firstAttribute="height" constant="54" id="7EU-Q9-bC2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
@@ -34,13 +34,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в личный кабинет:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRS-Ga-buk">
-                                <rect key="frame" x="47" y="293" width="316" height="38"/>
+                                <rect key="frame" x="47" y="293" width="316" height="26.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="137" y="451" width="141" height="38"/>
+                                <rect key="frame" x="135" y="415" width="141" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
                                 <state key="normal" title="Далее">
@@ -54,13 +54,13 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
-                                <rect key="frame" x="75" y="413" width="264" height="21"/>
+                                <rect key="frame" x="75" y="381.5" width="264" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-7v-DbB">
-                                <rect key="frame" x="172" y="452" width="70" height="37"/>
+                                <rect key="frame" x="172" y="414" width="70" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ps3-YR-5ER"/>
@@ -69,28 +69,27 @@
                             <constraint firstItem="1t0-20-RV7" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="75" id="3mt-6y-N70"/>
                             <constraint firstItem="wRS-Ga-buk" firstAttribute="top" secondItem="LJH-As-hEM" secondAttribute="bottom" constant="20" id="BE1-wb-nNN"/>
                             <constraint firstItem="gKJ-7v-DbB" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="172" id="E0n-AE-X78"/>
-                            <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="6ZA-bw-BOW" secondAttribute="trailing" constant="136" id="Ig7-T9-BzU"/>
-                            <constraint firstItem="1t0-20-RV7" firstAttribute="top" secondItem="wRS-Ga-buk" secondAttribute="bottom" constant="11" id="NBg-ns-Qrf"/>
+                            <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="6ZA-bw-BOW" secondAttribute="trailing" constant="138" id="Ig7-T9-BzU"/>
+                            <constraint firstItem="1t0-20-RV7" firstAttribute="top" secondItem="wRS-Ga-buk" secondAttribute="bottom" constant="2.5" id="NBg-ns-Qrf"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="WWK-Hf-xZb" secondAttribute="trailing" constant="75" id="PH5-bT-Qc3"/>
                             <constraint firstItem="wRS-Ga-buk" firstAttribute="top" secondItem="ps3-YR-5ER" secondAttribute="top" constant="153" id="PWu-zE-4m4"/>
                             <constraint firstItem="LJH-As-hEM" firstAttribute="top" secondItem="ps3-YR-5ER" secondAttribute="top" constant="4" id="Qo3-hF-jEn"/>
-                            <constraint firstItem="6ZA-bw-BOW" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="137" id="UNd-b3-Gs7"/>
+                            <constraint firstItem="6ZA-bw-BOW" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="135" id="UNd-b3-Gs7"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="LJH-As-hEM" secondAttribute="trailing" constant="75" id="W7B-XW-Al4"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="1t0-20-RV7" secondAttribute="trailing" constant="75" id="Wpe-h9-KoY"/>
-                            <constraint firstItem="WWK-Hf-xZb" firstAttribute="top" secondItem="1t0-20-RV7" secondAttribute="bottom" constant="2" id="Wq2-tQ-QLu"/>
-                            <constraint firstItem="6ZA-bw-BOW" firstAttribute="top" secondItem="WWK-Hf-xZb" secondAttribute="bottom" constant="17" id="edG-Um-xlV"/>
-                            <constraint firstItem="ps3-YR-5ER" firstAttribute="bottom" secondItem="gKJ-7v-DbB" secondAttribute="bottom" constant="373" id="gXr-KN-AyO"/>
+                            <constraint firstItem="WWK-Hf-xZb" firstAttribute="top" secondItem="1t0-20-RV7" secondAttribute="bottom" constant="5.5" id="Wq2-tQ-QLu"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="gKJ-7v-DbB" secondAttribute="trailing" constant="172" id="gf9-E4-JVS"/>
-                            <constraint firstItem="gKJ-7v-DbB" firstAttribute="top" secondItem="WWK-Hf-xZb" secondAttribute="bottom" constant="18" id="jt6-UH-tPk"/>
                             <constraint firstItem="wRS-Ga-buk" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="47" id="kPg-NQ-GF8"/>
                             <constraint firstItem="WWK-Hf-xZb" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="75" id="mPL-OM-e0N"/>
-                            <constraint firstItem="1t0-20-RV7" firstAttribute="top" secondItem="ps3-YR-5ER" secondAttribute="top" constant="202" id="oQb-rW-Xvl"/>
-                            <constraint firstItem="WWK-Hf-xZb" firstAttribute="top" secondItem="1t0-20-RV7" secondAttribute="bottom" constant="2" id="oc8-4p-Xho"/>
+                            <constraint firstItem="gKJ-7v-DbB" firstAttribute="top" secondItem="WWK-Hf-xZb" secondAttribute="bottom" constant="12" id="o9C-QR-VQZ"/>
                             <constraint firstItem="LJH-As-hEM" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="75" id="tgA-Wr-SaY"/>
+                            <constraint firstItem="6ZA-bw-BOW" firstAttribute="top" secondItem="WWK-Hf-xZb" secondAttribute="bottom" constant="13" id="uEf-fF-Ne3"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="wRS-Ga-buk" secondAttribute="trailing" constant="51" id="w02-ss-t22"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="f34-Z8-Ak9"/>
+                    <navigationItem key="navigationItem" title=" " id="f34-Z8-Ak9">
+                        <barButtonItem key="backBarButtonItem" title="Ввод телефона" id="4QN-dW-MeJ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="incorrectLabel" destination="WWK-Hf-xZb" id="X6I-ye-OM7"/>
                         <outlet property="indicator" destination="gKJ-7v-DbB" id="26p-Jw-JTN"/>
@@ -133,7 +132,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginWith:" destination="aSg-j3-GJZ" eventType="touchUpInside" id="DCc-5H-ZEP"/>
-                                    <segue destination="GpO-dM-JD4" kind="show" id="cNj-OV-GgW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-rt-OYG">
@@ -164,7 +162,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6mc-16-KPA">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="1Jx-aD-it0"/>
+                        <barButtonItem key="backBarButtonItem" title="Ввод телефона" id="MR2-TB-Gax"/>
                     </navigationItem>
                     <connections>
                         <outlet property="phoneNumberLabel" destination="HQ1-rt-OYG" id="haO-3g-G5t"/>
@@ -173,16 +171,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gn-ep-FHv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="138.61607142857142"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="5Kd-cq-nxL">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="GpO-dM-JD4" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3rw-Xn-WMG"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e5B-pM-Cjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1567" y="69"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="20h-Ww-zE1">

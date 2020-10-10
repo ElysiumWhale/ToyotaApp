@@ -1,11 +1,3 @@
-//
-//  SmsCodeViewController.swift
-//  ToyotaApp
-//
-//  Created by Алексей Гурин on 08.10.2020.
-//  Copyright © 2020 Алексей Гурин. All rights reserved.
-//
-
 import UIKit
 
 class SmsCodeViewController: UIViewController {
@@ -16,31 +8,35 @@ class SmsCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func login(with sender: UIButton) {
-        // if auth is success
-        loadHomeScreen()
+        //send sms code
+        //recieve struct:
+            //first time flag: 0/1
+            //auth key: id + ddmmyyhhmmss + salt
+        //send auth key
+        //store auth key
+        //if first time
+        let isFirstTimeAuth = "1".contains("1")
+        if isFirstTimeAuth {
+            loadStoryboard(with: AppStoryboards.register.rawValue, controller: AppViewControllers.registerNavigation.rawValue, configure: {_ in })
+        } else {
+            loadStoryboard(with: AppStoryboards.main.rawValue, controller: AppViewControllers.mainMenuNavigation.rawValue, configure: {_ in})
+        }
     }
-    
-    func loadHomeScreen() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: AppStoryboards.main.rawValue, bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: AppViewControllers.mainMenuNavigation.rawValue)
+}
+//MARK: - Navigation
+extension SmsCodeViewController {
+    func loadStoryboard(with name: String, controller: String, configure: (UIViewController) -> Void) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: controller)
+        configure(vc)
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
     }
     
-// MARK: - Navigation
-    
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            phoneNumberLabel?.text = phoneNumber
-        //
+        super.viewWillAppear(animated)
+        phoneNumberLabel?.text = phoneNumber
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //switch segue.identifier {}
-    }
-
 }

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Jj6-W8-5bE">
+            <objects>
+                <navigationController storyboardIdentifier="RegisterNavigationController" id="yjk-xh-GOo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="uCg-b4-LD6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mey-k5-Vri" kind="relationship" relationship="rootViewController" id="OFT-Ik-upm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nID-2o-m8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="173"/>
+        </scene>
+        <!--Города-->
+        <scene sceneID="UHO-9H-bXv">
+            <objects>
+                <viewController id="Mey-k5-Vri" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cwL-yz-kCL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C34-3X-JRb" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="133" y="718" width="148" height="39"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <state key="normal" title="Далее"/>
+                                <connections>
+                                    <segue destination="trX-DT-aGp" kind="show" id="r4C-JO-9Ko"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-VA-hiF" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="72" y="765" width="271" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="LDC-iL-cfh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
+                                <state key="normal" title="  Пропустить первичное заполнение информации">
+                                    <color key="titleColor" red="0.050778642223742447" green="0.49899211104121649" blue="0.98967778497409331" alpha="0.54213028169014088" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="OhR-2T-1Nj" kind="show" id="Ffc-gi-Mv1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hon-gj-5GF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="SYE-VA-hiF" secondAttribute="trailing" constant="71" id="3PB-Yn-Bfr"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="50" id="5NT-50-w0A"/>
+                            <constraint firstItem="C34-3X-JRb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="133" id="7Ac-hQ-Gwn"/>
+                            <constraint firstItem="SYE-VA-hiF" firstAttribute="top" secondItem="C34-3X-JRb" secondAttribute="bottom" constant="8" symbolic="YES" id="Q6P-eZ-VbB"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="C34-3X-JRb" secondAttribute="trailing" constant="133" id="UhY-mN-ac7"/>
+                            <constraint firstItem="SYE-VA-hiF" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="72" id="tu3-L4-Cpy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Города" id="5ue-dg-1Tp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1021.7391304347827" y="172.76785714285714"/>
+        </scene>
+        <!--Дилер-->
+        <scene sceneID="Hzj-is-PlJ">
+            <objects>
+                <viewController id="trX-DT-aGp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fW5-Qp-dpS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBL-eo-MEG" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="133" y="726" width="148" height="39"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <state key="normal" title="Далее"/>
+                                <connections>
+                                    <segue destination="kS6-zi-MR4" kind="show" id="Qyo-bv-bsM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dd6-Uq-MJ9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Dd6-Uq-MJ9" firstAttribute="trailing" secondItem="RBL-eo-MEG" secondAttribute="trailing" constant="133" id="09u-T8-Vux"/>
+                            <constraint firstItem="Dd6-Uq-MJ9" firstAttribute="bottom" secondItem="RBL-eo-MEG" secondAttribute="bottom" constant="97" id="TTG-Pi-JgV"/>
+                            <constraint firstItem="RBL-eo-MEG" firstAttribute="leading" secondItem="Dd6-Uq-MJ9" secondAttribute="leading" constant="133" id="e9k-ef-axo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Дилер" id="QHa-6l-wSn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GlK-d9-09v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1867" y="173"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="qho-gS-DHD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="OhR-2T-1Nj" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hNI-PQ-UsY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ak6-is-iOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="559"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jMk-HB-QFP">
+            <objects>
+                <navigationController id="u2d-Nz-Iqa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wDK-sD-XIo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8Ad-fD-g3k" kind="relationship" relationship="rootViewController" id="oFV-6v-fOc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orZ-SN-L9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2090" y="990"/>
+        </scene>
+        <!--Машина-->
+        <scene sceneID="FPL-A9-Xgp">
+            <objects>
+                <viewController id="kS6-zi-MR4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CuC-DO-DvD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9H-R0-7Xg" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="117" y="741" width="181" height="39"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <state key="normal" title="Проверить по VIN"/>
+                                <connections>
+                                    <segue destination="u2d-Nz-Iqa" kind="presentation" id="oVz-ko-usn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="up4-aD-Hxy" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="133" y="800" width="148" height="39"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <state key="normal" title="Далее"/>
+                                <connections>
+                                    <segue destination="c2L-Fe-S5T" kind="show" id="vvX-8h-kyZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NOD-Dv-T9R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b9H-R0-7Xg" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="117" id="30a-eZ-5fL"/>
+                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="bottom" secondItem="up4-aD-Hxy" secondAttribute="bottom" constant="23" id="7tB-zT-xm8"/>
+                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="b9H-R0-7Xg" secondAttribute="trailing" constant="116" id="MQV-cz-dgZ"/>
+                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="up4-aD-Hxy" secondAttribute="trailing" constant="133" id="aJ1-2P-Vh9"/>
+                            <constraint firstItem="up4-aD-Hxy" firstAttribute="top" secondItem="b9H-R0-7Xg" secondAttribute="bottom" constant="20" id="d6Z-yx-LED"/>
+                            <constraint firstItem="up4-aD-Hxy" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="133" id="v9P-Ee-CER"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Машина" id="bwh-ER-nsN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q3g-gG-TVb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2758" y="173"/>
+        </scene>
+        <!--Завершение-->
+        <scene sceneID="k5q-h7-3t3">
+            <objects>
+                <viewController id="c2L-Fe-S5T" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JpK-dt-2qm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-Co-vhy" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="133" y="738" width="148" height="44"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="26"/>
+                                <state key="normal" title="Готово"/>
+                                <connections>
+                                    <segue destination="qw4-bY-ZJ3" kind="show" id="fGa-l1-hl7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9HI-zJ-96J"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="VmI-Co-vhy" secondAttribute="trailing" constant="133" id="Sj2-Oc-QY8"/>
+                            <constraint firstItem="9HI-zJ-96J" firstAttribute="bottom" secondItem="VmI-Co-vhy" secondAttribute="bottom" constant="80" id="bed-ms-jWT"/>
+                            <constraint firstItem="VmI-Co-vhy" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="133" id="yKd-iG-sAW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Завершение" id="IsS-Ae-Fdq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zma-mT-lsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3733" y="173"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="tyf-cv-7sp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="qw4-bY-ZJ3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="fc8-TY-S8w"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oW6-DU-Phv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4222" y="173"/>
+        </scene>
+        <!--Проверка машины по VIN-->
+        <scene sceneID="02O-Km-L1x">
+            <objects>
+                <viewController title="Проверка машины по VIN" id="8Ad-fD-g3k" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JOB-ZK-36K">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Neb-4M-qto"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Проверка машины по VIN" id="MHg-Nt-oh6">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="wAV-Z8-8CM"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t29-fU-oEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2925" y="990"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="C34-3X-JRb">
+            <size key="intrinsicContentSize" width="60" height="39"/>
+        </designable>
+        <designable name="RBL-eo-MEG">
+            <size key="intrinsicContentSize" width="60" height="39"/>
+        </designable>
+        <designable name="SYE-VA-hiF">
+            <size key="intrinsicContentSize" width="318" height="29"/>
+        </designable>
+        <designable name="VmI-Co-vhy">
+            <size key="intrinsicContentSize" width="81" height="44"/>
+        </designable>
+        <designable name="b9H-R0-7Xg">
+            <size key="intrinsicContentSize" width="181" height="39"/>
+        </designable>
+        <designable name="up4-aD-Hxy">
+            <size key="intrinsicContentSize" width="60" height="39"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -22,6 +22,7 @@
 		A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A72523F13E00312EBE /* MainMenuViewController.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
+		A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */; };
 		A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyCarViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServiceViewController.swift */; };
 		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
@@ -45,6 +46,7 @@
 		A75946A72523F13E00312EBE /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
+		A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunchRegistration.storyboard; sourceTree = "<group>"; };
 		A791FDDC2524E1B900A595BB /* MyCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
@@ -157,9 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				A791FDE8252672FA00A595BB /* Custom Controls */,
-				A75946912523E32F00312EBE /* Main.storyboard */,
 				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
 				A791FDE32526707100A595BB /* Authentification.storyboard */,
+				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
+				A75946912523E32F00312EBE /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			files = (
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
+				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A75946932523E32F00312EBE /* Main.storyboard in Resources */,
 			);
