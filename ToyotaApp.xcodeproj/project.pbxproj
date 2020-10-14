@@ -11,6 +11,7 @@
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
 		A717CEBE252BC63E00CFB6FF /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEBD252BC63E00CFB6FF /* CountryPicker */; };
 		A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */; };
+		A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* NetworkingUtils.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
 		A75946932523E32F00312EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* Main.storyboard */; };
@@ -28,11 +29,12 @@
 		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
 		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
-		A791FDEA25267A1A00A595BB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* Utils.swift */; };
+		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
+		A74D2898253680FB00A1C856 /* NetworkingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtils.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A759468D2523E32F00312EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
 		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		A791FDE925267A1A00A595BB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +116,9 @@
 			children = (
 				A75946A32523ECF100312EBE /* Auth.swift */,
 				A75946A52523F05200312EBE /* Car.swift */,
-				A791FDE925267A1A00A595BB /* Utils.swift */,
+				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
+				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,11 +269,12 @@
 				A75946A62523F05200312EBE /* Car.swift in Sources */,
 				A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
-				A791FDEA25267A1A00A595BB /* Utils.swift in Sources */,
+				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
+				A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
