@@ -48,6 +48,7 @@ class AuthViewController: UIViewController {
                     sendPhoneButton!.isHidden = true
                     indicator!.isHidden = false
                     //sendPhone
+                    //NetworkService.shared.makePostRequest(page: PostRequests.phoneNumber, params: [URLQueryItem(name: PostRequestsKeys.phoneNumber.rawValue, value: phoneNumber?.text)])
                     return true
                 }
             default: return true
