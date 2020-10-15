@@ -44,7 +44,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="trX-DT-aGp" kind="show" id="r4C-JO-9Ko"/>
+                                    <segue destination="kS6-zi-MR4" kind="show" id="dYX-SM-hj1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-VA-hiF">
@@ -59,38 +59,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="OhR-2T-1Nj" kind="show" id="Ffc-gi-Mv1"/>
-                                </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Is4-tG-MJk">
-                                <rect key="frame" x="20" y="219" width="374" height="514"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="4FI-fN-oVf">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="56"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4FI-fN-oVf" id="OaU-n4-Sgd">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Город, область" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS3-QL-C1G">
-                                                    <rect key="frame" x="20" y="11" width="346" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="YS3-QL-C1G" firstAttribute="leading" secondItem="OaU-n4-Sgd" secondAttribute="leading" constant="20" id="0Al-bk-25f"/>
-                                                <constraint firstAttribute="bottom" secondItem="YS3-QL-C1G" secondAttribute="bottom" constant="11" id="67S-Pw-n1H"/>
-                                                <constraint firstAttribute="trailing" secondItem="YS3-QL-C1G" secondAttribute="trailing" constant="8" id="6G7-Rv-tdO"/>
-                                                <constraint firstItem="YS3-QL-C1G" firstAttribute="top" secondItem="OaU-n4-Sgd" secondAttribute="top" constant="11" id="Jum-b1-LZJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город из списка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
                                 <rect key="frame" x="20" y="140" width="374" height="31"/>
                                 <constraints>
@@ -100,13 +69,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="96i-41-syU">
-                                <rect key="frame" x="20" y="175" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="zrn-gY-wzs"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hon-gj-5GF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -115,72 +77,18 @@
                             <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="21" id="5NT-50-w0A"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" id="5ju-UY-QGz"/>
                             <constraint firstItem="C34-3X-JRb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="133" id="7Ac-hQ-Gwn"/>
-                            <constraint firstItem="96i-41-syU" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="Du3-7U-Htv"/>
-                            <constraint firstItem="96i-41-syU" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="4" id="EAS-qW-vIV"/>
                             <constraint firstItem="SYE-VA-hiF" firstAttribute="top" secondItem="C34-3X-JRb" secondAttribute="bottom" constant="8" symbolic="YES" id="Q6P-eZ-VbB"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Is4-tG-MJk" secondAttribute="trailing" constant="20" id="To4-el-mPe"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="C34-3X-JRb" secondAttribute="trailing" constant="133" id="UhY-mN-ac7"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="Is4-tG-MJk" secondAttribute="bottom" constant="129" id="UvC-Ji-QSv"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ZmH-tZ-JEu"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="leading" secondItem="Is4-tG-MJk" secondAttribute="leading" constant="-20" id="bmc-bF-ede"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Q5I-rD-2TU" secondAttribute="trailing" constant="20" id="buu-UI-0cQ"/>
-                            <constraint firstItem="Is4-tG-MJk" firstAttribute="top" secondItem="96i-41-syU" secondAttribute="bottom" id="s6c-gY-YsD"/>
                             <constraint firstItem="SYE-VA-hiF" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="72" id="tu3-L4-Cpy"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="96i-41-syU" secondAttribute="trailing" constant="20" id="xoP-sf-xNw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Города" id="5ue-dg-1Tp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.7391304347827" y="172.76785714285714"/>
-        </scene>
-        <!--Дилер-->
-        <scene sceneID="Hzj-is-PlJ">
-            <objects>
-                <viewController id="trX-DT-aGp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fW5-Qp-dpS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBL-eo-MEG" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="133" y="761" width="148" height="39"/>
-                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
-                                <state key="normal" title="Далее">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="kS6-zi-MR4" kind="show" id="Qyo-bv-bsM"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Dd6-Uq-MJ9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Dd6-Uq-MJ9" firstAttribute="trailing" secondItem="RBL-eo-MEG" secondAttribute="trailing" constant="133" id="09u-T8-Vux"/>
-                            <constraint firstItem="Dd6-Uq-MJ9" firstAttribute="bottom" secondItem="RBL-eo-MEG" secondAttribute="bottom" constant="62" id="TTG-Pi-JgV"/>
-                            <constraint firstItem="RBL-eo-MEG" firstAttribute="leading" secondItem="Dd6-Uq-MJ9" secondAttribute="leading" constant="133" id="e9k-ef-axo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Дилер" id="QHa-6l-wSn"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GlK-d9-09v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1867" y="173"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="qho-gS-DHD">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="OhR-2T-1Nj" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="hNI-PQ-UsY"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ak6-is-iOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1022" y="559"/>
+            <point key="canvasLocation" x="920" y="173"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jMk-HB-QFP">
@@ -196,7 +104,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orZ-SN-L9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="990"/>
+            <point key="canvasLocation" x="1626" y="910"/>
         </scene>
         <!--Машина-->
         <scene sceneID="FPL-A9-Xgp">
@@ -244,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3g-gG-TVb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2757.971014492754" y="172.76785714285714"/>
+            <point key="canvasLocation" x="1904" y="173"/>
         </scene>
         <!--Завершение-->
         <scene sceneID="k5q-h7-3t3">
@@ -281,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zma-mT-lsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3731.884057971015" y="172.76785714285714"/>
+            <point key="canvasLocation" x="2890" y="173"/>
         </scene>
         <!--Main-->
         <scene sceneID="tyf-cv-7sp">
@@ -291,7 +199,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oW6-DU-Phv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4222" y="173"/>
+            <point key="canvasLocation" x="3580" y="173"/>
         </scene>
         <!--Проверка машины по VIN-->
         <scene sceneID="02O-Km-L1x">
@@ -310,14 +218,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t29-fU-oEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="990"/>
+            <point key="canvasLocation" x="2517" y="909"/>
         </scene>
     </scenes>
     <designables>
         <designable name="C34-3X-JRb">
-            <size key="intrinsicContentSize" width="60" height="39"/>
-        </designable>
-        <designable name="RBL-eo-MEG">
             <size key="intrinsicContentSize" width="60" height="39"/>
         </designable>
         <designable name="VmI-Co-vhy">
