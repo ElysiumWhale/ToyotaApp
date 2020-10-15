@@ -9,7 +9,8 @@ class NetworkService {
     
     init() {
         var urlComponents = URLComponents()
-        urlComponents.scheme = "http" //MAKE ME HTTPS
+        /* MAKE ME HTTPS! To turn off delete dictionary "AppTransportSecuritySettings" in info.plist */
+        urlComponents.scheme = "http"
         urlComponents.host = "cv39623.tmweb.ru"
         urlComponents.path = "/avtosalon/mobile/"
         mainUrl = urlComponents
