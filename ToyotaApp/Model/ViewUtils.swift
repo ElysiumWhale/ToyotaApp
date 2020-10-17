@@ -13,8 +13,8 @@ public struct AppViewControllers {
     static let registerNavigation = "RegisterNavigationController"
     static let auth = "AuthViewController"
     static let mainMenu = "MainMenuViewController"
-    static let tech = "TechViewController"
-    static let service = "ServiceViewController"
+    static let offers = "OffersViewController"
+    static let services = "ServicesViewController"
     static let myCar = "MyCarViewController"
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServiceViewController: UIViewController {
+class ServicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TechViewController: UIViewController {
+class OffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

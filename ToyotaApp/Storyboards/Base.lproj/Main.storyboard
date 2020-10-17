@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,6 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="KLr-04-N2s" kind="relationship" relationship="viewControllers" id="2Ea-np-lzn"/>
@@ -31,7 +33,7 @@
         <!--Акции-->
         <scene sceneID="1am-hM-fZp">
             <objects>
-                <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" customClass="OffersViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ut1-el-nLF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,26 +58,13 @@
         <!--Услуги-->
         <scene sceneID="vV6-m5-P55">
             <objects>
-                <viewController storyboardIdentifier="ServicesViewController" title="Услуги" id="KLr-04-N2s" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServicesViewController" title="Услуги" id="KLr-04-N2s" customClass="ServicesViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mCd-HP-nmp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dL-fa-JrQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="219" width="345" height="100"/>
-                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="zbl-jC-Chd"/>
-                                </constraints>
-                                <state key="normal" title="Мое авто">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCn-af-zlT" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="349" width="345" height="100"/>
+                                <rect key="frame" x="35" y="184" width="345" height="100"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="s3K-2c-Ohn"/>
@@ -88,7 +77,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQ8-9i-guK" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="479" width="345" height="100"/>
+                                <rect key="frame" x="35" y="314" width="345" height="100"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="OPl-mV-0wH"/>
@@ -113,14 +102,10 @@
                         <constraints>
                             <constraint firstItem="wQ8-9i-guK" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="3k6-K8-nPy"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="wQ8-9i-guK" secondAttribute="trailing" constant="34" id="8Sy-hr-oRv"/>
-                            <constraint firstItem="3dL-fa-JrQ" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="175" id="Hln-cc-M1P"/>
                             <constraint firstItem="wQ8-9i-guK" firstAttribute="top" secondItem="VCn-af-zlT" secondAttribute="bottom" constant="30" id="KXH-Sx-Q2T"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="3dL-fa-JrQ" secondAttribute="trailing" constant="34" id="UPs-Tr-CR0"/>
-                            <constraint firstItem="3dL-fa-JrQ" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="aDu-92-l4n"/>
+                            <constraint firstItem="VCn-af-zlT" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="140" id="PhP-hp-PQB"/>
                             <constraint firstItem="VCn-af-zlT" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="cmw-C6-qRz"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="VCn-af-zlT" secondAttribute="trailing" constant="34" id="gTe-4T-0at"/>
-                            <constraint firstItem="VCn-af-zlT" firstAttribute="top" secondItem="3dL-fa-JrQ" secondAttribute="bottom" constant="30" id="yA7-rg-bSo"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="bottom" secondItem="wQ8-9i-guK" secondAttribute="bottom" constant="234" id="zEb-tO-XV3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Услуги" selectedImage="bookmark.circle" catalog="system" id="UKN-IC-MKf"/>
@@ -137,7 +122,7 @@
         <!--Мое авто-->
         <scene sceneID="TX7-2q-O8n">
             <objects>
-                <viewController storyboardIdentifier="MyCarViewController" title="Мое авто" id="CkW-Bd-toE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyCarViewController" title="Мое авто" id="CkW-Bd-toE" customClass="MyCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Erh-vY-RRq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,9 +131,52 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="YMo-w7-QZI"/>
+                                    <navigationItem title="Title" id="YMo-w7-QZI">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qCy-Sj-9R5">
+                                            <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="946-cg-8iK">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="REV-se-One">
+                                    <size key="itemSize" width="340" height="423"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="35" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="60U-4s-fXI">
+                                        <rect key="frame" x="22" y="35" width="370" height="450"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bYa-Be-bpc">
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="450"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Модель" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0q-KM-hr9">
+                                                    <rect key="frame" x="36" y="26" width="309" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="bNL-zo-f1C"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x0q-KM-hr9" firstAttribute="top" secondItem="bYa-Be-bpc" secondAttribute="top" constant="26" id="0UN-KE-bPQ"/>
+                                                <constraint firstItem="x0q-KM-hr9" firstAttribute="leading" secondItem="bYa-Be-bpc" secondAttribute="leading" constant="36" id="73h-id-Raj"/>
+                                                <constraint firstAttribute="trailing" secondItem="x0q-KM-hr9" secondAttribute="trailing" constant="25" id="tu1-V0-o3Y"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="customSize" width="370" height="450"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mb5-0G-N5c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -162,13 +190,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-JJ-veb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1941" y="846"/>
+            <point key="canvasLocation" x="1940.5797101449277" y="845.75892857142856"/>
         </scene>
     </scenes>
     <designables>
-        <designable name="3dL-fa-JrQ">
-            <size key="intrinsicContentSize" width="66" height="30"/>
-        </designable>
         <designable name="VCn-af-zlT">
             <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>

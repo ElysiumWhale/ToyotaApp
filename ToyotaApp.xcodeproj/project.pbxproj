@@ -26,8 +26,8 @@
 		A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */; };
 		A77B9312253B035F0011282E /* NetworkServiceResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* NetworkServiceResponses.swift */; };
 		A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyCarViewController.swift */; };
-		A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServiceViewController.swift */; };
-		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
+		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
+		A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* OffersViewController.swift */; };
 		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
@@ -52,8 +52,8 @@
 		A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunchRegistration.storyboard; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* NetworkServiceResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceResponses.swift; sourceTree = "<group>"; };
 		A791FDDC2524E1B900A595BB /* MyCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarViewController.swift; sourceTree = "<group>"; };
-		A791FDDE2524E1D700A595BB /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
-		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
+		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		A791FDE02524E1E400A595BB /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		A791FDDA2524E19300A595BB /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDDE2524E1D700A595BB /* ServiceViewController.swift */,
+				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 		A791FDDB2524E19B00A595BB /* Tech */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDE02524E1E400A595BB /* TechViewController.swift */,
+				A791FDE02524E1E400A595BB /* OffersViewController.swift */,
 			);
 			path = Tech;
 			sourceTree = "<group>";
@@ -274,8 +274,8 @@
 				A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
-				A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */,
-				A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */,
+				A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */,
+				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */,
