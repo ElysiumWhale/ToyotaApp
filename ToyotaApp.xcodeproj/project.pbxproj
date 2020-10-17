@@ -24,6 +24,7 @@
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */; };
+		A77B9312253B035F0011282E /* NetworkServiceResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* NetworkServiceResponses.swift */; };
 		A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyCarViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServiceViewController.swift */; };
 		A791FDE12524E1E400A595BB /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* TechViewController.swift */; };
@@ -49,6 +50,7 @@
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunchRegistration.storyboard; sourceTree = "<group>"; };
+		A77B9311253B035F0011282E /* NetworkServiceResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceResponses.swift; sourceTree = "<group>"; };
 		A791FDDC2524E1B900A595BB /* MyCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* TechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
+				A77B9311253B035F0011282E /* NetworkServiceResponses.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				A75946A42523ECF100312EBE /* Auth.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
+				A77B9312253B035F0011282E /* NetworkServiceResponses.swift in Sources */,
 				A75946A62523F05200312EBE /* Car.swift in Sources */,
 				A75946A82523F13E00312EBE /* MainMenuViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,

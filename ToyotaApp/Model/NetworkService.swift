@@ -24,7 +24,7 @@ class NetworkService {
         }.resume()
     }
     
-    func makePostRequest(page: String, params: [URLQueryItem] = []) {
+    func makePostRequest(page: String, params: [URLQueryItem] = [], completion: @escaping (Data?)->Void = {_ in }) {
         var request = mainUrl
         request.path.append(page)
         request.queryItems = []
@@ -35,10 +35,10 @@ class NetworkService {
             if let response = response { print(response) }
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
+                    print(try JSONSerialization.jsonObject(with: data, options: []))
+                    completion(data)
                 } catch {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
         }.resume()

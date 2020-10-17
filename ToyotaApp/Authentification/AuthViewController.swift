@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
     @IBOutlet var sendPhoneButton: UIButton?
     @IBOutlet var indicator: UIActivityIndicatorView?
     
-    let segueNumberToCode: String = "NumberToCodeSegue"
+    let segueCode: String = SegueCodes.NumberToCode
        
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +27,13 @@ class AuthViewController: UIViewController {
             incorrectLabel!.isHidden = true
             phoneNumber?.layer.borderWidth = 0
     }
-    
+}
+
 //MARK: - Navigation
+extension AuthViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case segueNumberToCode:
+            case segueCode:
                 let destinationVC = segue.destination as? SmsCodeViewController
                 destinationVC?.phoneNumber = phoneNumber?.text
             default:
@@ -41,7 +43,7 @@ class AuthViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
-            case segueNumberToCode:
+            case segueCode:
                 if !(phoneNumber!.isValidNumber) {
                     phoneNumber?.layer.borderColor = UIColor.systemRed.cgColor
                     phoneNumber?.layer.borderWidth = 1.0
@@ -51,8 +53,8 @@ class AuthViewController: UIViewController {
                     indicator!.startAnimating()
                     sendPhoneButton!.isHidden = true
                     indicator!.isHidden = false
-                    //sendPhone
-                    NetworkService.shared.makePostRequest(page: PostRequests.phoneNumber, params: [URLQueryItem(name: PostRequestsKeys.phoneNumber, value: phoneNumber?.text)])
+                    ///DEBUG
+                    //NetworkService.shared.makePostRequest(page: PostRequests.phoneNumber, params: [URLQueryItem(name: PostRequestsKeys.phoneNumber, value: phoneNumber?.text)])
                     return true
                 }
             default: return true

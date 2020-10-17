@@ -8,6 +8,11 @@ struct PostRequests {
 
 struct PostRequestsKeys {
     static let phoneNumber = "phone_number"
+    static let code = "code"
+}
+
+struct DefaultsKeys {
+    static let authKey = "authKey"
 }
 
 struct MainURL {

@@ -119,10 +119,16 @@
                                 <rect key="frame" x="99" y="250" width="217" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
+                                <connections>
+                                    <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="valueChanged" id="nev-Bh-5GP"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-Vh-rJQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="138" y="334" width="140" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
                                 <state key="normal" title="Далее">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,6 +172,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="phoneNumberLabel" destination="HQ1-rt-OYG" id="haO-3g-G5t"/>
+                        <outlet property="sendSmsCodeButton" destination="S3P-Vh-rJQ" id="UC7-as-HPI"/>
+                        <outlet property="smsCodeTextField" destination="bwn-0n-Fd3" id="9Pg-xf-flF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gn-ep-FHv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

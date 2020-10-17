@@ -3,6 +3,8 @@ import UIKit
 class SmsCodeViewController: UIViewController {
 
     @IBOutlet var phoneNumberLabel: UILabel?
+    @IBOutlet var smsCodeTextField: UITextField?
+    @IBOutlet var sendSmsCodeButton: UIButton?
     
     var phoneNumber: String?
     
@@ -10,25 +12,27 @@ class SmsCodeViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func codeValueDidChange(with sender: UITextField) {
+        if sender.text?.count == 4 {
+            sendSmsCodeButton!.isEnabled = true
+        }
+    }
+    
     @IBAction func login(with sender: UIButton) {
-        //send sms code
-        //recieve struct:
-            //first time flag: 0/1
-            //auth key: id + ddmmyyhhmmss + salt
-        //send auth key
-        //store auth key
-        //if first time
-        let isFirstTimeAuth = "1".contains("1")
-        if isFirstTimeAuth {
-            loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation, configure: {_ in })
+        if !smsCodeTextField!.text!.isEmpty {
+//            NetworkService.shared.makePostRequest(page: PostRequests.smsCode, params: [URLQueryItem(name: PostRequests.phoneNumber, value: phoneNumber),
+//                 URLQueryItem(name: PostRequests.smsCode, value: smsCodeLabel!.text)],
+//                completion: completion)
+            ///DEBUG
+            loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
         } else {
-            loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuNavigation, configure: {_ in})
+            #warning("Need to enter code")
         }
     }
 }
 //MARK: - Navigation
 extension SmsCodeViewController {
-    func loadStoryboard(with name: String, controller: String, configure: (UIViewController) -> Void) {
+    func loadStoryboard(with name: String, controller: String, configure: (UIViewController) -> Void = {_ in }) {
         let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: controller)
         configure(vc)
@@ -38,5 +42,29 @@ extension SmsCodeViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         phoneNumberLabel?.text = phoneNumber
+    }
+}
+
+//MARK: - Callback for request
+extension SmsCodeViewController {
+    var completion: (Data?) -> Void {
+        { [self] data in
+            if let data = data {
+                do {
+                    let rawFeed = try JSONDecoder().decode(PhoneDidSendResponse.self, from: data)
+                    #warning("Future release")
+                    //UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
+                    UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
+                    if rawFeed.firstTimeFlag == 1 {
+                        loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
+                    } else {
+                        loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
+                    }
+                }
+                catch let decodeError as NSError {
+                    print("Decoder error: \(decodeError.localizedDescription)")
+                }
+            }
+        }
     }
 }

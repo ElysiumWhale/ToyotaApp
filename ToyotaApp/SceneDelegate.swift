@@ -13,12 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // if user is logged in before
         if let loggedUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username) {
             let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-            let mainMenuNavigationController = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuNavigation)
-            window?.rootViewController = mainMenuNavigationController
+            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController)
+            window?.rootViewController = controller
         } else {
             let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
-            window?.rootViewController = authController
+            let controller = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
+            window?.rootViewController = controller
         }
     }
 

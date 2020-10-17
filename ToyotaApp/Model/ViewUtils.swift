@@ -8,7 +8,7 @@ public struct AppStoryboards {
 }
 
 public struct AppViewControllers {
-    static let mainMenuNavigation = "MainMenuNavigationController"
+    static let mainMenuTabBarController = "MainMenuTabBarController"
     static let authNavigation = "AuthNavigationController"
     static let registerNavigation = "RegisterNavigationController"
     static let auth = "AuthViewController"
@@ -21,4 +21,8 @@ public struct AppViewControllers {
 public struct UserDefaultsKeys {
     static let username = "username"
     static let userId = "userId"
+}
+
+public struct SegueCodes {
+    static let NumberToCode = "NumberToCodeSegue"
 }
