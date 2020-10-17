@@ -18,14 +18,106 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Mey-k5-Vri" kind="relationship" relationship="rootViewController" id="OFT-Ik-upm"/>
+                        <segue destination="292-f3-5Nu" kind="relationship" relationship="rootViewController" id="YV0-xF-LiN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nID-2o-m8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="173"/>
+            <point key="canvasLocation" x="-530" y="173"/>
         </scene>
-        <!--Города-->
+        <!--Данные-->
+        <scene sceneID="JZn-Z7-6Ed">
+            <objects>
+                <viewController id="292-f3-5Nu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="il0-32-ooG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IU-Os-Y8W" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="133" y="767" width="148" height="39"/>
+                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <state key="normal" title="Далее">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Mey-k5-Vri" kind="show" id="Yie-ri-snD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrP-ET-bHp">
+                                <rect key="frame" x="20" y="183" width="374" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="Mxd-IB-Sp5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTR-aX-HgH">
+                                <rect key="frame" x="20" y="251" width="374" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="r7x-2u-uIs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfR-bq-rf7">
+                                <rect key="frame" x="20" y="317" width="374" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="kMv-qW-a45"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fy-kg-Lxe">
+                                <rect key="frame" x="20" y="418" width="374" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="ZB3-YX-6ML"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-Ih-oza">
+                                <rect key="frame" x="20" y="493" width="374" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="t2W-cO-Ibc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vtv-w5-w4j"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wTR-aX-HgH" firstAttribute="top" secondItem="wrP-ET-bHp" secondAttribute="bottom" constant="19" id="3p1-PN-YGl"/>
+                            <constraint firstItem="wrP-ET-bHp" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" constant="43" id="7Wf-Em-Rvb"/>
+                            <constraint firstItem="wrP-ET-bHp" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="KSd-AB-Esy"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="5fy-kg-Lxe" secondAttribute="trailing" constant="20" id="Lfe-2s-Qdo"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="wrP-ET-bHp" secondAttribute="trailing" constant="20" id="Moc-95-vjc"/>
+                            <constraint firstItem="cfR-bq-rf7" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="VwM-sq-8P2"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="9IU-Os-Y8W" secondAttribute="bottom" constant="56" id="WBg-Qq-dmY"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="9IU-Os-Y8W" secondAttribute="trailing" constant="133" id="ah9-Mo-kOO"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="cfR-bq-rf7" secondAttribute="trailing" constant="20" id="b4V-mB-ZOB"/>
+                            <constraint firstItem="DHD-Ih-oza" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="cWF-qE-Xe2"/>
+                            <constraint firstItem="wTR-aX-HgH" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="doP-MU-Lsp"/>
+                            <constraint firstItem="9IU-Os-Y8W" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="133" id="fBc-F3-Hh3"/>
+                            <constraint firstItem="5fy-kg-Lxe" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="fF4-Er-kSz"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="DHD-Ih-oza" secondAttribute="trailing" constant="20" id="gPW-Xs-5wr"/>
+                            <constraint firstItem="DHD-Ih-oza" firstAttribute="top" secondItem="5fy-kg-Lxe" secondAttribute="bottom" constant="26" id="lna-tv-KjZ"/>
+                            <constraint firstItem="5fy-kg-Lxe" firstAttribute="top" secondItem="cfR-bq-rf7" secondAttribute="bottom" constant="52" id="oN5-Yk-jB8"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="wTR-aX-HgH" secondAttribute="trailing" constant="20" id="qS7-2G-HUa"/>
+                            <constraint firstItem="cfR-bq-rf7" firstAttribute="top" secondItem="wTR-aX-HgH" secondAttribute="bottom" constant="17" id="vV1-rl-2VC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Данные" id="ZEk-mt-0o7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iSc-F9-SRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.92753623188409" y="172.76785714285714"/>
+        </scene>
+        <!--Дилер-->
         <scene sceneID="UHO-9H-bXv">
             <objects>
                 <viewController id="Mey-k5-Vri" sceneMemberID="viewController">
@@ -34,7 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C34-3X-JRb" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="133" y="747" width="148" height="39"/>
+                                <rect key="frame" x="133" y="759" width="148" height="39"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -48,7 +140,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-VA-hiF">
-                                <rect key="frame" x="72" y="794" width="271" height="47"/>
+                                <rect key="frame" x="72" y="804" width="271" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="LDC-iL-cfh"/>
                                 </constraints>
@@ -69,26 +161,74 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-OR-ryM">
+                                <rect key="frame" x="0.0" y="235" width="414" height="207"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Город" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkQ-5a-xCL">
+                                <rect key="frame" x="20" y="181" width="374" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="LdM-dL-WJQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дилер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-ZI-K53">
+                                <rect key="frame" x="20" y="494" width="374" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="hRC-4f-We0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дилера из списка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
+                                <rect key="frame" x="20" y="454" width="374" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="8O9-0k-v7Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REB-Xw-hlj">
+                                <rect key="frame" x="0.0" y="548" width="414" height="207"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hon-gj-5GF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="SYE-VA-hiF" secondAttribute="trailing" constant="71" id="3PB-Yn-Bfr"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="21" id="5NT-50-w0A"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="11" id="5NT-50-w0A"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" id="5ju-UY-QGz"/>
                             <constraint firstItem="C34-3X-JRb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="133" id="7Ac-hQ-Gwn"/>
-                            <constraint firstItem="SYE-VA-hiF" firstAttribute="top" secondItem="C34-3X-JRb" secondAttribute="bottom" constant="8" symbolic="YES" id="Q6P-eZ-VbB"/>
+                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="RLN-OR-ryM" secondAttribute="bottom" constant="12" id="9jj-E2-cGt"/>
+                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="Czz-FZ-rUs"/>
+                            <constraint firstItem="RLN-OR-ryM" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" id="Exn-TV-QSJ"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="hkQ-5a-xCL" secondAttribute="trailing" constant="20" id="N28-7K-ETi"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="RLN-OR-ryM" secondAttribute="bottom" constant="420" id="O3R-ea-Y89"/>
+                            <constraint firstItem="SYE-VA-hiF" firstAttribute="top" secondItem="C34-3X-JRb" secondAttribute="bottom" constant="6" id="Q6P-eZ-VbB"/>
+                            <constraint firstItem="qbs-ZI-K53" firstAttribute="top" secondItem="Cvh-mo-Boh" secondAttribute="bottom" constant="9" id="QXP-Al-iMf"/>
+                            <constraint firstItem="RLN-OR-ryM" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="95" id="TEk-wc-QPI"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="C34-3X-JRb" secondAttribute="trailing" constant="133" id="UhY-mN-ac7"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ZmH-tZ-JEu"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Q5I-rD-2TU" secondAttribute="trailing" constant="20" id="buu-UI-0cQ"/>
+                            <constraint firstItem="hkQ-5a-xCL" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ePp-8T-xX0"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="qbs-ZI-K53" secondAttribute="trailing" constant="20" id="eyg-5z-iq2"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="RLN-OR-ryM" secondAttribute="trailing" id="hn7-oI-HNx"/>
+                            <constraint firstItem="RLN-OR-ryM" firstAttribute="top" secondItem="hkQ-5a-xCL" secondAttribute="bottom" constant="3" id="m2V-Gb-Ol7"/>
+                            <constraint firstItem="hkQ-5a-xCL" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="10" id="nE3-EI-i15"/>
+                            <constraint firstItem="qbs-ZI-K53" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="oxa-yB-2F6"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Cvh-mo-Boh" secondAttribute="trailing" constant="20" id="rJC-aS-YxY"/>
                             <constraint firstItem="SYE-VA-hiF" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="72" id="tu3-L4-Cpy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Города" id="5ue-dg-1Tp"/>
+                    <navigationItem key="navigationItem" title="Дилер" id="5ue-dg-1Tp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920" y="173"/>
+            <point key="canvasLocation" x="1001" y="173"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jMk-HB-QFP">
@@ -152,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3g-gG-TVb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904" y="173"/>
+            <point key="canvasLocation" x="1780" y="173"/>
         </scene>
         <!--Завершение-->
         <scene sceneID="k5q-h7-3t3">
@@ -189,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zma-mT-lsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2890" y="173"/>
+            <point key="canvasLocation" x="2546" y="173"/>
         </scene>
         <!--Main-->
         <scene sceneID="tyf-cv-7sp">
@@ -199,7 +339,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oW6-DU-Phv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3580" y="173"/>
+            <point key="canvasLocation" x="3067" y="173"/>
         </scene>
         <!--Проверка машины по VIN-->
         <scene sceneID="02O-Km-L1x">
@@ -222,6 +362,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="9IU-Os-Y8W">
+            <size key="intrinsicContentSize" width="60" height="39"/>
+        </designable>
         <designable name="C34-3X-JRb">
             <size key="intrinsicContentSize" width="60" height="39"/>
         </designable>
