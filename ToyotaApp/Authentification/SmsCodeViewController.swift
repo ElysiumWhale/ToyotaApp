@@ -20,9 +20,9 @@ class SmsCodeViewController: UIViewController {
         //if first time
         let isFirstTimeAuth = "1".contains("1")
         if isFirstTimeAuth {
-            loadStoryboard(with: AppStoryboards.register.rawValue, controller: AppViewControllers.registerNavigation.rawValue, configure: {_ in })
+            loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation, configure: {_ in })
         } else {
-            loadStoryboard(with: AppStoryboards.main.rawValue, controller: AppViewControllers.mainMenuNavigation.rawValue, configure: {_ in})
+            loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuNavigation, configure: {_ in})
         }
     }
 }

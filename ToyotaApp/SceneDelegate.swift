@@ -1,21 +1,23 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        //retrieve auth key form userdefaults with id
+        //send to server
+        //when recieve answer do this:
         // if user is logged in before
-        if let loggedUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) {
-            let mainStoryboard = UIStoryboard(name: AppStoryboards.main.rawValue, bundle: nil)
-            let mainMenuNavigationController = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuNavigation.rawValue)
+        if let loggedUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username) {
+            let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+            let mainMenuNavigationController = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuNavigation)
             window?.rootViewController = mainMenuNavigationController
         } else {
-            let authStoryboard = UIStoryboard(name: AppStoryboards.auth.rawValue, bundle: nil)
-            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation.rawValue)
+            let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+            let authController = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
             window?.rootViewController = authController
         }
     }

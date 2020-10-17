@@ -1,23 +1,24 @@
 import Foundation
 
-public enum AppStoryboards : String {
-    case launchScreen = "LaunchScreen"
-    case auth = "Authentification"
-    case register = "FirstLaunchRegistration"
-    case main = "Main"
+public struct AppStoryboards {
+    static let launchScreen = "LaunchScreen"
+    static let auth = "Authentification"
+    static let register = "FirstLaunchRegistration"
+    static let main = "Main"
 }
 
-public enum AppViewControllers : String {
-    case mainMenuNavigation = "MainMenuNavigationController"
-    case authNavigation = "AuthNavigationController"
-    case registerNavigation = "RegisterNavigationController"
-    case auth = "AuthViewController"
-    case mainMenu = "MainMenuViewController"
-    case tech = "TechViewController"
-    case service = "ServiceViewController"
-    case myCar = "MyCarViewController"
+public struct AppViewControllers {
+    static let mainMenuNavigation = "MainMenuNavigationController"
+    static let authNavigation = "AuthNavigationController"
+    static let registerNavigation = "RegisterNavigationController"
+    static let auth = "AuthViewController"
+    static let mainMenu = "MainMenuViewController"
+    static let tech = "TechViewController"
+    static let service = "ServiceViewController"
+    static let myCar = "MyCarViewController"
 }
 
-public enum UserDefaultsKeys : String {
-    case username = "username"
+public struct UserDefaultsKeys {
+    static let username = "username"
+    static let userId = "userId"
 }

@@ -12,11 +12,15 @@ class AuthViewController: UIViewController {
        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureTextField()
+    }
+    
+    //MARK: - TEST METHOD
+    func configureTextField() {
         phoneNumber?.layer.cornerRadius = 15
-        self.phoneNumber?.withPrefix = true
-        self.phoneNumber?.withFlag = true
-        self.phoneNumber?.maxDigits = 10
+        phoneNumber?.withPrefix = true
+        phoneNumber?.withFlag = true
+        phoneNumber?.maxDigits = 10
     }
     
     @IBAction func phoneNumberDidChange(sender: UITextField) {
@@ -48,7 +52,7 @@ class AuthViewController: UIViewController {
                     sendPhoneButton!.isHidden = true
                     indicator!.isHidden = false
                     //sendPhone
-                    NetworkService.shared.makePostRequest(page: PostRequests.phoneNumber, params: [URLQueryItem(name: PostRequestsKeys.phoneNumber.rawValue, value: phoneNumber?.text)])
+                    NetworkService.shared.makePostRequest(page: PostRequests.phoneNumber, params: [URLQueryItem(name: PostRequestsKeys.phoneNumber, value: phoneNumber?.text)])
                     return true
                 }
             default: return true

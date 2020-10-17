@@ -7,19 +7,13 @@ class NetworkService {
     let session = URLSession(configuration: URLSessionConfiguration.default)
     private var mainUrl: URLComponents
     
-    init() {
-        var urlComponents = URLComponents()
+    private init() {
         /* MAKE ME HTTPS! To turn off delete dictionary "AppTransportSecuritySettings" in info.plist */
-        urlComponents.scheme = "http"
-        urlComponents.host = "cv39623.tmweb.ru"
-        urlComponents.path = "/avtosalon/mobile/"
-        mainUrl = urlComponents
+        mainUrl = MainURL.buildHttp()
     }
     
     private var profileId: URLQueryItem {
-        get {
-             URLQueryItem(name: "id", value: UserDefaults.standard.string(forKey: "user_id"))
-        }
+        return URLQueryItem(name: "id", value: UserDefaults.standard.string(forKey: UserDefaultsKeys.userId))
     }
     
     func makeRequest(with url: URL, completion: @escaping (Data?) -> Void) {
@@ -30,9 +24,9 @@ class NetworkService {
         }.resume()
     }
     
-    func makePostRequest(page: PostRequests, params: [URLQueryItem] = []) {
+    func makePostRequest(page: String, params: [URLQueryItem] = []) {
         var request = mainUrl
-        request.path.append(page.rawValue)
+        request.path.append(page)
         request.queryItems = []
         request.queryItems!.append(profileId)
         request.queryItems!.append(contentsOf: params)
