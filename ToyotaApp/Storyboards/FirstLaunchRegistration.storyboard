@@ -28,7 +28,7 @@
         <!--Данные-->
         <scene sceneID="JZn-Z7-6Ed">
             <objects>
-                <viewController id="292-f3-5Nu" sceneMemberID="viewController">
+                <viewController id="292-f3-5Nu" customClass="PersonalInfoViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="il0-32-ooG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,7 +120,7 @@
         <!--Дилер-->
         <scene sceneID="UHO-9H-bXv">
             <objects>
-                <viewController id="Mey-k5-Vri" sceneMemberID="viewController">
+                <viewController id="Mey-k5-Vri" customClass="DealerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cwL-yz-kCL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +249,7 @@
         <!--Машина-->
         <scene sceneID="FPL-A9-Xgp">
             <objects>
-                <viewController id="kS6-zi-MR4" sceneMemberID="viewController">
+                <viewController id="kS6-zi-MR4" customClass="AddingCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CuC-DO-DvD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

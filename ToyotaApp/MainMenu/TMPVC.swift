@@ -1,6 +1,6 @@
 import UIKit
 
-class MainMenuViewController: UIViewController {
+class TMPVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

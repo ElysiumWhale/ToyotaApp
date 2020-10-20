@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //send to server
         //when recieve answer do this:
         // if user is logged in before
-        if let loggedUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username) {
+        if let loggedUserId = UserDefaults.standard.string(forKey: UserDefaultsKeys.userId) {
             let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController)
             window?.rootViewController = controller

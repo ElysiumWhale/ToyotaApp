@@ -13,6 +13,7 @@ struct PostRequestsKeys {
 
 struct DefaultsKeys {
     static let authKey = "authKey"
+    static let userId = "userId"
 }
 
 struct MainURL {

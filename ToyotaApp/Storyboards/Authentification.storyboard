@@ -146,17 +146,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен неверный код!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rh-38-XPD">
+                                <rect key="frame" x="99" y="305" width="217" height="21"/>
+                                <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Rg-B1-f3B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="S3P-Vh-rJQ" firstAttribute="top" secondItem="0Rg-B1-f3B" secondAttribute="top" constant="194" id="0an-nK-zoS"/>
                             <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="S3P-Vh-rJQ" secondAttribute="trailing" constant="136" id="1Zl-qc-eM1"/>
+                            <constraint firstItem="3rh-38-XPD" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="99" id="26b-E3-wNS"/>
                             <constraint firstItem="bwn-0n-Fd3" firstAttribute="top" secondItem="lS8-Ge-CYg" secondAttribute="bottom" constant="52" id="2dL-ut-MfV"/>
                             <constraint firstItem="HQ1-rt-OYG" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="99" id="4EA-qj-e93"/>
                             <constraint firstItem="bwn-0n-Fd3" firstAttribute="top" secondItem="0Rg-B1-f3B" secondAttribute="top" constant="110" id="7cv-l6-hfl"/>
                             <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="HQ1-rt-OYG" secondAttribute="trailing" constant="98" id="GOA-S4-sXw"/>
+                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="3rh-38-XPD" secondAttribute="trailing" constant="98" id="Gjm-po-xND"/>
                             <constraint firstItem="lS8-Ge-CYg" firstAttribute="top" secondItem="0Rg-B1-f3B" secondAttribute="top" constant="20" id="M17-sT-0an"/>
+                            <constraint firstItem="S3P-Vh-rJQ" firstAttribute="top" secondItem="3rh-38-XPD" secondAttribute="bottom" constant="8" id="TH5-Ev-6Yy"/>
+                            <constraint firstItem="3rh-38-XPD" firstAttribute="top" secondItem="bwn-0n-Fd3" secondAttribute="bottom" constant="1" id="eCX-fI-6Sb"/>
                             <constraint firstItem="S3P-Vh-rJQ" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="138" id="fAg-CQ-YUz"/>
                             <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="bwn-0n-Fd3" secondAttribute="trailing" constant="98" id="hIQ-4h-uUh"/>
                             <constraint firstItem="lS8-Ge-CYg" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="49" id="hxf-Fv-bde"/>
@@ -174,6 +185,7 @@
                         <outlet property="phoneNumberLabel" destination="HQ1-rt-OYG" id="haO-3g-G5t"/>
                         <outlet property="sendSmsCodeButton" destination="S3P-Vh-rJQ" id="UC7-as-HPI"/>
                         <outlet property="smsCodeTextField" destination="bwn-0n-Fd3" id="9Pg-xf-flF"/>
+                        <outlet property="wrongCodeLabel" destination="3rh-38-XPD" id="seC-1D-hyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gn-ep-FHv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
