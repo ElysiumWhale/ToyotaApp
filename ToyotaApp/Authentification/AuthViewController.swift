@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
     @IBOutlet var sendPhoneButton: UIButton?
     @IBOutlet var indicator: UIActivityIndicatorView?
     
-    let segueCode: String = SegueCodes.NumberToCode
+    let segueCode: String = SegueIdentifiers.NumberToCode
        
     override func viewDidLoad() {
         super.viewDidLoad()

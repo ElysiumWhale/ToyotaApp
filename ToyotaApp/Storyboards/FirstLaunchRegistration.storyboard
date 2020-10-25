@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,7 +44,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="Mey-k5-Vri" kind="show" id="Yie-ri-snD"/>
+                                    <segue destination="Mey-k5-Vri" kind="show" identifier="PersonInfoToDealer" id="Yie-ri-snD"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrP-ET-bHp">
@@ -61,7 +61,7 @@
                                     <constraint firstAttribute="height" constant="49" id="r7x-2u-uIs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" textContentType="family-name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfR-bq-rf7">
                                 <rect key="frame" x="20" y="317" width="374" height="49"/>
@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="49" id="kMv-qW-a45"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" textContentType="additional-name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fy-kg-Lxe">
                                 <rect key="frame" x="20" y="418" width="374" height="49"/>
@@ -79,7 +79,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-Ih-oza">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-Ih-oza">
                                 <rect key="frame" x="20" y="493" width="374" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="t2W-cO-Ibc"/>
@@ -87,15 +87,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию о себе" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEr-9E-ts0">
+                                <rect key="frame" x="20" y="140" width="374" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="QIB-Ga-OVb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vtv-w5-w4j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wTR-aX-HgH" firstAttribute="top" secondItem="wrP-ET-bHp" secondAttribute="bottom" constant="19" id="3p1-PN-YGl"/>
                             <constraint firstItem="wrP-ET-bHp" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" constant="43" id="7Wf-Em-Rvb"/>
+                            <constraint firstItem="uEr-9E-ts0" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="8lC-Po-EjB"/>
                             <constraint firstItem="wrP-ET-bHp" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="KSd-AB-Esy"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="5fy-kg-Lxe" secondAttribute="trailing" constant="20" id="Lfe-2s-Qdo"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="wrP-ET-bHp" secondAttribute="trailing" constant="20" id="Moc-95-vjc"/>
+                            <constraint firstItem="uEr-9E-ts0" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" id="OK2-bL-9oj"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="uEr-9E-ts0" secondAttribute="trailing" constant="20" id="OhC-9c-1C0"/>
                             <constraint firstItem="cfR-bq-rf7" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="VwM-sq-8P2"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="9IU-Os-Y8W" secondAttribute="bottom" constant="56" id="WBg-Qq-dmY"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="9IU-Os-Y8W" secondAttribute="trailing" constant="133" id="ah9-Mo-kOO"/>
@@ -112,6 +124,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Данные" id="ZEk-mt-0o7"/>
+                    <connections>
+                        <outlet property="birthTextField" destination="DHD-Ih-oza" id="GeU-j7-joN"/>
+                        <outlet property="emailTextField" destination="5fy-kg-Lxe" id="NNb-Xs-tFU"/>
+                        <outlet property="firstNameTextField" destination="wrP-ET-bHp" id="H08-qW-ipZ"/>
+                        <outlet property="lastNameTextField" destination="wTR-aX-HgH" id="hJu-OM-jap"/>
+                        <outlet property="secondNameTextField" destination="cfR-bq-rf7" id="KWs-xa-fgs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSc-F9-SRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +155,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="kS6-zi-MR4" kind="show" id="dYX-SM-hj1"/>
+                                    <segue destination="kS6-zi-MR4" kind="show" identifier="DealerToCar" id="dYX-SM-hj1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-VA-hiF">

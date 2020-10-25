@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="54" id="7EU-Q9-bC2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="phoneNumberDidChageWithSender:" destination="LPT-FS-7SW" eventType="valueChanged" id="8vQ-1i-dHi"/>
                                     <action selector="phoneNumberDidChangeWithSender:" destination="LPT-FS-7SW" eventType="editingChanged" id="xmj-a0-ITu"/>
@@ -118,7 +118,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Код из смс" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwn-0n-Fd3">
                                 <rect key="frame" x="99" y="250" width="217" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
                                 <connections>
                                     <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="editingChanged" id="6pF-tK-yND"/>
                                 </connections>

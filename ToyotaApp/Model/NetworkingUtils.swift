@@ -4,6 +4,10 @@ struct Brand {
     static let id = 1 //Toyota
 }
 
+struct DebugUserId {
+    static var userId: String = ""
+}
+
 struct RequestType {
     static let POST = "POST"
 }
@@ -17,6 +21,13 @@ struct PostRequestPath {
 struct PostRequestKeys {
     static let phoneNumber = "phone_number"
     static let code = "code"
+    static let brand_id = "brand_id"
+    static let user_id = "user_id"
+    static let first_name = "first_name"
+    static let second_name = "second_name"
+    static let last_name = "last_name"
+    static let birthday = "birthday"
+    static let email = "email"
 }
 
 struct DefaultsKeys {

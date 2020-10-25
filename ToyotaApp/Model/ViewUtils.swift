@@ -23,6 +23,8 @@ public struct UserDefaultsKeys {
     static let userId = "userId"
 }
 
-public struct SegueCodes {
+public struct SegueIdentifiers {
     static let NumberToCode = "NumberToCodeSegue"
+    static let PersonInfoToDealer = "PersonInfoToDealer"
+    static let DealerToCar = "DealerToCar"
 }

@@ -10,7 +10,6 @@ class SmsCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sendSmsCodeButton?.isEnabled = false
     }
     
     @IBAction func codeValueDidChange(with sender: UITextField) {
@@ -29,7 +28,7 @@ class SmsCodeViewController: UIViewController {
         } else {
             smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
             smsCodeTextField?.layer.borderWidth = 1.0
-            #warning("Need to enter code")
+            wrongCodeLabel.isHidden = false
         }
     }
 }
@@ -55,8 +54,10 @@ extension SmsCodeViewController {
             if let data = data {
                 do {
                     let rawFeed = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
-                    //UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
-                    UserDefaults.standard.set(rawFeed.user_id, forKey: DefaultsKeys.userId)
+                    //TODO: UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
+                    #warning("Line is commented while debug")
+                    //UserDefaults.standard.set(rawFeed.user_id, forKey: DefaultsKeys.userId)
+                    DebugUserId.userId = rawFeed.user_id
                     if rawFeed.result == 1 {
                         DispatchQueue.main.async {
                             loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
