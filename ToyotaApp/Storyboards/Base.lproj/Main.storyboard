@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -14,15 +14,15 @@
         <scene sceneID="whr-c9-hfA">
             <objects>
                 <tabBarController storyboardIdentifier="MainMenuTabBarController" id="W6T-DW-qjd" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3yy-wf-8cf">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="3yy-wf-8cf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="KLr-04-N2s" kind="relationship" relationship="viewControllers" id="2Ea-np-lzn"/>
                         <segue destination="qV5-Is-7iF" kind="relationship" relationship="viewControllers" id="Olt-H6-9za"/>
+                        <segue destination="KLr-04-N2s" kind="relationship" relationship="viewControllers" id="2Ea-np-lzn"/>
                         <segue destination="CkW-Bd-toE" kind="relationship" relationship="viewControllers" id="pIf-09-rw7"/>
                     </connections>
                 </tabBarController>
@@ -49,11 +49,13 @@
                         <viewLayoutGuide key="safeArea" id="Y7t-Y5-2GI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Акции" selectedImage="star.circle" catalog="system" id="mSA-PA-rV7"/>
+                    <tabBarItem key="tabBarItem" title="Акции" image="star.circle" catalog="system" id="mSA-PA-rV7">
+                        <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V7K-YM-Q8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="846"/>
+            <point key="canvasLocation" x="2080" y="143"/>
         </scene>
         <!--Услуги-->
         <scene sceneID="vV6-m5-P55">
@@ -108,7 +110,7 @@
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="VCn-af-zlT" secondAttribute="trailing" constant="34" id="gTe-4T-0at"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Услуги" selectedImage="bookmark.circle" catalog="system" id="UKN-IC-MKf"/>
+                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.circle" catalog="system" id="UKN-IC-MKf"/>
                     <navigationItem key="navigationItem" title="Главное меню" largeTitleDisplayMode="always" id="9HU-D7-X9D">
                         <barButtonItem key="rightBarButtonItem" title="Выйти" style="done" id="TM6-DG-j47">
                             <color key="tintColor" systemColor="systemPinkColor"/>
@@ -117,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYw-e7-RDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="143"/>
+            <point key="canvasLocation" x="1154" y="863"/>
         </scene>
         <!--Мое авто-->
         <scene sceneID="TX7-2q-O8n">
@@ -181,7 +183,9 @@
                         <viewLayoutGuide key="safeArea" id="mb5-0G-N5c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Мое авто" selectedImage="car.circle" catalog="system" id="D4Y-Px-ahT"/>
+                    <tabBarItem key="tabBarItem" title="Мое авто" image="car.circle" catalog="system" id="D4Y-Px-ahT">
+                        <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Главное меню" largeTitleDisplayMode="always" id="RJe-Ut-oow">
                         <barButtonItem key="rightBarButtonItem" title="Выйти" style="done" id="bY5-vV-upK">
                             <color key="tintColor" systemColor="systemPinkColor"/>
@@ -190,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-JJ-veb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1940.5797101449277" y="845.75892857142856"/>
+            <point key="canvasLocation" x="2080" y="863"/>
         </scene>
     </scenes>
     <designables>

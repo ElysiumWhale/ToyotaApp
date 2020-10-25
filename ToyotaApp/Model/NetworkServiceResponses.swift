@@ -1,7 +1,18 @@
 import Foundation
 
 public struct PhoneDidSendResponse: Codable {
-    let firstTimeFlag: Int
-    let id: Int
-    let authKey: Data
+    let result: Int
+    //TODO: let firstTimeFlag: Int
+}
+
+public struct SmsCodeDidSendResponse: Codable {
+    let result: Int
+    let user_id: String //TODO: Int
+}
+
+public struct ProfileDidSetResponse: Codable {
+    let cities: [City]
+    struct City : Codable {
+        let city_id: Int
+    }
 }

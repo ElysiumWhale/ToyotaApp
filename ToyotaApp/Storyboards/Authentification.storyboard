@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -120,10 +120,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
                                 <connections>
-                                    <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="valueChanged" id="nev-Bh-5GP"/>
+                                    <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="editingChanged" id="6pF-tK-yND"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-Vh-rJQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-Vh-rJQ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="138" y="334" width="140" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -146,7 +146,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен неверный код!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rh-38-XPD">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен неверный код!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rh-38-XPD">
                                 <rect key="frame" x="99" y="305" width="217" height="21"/>
                                 <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

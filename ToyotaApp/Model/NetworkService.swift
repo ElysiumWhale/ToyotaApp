@@ -25,13 +25,9 @@ class NetworkService {
     }
     
     func makePostRequest(page: String, params: [URLQueryItem] = [], completion: @escaping (Data?)->Void = {_ in }) {
-        var request = mainUrl
-        request.path.append(page)
-        request.queryItems = []
-        request.queryItems!.append(profileId)
-        request.queryItems!.append(contentsOf: params)
+        let request = buildPostRequest(for: page, with: params)
         
-        session.dataTask(with: request.url!) { (data, response, error) in
+        session.dataTask(with: request) { (data, response, error) in
             if let response = response { print(response) }
             if let data = data {
                 do {
@@ -42,5 +38,24 @@ class NetworkService {
                 }
             }
         }.resume()
+    }
+    
+    func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {
+        var query = mainUrl
+        query.path.append(page)
+        
+        let requestUrl = query.url!
+        
+        query.queryItems = []
+        query.queryItems!.append(profileId)
+        query.queryItems!.append(contentsOf: params)
+        
+        let data = query.url!.query
+        
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = RequestType.POST
+        request.httpBody = Data(data!.utf8)
+        
+        return request
     }
 }

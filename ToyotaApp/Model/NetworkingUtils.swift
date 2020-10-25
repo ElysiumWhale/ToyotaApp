@@ -1,12 +1,20 @@
 import Foundation
 
-struct PostRequests {
+struct Brand {
+    static let id = 1 //Toyota
+}
+
+struct RequestType {
+    static let POST = "POST"
+}
+
+struct PostRequestPath {
     static let phoneNumber = "register_phone.php"
     static let smsCode = "check_code.php"
     static let profile = "set_profile.php"
 }
 
-struct PostRequestsKeys {
+struct PostRequestKeys {
     static let phoneNumber = "phone_number"
     static let code = "code"
 }
