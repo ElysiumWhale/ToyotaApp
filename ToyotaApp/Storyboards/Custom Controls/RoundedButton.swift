@@ -7,7 +7,9 @@ import UIKit
             updateCornerRadius()
         }
     }
-
+    
+    //@IBInspectable var cornerRadius: CGFloat = 0
+    
     func updateCornerRadius() {
         layer.cornerRadius = rounded ? frame.size.height / 2 : 0
     }

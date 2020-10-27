@@ -36,8 +36,7 @@ extension AuthViewController {
             case segueCode:
                 let destinationVC = segue.destination as? SmsCodeViewController
                 destinationVC?.phoneNumber = phoneNumber?.text
-            default:
-                return
+            default: return
         }
     }
     

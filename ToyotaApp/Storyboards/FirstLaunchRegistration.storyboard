@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IU-Os-Y8W" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IU-Os-Y8W" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="133" y="767" width="148" height="39"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
@@ -52,7 +52,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="Mxd-IB-Sp5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTR-aX-HgH">
@@ -60,7 +60,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="r7x-2u-uIs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="family-name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfR-bq-rf7">
@@ -68,7 +68,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="kMv-qW-a45"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="additional-name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fy-kg-Lxe">
@@ -76,7 +76,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="ZB3-YX-6ML"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-Ih-oza">
@@ -84,7 +84,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="t2W-cO-Ibc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию о себе" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEr-9E-ts0">
@@ -92,7 +92,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QIB-Ga-OVb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -171,83 +171,73 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город из списка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
-                                <rect key="frame" x="20" y="140" width="374" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город из списка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
+                                <rect key="frame" x="20" y="225" width="374" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="MFs-f7-OXh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-OR-ryM">
-                                <rect key="frame" x="0.0" y="235" width="414" height="207"/>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Город" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkQ-5a-xCL">
-                                <rect key="frame" x="20" y="181" width="374" height="51"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="LdM-dL-WJQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дилера из списка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
+                                <rect key="frame" x="20" y="340" width="374" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дилер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-ZI-K53">
-                                <rect key="frame" x="20" y="494" width="374" height="51"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Город" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr">
+                                <rect key="frame" x="20" y="264" width="374" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="hRC-4f-We0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дилера из списка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
-                                <rect key="frame" x="20" y="454" width="374" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="8O9-0k-v7Z"/>
+                                    <constraint firstAttribute="height" constant="53" id="BpA-XI-mc5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REB-Xw-hlj">
-                                <rect key="frame" x="0.0" y="548" width="414" height="207"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Дилер" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="InT-oW-nHl">
+                                <rect key="frame" x="20" y="377" width="374" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="NeF-pV-Qau"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="77N-z1-1oO">
+                                <rect key="frame" x="168" y="325" width="81" height="81"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hon-gj-5GF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="77N-z1-1oO" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="168" id="06l-iv-AqO"/>
+                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="WLH-tK-IJr" secondAttribute="bottom" constant="23" id="2yi-7P-v75"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="SYE-VA-hiF" secondAttribute="trailing" constant="71" id="3PB-Yn-Bfr"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="11" id="5NT-50-w0A"/>
-                            <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" id="5ju-UY-QGz"/>
+                            <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="85" id="5ju-UY-QGz"/>
                             <constraint firstItem="C34-3X-JRb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="133" id="7Ac-hQ-Gwn"/>
-                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="RLN-OR-ryM" secondAttribute="bottom" constant="12" id="9jj-E2-cGt"/>
+                            <constraint firstItem="77N-z1-1oO" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="185" id="Bwl-t1-4g3"/>
                             <constraint firstItem="Cvh-mo-Boh" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="Czz-FZ-rUs"/>
-                            <constraint firstItem="RLN-OR-ryM" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" id="Exn-TV-QSJ"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="hkQ-5a-xCL" secondAttribute="trailing" constant="20" id="N28-7K-ETi"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="RLN-OR-ryM" secondAttribute="bottom" constant="420" id="O3R-ea-Y89"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="WLH-tK-IJr" secondAttribute="trailing" constant="20" id="F85-b3-dxI"/>
+                            <constraint firstItem="InT-oW-nHl" firstAttribute="top" secondItem="Cvh-mo-Boh" secondAttribute="bottom" constant="8" symbolic="YES" id="GxF-RK-lIa"/>
+                            <constraint firstItem="InT-oW-nHl" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="L5e-Fy-hBi"/>
                             <constraint firstItem="SYE-VA-hiF" firstAttribute="top" secondItem="C34-3X-JRb" secondAttribute="bottom" constant="6" id="Q6P-eZ-VbB"/>
-                            <constraint firstItem="qbs-ZI-K53" firstAttribute="top" secondItem="Cvh-mo-Boh" secondAttribute="bottom" constant="9" id="QXP-Al-iMf"/>
-                            <constraint firstItem="RLN-OR-ryM" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="95" id="TEk-wc-QPI"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="77N-z1-1oO" secondAttribute="trailing" constant="165" id="Ssc-rf-vtS"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="C34-3X-JRb" secondAttribute="trailing" constant="133" id="UhY-mN-ac7"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ZmH-tZ-JEu"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Q5I-rD-2TU" secondAttribute="trailing" constant="20" id="buu-UI-0cQ"/>
-                            <constraint firstItem="hkQ-5a-xCL" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ePp-8T-xX0"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="qbs-ZI-K53" secondAttribute="trailing" constant="20" id="eyg-5z-iq2"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="RLN-OR-ryM" secondAttribute="trailing" id="hn7-oI-HNx"/>
-                            <constraint firstItem="RLN-OR-ryM" firstAttribute="top" secondItem="hkQ-5a-xCL" secondAttribute="bottom" constant="3" id="m2V-Gb-Ol7"/>
-                            <constraint firstItem="hkQ-5a-xCL" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="10" id="nE3-EI-i15"/>
-                            <constraint firstItem="qbs-ZI-K53" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="oxa-yB-2F6"/>
+                            <constraint firstItem="WLH-tK-IJr" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="hDY-6i-xzo"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="77N-z1-1oO" secondAttribute="bottom" constant="456" id="keS-vz-0cc"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="InT-oW-nHl" secondAttribute="trailing" constant="20" id="pmV-QT-HFE"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Cvh-mo-Boh" secondAttribute="trailing" constant="20" id="rJC-aS-YxY"/>
                             <constraint firstItem="SYE-VA-hiF" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="72" id="tu3-L4-Cpy"/>
+                            <constraint firstItem="WLH-tK-IJr" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="8" symbolic="YES" id="xTc-s0-wpx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Дилер" id="5ue-dg-1Tp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="173"/>
+            <point key="canvasLocation" x="1000.0000000000001" y="172.76785714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jMk-HB-QFP">

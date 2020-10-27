@@ -13,6 +13,7 @@ public struct SmsCodeDidSendResponse: Codable {
 public struct ProfileDidSetResponse: Codable {
     let cities: [City]
     struct City : Codable {
-        let city_id: Int
+        let id: String
+        let cities: String
     }
 }

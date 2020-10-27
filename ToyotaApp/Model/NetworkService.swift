@@ -31,7 +31,7 @@ class NetworkService {
             if let response = response { print(response) }
             if let data = data {
                 do {
-                    print(try JSONSerialization.jsonObject(with: data, options: []))
+                    print(try JSONSerialization.jsonObject(with: data))
                     completion(data)
                 } catch {
                     print(error.localizedDescription)
