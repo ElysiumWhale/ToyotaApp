@@ -10,11 +10,63 @@ class PersonalInfoViewController: UIViewController {
     private let datePicker: UIDatePicker = UIDatePicker()
     
     private let segueCode = SegueIdentifiers.PersonInfoToDealer
+    private var cities: [City] = [City]()
     private var date: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+    }
+    
+    @IBAction func buttonNextDidPressed(_ sender: UIButton) {
+        guard checkFields() else { return }
+        NetworkService.shared.makePostRequest(page: PostRequestPath.profile, params: buildParamsForRequest()) { [self] data in
+            do {
+                //let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
+                //cities = rawCities.cities.map {
+                    //City(id: $0.id, cities: String(data: $0.cities.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
+                //}
+                //print(String(data: data!, encoding: String.Encoding.nonLossyASCII) as Any)
+                ///DEBUG
+                cities = [City(id: "1", cities: "Samara"), City(id: "2", cities: "Syzran")]
+                DispatchQueue.main.async {
+                    performSegue(withIdentifier: segueCode, sender: self)
+                }
+            }
+            catch let decodeError as NSError {
+                print("Decoder error: \(decodeError.localizedDescription)")
+            }
+        }
+    }
+    
+    private func checkFields() -> Bool {
+        var res = true
+        if (firstNameTextField.text?.isEmpty ?? true) {
+            firstNameTextField?.layer.borderColor = UIColor.systemRed.cgColor
+            firstNameTextField?.layer.borderWidth = 1.0
+            res = false
+        }
+        if (secondNameTextField.text?.isEmpty ?? true) {
+            secondNameTextField?.layer.borderColor = UIColor.systemRed.cgColor
+            secondNameTextField?.layer.borderWidth = 1.0
+            res = false
+        }
+        if (lastNameTextField.text?.isEmpty ?? true) {
+            lastNameTextField?.layer.borderColor = UIColor.systemRed.cgColor
+            lastNameTextField?.layer.borderWidth = 1.0
+            res = false
+        }
+        if (emailTextField.text?.isEmpty ?? true) {
+            emailTextField?.layer.borderColor = UIColor.systemRed.cgColor
+            emailTextField?.layer.borderWidth = 1.0
+            res = false
+        }
+        if (birthTextField.text?.isEmpty ?? true || date.isEmpty) {
+            birthTextField?.layer.borderColor = UIColor.systemRed.cgColor
+            birthTextField?.layer.borderWidth = 1.0
+            res = false
+        }
+        return res
     }
     
     //MARK: - DatePicker logic
@@ -25,8 +77,9 @@ class PersonalInfoViewController: UIViewController {
         datePicker.maximumDate = Date()
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Готово", style: .done, target: nil, action: #selector(doneDidPress))
-        toolBar.setItems([doneButton], animated: true)
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: #selector(doneDidPress))
+        toolBar.setItems([flexible, doneButton], animated: true)
         birthTextField.inputAccessoryView = toolBar
         birthTextField.inputView = datePicker
     }
@@ -42,28 +95,20 @@ class PersonalInfoViewController: UIViewController {
         date = internalFormatter.string(from: datePicker.date)
         
         birthTextField.text = formattedDate
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
 // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                NetworkService.shared.makePostRequest(page: PostRequestPath.profile, params: buildParamsForRequest()) { [self] data in
-                    //parse data
-                    //DEBUG
-                    print(String(data: data!, encoding: String.Encoding.nonLossyASCII))
-                    //let destinationVC = segue.destination as? DealerViewController
-                    //destinationVC?.field = ...
-                }
+                let destinationVC = segue.destination as? DealerViewController
+                destinationVC?.cities = cities
+                print("It happens")
             default: return
         }
     }
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        return
-    }
-
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
             case segueCode:
