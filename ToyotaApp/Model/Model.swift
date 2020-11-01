@@ -1,14 +1,13 @@
 import Foundation
 
-public struct Car {
-    let model: String
-    let year: Int
-    let color: String
+public struct Car: Codable {
+    let id: String
+    let car_name: String
 }
 
 public struct City : Codable {
     let id: String
-    let cities: String
+    let city_name: String
 }
 
 public struct Dealer : Codable {

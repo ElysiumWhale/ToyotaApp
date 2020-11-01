@@ -16,6 +16,7 @@ struct PostRequestPath {
     static let phoneNumber = "register_phone.php"
     static let smsCode = "check_code.php"
     static let profile = "set_profile.php"
+    static let getShowrooms = "get_showrooms.php"
 }
 
 struct PostRequestKeys {
@@ -28,6 +29,7 @@ struct PostRequestKeys {
     static let last_name = "last_name"
     static let birthday = "birthday"
     static let email = "email"
+    static let city_id = "city_id"
 }
 
 struct DefaultsKeys {

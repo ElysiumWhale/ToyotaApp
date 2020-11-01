@@ -11,9 +11,16 @@ public struct SmsCodeDidSendResponse: Codable {
 }
 
 public struct ProfileDidSetResponse: Codable {
+    let result: String
     let cities: [City]
 }
 
 public struct CityDidChoseResponce: Codable {
+    let result: String
     let dealers: [Dealer]
+}
+
+public struct DealerDidChoseResponce: Codable {
+    let result: String
+    let cars: [Car]
 }

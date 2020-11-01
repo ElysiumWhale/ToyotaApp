@@ -21,8 +21,8 @@ class DealerViewController: UIViewController {
         configureCityPickerView()
         configureDealerPickerView()
         if cities.isEmpty {
-            cities.append(City(id: "1", cities: "Самара"))
-            cities.append(City(id: "2", cities: "Сызрань"))
+            cities.append(City(id: "1", city_name: "Самара"))
+            cities.append(City(id: "2", city_name: "Сызрань"))
         }
     }
     
@@ -36,13 +36,36 @@ class DealerViewController: UIViewController {
     @objc private func cityDidPick(sender: Any?) {
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
-        cityTextField?.text = cities[row].cities
+        cityTextField?.text = cities[row].city_name
         activitySwitcher?.startAnimating()
         view.endEditing(true)
-        //makerequest
-        activitySwitcher?.stopAnimating()
-        dealerTextField?.isHidden = false
-        dealerLabel?.isHidden = false
+        NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
+    }
+    
+    private var completion: (Data?) -> Void {
+        { [self] data in
+            if let data = data {
+                do {
+                    let rawData = try JSONDecoder().decode(CityDidChoseResponce.self, from: data)
+                    dealers = rawData.dealers
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        dealerTextField?.isHidden = false
+                        dealerLabel?.isHidden = false
+                    }
+                }
+                catch {
+                    dealers = [Dealer(id: "0", address: "Error")]
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        dealerTextField?.isHidden = false
+                        dealerLabel?.isHidden = false
+                    }
+                }
+            }
+        }
     }
     
     private func configureDealerPickerView() {
@@ -92,9 +115,7 @@ extension DealerViewController : UIPickerViewDataSource {
 extension DealerViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-            case cityPicker:
-                let res = cities[row].cities
-                return cities[row].cities
+            case cityPicker: return cities[row].city_name
             case dealerPicker: return dealers[row].address
             default: return "Object is missing"
         }
