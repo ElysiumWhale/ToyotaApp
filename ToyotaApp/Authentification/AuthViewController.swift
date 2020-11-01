@@ -52,9 +52,7 @@ extension AuthViewController {
                     indicator!.startAnimating()
                     sendPhoneButton!.isHidden = true
                     indicator!.isHidden = false
-                    NetworkService.shared.makePostRequest(page: PostRequestPath.phoneNumber, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber!.text)]) { _ in
-                        //TODO: Exception handler
-                    }
+                    NetworkService.shared.makePostRequest(page: PostRequestPath.phoneNumber, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber!.text)]) { _ in }
                     return true
                 }
             default: return true

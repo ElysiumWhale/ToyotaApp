@@ -26,9 +26,6 @@ class PersonalInfoViewController: UIViewController {
                 cities = rawCities.cities.map {
                     City(id: $0.id, city_name: String(data: $0.city_name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
                 }
-                //print(String(data: data!, encoding: String.Encoding.nonLossyASCII) as Any)
-                ///DEBUG
-                //cities = [City(id: "1", cities: "Samara"), City(id: "2", cities: "Syzran")]
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
                 }

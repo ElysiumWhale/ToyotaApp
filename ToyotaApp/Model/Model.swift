@@ -14,3 +14,11 @@ public struct Dealer : Codable {
     let id: String
     let address: String
 }
+
+public struct Profile : Codable {
+    var firstName: String
+    var secondName: String
+    var lastName: String
+    var email: String
+    var birth: String
+}
