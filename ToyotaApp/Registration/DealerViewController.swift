@@ -5,6 +5,7 @@ class DealerViewController: UIViewController {
     @IBOutlet var dealerTextField: UITextField?
     @IBOutlet var activitySwitcher: UIActivityIndicatorView?
     @IBOutlet var dealerLabel: UILabel?
+    @IBOutlet var nextButton: UIButton!
     
     var cities: [City] = [City]()
     private var selectedCity: City?
@@ -85,6 +86,7 @@ class DealerViewController: UIViewController {
     
     //MARK: - Pickers handlers
     @objc private func cityDidPick(sender: Any?) {
+        nextButton.isHidden = true
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
         cityTextField?.text = cities[row].cityName
@@ -98,6 +100,7 @@ class DealerViewController: UIViewController {
         selectedDealer = dealers[row]
         dealerTextField?.text = dealers[row].address
         view.endEditing(true)
+        nextButton.isHidden = false
     }
 }
 

@@ -6,6 +6,8 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var birthTextField: UITextField!
+    @IBOutlet var activitySwitcher: UIActivityIndicatorView!
+    @IBOutlet var nextButton: UIButton!
     
     private let datePicker: UIDatePicker = UIDatePicker()
     
@@ -20,6 +22,8 @@ class PersonalInfoViewController: UIViewController {
     
     @IBAction func buttonNextDidPressed(_ sender: UIButton) {
         guard checkFields() else { return }
+        activitySwitcher.startAnimating()
+        nextButton.isHidden = true
         NetworkService.shared.makePostRequest(page: PostRequestPath.profile, params: buildParamsForRequest()) { [self] data in
             do {
                 let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
@@ -32,6 +36,10 @@ class PersonalInfoViewController: UIViewController {
             }
             catch let decodeError as NSError {
                 print("Decoder error: \(decodeError.localizedDescription)")
+                DispatchQueue.main.async {
+                    activitySwitcher.stopAnimating()
+                    nextButton.isHidden = false
+                }
             }
         }
     }
@@ -115,8 +123,7 @@ class PersonalInfoViewController: UIViewController {
                 guard (emailTextField.text != nil) else { return false }
                 guard (birthTextField.text != nil && !date.isEmpty) else { return false }
                 return true
-            default:
-                return false
+            default: return false
         }
     }
 }
