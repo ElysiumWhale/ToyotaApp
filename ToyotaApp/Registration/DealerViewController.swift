@@ -26,37 +26,45 @@ class DealerViewController: UIViewController {
         }
     }
     
+    private var completion: (Data?) -> Void {
+        { [self] data in
+            if let data = data {
+                do {
+                    let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
+                    dealers = rawData.dealers
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        dealerTextField?.isHidden = false
+                        dealerLabel?.isHidden = false
+                    }
+                }
+                catch {
+                    dealers = [Dealer(id: "0", address: "Error")]
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        dealerTextField?.isHidden = false
+                        dealerLabel?.isHidden = false
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: - Pickers Configuration
     private func configureCityPickerView() {
         cityPicker.dataSource = self
         cityPicker.delegate = self
         cityTextField!.inputAccessoryView = buildToolbar(for: cityPicker)
         cityTextField!.inputView = cityPicker
     }
-    
-    @objc private func cityDidPick(sender: Any?) {
-        let row = cityPicker.selectedRow(inComponent: 0)
-        selectedCity = cities[row]
-        cityTextField?.text = cities[row].cityName
-        activitySwitcher?.startAnimating()
-        view.endEditing(true)
-        //makerequest
-        activitySwitcher?.stopAnimating()
-        dealerTextField?.isHidden = false
-        dealerLabel?.isHidden = false
-    }
-    
+
     private func configureDealerPickerView() {
         dealerPicker.dataSource = self
         dealerPicker.delegate = self
         dealerTextField!.inputAccessoryView = buildToolbar(for: dealerPicker)
         dealerTextField!.inputView = dealerPicker
-    }
-    
-    @objc private func dealerDidPick(sender: Any?) {
-        let row = dealerPicker.selectedRow(inComponent: 0)
-        selectedDealer = dealers[row]
-        dealerTextField?.text = dealers[row].address
-        view.endEditing(true)
     }
     
     private func buildToolbar(for pickerView: UIPickerView) -> UIToolbar {
@@ -73,6 +81,23 @@ class DealerViewController: UIViewController {
         }
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
+    }
+    
+    //MARK: - Pickers handlers
+    @objc private func cityDidPick(sender: Any?) {
+        let row = cityPicker.selectedRow(inComponent: 0)
+        selectedCity = cities[row]
+        cityTextField?.text = cities[row].cityName
+        activitySwitcher?.startAnimating()
+        view.endEditing(true)
+        NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
+    }
+    
+    @objc private func dealerDidPick(sender: Any?) {
+        let row = dealerPicker.selectedRow(inComponent: 0)
+        selectedDealer = dealers[row]
+        dealerTextField?.text = dealers[row].address
+        view.endEditing(true)
     }
 }
 

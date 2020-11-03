@@ -54,3 +54,8 @@ public struct Car : Codable {
         case modelName = "model_name"
     }
 }
+
+public struct DealerDidSelectResponce: Codable {
+    let result: String
+    let cars: [Car]
+}
