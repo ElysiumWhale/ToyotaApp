@@ -18,7 +18,6 @@
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
-		A75946A62523F05200312EBE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A52523F05200312EBE /* Model.swift */; };
 		A75946A82523F13E00312EBE /* TMPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A72523F13E00312EBE /* TMPVC.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
@@ -59,7 +58,6 @@
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		A75946A52523F05200312EBE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A75946A72523F13E00312EBE /* TMPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMPVC.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		A75946A22523ECD400312EBE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A75946A52523F05200312EBE /* Model.swift */,
 				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
@@ -343,7 +340,6 @@
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				A77B9312253B035F0011282E /* NetworkServiceResponses.swift in Sources */,
-				A75946A62523F05200312EBE /* Model.swift in Sources */,
 				A75946A82523F13E00312EBE /* TMPVC.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,

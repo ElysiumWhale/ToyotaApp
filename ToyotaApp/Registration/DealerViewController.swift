@@ -21,8 +21,8 @@ class DealerViewController: UIViewController {
         configureCityPickerView()
         configureDealerPickerView()
         if cities.isEmpty {
-            cities.append(City(id: "1", cities: "Самара"))
-            cities.append(City(id: "2", cities: "Сызрань"))
+            cities.append(City(id: "1", cityName: "Самара"))
+            cities.append(City(id: "2", cityName: "Сызрань"))
         }
     }
     
@@ -36,7 +36,7 @@ class DealerViewController: UIViewController {
     @objc private func cityDidPick(sender: Any?) {
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
-        cityTextField?.text = cities[row].cities
+        cityTextField?.text = cities[row].cityName
         activitySwitcher?.startAnimating()
         view.endEditing(true)
         //makerequest
@@ -92,9 +92,7 @@ extension DealerViewController : UIPickerViewDataSource {
 extension DealerViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-            case cityPicker:
-                let res = cities[row].cities
-                return cities[row].cities
+            case cityPicker: return cities[row].cityName
             case dealerPicker: return dealers[row].address
             default: return "Object is missing"
         }

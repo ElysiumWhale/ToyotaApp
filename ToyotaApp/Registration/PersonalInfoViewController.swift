@@ -28,7 +28,7 @@ class PersonalInfoViewController: UIViewController {
                 //}
                 //print(String(data: data!, encoding: String.Encoding.nonLossyASCII) as Any)
                 ///DEBUG
-                cities = [City(id: "1", cities: "Samara"), City(id: "2", cities: "Syzran")]
+                cities = [City(id: "1", cityName: "Samara"), City(id: "2", cityName: "Syzran")]
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
                 }
