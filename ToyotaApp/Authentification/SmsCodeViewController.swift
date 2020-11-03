@@ -6,6 +6,7 @@ class SmsCodeViewController: UIViewController {
     @IBOutlet var smsCodeTextField: UITextField?
     @IBOutlet var sendSmsCodeButton: UIButton?
     @IBOutlet var wrongCodeLabel: UILabel!
+    @IBOutlet var activitySwitcher: UIActivityIndicatorView?
     var phoneNumber: String?
     
     override func viewDidLoad() {
@@ -21,7 +22,11 @@ class SmsCodeViewController: UIViewController {
     }
     
     @IBAction func login(with sender: UIButton) {
-        if !smsCodeTextField!.text!.isEmpty {
+        if smsCodeTextField!.text!.count == 4 {
+            sendSmsCodeButton?.isHidden = true
+            activitySwitcher?.startAnimating()
+            activitySwitcher?.isHidden = false
+            view.endEditing(true)
             NetworkService.shared.makePostRequest(page: PostRequestPath.smsCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
                  URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text)],
                 completion: completion)
@@ -54,15 +59,17 @@ extension SmsCodeViewController {
             if let data = data {
                 do {
                     let rawFeed = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
-                    //TODO: UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
-                    #warning("Line is commented while debug")
-                    //UserDefaults.standard.set(rawFeed.user_id, forKey: DefaultsKeys.userId)
+                    #warning("If not debug")
+                        #if !DEBUG
+                        UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
+                        UserDefaults.standard.set(rawFeed.user_id, forKey: DefaultsKeys.userId)
+                        #endif
                     DebugUserId.userId = rawFeed.user_id
                     if rawFeed.result == 1 {
                         DispatchQueue.main.async {
                             loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
                         }
-                    } else {
+                    } else { //TODO: Another flow
                         DispatchQueue.main.async {
                             loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
                         }
@@ -72,6 +79,8 @@ extension SmsCodeViewController {
                     print("Decoder error: \(decodeError.localizedDescription)")
                     DispatchQueue.main.async {
                         wrongCodeLabel.isHidden = false
+                        activitySwitcher?.stopAnimating()
+                        sendSmsCodeButton?.isHidden = false
                         smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
                         smsCodeTextField?.layer.borderWidth = 1.0
                     }
