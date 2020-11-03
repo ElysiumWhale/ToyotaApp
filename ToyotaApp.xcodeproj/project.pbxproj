@@ -31,6 +31,18 @@
 		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
+		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
+		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
+		A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */; };
+		A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFC254B70E8001B67C1 /* ToyotaType-Regular.ttf */; };
+		A7924D17254B743F001B67C1 /* ToyotaType-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF9254B70E8001B67C1 /* ToyotaType-Bold.ttf */; };
+		A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF8254B70E8001B67C1 /* ToyotaType-Book.ttf */; };
+		A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */; };
+		A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFE254B70E8001B67C1 /* ToyotaType-LightIt.ttf */; };
+		A7924D1B254B743F001B67C1 /* ToyotaType-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFA254B70E8001B67C1 /* ToyotaType-Black.ttf */; };
+		A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */; };
+		A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */; };
+		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
 		A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12066253E713A005F85B0 /* DealerViewController.swift */; };
 		A7D1206A253E7168005F85B0 /* AddingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12069253E7168005F85B0 /* AddingCarViewController.swift */; };
@@ -60,6 +72,18 @@
 		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
+		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
+		A7924CF8254B70E8001B67C1 /* ToyotaType-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Book.ttf"; sourceTree = "<group>"; };
+		A7924CF9254B70E8001B67C1 /* ToyotaType-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Bold.ttf"; sourceTree = "<group>"; };
+		A7924CFA254B70E8001B67C1 /* ToyotaType-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Black.ttf"; sourceTree = "<group>"; };
+		A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Light.ttf"; sourceTree = "<group>"; };
+		A7924CFC254B70E8001B67C1 /* ToyotaType-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Regular.ttf"; sourceTree = "<group>"; };
+		A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-RegularIt.ttf"; sourceTree = "<group>"; };
+		A7924CFE254B70E8001B67C1 /* ToyotaType-LightIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-LightIt.ttf"; sourceTree = "<group>"; };
+		A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Semibold.ttf"; sourceTree = "<group>"; };
+		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
+		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		A7D12066253E713A005F85B0 /* DealerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerViewController.swift; sourceTree = "<group>"; };
 		A7D12069253E7168005F85B0 /* AddingCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingCarViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +129,7 @@
 				A791FDE225266F2700A595BB /* Storyboards */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
+				A7924CF1254B70B4001B67C1 /* Fonts */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
 				A75946992523E33400312EBE /* Info.plist */,
 			);
@@ -189,6 +214,25 @@
 			path = "Custom Controls";
 			sourceTree = "<group>";
 		};
+		A7924CF1254B70B4001B67C1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A7924CFA254B70E8001B67C1 /* ToyotaType-Black.ttf */,
+				A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */,
+				A7924CF9254B70E8001B67C1 /* ToyotaType-Bold.ttf */,
+				A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */,
+				A7924CF8254B70E8001B67C1 /* ToyotaType-Book.ttf */,
+				A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */,
+				A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */,
+				A7924CFE254B70E8001B67C1 /* ToyotaType-LightIt.ttf */,
+				A7924CFC254B70E8001B67C1 /* ToyotaType-Regular.ttf */,
+				A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */,
+				A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */,
+				A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A7D1205D253E6A7F005F85B0 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,11 +310,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
+				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
+				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
 				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
+				A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */,
+				A7924D17254B743F001B67C1 /* ToyotaType-Bold.ttf in Resources */,
+				A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */,
+				A7924D1B254B743F001B67C1 /* ToyotaType-Black.ttf in Resources */,
+				A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
-				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
+				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
 				A75946932523E32F00312EBE /* Main.storyboard in Resources */,
+				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
+				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
+				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
+				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
