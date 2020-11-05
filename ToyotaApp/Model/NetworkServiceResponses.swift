@@ -13,12 +13,6 @@ public struct FailureResponse: Codable {
     }
 }
 
-//MARK: - PhoneDidSendResponse
-public struct PhoneDidSendResponse: Codable {
-    let result: String
-    //TODO: let firstTimeFlag: Int
-}
-
 //MARK: - SmsCodeDidSendResponse
 public struct SmsCodeDidSendResponse: Codable {
     let result: String?

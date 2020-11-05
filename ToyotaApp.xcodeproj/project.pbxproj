@@ -42,6 +42,7 @@
 		A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */; };
 		A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */; };
 		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
+		A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */; };
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
 		A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12066253E713A005F85B0 /* DealerViewController.swift */; };
 		A7D1206A253E7168005F85B0 /* AddingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12069253E7168005F85B0 /* AddingCarViewController.swift */; };
@@ -82,6 +83,7 @@
 		A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Semibold.ttf"; sourceTree = "<group>"; };
 		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
 		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
+		A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		A7D12066253E713A005F85B0 /* DealerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerViewController.swift; sourceTree = "<group>"; };
 		A7D12069253E7168005F85B0 /* AddingCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingCarViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				A791FDDC2524E1B900A595BB /* MyCarViewController.swift */,
+				A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */,
 			);
 			path = MyCar;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
+				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
 				A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,

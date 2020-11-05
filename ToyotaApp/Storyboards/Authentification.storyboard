@@ -35,7 +35,7 @@
                                 <rect key="frame" x="75" y="141" width="264" height="128"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneNumberTextFieldWithDefault" customModule="ToyotaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneNumberTextFieldWithDefault" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="64" y="327" width="285" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="7EU-Q9-bC2"/>
@@ -70,7 +70,7 @@
                                     <segue destination="aSg-j3-GJZ" kind="show" identifier="NumberToCodeSegue" id="Hat-4y-yoz"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
                                 <rect key="frame" x="49" y="389" width="316" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
@@ -146,7 +146,7 @@
                                     <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="editingChanged" id="6pF-tK-yND"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-rt-OYG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-rt-OYG">
                                 <rect key="frame" x="99" y="194.5" width="217" height="31.5"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>

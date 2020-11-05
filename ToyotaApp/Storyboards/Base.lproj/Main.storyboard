@@ -49,7 +49,7 @@
                         <viewLayoutGuide key="safeArea" id="Y7t-Y5-2GI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Акции" image="star.circle" catalog="system" id="mSA-PA-rV7">
+                    <tabBarItem key="tabBarItem" title="Акции" image="star.fill" catalog="system" id="mSA-PA-rV7">
                         <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                 </viewController>
@@ -110,7 +110,7 @@
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="VCn-af-zlT" secondAttribute="trailing" constant="34" id="gTe-4T-0at"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.circle" catalog="system" id="UKN-IC-MKf"/>
+                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf"/>
                     <navigationItem key="navigationItem" title="Главное меню" largeTitleDisplayMode="always" id="9HU-D7-X9D">
                         <barButtonItem key="rightBarButtonItem" title="Выйти" style="done" id="TM6-DG-j47">
                             <color key="tintColor" systemColor="systemPinkColor"/>
@@ -151,7 +151,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="35" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarCell" id="60U-4s-fXI">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarCell" id="60U-4s-fXI" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
                                         <rect key="frame" x="22" y="35" width="370" height="450"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bYa-Be-bpc">
@@ -183,7 +183,7 @@
                         <viewLayoutGuide key="safeArea" id="mb5-0G-N5c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Мое авто" image="car.circle" catalog="system" id="D4Y-Px-ahT">
+                    <tabBarItem key="tabBarItem" title="Мое авто" image="car.fill" catalog="system" id="D4Y-Px-ahT">
                         <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Главное меню" largeTitleDisplayMode="always" id="RJe-Ut-oow">
@@ -206,9 +206,9 @@
         </designable>
     </designables>
     <resources>
-        <image name="bookmark.circle" catalog="system" width="128" height="121"/>
-        <image name="car.circle" catalog="system" width="128" height="121"/>
-        <image name="star.circle" catalog="system" width="128" height="121"/>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+        <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
