@@ -42,7 +42,7 @@
         <!--Данные-->
         <scene sceneID="JZn-Z7-6Ed">
             <objects>
-                <viewController id="292-f3-5Nu" customClass="PersonalInfoViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalInfoViewController" id="292-f3-5Nu" customClass="PersonalInfoViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="il0-32-ooG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,7 +169,7 @@
         <!--Дилер-->
         <scene sceneID="UHO-9H-bXv">
             <objects>
-                <viewController id="Mey-k5-Vri" customClass="DealerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DealerViewController" id="Mey-k5-Vri" customClass="DealerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cwL-yz-kCL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,7 +196,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дилера" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите шоурум" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
                                 <rect key="frame" x="20" y="340" width="374" height="36"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -277,9 +277,9 @@
                     <connections>
                         <outlet property="activitySwitcher" destination="77N-z1-1oO" id="Elb-6j-ePp"/>
                         <outlet property="cityTextField" destination="WLH-tK-IJr" id="F8Q-Ox-Y2l"/>
-                        <outlet property="dealerLabel" destination="Cvh-mo-Boh" id="wT5-Sf-Rsd"/>
-                        <outlet property="dealerTextField" destination="InT-oW-nHl" id="jcc-N2-D19"/>
                         <outlet property="nextButton" destination="JAZ-G9-1Io" id="VTy-QX-BD9"/>
+                        <outlet property="showroomLabel" destination="Cvh-mo-Boh" id="wT5-Sf-Rsd"/>
+                        <outlet property="showroomTextField" destination="InT-oW-nHl" id="jcc-N2-D19"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -305,7 +305,7 @@
         <!--Машина-->
         <scene sceneID="FPL-A9-Xgp">
             <objects>
-                <viewController id="kS6-zi-MR4" customClass="AddingCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddingCarViewController" id="kS6-zi-MR4" customClass="AddingCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CuC-DO-DvD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

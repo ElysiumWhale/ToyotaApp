@@ -28,7 +28,7 @@ class PersonalInfoViewController: UIViewController {
             do {
                 let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
                 cities = rawCities.cities.map {
-                    City(id: $0.id, cityName: String(data: $0.cityName.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
+                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
                 }
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
@@ -109,7 +109,6 @@ class PersonalInfoViewController: UIViewController {
             case segueCode:
                 let destinationVC = segue.destination as? DealerViewController
                 destinationVC?.cities = cities
-                print("It happens")
             default: return
         }
     }
@@ -133,7 +132,7 @@ extension PersonalInfoViewController {
     private func buildParamsForRequest() -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
         requestParams.append(URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.user_id, value: DebugUserId.userId))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.user_id, value: Debug.userId))
         requestParams.append(URLQueryItem(name: PostRequestKeys.first_name, value: firstNameTextField.text))
         requestParams.append(URLQueryItem(name: PostRequestKeys.second_name, value: secondNameTextField.text))
         requestParams.append(URLQueryItem(name: PostRequestKeys.last_name, value: lastNameTextField.text))

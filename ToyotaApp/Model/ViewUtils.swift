@@ -11,6 +11,11 @@ public struct AppViewControllers {
     static let mainMenuTabBarController = "MainMenuTabBarController"
     static let authNavigation = "AuthNavigationController"
     static let registerNavigation = "RegisterNavigationController"
+    
+    static let personalInfoViewController = "PersonalInfoViewController"
+    static let dealerViewController = "DealerViewController"
+    static let addingCarViewController = "AddingCarViewController"
+    
     static let auth = "AuthViewController"
     static let mainMenu = "MainMenuViewController"
     static let offers = "OffersViewController"

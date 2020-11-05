@@ -2,11 +2,11 @@ import UIKit
 
 class SmsCodeViewController: UIViewController {
 
-    @IBOutlet var phoneNumberLabel: UILabel?
-    @IBOutlet var smsCodeTextField: UITextField?
-    @IBOutlet var sendSmsCodeButton: UIButton?
+    @IBOutlet var phoneNumberLabel: UILabel!
+    @IBOutlet var smsCodeTextField: UITextField!
+    @IBOutlet var sendSmsCodeButton: UIButton!
     @IBOutlet var wrongCodeLabel: UILabel!
-    @IBOutlet var activitySwitcher: UIActivityIndicatorView?
+    @IBOutlet var activitySwitcher: UIActivityIndicatorView!
     var phoneNumber: String?
     
     override func viewDidLoad() {
@@ -27,8 +27,10 @@ class SmsCodeViewController: UIViewController {
             activitySwitcher?.startAnimating()
             activitySwitcher?.isHidden = false
             view.endEditing(true)
+            
             NetworkService.shared.makePostRequest(page: PostRequestPath.smsCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
-                 URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text)],
+                 URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text),
+                 URLQueryItem(name: PostRequestKeys.brand_id, value: Brand.id)],
                 completion: completion)
         } else {
             smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
@@ -39,11 +41,13 @@ class SmsCodeViewController: UIViewController {
 }
 //MARK: - Navigation
 extension SmsCodeViewController {
-    func loadStoryboard(with name: String, controller: String, configure: (UIViewController) -> Void = {_ in }) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: controller)
-        configure(vc)
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+    func loadStoryboard(with name: String, controller: String, configure: @escaping (UIViewController) -> Void = {_ in }) {
+        DispatchQueue.main.async {
+            let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: controller)
+            configure(vc)
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,19 +64,15 @@ extension SmsCodeViewController {
                 do {
                     let rawFeed = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
                     #warning("If not debug")
-                        #if !DEBUG
-                        UserDefaults.standard.setValue(rawFeed.authKey, forKey: DefaultsKeys.authKey)
-                        UserDefaults.standard.set(rawFeed.user_id, forKey: DefaultsKeys.userId)
-                        #endif
-                    DebugUserId.userId = rawFeed.user_id
-                    if rawFeed.result == 1 {
-                        DispatchQueue.main.async {
-                            loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
-                        }
-                    } else { //TODO: Another flow
-                        DispatchQueue.main.async {
-                            loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
-                        }
+                    //UserDefaults.standard.setValue(rawFeed.secrectKey, forKey: DefaultsKeys.authKey)
+                    //UserDefaults.standard.set(rawFeed.userId, forKey: DefaultsKeys.userId)
+                    Debug.userId = rawFeed.userId!
+                    Debug.secretKey = rawFeed.secrectKey!
+                    
+                    if let registered = rawFeed.registeredUser {
+                        navigateToRegister(page: registered.register_page!)
+                    } else {
+                        loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
                     }
                 }
                 catch let decodeError as NSError {
@@ -86,6 +86,16 @@ extension SmsCodeViewController {
                     }
                 }
             }
+        }
+    }
+    
+    private func navigateToRegister(page: Int) {
+        switch page {
+            case 1: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
+            case 2: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.dealerViewController)
+            case 3: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.addingCarViewController)
+            case 4: loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
+            default: print(page); return
         }
     }
 }

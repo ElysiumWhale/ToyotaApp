@@ -1,15 +1,17 @@
 import Foundation
 
 struct Brand {
-    static let id = 1 //Toyota
+    static let id = "1" //Toyota
 }
 
-struct DebugUserId {
+struct Debug {
     static var userId: String = ""
+    static var secretKey: String = ""
 }
 
 struct RequestType {
     static let POST = "POST"
+    static let GET = "GET"
 }
 
 struct PostRequestPath {

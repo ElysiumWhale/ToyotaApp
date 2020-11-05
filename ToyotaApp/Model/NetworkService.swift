@@ -8,7 +8,8 @@ class NetworkService {
     private var mainUrl: URLComponents
     
     private init() {
-        /* MAKE ME HTTPS! To turn off delete dictionary "AppTransportSecuritySettings" in info.plist */
+        #warning("MAKE ME HTTPS!")
+        //To turn off delete dictionary AppTransportSecuritySettings in info.plist
         mainUrl = MainURL.buildHttp()
     }
     
@@ -29,6 +30,7 @@ class NetworkService {
         
         session.dataTask(with: request) { (data, response, error) in
             if let response = response { print(response) }
+            if let error = error { print(error) }
             if let data = data {
                 do {
                     print(try JSONSerialization.jsonObject(with: data))

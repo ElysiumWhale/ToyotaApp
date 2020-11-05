@@ -17,7 +17,7 @@ class AuthViewController: UIViewController {
     
     //MARK: - TEST METHOD
     func configureTextField() {
-        phoneNumber?.layer.cornerRadius = 15
+        phoneNumber?.layer.cornerRadius = 10
         phoneNumber?.withPrefix = true
         phoneNumber?.withFlag = true
         phoneNumber?.maxDigits = 10
@@ -53,9 +53,7 @@ extension AuthViewController {
                     sendPhoneButton!.isHidden = true
                     indicator!.isHidden = false
                     view.endEditing(true)
-                    NetworkService.shared.makePostRequest(page: PostRequestPath.phoneNumber, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber!.text)]) { _ in
-                        //TODO: Exception handler
-                    }
+                    NetworkService.shared.makePostRequest(page: PostRequestPath.phoneNumber, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber!.text)])
                     return true
                 }
             default: return true

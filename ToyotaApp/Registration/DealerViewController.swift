@@ -2,28 +2,28 @@ import UIKit
 
 class DealerViewController: UIViewController {
     @IBOutlet var cityTextField: UITextField?
-    @IBOutlet var dealerTextField: UITextField?
+    @IBOutlet var showroomTextField: UITextField?
     @IBOutlet var activitySwitcher: UIActivityIndicatorView?
-    @IBOutlet var dealerLabel: UILabel?
+    @IBOutlet var showroomLabel: UILabel?
     @IBOutlet var nextButton: UIButton!
     
     var cities: [City] = [City]()
     private var selectedCity: City?
-    private var dealers: [Dealer] = [Dealer]()
-    private var selectedDealer: Dealer?
+    private var showrooms: [Showroom] = [Showroom]()
+    private var selectedShowroom: Showroom?
     
     private var cityPicker: UIPickerView!
-    private var dealerPicker: UIPickerView!
+    private var showroomPicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cityPicker = UIPickerView()
-        dealerPicker = UIPickerView()
+        showroomPicker = UIPickerView()
         configureCityPickerView()
-        configureDealerPickerView()
+        configureShowroomPickerView()
         if cities.isEmpty {
-            cities.append(City(id: "1", cityName: "Самара"))
-            cities.append(City(id: "2", cityName: "Сызрань"))
+            cities.append(City(id: "1", name: "Самара"))
+            cities.append(City(id: "2", name: "Сызрань"))
         }
     }
     
@@ -32,21 +32,21 @@ class DealerViewController: UIViewController {
             if let data = data {
                 do {
                     let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
-                    dealers = rawData.dealers
+                    showrooms = rawData.showrooms
                     DispatchQueue.main.async {
                         activitySwitcher?.stopAnimating()
                         activitySwitcher?.isHidden = true
-                        dealerTextField?.isHidden = false
-                        dealerLabel?.isHidden = false
+                        showroomTextField?.isHidden = false
+                        showroomLabel?.isHidden = false
                     }
                 }
                 catch {
-                    dealers = [Dealer(id: "0", address: "Error")]
+                    showrooms = [Showroom(id: "0", name: "Error")]
                     DispatchQueue.main.async {
                         activitySwitcher?.stopAnimating()
                         activitySwitcher?.isHidden = true
-                        dealerTextField?.isHidden = false
-                        dealerLabel?.isHidden = false
+                        showroomTextField?.isHidden = false
+                        showroomLabel?.isHidden = false
                     }
                 }
             }
@@ -60,12 +60,12 @@ class DealerViewController: UIViewController {
         cityTextField!.inputAccessoryView = buildToolbar(for: cityPicker)
         cityTextField!.inputView = cityPicker
     }
-
-    private func configureDealerPickerView() {
-        dealerPicker.dataSource = self
-        dealerPicker.delegate = self
-        dealerTextField!.inputAccessoryView = buildToolbar(for: dealerPicker)
-        dealerTextField!.inputView = dealerPicker
+    
+    private func configureShowroomPickerView() {
+        showroomPicker.dataSource = self
+        showroomPicker.delegate = self
+        showroomTextField!.inputAccessoryView = buildToolbar(for: showroomPicker)
+        showroomTextField!.inputView = showroomPicker
     }
     
     private func buildToolbar(for pickerView: UIPickerView) -> UIToolbar {
@@ -76,7 +76,7 @@ class DealerViewController: UIViewController {
         switch pickerView {
             case cityPicker:
                 doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(cityDidPick))
-            case dealerPicker:
+            case showroomPicker:
                 doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(dealerDidPick))
             default: doneButton = UIBarButtonItem(title: "Error", style: .done, target: nil, action: nil)
         }
@@ -89,16 +89,16 @@ class DealerViewController: UIViewController {
         nextButton.isHidden = true
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
-        cityTextField?.text = cities[row].cityName
+        cityTextField?.text = cities[row].name
         activitySwitcher?.startAnimating()
         view.endEditing(true)
         NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
     }
     
     @objc private func dealerDidPick(sender: Any?) {
-        let row = dealerPicker.selectedRow(inComponent: 0)
-        selectedDealer = dealers[row]
-        dealerTextField?.text = dealers[row].address
+        let row = showroomPicker.selectedRow(inComponent: 0)
+        selectedShowroom = showrooms[row]
+        showroomTextField?.text = showrooms[row].name
         view.endEditing(true)
         nextButton.isHidden = false
     }
@@ -111,7 +111,7 @@ extension DealerViewController : UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
             case cityPicker: return cities.count
-            case dealerPicker: return dealers.count
+            case showroomPicker: return showrooms.count
             default: return 1
         }
     }
@@ -120,8 +120,8 @@ extension DealerViewController : UIPickerViewDataSource {
 extension DealerViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-            case cityPicker: return cities[row].cityName
-            case dealerPicker: return dealers[row].address
+            case cityPicker: return cities[row].name
+            case showroomPicker: return showrooms[row].name
             default: return "Object is missing"
         }
     }
