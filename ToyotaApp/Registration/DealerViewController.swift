@@ -1,9 +1,16 @@
 import UIKit
-
+    
+protocol SegueWithRequestController {
+    var segueCode: String { get }
+    func nextButtonDidPressed(sender: Any?)
+    var completionForSegue: (Data?) -> Void { get }
+}
+    
 class DealerViewController: UIViewController {
     @IBOutlet var cityTextField: UITextField?
     @IBOutlet var showroomTextField: UITextField?
-    @IBOutlet var activitySwitcher: UIActivityIndicatorView?
+    @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView?
+    @IBOutlet var nextButtonIndicator: UIActivityIndicatorView?
     @IBOutlet var showroomLabel: UILabel?
     @IBOutlet var nextButton: UIButton!
     
@@ -11,6 +18,8 @@ class DealerViewController: UIViewController {
     private var selectedCity: City?
     private var showrooms: [Showroom] = [Showroom]()
     private var selectedShowroom: Showroom?
+    
+    private var responseCars: [Car]?
     
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
@@ -24,7 +33,56 @@ class DealerViewController: UIViewController {
             cities.append(City(id: "2", name: "Сызрань"))
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            case segueCode:
+                let destinationVC = segue.destination as? AddingCarViewController
+                destinationVC?.cars = responseCars
+            default: return
+        }
+    }
 }
+    
+//MARK: - SegueWithRequestController
+extension DealerViewController: SegueWithRequestController {
+    var segueCode: String { SegueIdentifiers.DealerToCar }
+    
+    @IBAction internal func nextButtonDidPressed(sender: Any?) {
+        if let showroom = selectedShowroom {
+            nextButton?.isHidden = true
+            nextButtonIndicator?.startAnimating()
+            nextButtonIndicator?.isHidden = false
+            
+            NetworkService.shared.makePostRequest(page: PostRequestPath.getCars, params: [URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId),
+                 URLQueryItem(name: PostRequestKeys.showroomId, value: showroom.id)],
+                completion: completionForSegue)
+        } else { return }
+    }
+    
+    var completionForSegue: (Data?) -> Void {
+        { [self] data in
+            if let data = data {
+                do {
+                    let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
+                    responseCars = decodedResponse.cars
+                    DispatchQueue.main.async {
+                        performSegue(withIdentifier: segueCode, sender: self)
+                    }
+                }
+                catch let decodeError as NSError {
+                    print("Decoder error: \(decodeError.localizedDescription)")
+                    DispatchQueue.main.async {
+                        nextButtonIndicator?.stopAnimating()
+                        nextButtonIndicator?.isHidden = true
+                        nextButton.isHidden = false
+                    }
+                }
+            }
+        }
+    }
+}
+    
 //MARK: - Pickers Configuration
 extension DealerViewController {
     private func configureCityPickerView() {
@@ -67,7 +125,7 @@ extension DealerViewController {
                     let row = cityPicker.selectedRow(inComponent: 0)
                     selectedCity = cities[row]
                     cityTextField?.text = cities[row].name
-                    activitySwitcher?.startAnimating()
+                    cityTextFieldIndicator?.startAnimating()
                     view.endEditing(true)
                     NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
                 case showroomPicker:
@@ -81,15 +139,15 @@ extension DealerViewController {
         }
     }
     
-    private var completion: (Data?) -> Void {
+    private var completionForSelectedCity: (Data?) -> Void {
         { [self] data in
             if let data = data {
                 do {
                     let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
                     showrooms = rawData.showrooms
                     DispatchQueue.main.async {
-                        activitySwitcher?.stopAnimating()
-                        activitySwitcher?.isHidden = true
+                        cityTextFieldIndicator?.stopAnimating()
+                        cityTextFieldIndicator?.isHidden = true
                         showroomTextField?.isHidden = false
                         showroomLabel?.isHidden = false
                     }
@@ -97,8 +155,8 @@ extension DealerViewController {
                 catch {
                     showrooms = [Showroom(id: "0", name: "Ошибка десериализации")]
                     DispatchQueue.main.async {
-                        activitySwitcher?.stopAnimating()
-                        activitySwitcher?.isHidden = true
+                        cityTextFieldIndicator?.stopAnimating()
+                        cityTextFieldIndicator?.isHidden = true
                         showroomTextField?.isHidden = false
                         showroomLabel?.isHidden = false
                     }

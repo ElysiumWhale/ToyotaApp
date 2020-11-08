@@ -58,7 +58,7 @@ extension SmsCodeViewController {
 
 //MARK: - Callback for request
 extension SmsCodeViewController {
-    var completion: (Data?) -> Void {
+    private var completion: (Data?) -> Void {
         { [self] data in
             if let data = data {
                 do {

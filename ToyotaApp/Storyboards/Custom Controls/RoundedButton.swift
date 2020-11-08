@@ -3,9 +3,7 @@ import UIKit
 @IBDesignable class RoundedButton: UIButton
 {
     @IBInspectable var rounded: Bool = false {
-        didSet {
-            updateCornerRadius()
-        }
+        didSet { updateCornerRadius() }
     }
     
     //@IBInspectable var cornerRadius: CGFloat = 0
