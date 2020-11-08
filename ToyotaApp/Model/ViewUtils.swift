@@ -32,4 +32,10 @@ public struct SegueIdentifiers {
     static let NumberToCode = "NumberToCodeSegue"
     static let PersonInfoToDealer = "PersonInfoToDealer"
     static let DealerToCar = "DealerToCar"
+    static let CarToEndRegistration = "CarToEndRegistration"
+    static let CarToCheckVin = "CarToCheckVin"
+}
+
+public struct CellIdentifiers {
+    static let CarChoosingCell = "CarChoosingCell"
 }

@@ -69,7 +69,7 @@ extension DealerViewController {
                     cityTextField?.text = cities[row].name
                     activitySwitcher?.startAnimating()
                     view.endEditing(true)
-                    NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
+                    NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
                 case showroomPicker:
                     let row = showroomPicker.selectedRow(inComponent: 0)
                     selectedShowroom = showrooms[row]

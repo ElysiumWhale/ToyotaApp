@@ -30,7 +30,7 @@ class SmsCodeViewController: UIViewController {
             
             NetworkService.shared.makePostRequest(page: PostRequestPath.smsCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
                  URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text),
-                 URLQueryItem(name: PostRequestKeys.brand_id, value: Brand.id)],
+                 URLQueryItem(name: PostRequestKeys.brandId, value: Brand.id)],
                 completion: completion)
         } else {
             smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor

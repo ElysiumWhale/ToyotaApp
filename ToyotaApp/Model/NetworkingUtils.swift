@@ -19,19 +19,23 @@ struct PostRequestPath {
     static let smsCode = "check_code.php"
     static let profile = "set_profile.php"
     static let getShowrooms = "get_showrooms.php"
+    static let getCars = "get_cars.php"
 }
 
 struct PostRequestKeys {
     static let phoneNumber = "phone_number"
     static let code = "code"
-    static let brand_id = "brand_id"
-    static let user_id = "user_id"
-    static let first_name = "first_name"
-    static let second_name = "second_name"
-    static let last_name = "last_name"
+    static let brandId = "brand_id"
+    static let userId = "user_id"
+    static let firstName = "first_name"
+    static let secondName = "second_name"
+    static let lastName = "last_name"
     static let birthday = "birthday"
     static let email = "email"
-    static let city_id = "city_id"
+    static let cityId = "city_id"
+    static let showroomId = "showroom_id"
+    static let carId = "car_id"
+    static let vinCode = "vin_code"
 }
 
 struct DefaultsKeys {
