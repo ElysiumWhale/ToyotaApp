@@ -13,17 +13,68 @@ public struct FailureResponse: Codable {
     }
 }
 
+//MARK: - CheckUserResponce
+public struct CheckUserResponse: Codable {
+    let result: String
+    let secretKey: String
+    let registerPage: Int?
+    let registeredUser: RegisteredUser?
+    
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case secretKey = "secret_key"
+        case registerPage = "register_page"
+        case registeredUser = "registered_user"
+    }
+}
+
+public struct RegisteredUser: Codable {
+    let profile: Profile?
+    let showroom: [Showroom]?
+    let car: [Car]?
+    
+    struct Profile: Codable {
+        let phone: String?
+        let firstName: String?
+        let lastName: String?
+        let secondName: String?
+        let email: String?
+        let birthday: String?
+        
+        private enum CodingKeys: String, CodingKey {
+            case phone
+            case firstName = "first_name"
+            case lastName = "last_name"
+            case secondName = "second_name"
+            case email
+            case birthday
+        }
+    }
+    
+    struct Showroom: Codable {
+        let showroomName: String
+        let cityName: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case showroomName = "showroom_name"
+            case cityName = "city_name"
+        }
+    }
+}
+    
 //MARK: - SmsCodeDidSendResponse
 public struct SmsCodeDidSendResponse: Codable {
-    let result: String?
+    let result: String
     let userId: String?
     let secrectKey: String?
+    let registerPage: Int?
     let registeredUser: CheckUserResponse?
     
     private enum CodingKeys: String, CodingKey {
         case result
         case userId = "user_id"
         case secrectKey = "secrect_key"
+        case registerPage = "register_page"
         case registeredUser = "registered_user"
     }
 }
@@ -75,33 +126,4 @@ public struct Car: Codable {
     let color_metallic: String?
     let license_plate: String?
     let vin_code: String?
-}
-
-//MARK: - CheckUserResponce
-public struct CheckUserResponse: Codable {
-    let secret_key: String
-    
-    let result_profile: String
-    let register_page: Int?
-    let profile: Profile?
-    
-    let result_showroom: String?
-    let showroom: [Showroom]?
-    
-    let result_car: String?
-    let car: [Car]?
-    
-    struct Profile: Codable {
-        let phone: String?
-        let first_name: String?
-        let last_name: String?
-        let second_name: String?
-        let email: String?
-        let birthday: String?
-    }
-    
-    struct Showroom: Codable {
-        let showroom_name: String
-        let city_name: String
-    }
 }
