@@ -67,6 +67,9 @@ extension DealerViewController: SegueWithRequestController {
                     let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
                     responseCars = decodedResponse.cars
                     DispatchQueue.main.async {
+                        nextButtonIndicator?.stopAnimating()
+                        nextButtonIndicator?.isHidden = true
+                        nextButton.isHidden = false
                         performSegue(withIdentifier: segueCode, sender: self)
                     }
                 }
@@ -78,8 +81,11 @@ extension DealerViewController: SegueWithRequestController {
 //                        nextButton.isHidden = false
 //                    }
                     #warning("debug flow")
-                    responseCars = [Car(id: "3", brand_name: "Toyta", model_name: "Prado", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "а228аа163rus", vin_code: "")]
+                    responseCars = [Car(id: "3", brand_name: "Toyta", model_name: "Prado", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "b322bb163rus", vin_code: ""), Car(id: "3", brand_name: "Toyta", model_name: "Supra", color_name: "Кроваво красный", color_swatch: "cd2727", color_description: "Бордовый", color_metallic: "1", license_plate: "t777ttt163rus", vin_code: ""), Car(id: "3", brand_name: "Toyta", model_name: "Corolla", color_name: "Изумруд", color_swatch: "379b70", color_description: "Темно зеленый", color_metallic: "1", license_plate: "а228аа163rus", vin_code: "")]
                     DispatchQueue.main.async {
+                        nextButtonIndicator?.stopAnimating()
+                        nextButtonIndicator?.isHidden = true
+                        nextButton.isHidden = false
                         performSegue(withIdentifier: segueCode, sender: self)
                     }
                 }
