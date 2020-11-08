@@ -21,6 +21,7 @@
 		A75946A82523F13E00312EBE /* TMPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A72523F13E00312EBE /* TMPVC.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
 		A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */; };
+		A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */; };
@@ -65,6 +66,7 @@
 		A75946A72523F13E00312EBE /* TMPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMPVC.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
 		A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVinViewController.swift; sourceTree = "<group>"; };
+		A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromHex.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunchRegistration.storyboard; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				A77B9311253B035F0011282E /* NetworkServiceResponses.swift */,
+				A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				A75946A82523F13E00312EBE /* TMPVC.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
+				A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
 				A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */,
