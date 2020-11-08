@@ -12,13 +12,11 @@ class DealerViewController: UIViewController {
     private var showrooms: [Showroom] = [Showroom]()
     private var selectedShowroom: Showroom?
     
-    private var cityPicker: UIPickerView!
-    private var showroomPicker: UIPickerView!
+    private var cityPicker: UIPickerView = UIPickerView()
+    private var showroomPicker: UIPickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cityPicker = UIPickerView()
-        showroomPicker = UIPickerView()
         configureCityPickerView()
         configureShowroomPickerView()
         if cities.isEmpty {
@@ -26,34 +24,9 @@ class DealerViewController: UIViewController {
             cities.append(City(id: "2", name: "Сызрань"))
         }
     }
-    
-    private var completion: (Data?) -> Void {
-        { [self] data in
-            if let data = data {
-                do {
-                    let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
-                    showrooms = rawData.showrooms
-                    DispatchQueue.main.async {
-                        activitySwitcher?.stopAnimating()
-                        activitySwitcher?.isHidden = true
-                        showroomTextField?.isHidden = false
-                        showroomLabel?.isHidden = false
-                    }
-                }
-                catch {
-                    showrooms = [Showroom(id: "0", name: "Error")]
-                    DispatchQueue.main.async {
-                        activitySwitcher?.stopAnimating()
-                        activitySwitcher?.isHidden = true
-                        showroomTextField?.isHidden = false
-                        showroomLabel?.isHidden = false
-                    }
-                }
-            }
-        }
-    }
-    
-    //MARK: - Pickers Configuration
+}
+//MARK: - Pickers Configuration
+extension DealerViewController {
     private func configureCityPickerView() {
         cityPicker.dataSource = self
         cityPicker.delegate = self
@@ -75,32 +48,63 @@ class DealerViewController: UIViewController {
         var doneButton: UIBarButtonItem
         switch pickerView {
             case cityPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(cityDidPick))
+                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: nil)
+                doneButton.primaryAction = UIAction(handler: pickerDidSelect)
             case showroomPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(dealerDidPick))
-            default: doneButton = UIBarButtonItem(title: "Error", style: .done, target: nil, action: nil)
+                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: nil)
+                doneButton.primaryAction = UIAction(handler: pickerDidSelect)
+            default: doneButton = UIBarButtonItem(title: "Ошибка", style: .done, target: nil, action: nil)
         }
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
     
-    //MARK: - Pickers handlers
-    @objc private func cityDidPick(sender: Any?) {
-        nextButton.isHidden = true
-        let row = cityPicker.selectedRow(inComponent: 0)
-        selectedCity = cities[row]
-        cityTextField?.text = cities[row].name
-        activitySwitcher?.startAnimating()
-        view.endEditing(true)
-        NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
+    private func pickerDidSelect(sender: Any?) {
+        if let picker = (sender as! UIPickerView?) {
+            switch picker {
+                case cityPicker:
+                    nextButton.isHidden = true
+                    let row = cityPicker.selectedRow(inComponent: 0)
+                    selectedCity = cities[row]
+                    cityTextField?.text = cities[row].name
+                    activitySwitcher?.startAnimating()
+                    view.endEditing(true)
+                    NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brand_id, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.city_id, value: selectedCity!.id)], completion: completion)
+                case showroomPicker:
+                    let row = showroomPicker.selectedRow(inComponent: 0)
+                    selectedShowroom = showrooms[row]
+                    showroomTextField?.text = showrooms[row].name
+                    view.endEditing(true)
+                    nextButton.isHidden = false
+                default: return
+            }
+        }
     }
     
-    @objc private func dealerDidPick(sender: Any?) {
-        let row = showroomPicker.selectedRow(inComponent: 0)
-        selectedShowroom = showrooms[row]
-        showroomTextField?.text = showrooms[row].name
-        view.endEditing(true)
-        nextButton.isHidden = false
+    private var completion: (Data?) -> Void {
+        { [self] data in
+            if let data = data {
+                do {
+                    let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
+                    showrooms = rawData.showrooms
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        showroomTextField?.isHidden = false
+                        showroomLabel?.isHidden = false
+                    }
+                }
+                catch {
+                    showrooms = [Showroom(id: "0", name: "Ошибка десериализации")]
+                    DispatchQueue.main.async {
+                        activitySwitcher?.stopAnimating()
+                        activitySwitcher?.isHidden = true
+                        showroomTextField?.isHidden = false
+                        showroomLabel?.isHidden = false
+                    }
+                }
+            }
+        }
     }
 }
 

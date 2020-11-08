@@ -73,23 +73,27 @@ class PersonalInfoViewController: UIViewController {
         }
         return res
     }
-    
-    //MARK: - DatePicker logic
+}
+
+//MARK: - DatePicker logic
+extension PersonalInfoViewController {
     func createDatePicker() {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru")
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date()
+        
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: #selector(doneDidPress))
+        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: nil)
+        doneButton.primaryAction = UIAction(handler: doneDidPress)
         toolBar.setItems([flexible, doneButton], animated: true)
         birthTextField.inputAccessoryView = toolBar
         birthTextField.inputView = datePicker
     }
     
-    @objc func doneDidPress() {
+    private func doneDidPress(sender: Any?) {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru")
         formatter.dateStyle = .medium
@@ -102,8 +106,10 @@ class PersonalInfoViewController: UIViewController {
         birthTextField.text = formattedDate
         view.endEditing(true)
     }
+}
     
 // MARK: - Navigation
+extension PersonalInfoViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
