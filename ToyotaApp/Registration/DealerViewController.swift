@@ -72,10 +72,15 @@ extension DealerViewController: SegueWithRequestController {
                 }
                 catch let decodeError as NSError {
                     print("Decoder error: \(decodeError.localizedDescription)")
+//                    DispatchQueue.main.async {
+//                        nextButtonIndicator?.stopAnimating()
+//                        nextButtonIndicator?.isHidden = true
+//                        nextButton.isHidden = false
+//                    }
+                    #warning("debug flow")
+                    responseCars = [Car(id: "3", brand_name: "Toyta", model_name: "Prado", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "а228аа163rus", vin_code: "")]
                     DispatchQueue.main.async {
-                        nextButtonIndicator?.stopAnimating()
-                        nextButtonIndicator?.isHidden = true
-                        nextButton.isHidden = false
+                        performSegue(withIdentifier: segueCode, sender: self)
                     }
                 }
             }
@@ -106,37 +111,33 @@ extension DealerViewController {
         var doneButton: UIBarButtonItem
         switch pickerView {
             case cityPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: nil)
-                doneButton.primaryAction = UIAction(handler: pickerDidSelect)
+                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(cityDidSelect))
+                //doneButton.primaryAction = UIAction(handler: pickerDidSelect)
             case showroomPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: nil)
-                doneButton.primaryAction = UIAction(handler: pickerDidSelect)
+                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(showroomDidSelect))
+                //doneButton.primaryAction = UIAction(handler: pickerDidSelect)
             default: doneButton = UIBarButtonItem(title: "Ошибка", style: .done, target: nil, action: nil)
         }
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
     
-    private func pickerDidSelect(sender: Any?) {
-        if let picker = (sender as! UIPickerView?) {
-            switch picker {
-                case cityPicker:
-                    nextButton.isHidden = true
-                    let row = cityPicker.selectedRow(inComponent: 0)
-                    selectedCity = cities[row]
-                    cityTextField?.text = cities[row].name
-                    cityTextFieldIndicator?.startAnimating()
-                    view.endEditing(true)
-                    NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
-                case showroomPicker:
-                    let row = showroomPicker.selectedRow(inComponent: 0)
-                    selectedShowroom = showrooms[row]
-                    showroomTextField?.text = showrooms[row].name
-                    view.endEditing(true)
-                    nextButton.isHidden = false
-                default: return
-            }
-        }
+    @objc private func cityDidSelect(sender: Any?) {
+        nextButton.isHidden = true
+        let row = cityPicker.selectedRow(inComponent: 0)
+        selectedCity = cities[row]
+        cityTextField?.text = cities[row].name
+        cityTextFieldIndicator?.startAnimating()
+        view.endEditing(true)
+        NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
+    }
+    
+    @objc private func showroomDidSelect(sender: Any?) {
+        let row = showroomPicker.selectedRow(inComponent: 0)
+        selectedShowroom = showrooms[row]
+        showroomTextField?.text = showrooms[row].name
+        view.endEditing(true)
+        nextButton.isHidden = false
     }
     
     private var completionForSelectedCity: (Data?) -> Void {

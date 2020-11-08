@@ -68,12 +68,12 @@ public struct SmsCodeDidSendResponse: Codable {
     let userId: String?
     let secrectKey: String?
     let registerPage: Int?
-    let registeredUser: CheckUserResponse?
+    let registeredUser: RegisteredUser?
     
     private enum CodingKeys: String, CodingKey {
         case result
         case userId = "user_id"
-        case secrectKey = "secrect_key"
+        case secrectKey = "secret_key"
         case registerPage = "register_page"
         case registeredUser = "registered_user"
     }
@@ -118,6 +118,7 @@ public struct ShowroomDidSelectResponse: Codable {
 }
 
 public struct Car: Codable {
+    let id: String
     let brand_name: String
     let model_name: String
     let color_name: String?

@@ -69,8 +69,8 @@ extension SmsCodeViewController {
                     Debug.userId = rawFeed.userId!
                     Debug.secretKey = rawFeed.secrectKey!
                     
-                    if let registered = rawFeed.registeredUser {
-                        navigateToRegister(page: registered.registerPage!)
+                    if rawFeed.registeredUser != nil {
+                        navigateToRegister(page: rawFeed.registerPage!)
                     } else {
                         loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
                     }
