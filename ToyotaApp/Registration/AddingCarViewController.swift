@@ -12,7 +12,7 @@ class AddingCarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if cars == nil {
-            cars = [Car(id: "3", brand_name: "Toyta", model_name: "Supra", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "а322аа163rus", vin_code: "")]
+            //cars = [Car(id: "3", brand_name: "Toyta", model_name: "Supra", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "а322аа163rus", vin_code: "")]
         }
     }
     
@@ -22,6 +22,7 @@ class AddingCarViewController: UIViewController {
                 if let cell = sender as? CarChoosingCell {
                     let vc = segue.destination as? CheckVinViewController
                     vc!.car = cell.cellCar
+                    vc!.parentDelegate = self
                 }
             default: return
         }
@@ -44,5 +45,11 @@ extension AddingCarViewController : UICollectionViewDataSource {
         DispatchQueue.main.async { [self] in
             performSegue(withIdentifier: checkCarSegueCode, sender: sender)
         }
+    }
+}
+
+extension AddingCarViewController : AddingCarDelegate {
+    func carDidChecked() {
+        //TODO change cell state
     }
 }

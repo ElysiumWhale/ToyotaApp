@@ -249,8 +249,8 @@
 				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
 				A7D12066253E713A005F85B0 /* DealerViewController.swift */,
 				A7D12069253E7168005F85B0 /* AddingCarViewController.swift */,
-				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
 				A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */,
+				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";

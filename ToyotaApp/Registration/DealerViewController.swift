@@ -7,11 +7,11 @@ protocol SegueWithRequestController {
 }
     
 class DealerViewController: UIViewController {
-    @IBOutlet var cityTextField: UITextField?
-    @IBOutlet var showroomTextField: UITextField?
-    @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView?
-    @IBOutlet var nextButtonIndicator: UIActivityIndicatorView?
-    @IBOutlet var showroomLabel: UILabel?
+    @IBOutlet var cityTextField: UITextField!
+    @IBOutlet var showroomTextField: UITextField!
+    @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView!
+    @IBOutlet var nextButtonIndicator: UIActivityIndicatorView!
+    @IBOutlet var showroomLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
     
     var cities: [City] = [City]()
@@ -51,8 +51,8 @@ extension DealerViewController: SegueWithRequestController {
     @IBAction internal func nextButtonDidPressed(sender: Any?) {
         if let showroom = selectedShowroom {
             nextButton?.isHidden = true
-            nextButtonIndicator?.startAnimating()
-            nextButtonIndicator?.isHidden = false
+            nextButtonIndicator.startAnimating()
+            nextButtonIndicator.isHidden = false
             
             NetworkService.shared.makePostRequest(page: PostRequestPath.getCars, params: [URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId),
                  URLQueryItem(name: PostRequestKeys.showroomId, value: showroom.id)],
@@ -67,26 +67,18 @@ extension DealerViewController: SegueWithRequestController {
                     let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
                     responseCars = decodedResponse.cars
                     DispatchQueue.main.async {
-                        nextButtonIndicator?.stopAnimating()
-                        nextButtonIndicator?.isHidden = true
+                        nextButtonIndicator.stopAnimating()
+                        nextButtonIndicator.isHidden = true
                         nextButton.isHidden = false
                         performSegue(withIdentifier: segueCode, sender: self)
                     }
                 }
                 catch let decodeError as NSError {
                     print("Decoder error: \(decodeError.localizedDescription)")
-//                    DispatchQueue.main.async {
-//                        nextButtonIndicator?.stopAnimating()
-//                        nextButtonIndicator?.isHidden = true
-//                        nextButton.isHidden = false
-//                    }
-                    #warning("debug flow")
-                    responseCars = [Car(id: "3", brand_name: "Toyta", model_name: "Prado", color_name: "Слоновая кость", color_swatch: "edf5f6", color_description: "Светло бежевый", color_metallic: "1", license_plate: "b322bb163rus", vin_code: ""), Car(id: "3", brand_name: "Toyta", model_name: "Supra", color_name: "Кроваво красный", color_swatch: "cd2727", color_description: "Бордовый", color_metallic: "1", license_plate: "t777ttt163rus", vin_code: ""), Car(id: "3", brand_name: "Toyta", model_name: "Corolla", color_name: "Изумруд", color_swatch: "379b70", color_description: "Темно зеленый", color_metallic: "1", license_plate: "а228аа163rus", vin_code: "")]
                     DispatchQueue.main.async {
-                        nextButtonIndicator?.stopAnimating()
-                        nextButtonIndicator?.isHidden = true
+                        nextButtonIndicator.stopAnimating()
+                        nextButtonIndicator.isHidden = true
                         nextButton.isHidden = false
-                        performSegue(withIdentifier: segueCode, sender: self)
                     }
                 }
             }
@@ -118,10 +110,8 @@ extension DealerViewController {
         switch pickerView {
             case cityPicker:
                 doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(cityDidSelect))
-                //doneButton.primaryAction = UIAction(handler: pickerDidSelect)
             case showroomPicker:
                 doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(showroomDidSelect))
-                //doneButton.primaryAction = UIAction(handler: pickerDidSelect)
             default: doneButton = UIBarButtonItem(title: "Ошибка", style: .done, target: nil, action: nil)
         }
         toolBar.setItems([flexible, doneButton], animated: true)
@@ -130,6 +120,7 @@ extension DealerViewController {
     
     @objc private func cityDidSelect(sender: Any?) {
         nextButton.isHidden = true
+        showroomPicker.reloadComponent(0)
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
         cityTextField?.text = cities[row].name

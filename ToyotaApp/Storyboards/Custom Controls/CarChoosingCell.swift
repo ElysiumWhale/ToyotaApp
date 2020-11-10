@@ -31,8 +31,8 @@ protocol RoundedControl {
     
     func configureCell(car: Car, checkVinFunc: ((UICollectionViewCell) -> Void)? = {_ in }) {
         cellCar = car
-        modelNameLabel.text = car.brand_name + car.model_name
-        colorNameLabel.text = car.color_name
+        modelNameLabel.text = car.car_brand_name + car.car_model_name
+        colorNameLabel.text = car.car_color_name
         registrationNumberLabel.text = car.license_plate
         backgroundColor = UIColor(hex: car.color_swatch!) ?? .gray
         

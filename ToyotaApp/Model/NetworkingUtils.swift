@@ -20,6 +20,7 @@ struct PostRequestPath {
     static let profile = "set_profile.php"
     static let getShowrooms = "get_showrooms.php"
     static let getCars = "get_cars.php"
+    static let checkCar = "check_car.php"
 }
 
 struct PostRequestKeys {

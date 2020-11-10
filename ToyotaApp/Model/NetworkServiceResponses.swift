@@ -114,17 +114,16 @@ public struct Showroom : Codable {
 //MARK: - ShowroomDidSelectResponse
 public struct ShowroomDidSelectResponse: Codable {
     let result: String
-    let cars: [Car]
+    let cars: [Car]?
 }
 
 public struct Car: Codable {
     let id: String
-    let brand_name: String
-    let model_name: String
-    let color_name: String?
+    let car_brand_name: String
+    let car_model_name: String
+    let car_color_name: String?
     let color_swatch: String?
     let color_description: String?
     let color_metallic: String?
     let license_plate: String?
-    let vin_code: String?
 }

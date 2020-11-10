@@ -86,14 +86,13 @@ extension PersonalInfoViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: nil)
-        doneButton.primaryAction = UIAction(handler: doneDidPress)
+        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: #selector(doneDidPress))
         toolBar.setItems([flexible, doneButton], animated: true)
         birthTextField.inputAccessoryView = toolBar
         birthTextField.inputView = datePicker
     }
     
-    private func doneDidPress(sender: Any?) {
+    @objc private func doneDidPress(sender: Any?) {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru")
         formatter.dateStyle = .medium
