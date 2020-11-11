@@ -45,6 +45,8 @@
 		A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */; };
 		A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */; };
 		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
+		A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A085F4255C7BC600807225 /* UserInfo.swift */; };
+		A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7A085FC255C869C00807225 /* SwiftEntryKit */; };
 		A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */; };
 		A7A72E4825588D8C00A44984 /* CarChoosingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72E4725588D8C00A44984 /* CarChoosingCell.swift */; };
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
@@ -90,6 +92,7 @@
 		A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Semibold.ttf"; sourceTree = "<group>"; };
 		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
 		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
+		A7A085F4255C7BC600807225 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7A72E4725588D8C00A44984 /* CarChoosingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarChoosingCell.swift; sourceTree = "<group>"; };
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
 				A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */,
 				A717CEBE252BC63E00CFB6FF /* CountryPicker in Frameworks */,
 				A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */,
@@ -161,6 +165,7 @@
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				A77B9311253B035F0011282E /* NetworkServiceResponses.swift */,
 				A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */,
+				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */,
 				A717CEB8252A210A00CFB6FF /* PhoneNumberKit */,
 				A717CEBD252BC63E00CFB6FF /* CountryPicker */,
+				A7A085FC255C869C00807225 /* SwiftEntryKit */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -307,6 +313,7 @@
 			packageReferences = (
 				A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				A717CEBC252BC63E00CFB6FF /* XCRemoteSwiftPackageReference "CountryPicker" */,
+				A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -353,6 +360,7 @@
 				A791FDDD2524E1B900A595BB /* MyCarViewController.swift in Sources */,
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
+				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				A77B9312253B035F0011282E /* NetworkServiceResponses.swift in Sources */,
 				A75946A82523F13E00312EBE /* TMPVC.swift in Sources */,
@@ -589,6 +597,14 @@
 				minimumVersion = 1.2.9;
 			};
 		};
+		A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -606,6 +622,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A717CEBC252BC63E00CFB6FF /* XCRemoteSwiftPackageReference "CountryPicker" */;
 			productName = CountryPicker;
+		};
+		A7A085FC255C869C00807225 /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -127,3 +127,9 @@ public struct Car: Codable {
     let color_metallic: String?
     let license_plate: String?
 }
+
+//MARK: - CarDidCheck
+public struct CarDidCheckResponse: Codable {
+    let result: String
+    let message: String
+}

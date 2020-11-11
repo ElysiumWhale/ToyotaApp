@@ -18,6 +18,24 @@
           "revision": "c7d7b0c91ef0ad7e413022edfcf5d6f75561e2d5",
           "version": "3.3.1"
         }
+      },
+      {
+        "package": "QuickLayout",
+        "repositoryURL": "https://github.com/huri000/QuickLayout",
+        "state": {
+          "branch": null,
+          "revision": "6be62decbe508d8fc8f9dbafc349d05bab03c38b",
+          "version": "3.0.1"
+        }
+      },
+      {
+        "package": "SwiftEntryKit",
+        "repositoryURL": "https://github.com/huri000/SwiftEntryKit",
+        "state": {
+          "branch": null,
+          "revision": "f280a02c60f4c2563561312df26a357a1cf714e2",
+          "version": "1.2.6"
+        }
       }
     ]
   },

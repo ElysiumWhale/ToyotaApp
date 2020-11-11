@@ -177,19 +177,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-VA-hiF">
-                                <rect key="frame" x="72" y="795" width="271" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="LDC-iL-cfh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="15"/>
-                                <state key="normal" title="  Пропустить первичное заполнение информации">
-                                    <color key="titleColor" red="0.050778642223742447" green="0.49899211104121649" blue="0.98967778497409331" alpha="0.54213028169014088" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
                                 <rect key="frame" x="20" y="225" width="374" height="31"/>
                                 <constraints>
@@ -222,10 +209,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="77N-z1-1oO">
-                                <rect key="frame" x="157" y="312" width="100" height="100"/>
+                                <rect key="frame" x="157" y="361" width="100" height="100"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="84" y="719" width="246" height="54"/>
+                                <rect key="frame" x="84" y="756" width="246" height="54"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="lyC-wq-Der"/>
@@ -242,7 +229,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="hrn-D5-1Xb">
-                                <rect key="frame" x="158" y="696" width="100" height="100"/>
+                                <rect key="frame" x="158" y="733" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Ehw-oD-Qki"/>
                                     <constraint firstAttribute="height" constant="100" id="TJb-EI-YwD"/>
@@ -254,12 +241,10 @@
                         <constraints>
                             <constraint firstItem="77N-z1-1oO" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="157" id="06l-iv-AqO"/>
                             <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="WLH-tK-IJr" secondAttribute="bottom" constant="23" id="2yi-7P-v75"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="89" id="3Bk-9o-Bzs"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="SYE-VA-hiF" secondAttribute="trailing" constant="71" id="3PB-Yn-Bfr"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="SYE-VA-hiF" secondAttribute="bottom" constant="20" id="5NT-50-w0A"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="52" id="3Bk-9o-Bzs"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="85" id="5ju-UY-QGz"/>
                             <constraint firstItem="hrn-D5-1Xb" firstAttribute="top" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="-77" id="B7J-gb-EJg"/>
-                            <constraint firstItem="77N-z1-1oO" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="172" id="Bwl-t1-4g3"/>
+                            <constraint firstItem="77N-z1-1oO" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="221" id="Bwl-t1-4g3"/>
                             <constraint firstItem="Cvh-mo-Boh" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="Czz-FZ-rUs"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="WLH-tK-IJr" secondAttribute="trailing" constant="20" id="F85-b3-dxI"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="hrn-D5-1Xb" secondAttribute="trailing" constant="156" id="FQJ-LC-rMe"/>
@@ -270,11 +255,10 @@
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="ZmH-tZ-JEu"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Q5I-rD-2TU" secondAttribute="trailing" constant="20" id="buu-UI-0cQ"/>
                             <constraint firstItem="WLH-tK-IJr" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="hDY-6i-xzo"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="77N-z1-1oO" secondAttribute="bottom" constant="450" id="keS-vz-0cc"/>
+                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="77N-z1-1oO" secondAttribute="bottom" constant="401" id="keS-vz-0cc"/>
                             <constraint firstItem="JAZ-G9-1Io" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="84" id="niW-go-3hx"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="InT-oW-nHl" secondAttribute="trailing" constant="20" id="pmV-QT-HFE"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Cvh-mo-Boh" secondAttribute="trailing" constant="20" id="rJC-aS-YxY"/>
-                            <constraint firstItem="SYE-VA-hiF" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="72" id="tu3-L4-Cpy"/>
                             <constraint firstItem="hrn-D5-1Xb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="158" id="veZ-l6-u9X"/>
                             <constraint firstItem="WLH-tK-IJr" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="8" symbolic="YES" id="xTc-s0-wpx"/>
                         </constraints>
@@ -303,36 +287,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cOl-so-cHE">
-                                <rect key="frame" x="0.0" y="140" width="414" height="652"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="6av-pQ-YJ8">
-                                    <size key="itemSize" width="292" height="190"/>
+                                    <size key="itemSize" width="386" height="190"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarChoosingCell" id="f00-YY-KM4" customClass="CarChoosingCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="61" y="10" width="292" height="190"/>
+                                        <rect key="frame" x="14" y="10" width="386" height="190"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UIe-I8-JAy">
-                                            <rect key="frame" x="0.0" y="0.0" width="292" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="386" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1b-h4-yp9">
-                                                    <rect key="frame" x="8" y="8" width="276" height="31.5"/>
+                                                    <rect key="frame" x="8" y="8" width="370" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration number" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-tw-V3E">
-                                                    <rect key="frame" x="8" y="88" width="276" height="31.5"/>
+                                                    <rect key="frame" x="8" y="88" width="370" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9H-R0-7Xg" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="57" y="137" width="178" height="47"/>
+                                                    <rect key="frame" x="90" y="137" width="207" height="47"/>
                                                     <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="47" id="sgz-T6-LRm"/>
@@ -349,17 +333,17 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-tO-LfX">
-                                                    <rect key="frame" x="8" y="48" width="276" height="31.5"/>
+                                                    <rect key="frame" x="8" y="48" width="370" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="57" id="6xY-ZY-Wq2"/>
+                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="90" id="6xY-ZY-Wq2"/>
                                                 <constraint firstItem="pnK-tO-LfX" firstAttribute="top" secondItem="q1b-h4-yp9" secondAttribute="bottom" constant="8.5" id="91y-DL-A8b"/>
                                                 <constraint firstItem="Vo8-tw-V3E" firstAttribute="top" secondItem="pnK-tO-LfX" secondAttribute="bottom" constant="8.5" id="CLI-hm-D8j"/>
-                                                <constraint firstAttribute="trailing" secondItem="b9H-R0-7Xg" secondAttribute="trailing" constant="57" id="CPH-L7-9eS"/>
+                                                <constraint firstAttribute="trailing" secondItem="b9H-R0-7Xg" secondAttribute="trailing" constant="89" id="CPH-L7-9eS"/>
                                                 <constraint firstItem="pnK-tO-LfX" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="8" id="HYE-jI-tsf"/>
                                                 <constraint firstItem="q1b-h4-yp9" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="8" id="KA5-hJ-rNa"/>
                                                 <constraint firstAttribute="trailing" secondItem="pnK-tO-LfX" secondAttribute="trailing" constant="8" id="Kgj-ah-CUx"/>
@@ -372,7 +356,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.69438147670000006" green="0.69438147670000006" blue="0.69438147670000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <size key="customSize" width="292" height="190"/>
+                                        <size key="customSize" width="386" height="190"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="15"/>
@@ -390,40 +374,21 @@
                                     <outlet property="dataSource" destination="kS6-zi-MR4" id="ChE-WA-9ht"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DFc-WC-Acl" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="92" y="800" width="231" height="47"/>
-                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="Bjb-kQ-fU0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
-                                <state key="normal" title="Далее">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="c2L-Fe-S5T" kind="show" id="tEA-0R-Pgp"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NOD-Dv-T9R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="DFc-WC-Acl" secondAttribute="trailing" constant="91" id="GS8-hf-RGr"/>
-                            <constraint firstItem="DFc-WC-Acl" firstAttribute="top" secondItem="cOl-so-cHE" secondAttribute="bottom" constant="8" symbolic="YES" id="NJu-h8-Pgg"/>
+                            <constraint firstItem="cOl-so-cHE" firstAttribute="bottom" secondItem="NOD-Dv-T9R" secondAttribute="bottom" constant="34" id="4Z9-cF-v1z"/>
                             <constraint firstItem="cOl-so-cHE" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" id="Zj4-HD-Imy"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="cOl-so-cHE" secondAttribute="trailing" id="deX-QV-564"/>
                             <constraint firstItem="cOl-so-cHE" firstAttribute="top" secondItem="NOD-Dv-T9R" secondAttribute="top" id="m2o-Xv-xnI"/>
-                            <constraint firstItem="DFc-WC-Acl" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="92" id="rfS-of-NX5"/>
-                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="bottom" secondItem="DFc-WC-Acl" secondAttribute="bottom" constant="15" id="waX-QC-Lpf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Машина" id="bwh-ER-nsN"/>
                     <connections>
                         <outlet property="carsList" destination="cOl-so-cHE" id="FZ6-e9-z1J"/>
                         <segue destination="8Ad-fD-g3k" kind="presentation" identifier="CarToCheckVin" id="mcf-6r-0LT"/>
+                        <segue destination="c2L-Fe-S5T" kind="presentation" modalPresentationStyle="fullScreen" id="Gme-AO-Y1I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3g-gG-TVb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -433,13 +398,13 @@
         <!--Завершение-->
         <scene sceneID="k5q-h7-3t3">
             <objects>
-                <viewController id="c2L-Fe-S5T" sceneMemberID="viewController">
+                <viewController id="c2L-Fe-S5T" customClass="EndRegistrationViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JpK-dt-2qm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCJ-Zj-rJA">
-                                <rect key="frame" x="20" y="156" width="374" height="570"/>
+                                <rect key="frame" x="20" y="220" width="374" height="84"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -458,21 +423,47 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="qw4-bY-ZJ3" kind="show" id="Xtt-j7-gaZ"/>
+                                    <action selector="loadMainMenuWithSender:" destination="c2L-Fe-S5T" eventType="touchUpInside" id="xFh-eO-a5d"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить еще салоны и автомибили и многое другое." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Re-d3L">
+                                <rect key="frame" x="50" y="342" width="313" height="77"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-YA-g2s">
+                                <rect key="frame" x="50" y="472" width="313" height="26"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="X4h-lP-O5U">
+                                <rect key="frame" x="87" y="88" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="1bi-Ua-RpC"/>
+                                    <constraint firstAttribute="height" constant="128" id="nET-H9-xVq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9HI-zJ-96J"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="LIv-Re-d3L" firstAttribute="top" secondItem="tCJ-Zj-rJA" secondAttribute="bottom" constant="38" id="1NV-Ds-Rkh"/>
+                            <constraint firstItem="tCJ-Zj-rJA" firstAttribute="top" secondItem="X4h-lP-O5U" secondAttribute="bottom" constant="4" id="2Hq-HY-ygS"/>
+                            <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="X4h-lP-O5U" secondAttribute="trailing" constant="87" id="2RE-ck-0yA"/>
                             <constraint firstItem="tCJ-Zj-rJA" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="20" id="Dgv-gz-2Jz"/>
+                            <constraint firstItem="X4h-lP-O5U" firstAttribute="top" secondItem="9HI-zJ-96J" secondAttribute="top" constant="44" id="Dqg-yA-bzr"/>
                             <constraint firstItem="2XS-il-f54" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="92" id="Efc-rF-1ml"/>
-                            <constraint firstItem="2XS-il-f54" firstAttribute="top" secondItem="tCJ-Zj-rJA" secondAttribute="bottom" constant="58" id="a53-SG-3AC"/>
+                            <constraint firstItem="X4h-lP-O5U" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="87" id="V9l-Te-TV2"/>
+                            <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="jWx-YA-g2s" secondAttribute="trailing" constant="51" id="WUa-Jk-Ufr"/>
+                            <constraint firstItem="LIv-Re-d3L" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="50" id="eyF-qA-QsW"/>
                             <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="tCJ-Zj-rJA" secondAttribute="trailing" constant="20" id="eyz-BK-tDR"/>
                             <constraint firstItem="9HI-zJ-96J" firstAttribute="bottom" secondItem="2XS-il-f54" secondAttribute="bottom" constant="31" id="hUZ-V7-I6m"/>
-                            <constraint firstItem="9HI-zJ-96J" firstAttribute="bottom" secondItem="tCJ-Zj-rJA" secondAttribute="bottom" constant="136" id="snL-7P-xDY"/>
+                            <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="LIv-Re-d3L" secondAttribute="trailing" constant="51" id="iMG-ll-ENW"/>
+                            <constraint firstItem="jWx-YA-g2s" firstAttribute="top" secondItem="LIv-Re-d3L" secondAttribute="bottom" constant="53" id="r8v-lx-eWR"/>
                             <constraint firstItem="9HI-zJ-96J" firstAttribute="trailing" secondItem="2XS-il-f54" secondAttribute="trailing" constant="91" id="tTA-lN-1xZ"/>
-                            <constraint firstItem="tCJ-Zj-rJA" firstAttribute="top" secondItem="9HI-zJ-96J" secondAttribute="top" constant="16" id="uCM-a6-PWi"/>
+                            <constraint firstItem="jWx-YA-g2s" firstAttribute="leading" secondItem="9HI-zJ-96J" secondAttribute="leading" constant="50" id="uHm-ZX-0hZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Завершение" id="IsS-Ae-Fdq"/>
@@ -480,16 +471,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zma-mT-lsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2544.9275362318845" y="172.76785714285714"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="tyf-cv-7sp">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="qw4-bY-ZJ3" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="fc8-TY-S8w"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oW6-DU-Phv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3067" y="173"/>
         </scene>
         <!--Проверка машины по VIN-->
         <scene sceneID="02O-Km-L1x">
@@ -499,8 +480,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите ВИН код для выбранной машины" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEt-TS-r2p">
-                                <rect key="frame" x="46" y="210" width="322" height="121"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите VIN-код для выбранной машины" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEt-TS-r2p">
+                                <rect key="frame" x="46" y="248" width="322" height="121"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="VRg-jS-iha"/>
                                 </constraints>
@@ -509,13 +490,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC6-jC-vjg">
-                                <rect key="frame" x="103" y="122" width="200" height="29"/>
+                                <rect key="frame" x="107" y="160" width="200" height="29"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VIN" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NL4-cw-dT4">
-                                <rect key="frame" x="30" y="339" width="355" height="70"/>
+                                <rect key="frame" x="29" y="377" width="355" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="EQF-OO-YFH"/>
                                 </constraints>
@@ -526,7 +507,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-ld-YlO" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="84" y="437" width="239" height="47"/>
+                                <rect key="frame" x="87" y="479" width="239" height="47"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="5zT-9C-TYC"/>
@@ -542,31 +523,50 @@
                                     <action selector="checkVin" destination="8Ad-fD-g3k" eventType="touchUpInside" id="qoX-NV-a6N"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rys-I1-y4U">
-                                <rect key="frame" x="42" y="404" width="323" height="26"/>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен некорректный VIN-код!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rys-I1-y4U">
+                                <rect key="frame" x="40" y="442" width="335" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="E5P-MB-N4d">
+                                <rect key="frame" x="157" y="453" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="LPJ-D8-mrD"/>
+                                    <constraint firstAttribute="width" constant="100" id="ct2-M5-w4Z"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERO-DS-gCk">
+                                <rect key="frame" x="107" y="110" width="200" height="29"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Neb-4M-qto"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="ERO-DS-gCk" secondAttribute="trailing" constant="107" id="6gX-AZ-0Xo"/>
                             <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="oEt-TS-r2p" secondAttribute="trailing" constant="46" id="A7m-eS-yZe"/>
-                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="g0g-ld-YlO" secondAttribute="trailing" constant="91" id="Eo0-SR-PQq"/>
-                            <constraint firstItem="rys-I1-y4U" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="42" id="IOT-98-rph"/>
-                            <constraint firstItem="NL4-cw-dT4" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="30" id="Npm-Aa-Gz4"/>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="g0g-ld-YlO" secondAttribute="trailing" constant="88" id="Eo0-SR-PQq"/>
+                            <constraint firstItem="rys-I1-y4U" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="40" id="IOT-98-rph"/>
+                            <constraint firstItem="E5P-MB-N4d" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="157" id="IOg-oY-1Qu"/>
+                            <constraint firstItem="ERO-DS-gCk" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="107" id="ISh-st-xc0"/>
+                            <constraint firstItem="BC6-jC-vjg" firstAttribute="top" secondItem="ERO-DS-gCk" secondAttribute="bottom" constant="21" id="LID-Cl-svB"/>
+                            <constraint firstItem="NL4-cw-dT4" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="29" id="Npm-Aa-Gz4"/>
+                            <constraint firstItem="ERO-DS-gCk" firstAttribute="top" secondItem="Neb-4M-qto" secondAttribute="top" constant="54" id="PdY-6w-Yup"/>
                             <constraint firstItem="oEt-TS-r2p" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="46" id="S3e-Cb-HIE"/>
                             <constraint firstItem="rys-I1-y4U" firstAttribute="top" secondItem="NL4-cw-dT4" secondAttribute="bottom" constant="-5" id="XAp-wV-MIe"/>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="E5P-MB-N4d" secondAttribute="trailing" constant="157" id="XQP-3l-mc2"/>
                             <constraint firstItem="oEt-TS-r2p" firstAttribute="top" secondItem="BC6-jC-vjg" secondAttribute="bottom" constant="59" id="aHl-Ko-pSy"/>
-                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="rys-I1-y4U" secondAttribute="trailing" constant="49" id="aQy-iM-pkf"/>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="rys-I1-y4U" secondAttribute="trailing" constant="39" id="aQy-iM-pkf"/>
                             <constraint firstItem="NL4-cw-dT4" firstAttribute="top" secondItem="oEt-TS-r2p" secondAttribute="bottom" constant="8" symbolic="YES" id="faM-du-sFz"/>
-                            <constraint firstItem="g0g-ld-YlO" firstAttribute="top" secondItem="rys-I1-y4U" secondAttribute="bottom" constant="7" id="im1-bB-XWa"/>
-                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="BC6-jC-vjg" secondAttribute="trailing" constant="111" id="nqk-2N-vCE"/>
-                            <constraint firstItem="g0g-ld-YlO" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="84" id="qKi-P7-vLG"/>
-                            <constraint firstItem="BC6-jC-vjg" firstAttribute="top" secondItem="Neb-4M-qto" secondAttribute="top" constant="66" id="wcx-n9-EoB"/>
-                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="NL4-cw-dT4" secondAttribute="trailing" constant="29" id="yWd-T2-Pbe"/>
-                            <constraint firstItem="BC6-jC-vjg" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="103" id="zd0-7v-KBU"/>
+                            <constraint firstItem="g0g-ld-YlO" firstAttribute="top" secondItem="rys-I1-y4U" secondAttribute="bottom" constant="11" id="im1-bB-XWa"/>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="BC6-jC-vjg" secondAttribute="trailing" constant="107" id="nqk-2N-vCE"/>
+                            <constraint firstItem="g0g-ld-YlO" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="87" id="qKi-P7-vLG"/>
+                            <constraint firstItem="E5P-MB-N4d" firstAttribute="top" secondItem="g0g-ld-YlO" secondAttribute="bottom" constant="-73" id="tj6-5E-Wbb"/>
+                            <constraint firstItem="Neb-4M-qto" firstAttribute="trailing" secondItem="NL4-cw-dT4" secondAttribute="trailing" constant="30" id="yWd-T2-Pbe"/>
+                            <constraint firstItem="BC6-jC-vjg" firstAttribute="leading" secondItem="Neb-4M-qto" secondAttribute="leading" constant="107" id="zd0-7v-KBU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Проверка машины по VIN" id="MHg-Nt-oh6"/>
@@ -574,6 +574,8 @@
                     <connections>
                         <outlet property="checkVinButton" destination="g0g-ld-YlO" id="Zwn-ob-Btw"/>
                         <outlet property="errorLabel" destination="rys-I1-y4U" id="A9y-qg-187"/>
+                        <outlet property="indicator" destination="E5P-MB-N4d" id="L49-wx-KEF"/>
+                        <outlet property="modelName" destination="ERO-DS-gCk" id="y9w-zC-njZ"/>
                         <outlet property="regNumber" destination="BC6-jC-vjg" id="enU-Ra-QzY"/>
                         <outlet property="vinCodeTextField" destination="NL4-cw-dT4" id="hrk-yg-R7o"/>
                     </connections>
@@ -585,12 +587,9 @@
     </scenes>
     <designables>
         <designable name="2XS-il-f54">
-            <size key="intrinsicContentSize" width="173" height="44"/>
+            <size key="intrinsicContentSize" width="166" height="38"/>
         </designable>
         <designable name="Ax1-4T-jTA">
-            <size key="intrinsicContentSize" width="67" height="44"/>
-        </designable>
-        <designable name="DFc-WC-Acl">
             <size key="intrinsicContentSize" width="67" height="44"/>
         </designable>
         <designable name="JAZ-G9-1Io">
@@ -604,6 +603,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="ToyotaLogoBlack" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
