@@ -63,11 +63,12 @@ extension SmsCodeViewController {
             if let data = data {
                 do {
                     let rawFeed = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
-                    #warning("If not debug")
-                    //UserDefaults.standard.setValue(rawFeed.secrectKey, forKey: DefaultsKeys.authKey)
-                    //UserDefaults.standard.set(rawFeed.userId, forKey: DefaultsKeys.userId)
-                    Debug.userId = rawFeed.userId!
-                    Debug.secretKey = rawFeed.secrectKey!
+                    
+                    UserDefaults.standard.setValue(rawFeed.secrectKey, forKey: DefaultsKeys.secretKey)
+                    UserDefaults.standard.setValue(rawFeed.userId, forKey: DefaultsKeys.userId)
+                    
+                    Debug.userId = rawFeed.userId
+                    Debug.secretKey = rawFeed.secrectKey
                     
                     if rawFeed.registeredUser != nil {
                         navigateToRegister(page: rawFeed.registerPage!)

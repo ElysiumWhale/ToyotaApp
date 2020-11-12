@@ -20,11 +20,19 @@ public struct CheckUserResponse: Codable {
     let registerPage: Int?
     let registeredUser: RegisteredUser?
     
+    let cities: [City]?
+    //let showrooms: [Showroom]?
+    let cars: [Car]?
+    
     private enum CodingKeys: String, CodingKey {
         case result
         case secretKey = "secret_key"
         case registerPage = "register_page"
         case registeredUser = "registered_user"
+        
+        case cities
+        //case showrooms
+        case cars
     }
 }
 
@@ -52,10 +60,12 @@ public struct RegisteredUser: Codable {
     }
     
     struct Showroom: Codable {
+        let id: String
         let showroomName: String
         let cityName: String
         
         private enum CodingKeys: String, CodingKey {
+            case id
             case showroomName = "showroom_name"
             case cityName = "city_name"
         }
@@ -65,8 +75,8 @@ public struct RegisteredUser: Codable {
 //MARK: - SmsCodeDidSendResponse
 public struct SmsCodeDidSendResponse: Codable {
     let result: String
-    let userId: String?
-    let secrectKey: String?
+    let userId: String
+    let secrectKey: String
     let registerPage: Int?
     let registeredUser: RegisteredUser?
     
