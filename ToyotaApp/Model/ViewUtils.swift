@@ -23,11 +23,6 @@ public struct AppViewControllers {
     static let myCar = "MyCarViewController"
 }
 
-public struct UserDefaultsKeys {
-    static let username = "username"
-    static let userId = "userId"
-}
-
 public struct SegueIdentifiers {
     static let NumberToCode = "NumberToCodeSegue"
     static let PersonInfoToDealer = "PersonInfoToDealer"

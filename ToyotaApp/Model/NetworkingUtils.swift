@@ -15,9 +15,10 @@ struct RequestType {
 }
 
 struct PostRequestPath {
-    static let phoneNumber = "register_phone.php"
-    static let smsCode = "check_code.php"
-    static let profile = "set_profile.php"
+    static let checkUser = "check_user.php"
+    static let registerPhone = "register_phone.php"
+    static let checkCode = "check_code.php"
+    static let setProfile = "set_profile.php"
     static let getShowrooms = "get_showrooms.php"
     static let getCars = "get_cars.php"
     static let checkCar = "check_car.php"
@@ -25,6 +26,7 @@ struct PostRequestPath {
 
 struct PostRequestKeys {
     static let phoneNumber = "phone_number"
+    static let secretKey = "secret_key"
     static let code = "code"
     static let brandId = "brand_id"
     static let userId = "user_id"
@@ -40,8 +42,9 @@ struct PostRequestKeys {
 }
 
 struct DefaultsKeys {
-    static let authKey = "authKey"
+    static let secretKey = "secretKey"
     static let userId = "userId"
+    static let brandId = "brandId"
 }
 
 struct MainURL {

@@ -28,7 +28,7 @@ class SmsCodeViewController: UIViewController {
             activitySwitcher?.isHidden = false
             view.endEditing(true)
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.smsCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
+            NetworkService.shared.makePostRequest(page: PostRequestPath.checkCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
                  URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text),
                  URLQueryItem(name: PostRequestKeys.brandId, value: Brand.id)],
                 completion: completion)

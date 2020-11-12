@@ -24,7 +24,7 @@ class PersonalInfoViewController: UIViewController {
         guard checkFields() else { return }
         activitySwitcher.startAnimating()
         nextButton.isHidden = true
-        NetworkService.shared.makePostRequest(page: PostRequestPath.profile, params: buildParamsForRequest()) { [self] data in
+        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: buildParamsForRequest()) { [self] data in
             do {
                 let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
                 cities = rawCities.cities.map {

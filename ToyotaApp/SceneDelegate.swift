@@ -7,14 +7,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        //retrieve auth key form userdefaults with id
-        //send to server
-        //when recieve answer do this:
-        // if user is logged in before
-        if let loggedUserId = UserDefaults.standard.string(forKey: UserDefaultsKeys.userId) {
             let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController)
             window?.rootViewController = controller
+        if let loggedUserId = UserDefaults.standard.string(forKey: DefaultsKeys.userId), let secretKey = UserDefaults.standard.string(forKey: DefaultsKeys.secretKey), let brandId = UserDefaults.standard.string(forKey: DefaultsKeys.brandId) {
         } else {
             let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
             let controller = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
@@ -64,4 +60,3 @@ extension SceneDelegate {
         completion: nil)
     }
 }
-
