@@ -7,14 +7,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-            let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController)
-            window?.rootViewController = controller
         if let loggedUserId = UserDefaults.standard.string(forKey: DefaultsKeys.userId), let secretKey = UserDefaults.standard.string(forKey: DefaultsKeys.secretKey), let brandId = UserDefaults.standard.string(forKey: DefaultsKeys.brandId) {
+            
+            NetworkService.shared.makePostRequest(page: PostRequestPath.checkUser, params: [URLQueryItem(name: PostRequestKeys.userId, value: loggedUserId), URLQueryItem(name: PostRequestKeys.brandId, value: brandId), URLQueryItem(name: PostRequestKeys.secretKey, value: secretKey)], completion: resolveNavigation)
         } else {
-            let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-            let controller = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
-            window?.rootViewController = controller
+            loadAuth()
         }
     }
 
@@ -58,5 +55,46 @@ extension SceneDelegate {
         options: [.transitionFlipFromLeft],
         animations: nil,
         completion: nil)
+    }
+    
+    func resolveNavigation(data: Data?) -> Void {
+        if let data = data {
+            do {
+                let response = try JSONDecoder().decode(CheckUserResponse.self, from: data)
+                
+                if let regPage = response.registerPage {
+                    switch regPage {
+                        case 1: loadAuth()
+                        case 2:
+                            //save data
+                            //navigate
+                            loadMain()
+                        case 3:
+                            //save data
+                            //navigate
+                            loadMain()
+                        case 4:
+                            //save data
+                            //navigate
+                            loadMain()
+                        default: loadAuth()
+                    }
+                } else { loadAuth() }
+            }
+            catch { loadAuth() }
+        } else { loadAuth() }
+    }
+    
+    func loadAuth() {
+        UserDefaults.standard.setValue("1", forKey: DefaultsKeys.brandId)
+        let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+        let controller = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
+        window?.rootViewController = controller
+    }
+    
+    func loadMain() {
+        let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+        let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController)
+        window?.rootViewController = controller
     }
 }
