@@ -28,6 +28,7 @@ class AddingCarViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDataSource
 extension AddingCarViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cars?.count ?? 0
@@ -36,7 +37,7 @@ extension AddingCarViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = cars![indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CarChoosingCell
-        cell.configureCell(car: item, checkVinFunc: cellButtonAction)
+        cell.configureCell(car: item, showCheckView: cellButtonAction)
         return cell
     }
     
@@ -47,6 +48,7 @@ extension AddingCarViewController : UICollectionViewDataSource {
     }
 }
 
+//MARK: - AddingCarDelegate
 extension AddingCarViewController : AddingCarDelegate {
     func carDidChecked() {
         DispatchQueue.main.async { [self] in

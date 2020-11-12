@@ -17,15 +17,13 @@ class CheckVinViewController: UIViewController {
     var parentDelegate: AddingCarDelegate!
     
     @IBAction func vinValueDidChange(with sender: UITextField) {
-        if sender.text?.count == 17 {
-            checkVinButton.isEnabled = true
-        }
         errorLabel.isHidden = true
         vinCodeTextField.layer.borderWidth = 0
     }
     
     @IBAction func checkVin() {
         guard let vin = vinCodeTextField.text else { displayError(); return }
+        guard vin.count == 17 else { displayError(); return }
         indicator.startAnimating()
         checkVinButton.isHidden = true
         indicator.isHidden = false

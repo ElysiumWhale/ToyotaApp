@@ -17,9 +17,9 @@ protocol RoundedControl {
     private var colorDescr: String?
     private var metallic: String?
     
-    private var checkVin: ((UICollectionViewCell) -> Void)?
+    private var showCheckVinView: ((UICollectionViewCell) -> Void)?
     
-    @IBAction private func didCheckVinPress(sender: Any?) { checkVin!(self) }
+    @IBAction private func didCheckVinPress(sender: Any?) { showCheckVinView!(self) }
     
     @IBInspectable var rounded: Bool = false {
         didSet { updateCornerRadius() }
@@ -29,7 +29,7 @@ protocol RoundedControl {
     
     func updateCornerRadius() { layer.cornerRadius = rounded ? cornerRadius : 0 }
     
-    func configureCell(car: Car, checkVinFunc: ((UICollectionViewCell) -> Void)? = {_ in }) {
+    func configureCell(car: Car, showCheckView: ((UICollectionViewCell) -> Void)? = {_ in }) {
         cellCar = car
         modelNameLabel.text = car.car_brand_name + car.car_model_name
         colorNameLabel.text = car.car_color_name
@@ -39,6 +39,6 @@ protocol RoundedControl {
         colorDescr = car.color_description
         metallic = car.color_metallic
         
-        checkVin = checkVinFunc
+        showCheckVinView = showCheckView
     }
 }
