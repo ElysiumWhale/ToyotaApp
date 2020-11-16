@@ -42,6 +42,14 @@ class DealerViewController: UIViewController {
             default: return
         }
     }
+    
+    func configure(cityList: [City], showroomList: [RegisteredUser.Showroom]? = nil, selected: [RegisteredUser.Showroom]? = nil) {
+        cities = cityList
+        if let list = showroomList {
+            showrooms = list.map { Showroom(id: $0.id, name: $0.showroomName) }
+            //selectedShowroom = Showroom(id: selectedShowroom!.id, name: )
+        }
+    }
 }
     
 //MARK: - SegueWithRequestController

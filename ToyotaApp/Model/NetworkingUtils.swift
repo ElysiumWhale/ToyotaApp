@@ -45,6 +45,7 @@ struct DefaultsKeys {
     static let secretKey = "secretKey"
     static let userId = "userId"
     static let brandId = "brandId"
+    static let profile = "profile"
 }
 
 struct MainURL {

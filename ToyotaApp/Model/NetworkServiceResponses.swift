@@ -41,24 +41,6 @@ public struct RegisteredUser: Codable {
     let showroom: [Showroom]?
     let car: [Car]?
     
-    struct Profile: Codable {
-        let phone: String?
-        let firstName: String?
-        let lastName: String?
-        let secondName: String?
-        let email: String?
-        let birthday: String?
-        
-        private enum CodingKeys: String, CodingKey {
-            case phone
-            case firstName = "first_name"
-            case lastName = "last_name"
-            case secondName = "second_name"
-            case email
-            case birthday
-        }
-    }
-    
     struct Showroom: Codable {
         let id: String
         let showroomName: String
@@ -69,6 +51,24 @@ public struct RegisteredUser: Codable {
             case showroomName = "showroom_name"
             case cityName = "city_name"
         }
+    }
+}
+
+public struct Profile: Codable {
+    let phone: String?
+    let firstName: String?
+    let lastName: String?
+    let secondName: String?
+    let email: String?
+    let birthday: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case phone
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case secondName = "second_name"
+        case email
+        case birthday
     }
 }
     

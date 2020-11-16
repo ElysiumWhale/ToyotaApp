@@ -73,6 +73,14 @@ class PersonalInfoViewController: UIViewController {
         }
         return res
     }
+    
+    func configure(with profile: Profile) {
+        firstNameTextField.text = profile.firstName
+        secondNameTextField.text = profile.secondName
+        lastNameTextField.text = profile.lastName
+        emailTextField.text = profile.email
+        birthTextField.text  = profile.birthday
+    }
 }
 
 //MARK: - DatePicker logic
