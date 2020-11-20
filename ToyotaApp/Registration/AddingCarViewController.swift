@@ -26,6 +26,10 @@ class AddingCarViewController: UIViewController {
             default: return
         }
     }
+    
+    func configure(carsList: [Car]) {
+        cars = carsList
+    }
 }
 
 //MARK: - UICollectionViewDataSource

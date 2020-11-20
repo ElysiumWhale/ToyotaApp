@@ -28,9 +28,12 @@ class DealerViewController: UIViewController {
         super.viewDidLoad()
         configureCityPickerView()
         configureShowroomPickerView()
-        if cities.isEmpty {
-            cities.append(City(id: "1", name: "Самара"))
-            cities.append(City(id: "2", name: "Сызрань"))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
+            cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: false)
+            showroomPicker.selectRow(showrooms.firstIndex(where: {$0.id == selectedShowroom.id})!, inComponent: 0, animated: false)
         }
     }
     
@@ -43,11 +46,12 @@ class DealerViewController: UIViewController {
         }
     }
     
-    func configure(cityList: [City], showroomList: [RegisteredUser.Showroom]? = nil, selected: [RegisteredUser.Showroom]? = nil) {
+    func configure(cityList: [City], showroomList: [RegisteredUser.Showroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
         cities = cityList
-        if let list = showroomList {
+        if let list = showroomList, let city = city, let showroom = showroom {
+            selectedCity = city
             showrooms = list.map { Showroom(id: $0.id, name: $0.showroomName) }
-            //selectedShowroom = Showroom(id: selectedShowroom!.id, name: )
+            selectedShowroom = Showroom(id: showroom.id, name: showroom.showroomName)
         }
     }
 }

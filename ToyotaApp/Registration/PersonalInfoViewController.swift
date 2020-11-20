@@ -15,9 +15,23 @@ class PersonalInfoViewController: UIViewController {
     private var cities: [City] = [City]()
     private var date: String = ""
     
+    private var isConfigured: Bool = false
+    private var configuredProfile: Profile? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isConfigured {
+            firstNameTextField.text = configuredProfile!.firstName
+            secondNameTextField.text = configuredProfile!.secondName
+            lastNameTextField.text = configuredProfile!.lastName
+            emailTextField.text = configuredProfile!.email
+            #warning("Format data")
+            birthTextField.text  = configuredProfile!.birthday
+        }
     }
     
     @IBAction func buttonNextDidPressed(_ sender: UIButton) {
@@ -75,11 +89,8 @@ class PersonalInfoViewController: UIViewController {
     }
     
     func configure(with profile: Profile) {
-        firstNameTextField.text = profile.firstName
-        secondNameTextField.text = profile.secondName
-        lastNameTextField.text = profile.lastName
-        emailTextField.text = profile.email
-        birthTextField.text  = profile.birthday
+        configuredProfile = profile
+        isConfigured = true
     }
 }
 
