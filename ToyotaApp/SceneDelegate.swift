@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let loggedUserId = UserDefaults.standard.string(forKey: DefaultsKeys.userId), let secretKey = UserDefaults.standard.string(forKey: DefaultsKeys.secretKey), let brandId = UserDefaults.standard.string(forKey: DefaultsKeys.brandId) {
             
             NetworkService.shared.makePostRequest(page: PostRequestPath.checkUser, params: [URLQueryItem(name: PostRequestKeys.userId, value: loggedUserId), URLQueryItem(name: PostRequestKeys.brandId, value: brandId), URLQueryItem(name: PostRequestKeys.secretKey, value: secretKey)], completion: resolveNavigation)
-        } else { loadAuth() }
+        } else { NavigationService.loadAuth() }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -56,96 +56,30 @@ extension SceneDelegate {
     }
     
     func resolveNavigation(data: Data?) -> Void {
-        guard let data = data else { loadAuth(); return }
+        guard let data = data else { NavigationService.loadAuth(); return }
         do {
             let response = try JSONDecoder().decode(CheckUserResponse.self, from: data)
             UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+            
             if let regPage = response.registerPage {
                 switch regPage {
-                    case 1: loadRegister()
+                    case 1: NavigationService.loadRegister()
                     case 2:
                         if let profile = response.registeredUser?.profile, let cities = response.cities {
-                            loadRegister(with: profile, and: cities)
-                        } else { loadAuth() }
+                            NavigationService.loadRegister(with: profile, and: cities)
+                        } else { NavigationService.loadAuth() }
                     case 3:
                         if let profile = response.registeredUser?.profile, let cities = response.cities, let showrooms = response.registeredUser?.showroom, let cars = response.cars, let selectedShowroom = response.registeredUser?.showroom {
-                            loadRegister(with: profile, cities, showrooms, and: cars, selected: selectedShowroom)
+                            NavigationService.loadRegister(with: profile, cities, showrooms, and: cars, selected: selectedShowroom)
                         }
                     case 4:
                         if let profile = response.registeredUser?.profile, let showrooms = response.registeredUser?.showroom, let cars = response.registeredUser?.car {
-                            loadMain(with: profile, showrooms, and: cars)
+                            NavigationService.loadMain(with: profile, showrooms, and: cars)
                         }
-                    default: loadAuth()
+                    default: NavigationService.loadAuth()
                 }
-            } else { loadAuth() }
+            } else { NavigationService.loadAuth() }
         }
-        catch { loadAuth() }
-    }
-    
-    func loadAuth() {
-        UserDefaults.standard.setValue("1", forKey: DefaultsKeys.brandId)
-        let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-        DispatchQueue.main.async { [self] in
-            let controller = authStoryboard.instantiateViewController(identifier: AppViewControllers.authNavigation)
-            window?.rootViewController = controller
-        }
-    }
-    
-    func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [Car]) {
-        let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-        DispatchQueue.main.async { [self] in
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as? UINavigationController
-            //check if user in memory
-            //configure
-            window?.rootViewController = controller!
-        }
-    }
-    
-    func loadRegister() {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-        DispatchQueue.main.async { [self] in
-            let controller = regStoryboard.instantiateViewController(identifier:    AppViewControllers.registerNavigation) as? UINavigationController
-            window?.rootViewController = controller!
-        }
-    }
-    
-    func loadRegister(with profile: Profile, and cities: [City]) {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-        DispatchQueue.main.async { [self] in
-            let controller = regStoryboard.instantiateViewController(identifier:    AppViewControllers.registerNavigation) as? UINavigationController
-            
-            let pivc = regStoryboard.instantiateViewController(identifier:  AppViewControllers.personalInfoViewController) as! PersonalInfoViewController
-            pivc.configure(with: profile)
-            
-            let dvc = regStoryboard.instantiateViewController(identifier:   AppViewControllers.dealerViewController) as! DealerViewController
-            dvc.configure(cityList: cities)
-            
-            controller?.viewControllers.remove(at: 0)
-            controller?.viewControllers.append(pivc)
-            controller?.viewControllers.append(dvc)
-            window?.rootViewController = controller!
-        }
-    }
-    
-    func loadRegister(with profile: Profile, _ cities: [City], _ showrooms: [RegisteredUser.Showroom], and cars: [Car], selected: [RegisteredUser.Showroom]) {
-            let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-            DispatchQueue.main.async { [self] in
-            let controller = regStoryboard.instantiateViewController(identifier:    AppViewControllers.registerNavigation) as? UINavigationController
-            
-            let pivc = regStoryboard.instantiateViewController(identifier:  AppViewControllers.personalInfoViewController) as! PersonalInfoViewController
-            pivc.configure(with: profile)
-            
-            let dvc = regStoryboard.instantiateViewController(identifier:   AppViewControllers.dealerViewController) as! DealerViewController
-            dvc.configure(cityList: cities, showroomList: showrooms, city:  cities[cities.firstIndex(where: { $0.name == selected.first?.cityName })!], showroom:   selected.first)
-            
-            let acvc = regStoryboard.instantiateViewController(identifier:  AppViewControllers.addingCarViewController) as! AddingCarViewController
-            acvc.configure(carsList: cars)
-            
-            controller?.viewControllers.remove(at: 0)
-            controller?.viewControllers.append(pivc)
-            controller?.viewControllers.append(dvc)
-            controller?.viewControllers.append(acvc)
-            window?.rootViewController = controller!
-        }
+        catch { NavigationService.loadAuth() }
     }
 }
