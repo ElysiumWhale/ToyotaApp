@@ -53,6 +53,7 @@
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
 		A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12066253E713A005F85B0 /* DealerViewController.swift */; };
 		A7D1206A253E7168005F85B0 /* AddingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12069253E7168005F85B0 /* AddingCarViewController.swift */; };
+		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		A7D12066253E713A005F85B0 /* DealerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerViewController.swift; sourceTree = "<group>"; };
 		A7D12069253E7168005F85B0 /* AddingCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingCarViewController.swift; sourceTree = "<group>"; };
+		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +142,7 @@
 				A7D1205D253E6A7F005F85B0 /* Registration */,
 				A791FDD82524E17300A595BB /* MainMenu */,
 				A75946A22523ECD400312EBE /* Model */,
-				A791FDE225266F2700A595BB /* Storyboards */,
+				A791FDE225266F2700A595BB /* View */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
 				A7924CF1254B70B4001B67C1 /* Fonts */,
@@ -208,7 +210,7 @@
 			path = Tech;
 			sourceTree = "<group>";
 		};
-		A791FDE225266F2700A595BB /* Storyboards */ = {
+		A791FDE225266F2700A595BB /* View */ = {
 			isa = PBXGroup;
 			children = (
 				A791FDE8252672FA00A595BB /* Custom Controls */,
@@ -216,8 +218,9 @@
 				A791FDE32526707100A595BB /* Authentification.storyboard */,
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
 				A75946912523E32F00312EBE /* Main.storyboard */,
+				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 			);
-			path = Storyboards;
+			path = View;
 			sourceTree = "<group>";
 		};
 		A791FDE8252672FA00A595BB /* Custom Controls */ = {
@@ -370,6 +373,7 @@
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */,
+				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
 				A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */,
