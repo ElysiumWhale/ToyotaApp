@@ -4,7 +4,7 @@ public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let auth = "Authentification"
     static let register = "FirstLaunchRegistration"
-    static let main = "Main"
+    static let main = "MainMenu"
 }
 
 public struct AppViewControllers {

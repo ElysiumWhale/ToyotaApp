@@ -14,7 +14,7 @@
 		A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* NetworkingUtils.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
-		A75946932523E32F00312EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* Main.storyboard */; };
+		A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* MainMenu.storyboard */; };
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
@@ -22,6 +22,7 @@
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
 		A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */; };
 		A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */; };
+		A76D4F0B256C83120086813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76D4F0A256C83120086813E /* Main.storyboard */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */; };
@@ -62,7 +63,7 @@
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A759468D2523E32F00312EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A75946922523E32F00312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A75946922523E32F00312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainMenu.storyboard; sourceTree = "<group>"; };
 		A75946942523E33400312EBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
 		A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVinViewController.swift; sourceTree = "<group>"; };
 		A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromHex.swift; sourceTree = "<group>"; };
+		A76D4F0A256C83120086813E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunchRegistration.storyboard; sourceTree = "<group>"; };
@@ -213,12 +215,13 @@
 		A791FDE225266F2700A595BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				A791FDE8252672FA00A595BB /* Custom Controls */,
 				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
+				A76D4F0A256C83120086813E /* Main.storyboard */,
 				A791FDE32526707100A595BB /* Authentification.storyboard */,
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
-				A75946912523E32F00312EBE /* Main.storyboard */,
-				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
+				A75946912523E32F00312EBE /* MainMenu.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,9 +350,10 @@
 				A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
-				A75946932523E32F00312EBE /* Main.storyboard in Resources */,
+				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
+				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
 				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
 				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
 			);
@@ -394,12 +398,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A75946912523E32F00312EBE /* Main.storyboard */ = {
+		A75946912523E32F00312EBE /* MainMenu.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A75946922523E32F00312EBE /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainMenu.storyboard;
 			sourceTree = "<group>";
 		};
 		A75946962523E33400312EBE /* LaunchScreen.storyboard */ = {

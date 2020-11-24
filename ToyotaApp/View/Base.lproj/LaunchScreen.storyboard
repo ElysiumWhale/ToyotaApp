@@ -17,26 +17,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
-                                <rect key="frame" x="87" y="265" width="240" height="150"/>
+                                <rect key="frame" x="87" y="265" width="240" height="128"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-LT-jqq">
-                                <rect key="frame" x="164" y="451" width="87" height="37"/>
-                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FE5-LT-jqq" secondAttribute="bottom" constant="374" id="Gqm-f8-KIi"/>
-                            <constraint firstItem="FE5-LT-jqq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="QAk-hC-xxF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FE5-LT-jqq" secondAttribute="trailing" constant="163" id="SzZ-yd-NaI"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="221" id="e24-Pd-qyQ"/>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="t63-i6-24g"/>
-                            <constraint firstItem="FE5-LT-jqq" firstAttribute="top" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="36" id="tqQ-Vh-gHn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2jo-7c-ro3" secondAttribute="trailing" constant="87" id="ynr-7r-Ngg"/>
                         </constraints>
                     </view>
