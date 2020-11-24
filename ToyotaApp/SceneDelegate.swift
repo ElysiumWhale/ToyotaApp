@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-//MARK: - Switch Root Controller with flip animation
+//MARK: - Navigation
 extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard let window = self.window else { return }
@@ -61,21 +61,21 @@ extension SceneDelegate {
             let response = try JSONDecoder().decode(CheckUserResponse.self, from: data)
             UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
             
-            if let regPage = response.registerPage {
+            if let regPage = response.registerPage, let user = response.registeredUser {
                 switch regPage {
                     case 1: NavigationService.loadRegister()
                     case 2:
-                        if let profile = response.registeredUser?.profile, let cities = response.cities {
+                        if let profile = user.profile, let cities = response.cities {
                             NavigationService.loadRegister(with: profile, and: cities)
                         } else { NavigationService.loadAuth() }
                     case 3:
-                        if let profile = response.registeredUser?.profile, let cities = response.cities, let showrooms = response.registeredUser?.showroom, let cars = response.cars, let selectedShowroom = response.registeredUser?.showroom {
-                            NavigationService.loadRegister(with: profile, cities, showrooms, and: cars, selected: selectedShowroom)
-                        }
+                        if let profile = user.profile, let cities = response.cities, let showrooms = response.registeredUser?.showroom, let cars = response.cars {
+                            NavigationService.loadRegister(with: profile, cities, showrooms, and: cars)
+                        } else { NavigationService.loadAuth() }
                     case 4:
-                        if let profile = response.registeredUser?.profile, let showrooms = response.registeredUser?.showroom, let cars = response.registeredUser?.car {
+                        if let profile = user.profile, let showrooms = user.showroom, let cars = user.car {
                             NavigationService.loadMain(with: profile, showrooms, and: cars)
-                        }
+                        }  else { NavigationService.loadAuth() }
                     default: NavigationService.loadAuth()
                 }
             } else { NavigationService.loadAuth() }

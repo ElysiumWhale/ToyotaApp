@@ -38,7 +38,7 @@ class NavigationService {
         }
     }
     
-    class func loadRegister(with profile: Profile, _ cities: [City], _ showrooms: [RegisteredUser.Showroom], and cars: [Car], selected: [RegisteredUser.Showroom]) {
+    class func loadRegister(with profile: Profile, _ cities: [City], _ showrooms: [RegisteredUser.Showroom], and cars: [Car]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
             let controller = regStoryboard.instantiateViewController(identifier:        AppViewControllers.registerNavigation) as? UINavigationController
@@ -47,13 +47,13 @@ class NavigationService {
             pivc.configure(with: profile)
             
             let dvc = regStoryboard.instantiateViewController(identifier:       AppViewControllers.dealerViewController) as! DealerViewController
-            dvc.configure(cityList: cities, showroomList: showrooms, city:      cities[cities.firstIndex(where: { $0.name == selected.first?.cityName })!], showroom:       selected.first)
+            dvc.configure(cityList: cities, showroomList: showrooms, city:      cities[cities.firstIndex(where: { $0.name == showrooms.first?.cityName })!], showroom: showrooms.first)
             
             let acvc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.addingCarViewController) as! AddingCarViewController
             acvc.configure(carsList: cars)
         
-        controller?.viewControllers.remove(at: 0)
-        //(controller?.viewControllers.first as? PersonalInfoViewController)?.configure(with:   )
+            controller?.viewControllers.remove(at: 0)
+            //(controller?.viewControllers.first as? PersonalInfoViewController)?.configure(with:)
             controller?.viewControllers.append(pivc)
             controller?.viewControllers.append(dvc)
             controller?.viewControllers.append(acvc)

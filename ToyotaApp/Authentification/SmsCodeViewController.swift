@@ -62,19 +62,15 @@ extension SmsCodeViewController {
         { [self] data in
             if let data = data {
                 do {
-                    let rawFeed = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
+                    let response = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
                     
-                    UserDefaults.standard.setValue(rawFeed.secrectKey, forKey: DefaultsKeys.secretKey)
-                    UserDefaults.standard.setValue(rawFeed.userId, forKey: DefaultsKeys.userId)
+                    UserDefaults.standard.setValue(response.secrectKey, forKey: DefaultsKeys.secretKey)
+                    UserDefaults.standard.setValue(response.userId, forKey: DefaultsKeys.userId)
                     
-                    Debug.userId = rawFeed.userId
-                    Debug.secretKey = rawFeed.secrectKey
+                    Debug.userId = response.userId
+                    Debug.secretKey = response.secrectKey
                     
-                    if rawFeed.registeredUser != nil {
-                        navigateToRegister(page: rawFeed.registerPage!)
-                    } else {
-                        loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
-                    }
+                    navigateToRegister(with: response)
                 }
                 catch let decodeError as NSError {
                     print("Decoder error: \(decodeError.localizedDescription)")
@@ -90,13 +86,29 @@ extension SmsCodeViewController {
         }
     }
     
-    private func navigateToRegister(page: Int) {
-        switch page {
-            case 1: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.registerNavigation)
-            case 2: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.dealerViewController)
-            case 3: loadStoryboard(with: AppStoryboards.register, controller: AppViewControllers.addingCarViewController)
-            case 4: loadStoryboard(with: AppStoryboards.main, controller: AppViewControllers.mainMenuTabBarController)
-            default: print(page); return
-        }
+    private func navigateToRegister(with context: SmsCodeDidSendResponse) {
+        if let user = context.registeredUser, let page = context.registerPage, page > 1 {
+            switch page {
+                case 2:
+                    if let cities = context.cities,
+                       let profile = user.profile {
+                        NavigationService.loadRegister(with: profile, and: cities)
+                    } else { NavigationService.loadRegister() }
+                case 3:
+                    if let cities = context.cities,
+                       let profile = user.profile,
+                       let cars = context.cars,
+                       let showrooms = user.showroom {
+                        NavigationService.loadRegister(with: profile, cities, showrooms, and: cars)
+                    } else { NavigationService.loadRegister() }
+                case 4:
+                    if let profile = user.profile,
+                       let showrooms = user.showroom,
+                       let cars = user.car {
+                        NavigationService.loadMain(with: profile, showrooms, and: cars)
+                    } else { NavigationService.loadRegister() }
+                default: NavigationService.loadRegister()
+            }
+        } else { NavigationService.loadRegister() }
     }
 }
