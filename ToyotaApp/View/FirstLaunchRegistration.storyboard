@@ -290,38 +290,41 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="6av-pQ-YJ8">
-                                    <size key="itemSize" width="386" height="190"/>
+                                    <size key="itemSize" width="353" height="188"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarChoosingCell" id="f00-YY-KM4" customClass="CarChoosingCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="14" y="10" width="386" height="190"/>
+                                        <rect key="frame" x="30.5" y="10" width="353" height="188"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UIe-I8-JAy">
-                                            <rect key="frame" x="0.0" y="0.0" width="386" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Model name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1b-h4-yp9">
-                                                    <rect key="frame" x="8" y="8" width="370" height="31.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1b-h4-yp9">
+                                                    <rect key="frame" x="8" y="8" width="337" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Registration number" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-tw-V3E">
-                                                    <rect key="frame" x="8" y="88" width="370" height="31.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration number" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-tw-V3E">
+                                                    <rect key="frame" x="8" y="88" width="337" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9H-R0-7Xg" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="90" y="137" width="207" height="47"/>
+                                                    <rect key="frame" x="65" y="137" width="223" height="45"/>
                                                     <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="47" id="sgz-T6-LRm"/>
+                                                        <constraint firstAttribute="width" constant="223" id="12Q-R2-fLf"/>
+                                                        <constraint firstAttribute="height" constant="45" id="OgY-Bf-7cA"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="16"/>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                    <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                     <state key="normal" title="Проверить по VIN">
                                                         <color key="titleColor" systemColor="systemBackgroundColor"/>
                                                     </state>
@@ -332,18 +335,19 @@
                                                         <action selector="didCheckVinPressWithSender:" destination="f00-YY-KM4" eventType="touchUpInside" id="YLx-NF-Oft"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Color name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-tO-LfX">
-                                                    <rect key="frame" x="8" y="48" width="370" height="31.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-tO-LfX">
+                                                    <rect key="frame" x="8" y="48" width="337" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="90" id="6xY-ZY-Wq2"/>
+                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="65" id="6xY-ZY-Wq2"/>
                                                 <constraint firstItem="pnK-tO-LfX" firstAttribute="top" secondItem="q1b-h4-yp9" secondAttribute="bottom" constant="8.5" id="91y-DL-A8b"/>
                                                 <constraint firstItem="Vo8-tw-V3E" firstAttribute="top" secondItem="pnK-tO-LfX" secondAttribute="bottom" constant="8.5" id="CLI-hm-D8j"/>
-                                                <constraint firstAttribute="trailing" secondItem="b9H-R0-7Xg" secondAttribute="trailing" constant="89" id="CPH-L7-9eS"/>
+                                                <constraint firstAttribute="trailing" secondItem="b9H-R0-7Xg" secondAttribute="trailing" constant="65" id="CPH-L7-9eS"/>
+                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="top" secondItem="Vo8-tw-V3E" secondAttribute="bottom" constant="17.5" id="Gw9-pU-6ke"/>
                                                 <constraint firstItem="pnK-tO-LfX" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="8" id="HYE-jI-tsf"/>
                                                 <constraint firstItem="q1b-h4-yp9" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="8" id="KA5-hJ-rNa"/>
                                                 <constraint firstAttribute="trailing" secondItem="pnK-tO-LfX" secondAttribute="trailing" constant="8" id="Kgj-ah-CUx"/>
@@ -351,12 +355,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="Vo8-tw-V3E" secondAttribute="trailing" constant="8" id="Yla-Z9-X8M"/>
                                                 <constraint firstItem="Vo8-tw-V3E" firstAttribute="leading" secondItem="UIe-I8-JAy" secondAttribute="leading" constant="8" id="iCU-Sn-ViB"/>
                                                 <constraint firstItem="q1b-h4-yp9" firstAttribute="top" secondItem="UIe-I8-JAy" secondAttribute="top" constant="8" id="n43-Uk-gQA"/>
-                                                <constraint firstItem="b9H-R0-7Xg" firstAttribute="top" secondItem="Vo8-tw-V3E" secondAttribute="bottom" constant="17.5" id="shH-3Y-1pj"/>
                                                 <constraint firstAttribute="trailing" secondItem="q1b-h4-yp9" secondAttribute="trailing" constant="8" id="xow-FJ-UWG"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.69438147670000006" green="0.69438147670000006" blue="0.69438147670000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <size key="customSize" width="386" height="190"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="15"/>
@@ -404,7 +406,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCJ-Zj-rJA">
-                                <rect key="frame" x="20" y="220" width="374" height="84"/>
+                                <rect key="frame" x="20" y="220" width="374" height="103"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -427,13 +429,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить еще салоны и автомибили и многое другое." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Re-d3L">
-                                <rect key="frame" x="50" y="342" width="313" height="77"/>
+                                <rect key="frame" x="50" y="361" width="313" height="125.5"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-YA-g2s">
-                                <rect key="frame" x="50" y="472" width="313" height="26"/>
+                                <rect key="frame" x="50" y="539.5" width="313" height="31.5"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -587,19 +589,19 @@
     </scenes>
     <designables>
         <designable name="2XS-il-f54">
-            <size key="intrinsicContentSize" width="166" height="38"/>
+            <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
         <designable name="Ax1-4T-jTA">
-            <size key="intrinsicContentSize" width="64" height="38"/>
+            <size key="intrinsicContentSize" width="67" height="44"/>
         </designable>
         <designable name="JAZ-G9-1Io">
-            <size key="intrinsicContentSize" width="64" height="38"/>
+            <size key="intrinsicContentSize" width="67" height="44"/>
         </designable>
         <designable name="b9H-R0-7Xg">
-            <size key="intrinsicContentSize" width="151" height="33"/>
+            <size key="intrinsicContentSize" width="152" height="23"/>
         </designable>
         <designable name="g0g-ld-YlO">
-            <size key="intrinsicContentSize" width="113" height="38"/>
+            <size key="intrinsicContentSize" width="119" height="44"/>
         </designable>
     </designables>
     <resources>

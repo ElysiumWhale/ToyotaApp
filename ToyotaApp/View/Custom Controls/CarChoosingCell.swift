@@ -40,5 +40,11 @@ protocol RoundedControl {
         metallic = car.color_metallic
         
         showCheckVinView = showCheckView
+        
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        layer.shadowRadius = 5.0
+        layer.shadowOpacity = 1.0
+        layer.masksToBounds = false
     }
 }
