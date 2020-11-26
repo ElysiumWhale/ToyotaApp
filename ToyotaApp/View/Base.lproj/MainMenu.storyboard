@@ -41,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="1JV-Kk-h0A"/>
+                                    <navigationItem title="Акции" id="1JV-Kk-h0A"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -94,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="TE1-we-MNV"/>
+                                    <navigationItem title="Услуги" id="TE1-we-MNV"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -132,8 +132,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="YMo-w7-QZI">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qCy-Sj-9R5">
+                                    <navigationItem title="Профиль" id="YMo-w7-QZI">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" id="FTH-Ma-amP">
+                                            <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="qCy-Sj-9R5">
                                             <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </barButtonItem>
                                     </navigationItem>
@@ -182,7 +185,7 @@
                         <viewLayoutGuide key="safeArea" id="mb5-0G-N5c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Мое авто" image="car.fill" catalog="system" id="D4Y-Px-ahT">
+                    <tabBarItem key="tabBarItem" title="Профиль" image="person.fill" catalog="system" id="D4Y-Px-ahT">
                         <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Главное меню" largeTitleDisplayMode="always" id="RJe-Ut-oow">
@@ -206,7 +209,9 @@
     </designables>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
-        <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
