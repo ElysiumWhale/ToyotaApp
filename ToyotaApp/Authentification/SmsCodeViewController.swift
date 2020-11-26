@@ -62,15 +62,15 @@ extension SmsCodeViewController {
         { [self] data in
             if let data = data {
                 do {
-                    let response = try JSONDecoder().decode(SmsCodeDidSendResponse.self, from: data)
+                    let response = try JSONDecoder().decode(CheckUserOrSmsCodeResponse.self, from: data)
                     
-                    UserDefaults.standard.setValue(response.secrectKey, forKey: DefaultsKeys.secretKey)
-                    UserDefaults.standard.setValue(response.userId, forKey: DefaultsKeys.userId)
+                    UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+                    UserDefaults.standard.setValue(response.userId!, forKey: DefaultsKeys.userId)
                     
-                    Debug.userId = response.userId
-                    Debug.secretKey = response.secrectKey
+                    Debug.userId = response.userId!
+                    Debug.secretKey = response.secretKey
                     
-                    navigateToRegister(with: response)
+                    NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
                 }
                 catch let decodeError as NSError {
                     print("Decoder error: \(decodeError.localizedDescription)")
@@ -84,31 +84,5 @@ extension SmsCodeViewController {
                 }
             }
         }
-    }
-    
-    private func navigateToRegister(with context: SmsCodeDidSendResponse) {
-        if let user = context.registeredUser, let page = context.registerPage, page > 1 {
-            switch page {
-                case 2:
-                    if let cities = context.cities,
-                       let profile = user.profile {
-                        NavigationService.loadRegister(with: profile, and: cities)
-                    } else { NavigationService.loadRegister() }
-                case 3:
-                    if let cities = context.cities,
-                       let profile = user.profile,
-                       let cars = context.cars,
-                       let showrooms = user.showroom {
-                        NavigationService.loadRegister(with: profile, cities, showrooms, and: cars)
-                    } else { NavigationService.loadRegister() }
-                case 4:
-                    if let profile = user.profile,
-                       let showrooms = user.showroom,
-                       let cars = user.car {
-                        NavigationService.loadMain(with: profile, showrooms, and: cars)
-                    } else { NavigationService.loadRegister() }
-                default: NavigationService.loadRegister()
-            }
-        } else { NavigationService.loadRegister() }
     }
 }

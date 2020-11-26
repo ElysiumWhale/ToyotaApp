@@ -7,6 +7,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        UserDefaults.standard.setValue("1", forKey: DefaultsKeys.brandId)
+        
         if let loggedUserId = UserDefaults.standard.string(forKey: DefaultsKeys.userId), let secretKey = UserDefaults.standard.string(forKey: DefaultsKeys.secretKey), let brandId = UserDefaults.standard.string(forKey: DefaultsKeys.brandId) {
             
             NetworkService.shared.makePostRequest(page: PostRequestPath.checkUser, params: [URLQueryItem(name: PostRequestKeys.userId, value: loggedUserId), URLQueryItem(name: PostRequestKeys.brandId, value: brandId), URLQueryItem(name: PostRequestKeys.secretKey, value: secretKey)], completion: resolveNavigation)
@@ -58,27 +60,10 @@ extension SceneDelegate {
     func resolveNavigation(data: Data?) -> Void {
         guard let data = data else { NavigationService.loadAuth(); return }
         do {
-            let response = try JSONDecoder().decode(CheckUserResponse.self, from: data)
+            let response = try JSONDecoder().decode(CheckUserOrSmsCodeResponse.self, from: data)
             UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
             
-            if let regPage = response.registerPage, let user = response.registeredUser {
-                switch regPage {
-                    case 1: NavigationService.loadRegister()
-                    case 2:
-                        if let profile = user.profile, let cities = response.cities {
-                            NavigationService.loadRegister(with: profile, and: cities)
-                        } else { NavigationService.loadAuth() }
-                    case 3:
-                        if let profile = user.profile, let cities = response.cities, let showrooms = response.registeredUser?.showroom, let cars = response.cars {
-                            NavigationService.loadRegister(with: profile, cities, showrooms, and: cars)
-                        } else { NavigationService.loadAuth() }
-                    case 4:
-                        if let profile = user.profile, let showrooms = user.showroom, let cars = user.car {
-                            NavigationService.loadMain(with: profile, showrooms, and: cars)
-                        }  else { NavigationService.loadAuth() }
-                    default: NavigationService.loadAuth()
-                }
-            } else { NavigationService.loadAuth() }
+            NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
         }
         catch { NavigationService.loadAuth() }
     }
