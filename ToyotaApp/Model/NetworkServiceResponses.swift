@@ -96,21 +96,13 @@ public struct CityDidSelectResponce: Codable {
     let showrooms: [Showroom]
 }
 
-public struct Showroom : Codable {
+public struct Showroom: Codable {
     let id: String
     let name: String
-    
-    let brand_id: String? = nil
-    let city_id: String? = nil
-    let style_id: String? = nil
     
     private enum CodingKeys: String, CodingKey {
         case id
         case name = "showroom_name"
-        
-        case brand_id
-        case city_id
-        case style_id
     }
 }
 
