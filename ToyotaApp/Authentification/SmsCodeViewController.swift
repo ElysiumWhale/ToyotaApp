@@ -54,6 +54,13 @@ extension SmsCodeViewController {
         super.viewWillAppear(animated)
         phoneNumberLabel?.text = phoneNumber
     }
+    
+    
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        guard parent == nil else { return }
+        NetworkService.shared.makePostRequest(page: PostRequestPath.deleteTemp, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber)])
+    }
 }
 
 //MARK: - Callback for request
