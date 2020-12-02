@@ -30,10 +30,11 @@ class DealerViewController: UIViewController {
         configureShowroomPickerView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
-            cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: false)
-            showroomPicker.selectRow(showrooms.firstIndex(where: {$0.id == selectedShowroom.id})!, inComponent: 0, animated: false)
+            cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: true)
+            if showroomPicker.isHidden { showroomPicker.isHidden = false }
+            showroomPicker.selectRow(showrooms.firstIndex(where: {$0.id == selectedShowroom.id})!, inComponent: 0, animated: true)
         }
     }
     
@@ -46,11 +47,11 @@ class DealerViewController: UIViewController {
         }
     }
     
-    func configure(cityList: [City], showroomList: [RegisteredUser.Showroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
+    func configure(cityList: [City], showroomList: [Showroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
             selectedCity = city
-            showrooms = list.map { Showroom(id: $0.id, name: $0.showroomName) }
+            showrooms = list
             selectedShowroom = Showroom(id: showroom.id, name: showroom.showroomName)
         }
     }
@@ -132,7 +133,11 @@ extension DealerViewController {
     
     @objc private func cityDidSelect(sender: Any?) {
         nextButton.isHidden = true
-        showroomPicker.reloadComponent(0)
+        if selectedShowroom != nil, !showrooms.isEmpty {
+            selectedShowroom = nil
+            showrooms.removeAll()
+            showroomPicker.reloadComponent(0)
+        }
         let row = cityPicker.selectedRow(inComponent: 0)
         selectedCity = cities[row]
         cityTextField?.text = cities[row].name

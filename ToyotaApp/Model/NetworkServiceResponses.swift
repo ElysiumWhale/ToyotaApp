@@ -22,6 +22,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let registeredUser: RegisteredUser?
     
     let cities: [City]?
+    let showrooms: [Showroom]?
     let cars: [Car]?
     
     private enum CodingKeys: String, CodingKey {
@@ -32,6 +33,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
         case registeredUser = "registered_user"
         
         case cities
+        case showrooms
         case cars
     }
 }
@@ -98,9 +100,17 @@ public struct Showroom : Codable {
     let id: String
     let name: String
     
+    let brand_id: String? = nil
+    let city_id: String? = nil
+    let style_id: String? = nil
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case name = "showroom_name"
+        
+        case brand_id
+        case city_id
+        case style_id
     }
 }
 

@@ -31,11 +31,10 @@ class NavigationService {
                         NavigationService.loadRegister(with: profile, and: cities)
                     } else { fallbackCompletion() }
                 case 3:
-                    if let profile = user.profile,
-                       let cities = context.cities,
-                       let showrooms = user.showroom,
+                    if let cities = context.cities,
+                       let showrooms = context.showrooms,
                        let cars = context.cars {
-                        NavigationService.loadRegister(with: profile, cities, showrooms, and: cars)
+                        NavigationService.loadRegister(with: user, cities, showrooms, and: cars)
                     } else { fallbackCompletion() }
                 case 4:
                     if let profile = user.profile,
@@ -85,14 +84,15 @@ extension NavigationService {
         }
     }
     
-    class func loadRegister(with profile: Profile, _ cities: [City], _ showrooms: [RegisteredUser.Showroom], and cars: [Car]) {
+    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [Showroom], and cars: [Car]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
             let pivc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.personalInfoViewController) as! PersonalInfoViewController
-            pivc.configure(with: profile)
+            pivc.configure(with: user.profile!)
             
             let dvc = regStoryboard.instantiateViewController(identifier:       AppViewControllers.dealerViewController) as! DealerViewController
-            dvc.configure(cityList: cities, showroomList: showrooms, city:      cities[cities.firstIndex(where: { $0.name == showrooms.first?.cityName })!], showroom: showrooms.first)
+            let index = cities.firstIndex(where: { $0.name == user.showroom!.first!.cityName })!
+            dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: user.showroom!.first)
             
             let acvc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.addingCarViewController) as! AddingCarViewController
             acvc.configure(carsList: cars)
