@@ -30,11 +30,15 @@ class DealerViewController: UIViewController {
         configureShowroomPickerView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
             cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: true)
-            if showroomPicker.isHidden { showroomPicker.isHidden = false }
+            cityTextField.text = selectedCity.name
+            showroomTextField.text = selectedShowroom.name
             showroomPicker.selectRow(showrooms.firstIndex(where: {$0.id == selectedShowroom.id})!, inComponent: 0, animated: true)
+            showroomLabel.isHidden = false
+            showroomTextField.isHidden = false
+            nextButton.isHidden = false
         }
     }
     
@@ -56,7 +60,7 @@ class DealerViewController: UIViewController {
         }
     }
 }
-    
+
 //MARK: - SegueWithRequestController
 extension DealerViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.DealerToCar }
@@ -98,7 +102,7 @@ extension DealerViewController: SegueWithRequestController {
         }
     }
 }
-    
+
 //MARK: - Pickers Configuration
 extension DealerViewController {
     private func configureCityPickerView() {
@@ -181,7 +185,7 @@ extension DealerViewController {
     }
 }
 
-//MARK: - UIPickerView DataSource
+//MARK: - UIPickerViewDataSource
 extension DealerViewController : UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
@@ -194,6 +198,7 @@ extension DealerViewController : UIPickerViewDataSource {
     }
 }
 
+//MARK: - UIPickerViewDelegate
 extension DealerViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {

@@ -18,7 +18,8 @@ class PopUpPreset {
     
     class private func popUpViewPreset() -> EKAttributes {
         var attr = EKAttributes.centerFloat
-        attr.entryBackground = .gradient(gradient: .init(colors: [EKColor(.white), EKColor(.red)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        //attr.entryBackground = .gradient(gradient: .init(colors: [EKColor(.white), EKColor(.red)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attr.entryBackground = .color(color: .init(red: 223, green: 66, blue: 76))
         attr.displayDuration = .infinity
         attr.screenBackground = .color(color: .init(light: UIColor(white: 100.0/255.0, alpha: 0.3), dark: UIColor(white: 50.0/255.0, alpha: 0.3)))
         attr.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8))

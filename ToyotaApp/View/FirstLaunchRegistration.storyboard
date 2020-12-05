@@ -410,7 +410,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCJ-Zj-rJA">
-                                <rect key="frame" x="20" y="220" width="374" height="84"/>
+                                <rect key="frame" x="20" y="220" width="374" height="103"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -433,13 +433,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить еще салоны и автомибили и многое другое." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Re-d3L">
-                                <rect key="frame" x="50" y="342" width="313" height="77"/>
+                                <rect key="frame" x="50" y="361" width="313" height="125.5"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-YA-g2s">
-                                <rect key="frame" x="50" y="472" width="313" height="26"/>
+                                <rect key="frame" x="50" y="539.5" width="313" height="31.5"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -701,7 +701,7 @@
     </scenes>
     <designables>
         <designable name="2XS-il-f54">
-            <size key="intrinsicContentSize" width="166" height="38"/>
+            <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
         <designable name="Ax1-4T-jTA">
             <size key="intrinsicContentSize" width="67" height="44"/>
