@@ -5,7 +5,7 @@ import UIKit
 class PopUpPreset {
     private init() { }
     
-    class func displayPresetPopUp(with title: String, description: String, buttonText: String) {
+    class func display(with title: String, description: String, buttonText: String) {
         SwiftEntryKit.display(entry: EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description, buttonText: buttonText)), using: popUpViewPreset())
     }
     
