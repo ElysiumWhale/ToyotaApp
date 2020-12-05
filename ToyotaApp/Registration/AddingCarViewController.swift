@@ -1,9 +1,26 @@
 import UIKit
 import SwiftEntryKit
 
-class AddingCarViewController: UIViewController {
+class PickerController: UIViewController {
+    func configurePicker<T>(view: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+        view.dataSource = delegate
+        view.delegate = delegate
+        textField.inputAccessoryView = buildToolbar(for: view, with: action)
+        textField.inputView = view
+    }
     
-    //@IBOutlet private(set) var carsList: UICollectionView!
+    private func buildToolbar(for pickerView: UIPickerView, with action: Selector) -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: action)
+        toolBar.setItems([flexible, doneButton], animated: true)
+        return toolBar
+    }
+}
+
+class AddingCarViewController: PickerController {
+    
     @IBOutlet private(set) var modelTextField: UITextField!
     @IBOutlet private(set) var colorTextField: UITextField!
     @IBOutlet private(set) var plateTextField: UITextField!
@@ -34,8 +51,13 @@ class AddingCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePickers()
-        PopUpPreset.displayPresetPopUp(with: "Добавьте машину", description: "Выберите машину по параметрам и подтвердите ее владение с помощью VIN-кода", buttonText: "Ок")
+        let nullCar = Car(id: "", brandName: "", modelName: "Null", colorName: "Null", colorSwatch: "", colorDescription: "", isMetallic: "", licensePlate: "Null")
+        colors.append(nullCar)
+        plates.append(nullCar)
+        configurePicker(view: modelPicker, with: #selector(selectModel), for: modelTextField, delegate: self)
+        configurePicker(view: colorPicker, with: #selector(selectColor), for: colorTextField, delegate: self)
+        configurePicker(view: platePicker, with: #selector(selectPlate), for: plateTextField, delegate: self)
+        PopUpPreset.display(with: "Добавьте машину", description: "Выберите машину по параметрам и подтвердите ее владение с помощью VIN-кода", buttonText: "Ок")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,25 +87,6 @@ class AddingCarViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionViewDataSource
-extension AddingCarViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cars?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = cars![indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CarChoosingCell
-        cell.configureCell(car: item, showCheckView: cellButtonAction)
-        return cell
-    }
-    
-    private func cellButtonAction(sender: UICollectionViewCell) {
-        DispatchQueue.main.async { [self] in
-            performSegue(withIdentifier: checkCarSegueCode, sender: sender)
-        }
-    }
-}
 
 //MARK: - AddingCarDelegate
 extension AddingCarViewController: AddingCarDelegate {
@@ -96,45 +99,6 @@ extension AddingCarViewController: AddingCarDelegate {
 
 //MARK: - UIPickerView Setup
 extension AddingCarViewController {
-    func configurePickers() {
-        let nullCar = Car(id: "", brandName: "", modelName: "Null", colorName: "Null", colorSwatch: "", colorDescription: "", isMetallic: "", licensePlate: "Null")
-        colors.append(nullCar)
-        plates.append(nullCar)
-        
-        modelPicker.dataSource = self
-        modelPicker.delegate = self
-        modelTextField!.inputAccessoryView = buildToolbar(for: modelPicker)
-        modelTextField!.inputView = modelPicker
-        
-        colorPicker.dataSource = self
-        colorPicker.delegate = self
-        colorTextField!.inputAccessoryView = buildToolbar(for: colorPicker)
-        colorTextField!.inputView = colorPicker
-        
-        platePicker.dataSource = self
-        platePicker.delegate = self
-        plateTextField!.inputAccessoryView = buildToolbar(for: platePicker)
-        plateTextField!.inputView = platePicker
-    }
-    
-    func buildToolbar(for pickerView: UIPickerView) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        var doneButton: UIBarButtonItem
-        switch pickerView {
-            case modelPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(selectModel))
-            case colorPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(selectColor))
-            case platePicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(selectPlate))
-            default: doneButton = UIBarButtonItem(title: "Ошибка", style: .done, target: nil, action: nil)
-        }
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
-    }
-    
     @objc private func selectModel(sender: Any?) {
         let row = modelPicker.selectedRow(inComponent: 0)
         selectedModel = cars![row].modelName

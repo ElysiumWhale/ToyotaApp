@@ -6,13 +6,16 @@ protocol SegueWithRequestController {
     var completionForSegue: (Data?) -> Void { get }
 }
     
-class DealerViewController: UIViewController {
+class DealerViewController: PickerController {
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var showroomTextField: UITextField!
     @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView!
     @IBOutlet var nextButtonIndicator: UIActivityIndicatorView!
     @IBOutlet var showroomLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
+    
+    private var cityPicker: UIPickerView = UIPickerView()
+    private var showroomPicker: UIPickerView = UIPickerView()
     
     var cities: [City] = [City]()
     private var selectedCity: City?
@@ -21,13 +24,10 @@ class DealerViewController: UIViewController {
     
     private var responseCars: [Car]?
     
-    private var cityPicker: UIPickerView = UIPickerView()
-    private var showroomPicker: UIPickerView = UIPickerView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCityPickerView()
-        configureShowroomPickerView()
+        configurePicker(view: cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
+        configurePicker(view: showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,42 +103,13 @@ extension DealerViewController: SegueWithRequestController {
     }
 }
 
-//MARK: - Pickers Configuration
+//MARK: - Pickers actions
 extension DealerViewController {
-    private func configureCityPickerView() {
-        cityPicker.dataSource = self
-        cityPicker.delegate = self
-        cityTextField!.inputAccessoryView = buildToolbar(for: cityPicker)
-        cityTextField!.inputView = cityPicker
-    }
-    
-    private func configureShowroomPickerView() {
-        showroomPicker.dataSource = self
-        showroomPicker.delegate = self
-        showroomTextField!.inputAccessoryView = buildToolbar(for: showroomPicker)
-        showroomTextField!.inputView = showroomPicker
-    }
-    
-    private func buildToolbar(for pickerView: UIPickerView) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        var doneButton: UIBarButtonItem
-        switch pickerView {
-            case cityPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(cityDidSelect))
-            case showroomPicker:
-                doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(showroomDidSelect))
-            default: doneButton = UIBarButtonItem(title: "Ошибка", style: .done, target: nil, action: nil)
-        }
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
-    }
-    
     @objc private func cityDidSelect(sender: Any?) {
         nextButton.isHidden = true
         if selectedShowroom != nil, !showrooms.isEmpty {
             selectedShowroom = nil
+            showroomTextField.text = ""
             showrooms.removeAll()
             showroomPicker.reloadComponent(0)
         }
