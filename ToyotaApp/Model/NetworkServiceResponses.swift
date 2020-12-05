@@ -114,13 +114,24 @@ public struct ShowroomDidSelectResponse: Codable {
 
 public struct Car: Codable {
     let id: String
-    let car_brand_name: String
-    let car_model_name: String
-    let car_color_name: String?
-    let color_swatch: String?
-    let color_description: String?
-    let color_metallic: String?
-    let license_plate: String?
+    let brandName: String
+    let modelName: String
+    let colorName: String?
+    let colorSwatch: String?
+    let colorDescription: String?
+    let isMetallic: String?
+    let licensePlate: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case brandName = "car_brand_name"
+        case modelName = "car_model_name"
+        case colorName = "car_color_name"
+        case colorSwatch = "color_swatch"
+        case colorDescription = "color_description"
+        case isMetallic = "color_metallic"
+        case licensePlate = "license_plate"
+    }
 }
 
 //MARK: - CarDidCheck

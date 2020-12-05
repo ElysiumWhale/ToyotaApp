@@ -49,8 +49,8 @@ class CheckVinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        regNumber.text = car!.license_plate
-        modelName.text = " \(car!.car_brand_name) \(car!.car_model_name)"
+        regNumber.text = car!.licensePlate
+        modelName.text = " \(car!.brandName) \(car!.modelName)"
     }
     
     private var completion: (Data?) -> Void {

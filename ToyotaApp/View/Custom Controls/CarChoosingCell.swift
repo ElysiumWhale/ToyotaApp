@@ -31,13 +31,13 @@ protocol RoundedControl {
     
     func configureCell(car: Car, showCheckView: ((UICollectionViewCell) -> Void)? = {_ in }) {
         cellCar = car
-        modelNameLabel.text = car.car_brand_name + car.car_model_name
-        colorNameLabel.text = car.car_color_name
-        registrationNumberLabel.text = car.license_plate
-        backgroundColor = UIColor(hex: car.color_swatch!) ?? .gray
+        modelNameLabel.text = car.brandName + car.modelName
+        colorNameLabel.text = car.colorName
+        registrationNumberLabel.text = car.licensePlate
+        backgroundColor = UIColor(hex: car.colorSwatch!) ?? .gray
         
-        colorDescr = car.color_description
-        metallic = car.color_metallic
+        colorDescr = car.colorDescription
+        metallic = car.isMetallic
         
         showCheckVinView = showCheckView
         
