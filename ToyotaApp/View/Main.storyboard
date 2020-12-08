@@ -21,10 +21,16 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="m2z-gD-nA3" secondAttribute="height" multiplier="8:5" id="Xnl-Qo-rnS"/>
+                                </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="DK7-pp-OLk">
                                 <rect key="frame" x="164" y="451" width="87" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DK7-pp-OLk" secondAttribute="height" multiplier="87:37" id="tis-Wr-fNF"/>
+                                </constraints>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
