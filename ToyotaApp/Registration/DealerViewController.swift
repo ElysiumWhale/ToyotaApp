@@ -83,6 +83,12 @@ extension DealerViewController: SegueWithRequestController {
                 do {
                     let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
                     responseCars = decodedResponse.cars
+                    
+                    if var user = UserInfo.buildFromDefaults() {
+                        user.showrooms.append(UserInfo.Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.name, cityName: selectedCity!.name))
+                        user.saveToUserDefaults()
+                    }
+                    
                     DispatchQueue.main.async {
                         nextButtonIndicator.stopAnimating()
                         nextButtonIndicator.isHidden = true

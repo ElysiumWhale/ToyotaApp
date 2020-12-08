@@ -23,27 +23,37 @@ class PersonalInfoViewController: UIViewController {
         createDatePicker()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if isConfigured {
-            firstNameTextField.text = configuredProfile!.firstName
-            secondNameTextField.text = configuredProfile!.secondName
-            lastNameTextField.text = configuredProfile!.lastName
-            emailTextField.text = configuredProfile!.email
-            #warning("Format data")
-            birthTextField.text  = configuredProfile!.birthday
-        }
-    }
-    
     @IBAction func buttonNextDidPressed(_ sender: UIButton) {
         guard checkFields() else { return }
         activitySwitcher.startAnimating()
         nextButton.isHidden = true
-        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: buildParamsForRequest()) { [self] data in
+        
+        if configuredProfile == nil {
+            configuredProfile = Profile(phone: "",
+                                        firstName: firstNameTextField.text!,
+                                        lastName: lastNameTextField.text!,
+                                        secondName: secondNameTextField.text!,
+                                        email: emailTextField.text!,
+                                        birthday: date)
+        }
+        let params = buildParamsForRequest(firstName: configuredProfile!.firstName!,
+                                           secondName: configuredProfile!.secondName!,
+                                           lastName: configuredProfile!.lastName!,
+                                           email: configuredProfile!.email!,
+                                           date: date)
+        
+        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: params) { [self] data in
             do {
                 let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
                 cities = rawCities.cities.map {
                     City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
                 }
+                
+                if var user = UserInfo.buildFromDefaults() {
+                    user.person = UserInfo.PersonInfo.toDomain(profile: configuredProfile!)
+                    user.saveToUserDefaults()
+                } else { print("There is a trouble..") }
+                
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
                 }
@@ -125,9 +135,20 @@ extension PersonalInfoViewController {
         view.endEditing(true)
     }
 }
-    
-// MARK: - Navigation
+
+//MARK: - Navigation
 extension PersonalInfoViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        if isConfigured {
+            firstNameTextField.text = configuredProfile!.firstName
+            secondNameTextField.text = configuredProfile!.secondName
+            lastNameTextField.text = configuredProfile!.lastName
+            emailTextField.text = configuredProfile!.email
+            #warning("Format data")
+            birthTextField.text  = configuredProfile!.birthday
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
@@ -153,14 +174,14 @@ extension PersonalInfoViewController {
 
 //MARK: - Build parameters logic
 extension PersonalInfoViewController {
-    private func buildParamsForRequest() -> [URLQueryItem] {
+    private func buildParamsForRequest(firstName: String, secondName: String, lastName: String, email: String, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
         requestParams.append(URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)))
         requestParams.append(URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: firstNameTextField.text))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: secondNameTextField.text))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: lastNameTextField.text))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: emailTextField.text))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: firstName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: secondName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: lastName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: email))
         requestParams.append(URLQueryItem(name: PostRequestKeys.birthday, value: date))
         return requestParams
     }
