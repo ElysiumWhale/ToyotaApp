@@ -236,7 +236,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="cnr-Ha-Lss" kind="show" id="i5T-Z4-p4V"/>
+                                    <segue destination="cnr-Ha-Lss" kind="show" identifier="ServiceNavToTech" id="i5T-Z4-p4V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQ8-9i-guK" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">

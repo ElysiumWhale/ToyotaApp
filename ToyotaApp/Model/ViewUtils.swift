@@ -24,11 +24,19 @@ public struct AppViewControllers {
 }
 
 public struct SegueIdentifiers {
+    //Auth
     static let NumberToCode = "NumberToCodeSegue"
+    //Reg
     static let PersonInfoToDealer = "PersonInfoToDealer"
     static let DealerToCar = "DealerToCar"
     static let CarToEndRegistration = "CarToEndRegistration"
     static let CarToCheckVin = "CarToCheckVin"
+    //Services
+    static let ServiceNavToTech = "ServiceNavToTech"
+    static let ServiceNavToService = "ServiceNavToService"
+    static let ServiceNavToTest = "ServiceNavToTest"
+    static let ServiceNavToEmerg = "ServiceNavToEmerg"
+    static let ServiceNavToFeedback = "ServiceNavToFeedback"
 }
 
 public struct CellIdentifiers {

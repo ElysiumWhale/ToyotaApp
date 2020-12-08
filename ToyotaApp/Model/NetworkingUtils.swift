@@ -47,6 +47,7 @@ struct DefaultsKeys {
     static let userId = "userId"
     static let brandId = "brandId"
     static let profile = "profile"
+    static let userDict = "userDict"
 }
 
 struct MainURL {

@@ -1,15 +1,13 @@
-//
-//  ServiceViewController.swift
-//  ToyotaApp
-//
-//  Created by Алексей Гурин on 30.09.2020.
-//  Copyright © 2020 Алексей Гурин. All rights reserved.
-//
-
 import UIKit
 
 class ServicesViewController: UIViewController {
-
+    
+    let techOverviewSegue = ""
+    let feedbackSegue = ""
+    let testDriveSegue = ""
+    let emergencySegue = ""
+    let serviceSegue = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
