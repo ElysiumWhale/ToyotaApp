@@ -308,12 +308,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deu-p8-wxa" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="96" y="795" width="223" height="45"/>
+                                <rect key="frame" x="96" y="795" width="223" height="47"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="deu-p8-wxa" secondAttribute="height" multiplier="223:45" id="S6k-p4-UQb"/>
+                                    <constraint firstAttribute="width" secondItem="deu-p8-wxa" secondAttribute="height" multiplier="223:45" constant="-9.9111111111111256" id="S6k-p4-UQb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="19"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" title="Проверить по VIN">
@@ -361,6 +361,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QRf-1w-QDs">
+                                <rect key="frame" x="96" y="737" width="223" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QRf-1w-QDs" secondAttribute="height" multiplier="223:53" constant="29.452830188679258" id="WLv-g8-DM9"/>
+                                </constraints>
+                                <state key="normal" title="Пропустить этот шаг">
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="c2L-Fe-S5T" kind="presentation" modalPresentationStyle="fullScreen" id="kWf-Zw-kSK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NOD-Dv-T9R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -368,13 +380,15 @@
                             <constraint firstItem="x5N-D1-3G0" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="30W-2T-LyJ"/>
                             <constraint firstItem="x5N-D1-3G0" firstAttribute="top" secondItem="NOD-Dv-T9R" secondAttribute="top" constant="50" id="5Xp-7E-Hph"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="x5N-D1-3G0" secondAttribute="trailing" constant="20" id="7KV-kL-gtC"/>
+                            <constraint firstItem="deu-p8-wxa" firstAttribute="top" secondItem="QRf-1w-QDs" secondAttribute="bottom" constant="12" id="856-hF-XRx"/>
                             <constraint firstItem="bRf-Mq-NKl" firstAttribute="top" secondItem="Qoy-MX-0W5" secondAttribute="bottom" constant="50" id="Bga-ou-Hjm"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="bRf-Mq-NKl" secondAttribute="trailing" constant="20" id="Cg9-XW-Fj0"/>
                             <constraint firstItem="1p5-08-2Gn" firstAttribute="top" secondItem="bRf-Mq-NKl" secondAttribute="bottom" constant="8" id="Cmg-jN-6HX"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="Qoy-MX-0W5" secondAttribute="trailing" constant="20" id="DE5-lk-6JD"/>
                             <constraint firstItem="Qoy-MX-0W5" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="EW1-lF-aKw"/>
-                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="bottom" secondItem="deu-p8-wxa" secondAttribute="bottom" constant="22" id="Imb-go-WZi"/>
+                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="bottom" secondItem="deu-p8-wxa" secondAttribute="bottom" constant="20" id="Imb-go-WZi"/>
                             <constraint firstItem="bRf-Mq-NKl" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="M27-Wu-VYv"/>
+                            <constraint firstItem="QRf-1w-QDs" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="96" id="NaY-G9-wyi"/>
                             <constraint firstItem="84L-bm-aja" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="SuY-3A-D29"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="1p5-08-2Gn" secondAttribute="trailing" constant="20" id="Xh9-Fe-6vX"/>
                             <constraint firstItem="1p5-08-2Gn" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="YZc-Kf-0MW"/>
@@ -382,6 +396,7 @@
                             <constraint firstItem="deu-p8-wxa" firstAttribute="leading" secondItem="CuC-DO-DvD" secondAttribute="leading" constant="96" id="l3p-Jz-dmI"/>
                             <constraint firstItem="Qoy-MX-0W5" firstAttribute="top" secondItem="84L-bm-aja" secondAttribute="bottom" constant="10" id="oBE-25-2Fd"/>
                             <constraint firstItem="84L-bm-aja" firstAttribute="top" secondItem="jd9-25-nOP" secondAttribute="bottom" constant="50" id="oJJ-rE-Nh7"/>
+                            <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="QRf-1w-QDs" secondAttribute="trailing" constant="95" id="p4e-Vy-RtB"/>
                             <constraint firstItem="jd9-25-nOP" firstAttribute="leading" secondItem="NOD-Dv-T9R" secondAttribute="leading" constant="20" id="pe9-qO-zH2"/>
                             <constraint firstAttribute="trailing" secondItem="deu-p8-wxa" secondAttribute="trailing" constant="95" id="rNk-vo-8OC"/>
                             <constraint firstItem="NOD-Dv-T9R" firstAttribute="trailing" secondItem="jd9-25-nOP" secondAttribute="trailing" constant="20" id="sYL-QP-hGV"/>
@@ -721,7 +736,7 @@
     </scenes>
     <designables>
         <designable name="2XS-il-f54">
-            <size key="intrinsicContentSize" width="173" height="44"/>
+            <size key="intrinsicContentSize" width="166" height="38"/>
         </designable>
         <designable name="Ax1-4T-jTA">
             <size key="intrinsicContentSize" width="67" height="44"/>
@@ -730,7 +745,7 @@
             <size key="intrinsicContentSize" width="67" height="44"/>
         </designable>
         <designable name="deu-p8-wxa">
-            <size key="intrinsicContentSize" width="152" height="23"/>
+            <size key="intrinsicContentSize" width="178" height="28"/>
         </designable>
         <designable name="eLg-wt-wbb">
             <size key="intrinsicContentSize" width="152" height="23"/>
@@ -739,10 +754,16 @@
             <size key="intrinsicContentSize" width="119" height="44"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="kWf-Zw-kSK"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ToyotaLogoBlack" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -2,19 +2,49 @@ import UIKit
 
 class MyProfileViewController: UIViewController {
     
-    @IBOutlet private(set) var firstNameLabel: UILabel!
-    @IBOutlet private(set) var secondNameLabel: UILabel!
-    @IBOutlet private(set) var lastNameLabel: UILabel!
+    @IBOutlet private(set) var firstNameTextField: UITextField!
+    @IBOutlet private(set) var secondNameTextField: UITextField!
+    @IBOutlet private(set) var lastNameTextField: UITextField!
+    @IBOutlet private(set) var birthTextField: UITextField!
+    @IBOutlet private(set) var emailTextField: UITextField!
+    @IBOutlet private(set) var cancelButton: UIButton!
+    @IBOutlet private(set) var saveButton: UIButton!
     
-    @IBOutlet private(set) var profilePhoto: UIImageView!
+    private var isPersonEditing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profilePhoto.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(choosePhoto)))
+        firstNameTextField.text = "Иван"
+        secondNameTextField.text = "Иванович"
+        lastNameTextField.text = "Иванов"
+        birthTextField.text = "21.05.78"
+        emailTextField.text = "ivanov.ivan@ivan.ru"
     }
     
-    @objc func choosePhoto(sender: Any?) {
-        PopUpPreset.display(with: "Выберите фото", description: "Здесь будет выбор фото", buttonText: "Ок")
+    @IBAction func enterEditMode(sender: UIButton) {
+        isPersonEditing = !isPersonEditing
+        if isPersonEditing {
+            saveButton.titleLabel!.text = "Сохранить"
+        } else {
+            saveButton.titleLabel!.text = "Редактировать"
+        }
+        firstNameTextField.isEnabled = isPersonEditing
+        secondNameTextField.isEnabled = isPersonEditing
+        lastNameTextField.isEnabled = isPersonEditing
+        birthTextField.isEnabled = isPersonEditing
+        emailTextField.isEnabled = isPersonEditing
+        cancelButton.isEnabled = isPersonEditing
+        cancelButton.isHidden = !isPersonEditing
+    }
+    
+    @IBAction func cancelEdit(sender: UIButton) {
+        firstNameTextField.isEnabled = false
+        secondNameTextField.isEnabled = false
+        lastNameTextField.isEnabled = false
+        birthTextField.isEnabled = false
+        emailTextField.isEnabled = false
+        cancelButton.isEnabled = false
+        cancelButton.isHidden = true
     }
     
     /*

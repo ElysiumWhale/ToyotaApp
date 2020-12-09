@@ -365,6 +365,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="enterEditModeWithSender:" destination="CkW-Bd-toE" eventType="touchUpInside" id="I0S-3k-68W"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex6-MZ-dwl">
                                 <rect key="frame" x="20" y="179" width="374" height="53"/>
@@ -427,6 +430,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelEditWithSender:" destination="CkW-Bd-toE" eventType="touchUpInside" id="Zlg-i8-9es"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaQ-SC-hqn" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="748" width="414" height="65"/>
@@ -489,6 +495,15 @@
                             <color key="tintColor" systemColor="systemPinkColor"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="birthTextField" destination="ewW-Fd-ItJ" id="lUE-nS-Ho4"/>
+                        <outlet property="cancelButton" destination="QWu-G1-N7g" id="Aij-SX-b5R"/>
+                        <outlet property="emailTextField" destination="oDU-o8-b7s" id="xZE-jD-qbl"/>
+                        <outlet property="firstNameTextField" destination="Ex6-MZ-dwl" id="Ir4-0z-y7m"/>
+                        <outlet property="lastNameTextField" destination="nU9-IG-kSQ" id="PHr-ny-hQ0"/>
+                        <outlet property="saveButton" destination="flv-Tw-9VG" id="JQ2-hu-7kj"/>
+                        <outlet property="secondNameTextField" destination="dEX-EJ-Wih" id="eRX-JG-drU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-JJ-veb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

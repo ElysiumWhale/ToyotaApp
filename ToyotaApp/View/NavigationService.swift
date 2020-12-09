@@ -15,7 +15,7 @@ class NavigationService {
     class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [Car]) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as? UINavigationController
+            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as? UITabBarController
             //check if user in memory
             //configure
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller!)
