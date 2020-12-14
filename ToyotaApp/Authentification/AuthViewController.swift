@@ -3,10 +3,10 @@ import PhoneNumberKit
 
 class AuthViewController: UIViewController {
     
-    @IBOutlet var phoneNumber: PhoneNumberTextField?
-    @IBOutlet var incorrectLabel: UILabel?
-    @IBOutlet var sendPhoneButton: UIButton?
-    @IBOutlet var indicator: UIActivityIndicatorView?
+    @IBOutlet var phoneNumber: PhoneNumberTextField!
+    @IBOutlet var incorrectLabel: UILabel!
+    @IBOutlet var sendPhoneButton: UIButton!
+    @IBOutlet var indicator: UIActivityIndicatorView!
     
     let segueCode: String = SegueIdentifiers.NumberToCode
        
@@ -17,10 +17,10 @@ class AuthViewController: UIViewController {
     
     //MARK: - TEST METHOD
     func configureTextField() {
-        phoneNumber?.layer.cornerRadius = 10
-        phoneNumber?.withPrefix = true
-        phoneNumber?.withFlag = true
-        phoneNumber?.maxDigits = 10
+        phoneNumber.layer.cornerRadius = 10
+        phoneNumber.withPrefix = true
+        phoneNumber.withFlag = true
+        phoneNumber.maxDigits = 10
     }
     
     @IBAction func phoneNumberDidChange(sender: UITextField) {
@@ -43,17 +43,19 @@ extension AuthViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
             case segueCode:
-                if !(phoneNumber!.isValidNumber) {
-                    phoneNumber?.layer.borderColor = UIColor.systemRed.cgColor
-                    phoneNumber?.layer.borderWidth = 1.0
-                    incorrectLabel!.isHidden = false
+                if !(phoneNumber.isValidNumber) {
+                    phoneNumber.layer.borderColor = UIColor.systemRed.cgColor
+                    phoneNumber.layer.borderWidth = 1.0
+                    incorrectLabel.isHidden = false
                     return false
                 } else {
-                    indicator!.startAnimating()
-                    sendPhoneButton!.isHidden = true
-                    indicator!.isHidden = false
+                    indicator.startAnimating()
+                    sendPhoneButton.isHidden = true
+                    indicator.isHidden = false
                     view.endEditing(true)
-                    NetworkService.shared.makePostRequest(page: PostRequestPath.registerPhone, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber!.text)])
+                    DefaultsManager.pushUserInfo(info: UserInfo.Phone(phoneNumber.text!))
+                    
+                    NetworkService.shared.makePostRequest(page: PostRequestPath.registerPhone, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber.text)])
                     return true
                 }
             default: return true
@@ -61,8 +63,8 @@ extension AuthViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        indicator?.stopAnimating()
-        indicator?.isHidden = true
-        sendPhoneButton?.isHidden = false
+        indicator.stopAnimating()
+        indicator.isHidden = true
+        sendPhoneButton.isHidden = false
     }
 }

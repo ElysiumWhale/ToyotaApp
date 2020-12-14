@@ -11,6 +11,7 @@
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
 		A717CEBE252BC63E00CFB6FF /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEBD252BC63E00CFB6FF /* CountryPicker */; };
 		A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */; };
+		A727F4112588263C00B8CB79 /* ViewControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ViewControllersProtocols.swift */; };
 		A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* NetworkingUtils.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
+		A727F4102588263C00B8CB79 /* ViewControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersProtocols.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* NetworkingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtils.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		A791FDD82524E17300A595BB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				A727F4102588263C00B8CB79 /* ViewControllersProtocols.swift */,
 				A791FDDB2524E19B00A595BB /* Tech */,
 				A791FDDA2524E19300A595BB /* Service */,
 				A791FDD92524E18800A595BB /* MyProfile */,
@@ -392,6 +395,7 @@
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUpPreset.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
+				A727F4112588263C00B8CB79 /* ViewControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				A7D1206A253E7168005F85B0 /* AddingCarViewController.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,

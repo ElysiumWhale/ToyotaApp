@@ -1,7 +1,9 @@
 import UIKit
 
 class OffersViewController: UIViewController {
-
+    
+    private var userInfo: UserInfo?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,4 +21,10 @@ class OffersViewController: UIViewController {
     }
     */
 
+}
+
+extension OffersViewController: WithUserInfo {
+    func setUser(info: UserInfo) {
+        userInfo = info
+    }
 }

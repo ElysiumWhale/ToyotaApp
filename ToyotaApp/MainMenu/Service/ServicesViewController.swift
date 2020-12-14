@@ -2,6 +2,8 @@ import UIKit
 
 class ServicesViewController: UIViewController {
     
+    private var userInfo: UserInfo?
+    
     let techOverviewSegue = ""
     let feedbackSegue = ""
     let testDriveSegue = ""
@@ -25,4 +27,10 @@ class ServicesViewController: UIViewController {
     }
     */
 
+}
+
+extension ServicesViewController: WithUserInfo {
+    func setUser(info: UserInfo) {
+        userInfo = info
+    }
 }

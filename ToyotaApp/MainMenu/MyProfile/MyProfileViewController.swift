@@ -10,6 +10,8 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private(set) var cancelButton: UIButton!
     @IBOutlet private(set) var saveButton: UIButton!
     
+    private var userInfo: UserInfo?
+    
     private var isPersonEditing: Bool = false
     
     override func viewDidLoad() {
@@ -56,4 +58,10 @@ class MyProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension MyProfileViewController: WithUserInfo {
+    func setUser(info: UserInfo) {
+        userInfo = info
+    }
 }
