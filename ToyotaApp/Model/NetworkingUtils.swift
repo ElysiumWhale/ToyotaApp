@@ -42,14 +42,6 @@ struct PostRequestKeys {
     static let vinCode = "vin_code"
 }
 
-struct DefaultsKeys {
-    static let secretKey = "secretKey"
-    static let userId = "userId"
-    static let brandId = "brandId"
-    static let profile = "profile"
-    static let userDict = "userDict"
-}
-
 struct MainURL {
     private static let http = "http"
     private static let https = "https"
