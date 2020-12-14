@@ -13,7 +13,7 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     
-    var car: Car?
+    var car: DTOCar?
     var parentDelegate: AddingCarDelegate!
     
     @IBAction func vinValueDidChange(with sender: UITextField) {

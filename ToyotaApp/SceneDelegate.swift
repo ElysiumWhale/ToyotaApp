@@ -7,9 +7,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        UserDefaults.standard.setValue("1", forKey: DefaultsKeys.brandId)
+        let defaults = UserDefaults.standard
+        defaults.setValue("1", forKey: DefaultsKeys.brandId)
         
-        if let loggedUserId = UserDefaults.standard.string(forKey: DefaultsKeys.userId), let secretKey = UserDefaults.standard.string(forKey: DefaultsKeys.secretKey), let brandId = UserDefaults.standard.string(forKey: DefaultsKeys.brandId) {
+        if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey), let brandId = defaults.string(forKey: DefaultsKeys.brandId) {
             
             NetworkService.shared.makePostRequest(page: PostRequestPath.checkUser, params: [URLQueryItem(name: PostRequestKeys.userId, value: loggedUserId), URLQueryItem(name: PostRequestKeys.brandId, value: brandId), URLQueryItem(name: PostRequestKeys.secretKey, value: secretKey)], completion: resolveNavigation)
         } else { NavigationService.loadAuth() }

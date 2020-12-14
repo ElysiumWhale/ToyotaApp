@@ -8,7 +8,7 @@ protocol RoundedControl {
 
 @IBDesignable class CarChoosingCell: UICollectionViewCell, RoundedControl {
     
-    private(set) var cellCar: Car?
+    private(set) var cellCar: DTOCar?
     @IBOutlet var modelNameLabel: UILabel!
     @IBOutlet var colorNameLabel: UILabel!
     @IBOutlet var registrationNumberLabel: UILabel!
@@ -29,7 +29,7 @@ protocol RoundedControl {
     
     func updateCornerRadius() { layer.cornerRadius = rounded ? cornerRadius : 0 }
     
-    func configureCell(car: Car, showCheckView: ((UICollectionViewCell) -> Void)? = {_ in }) {
+    func configureCell(car: DTOCar, showCheckView: ((UICollectionViewCell) -> Void)? = {_ in }) {
         cellCar = car
         modelNameLabel.text = car.brandName + car.modelName
         colorNameLabel.text = car.colorName

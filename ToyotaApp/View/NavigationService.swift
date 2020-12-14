@@ -12,7 +12,7 @@ class NavigationService {
     }
     
     //TODO
-    class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [Car]) {
+    class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [DTOCar]) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as? UITabBarController
@@ -84,7 +84,8 @@ extension NavigationService {
         }
     }
     
-    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [Showroom], and cars: [Car]) {
+    #warning("to-do rework")
+    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom], and cars: [DTOCar]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
             let pivc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.personalInfoViewController) as! PersonalInfoViewController

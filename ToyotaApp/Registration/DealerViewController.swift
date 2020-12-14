@@ -19,10 +19,10 @@ class DealerViewController: PickerController {
     
     var cities: [City] = [City]()
     private var selectedCity: City?
-    private var showrooms: [Showroom] = [Showroom]()
-    private var selectedShowroom: Showroom?
+    private var showrooms: [DTOShowroom] = [DTOShowroom]()
+    private var selectedShowroom: DTOShowroom?
     
-    private var responseCars: [Car]?
+    private var responseCars: [DTOCar]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +51,12 @@ class DealerViewController: PickerController {
         }
     }
     
-    func configure(cityList: [City], showroomList: [Showroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
+    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
             selectedCity = city
             showrooms = list
-            selectedShowroom = Showroom(id: showroom.id, name: showroom.showroomName)
+            selectedShowroom = DTOShowroom(id: showroom.id, name: showroom.showroomName)
         }
     }
 }
@@ -149,7 +149,7 @@ extension DealerViewController {
                     }
                 }
                 catch {
-                    showrooms = [Showroom(id: "0", name: "Ошибка десериализации")]
+                    showrooms = [DTOShowroom(id: "0", name: "Ошибка десериализации")]
                     DispatchQueue.main.async {
                         cityTextFieldIndicator?.stopAnimating()
                         cityTextFieldIndicator?.isHidden = true

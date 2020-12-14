@@ -33,11 +33,11 @@ class AddingCarViewController: PickerController {
     private var colorPicker: UIPickerView = UIPickerView()
     private var platePicker: UIPickerView = UIPickerView()
     
-    var cars: [Car]?
+    var cars: [DTOCar]?
     private var selectedModel: String?
-    private var colors: [Car] = [Car]()
+    private var colors: [DTOCar] = [DTOCar]()
     private var selectedColor: String?
-    private var plates: [Car] = [Car]()
+    private var plates: [DTOCar] = [DTOCar]()
     private var selectedPlate: String?
     
     struct Color {
@@ -51,7 +51,7 @@ class AddingCarViewController: PickerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nullCar = Car(id: "", brandName: "", modelName: "Null", colorName: "Null", colorSwatch: "", colorDescription: "", isMetallic: "", licensePlate: "Null")
+        let nullCar = DTOCar(id: "", brandName: "", modelName: "Null", colorName: "Null", colorSwatch: "", colorDescription: "", isMetallic: "", licensePlate: "Null")
         colors.append(nullCar)
         plates.append(nullCar)
         configurePicker(view: modelPicker, with: #selector(selectModel), for: modelTextField, delegate: self)
@@ -76,7 +76,7 @@ class AddingCarViewController: PickerController {
         }
     }
     
-    func configure(carsList: [Car]) {
+    func configure(carsList: [DTOCar]) {
         cars = carsList
     }
     
