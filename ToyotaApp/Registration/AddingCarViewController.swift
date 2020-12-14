@@ -57,7 +57,7 @@ class AddingCarViewController: PickerController {
         configurePicker(view: modelPicker, with: #selector(selectModel), for: modelTextField, delegate: self)
         configurePicker(view: colorPicker, with: #selector(selectColor), for: colorTextField, delegate: self)
         configurePicker(view: platePicker, with: #selector(selectPlate), for: plateTextField, delegate: self)
-        PopUpPreset.display(with: "Добавьте машину", description: "Выберите машину по параметрам и подтвердите ее владение с помощью VIN-кода", buttonText: "Ок")
+        PopUpPreset.display(with: "Добавьте машину", description: "Введите VIN-код Вашего автомобиля для подтверждения владения и добавления его в свой профиль", buttonText: "Ок")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
