@@ -62,7 +62,7 @@ class DealerViewController: PickerController {
 }
 
 //MARK: - SegueWithRequestController
-extension DealerViewController: SegueWithRequestController {
+extension DealerViewController: SegueWithRequestController {    
     var segueCode: String { SegueIdentifiers.DealerToCar }
     
     @IBAction internal func nextButtonDidPressed(sender: Any?) {
@@ -84,10 +84,7 @@ extension DealerViewController: SegueWithRequestController {
                     let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
                     responseCars = decodedResponse.cars
                     
-                    if var user = UserInfo.buildFromDefaults() {
-                        user.showrooms.append(UserInfo.Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.name, cityName: selectedCity!.name))
-                        user.saveToUserDefaults()
-                    }
+                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name, selectedCity!.name)]))
                     
                     DispatchQueue.main.async {
                         nextButtonIndicator.stopAnimating()

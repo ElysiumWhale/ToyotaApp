@@ -63,6 +63,11 @@ class CheckVinViewController: UIViewController {
                 do {
                     let response = try JSONDecoder().decode(CarDidCheckResponse.self, from: data)
                     
+                    #warning("to-do response with car")
+                    let car = Car(id: "todo", brand: "todo", model: "todo", color: "todo", colorSwatch: "todo", colorDescription: "todo", isMetallic: "todo", plate: "todo", vin: vinCodeTextField.text!)
+                    
+                    DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [car]))
+                    
                     DispatchQueue.main.async {
                         indicator.stopAnimating()
                         indicator.isHidden = true

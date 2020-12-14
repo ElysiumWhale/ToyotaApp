@@ -49,10 +49,7 @@ class PersonalInfoViewController: UIViewController {
                     City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
                 }
                 
-                if var user = UserInfo.buildFromDefaults() {
-                    user.person = UserInfo.PersonInfo.toDomain(profile: configuredProfile!)
-                    user.saveToUserDefaults()
-                } else { print("There is a trouble..") }
+                DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: configuredProfile!))
                 
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)

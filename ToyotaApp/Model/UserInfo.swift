@@ -1,17 +1,22 @@
 import Foundation
 
-struct UserInfo {
+struct UserInfo: Codable {
     let id: String
-    var phone: String?
+    var phone: Phone?
     var secretKey = ""
     var isAuthorized: Bool = false
     var isFullAccess: Bool = false
     
-    var person: PersonInfo = PersonInfo()
-    var cars: [Car] = [Car]()
-    var showrooms: [Showroom] = [Showroom]()
+    typealias Phone = String
     
-    struct PersonInfo {
+    private(set) var person: PersonInfo = PersonInfo()
+    private(set) var showrooms: Showrooms = Showrooms()
+    private(set) var cars: Cars = Cars()
+    
+    //MARK: - Inner Structs
+    struct PersonInfo: WithDefaultsKey {
+        var key: String = DefaultsKeys.person
+        
         var firstName: String?
         var lastName: String?
         var secondName: String?
@@ -23,60 +28,75 @@ struct UserInfo {
         }
     }
     
-    struct Showroom {
-        let id: String
-        let showroomName: String
-        let cityName: String
+    struct Cars: WithDefaultsKey {
+        var key: String { DefaultsKeys.cars }
+        var array: [Car] = [Car]()
     }
     
-    struct Car {
-        let id: String
-        let brand: String
-        let model: String
-        let color: String
-        let colorSwatch: String
-        let colorDescription: String
-        let isMetallic: String
-        let plate: String
-        let vin: String
+    struct Showrooms: WithDefaultsKey {
+        var key: String { DefaultsKeys.cars }
+        var array: [Showroom] = [Showroom]()
+        
+        init(_ showrooms: [Showroom]) {
+            array = showrooms
+        }
+        
+        init() { }
     }
     
-    init(userId: String, isAuth: Bool) {
+    //MARK: - Constructors
+    init(userId: String) {
         id = userId
-        isAuthorized = isAuth
+        isAuthorized = true
     }
     
-    init(userId: String, isAuth: Bool, isFull: Bool, personInfo: PersonInfo) {
+    init(userId: String, personInfo: PersonInfo) {
         id = userId
-        isAuthorized = isAuth
-        isFullAccess = isFull
+        isAuthorized = true
         person = personInfo
     }
     
-    init(userId: String, isAuth: Bool, isFull: Bool, personInfo: PersonInfo, showroomsList: [Showroom]) {
+    init(userId: String, personInfo: PersonInfo, showroomsList: Showrooms) {
         id = userId
-        isAuthorized = isAuth
-        isFullAccess = isFull
+        isAuthorized = true
         person = personInfo
         showrooms = showroomsList
     }
     
-    func saveToUserDefaults() {
-        #warning("TODO")
+    init(userId: String, personInfo: PersonInfo, showroomsList: Showrooms, carsList: Cars) {
+        id = userId
+        isAuthorized = true
+        person = personInfo
+        showrooms = showroomsList
+        cars = carsList
+        isFullAccess = true
     }
+}
+
+struct Showroom: Codable {
+    let id: String
+    let showroomName: String
+    let cityName: String
     
-    static func buildFromDefaults() -> UserInfo? {
-        let defaults = UserDefaults.standard
-        guard let dict = defaults.dictionary(forKey: DefaultsKeys.userDict) else { return nil }
-        let id = dict["id"] as! String
-        let isAuth = dict["isAuth"] as! Bool
-        var result = UserInfo(userId: id, isAuth: isAuth)
-        guard let person = dict["person"] as? PersonInfo else { return result }
-        result.person = person
-        guard let showrooms = dict["showrooms"] as? [Showroom], !showrooms.isEmpty else { return result }
-        result.showrooms = showrooms
-        guard let cars = dict["cars"] as? [Car], !cars.isEmpty else { return result }
-        result.cars = cars
-        return result
+    init(_ sId: String, _ name: String, _ city: String) {
+        id = sId
+        showroomName = name
+        cityName = city
     }
+}
+
+struct Car: Codable {
+    let id: String
+    let brand: String
+    let model: String
+    let color: String
+    let colorSwatch: String
+    let colorDescription: String
+    let isMetallic: String
+    let plate: String
+    let vin: String
+}
+
+extension UserInfo.Phone: WithDefaultsKey {
+    var key: String { DefaultsKeys.phone }
 }

@@ -15,10 +15,21 @@ class NavigationService {
     class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [DTOCar]) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as? UITabBarController
-            //check if user in memory
-            //configure
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller!)
+            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
+            
+            let result = DefaultsManager.buildUserFromDefaults()
+            switch result {
+                case .failure:
+                    print("Configure with injected params")
+                    #warning("push all info")
+                case .success(let user):
+                    for child in controller.viewControllers ?? [] {
+                          if let top = child as? WithUserInfo {
+                            top.setUser(info: user)
+                        }
+                    }
+            }
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
         }
     }
     
