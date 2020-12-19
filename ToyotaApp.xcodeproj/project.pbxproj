@@ -25,6 +25,7 @@
 		A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */; };
 		A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */; };
 		A76D4F0B256C83120086813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76D4F0A256C83120086813E /* Main.storyboard */; };
+		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A776146C256AA6CA00846DAB /* NavigationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776146B256AA6CA00846DAB /* NavigationContext.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
@@ -79,6 +80,7 @@
 		A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVinViewController.swift; sourceTree = "<group>"; };
 		A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromHex.swift; sourceTree = "<group>"; };
 		A76D4F0A256C83120086813E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A776146B256AA6CA00846DAB /* NavigationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContext.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
+				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */,
 			);
 			path = MyProfile;
@@ -381,6 +384,7 @@
 				A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
+				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
