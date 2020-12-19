@@ -134,6 +134,17 @@ public struct DTOCar: Codable {
     }
 }
 
+extension DTOCar {
+    func toDomain(with vin: String) -> Car {
+        return Car(id: self.id, brand: self.brandName, model: self.modelName,
+                   color: self.colorName ?? "Empty",
+                   colorSwatch: self.colorSwatch ?? "Empty",
+                   colorDescription: self.colorDescription ?? "Empty",
+                   isMetallic: self.isMetallic ?? "0",
+                   plate: self.licensePlate ?? "Empty", vin: vin)
+    }
+}
+
 //MARK: - CarDidCheck
 public struct CarDidCheckResponse: Codable {
     let result: String

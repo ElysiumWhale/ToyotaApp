@@ -6,6 +6,13 @@ enum AppErrors: Error {
     case notFullProfile
 }
 
+enum DefaultKeys {
+    case person
+    case cars
+    case showrooms
+    case phone
+}
+
 struct DefaultsKeys {
     static let secretKey = "secretKey"
     static let userId = "userId"
@@ -26,12 +33,6 @@ struct DefaultsKeys {
 
 protocol WithDefaultsKey: Codable {
     var key: String { get }
-}
-
-enum DefaultKeys {
-    case person
-    case cars
-    case showrooms
 }
 
 public class DefaultsManager {
@@ -65,10 +66,12 @@ public class DefaultsManager {
         }
     }
     
-    class func retrieveUserInfo<T>(for key: DefaultKeys) -> Result<T, AppErrors> where T:WithDefaultsKey {
+    class func retrieveCustomUserInfo<T>(for key: DefaultKeys) -> Result<T, AppErrors> where T:WithDefaultsKey {
         var mappedKey: String
         
         switch key {
+            case .phone:
+                mappedKey = DefaultsKeys.phone
             case .cars:
                 mappedKey = DefaultsKeys.cars
             case .person:

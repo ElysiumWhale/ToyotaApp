@@ -34,7 +34,7 @@ struct UserInfo: Codable {
     }
     
     struct Showrooms: WithDefaultsKey {
-        var key: String { DefaultsKeys.cars }
+        var key: String { DefaultsKeys.showrooms }
         var array: [Showroom] = [Showroom]()
         
         init(_ showrooms: [Showroom]) {

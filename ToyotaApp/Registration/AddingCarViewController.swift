@@ -65,12 +65,12 @@ class AddingCarViewController: PickerController {
             case checkCarSegueCode:
                 if let cell = sender as? CarChoosingCell {
                     let vc = segue.destination as? CheckVinViewController
-                    vc!.car = cell.cellCar
-                    vc!.parentDelegate = self
+                    //vc!.car = cell.cellCar
+                    //vc!.parentDelegate = self
                 } else {
                     let vc = segue.destination as? CheckVinViewController
-                    vc!.car = plates.first(where: { $0.licensePlate == selectedPlate })
-                    vc!.parentDelegate = self
+                    //vc!.car = plates.first(where: { $0.licensePlate == selectedPlate })
+                    //vc!.parentDelegate = self
                 }
             default: return
         }
@@ -88,13 +88,13 @@ class AddingCarViewController: PickerController {
 }
 
 //MARK: - AddingCarDelegate
-extension AddingCarViewController: AddingCarDelegate {
-    func carDidChecked() {
-        DispatchQueue.main.async { [self] in
-            performSegue(withIdentifier: endRegisterSegueCode, sender: nil)
-        }
-    }
-}
+//extension AddingCarViewController: AddingCarDelegate {
+//    func carDidChecked() {
+//        DispatchQueue.main.async { [self] in
+//            performSegue(withIdentifier: endRegisterSegueCode, sender: nil)
+//        }
+//    }
+//}
 
 //MARK: - UIPickerView Setup
 extension AddingCarViewController {

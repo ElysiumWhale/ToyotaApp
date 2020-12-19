@@ -63,7 +63,7 @@ class DealerViewController: PickerController {
 
 //MARK: - SegueWithRequestController
 extension DealerViewController: SegueWithRequestController {    
-    var segueCode: String { SegueIdentifiers.DealerToCar }
+    var segueCode: String { SegueIdentifiers.DealerToCheckVin }
     
     @IBAction internal func nextButtonDidPressed(sender: Any?) {
         if let showroom = selectedShowroom {

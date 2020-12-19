@@ -17,11 +17,14 @@ class NavigationService {
         DispatchQueue.main.async {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
             
+            let car = Car(id: "1", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
+            DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [car]))
+            
             let result = DefaultsManager.buildUserFromDefaults()
             switch result {
                 case .failure:
-                    print("Configure with injected params")
                     #warning("push all info")
+                    print("Configure with injected params")
                 case .success(let user):
                     for child in controller.viewControllers ?? [] {
                           if let top = child as? WithUserInfo {

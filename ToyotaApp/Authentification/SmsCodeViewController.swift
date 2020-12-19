@@ -71,8 +71,10 @@ extension SmsCodeViewController {
                 do {
                     let response = try JSONDecoder().decode(CheckUserOrSmsCodeResponse.self, from: data)
                     
-                    UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
-                    UserDefaults.standard.setValue(response.userId!, forKey: DefaultsKeys.userId)
+                    let defaults = UserDefaults.standard
+                    defaults.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+                    defaults.setValue(response.userId!, forKey: DefaultsKeys.userId)
+                    defaults.setValue(true, forKeyPath: DefaultsKeys.isAuth)
                     
                     Debug.userId = response.userId!
                     Debug.secretKey = response.secretKey

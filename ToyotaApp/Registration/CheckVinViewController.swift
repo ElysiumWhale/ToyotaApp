@@ -1,11 +1,6 @@
 import UIKit
 
-protocol AddingCarDelegate {
-    func carDidChecked()
-}
-
 class CheckVinViewController: UIViewController {
-    
     @IBOutlet private var regNumber: UILabel!
     @IBOutlet private var modelName: UILabel!
     @IBOutlet private var errorLabel: UILabel!
@@ -13,9 +8,9 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     
-    let segueCode = SegueIdentifiers.CarToEndRegistration
-    var car: DTOCar?
-    var parentDelegate: AddingCarDelegate!
+    //var car: DTOCar?
+    var TMPshowroomid: String?
+    //var parentDelegate: AddingCarDelegate!
     
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.isHidden = true

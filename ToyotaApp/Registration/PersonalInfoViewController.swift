@@ -28,19 +28,13 @@ class PersonalInfoViewController: UIViewController {
         activitySwitcher.startAnimating()
         nextButton.isHidden = true
         
-        if configuredProfile == nil {
-            configuredProfile = Profile(phone: "",
-                                        firstName: firstNameTextField.text!,
-                                        lastName: lastNameTextField.text!,
-                                        secondName: secondNameTextField.text!,
-                                        email: emailTextField.text!,
-                                        birthday: date)
-        }
-        let params = buildParamsForRequest(firstName: configuredProfile!.firstName!,
-                                           secondName: configuredProfile!.secondName!,
-                                           lastName: configuredProfile!.lastName!,
-                                           email: configuredProfile!.email!,
-                                           date: date)
+        configuredProfile = Profile(phone: "",
+                                    firstName: firstNameTextField.text!,
+                                    lastName: lastNameTextField.text!,
+                                    secondName: secondNameTextField.text!,
+                                    email: emailTextField.text!,
+                                    birthday: date)
+        let params = buildParamsForRequest(from: configuredProfile!, date: date)
         
         NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: params) { [self] data in
             do {
@@ -171,14 +165,14 @@ extension PersonalInfoViewController {
 
 //MARK: - Build parameters logic
 extension PersonalInfoViewController {
-    private func buildParamsForRequest(firstName: String, secondName: String, lastName: String, email: String, date: String) -> [URLQueryItem] {
+    private func buildParamsForRequest(from profile: Profile, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
         requestParams.append(URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)))
         requestParams.append(URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: firstName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: secondName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: lastName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: email))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: profile.firstName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: profile.secondName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: profile.lastName))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: profile.email))
         requestParams.append(URLQueryItem(name: PostRequestKeys.birthday, value: date))
         return requestParams
     }

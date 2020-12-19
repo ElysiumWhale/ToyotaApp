@@ -29,6 +29,7 @@ public struct SegueIdentifiers {
     //Reg
     static let PersonInfoToDealer = "PersonInfoToDealer"
     static let DealerToCar = "DealerToCar"
+    static let DealerToCheckVin = "DealerToCheckVin"
     static let CarToEndRegistration = "CarToEndRegistration"
     static let CarToCheckVin = "CarToCheckVin"
     //Services
@@ -37,8 +38,10 @@ public struct SegueIdentifiers {
     static let ServiceNavToTest = "ServiceNavToTest"
     static let ServiceNavToEmerg = "ServiceNavToEmerg"
     static let ServiceNavToFeedback = "ServiceNavToFeedback"
+    //MyProfile
+    static let MyProfileToCars = "MyProfileToCars"
 }
 
 public struct CellIdentifiers {
-    static let CarChoosingCell = "CarChoosingCell"
+    static let CarChoosingCell = "CarCell"
 }
