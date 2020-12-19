@@ -43,17 +43,21 @@ public class DefaultsManager {
             return Result.failure(.keyValueDoesNotExist)
         }
         
-        #warning("to-do phone init")
-        //let phoneNum = defaults.string(forKey: DefaultsKeys.phone)
-        
-        let persRes: Result<UserInfo.PersonInfo, AppErrors> = retrieveUserInfo(for: .person)
-        let showRes: Result<UserInfo.Showrooms, AppErrors> = retrieveUserInfo(for: .showrooms)
-        let carsRes: Result<UserInfo.Cars, AppErrors> = retrieveUserInfo(for: .cars)
-        guard let person = try? persRes.get(), let showrooms = try? showRes.get(), let cars = try? carsRes.get() else {
-            //return Result.success(UserInfo(userId: id))
+        let phoneRes: Result<UserInfo.Phone, AppErrors> = retrieveCustomUserInfo(for: .phone)
+        let persRes: Result<UserInfo.PersonInfo, AppErrors> = retrieveCustomUserInfo(for: .person)
+        let showRes: Result<UserInfo.Showrooms, AppErrors> = retrieveCustomUserInfo(for: .showrooms)
+        let carsRes: Result<UserInfo.Cars, AppErrors> = retrieveCustomUserInfo(for: .cars)
+        guard let person = try? persRes.get(), let showrooms = try? showRes.get(), let phone = try? phoneRes.get() else {
             return Result.failure(.notFullProfile)
         }
-        return Result.success(UserInfo(userId: id, personInfo: person, showroomsList: showrooms, carsList: cars))
+        var res: UserInfo
+        if let cars = try? carsRes.get() {
+            res = UserInfo(userId: id, personInfo: person, showroomsList: showrooms, carsList: cars)
+        } else {
+            res = UserInfo(userId: id, personInfo: person, showroomsList: showrooms)
+        }
+        res.phone = phone
+        return Result.success(res)
     }
     
     class func pushUserInfo<T>(info: T) where T:WithDefaultsKey {
