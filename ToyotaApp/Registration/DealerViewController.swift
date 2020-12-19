@@ -45,8 +45,10 @@ class DealerViewController: PickerController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                let destinationVC = segue.destination as? AddingCarViewController
-                destinationVC?.cars = responseCars
+                let destinationVC = segue.destination as? CheckVinViewController
+                destinationVC?.TMPshowroomid = selectedShowroom!.id
+                //let destinationVC = segue.destination as? AddingCarViewController
+                //destinationVC?.cars = responseCars
             default: return
         }
     }

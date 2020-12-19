@@ -17,19 +17,6 @@ class CheckVinViewController: UIViewController {
         vinCodeTextField.layer.borderWidth = 0
     }
     
-    @IBAction func checkVin() {
-        guard let vin = vinCodeTextField.text else { displayError(nil); return }
-        guard vin.count == 17 else { displayError(nil); return }
-        indicator.startAnimating()
-        checkVinButton.isHidden = true
-        indicator.isHidden = false
-        NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
-                //[URLQueryItem(name: PostRequestKeys.carId, value: car!.id),
-                 [URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
-                 URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId)],
-                completion: completion)
-    }
-    
     func displayError(_ message: String?) {
         DispatchQueue.main.async { [self] in
             if let mes = message {
@@ -48,30 +35,39 @@ class CheckVinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //regNumber.text = car!.licensePlate
-        //modelName.text = " \(car!.brandName) \(car!.modelName)"
+    }
+}
+extension CheckVinViewController: SegueWithRequestController {
+    var segueCode: String { SegueIdentifiers.CarToEndRegistration }
+    
+    @IBAction func nextButtonDidPressed(sender: Any?) {
+        guard let vin = vinCodeTextField.text else { displayError(nil); return }
+        guard vin.count == 17 else { displayError(nil); return }
+        indicator.startAnimating()
+        checkVinButton.isHidden = true
+        indicator.isHidden = false
+        NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
+                [URLQueryItem(name: PostRequestKeys.showroomId, value: TMPshowroomid!),
+                 URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
+                 URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId)],
+                completion: completionForSegue)
     }
     
-    private var completion: (Data?) -> Void {
+    var completionForSegue: (Data?) -> Void {
         { [self] data in
             if let data = data {
                 do {
                     let response = try JSONDecoder().decode(CarDidCheckResponse.self, from: data)
                     
-                    #warning("to-do response with car")
-                    let car = Car(id: "todo", brand: "todo", model: "todo", color: "todo", colorSwatch: "todo", colorDescription: "todo", isMetallic: "todo", plate: "todo", vin: vinCodeTextField.text!)
-                    
-                    DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [car]))
-                    
-                    DispatchQueue.main.async {
-                        indicator.stopAnimating()
-                        indicator.isHidden = true
-                        checkVinButton.isHidden = false
-                        if response.error_code != nil {
-                            displayError(response.message)
-                        } else {
-                            UserDefaults.standard.set(vinCodeTextField.text, forKey: DefaultsKeys.vin)
-                            performSegue(withIdentifier: segueCode, sender: self)
+                    if response.error_code != nil {
+                        displayError(response.message)
+                    } else {
+                        DispatchQueue.main.async {
+                            if let userCar = response.car, let vin = vinCodeTextField.text {
+                                DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [userCar.toDomain(with: vin)]))
+                                UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
+                                performSegue(withIdentifier: segueCode, sender: self)
+                            } else { displayError("Сервер прислал неверные данные") }
                         }
                     }
                 }
@@ -79,6 +75,8 @@ class CheckVinViewController: UIViewController {
                     print("Decoder error: \(decodeError.localizedDescription)")
                     displayError("Сервер прислал неверные данные")
                 }
+            } else {
+                displayError("Ошибка при получении данных")
             }
         }
     }

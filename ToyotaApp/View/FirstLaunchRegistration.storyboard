@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -187,6 +187,9 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="268.66666666666669" width="374" height="48.333333333333314"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48.333333333333314" id="DqK-wg-c3G"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -260,7 +263,7 @@
                         <outlet property="nextButtonIndicator" destination="hrn-D5-1Xb" id="keQ-Kb-L61"/>
                         <outlet property="showroomLabel" destination="Cvh-mo-Boh" id="wT5-Sf-Rsd"/>
                         <outlet property="showroomTextField" destination="InT-oW-nHl" id="jcc-N2-D19"/>
-                        <segue destination="3my-7G-TR7" kind="show" identifier="DealerToCar" id="ra1-wl-V7k"/>
+                        <segue destination="3my-7G-TR7" kind="show" identifier="DealerToCheckVin" id="ra1-wl-V7k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -759,7 +762,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="checkVin" destination="3my-7G-TR7" eventType="touchUpInside" id="xfc-Rg-NU0"/>
+                                    <action selector="nextButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="K4f-dO-g1M"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Dr-7q-bsh">
