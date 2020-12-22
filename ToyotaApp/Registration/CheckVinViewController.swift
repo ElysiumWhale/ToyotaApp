@@ -8,9 +8,7 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     
-    //var car: DTOCar?
-    var TMPshowroomid: String?
-    //var parentDelegate: AddingCarDelegate!
+    var showroomId: String?
     
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.isHidden = true
@@ -47,7 +45,7 @@ extension CheckVinViewController: SegueWithRequestController {
         checkVinButton.isHidden = true
         indicator.isHidden = false
         NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
-                [URLQueryItem(name: PostRequestKeys.showroomId, value: TMPshowroomid!),
+                [URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId!),
                  URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
                  URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId)],
                 completion: completionForSegue)

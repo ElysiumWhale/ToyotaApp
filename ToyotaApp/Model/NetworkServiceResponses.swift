@@ -109,7 +109,8 @@ public struct DTOShowroom: Codable {
 //MARK: - ShowroomDidSelectResponse
 public struct ShowroomDidSelectResponse: Codable {
     let result: String
-    let cars: [DTOCar]?
+    let message: String
+    let error_code: String?
 }
 
 public struct DTOCar: Codable {

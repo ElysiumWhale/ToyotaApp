@@ -22,8 +22,6 @@ class DealerViewController: PickerController {
     private var showrooms: [DTOShowroom] = [DTOShowroom]()
     private var selectedShowroom: DTOShowroom?
     
-    private var responseCars: [DTOCar]?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePicker(view: cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
@@ -46,9 +44,7 @@ class DealerViewController: PickerController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as? CheckVinViewController
-                destinationVC?.TMPshowroomid = selectedShowroom!.id
-                //let destinationVC = segue.destination as? AddingCarViewController
-                //destinationVC?.cars = responseCars
+                destinationVC?.showroomId = selectedShowroom!.id
             default: return
         }
     }
@@ -73,7 +69,7 @@ extension DealerViewController: SegueWithRequestController {
             nextButtonIndicator.startAnimating()
             nextButtonIndicator.isHidden = false
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.getCars, params: [URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId),
+            NetworkService.shared.makePostRequest(page: PostRequestPath.setShowroom, params: [URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId),
                  URLQueryItem(name: PostRequestKeys.showroomId, value: showroom.id)],
                 completion: completionForSegue)
         } else { return }
@@ -82,26 +78,31 @@ extension DealerViewController: SegueWithRequestController {
     var completionForSegue: (Data?) -> Void {
         { [self] data in
             if let data = data {
-                do {
-                    let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
-                    responseCars = decodedResponse.cars
-                    
-                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name, selectedCity!.name)]))
-                    
+                
+                func completion(perform segue: Bool = false) {
                     DispatchQueue.main.async {
                         nextButtonIndicator.stopAnimating()
                         nextButtonIndicator.isHidden = true
                         nextButton.isHidden = false
-                        performSegue(withIdentifier: segueCode, sender: self)
+                        if segue {
+                            performSegue(withIdentifier: segueCode, sender: self)
+                        }
+                    }
+                }
+                
+                do {
+                    let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
+                    
+                    if let _ = decodedResponse.error_code {
+                        completion()
+                    } else {
+                        DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name,  selectedCity!.name)]))
+                        completion(perform: true)
                     }
                 }
                 catch let decodeError as NSError {
                     print("Decoder error: \(decodeError.localizedDescription)")
-                    DispatchQueue.main.async {
-                        nextButtonIndicator.stopAnimating()
-                        nextButtonIndicator.isHidden = true
-                        nextButton.isHidden = false
-                    }
+                    completion()
                 }
             }
         }
