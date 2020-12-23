@@ -180,13 +180,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите салон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-mo-Boh">
-                                <rect key="frame" x="20" y="340" width="374" height="36"/>
+                                <rect key="frame" x="20" y="336" width="374" height="35.666666666666686"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="268.66666666666669" width="374" height="48.333333333333314"/>
+                                <rect key="frame" x="20" y="270.66666666666669" width="374" height="48.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48.333333333333314" id="DqK-wg-c3G"/>
                                 </constraints>
@@ -194,7 +194,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Дилер" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="InT-oW-nHl" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="384" width="374" height="53"/>
+                                <rect key="frame" x="20" y="379.66666666666669" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="NeF-pV-Qau"/>
                                 </constraints>
@@ -202,7 +202,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="77N-z1-1oO">
-                                <rect key="frame" x="157" y="361" width="100" height="100"/>
+                                <rect key="frame" x="157" y="356.66666666666669" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="77N-z1-1oO" secondAttribute="height" multiplier="1:1" id="CQV-hT-Sjf"/>
                                 </constraints>
@@ -232,7 +232,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="77N-z1-1oO" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="157" id="06l-iv-AqO"/>
-                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="WLH-tK-IJr" secondAttribute="bottom" constant="23" id="2yi-7P-v75"/>
+                            <constraint firstItem="Cvh-mo-Boh" firstAttribute="top" secondItem="WLH-tK-IJr" secondAttribute="bottom" constant="17" id="2yi-7P-v75"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="52" id="3Bk-9o-Bzs"/>
                             <constraint firstItem="Q5I-rD-2TU" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="85" id="5ju-UY-QGz"/>
                             <constraint firstItem="hrn-D5-1Xb" firstAttribute="top" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="-72" id="B7J-gb-EJg"/>
@@ -247,12 +247,11 @@
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Q5I-rD-2TU" secondAttribute="trailing" constant="20" id="buu-UI-0cQ"/>
                             <constraint firstItem="WLH-tK-IJr" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="hDY-6i-xzo"/>
                             <constraint firstItem="77N-z1-1oO" firstAttribute="top" secondItem="InT-oW-nHl" secondAttribute="bottom" constant="-76" id="ivy-zX-UfF"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="77N-z1-1oO" secondAttribute="bottom" constant="401" id="keS-vz-0cc"/>
                             <constraint firstItem="JAZ-G9-1Io" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="84" id="niW-go-3hx"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="InT-oW-nHl" secondAttribute="trailing" constant="20" id="pmV-QT-HFE"/>
                             <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="Cvh-mo-Boh" secondAttribute="trailing" constant="20" id="rJC-aS-YxY"/>
                             <constraint firstItem="hrn-D5-1Xb" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="157" id="veZ-l6-u9X"/>
-                            <constraint firstItem="WLH-tK-IJr" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="8" symbolic="YES" id="xTc-s0-wpx"/>
+                            <constraint firstItem="WLH-tK-IJr" firstAttribute="top" secondItem="Q5I-rD-2TU" secondAttribute="bottom" constant="10" id="xTc-s0-wpx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Дилер" id="5ue-dg-1Tp"/>
@@ -261,7 +260,7 @@
                         <outlet property="cityTextFieldIndicator" destination="77N-z1-1oO" id="Elb-6j-ePp"/>
                         <outlet property="nextButton" destination="JAZ-G9-1Io" id="VTy-QX-BD9"/>
                         <outlet property="nextButtonIndicator" destination="hrn-D5-1Xb" id="keQ-Kb-L61"/>
-                        <outlet property="showroomLabel" destination="Cvh-mo-Boh" id="wT5-Sf-Rsd"/>
+                        <outlet property="showroomLabel" destination="Cvh-mo-Boh" id="Ly2-H8-dQg"/>
                         <outlet property="showroomTextField" destination="InT-oW-nHl" id="jcc-N2-D19"/>
                         <segue destination="3my-7G-TR7" kind="show" identifier="DealerToCheckVin" id="ra1-wl-V7k"/>
                     </connections>
@@ -766,10 +765,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Dr-7q-bsh">
-                                <rect key="frame" x="96" y="714" width="222" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4Dr-7q-bsh" secondAttribute="height" multiplier="223:53" constant="74.735849056603797" id="aU5-VK-NVo"/>
-                                </constraints>
+                                <rect key="frame" x="96" y="715" width="222" height="34"/>
                                 <state key="normal" title="Пропустить этот шаг">
                                     <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
@@ -829,13 +825,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPd-Dg-SNB">
-                                <rect key="frame" x="20" y="220" width="374" height="84"/>
+                                <rect key="frame" x="20" y="220" width="374" height="103"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="92" y="793" width="231" height="38"/>
+                                <rect key="frame" x="92" y="787" width="231" height="44"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
@@ -849,13 +845,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить еще салоны и автомибили и многое другое." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ge-wf-V2H">
-                                <rect key="frame" x="50" y="342" width="313" height="77"/>
+                                <rect key="frame" x="50" y="361" width="313" height="125.66666666666669"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFS-HL-DLP">
-                                <rect key="frame" x="50" y="472" width="313" height="25.666666666666686"/>
+                                <rect key="frame" x="50" y="539.66666666666663" width="313" height="31.666666666666629"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -896,7 +892,7 @@
     </scenes>
     <designables>
         <designable name="2XS-il-f54">
-            <size key="intrinsicContentSize" width="166" height="38"/>
+            <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
         <designable name="Ax1-4T-jTA">
             <size key="intrinsicContentSize" width="67" height="44"/>
@@ -917,7 +913,7 @@
             <size key="intrinsicContentSize" width="119" height="44"/>
         </designable>
         <designable name="m8K-nk-2qV">
-            <size key="intrinsicContentSize" width="166" height="38"/>
+            <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
