@@ -1,7 +1,6 @@
 import UIKit
 
 class MyProfileViewController: UIViewController {
-    
     @IBOutlet private(set) var firstNameTextField: UITextField!
     @IBOutlet private(set) var secondNameTextField: UITextField!
     @IBOutlet private(set) var lastNameTextField: UITextField!
@@ -24,11 +23,7 @@ class MyProfileViewController: UIViewController {
             birthTextField.text = user.person.birthday
             emailTextField.text = user.person.email
         } else {
-            firstNameTextField.text = "Mock"
-            secondNameTextField.text = "Mock"
-            lastNameTextField.text = "Mock"
-            birthTextField.text = "21.05.78"
-            emailTextField.text = "mock.mock@mock.mock"
+            PopUpPreset.display(with: "Ошибка", description: "...", buttonText: "Ок")
         }
     }
     
@@ -37,30 +32,30 @@ class MyProfileViewController: UIViewController {
         if isPersonEditing {
             saveButton.setTitle("Сохранить", for: .normal)
         } else {
+            #warning("to-do: save profile query + push to user defaults")
             saveButton.setTitle("Редактировать", for: .normal)
         }
-        firstNameTextField.isEnabled = isPersonEditing
-        secondNameTextField.isEnabled = isPersonEditing
-        lastNameTextField.isEnabled = isPersonEditing
-        birthTextField.isEnabled = isPersonEditing
-        emailTextField.isEnabled = isPersonEditing
-        cancelButton.isEnabled = isPersonEditing
-        cancelButton.isHidden = !isPersonEditing
+        switchEditingMode(with: isPersonEditing)
     }
     
     @IBAction func cancelEdit(sender: UIButton) {
         saveButton.setTitle("Редактировать", for: .normal)
         isPersonEditing = false
-        firstNameTextField.isEnabled = false
-        secondNameTextField.isEnabled = false
-        lastNameTextField.isEnabled = false
-        birthTextField.isEnabled = false
-        emailTextField.isEnabled = false
-        cancelButton.isEnabled = false
-        cancelButton.isHidden = true
+        switchEditingMode(with: isPersonEditing)
+    }
+    
+    func switchEditingMode(with: Bool) {
+        firstNameTextField.isEnabled = with
+        secondNameTextField.isEnabled = with
+        lastNameTextField.isEnabled = with
+        birthTextField.isEnabled = with
+        emailTextField.isEnabled = with
+        cancelButton.isEnabled = with
+        cancelButton.isHidden = !with
     }
     
     @IBAction func logout(sender: Any?) {
+        #warning("to-do: logout + clean memory")
         PopUpPreset.display(with: "Выход из аккаунта", description: "Вы действительно хотите выйти?", buttonText: "Нет")
     }
     
@@ -75,6 +70,7 @@ class MyProfileViewController: UIViewController {
     }
 }
 
+//MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
     func setUser(info: UserInfo) {
         userInfo = info
