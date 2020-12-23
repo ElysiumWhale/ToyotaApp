@@ -150,6 +150,7 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A78D74612593997B00F8347C /* Legacy */,
 				A759469F2523E7D200312EBE /* Authentification */,
 				A7D1205D253E6A7F005F85B0 /* Registration */,
 				A791FDD82524E17300A595BB /* MainMenu */,
@@ -187,6 +188,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A78D74612593997B00F8347C /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				A75946A72523F13E00312EBE /* TMPVC.swift */,
+				A7D12069253E7168005F85B0 /* AddingCarViewController.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		A791FDD82524E17300A595BB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +204,6 @@
 				A791FDDB2524E19B00A595BB /* Tech */,
 				A791FDDA2524E19300A595BB /* Service */,
 				A791FDD92524E18800A595BB /* MyProfile */,
-				A75946A72523F13E00312EBE /* TMPVC.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -277,7 +286,6 @@
 			children = (
 				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
 				A7D12066253E713A005F85B0 /* DealerViewController.swift */,
-				A7D12069253E7168005F85B0 /* AddingCarViewController.swift */,
 				A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */,
 				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
 			);
