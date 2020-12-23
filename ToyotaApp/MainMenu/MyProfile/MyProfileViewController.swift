@@ -17,7 +17,6 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.sizeToFit()
         if let user = userInfo {
             firstNameTextField.text = user.person.firstName
             secondNameTextField.text = user.person.secondName
@@ -36,9 +35,9 @@ class MyProfileViewController: UIViewController {
     @IBAction func enterEditMode(sender: UIButton) {
         isPersonEditing = !isPersonEditing
         if isPersonEditing {
-            saveButton.titleLabel!.text = "Сохранить"
+            saveButton.setTitle("Сохранить", for: .normal)
         } else {
-            saveButton.titleLabel!.text = "Редактировать"
+            saveButton.setTitle("Редактировать", for: .normal)
         }
         firstNameTextField.isEnabled = isPersonEditing
         secondNameTextField.isEnabled = isPersonEditing
@@ -50,6 +49,8 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction func cancelEdit(sender: UIButton) {
+        saveButton.setTitle("Редактировать", for: .normal)
+        isPersonEditing = false
         firstNameTextField.isEnabled = false
         secondNameTextField.isEnabled = false
         lastNameTextField.isEnabled = false

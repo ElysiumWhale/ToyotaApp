@@ -10,9 +10,9 @@ class PopUpPreset {
     }
     
     class private func popUpMessagePreset(title: String, description: String, buttonText: String) -> EKPopUpMessage {
-            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .black, dark: .white), alignment: .center))
-            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .black, dark: .white), alignment: .center))
-            let button = EKProperty.ButtonContent(label: .init(text: buttonText, style: .init(font: UIFont.boldSystemFont(ofSize: 20), color: .black)), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear)
+            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
+            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
+            let button = EKProperty.ButtonContent(label: .init(text: buttonText, style: .init(font: UIFont.boldSystemFont(ofSize: 20), color: .init(red: 223, green: 66, blue: 76))), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear)
             return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button, action: { SwiftEntryKit.dismiss() })
     }
     
