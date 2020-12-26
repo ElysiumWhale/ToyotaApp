@@ -62,6 +62,7 @@ public class DefaultsManager {
     
     class func pushUserInfo<T>(info: T) where T:WithDefaultsKey {
         do {
+            #warning("to-do: working with arrays")
             let data = try JSONEncoder().encode(info)
             defaults.set(data, forKey: info.key)
         }

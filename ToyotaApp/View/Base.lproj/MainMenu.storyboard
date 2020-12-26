@@ -106,16 +106,6 @@
             </objects>
             <point key="canvasLocation" x="2079.7101449275365" y="142.63392857142856"/>
         </scene>
-        <!--Техническое обслуживание-->
-        <scene sceneID="aPj-wx-cYr">
-            <objects>
-                <viewController id="cnr-Ha-Lss" customClass="TechOverviewViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Техническое обслуживание" id="xaE-qY-jJg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L6b-kL-X6p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2079.7101449275365" y="1562.9464285714284"/>
-        </scene>
         <!--Услуги-->
         <scene sceneID="vV6-m5-P55">
             <objects>
@@ -124,7 +114,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCn-af-zlT" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCn-af-zlT" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="176" width="345" height="80"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -137,11 +127,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="cnr-Ha-Lss" kind="show" identifier="ServiceNavToTech" id="i5T-Z4-p4V"/>
-                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQ8-9i-guK" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQ8-9i-guK" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="276" width="345" height="80"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -155,7 +142,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGu-zq-ZZF" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGu-zq-ZZF" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="376" width="345" height="80"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -169,7 +156,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-os-rqx" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-os-rqx" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="476" width="345" height="80"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -183,7 +170,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImO-lQ-Ike" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImO-lQ-Ike" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="576" width="345" height="80"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -205,6 +192,12 @@
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Qg-ywE">
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dcR-Qg-ywE" secondAttribute="height" multiplier="1:1" id="OdJ-E7-kRg"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="afF-bh-RPv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -221,20 +214,42 @@
                             <constraint firstItem="wQ8-9i-guK" firstAttribute="top" secondItem="VCn-af-zlT" secondAttribute="bottom" constant="20" id="KXH-Sx-Q2T"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="dM1-os-rqx" secondAttribute="trailing" constant="34" id="MeS-yN-4Wb"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="34" id="Qgv-mL-5MZ"/>
+                            <constraint firstItem="dcR-Qg-ywE" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="222.66666666666666" id="Tqd-o6-BEG"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="ImO-lQ-Ike" secondAttribute="trailing" constant="34" id="Ws8-Ij-2Jc"/>
                             <constraint firstItem="dM1-os-rqx" firstAttribute="top" secondItem="bGu-zq-ZZF" secondAttribute="bottom" constant="20" id="Wz0-Ug-nqd"/>
                             <constraint firstItem="ImO-lQ-Ike" firstAttribute="top" secondItem="dM1-os-rqx" secondAttribute="bottom" constant="20" id="Z3Y-0A-pE9"/>
                             <constraint firstItem="VCn-af-zlT" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="cmw-C6-qRz"/>
+                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="dcR-Qg-ywE" secondAttribute="trailing" constant="132" id="fod-Cm-Z9e"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="VCn-af-zlT" secondAttribute="trailing" constant="34" id="gTe-4T-0at"/>
+                            <constraint firstItem="afF-bh-RPv" firstAttribute="bottom" secondItem="dcR-Qg-ywE" secondAttribute="bottom" constant="290" id="lFS-RE-PHn"/>
                             <constraint firstItem="r3W-A2-Oo1" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="mgy-Bp-8Ld"/>
+                            <constraint firstItem="dcR-Qg-ywE" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="132" id="zKa-QJ-ANJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf"/>
                     <navigationItem key="navigationItem" title="Услуги" largeTitleDisplayMode="always" id="9HU-D7-X9D"/>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="dcR-Qg-ywE" id="Vkt-l2-iLv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYw-e7-RDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1153.6231884057972" y="1562.9464285714284"/>
+        </scene>
+        <!--Tech Overview View Controller-->
+        <scene sceneID="gFH-Zd-5JP">
+            <objects>
+                <viewController id="r0j-Xb-7Ep" customClass="TechOverviewViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JmC-W6-pEd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="kwk-Sl-wSu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l68-YJ-5cR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2080" y="1563"/>
         </scene>
         <!--Мое авто-->
         <scene sceneID="TX7-2q-O8n">
@@ -595,7 +610,7 @@
             <size key="intrinsicContentSize" width="163" height="42"/>
         </designable>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
+            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
         </designable>
         <designable name="VCn-af-zlT">
             <size key="intrinsicContentSize" width="196" height="42"/>
@@ -607,10 +622,10 @@
             <size key="intrinsicContentSize" width="111" height="42"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
+            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
+            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
         </designable>
         <designable name="wQ8-9i-guK">
             <size key="intrinsicContentSize" width="77" height="42"/>

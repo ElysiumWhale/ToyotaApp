@@ -136,8 +136,9 @@ public struct DTOCar: Codable {
 }
 
 extension DTOCar {
-    func toDomain(with vin: String) -> Car {
-        return Car(id: id, brand: brandName, model: modelName,
+    func toDomain(with vin: String, showroom: String) -> Car {
+        return Car(id: id, showroomId: showroom,
+                   brand: brandName, model: modelName,
                    color: colorName ?? "Empty",
                    colorSwatch: colorSwatch ?? "Empty",
                    colorDescription: colorDescription ?? "Empty",
@@ -152,4 +153,35 @@ public struct CarDidCheckResponse: Codable {
     let message: String
     let error_code: String?
     let car: DTOCar?
+}
+
+//MARK: - GetServicesTypes
+public struct ServicesTypesDidGetResponse: Codable {
+    let result: String
+    let error_code: String?
+    let service_type: [Service]?
+}
+
+public struct Service: Codable {
+    let id: String
+    let service_type_name: String
+}
+
+//MARK: - GetServices
+class ServicesDidGetResponse: Response {
+    var service_type: [Service]?
+    
+    struct Service: Codable {
+        let id: String
+        let showroom_id: String
+        let service_type_id: String
+        let service_name: String
+        let koeff_time: String
+    }
+}
+
+class Response: Codable {
+    var result: String
+    var error_code: String?
+    var message: String?
 }

@@ -34,7 +34,7 @@ protocol RoundedControl {
         modelNameLabel.text = car.brandName + car.modelName
         colorNameLabel.text = car.colorName
         registrationNumberLabel.text = car.licensePlate
-        backgroundColor = UIColor(hex: car.colorSwatch!) ?? .gray
+        //backgroundColor = UIColor(hex: car.colorSwatch!) ?? .gray
         
         colorDescr = car.colorDescription
         metallic = car.isMetallic

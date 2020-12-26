@@ -87,6 +87,7 @@ struct Showroom: Codable {
 
 struct Car: Codable {
     let id: String
+    let showroomId: String
     let brand: String
     let model: String
     let color: String

@@ -24,6 +24,8 @@ struct PostRequestPath {
     //static let getCars = "get_cars.php"
     static let checkCar = "check_car.php"
     static let deleteTemp = "delete_tmp_record.php"
+    
+    static let getServicesTypes = "get_service_type.php"
 }
 
 struct PostRequestKeys {
