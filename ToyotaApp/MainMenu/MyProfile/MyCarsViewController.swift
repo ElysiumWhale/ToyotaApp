@@ -3,12 +3,11 @@ import UIKit
 class MyCarsViewController: UIViewController {
     @IBOutlet private(set) var carsCollection: UICollectionView!
     
-    let cellIdentrifier = CellIdentifiers.CarChoosingCell
+    let cellIdentrifier = CellIdentifiers.CarCell
     private var cars: UserInfo.Cars = UserInfo.Cars()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     func configure(with: UserInfo.Cars) {
@@ -18,16 +17,6 @@ class MyCarsViewController: UIViewController {
     @IBAction func addCar(sender: Any?) {
         PopUpPreset.display(with: "Добавить машину", description: "Скоро здесь можно будет добавить машину", buttonText: "Ок")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MyCarsViewController: UICollectionViewDataSource {

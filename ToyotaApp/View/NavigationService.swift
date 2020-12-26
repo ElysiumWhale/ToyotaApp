@@ -47,9 +47,8 @@ class NavigationService {
                     } else { fallbackCompletion() }
                 case 3:
                     if let cities = context.cities,
-                       let showrooms = context.showrooms,
-                       let cars = context.cars {
-                        NavigationService.loadRegister(with: user, cities, showrooms, and: cars)
+                       let showrooms = context.showrooms {
+                        NavigationService.loadRegister(with: user, cities, showrooms)
                     } else { fallbackCompletion() }
                 case 4:
                     if let profile = user.profile,
@@ -99,8 +98,7 @@ extension NavigationService {
         }
     }
     
-    #warning("to-do rework")
-    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom], and cars: [DTOCar]) {
+    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
             let pivc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.personalInfoViewController) as! PersonalInfoViewController
@@ -110,10 +108,9 @@ extension NavigationService {
             let index = cities.firstIndex(where: { $0.name == user.showroom!.first!.cityName })!
             dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: user.showroom!.first)
             
-            let acvc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.addingCarViewController) as! AddingCarViewController
-            acvc.configure(carsList: cars)
+            let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVinViewController) as! CheckVinViewController
             
-            let controller = configureNavigationStack(with: [pivc, dvc, acvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
+            let controller = configureNavigationStack(with: [pivc, dvc, cvvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
         }
     }

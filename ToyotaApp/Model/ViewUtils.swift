@@ -15,6 +15,7 @@ public struct AppViewControllers {
     static let personalInfoViewController = "PersonalInfoViewController"
     static let dealerViewController = "DealerViewController"
     static let addingCarViewController = "AddingCarViewController"
+    static let checkVinViewController = "CheckVinViewController"
     
     static let auth = "AuthViewController"
     static let mainMenu = "MainMenuViewController"
@@ -43,5 +44,5 @@ public struct SegueIdentifiers {
 }
 
 public struct CellIdentifiers {
-    static let CarChoosingCell = "CarCell"
+    static let CarCell = "CarCell"
 }
