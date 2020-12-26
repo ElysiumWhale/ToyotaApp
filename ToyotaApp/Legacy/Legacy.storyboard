@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ToyotaType-Bold.ttf">
+            <string>ToyotaType-Bold</string>
+        </array>
+        <array key="ToyotaType-Book.ttf">
+            <string>ToyotaType-Book</string>
+        </array>
+        <array key="ToyotaType-Light.ttf">
+            <string>ToyotaType-Light</string>
+        </array>
+        <array key="ToyotaType-Regular.ttf">
+            <string>ToyotaType-Regular</string>
+        </array>
+        <array key="ToyotaType-Semibold.ttf">
+            <string>ToyotaType-Semibold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Машина-->
+        <scene sceneID="lEW-4U-uYu">
+            <objects>
+                <viewController storyboardIdentifier="AddingCarViewController" id="HBT-wV-GqM" customClass="AddingCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Ot-ZT-APd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fL-Dx-Yoe" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="135" width="374" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5fL-Dx-Yoe" secondAttribute="height" multiplier="374:53" id="SI7-gu-Cqm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQo-cv-BUA" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="421" width="374" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aQo-cv-BUA" secondAttribute="height" multiplier="374:53" id="bPO-Au-nDy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jrv-AL-n0F" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="96" y="795" width="223" height="47"/>
+                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jrv-AL-n0F" secondAttribute="height" multiplier="223:45" constant="-9.9111111111111256" id="UuU-Vh-ami"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="19"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" title="Проверить по VIN">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="checkVinButtonTappedWithSender:" destination="HBT-wV-GqM" eventType="touchUpInside" id="QIN-1K-Fb3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите модель" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM7-rr-6zP">
+                                <rect key="frame" x="20" y="94" width="374" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DM7-rr-6zP" secondAttribute="height" multiplier="374:31" id="u6m-Yt-nA2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите номер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu3-o0-MKs">
+                                <rect key="frame" x="20" y="382" width="374" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Lu3-o0-MKs" secondAttribute="height" multiplier="374:31" id="DaK-0U-kKA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Цвет" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iBy-r8-QRR" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="279" width="374" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iBy-r8-QRR" secondAttribute="height" multiplier="374:53" id="vV6-X5-pPL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите цвет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spa-af-TqX">
+                                <rect key="frame" x="20" y="238" width="374" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Spa-af-TqX" secondAttribute="height" multiplier="374:31" id="yDo-7k-TTT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="axo-pm-dpq">
+                                <rect key="frame" x="96" y="737" width="223" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="axo-pm-dpq" secondAttribute="height" multiplier="223:53" constant="29.452830188679258" id="7fx-Gh-laL"/>
+                                </constraints>
+                                <state key="normal" title="Пропустить этот шаг">
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MgM-fB-Ntr" kind="presentation" modalPresentationStyle="fullScreen" id="QlB-oE-Q7j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LKf-nx-j3z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Spa-af-TqX" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="0RR-3m-f6V"/>
+                            <constraint firstItem="aQo-cv-BUA" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="0Rv-tG-Mb7"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="aQo-cv-BUA" secondAttribute="trailing" constant="20" id="2oM-db-19W"/>
+                            <constraint firstItem="Spa-af-TqX" firstAttribute="top" secondItem="5fL-Dx-Yoe" secondAttribute="bottom" constant="50" id="7cZ-TK-Lqy"/>
+                            <constraint firstItem="jrv-AL-n0F" firstAttribute="top" secondItem="axo-pm-dpq" secondAttribute="bottom" constant="12" id="7ta-hY-hfE"/>
+                            <constraint firstItem="DM7-rr-6zP" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="8x4-ip-j5Z"/>
+                            <constraint firstItem="5fL-Dx-Yoe" firstAttribute="top" secondItem="DM7-rr-6zP" secondAttribute="bottom" constant="10" id="BRy-uA-uJt"/>
+                            <constraint firstItem="axo-pm-dpq" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="96" id="Clr-wX-0iC"/>
+                            <constraint firstItem="aQo-cv-BUA" firstAttribute="top" secondItem="Lu3-o0-MKs" secondAttribute="bottom" constant="8" id="Ev4-lR-n9i"/>
+                            <constraint firstAttribute="trailing" secondItem="jrv-AL-n0F" secondAttribute="trailing" constant="95" id="FEB-ya-R3e"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="axo-pm-dpq" secondAttribute="trailing" constant="95" id="IZd-Jg-zy4"/>
+                            <constraint firstItem="iBy-r8-QRR" firstAttribute="top" secondItem="Spa-af-TqX" secondAttribute="bottom" constant="10" id="Nev-tU-BV3"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="5fL-Dx-Yoe" secondAttribute="trailing" constant="20" id="P7G-Wn-egt"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="Lu3-o0-MKs" secondAttribute="trailing" constant="20" id="VZA-XP-NGa"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="bottom" secondItem="jrv-AL-n0F" secondAttribute="bottom" constant="20" id="bwe-4l-s1A"/>
+                            <constraint firstItem="5fL-Dx-Yoe" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="e6t-SX-5l0"/>
+                            <constraint firstItem="Lu3-o0-MKs" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="ezC-Fx-Sck"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="iBy-r8-QRR" secondAttribute="trailing" constant="20" id="m2l-OU-AZZ"/>
+                            <constraint firstItem="Lu3-o0-MKs" firstAttribute="top" secondItem="iBy-r8-QRR" secondAttribute="bottom" constant="50" id="phN-9I-qHF"/>
+                            <constraint firstItem="DM7-rr-6zP" firstAttribute="top" secondItem="LKf-nx-j3z" secondAttribute="top" constant="50" id="tKZ-d5-FOT"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="DM7-rr-6zP" secondAttribute="trailing" constant="20" id="tjv-ul-Fzk"/>
+                            <constraint firstItem="jrv-AL-n0F" firstAttribute="leading" secondItem="1Ot-ZT-APd" secondAttribute="leading" constant="96" id="ud2-fM-gcR"/>
+                            <constraint firstItem="LKf-nx-j3z" firstAttribute="trailing" secondItem="Spa-af-TqX" secondAttribute="trailing" constant="20" id="xXy-oh-eXc"/>
+                            <constraint firstItem="iBy-r8-QRR" firstAttribute="leading" secondItem="LKf-nx-j3z" secondAttribute="leading" constant="20" id="z7O-oE-hit"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Машина" id="opq-R4-SYG"/>
+                    <connections>
+                        <outlet property="checkVinButton" destination="jrv-AL-n0F" id="2WZ-ze-JGR"/>
+                        <outlet property="colorLabel" destination="Spa-af-TqX" id="bnT-rw-2rk"/>
+                        <outlet property="colorTextField" destination="iBy-r8-QRR" id="bJd-NV-yyK"/>
+                        <outlet property="modelLabel" destination="DM7-rr-6zP" id="4UP-5Q-xAn"/>
+                        <outlet property="modelTextField" destination="5fL-Dx-Yoe" id="gQs-qn-CKh"/>
+                        <outlet property="plateLabel" destination="Lu3-o0-MKs" id="jHn-Ke-C3n"/>
+                        <outlet property="plateTextField" destination="aQo-cv-BUA" id="JW1-A5-h6C"/>
+                        <segue destination="pj6-LD-T6s" kind="presentation" identifier="CarToCheckVin" id="Xrb-w8-glE"/>
+                        <segue destination="MgM-fB-Ntr" kind="presentation" identifier="CarToEndRegistration" modalPresentationStyle="fullScreen" id="SI6-Sj-b47"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9aF-rQ-yjf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2190" y="911"/>
+        </scene>
+        <!--Завершение-->
+        <scene sceneID="4ag-jO-QMy">
+            <objects>
+                <viewController id="MgM-fB-Ntr" customClass="EndRegistrationViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4et-nl-psB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJS-tF-Brk">
+                                <rect key="frame" x="20" y="220" width="374" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NJS-tF-Brk" secondAttribute="height" multiplier="374:103" id="B4q-mO-9s6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cko-OD-ETO" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="92" y="784" width="231" height="47"/>
+                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cko-OD-ETO" secondAttribute="height" multiplier="231:47" id="Vaz-X8-m1O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <state key="normal" title="В главное меню">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loadMainMenuWithSender:" destination="MgM-fB-Ntr" eventType="touchUpInside" id="Wil-6q-dc8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить еще салоны и автомибили и многое другое." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gE-AA-5sb">
+                                <rect key="frame" x="50" y="361" width="313" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8gE-AA-5sb" secondAttribute="height" multiplier="313:125" id="RoR-8J-7Rn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrA-ki-9am">
+                                <rect key="frame" x="50" y="539" width="313" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OrA-ki-9am" secondAttribute="height" multiplier="313:31" id="IWb-qZ-3RT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="MrH-Em-mch">
+                                <rect key="frame" x="87" y="88" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MrH-Em-mch" secondAttribute="height" multiplier="15:8" id="C5i-Ru-fpm"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gu6-nC-M4H"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OrA-ki-9am" firstAttribute="top" secondItem="8gE-AA-5sb" secondAttribute="bottom" constant="53" id="F9L-Zp-xf1"/>
+                            <constraint firstItem="Cko-OD-ETO" firstAttribute="leading" secondItem="gu6-nC-M4H" secondAttribute="leading" constant="92" id="K7c-5D-YXa"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="trailing" secondItem="Cko-OD-ETO" secondAttribute="trailing" constant="91" id="KVg-ge-bO0"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="trailing" secondItem="8gE-AA-5sb" secondAttribute="trailing" constant="51" id="MJu-4Q-9x1"/>
+                            <constraint firstItem="OrA-ki-9am" firstAttribute="leading" secondItem="gu6-nC-M4H" secondAttribute="leading" constant="50" id="NXb-EB-ET2"/>
+                            <constraint firstItem="8gE-AA-5sb" firstAttribute="top" secondItem="NJS-tF-Brk" secondAttribute="bottom" constant="38" id="Uac-Ap-UWD"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="trailing" secondItem="OrA-ki-9am" secondAttribute="trailing" constant="51" id="ZDQ-7b-zkz"/>
+                            <constraint firstItem="MrH-Em-mch" firstAttribute="top" secondItem="gu6-nC-M4H" secondAttribute="top" constant="44" id="ZbU-9a-CDj"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="bottom" secondItem="Cko-OD-ETO" secondAttribute="bottom" constant="31" id="kfu-jf-1GJ"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="trailing" secondItem="MrH-Em-mch" secondAttribute="trailing" constant="87" id="kij-Ki-1GI"/>
+                            <constraint firstItem="8gE-AA-5sb" firstAttribute="leading" secondItem="gu6-nC-M4H" secondAttribute="leading" constant="50" id="ntk-Kr-yEI"/>
+                            <constraint firstItem="MrH-Em-mch" firstAttribute="leading" secondItem="gu6-nC-M4H" secondAttribute="leading" constant="87" id="oCe-5f-cRK"/>
+                            <constraint firstItem="NJS-tF-Brk" firstAttribute="leading" secondItem="gu6-nC-M4H" secondAttribute="leading" constant="20" id="oi0-UB-OMV"/>
+                            <constraint firstItem="NJS-tF-Brk" firstAttribute="top" secondItem="MrH-Em-mch" secondAttribute="bottom" constant="4" id="ojn-Dw-HyQ"/>
+                            <constraint firstItem="gu6-nC-M4H" firstAttribute="trailing" secondItem="NJS-tF-Brk" secondAttribute="trailing" constant="20" id="viA-v6-jcd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Завершение" id="RKF-aE-IVI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z83-xn-2sT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2971" y="911"/>
+        </scene>
+        <!--Проверка машины по VIN-->
+        <scene sceneID="Oi7-TJ-lVU">
+            <objects>
+                <viewController title="Проверка машины по VIN" id="pj6-LD-T6s" customClass="CheckVinViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wn1-kT-NYE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите VIN-код для выбранной машины" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyu-qF-12h">
+                                <rect key="frame" x="46" y="248" width="322" height="121"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iyu-qF-12h" secondAttribute="height" multiplier="322:121" id="2ss-qM-a3Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qng-cT-qox">
+                                <rect key="frame" x="107" y="160" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qng-cT-qox" secondAttribute="height" multiplier="200:29" id="35R-ED-4Ll"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VIN" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-et-ibH">
+                                <rect key="frame" x="29" y="377" width="355" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VNL-et-ibH" secondAttribute="height" multiplier="71:14" id="XZN-sx-GV0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="vinValueDidChangeWith:" destination="pj6-LD-T6s" eventType="editingChanged" id="gPL-V0-K72"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4FC-NV-zhI" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="87" y="479" width="239" height="47"/>
+                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4FC-NV-zhI" secondAttribute="height" multiplier="239:47" id="pZu-SF-KMb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <state key="normal" title="Проверить">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="checkVin" destination="pj6-LD-T6s" eventType="touchUpInside" id="oig-KE-gbv"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен некорректный VIN-код!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubM-14-CYW">
+                                <rect key="frame" x="40" y="442" width="335" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ubM-14-CYW" secondAttribute="height" multiplier="335:26" id="uwz-ue-i2y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8wa-Lr-e67">
+                                <rect key="frame" x="157" y="453" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8wa-Lr-e67" secondAttribute="height" multiplier="1:1" id="DIH-ZG-Vft"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QQ-uK-7rw">
+                                <rect key="frame" x="107" y="110" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0QQ-uK-7rw" secondAttribute="height" multiplier="200:29" id="Tzs-iO-LYL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6sJ-ms-D7l"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="4FC-NV-zhI" secondAttribute="trailing" constant="88" id="4X4-bK-JaG"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="iyu-qF-12h" secondAttribute="trailing" constant="46" id="5Kn-BT-4Z8"/>
+                            <constraint firstItem="0QQ-uK-7rw" firstAttribute="top" secondItem="6sJ-ms-D7l" secondAttribute="top" constant="54" id="8dG-39-8Hv"/>
+                            <constraint firstItem="0QQ-uK-7rw" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="107" id="AQn-EZ-G6F"/>
+                            <constraint firstItem="qng-cT-qox" firstAttribute="top" secondItem="0QQ-uK-7rw" secondAttribute="bottom" constant="21" id="Ie0-X4-cYe"/>
+                            <constraint firstItem="iyu-qF-12h" firstAttribute="top" secondItem="qng-cT-qox" secondAttribute="bottom" constant="59" id="Iu1-Bb-hMU"/>
+                            <constraint firstItem="8wa-Lr-e67" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="157" id="J7W-JU-acm"/>
+                            <constraint firstItem="4FC-NV-zhI" firstAttribute="top" secondItem="ubM-14-CYW" secondAttribute="bottom" constant="11" id="JD6-iF-d6l"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="qng-cT-qox" secondAttribute="trailing" constant="107" id="KiS-gF-0zP"/>
+                            <constraint firstItem="8wa-Lr-e67" firstAttribute="top" secondItem="4FC-NV-zhI" secondAttribute="bottom" constant="-73" id="M16-La-W2y"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="0QQ-uK-7rw" secondAttribute="trailing" constant="107" id="MbJ-X0-56C"/>
+                            <constraint firstItem="ubM-14-CYW" firstAttribute="top" secondItem="VNL-et-ibH" secondAttribute="bottom" constant="-5" id="QuA-uv-CzB"/>
+                            <constraint firstItem="ubM-14-CYW" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="40" id="RiT-5Q-VB8"/>
+                            <constraint firstItem="VNL-et-ibH" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="29" id="VsL-gP-1Vn"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="8wa-Lr-e67" secondAttribute="trailing" constant="157" id="bTf-kW-6H0"/>
+                            <constraint firstItem="qng-cT-qox" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="107" id="eAi-HT-azO"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="VNL-et-ibH" secondAttribute="trailing" constant="30" id="eJ6-TT-9Hc"/>
+                            <constraint firstItem="iyu-qF-12h" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="46" id="eeE-bZ-MvS"/>
+                            <constraint firstItem="6sJ-ms-D7l" firstAttribute="trailing" secondItem="ubM-14-CYW" secondAttribute="trailing" constant="39" id="fVX-IN-I30"/>
+                            <constraint firstItem="VNL-et-ibH" firstAttribute="top" secondItem="iyu-qF-12h" secondAttribute="bottom" constant="8" symbolic="YES" id="tFh-z6-lYe"/>
+                            <constraint firstItem="4FC-NV-zhI" firstAttribute="leading" secondItem="6sJ-ms-D7l" secondAttribute="leading" constant="87" id="xdX-07-eHD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Проверка машины по VIN" id="Q8a-6p-QsD"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="checkVinButton" destination="4FC-NV-zhI" id="t1c-B0-clL"/>
+                        <outlet property="errorLabel" destination="ubM-14-CYW" id="2lr-VT-s4h"/>
+                        <outlet property="indicator" destination="8wa-Lr-e67" id="sFR-ZB-WDY"/>
+                        <outlet property="modelName" destination="0QQ-uK-7rw" id="tVQ-Gl-7kd"/>
+                        <outlet property="regNumber" destination="qng-cT-qox" id="9CS-Pd-DXH"/>
+                        <outlet property="vinCodeTextField" destination="VNL-et-ibH" id="FgT-Ed-V47"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fN-8o-cJH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1394" y="910"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="4FC-NV-zhI">
+            <size key="intrinsicContentSize" width="119" height="44"/>
+        </designable>
+        <designable name="Cko-OD-ETO">
+            <size key="intrinsicContentSize" width="166" height="38"/>
+        </designable>
+        <designable name="jrv-AL-n0F">
+            <size key="intrinsicContentSize" width="178" height="28"/>
+        </designable>
+    </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="SI6-Sj-b47"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="ToyotaLogoBlack" width="128" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

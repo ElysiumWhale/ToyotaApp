@@ -23,8 +23,8 @@
 		A75946A82523F13E00312EBE /* TMPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A72523F13E00312EBE /* TMPVC.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
 		A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */; };
-		A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */; };
 		A76D4F0B256C83120086813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76D4F0A256C83120086813E /* Main.storyboard */; };
+		A7726F7D2596BBBB00B579D9 /* Legacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7726F7C2596BBBB00B579D9 /* Legacy.storyboard */; };
 		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A776146C256AA6CA00846DAB /* NavigationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776146B256AA6CA00846DAB /* NavigationContext.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -78,8 +78,8 @@
 		A75946A72523F13E00312EBE /* TMPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMPVC.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
 		A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVinViewController.swift; sourceTree = "<group>"; };
-		A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromHex.swift; sourceTree = "<group>"; };
 		A76D4F0A256C83120086813E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A7726F7C2596BBBB00B579D9 /* Legacy.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Legacy.storyboard; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A776146B256AA6CA00846DAB /* NavigationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContext.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -181,7 +181,6 @@
 				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				A77B9311253B035F0011282E /* NetworkServiceResponses.swift */,
-				A75FB5DB2558B431001CA3D1 /* ColorFromHex.swift */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 			);
@@ -193,6 +192,7 @@
 			children = (
 				A75946A72523F13E00312EBE /* TMPVC.swift */,
 				A7D12069253E7168005F85B0 /* AddingCarViewController.swift */,
+				A7726F7C2596BBBB00B579D9 /* Legacy.storyboard */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -365,6 +365,7 @@
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
 				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
+				A7726F7D2596BBBB00B579D9 /* Legacy.storyboard in Resources */,
 				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
 				A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */,
 				A7924D17254B743F001B67C1 /* ToyotaType-Bold.ttf in Resources */,
@@ -402,7 +403,6 @@
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A793EEF6257F18A40094DF09 /* TechOverviewViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
-				A75FB5DC2558B431001CA3D1 /* ColorFromHex.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,

@@ -137,12 +137,12 @@ public struct DTOCar: Codable {
 
 extension DTOCar {
     func toDomain(with vin: String) -> Car {
-        return Car(id: self.id, brand: self.brandName, model: self.modelName,
-                   color: self.colorName ?? "Empty",
-                   colorSwatch: self.colorSwatch ?? "Empty",
-                   colorDescription: self.colorDescription ?? "Empty",
-                   isMetallic: self.isMetallic ?? "0",
-                   plate: self.licensePlate ?? "Empty", vin: vin)
+        return Car(id: id, brand: brandName, model: modelName,
+                   color: colorName ?? "Empty",
+                   colorSwatch: colorSwatch ?? "Empty",
+                   colorDescription: colorDescription ?? "Empty",
+                   isMetallic: isMetallic ?? "0",
+                   plate: licensePlate ?? "Empty", vin: vin)
     }
 }
 

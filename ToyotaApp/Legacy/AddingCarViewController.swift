@@ -45,7 +45,7 @@ class AddingCarViewController: PickerController {
         var color: String?
     }
     
-    private let cellIdentifier = CellIdentifiers.CarChoosingCell
+    private let cellIdentifier = CellIdentifiers.CarCell
     private let endRegisterSegueCode = SegueIdentifiers.CarToEndRegistration
     private let checkCarSegueCode = SegueIdentifiers.CarToCheckVin
     
