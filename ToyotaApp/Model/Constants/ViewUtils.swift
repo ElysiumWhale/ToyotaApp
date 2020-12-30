@@ -45,4 +45,5 @@ public struct SegueIdentifiers {
 
 public struct CellIdentifiers {
     static let CarCell = "CarCell"
+    static let NewsCell = "NewsCell"
 }
