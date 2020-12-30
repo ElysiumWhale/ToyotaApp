@@ -42,6 +42,7 @@ class ServicesViewController: PickerController {
     }
 }
 
+//MARK: - WithUserInfo
 extension ServicesViewController: WithUserInfo {
     func setUser(info: UserInfo) {
         userInfo = info

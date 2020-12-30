@@ -69,7 +69,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="aSg-j3-GJZ" kind="show" identifier="NumberToCodeSegue" id="Hat-4y-yoz"/>
+                                    <action selector="nextButtonDidPressedWithSender:" destination="LPT-FS-7SW" eventType="touchUpInside" id="bhT-bt-H9d"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
@@ -119,6 +119,7 @@
                         <outlet property="indicator" destination="gKJ-7v-DbB" id="26p-Jw-JTN"/>
                         <outlet property="phoneNumber" destination="1t0-20-RV7" id="hxj-90-OgU"/>
                         <outlet property="sendPhoneButton" destination="6ZA-bw-BOW" id="fGa-AC-hmi"/>
+                        <segue destination="aSg-j3-GJZ" kind="show" identifier="NumberToCodeSegue" id="Qx6-m0-PJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUm-mU-6mf" sceneMemberID="firstResponder"/>
