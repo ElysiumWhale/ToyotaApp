@@ -229,6 +229,7 @@
                     <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf"/>
                     <navigationItem key="navigationItem" title="Услуги" largeTitleDisplayMode="always" id="9HU-D7-X9D"/>
                     <connections>
+                        <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
                         <outlet property="loadingIndicator" destination="dcR-Qg-ywE" id="Vkt-l2-iLv"/>
                     </connections>
                 </viewController>
@@ -236,10 +237,10 @@
             </objects>
             <point key="canvasLocation" x="1153.6231884057972" y="1562.9464285714284"/>
         </scene>
-        <!--Tech Overview View Controller-->
+        <!--View Controller-->
         <scene sceneID="gFH-Zd-5JP">
             <objects>
-                <viewController id="r0j-Xb-7Ep" customClass="TechOverviewViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="r0j-Xb-7Ep" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmC-W6-pEd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
