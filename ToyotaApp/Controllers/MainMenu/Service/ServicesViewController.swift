@@ -20,6 +20,7 @@ class ServicesViewController: PickerController {
         super.viewDidLoad()
         if cars.array.count == 1 {
             carTextField.text = "\(cars.array.first!.brand) \(cars.array.first!.model)"
+            carTextField.isEnabled = false
         } else {
             configurePicker(view: carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
             #warning("to-do: check if car chosen in memory")
@@ -36,6 +37,7 @@ class ServicesViewController: PickerController {
     }
     
     @objc private func carDidSelect(sender: Any?) {
+        NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
         //buildUI
     }
 }

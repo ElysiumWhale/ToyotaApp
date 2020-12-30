@@ -69,36 +69,27 @@ extension DealerViewController: SegueWithRequestController {
         } else { return }
     }
     
-    var completionForSegue: (Data?) -> Void {
-        { [self] data in
-            if let data = data {
+    var completionForSegue: (ShowroomDidSelectResponse?) -> Void {
+        { [self] response in
+            if let response = response {
                 
-                func completion(perform segue: Bool = false) {
+                func completion(perform segue: Bool = false, error: String? = nil) {
                     DispatchQueue.main.async {
                         nextButtonIndicator.stopAnimating()
                         nextButtonIndicator.isHidden = true
                         nextButton.isHidden = false
                         if segue {
                             performSegue(withIdentifier: segueCode, sender: self)
-                        }
+                        } else { displayError(whith: error!) }
                     }
                 }
                 
-                do {
-                    let decodedResponse = try JSONDecoder().decode(ShowroomDidSelectResponse.self, from: data)
-                    
-                    if let _ = decodedResponse.error_code {
-                        completion()
-                    } else {
-                        DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name,  selectedCity!.name)]))
-                        completion(perform: true)
-                    }
+                if let _ = response.error_code { completion(error: response.message) }
+                else {
+                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name,  selectedCity!.name)]))
+                    completion(perform: true)
                 }
-                catch let decodeError as NSError {
-                    print("Decoder error: \(decodeError.localizedDescription)")
-                    completion()
-                }
-            }
+            } else { displayError(whith: "Сервер прислал неверные данные") }
         }
     }
 }

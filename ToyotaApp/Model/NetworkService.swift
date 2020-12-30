@@ -42,6 +42,25 @@ class NetworkService {
         }.resume()
     }
     
+    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (T?)->Void = {_ in }) where T:Codable {
+        let request = buildPostRequest(for: page, with: params)
+        
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response { print(response) }
+            if let error = error { print(error) }
+            if let data = data {
+                do {
+                    print(try JSONSerialization.jsonObject(with: data))
+                    let response = try JSONDecoder().decode(T.self, from: data)
+                    completion(response)
+                } catch {
+                    print(error.localizedDescription)
+                    completion(nil)
+                }
+            }
+        }.resume()
+    }
+    
     func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {
         var query = mainUrl
         query.path.append(page)

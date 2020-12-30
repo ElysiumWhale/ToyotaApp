@@ -35,6 +35,8 @@ class CheckVinViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+//MARK: - SegueWithRequestController
 extension CheckVinViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.CarToEndRegistration }
     
@@ -51,31 +53,21 @@ extension CheckVinViewController: SegueWithRequestController {
                 completion: completionForSegue)
     }
     
-    var completionForSegue: (Data?) -> Void {
-        { [self] data in
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(CarDidCheckResponse.self, from: data)
-                    
-                    if response.error_code != nil {
-                        displayError(response.message)
-                    } else {
-                        DispatchQueue.main.async {
-                            if let userCar = response.car, let vin = vinCodeTextField.text {
-                                DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [userCar.toDomain(with: vin, showroom: showroomId!)]))
-                                UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
-                                performSegue(withIdentifier: segueCode, sender: self)
-                            } else { displayError("Сервер прислал неверные данные") }
-                        }
-                    }
-                }
-                catch let decodeError as NSError {
-                    print("Decoder error: \(decodeError.localizedDescription)")
-                    displayError("Сервер прислал неверные данные")
-                }
-            } else {
-                displayError("Ошибка при получении данных")
-            }
+    var completionForSegue: (CarDidCheckResponse?) -> Void {
+        { [self] response in
+            if let response = response {
+               if response.error_code != nil {
+                   displayError(response.message)
+               } else {
+                   DispatchQueue.main.async {
+                       if let userCar = response.car, let vin = vinCodeTextField.text {
+                           DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [userCar.toDomain(with: vin, showroom: showroomId!)]))
+                           UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
+                           performSegue(withIdentifier: segueCode, sender: self)
+                       } else { displayError("Сервер прислал неверные данные") }
+                   }
+               }
+            } else { displayError("Ошибка при получении данных") }
         }
     }
 }

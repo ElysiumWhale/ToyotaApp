@@ -2,8 +2,9 @@ import Foundation
 import UIKit
 
 protocol SegueWithRequestController {
+    associatedtype Response:Codable
+    var completionForSegue: (Response?) -> Void  { get }
     var segueCode: String { get }
-    var completionForSegue: (Data?) -> Void { get }
     func nextButtonDidPressed(sender: Any?)
 }
 

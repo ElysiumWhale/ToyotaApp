@@ -18,3 +18,9 @@ class PickerController: UIViewController {
         return toolBar
     }
 }
+
+extension UIViewController {
+    func displayError(whith text: String) {
+        PopUpPreset.display(with: "Ошибка", description: text, buttonText: "Ок")
+    }
+}

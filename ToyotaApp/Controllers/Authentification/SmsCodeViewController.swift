@@ -65,12 +65,9 @@ extension SmsCodeViewController {
 
 //MARK: - Callback for request
 extension SmsCodeViewController {
-    private var completion: (Data?) -> Void {
-        { [self] data in
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(CheckUserOrSmsCodeResponse.self, from: data)
-                    
+    private var completion: (CheckUserOrSmsCodeResponse?) -> Void {
+        { [self] response in
+            if let response = response {
                     let defaults = UserDefaults.standard
                     defaults.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
                     defaults.setValue(response.userId!, forKey: DefaultsKeys.userId)
@@ -80,16 +77,14 @@ extension SmsCodeViewController {
                     Debug.secretKey = response.secretKey
                     
                     NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
-                }
-                catch let decodeError as NSError {
-                    print("Decoder error: \(decodeError.localizedDescription)")
-                    DispatchQueue.main.async {
-                        wrongCodeLabel.isHidden = false
-                        activitySwitcher?.stopAnimating()
-                        sendSmsCodeButton?.isHidden = false
-                        smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
-                        smsCodeTextField?.layer.borderWidth = 1.0
-                    }
+            }
+            else {
+                DispatchQueue.main.async {
+                    wrongCodeLabel.isHidden = false
+                    activitySwitcher?.stopAnimating()
+                    sendSmsCodeButton?.isHidden = false
+                    smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
+                    smsCodeTextField?.layer.borderWidth = 1.0
                 }
             }
         }

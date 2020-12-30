@@ -11,7 +11,6 @@ class PersonalInfoViewController: UIViewController {
     
     private let datePicker: UIDatePicker = UIDatePicker()
     
-    private let segueCode = SegueIdentifiers.PersonInfoToDealer
     private var cities: [City] = [City]()
     private var date: String = ""
     
@@ -21,42 +20,6 @@ class PersonalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
-    }
-    
-    @IBAction func buttonNextDidPressed(_ sender: UIButton) {
-        guard checkFields() else { return }
-        activitySwitcher.startAnimating()
-        nextButton.isHidden = true
-        
-        configuredProfile = Profile(phone: "",
-                                    firstName: firstNameTextField.text!,
-                                    lastName: lastNameTextField.text!,
-                                    secondName: secondNameTextField.text!,
-                                    email: emailTextField.text!,
-                                    birthday: date)
-        let params = buildParamsForRequest(from: configuredProfile!, date: date)
-        
-        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: params) { [self] data in
-            do {
-                let rawCities = try JSONDecoder().decode(ProfileDidSetResponse.self, from: data!)
-                cities = rawCities.cities.map {
-                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
-                }
-                
-                DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: configuredProfile!))
-                
-                DispatchQueue.main.async {
-                    performSegue(withIdentifier: segueCode, sender: self)
-                }
-            }
-            catch let decodeError as NSError {
-                print("Decoder error: \(decodeError.localizedDescription)")
-                DispatchQueue.main.async {
-                    activitySwitcher.stopAnimating()
-                    nextButton.isHidden = false
-                }
-            }
-        }
     }
     
     private func checkFields() -> Bool {
@@ -175,5 +138,47 @@ extension PersonalInfoViewController {
         requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: profile.email))
         requestParams.append(URLQueryItem(name: PostRequestKeys.birthday, value: date))
         return requestParams
+    }
+}
+
+//MARK: -
+extension PersonalInfoViewController: SegueWithRequestController {
+    var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
+    
+    var completionForSegue: (ProfileDidSetResponse?) -> Void {
+        { [self] response in
+            if let response = response {
+                cities = response.cities.map {
+                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding:  String.Encoding.nonLossyASCII)!)
+                }
+                
+                DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile:    configuredProfile!))
+                
+                DispatchQueue.main.async {
+                    performSegue(withIdentifier: segueCode, sender: self)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    activitySwitcher.stopAnimating()
+                    nextButton.isHidden = false
+                }
+            }
+        }
+    }
+    
+    @IBAction func nextButtonDidPressed(sender: Any?) {
+        guard checkFields() else { return }
+        activitySwitcher.startAnimating()
+        nextButton.isHidden = true
+        
+        configuredProfile = Profile(phone: "",
+                                    firstName: firstNameTextField.text!,
+                                    lastName: lastNameTextField.text!,
+                                    secondName: secondNameTextField.text!,
+                                    email: emailTextField.text!,
+                                    birthday: date)
+        let params = buildParamsForRequest(from: configuredProfile!, date: date)
+        
+        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: params, completion: completionForSegue)
     }
 }
