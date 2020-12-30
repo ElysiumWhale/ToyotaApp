@@ -1,11 +1,5 @@
 import UIKit
     
-protocol SegueWithRequestController {
-    var segueCode: String { get }
-    func nextButtonDidPressed(sender: Any?)
-    var completionForSegue: (Data?) -> Void { get }
-}
-    
 class DealerViewController: PickerController {
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var showroomTextField: UITextField!

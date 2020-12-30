@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class NavigationService {
-    
     class func loadAuth() {
         let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
         DispatchQueue.main.async {
@@ -11,7 +10,6 @@ class NavigationService {
         }
     }
     
-    //TODO
     class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [DTOCar]) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
