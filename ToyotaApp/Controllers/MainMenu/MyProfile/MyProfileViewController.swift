@@ -22,6 +22,7 @@ class MyProfileViewController: UIViewController {
             lastNameTextField.text = user.person.lastName
             birthTextField.text = user.person.birthday
             emailTextField.text = user.person.email
+            PopUpPreset.display(with: "2021", description: "С новым годом! Игра началась, выживет сильнейший)", buttonText: "Спасибо!")
         } else {
             PopUpPreset.display(with: "Ошибка", description: "...", buttonText: "Ок")
         }
