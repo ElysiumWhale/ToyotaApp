@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
@@ -22,6 +23,8 @@ public struct AppViewControllers {
     static let offers = "OffersViewController"
     static let services = "ServicesViewController"
     static let myCar = "MyCarViewController"
+    
+    static let constructor = "ConstructorViewController"
 }
 
 public struct SegueIdentifiers {
@@ -46,4 +49,14 @@ public struct SegueIdentifiers {
 public struct CellIdentifiers {
     static let CarCell = "CarCell"
     static let NewsCell = "NewsCell"
+}
+
+extension UIStackView {
+    func removeAllArrangedSubviews() {
+        arrangedSubviews.forEach {
+            self.removeArrangedSubview($0)
+            NSLayoutConstraint.deactivate($0.constraints)
+            $0.removeFromSuperview()
+        }
+    }
 }

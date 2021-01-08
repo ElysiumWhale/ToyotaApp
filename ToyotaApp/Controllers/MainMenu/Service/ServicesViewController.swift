@@ -3,6 +3,7 @@ import UIKit
 class ServicesViewController: PickerController {
     @IBOutlet private(set) var carTextField: UITextField!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private(set) var buttonsStackView: UIStackView!
     
     private var userInfo: UserInfo?
     
@@ -15,6 +16,9 @@ class ServicesViewController: PickerController {
     private var carForServePicker: UIPickerView = UIPickerView()
     private var cars: UserInfo.Cars { userInfo!.cars }
     private var selectedCar: Car?
+    
+    private var serviceTypes: [ServiceType] = [ServiceType]()
+    private var buttons: [UIButton] = [UIButton]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +33,54 @@ class ServicesViewController: PickerController {
             selectedCar = cars.array.first
         }
         
+        //buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
-    func completion(data: Data?) {
-        //buildUI
+    func completion(response: ServicesTypesDidGetResponse?) {
+        DispatchQueue.main.async { [self] in
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
+            carTextField.isHidden = false
+            if let resp = response, let types = resp.service_type {
+                //serviceTypes = types
+                serviceTypes = [ServiceType(id: "1", service_type_name: "Тест драйв"),
+                                ServiceType(id: "2", service_type_name: "Услуги сервиса"),
+                                ServiceType(id: "3", service_type_name: "Обслуживание")]
+                if !buttonsStackView.subviews.isEmpty {
+                    buttonsStackView.removeAllArrangedSubviews()
+                }
+                for type in serviceTypes {
+                    #warning("to-do: xib reusable view implementation")
+                    let button = ConstructorButton<ServiceType>()
+                    button.parameter = type
+                    button.addTarget(self, action: #selector(action), for: .touchUpInside)
+                    button.backgroundColor = .init(red: 223.0/255.0, green: 66.0/255.0, blue: 76.0/255.0, alpha: 1.0)
+                    button.setTitle(type.service_type_name, for: .normal)
+                    button.titleLabel!.font = UIFont(name: "ToyotaType-Book", size: 21)
+                    button.layer.cornerRadius = 10
+                    button.layer.masksToBounds = true
+                    buttons.append(button)
+                    buttonsStackView.addArrangedSubview(button)
+                }
+            }
+        }
+    }
+    
+    @objc func action(sender: UIButton) {
+        DispatchQueue.main.async { [self] in
+            let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+            let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor) as! ConstructorViewController
+            vc.configure(with: selectedCar!.showroomId, and: (sender as! ConstructorButton<ServiceType>).parameter.id)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc private func carDidSelect(sender: Any?) {
+        buttons.removeAll()
+        serviceTypes.removeAll()
+        view.endEditing(true)
         NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
-        //buildUI
     }
 }
 

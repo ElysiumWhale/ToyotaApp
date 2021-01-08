@@ -1,14 +1,32 @@
 import UIKit
 
 class ConstructorViewController: UIViewController {
-
+    
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
+    
+    private var serviceTypeId: String!
+    private var showroomId: String!
+    
+    func configure(with serviceType: String, and showroom: String) {
+        serviceTypeId = serviceType
+        showroomId = showroom
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        NetworkService.shared.makePostRequest(page: PostRequestPath.getServices, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId),
+             URLQueryItem(name: PostRequestKeys.serviceTypeId, value: serviceTypeId)],
+            completion: completion)
     }
     
 
+    func completion(response: ServicesDidGetResponse?) {
+        DispatchQueue.main.async { [self] in
+            
+            indicatorView.stopAnimating()
+            indicatorView.isHidden = true
+        }
+    }
     /*
     // MARK: - Navigation
 

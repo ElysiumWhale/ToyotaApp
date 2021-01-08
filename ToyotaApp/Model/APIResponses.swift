@@ -159,10 +159,10 @@ public struct CarDidCheckResponse: Codable {
 public struct ServicesTypesDidGetResponse: Codable {
     let result: String
     let error_code: String?
-    let service_type: [Service]?
+    let service_type: [ServiceType]?
 }
 
-public struct Service: Codable {
+public struct ServiceType: Codable {
     let id: String
     let service_type_name: String
 }
@@ -170,14 +170,14 @@ public struct Service: Codable {
 //MARK: - GetServices
 class ServicesDidGetResponse: Response {
     var service_type: [Service]?
-    
-    struct Service: Codable {
-        let id: String
-        let showroom_id: String
-        let service_type_id: String
-        let service_name: String
-        let koeff_time: String
-    }
+}
+
+public struct Service: Codable {
+    let id: String
+    let showroom_id: String
+    let service_type_id: String
+    let service_name: String
+    let koeff_time: String
 }
 
 class Response: Codable {

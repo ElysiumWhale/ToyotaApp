@@ -26,6 +26,7 @@ struct PostRequestPath {
     static let deleteTemp = "delete_tmp_record.php"
     
     static let getServicesTypes = "get_service_type.php"
+    static let getServices = "get_services.php"
 }
 
 struct PostRequestKeys {
@@ -43,6 +44,7 @@ struct PostRequestKeys {
     static let showroomId = "showroom_id"
     static let carId = "car_id"
     static let vinCode = "vin_code"
+    static let serviceTypeId = "service_type_id"
 }
 
 struct MainURL {
