@@ -49,6 +49,7 @@ public struct SegueIdentifiers {
 public struct CellIdentifiers {
     static let CarCell = "CarCell"
     static let NewsCell = "NewsCell"
+    static let ServiceCell = "ServiceCell"
 }
 
 extension UIStackView {

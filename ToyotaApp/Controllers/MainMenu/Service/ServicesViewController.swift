@@ -3,37 +3,37 @@ import UIKit
 class ServicesViewController: PickerController {
     @IBOutlet private(set) var carTextField: UITextField!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var buttonsStackView: UIStackView!
+    @IBOutlet private(set) var servicesCollectionView: UICollectionView!
     
     private var userInfo: UserInfo?
-    
-    let techOverviewSegue = ""
-    let feedbackSegue = ""
-    let testDriveSegue = ""
-    let emergencySegue = ""
-    let serviceSegue = ""
     
     private var carForServePicker: UIPickerView = UIPickerView()
     private var cars: UserInfo.Cars { userInfo!.cars }
     private var selectedCar: Car?
     
     private var serviceTypes: [ServiceType] = [ServiceType]()
-    private var buttons: [UIButton] = [UIButton]()
+    
+    private let cellIdentrifier = CellIdentifiers.ServiceCell
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        carTextField.tintColor = .clear
+        
+        guard !cars.array.isEmpty else {
+            displayError(whith: "Увы, на данный момень Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+            return
+        }
+        
         if cars.array.count == 1 {
-            carTextField.text = "\(cars.array.first!.brand) \(cars.array.first!.model)"
+            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             carTextField.isEnabled = false
         } else {
             configurePicker(view: carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
-            #warning("to-do: check if car chosen in memory")
-            carForServePicker.selectRow(0, inComponent: 0, animated: false)
-            carTextField.text = "\(cars.array.first!.brand) \(cars.array.first!.model)"
-            selectedCar = cars.array.first
+            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
+            carForServePicker.selectRow(cars.array.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0, inComponent: 0, animated: false)
+            carTextField.isEnabled = true
         }
         
-        //buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
@@ -43,44 +43,27 @@ class ServicesViewController: PickerController {
             loadingIndicator.isHidden = true
             carTextField.isHidden = false
             if let resp = response, let types = resp.service_type {
-                //serviceTypes = types
+                serviceTypes = types
                 serviceTypes = [ServiceType(id: "1", service_type_name: "Тест драйв"),
                                 ServiceType(id: "2", service_type_name: "Услуги сервиса"),
                                 ServiceType(id: "3", service_type_name: "Обслуживание")]
-                if !buttonsStackView.subviews.isEmpty {
-                    buttonsStackView.removeAllArrangedSubviews()
-                }
-                for type in serviceTypes {
-                    #warning("to-do: xib reusable view implementation")
-                    let button = ConstructorButton<ServiceType>()
-                    button.parameter = type
-                    button.addTarget(self, action: #selector(action), for: .touchUpInside)
-                    button.backgroundColor = .init(red: 223.0/255.0, green: 66.0/255.0, blue: 76.0/255.0, alpha: 1.0)
-                    button.setTitle(type.service_type_name, for: .normal)
-                    button.titleLabel!.font = UIFont(name: "ToyotaType-Book", size: 21)
-                    button.layer.cornerRadius = 10
-                    button.layer.masksToBounds = true
-                    buttons.append(button)
-                    buttonsStackView.addArrangedSubview(button)
-                }
+                servicesCollectionView.reloadData()
             }
         }
     }
     
-    @objc func action(sender: UIButton) {
-        DispatchQueue.main.async { [self] in
-            let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-            let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor) as! ConstructorViewController
-            vc.configure(with: selectedCar!.showroomId, and: (sender as! ConstructorButton<ServiceType>).parameter.id)
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
     @objc private func carDidSelect(sender: Any?) {
-        buttons.removeAll()
-        serviceTypes.removeAll()
         view.endEditing(true)
-        NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
+        let row = carForServePicker.selectedRow(inComponent: 0)
+        if selectedCar!.id != cars.array[row].id {
+            serviceTypes.removeAll()
+            servicesCollectionView.reloadData()
+            loadingIndicator.isHidden = false
+            loadingIndicator.startAnimating()
+            selectedCar = cars.array[row]
+            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
+            NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
+        }
     }
 }
 
@@ -92,7 +75,7 @@ extension ServicesViewController: WithUserInfo {
 }
 
 //MARK: - UIPickerViewDataSource
-extension ServicesViewController : UIPickerViewDataSource {
+extension ServicesViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -104,11 +87,33 @@ extension ServicesViewController : UIPickerViewDataSource {
 }
 
 //MARK: - UIPickerViewDelegate
-extension ServicesViewController : UIPickerViewDelegate {
+extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
             case carForServePicker: return cars.array[row].model
             default: return "Object is missing"
         }
+    }
+}
+
+//MARK: - UICollectionViewDataSource
+extension ServicesViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { serviceTypes.count }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! ServiceCollectionViewCell
+        let serviceType = serviceTypes[indexPath.row]
+        cell.configure(with: serviceType.service_type_name)
+        return cell
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension ServicesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+        let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor)  as! ConstructorViewController
+        vc.configure(with: serviceTypes[indexPath.row].id, and: selectedCar!.showroomId)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
