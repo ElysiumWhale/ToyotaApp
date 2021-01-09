@@ -30,6 +30,7 @@ struct UserInfo: Codable {
     
     struct Cars: WithDefaultsKey {
         var key: String { DefaultsKeys.cars }
+        var chosenCar: Car?
         var array: [Car] = [Car]()
     }
     

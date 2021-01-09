@@ -24,6 +24,15 @@ class ServicesViewController: PickerController {
             return
         }
         
+        let res: Result<Car,AppErrors> = DefaultsManager.retrieveAdditionalInfo(for: "chosenCar")
+        switch res {
+            case .success(let data):
+                selectedCar = data
+            default:
+                displayError(whith: "Ошибка при обращении в память")
+                return
+        }
+        
         if cars.array.count == 1 {
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             carTextField.isEnabled = false
@@ -62,6 +71,7 @@ class ServicesViewController: PickerController {
             loadingIndicator.startAnimating()
             selectedCar = cars.array[row]
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
+            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: "chosenCar")
             NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
     }

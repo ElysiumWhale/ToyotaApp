@@ -71,6 +71,17 @@ public class DefaultsManager {
         }
     }
     
+    class func pushAdditionalInfo<T>(info: T, for key: String) where T:Codable {
+        do {
+            #warning("to-do: working with arrays")
+            let data = try JSONEncoder().encode(info)
+            defaults.set(data, forKey: key)
+        }
+        catch let decodeError as NSError {
+            print("Decoder error: \(decodeError.localizedDescription)")
+        }
+    }
+    
     class func retrieveCustomUserInfo<T>(for key: DefaultKeys) -> Result<T, AppErrors> where T:WithDefaultsKey {
         var mappedKey: String
         
@@ -85,6 +96,16 @@ public class DefaultsManager {
                 mappedKey = DefaultsKeys.showrooms
         }
         guard let data = defaults.data(forKey: mappedKey) else { return Result.failure(.keyValueDoesNotExist) }
+        
+        do {
+            let object = try JSONDecoder().decode(T.self, from: data)
+            return Result.success(object)
+        }
+        catch { return Result.failure(.wrongKeyForValue) }
+    }
+    
+    class func retrieveAdditionalInfo<T>(for key: String) -> Result<T, AppErrors> where T: Codable {
+        guard let data = defaults.data(forKey: key) else { return Result.failure(.keyValueDoesNotExist) }
         
         do {
             let object = try JSONDecoder().decode(T.self, from: data)

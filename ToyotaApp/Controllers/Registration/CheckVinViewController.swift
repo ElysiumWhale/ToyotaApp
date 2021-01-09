@@ -56,12 +56,14 @@ extension CheckVinViewController: SegueWithRequestController {
     var completionForSegue: (CarDidCheckResponse?) -> Void {
         { [self] response in
             if let response = response {
-               if response.error_code != nil {
-                   displayError(response.message)
-               } else {
+               if response.error_code != nil { displayError(response.message) }
+               else {
                    DispatchQueue.main.async {
                        if let userCar = response.car, let vin = vinCodeTextField.text {
-                           DefaultsManager.pushUserInfo(info: UserInfo.Cars(array: [userCar.toDomain(with: vin, showroom: showroomId!)]))
+                           let car = userCar.toDomain(with: vin, showroom: showroomId!)
+                           DefaultsManager.pushUserInfo(info:
+                               UserInfo.Cars(chosenCar: car, array: [car])
+                           )
                            UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
                            performSegue(withIdentifier: segueCode, sender: self)
                        } else { displayError("Сервер прислал неверные данные") }
