@@ -2,10 +2,11 @@ import UIKit
 
 class ServicesViewController: PickerController {
     @IBOutlet private(set) var carTextField: UITextField!
+    @IBOutlet private(set) var showroomLabel: UILabel!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private(set) var servicesCollectionView: UICollectionView!
     
-    private var userInfo: UserInfo?
+    private var userInfo: UserInfo!
     
     private var carForServePicker: UIPickerView = UIPickerView()
     private var cars: UserInfo.Cars { userInfo!.cars }
@@ -43,6 +44,8 @@ class ServicesViewController: PickerController {
             carTextField.isEnabled = true
         }
         
+        showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
+        
         NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
@@ -71,6 +74,7 @@ class ServicesViewController: PickerController {
             loadingIndicator.startAnimating()
             selectedCar = cars.array[row]
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
+            showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
             DefaultsManager.pushAdditionalInfo(info: selectedCar, for: "chosenCar")
             NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
