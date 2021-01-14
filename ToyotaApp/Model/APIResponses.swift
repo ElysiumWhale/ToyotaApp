@@ -20,6 +20,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let secretKey: String
     let registerPage: Int?
     let registeredUser: RegisteredUser?
+    let registerStatus: String?
     
     let cities: [City]?
     let showrooms: [DTOShowroom]?
@@ -31,6 +32,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
         case secretKey = "secret_key"
         case registerPage = "register_page"
         case registeredUser = "registered_user"
+        case registerStatus = "register_status"
         
         case cities
         case showrooms

@@ -45,6 +45,7 @@ struct PostRequestKeys {
     static let carId = "car_id"
     static let vinCode = "vin_code"
     static let serviceTypeId = "service_type_id"
+    static let skipStep = "skip_step"
 }
 
 struct MainURL {

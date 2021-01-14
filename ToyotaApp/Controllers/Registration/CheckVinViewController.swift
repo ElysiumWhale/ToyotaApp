@@ -43,11 +43,18 @@ extension CheckVinViewController: SegueWithRequestController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard let vin = vinCodeTextField.text else { displayError(nil); return }
         guard vin.count == 17 else { displayError(nil); return }
+        makeRequest(skip: "0", vin: vin)
+    }
+    
+    @IBAction func skipButtonDidPressed(sender: Any?) { makeRequest(skip: "1", vin: "") }
+    
+    private func makeRequest(skip: String, vin: String) {
         indicator.startAnimating()
         checkVinButton.isHidden = true
         indicator.isHidden = false
         NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
-                [URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId!),
+                [URLQueryItem(name: PostRequestKeys.skipStep, value: skip),
+                 URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId!),
                  URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
                  URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId)],
                 completion: completionForSegue)
@@ -57,18 +64,18 @@ extension CheckVinViewController: SegueWithRequestController {
         { [self] response in
             if let response = response {
                if response.error_code != nil { displayError(response.message) }
-               else {
-                   DispatchQueue.main.async {
-                       if let userCar = response.car, let vin = vinCodeTextField.text {
-                           let car = userCar.toDomain(with: vin, showroom: showroomId!)
-                           DefaultsManager.pushUserInfo(info:
-                               UserInfo.Cars(chosenCar: car, array: [car])
-                           )
-                           UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
-                           performSegue(withIdentifier: segueCode, sender: self)
-                       } else { displayError("Сервер прислал неверные данные") }
+               else { DispatchQueue.main.async {
+                   if let userCar = response.car, let vin = vinCodeTextField.text {
+                       let car = userCar.toDomain(with: vin, showroom: showroomId!)
+                       DefaultsManager.pushUserInfo(info:
+                           UserInfo.Cars(chosenCar: car, array: [car])
+                       )
+                       UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
+                       performSegue(withIdentifier: segueCode, sender: self)
+                   } else {
+                       performSegue(withIdentifier: segueCode, sender: self)
                    }
-               }
+               } }
             } else { displayError("Ошибка при получении данных") }
         }
     }

@@ -319,7 +319,7 @@
                                     <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Sky-Ph-Wl4" kind="presentation" identifier="CarToEndRegistration" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="t3p-lc-S7h"/>
+                                    <action selector="skipButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="jma-g9-aom"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="U0j-hc-Xop">
@@ -453,9 +453,6 @@
             <size key="intrinsicContentSize" width="166" height="38"/>
         </designable>
     </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="t3p-lc-S7h"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="ToyotaLogoBlack" width="85.333335876464844" height="85.333335876464844"/>
         <systemColor name="systemBackgroundColor">

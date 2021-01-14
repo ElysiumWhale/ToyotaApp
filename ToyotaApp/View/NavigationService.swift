@@ -10,22 +10,22 @@ class NavigationService {
         }
     }
     
-    class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [DTOCar]) {
+    class func loadMain(with profile: Profile? = nil, _ showrooms: [RegisteredUser.Showroom]? = nil, and cars: [DTOCar]? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
             
-            let car = Car(id: "1", showroomId: "2", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
-            let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
-            DefaultsManager.pushUserInfo(info: UserInfo.Cars(chosenCar: car, array: [car, car1]))
-            #warning("to-do: rework")
-            DefaultsManager.pushAdditionalInfo(info: car, for: "chosenCar")
+//            let car = Car(id: "1", showroomId: "2", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
+//            let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
+//            DefaultsManager.pushUserInfo(info: UserInfo.Cars(chosenCar: car, array: [car, car1]))
+//            DefaultsManager.pushAdditionalInfo(info: car, for: "chosenCar")
             
             let result = DefaultsManager.buildUserFromDefaults()
             switch result {
                 case .failure:
-                    #warning("push all info")
-                    print("Configure with injected params")
+                    #warning("to-do: rework cars response to push all info")
+                    DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: profile!))
+                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms(showrooms!.map { Showroom($0.id, $0.showroomName, $0.cityName) }))
                 case .success(let user):
                     for child in controller.viewControllers ?? [] {
                         if let top = child as? WithUserInfo {
@@ -45,21 +45,23 @@ class NavigationService {
                 case 2:
                     if let profile = user.profile,
                        let cities = context.cities {
-                        NavigationService.loadRegister(with: profile, and: cities)
+                           NavigationService.loadRegister(with: profile, and: cities)
                     } else { fallbackCompletion() }
                 case 3:
                     if let cities = context.cities,
                        let showrooms = context.showrooms {
-                        NavigationService.loadRegister(with: user, cities, showrooms)
+                           NavigationService.loadRegister(with: user, cities, showrooms)
                     } else { fallbackCompletion() }
                 case 4:
                     if let profile = user.profile,
                        let showrooms = user.showroom,
                        let cars = user.car {
-                        NavigationService.loadMain(with: profile, showrooms, and: cars)
+                           NavigationService.loadMain(with: profile, showrooms, and: cars)
                     } else { fallbackCompletion() }
                 default: fallbackCompletion()
             }
+        } else if let _ = context.registerStatus {
+            NavigationService.loadMain()
         } else { fallbackCompletion() }
     }
     
@@ -111,6 +113,7 @@ extension NavigationService {
             dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: user.showroom!.first)
             
             let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVinViewController) as! CheckVinViewController
+            cvvc.showroomId = user.showroom!.first!.id
             
             let controller = configureNavigationStack(with: [pivc, dvc, cvvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
