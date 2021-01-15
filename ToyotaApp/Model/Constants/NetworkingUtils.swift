@@ -5,8 +5,8 @@ struct Brand {
 }
 
 struct Debug {
-    static var userId: String = ""
-    static var secretKey: String = ""
+    //static var userId: String = ""
+    //static var secretKey: String = ""
 }
 
 struct RequestType {

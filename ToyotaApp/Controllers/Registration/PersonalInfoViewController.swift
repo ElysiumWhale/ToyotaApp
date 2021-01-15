@@ -130,8 +130,9 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController {
     private func buildParamsForRequest(from profile: Profile, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
+        let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
         requestParams.append(URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId))
+        requestParams.append(URLQueryItem(name: PostRequestKeys.userId, value: userId))
         requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: profile.firstName))
         requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: profile.secondName))
         requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: profile.lastName))

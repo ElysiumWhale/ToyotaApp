@@ -73,8 +73,8 @@ extension SmsCodeViewController {
                     defaults.setValue(response.userId!, forKey: DefaultsKeys.userId)
                     defaults.setValue(true, forKeyPath: DefaultsKeys.isAuth)
                     
-                    Debug.userId = response.userId!
-                    Debug.secretKey = response.secretKey
+                    //Debug.userId = response.userId!
+                    //Debug.secretKey = response.secretKey
                     
                     NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
             }

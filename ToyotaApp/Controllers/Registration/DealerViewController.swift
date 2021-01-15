@@ -62,8 +62,9 @@ extension DealerViewController: SegueWithRequestController {
             nextButton?.isHidden = true
             nextButtonIndicator.startAnimating()
             nextButtonIndicator.isHidden = false
+            let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.setShowroom, params: [URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId),
+            NetworkService.shared.makePostRequest(page: PostRequestPath.setShowroom, params: [URLQueryItem(name: PostRequestKeys.userId, value: userId),
                  URLQueryItem(name: PostRequestKeys.showroomId, value: showroom.id)],
                 completion: completionForSegue)
         } else { return }

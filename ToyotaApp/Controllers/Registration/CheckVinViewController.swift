@@ -52,11 +52,14 @@ extension CheckVinViewController: SegueWithRequestController {
         indicator.startAnimating()
         checkVinButton.isHidden = true
         indicator.isHidden = false
+        
+        let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
+        
         NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
                 [URLQueryItem(name: PostRequestKeys.skipStep, value: skip),
                  URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId!),
                  URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
-                 URLQueryItem(name: PostRequestKeys.userId, value: Debug.userId)],
+                 URLQueryItem(name: PostRequestKeys.userId, value: userId)],
                 completion: completionForSegue)
     }
     
