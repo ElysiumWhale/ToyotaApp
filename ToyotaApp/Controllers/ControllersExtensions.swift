@@ -21,6 +21,6 @@ class PickerController: UIViewController {
 
 extension UIViewController {
     func displayError(whith text: String) {
-        PopUpPreset.display(with: "Ошибка", description: text, buttonText: "Ок")
+        PopUp.displayMessage(with: "Ошибка", description: text, buttonText: "Ок")
     }
 }

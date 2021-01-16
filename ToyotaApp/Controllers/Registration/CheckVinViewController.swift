@@ -18,7 +18,7 @@ class CheckVinViewController: UIViewController {
     func displayError(_ message: String?) {
         DispatchQueue.main.async { [self] in
             if let mes = message {
-                PopUpPreset.display(with: "Ошибка", description: mes, buttonText: "Ок")
+                PopUp.displayMessage(with: "Ошибка", description: mes, buttonText: "Ок")
             }
             vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
             vinCodeTextField.layer.borderWidth = 1

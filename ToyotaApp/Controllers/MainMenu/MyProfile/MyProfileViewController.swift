@@ -1,4 +1,5 @@
 import UIKit
+import SwiftEntryKit
 
 class MyProfileViewController: UIViewController {
     @IBOutlet private(set) var firstNameTextField: UITextField!
@@ -22,9 +23,9 @@ class MyProfileViewController: UIViewController {
             lastNameTextField.text = user.person.lastName
             birthTextField.text = user.person.birthday
             emailTextField.text = user.person.email
-            PopUpPreset.display(with: "2021", description: "С новым годом! Игра началась, выживет сильнейший)", buttonText: "Спасибо!")
+            PopUp.displayMessage(with: "2021", description: "С новым годом! Игра началась, выживет сильнейший)", buttonText: "Спасибо!")
         } else {
-            PopUpPreset.display(with: "Ошибка", description: "...", buttonText: "Ок")
+            PopUp.displayMessage(with: "Ошибка", description: "...", buttonText: "Ок")
         }
     }
     
@@ -56,8 +57,12 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction func logout(sender: Any?) {
-        #warning("to-do: logout + clean memory")
-        PopUpPreset.display(with: "Выход из аккаунта", description: "Вы действительно хотите выйти?", buttonText: "Нет")
+        PopUp.displayChoice(with: "Выход из аккаунта", description: "Вы действительно хотите выйти?", confirmText: "Да", declineText: "Нет") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            UserDefaults.standard.synchronize()
+            SwiftEntryKit.dismiss()
+            NavigationService.loadAuth()
+        }
     }
     
     // MARK: - Navigation

@@ -2,11 +2,19 @@ import Foundation
 import SwiftEntryKit
 import UIKit
 
-class PopUpPreset {
+class PopUp {
     private init() { }
     
-    class func display(with title: String, description: String, buttonText: String) {
-        SwiftEntryKit.display(entry: EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description, buttonText: buttonText)), using: popUpViewPreset())
+    class func displayChoice(with title: String, description: String, confirmText: String, declineText: String, confirmCompletion: @escaping () -> Void) {
+        
+        let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
+        let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
+        
+        SwiftEntryKit.display(entry: EKAlertMessageView(with: .init(simpleMessage: .init(title: titleLabel, description: descrLabel), buttonBarContent: createButtons(confirmText, declineText, confirmCompletion))), using: attributesPreset)
+    }
+    
+    class func displayMessage(with title: String, description: String, buttonText: String) {
+        SwiftEntryKit.display(entry: EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description, buttonText: buttonText)), using: attributesPreset)
     }
     
     class private func popUpMessagePreset(title: String, description: String, buttonText: String) -> EKPopUpMessage {
@@ -16,7 +24,7 @@ class PopUpPreset {
             return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button, action: { SwiftEntryKit.dismiss() })
     }
     
-    class private func popUpViewPreset() -> EKAttributes {
+    private static var attributesPreset: EKAttributes = {
         var attr = EKAttributes.centerFloat
         //attr.entryBackground = .gradient(gradient: .init(colors: [EKColor(.white), EKColor(.red)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attr.entryBackground = .color(color: .init(red: 223, green: 66, blue: 76))
@@ -32,5 +40,15 @@ class PopUpPreset {
         attr.positionConstraints.verticalOffset = 50
         attr.statusBar = .dark
         return attr
+    }()
+    
+    class private func createButtons(_ confirmText: String, _ declineText: String, _ confirmCompletion: @escaping () -> Void) -> EKProperty.ButtonBarContent {
+        let buttonFont = EKProperty.LabelStyle(font: UIFont(name: "ToyotaType-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20), color: .init(red: 223, green: 66, blue: 76))
+        let confirmButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: confirmText, style: buttonFont), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear, action: confirmCompletion)
+        let declineButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: declineText, style: buttonFont), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear, action: { SwiftEntryKit.dismiss() })
+        
+        return EKProperty.ButtonBarContent(with: confirmButton, declineButton, separatorColor: .clear, expandAnimatedly: true)
+         //EKButtonBarView(with: buttonContent)
     }
+    
 }

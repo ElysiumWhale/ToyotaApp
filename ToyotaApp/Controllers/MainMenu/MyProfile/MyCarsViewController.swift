@@ -13,7 +13,7 @@ class MyCarsViewController: UIViewController {
     func configure(with: UserInfo.Cars) { cars = with }
     
     @IBAction func addCar(sender: Any?) {
-        PopUpPreset.display(with: "Добавить машину", description: "Скоро здесь можно будет добавить машину", buttonText: "Ок")
+        PopUp.displayMessage(with: "Добавить машину", description: "Скоро здесь можно будет добавить машину", buttonText: "Ок")
     }
 }
 
