@@ -17,31 +17,6 @@ class NetworkService {
         return URLQueryItem(name: PostRequestKeys.userId, value: UserDefaults.standard.string(forKey: DefaultsKeys.userId))
     }
     
-    func makeRequest(with url: URL, completion: @escaping (Data?) -> Void) {
-        session.dataTask(with: url) {
-            (data, response, error) in
-            if data != nil { return completion(data) }
-            else { return }
-        }.resume()
-    }
-    
-    func makePostRequest(page: String, params: [URLQueryItem] = [], completion: @escaping (Data?)->Void = {_ in }) {
-        let request = buildPostRequest(for: page, with: params)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response { print(response) }
-            if let error = error { print(error) }
-            if let data = data {
-                do {
-                    print(try JSONSerialization.jsonObject(with: data))
-                    completion(data)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }.resume()
-    }
-    
     func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (T?)->Void = {_ in }) where T:Codable {
         let request = buildPostRequest(for: page, with: params)
         
@@ -59,6 +34,11 @@ class NetworkService {
                 }
             }
         }.resume()
+    }
+    
+    func makeSimplePostRequest(page: String, params: [URLQueryItem] = []) {
+        let request = buildPostRequest(for: page, with: params)
+        session.dataTask(with: request).resume()
     }
     
     func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {

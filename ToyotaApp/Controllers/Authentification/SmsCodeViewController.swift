@@ -59,7 +59,7 @@ extension SmsCodeViewController {
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         guard parent == nil else { return }
-        NetworkService.shared.makePostRequest(page: PostRequestPath.deleteTemp, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber)])
+        NetworkService.shared.makeSimplePostRequest(page: PostRequestPath.deleteTemp, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber)])
     }
 }
 
