@@ -1,8 +1,11 @@
 import UIKit
 
-class CheckVinViewController: UIViewController {
-    @IBOutlet private var regNumber: UILabel!
-    @IBOutlet private var modelName: UILabel!
+fileprivate enum SkipCheckVin: String {
+    case yes = "1"
+    case no = "0"
+}
+
+class CheckVinViewController: UIViewController, DisplayError {
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var vinCodeTextField: UITextField!
     @IBOutlet private var checkVinButton: UIButton!
@@ -15,7 +18,7 @@ class CheckVinViewController: UIViewController {
         vinCodeTextField.layer.borderWidth = 0
     }
     
-    func displayError(_ message: String?) {
+    func displayError(_ message: String? = nil) {
         DispatchQueue.main.async { [self] in
             if let mes = message {
                 PopUp.displayMessage(with: "Ошибка", description: mes, buttonText: "Ок")
@@ -23,7 +26,7 @@ class CheckVinViewController: UIViewController {
             vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
             vinCodeTextField.layer.borderWidth = 1
             errorLabel.isHidden = false
-            if checkVinButton.isHidden == true {
+            if checkVinButton.isHidden {
                 indicator.stopAnimating()
                 indicator.isHidden = true
                 checkVinButton.isHidden = false
@@ -41,21 +44,21 @@ extension CheckVinViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.CarToEndRegistration }
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
-        guard let vin = vinCodeTextField.text else { displayError(nil); return }
-        guard vin.count == 17 else { displayError(nil); return }
-        makeRequest(skip: "0", vin: vin)
+        guard let vin = vinCodeTextField.text else { displayError(); return }
+        guard vin.count == 17 else { displayError(); return }
+        makeRequest(skip: .no, vin: vin)
     }
     
-    @IBAction func skipButtonDidPressed(sender: Any?) { makeRequest(skip: "1", vin: "") }
+    @IBAction func skipButtonDidPressed(sender: Any?) { makeRequest(skip: .yes) }
     
-    private func makeRequest(skip: String, vin: String) {
+    private func makeRequest(skip: SkipCheckVin, vin: String? = "") {
         indicator.startAnimating()
         checkVinButton.isHidden = true
         indicator.isHidden = false
         
         let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
-                    [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip),
+                    [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip.rawValue),
                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId!),
                      URLQueryItem(name: RequestKeys.CarInfo.vinCode, value: vin),
                      URLQueryItem(name: RequestKeys.Auth.userId, value: userId)],

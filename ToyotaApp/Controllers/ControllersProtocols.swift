@@ -11,3 +11,7 @@ protocol SegueWithRequestController {
 protocol WithUserInfo {
     func setUser(info: UserInfo)
 }
+
+protocol DisplayError {
+    func displayError(_ error: String?) -> Void
+}
