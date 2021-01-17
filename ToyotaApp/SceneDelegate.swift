@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey), let brandId = defaults.string(forKey: DefaultsKeys.brandId) {
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.checkUser, params: [URLQueryItem(name: PostRequestKeys.userId, value: loggedUserId), URLQueryItem(name: PostRequestKeys.brandId, value: brandId), URLQueryItem(name: PostRequestKeys.secretKey, value: secretKey)], completion: resolveNavigation)
+            NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: loggedUserId), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id), URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)], completion: resolveNavigation)
         } else { NavigationService.loadAuth() }
     }
     

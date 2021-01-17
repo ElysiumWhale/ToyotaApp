@@ -131,13 +131,13 @@ extension PersonalInfoViewController {
     private func buildParamsForRequest(from profile: Profile, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
         let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
-        requestParams.append(URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.userId, value: userId))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.firstName, value: profile.firstName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.secondName, value: profile.secondName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.lastName, value: profile.lastName))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.email, value: profile.email))
-        requestParams.append(URLQueryItem(name: PostRequestKeys.birthday, value: date))
+        requestParams.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)))
+        requestParams.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
+        requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
+        requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: profile.secondName))
+        requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: profile.lastName))
+        requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: profile.email))
+        requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
         return requestParams
     }
 }
@@ -180,6 +180,6 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     birthday: date)
         let params = buildParamsForRequest(from: configuredProfile!, date: date)
         
-        NetworkService.shared.makePostRequest(page: PostRequestPath.setProfile, params: params, completion: completionForSegue)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: params, completion: completionForSegue)
     }
 }

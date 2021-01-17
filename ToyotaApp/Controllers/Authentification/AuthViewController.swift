@@ -60,7 +60,7 @@ extension AuthViewController: SegueWithRequestController {
             indicator.isHidden = false
             view.endEditing(true)
             DefaultsManager.pushUserInfo(info: UserInfo.Phone(phoneNumber.text!))
-            NetworkService.shared.makeSimplePostRequest(page: PostRequestPath.registerPhone, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber.text)])
+            NetworkService.shared.makeSimplePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)])
             performSegue(withIdentifier: segueCode, sender: self)
         }
     }

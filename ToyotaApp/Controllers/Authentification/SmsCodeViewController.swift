@@ -28,9 +28,9 @@ class SmsCodeViewController: UIViewController {
             activitySwitcher?.isHidden = false
             view.endEditing(true)
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.checkCode, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber),
-                 URLQueryItem(name: PostRequestKeys.code, value: smsCodeTextField!.text),
-                 URLQueryItem(name: PostRequestKeys.brandId, value: Brand.id)],
+            NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
+                 URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text),
+                 URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id)],
                 completion: completion)
         } else {
             smsCodeTextField?.layer.borderColor = UIColor.systemRed.cgColor
@@ -59,7 +59,7 @@ extension SmsCodeViewController {
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         guard parent == nil else { return }
-        NetworkService.shared.makeSimplePostRequest(page: PostRequestPath.deleteTemp, params: [URLQueryItem(name: PostRequestKeys.phoneNumber, value: phoneNumber)])
+        NetworkService.shared.makeSimplePostRequest(page: RequestPath.Registration.deleteTemp, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
     }
 }
 

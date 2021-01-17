@@ -14,7 +14,7 @@ class NetworkService {
     }
     
     private var profileId: URLQueryItem {
-        return URLQueryItem(name: PostRequestKeys.userId, value: UserDefaults.standard.string(forKey: DefaultsKeys.userId))
+        return URLQueryItem(name: RequestKeys.Auth.userId, value: UserDefaults.standard.string(forKey: DefaultsKeys.userId))
     }
     
     func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (T?)->Void = {_ in }) where T:Codable {

@@ -46,7 +46,7 @@ class ServicesViewController: PickerController {
         
         showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
         
-        NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
     func completion(response: ServicesTypesDidGetResponse?) {
@@ -76,7 +76,7 @@ class ServicesViewController: PickerController {
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
             DefaultsManager.pushAdditionalInfo(info: selectedCar, for: "chosenCar")
-            NetworkService.shared.makePostRequest(page: PostRequestPath.getServicesTypes, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: selectedCar!.showroomId)], completion: completion)
+            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
     }
 }

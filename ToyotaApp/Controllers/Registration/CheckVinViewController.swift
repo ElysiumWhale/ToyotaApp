@@ -54,13 +54,12 @@ extension CheckVinViewController: SegueWithRequestController {
         indicator.isHidden = false
         
         let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
-        
-        NetworkService.shared.makePostRequest(page: PostRequestPath.checkCar, params:
-                [URLQueryItem(name: PostRequestKeys.skipStep, value: skip),
-                 URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId!),
-                 URLQueryItem(name: PostRequestKeys.vinCode, value: vin),
-                 URLQueryItem(name: PostRequestKeys.userId, value: userId)],
-                completion: completionForSegue)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
+                    [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip),
+                     URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId!),
+                     URLQueryItem(name: RequestKeys.CarInfo.vinCode, value: vin),
+                     URLQueryItem(name: RequestKeys.Auth.userId, value: userId)],
+                    completion: completionForSegue)
     }
     
     var completionForSegue: (CarDidCheckResponse?) -> Void {

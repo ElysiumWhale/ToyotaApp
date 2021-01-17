@@ -64,8 +64,8 @@ extension DealerViewController: SegueWithRequestController {
             nextButtonIndicator.isHidden = false
             let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
             
-            NetworkService.shared.makePostRequest(page: PostRequestPath.setShowroom, params: [URLQueryItem(name: PostRequestKeys.userId, value: userId),
-                 URLQueryItem(name: PostRequestKeys.showroomId, value: showroom.id)],
+            NetworkService.shared.makePostRequest(page: RequestPath.Registration.setShowroom, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+                 URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
                 completion: completionForSegue)
         } else { return }
     }
@@ -110,7 +110,7 @@ extension DealerViewController {
         cityTextField?.text = cities[row].name
         cityTextFieldIndicator?.startAnimating()
         view.endEditing(true)
-        NetworkService.shared.makePostRequest(page: PostRequestPath.getShowrooms, params: [URLQueryItem(name: PostRequestKeys.brandId, value: String(Brand.id)), URLQueryItem(name: PostRequestKeys.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
     }
     
     @objc private func showroomDidSelect(sender: Any?) {
