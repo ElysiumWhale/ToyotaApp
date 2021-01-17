@@ -121,28 +121,24 @@ extension DealerViewController {
         nextButton.isHidden = false
     }
     
-    private var completionForSelectedCity: (Data?) -> Void {
-        { [self] data in
-            if let data = data {
-                
-                func uiCompletion() {
-                    DispatchQueue.main.async {
-                        cityTextFieldIndicator.stopAnimating()
-                        cityTextFieldIndicator.isHidden = true
-                        showroomTextField.isHidden = false
-                        showroomLabel.isHidden = false
-                    }
+    private var completionForSelectedCity: (CityDidSelectResponce?) -> Void {
+        { [self] response in
+            
+            func uiCompletion() {
+                DispatchQueue.main.async {
+                    cityTextFieldIndicator.stopAnimating()
+                    cityTextFieldIndicator.isHidden = true
+                    showroomTextField.isHidden = false
+                    showroomLabel.isHidden = false
                 }
-                
-                do {
-                    let rawData = try JSONDecoder().decode(CityDidSelectResponce.self, from: data)
-                    showrooms = rawData.showrooms
-                    uiCompletion()
-                }
-                catch {
-                    showrooms = [DTOShowroom(id: "0", name: "Ошибка десериализации")]
-                    uiCompletion()
-                }
+            }
+            
+            if let response = response {
+                showrooms = response.showrooms
+                uiCompletion()
+            } else {
+                showrooms = [DTOShowroom(id: "0", name: "Ошибка десериализации")]
+                uiCompletion()
             }
         }
     }

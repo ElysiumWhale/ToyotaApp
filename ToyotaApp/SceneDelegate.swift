@@ -8,9 +8,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let defaults = UserDefaults.standard
-        defaults.setValue("1", forKey: DefaultsKeys.brandId)
         
-        if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey), let brandId = defaults.string(forKey: DefaultsKeys.brandId) {
+        if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey) {
             
             NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: loggedUserId), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id), URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)], completion: resolveNavigation)
         } else { NavigationService.loadAuth() }
@@ -58,14 +57,15 @@ extension SceneDelegate {
         completion: nil)
     }
     
-    func resolveNavigation(data: Data?) -> Void {
-        guard let data = data else { NavigationService.loadAuth(); return }
-        do {
-            let response = try JSONDecoder().decode(CheckUserOrSmsCodeResponse.self, from: data)
-            UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
-            
-            NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
+    var resolveNavigation: (CheckUserOrSmsCodeResponse?) -> Void {
+        { response in
+        guard let response = response else {
+            NavigationService.loadAuth();
+            return
         }
-        catch { NavigationService.loadAuth() }
+        UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+            
+        NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
+        }
     }
 }

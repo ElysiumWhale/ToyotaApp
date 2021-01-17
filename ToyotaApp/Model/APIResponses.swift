@@ -20,7 +20,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let secretKey: String
     let registerPage: Int?
     let registeredUser: RegisteredUser?
-    let registerStatus: String?
+    let registerStatus: Int?
     
     let cities: [City]?
     let showrooms: [DTOShowroom]?

@@ -14,8 +14,6 @@ class ConstructorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkService.shared.makePostRequest(page: PostRequestPath.getServices, params: [URLQueryItem(name: PostRequestKeys.showroomId, value: showroomId),
-             URLQueryItem(name: PostRequestKeys.serviceTypeId, value: serviceTypeId)],
             completion: completion)
     }
     
