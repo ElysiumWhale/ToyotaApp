@@ -14,7 +14,6 @@ class ConstructorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            completion: completion)
     }
     
 
