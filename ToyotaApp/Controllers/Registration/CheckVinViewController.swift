@@ -73,7 +73,7 @@ extension CheckVinViewController: SegueWithRequestController {
                    if let userCar = response.car, let vin = vinCodeTextField.text {
                        let car = userCar.toDomain(with: vin, showroom: showroomId!)
                        DefaultsManager.pushUserInfo(info:
-                           UserInfo.Cars(chosenCar: car, array: [car])
+                            UserInfo.Cars([car], chosen: car)
                        )
                        UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
                        performSegue(withIdentifier: segueCode, sender: self)

@@ -124,6 +124,8 @@ public struct DTOCar: Codable {
     let colorDescription: String?
     let isMetallic: String?
     let licensePlate: String?
+    let vin: String?
+    let showroomId: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -134,6 +136,8 @@ public struct DTOCar: Codable {
         case colorDescription = "color_description"
         case isMetallic = "color_metallic"
         case licensePlate = "license_plate"
+        case vin = "vin_code"
+        case showroomId = "showroom_id"
     }
 }
 
@@ -146,6 +150,16 @@ extension DTOCar {
                    colorDescription: colorDescription ?? "Empty",
                    isMetallic: isMetallic ?? "0",
                    plate: licensePlate ?? "Empty", vin: vin)
+    }
+    
+    func toDomain() -> Car {
+        return Car(id: id, showroomId: showroomId ?? "-1",
+                   brand: brandName, model: modelName,
+                   color: colorName ?? "Empty",
+                   colorSwatch: colorSwatch ?? "Empty",
+                   colorDescription: colorDescription ?? "Empty",
+                   isMetallic: isMetallic ?? "-1",
+                   plate: licensePlate ?? "Empty", vin: vin ?? "Empty")
     }
 }
 
