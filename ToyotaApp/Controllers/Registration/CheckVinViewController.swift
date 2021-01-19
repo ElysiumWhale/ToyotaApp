@@ -68,7 +68,7 @@ extension CheckVinViewController: SegueWithRequestController {
     var completionForSegue: (CarDidCheckResponse?) -> Void {
         { [self] response in
             if let response = response {
-               if response.error_code != nil { displayError(response.message) }
+               if let _ = response.error_code { displayError(response.message) }
                else { DispatchQueue.main.async {
                    if let userCar = response.car, let vin = vinCodeTextField.text {
                        let car = userCar.toDomain(with: vin, showroom: showroomId!)

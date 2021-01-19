@@ -37,8 +37,7 @@ class NetworkService {
     }
     
     func makeSimplePostRequest(page: String, params: [URLQueryItem] = []) {
-        let request = buildPostRequest(for: page, with: params)
-        session.dataTask(with: request).resume()
+        session.dataTask(with: buildPostRequest(for: page, with: params)).resume()
     }
     
     func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {

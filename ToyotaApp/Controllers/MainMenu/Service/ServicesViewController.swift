@@ -44,7 +44,7 @@ class ServicesViewController: PickerController {
             carTextField.isEnabled = true
         }
         
-        showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
+        showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})?.showroomName ?? "Empty"
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }

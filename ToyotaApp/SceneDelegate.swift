@@ -11,7 +11,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey) {
             
-            NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: loggedUserId), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id), URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)], completion: resolveNavigation)
+            NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
+            [URLQueryItem(name: RequestKeys.Auth.userId, value: loggedUserId),
+             URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id),
+             URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
+            completion: resolveNavigation)
         } else { NavigationService.loadAuth() }
     }
     
@@ -47,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //MARK: - Navigation
 extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
-        guard let window = self.window else { return }
+        guard let window = window else { return }
         window.rootViewController = vc
         
         UIView.transition(with: window,
@@ -59,13 +63,10 @@ extension SceneDelegate {
     
     var resolveNavigation: (CheckUserOrSmsCodeResponse?) -> Void {
         { response in
-        guard let response = response else {
-            NavigationService.loadAuth();
-            return
-        }
-        UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+            guard let response = response else { NavigationService.loadAuth(); return }
             
-        NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
+            UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
+            NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
         }
     }
 }
