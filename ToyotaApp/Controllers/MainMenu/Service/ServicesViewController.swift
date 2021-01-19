@@ -22,6 +22,9 @@ class ServicesViewController: PickerController {
         
         guard !cars.array.isEmpty else {
             displayError(whith: "Увы, на данный момень Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
+            showroomLabel.text = "Добавьте машину"
             return
         }
         
