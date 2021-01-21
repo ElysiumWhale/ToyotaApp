@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
+		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
+		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
 		A717CEBE252BC63E00CFB6FF /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEBD252BC63E00CFB6FF /* CountryPicker */; };
@@ -32,7 +35,7 @@
 		A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A4EF72548EA600026B76B /* NoPasteTextField.swift */; };
 		A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
-		A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* OffersViewController.swift */; };
+		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
@@ -62,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -86,7 +91,7 @@
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
-		A791FDE02524E1E400A595BB /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
+		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -123,12 +128,23 @@
 				A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */,
 				A717CEBE252BC63E00CFB6FF /* CountryPicker in Frameworks */,
 				A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */,
+				1495724625BA04F20031A5AA /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1495723B25B9FEAB0031A5AA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A7AABF7F25A9EACB00C72F65 /* ServiceCollectionViewCell.swift */,
+				A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */,
+				1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		A759467F2523E32F00312EBE = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +193,7 @@
 				A77B9311253B035F0011282E /* APIResponses.swift */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
+				1495724125B9FF940031A5AA /* NewsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,7 +223,7 @@
 		A791FDD82524E17300A595BB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDDB2524E19B00A595BB /* Tech */,
+				A791FDDB2524E19B00A595BB /* News */,
 				A791FDDA2524E19300A595BB /* Service */,
 				A791FDD92524E18800A595BB /* MyProfile */,
 			);
@@ -231,12 +248,12 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		A791FDDB2524E19B00A595BB /* Tech */ = {
+		A791FDDB2524E19B00A595BB /* News */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDE02524E1E400A595BB /* OffersViewController.swift */,
+				A791FDE02524E1E400A595BB /* NewsViewController.swift */,
 			);
-			path = Tech;
+			path = News;
 			sourceTree = "<group>";
 		};
 		A791FDE225266F2700A595BB /* View */ = {
@@ -256,13 +273,11 @@
 		A791FDE8252672FA00A595BB /* Custom Controls */ = {
 			isa = PBXGroup;
 			children = (
-				A7AABF7F25A9EACB00C72F65 /* ServiceCollectionViewCell.swift */,
-				A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */,
+				1495723B25B9FEAB0031A5AA /* Cells */,
 				A791FDE5252672ED00A595BB /* RoundedButton.swift */,
 				A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */,
 				A78A4EF72548EA600026B76B /* NoPasteTextField.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
-				A7C9D1D125A8974A00B3CDF7 /* RoundedButtonView.xib */,
 				A7C9D1D425A8A75A00B3CDF7 /* ConstructorButton.swift */,
 			);
 			path = "Custom Controls";
@@ -319,6 +334,7 @@
 				A717CEB8252A210A00CFB6FF /* PhoneNumberKit */,
 				A717CEBD252BC63E00CFB6FF /* CountryPicker */,
 				A7A085FC255C869C00807225 /* SwiftEntryKit */,
+				1495724525BA04F20031A5AA /* Kingfisher */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -352,6 +368,7 @@
 				A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				A717CEBC252BC63E00CFB6FF /* XCRemoteSwiftPackageReference "CountryPicker" */,
 				A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -403,6 +420,7 @@
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A7C9D1D525A8A75A00B3CDF7 /* ConstructorButton.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
+				1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */,
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCollectionViewCell.swift in Sources */,
@@ -411,13 +429,14 @@
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
-				A791FDE12524E1E400A595BB /* OffersViewController.swift in Sources */,
+				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
 				A7E89774259BFF3D00A15C26 /* ConstructorViewController.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
+				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
@@ -626,6 +645,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
 		A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
@@ -653,6 +680,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1495724525BA04F20031A5AA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;

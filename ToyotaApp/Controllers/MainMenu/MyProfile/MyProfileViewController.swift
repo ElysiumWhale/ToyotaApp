@@ -12,21 +12,17 @@ class MyProfileViewController: UIViewController {
     
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     
-    private var userInfo: UserInfo?
+    private var userInfo: UserInfo!
     private var isPersonEditing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let user = userInfo {
-            firstNameTextField.text = user.person.firstName
-            secondNameTextField.text = user.person.secondName
-            lastNameTextField.text = user.person.lastName
-            birthTextField.text = user.person.birthday
-            emailTextField.text = user.person.email
-            PopUp.displayMessage(with: "2021", description: "С новым годом! Игра началась, выживет сильнейший)", buttonText: "Спасибо!")
-        } else {
-            PopUp.displayMessage(with: "Ошибка", description: "...", buttonText: "Ок")
-        }
+        let person = userInfo.person
+        firstNameTextField.text = person.firstName
+        secondNameTextField.text = person.secondName
+        lastNameTextField.text = person.lastName
+        birthTextField.text = person.birthday
+        emailTextField.text = person.email
     }
     
     @IBAction func enterEditMode(sender: UIButton) {
@@ -46,7 +42,7 @@ class MyProfileViewController: UIViewController {
         switchEditingMode(with: isPersonEditing)
     }
     
-    func switchEditingMode(with: Bool) {
+    private func switchEditingMode(with: Bool) {
         firstNameTextField.isEnabled = with
         secondNameTextField.isEnabled = with
         lastNameTextField.isEnabled = with
