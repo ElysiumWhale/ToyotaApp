@@ -52,12 +52,8 @@ public struct CellIdentifiers {
     static let ServiceCell = "ServiceCell"
 }
 
-extension UIStackView {
-    func removeAllArrangedSubviews() {
-        arrangedSubviews.forEach {
-            self.removeArrangedSubview($0)
-            NSLayoutConstraint.deactivate($0.constraints)
-            $0.removeFromSuperview()
-        }
-    }
+enum ServiceViewControllers {
+    case techService
+    case evacuate
+    case testDrive
 }

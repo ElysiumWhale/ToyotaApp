@@ -24,7 +24,7 @@ class ServicesViewController: PickerController {
             displayError(whith: "Увы, на данный момень Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
-            showroomLabel.text = "Добавьте машину"
+            showroomLabel.text = ""
             return
         }
         
@@ -128,9 +128,10 @@ extension ServicesViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-        let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor)  as! ConstructorViewController
-        vc.configure(with: serviceTypes[indexPath.row].id, and: selectedCar!.showroomId)
-        navigationController?.pushViewController(vc, animated: true)
+//        let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+//        let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor)  as! ConstructorViewController
+//        vc.configure(with: serviceTypes[indexPath.row].id, and: selectedCar!.showroomId)
+//        navigationController?.pushViewController(vc, animated: true)
+        #warning("to-do: create and map view")
     }
 }
