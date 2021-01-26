@@ -1,6 +1,16 @@
 import Foundation
 import UIKit
 
+enum ServicesControllers: String {
+    case TestDriveViewController = "1"
+    case EmergencyViewController = "2"
+    case TechOverviewViewController = "3"
+}
+
+protocol ServiceWithConfigure {
+    func configure(with service: ServiceType, car: Car)
+}
+
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let auth = "Authentification"
@@ -25,6 +35,13 @@ public struct AppViewControllers {
     static let myCar = "MyCarViewController"
     
     static let constructor = "ConstructorViewController"
+    
+    struct ServicesMap {
+        static let map: [ServicesControllers:UIViewController.Type] =
+            [.TestDriveViewController:TestDriveViewController.self,
+             .TechOverviewViewController:TechOverviewViewController.self,
+             .EmergencyViewController:EmergencyViewController.self]
+    }
 }
 
 public struct SegueIdentifiers {

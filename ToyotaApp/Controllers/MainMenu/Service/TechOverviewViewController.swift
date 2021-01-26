@@ -20,3 +20,9 @@ class TechOverviewViewController: UIViewController {
     */
 
 }
+
+extension TechOverviewViewController: ServiceWithConfigure {
+    func configure(with service: ServiceType, car: Car) {
+        
+    }
+}

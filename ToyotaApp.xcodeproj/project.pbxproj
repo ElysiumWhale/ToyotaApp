@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
+		1401F23D25C0A8AD00E96D05 /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
@@ -65,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 			children = (
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				A793EEF5257F18A40094DF09 /* TechOverviewViewController.swift */,
+				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
+				1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A7C9D1D525A8A75A00B3CDF7 /* ConstructorButton.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
+				1401F23D25C0A8AD00E96D05 /* EmergencyViewController.swift in Sources */,
 				1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */,
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
@@ -434,6 +441,7 @@
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
+				1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
