@@ -60,7 +60,7 @@ class ServicesViewController: PickerController {
             if let resp = response, let types = resp.service_type {
                 serviceTypes = types
                 serviceTypes = [ServiceType(id: "1", service_type_name: "Тест драйв"),
-                                ServiceType(id: "2", service_type_name: "Услуги сервиса"),
+                                ServiceType(id: "2", service_type_name: "Вызов эвакуатора"),
                                 ServiceType(id: "3", service_type_name: "Обслуживание")]
                 servicesCollectionView.reloadData()
             }
@@ -115,7 +115,9 @@ extension ServicesViewController: UIPickerViewDelegate {
 
 //MARK: - UICollectionViewDataSource
 extension ServicesViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { serviceTypes.count }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        serviceTypes.count
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! ServiceCollectionViewCell
@@ -128,10 +130,5 @@ extension ServicesViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let storyBoard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-//        let vc = storyBoard.instantiateViewController(identifier: AppViewControllers.constructor)  as! ConstructorViewController
-//        vc.configure(with: serviceTypes[indexPath.row].id, and: selectedCar!.showroomId)
-//        navigationController?.pushViewController(vc, animated: true)
-        #warning("to-do: create and map view")
     }
 }

@@ -22,20 +22,15 @@ class NavigationService {
                     } else { fallbackCompletion() }
                 case 3:
                     if let cities = context.cities,
-                       let showrooms = context.showrooms {
+                       let showrooms = user.showroom {
                            NavigationService.loadRegister(with: user, cities, showrooms)
-                    } else { fallbackCompletion() }
-                case 4:
-                    #warning("redundant??")
-                    if let profile = user.profile,
-                       let showrooms = user.showroom,
-                       let cars = user.car {
-                           NavigationService.loadMain(with: profile, showrooms, and: cars)
                     } else { fallbackCompletion() }
                 default: fallbackCompletion()
             }
         } else if let _ = context.registerStatus {
             NavigationService.loadMain(from: context.registeredUser)
+        } else if let page = context.registerPage, page == 1 {
+            NavigationService.loadRegister()
         } else { fallbackCompletion() }
     }
     
@@ -83,7 +78,8 @@ extension NavigationService {
             pivc.configure(with: user.profile!)
             
             let dvc = regStoryboard.instantiateViewController(identifier:       AppViewControllers.dealerViewController) as! DealerViewController
-            let index = cities.firstIndex(where: { $0.name == user.showroom!.first!.cityName })!
+            let cityName = user.showroom!.first!.cityName
+            let index = cities.firstIndex(where: { $0.name == cityName })!
             dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: user.showroom!.first)
             
             let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVinViewController) as! CheckVinViewController
@@ -98,33 +94,6 @@ extension NavigationService {
 //MARK: - LoadNain overloads
 extension NavigationService {
     
-    #warning("redundant??")
-    class func loadMain(with profile: Profile, _ showrooms: [RegisteredUser.Showroom], and cars: [DTOCar]) {
-        let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
-        DispatchQueue.main.async {
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
-            
-            //pushTestCars()
-            
-            let result = DefaultsManager.buildUserFromDefaults()
-            switch result {
-                case .failure:
-                    DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: profile))
-                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms(showrooms.map { Showroom($0.id, $0.showroomName, $0.cityName) }))
-                    DefaultsManager.pushUserInfo(info: UserInfo.Cars(cars.map { $0.toDomain() }))
-                case .success(let user):
-                    for child in controller.viewControllers ?? [] {
-                        if let top = child as? WithUserInfo {
-                            top.setUser(info: user)
-                        } else if let nav = child as? UINavigationController, let top = nav.topViewController as? WithUserInfo {
-                            top.setUser(info: user)
-                        }
-                    }
-            }
-            switchRootView(controller: controller)
-        }
-    }
-    
     class func loadMain(from user: RegisteredUser? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
@@ -132,7 +101,7 @@ extension NavigationService {
             
             if let user = user {
                 DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: user.profile!))
-                DefaultsManager.pushUserInfo(info: UserInfo.Showrooms(user.showroom!.map { Showroom($0.id, $0.showroomName,     $0.cityName) }))
+                DefaultsManager.pushUserInfo(info: UserInfo.Showrooms(user.showroom!.map { Showroom($0.id, $0.showroomName, $0.cityName!) }))
                 if let cars = user.car {
                     DefaultsManager.pushUserInfo(info: UserInfo.Cars(cars.map { $0.toDomain() }))
                 }

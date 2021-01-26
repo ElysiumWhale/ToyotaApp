@@ -42,20 +42,8 @@ public struct CheckUserOrSmsCodeResponse: Codable {
 
 public struct RegisteredUser: Codable {
     let profile: Profile?
-    let showroom: [Showroom]?
+    let showroom: [DTOShowroom]?
     let car: [DTOCar]?
-    
-    struct Showroom: Codable {
-        let id: String
-        let showroomName: String
-        let cityName: String
-        
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case showroomName = "showroom_name"
-            case cityName = "city_name"
-        }
-    }
 }
 
 public struct Profile: Codable {
@@ -100,11 +88,13 @@ public struct CityDidSelectResponce: Codable {
 
 public struct DTOShowroom: Codable {
     let id: String
-    let name: String
+    let showroomName: String
+    let cityName: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case name = "showroom_name"
+        case showroomName = "showroom_name"
+        case cityName = "city_name"
     }
 }
 

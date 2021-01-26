@@ -26,7 +26,7 @@ class DealerViewController: PickerController {
         if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
             cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: true)
             cityTextField.text = selectedCity.name
-            showroomTextField.text = selectedShowroom.name
+            showroomTextField.text = selectedShowroom.showroomName
             showroomPicker.selectRow(showrooms.firstIndex(where: {$0.id == selectedShowroom.id})!, inComponent: 0, animated: true)
             showroomLabel.isHidden = false
             showroomTextField.isHidden = false
@@ -43,12 +43,12 @@ class DealerViewController: PickerController {
         }
     }
     
-    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: RegisteredUser.Showroom? = nil) {
+    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
             selectedCity = city
             showrooms = list
-            selectedShowroom = DTOShowroom(id: showroom.id, name: showroom.showroomName)
+            selectedShowroom = showroom
         }
     }
 }
@@ -87,7 +87,7 @@ extension DealerViewController: SegueWithRequestController {
                 
                 if let _ = response.error_code { completion(error: response.message) }
                 else {
-                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.name,  selectedCity!.name)]))
+                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.showroomName,  selectedCity!.name)]))
                     completion(perform: true)
                 }
             } else { displayError(whith: "Сервер прислал неверные данные") }
@@ -116,7 +116,7 @@ extension DealerViewController {
     @objc private func showroomDidSelect(sender: Any?) {
         let row = showroomPicker.selectedRow(inComponent: 0)
         selectedShowroom = showrooms[row]
-        showroomTextField?.text = showrooms[row].name
+        showroomTextField?.text = showrooms[row].showroomName
         view.endEditing(true)
         nextButton.isHidden = false
     }
@@ -137,7 +137,7 @@ extension DealerViewController {
                 showrooms = response.showrooms
                 uiCompletion()
             } else {
-                showrooms = [DTOShowroom(id: "0", name: "Ошибка десериализации")]
+                showrooms = [DTOShowroom(id: "0", showroomName: "Ошибка десериализации", cityName: nil)]
                 uiCompletion()
             }
         }
@@ -162,7 +162,7 @@ extension DealerViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
             case cityPicker: return cities[row].name
-            case showroomPicker: return showrooms[row].name
+            case showroomPicker: return showrooms[row].showroomName
             default: return "Object is missing"
         }
     }
