@@ -7,10 +7,6 @@ enum ServicesControllers: String {
     case TechOverviewViewController = "3"
 }
 
-protocol ServiceWithConfigure {
-    func configure(with service: ServiceType, car: Car)
-}
-
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let auth = "Authentification"

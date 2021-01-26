@@ -10,7 +10,7 @@ class TestDriveViewController: UIViewController {
     
 }
 
-extension TestDriveViewController: ServiceWithConfigure {
+extension TestDriveViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         
     }

@@ -21,7 +21,7 @@ class TechOverviewViewController: UIViewController {
 
 }
 
-extension TechOverviewViewController: ServiceWithConfigure {
+extension TechOverviewViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         
     }

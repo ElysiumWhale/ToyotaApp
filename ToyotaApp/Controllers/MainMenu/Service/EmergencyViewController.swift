@@ -8,7 +8,7 @@ class EmergencyViewController: UIViewController {
     }
 }
 
-extension EmergencyViewController: ServiceWithConfigure {
+extension EmergencyViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         
     }
