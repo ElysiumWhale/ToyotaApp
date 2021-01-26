@@ -7,15 +7,38 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ToyotaType-Semibold.ttf">
+            <string>ToyotaType-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestDriveViewController" customModule="ToyotaApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestDriveViewController" customModule="ToyotaApp" customModuleProvider="target">
+            <connections>
+                <outlet property="label" destination="FsC-gF-teb" id="6xn-fl-bCv"/>
+                <outlet property="view" destination="Hrw-ec-KYt" id="Rfu-W3-AvP"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="Hrw-ec-KYt">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car + ServiceType" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsC-gF-teb">
+                    <rect key="frame" x="94" y="151" width="227" height="25"/>
+                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="bb8-av-bes"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="132" y="130"/>
+            <constraints>
+                <constraint firstItem="FsC-gF-teb" firstAttribute="leading" secondItem="bb8-av-bes" secondAttribute="leading" constant="94" id="6Lt-NU-OqF"/>
+                <constraint firstItem="FsC-gF-teb" firstAttribute="top" secondItem="bb8-av-bes" secondAttribute="top" constant="107" id="Jkn-Dm-soT"/>
+                <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="FsC-gF-teb" secondAttribute="trailing" constant="93" id="lrE-yK-pgS"/>
+            </constraints>
+            <point key="canvasLocation" x="-646.37681159420299" y="64.955357142857139"/>
         </view>
     </objects>
     <resources>

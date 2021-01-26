@@ -2,8 +2,10 @@ import Foundation
 import UIKit
 
 class NavigationService {
+    #warning("not work")
     class func instantinateXIB<T>( _ viewController: T.Type) -> T {
-        let view = Bundle.main.loadNibNamed(String(describing:T.self), owner: nil, options: nil)?.first
+        let s = String(describing:viewController)
+        let view = Bundle.main.loadNibNamed(s, owner: viewController, options: nil)?.first
         return view as! T
     }
     

@@ -132,7 +132,7 @@ extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell {
             guard let type = AppViewControllers.ServicesMap.map[cell.serviceType] else { return }
-            guard let vc = NavigationService.instantinateXIB(type) as? ServicesMapped else { return }
+            guard let vc = type.init(nibName: String(describing: type), bundle: Bundle.main) as? ServicesMapped else { return }
             vc.configure(with: serviceTypes[indexPath.row], car: selectedCar!)
             navigationController?.pushViewController(vc as! UIViewController, animated: true)
         }
