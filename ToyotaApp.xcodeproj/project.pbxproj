@@ -11,7 +11,9 @@
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
 		1401F23D25C0A8AD00E96D05 /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */; };
 		1401F24025C0B25000E96D05 /* EmergencyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */; };
-		1401F24325C0B28700E96D05 /* TechOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */; };
+		1401F24325C0B28700E96D05 /* ServiceMaintenanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */; };
+		1401F24E25C0D31000E96D05 /* ServiceServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F24C25C0D31000E96D05 /* ServiceServicesViewController.swift */; };
+		1401F24F25C0D31000E96D05 /* ServiceServicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24D25C0D31000E96D05 /* ServiceServicesViewController.xib */; };
 		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
@@ -56,7 +58,7 @@
 		A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */; };
 		A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */; };
 		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
-		A793EEF6257F18A40094DF09 /* TechOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793EEF5257F18A40094DF09 /* TechOverviewViewController.swift */; };
+		A793EEF6257F18A40094DF09 /* ServiceMaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */; };
 		A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A085F4255C7BC600807225 /* UserInfo.swift */; };
 		A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7A085FC255C869C00807225 /* SwiftEntryKit */; };
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
@@ -74,7 +76,9 @@
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
 		1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmergencyViewController.xib; sourceTree = "<group>"; };
-		1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TechOverviewViewController.xib; sourceTree = "<group>"; };
+		1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceMaintenanceViewController.xib; sourceTree = "<group>"; };
+		1401F24C25C0D31000E96D05 /* ServiceServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceServicesViewController.swift; sourceTree = "<group>"; };
+		1401F24D25C0D31000E96D05 /* ServiceServicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceServicesViewController.xib; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
@@ -117,7 +121,7 @@
 		A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Semibold.ttf"; sourceTree = "<group>"; };
 		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
 		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
-		A793EEF5257F18A40094DF09 /* TechOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechOverviewViewController.swift; sourceTree = "<group>"; };
+		A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMaintenanceViewController.swift; sourceTree = "<group>"; };
 		A7A085F4255C7BC600807225 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -148,9 +152,10 @@
 		1401F23525C0A06B00E96D05 /* ServicesViews */ = {
 			isa = PBXGroup;
 			children = (
+				1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */,
+				1401F24D25C0D31000E96D05 /* ServiceServicesViewController.xib */,
 				1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */,
 				1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */,
-				1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */,
 			);
 			path = ServicesViews;
 			sourceTree = "<group>";
@@ -263,7 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
-				A793EEF5257F18A40094DF09 /* TechOverviewViewController.swift */,
+				A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */,
+				1401F24C25C0D31000E96D05 /* ServiceServicesViewController.swift */,
 				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
 				1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */,
 			);
@@ -407,8 +413,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1401F24F25C0D31000E96D05 /* ServiceServicesViewController.xib in Resources */,
 				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
-				1401F24325C0B28700E96D05 /* TechOverviewViewController.xib in Resources */,
+				1401F24325C0B28700E96D05 /* ServiceMaintenanceViewController.xib in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
 				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
@@ -438,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1401F24E25C0D31000E96D05 /* ServiceServicesViewController.swift in Sources */,
 				A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
@@ -451,7 +459,7 @@
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCollectionViewCell.swift in Sources */,
-				A793EEF6257F18A40094DF09 /* TechOverviewViewController.swift in Sources */,
+				A793EEF6257F18A40094DF09 /* ServiceMaintenanceViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,

@@ -2,9 +2,10 @@ import Foundation
 import UIKit
 
 enum ServicesControllers: String {
-    case TestDriveViewController = "1"
-    case EmergencyViewController = "2"
-    case TechOverviewViewController = "3"
+    case ServiceMaintenanceViewController = "1"
+    case ServiceServicesViewController = "2"
+    case TestDriveViewController = "3"
+    case EmergencyViewController = "4"
 }
 
 public struct AppStoryboards {
@@ -35,7 +36,7 @@ public struct AppViewControllers {
     struct ServicesMap {
         static let map: [ServicesControllers:UIViewController.Type] =
             [.TestDriveViewController:TestDriveViewController.self,
-             .TechOverviewViewController:TechOverviewViewController.self,
+             .ServiceMaintenanceViewController:ServiceMaintenanceViewController.self,
              .EmergencyViewController:EmergencyViewController.self]
     }
 }

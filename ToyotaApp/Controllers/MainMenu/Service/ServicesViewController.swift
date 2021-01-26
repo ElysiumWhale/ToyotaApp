@@ -59,9 +59,10 @@ class ServicesViewController: PickerController {
             carTextField.isHidden = false
             if let resp = response, let types = resp.service_type {
                 serviceTypes = types
-                serviceTypes = [ServiceType(id: "1", service_type_name: "Тест драйв"),
-                                ServiceType(id: "2", service_type_name: "Вызов эвакуатора"),
-                                ServiceType(id: "3", service_type_name: "Обслуживание")]
+//                serviceTypes = [ServiceType(id: "1", service_type_name: "Сервисное обслуживание"),
+//                                ServiceType(id: "2", service_type_name: "Услуги сервиса"),
+//                                ServiceType(id: "3", service_type_name: "Тест драйв"),
+//                                ServiceType(id: "4", service_type_name: "Вызов эвакуатора")]
                 servicesCollectionView.reloadData()
             }
         }

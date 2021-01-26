@@ -1,12 +1,12 @@
 import UIKit
 
-class EmergencyViewController: UIViewController {
+class ServiceMaintenanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-extension EmergencyViewController: ServicesMapped {
+extension ServiceMaintenanceViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         
     }
