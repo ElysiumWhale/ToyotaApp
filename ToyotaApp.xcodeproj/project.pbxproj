@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
 		1401F23D25C0A8AD00E96D05 /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */; };
+		1401F24025C0B25000E96D05 /* EmergencyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */; };
+		1401F24325C0B28700E96D05 /* TechOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */; };
 		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
@@ -67,8 +70,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1401F23C25C0A8AD00E96D05 /* EmergencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
+		1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmergencyViewController.xib; sourceTree = "<group>"; };
+		1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TechOverviewViewController.xib; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
@@ -139,6 +145,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1401F23525C0A06B00E96D05 /* ServicesViews */ = {
+			isa = PBXGroup;
+			children = (
+				1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */,
+				1401F23F25C0B25000E96D05 /* EmergencyViewController.xib */,
+				1401F24225C0B28700E96D05 /* TechOverviewViewController.xib */,
+			);
+			path = ServicesViews;
+			sourceTree = "<group>";
+		};
 		1495723B25B9FEAB0031A5AA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +281,7 @@
 		A791FDE225266F2700A595BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1401F23525C0A06B00E96D05 /* ServicesViews */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				A791FDE8252672FA00A595BB /* Custom Controls */,
 				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
@@ -391,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
+				1401F24325C0B28700E96D05 /* TechOverviewViewController.xib in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
 				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
@@ -401,12 +419,14 @@
 				A7924D1B254B743F001B67C1 /* ToyotaType-Black.ttf in Resources */,
 				A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
+				1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */,
 				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
 				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
 				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
 				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
+				1401F24025C0B25000E96D05 /* EmergencyViewController.xib in Resources */,
 				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

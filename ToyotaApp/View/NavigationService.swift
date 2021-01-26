@@ -2,6 +2,11 @@ import Foundation
 import UIKit
 
 class NavigationService {
+    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
+        let view = Bundle.main.loadNibNamed(String(describing:T.self), owner: nil, options: nil)?.first
+        return view as! T
+    }
+    
     class func loadAuth() {
         let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
         DispatchQueue.main.async {
