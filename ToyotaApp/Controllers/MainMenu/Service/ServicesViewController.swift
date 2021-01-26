@@ -122,7 +122,7 @@ extension ServicesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! ServiceCollectionViewCell
         let serviceType = serviceTypes[indexPath.row]
-        cell.configure(with: serviceType.service_type_name)
+        cell.configure(with: serviceType.service_type_name, type: ServicesControllers(rawValue: serviceType.id)!)
         return cell
     }
 }
@@ -130,5 +130,11 @@ extension ServicesViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell {
+            guard let type = AppViewControllers.ServicesMap.map[cell.serviceType] else { return }
+            guard let vc = NavigationService.instantinateXIB(type) as? ServiceWithConfigure else { return }
+            vc.configure(with: serviceTypes[indexPath.row], car: selectedCar!)
+            navigationController?.pushViewController(vc as! UIViewController, animated: true)
+        }
     }
 }
