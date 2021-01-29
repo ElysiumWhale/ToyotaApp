@@ -3,9 +3,9 @@ import UIKit
 
 enum ServicesControllers: String {
     case ServiceMaintenanceViewController = "1"
-    case ServiceServicesViewController = "2"
+    case RepairngViewController = "2"
     case TestDriveViewController = "3"
-    case EmergencyViewController = "4"
+    case HelpOnRoadViewController = "4"
 }
 
 public struct AppStoryboards {
@@ -37,7 +37,8 @@ public struct AppViewControllers {
         static let map: [ServicesControllers:UIViewController.Type] =
             [.TestDriveViewController:TestDriveViewController.self,
              .ServiceMaintenanceViewController:ServiceMaintenanceViewController.self,
-             .EmergencyViewController:EmergencyViewController.self]
+             .RepairngViewController:RepairingViewController.self,
+             .HelpOnRoadViewController:HelpOnRoadViewController.self]
     }
 }
 
@@ -64,10 +65,4 @@ public struct CellIdentifiers {
     static let CarCell = "CarCell"
     static let NewsCell = "NewsCell"
     static let ServiceCell = "ServiceCell"
-}
-
-enum ServiceViewControllers {
-    case techService
-    case evacuate
-    case testDrive
 }
