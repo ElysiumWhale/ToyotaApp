@@ -2,14 +2,12 @@ import Foundation
 import UIKit
 
 class NavigationService {
-    
-    class func loadAuth() {
-        let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-        DispatchQueue.main.async {
-            let controller = configureNavigationStack(with: [UIViewController](), for: authStoryboard, identifier: AppViewControllers.authNavigation)
-            switchRootView(controller: controller)
-        }
-    }
+//    #warning("not work")
+//    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
+//        let s = String(describing:viewController)
+//        let view = Bundle.main.loadNibNamed(s, owner: viewController, options: nil)?.first
+//        return view as! T
+//    }
     
     class func resolveNavigation(with context: CheckUserOrSmsCodeResponse, fallbackCompletion: () -> Void) {
         if context.registerStatus == nil, let page = context.registerPage,
@@ -35,9 +33,9 @@ class NavigationService {
         } else { fallbackCompletion() }
     }
     
-    private class func configureNavigationStack(with controllers: [UIViewController], for storyboard: UIStoryboard, identifier: String) -> UINavigationController {
+    private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: String) -> UINavigationController {
         let controller = storyboard.instantiateViewController(identifier: identifier) as! UINavigationController
-        if !controllers.isEmpty {
+        if let controllers = controllers, !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
         return controller
@@ -48,12 +46,23 @@ class NavigationService {
     }
 }
 
+//MARK: - LoadAuth
+extension NavigationService {
+    class func loadAuth() {
+        let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+        DispatchQueue.main.async {
+            let controller = configureNavigationStack(for: authStoryboard, identifier: AppViewControllers.authNavigation)
+            switchRootView(controller: controller)
+        }
+    }
+}
+
 //MARK: - LoadRegister overloads
 extension NavigationService {
     class func loadRegister() {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
-            let controller = configureNavigationStack(with: [UIViewController](), for: regStoryboard, identifier: AppViewControllers.registerNavigation)
+            let controller = configureNavigationStack(for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
         }
     }
@@ -92,9 +101,8 @@ extension NavigationService {
     }
 }
 
-//MARK: - LoadNain overloads
+//MARK: - LoadMain overloads
 extension NavigationService {
-    
     class func loadMain(from user: RegisteredUser? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {

@@ -174,8 +174,11 @@ public struct ServiceType: Codable {
 }
 
 //MARK: - GetServices
-class ServicesDidGetResponse: Response {
-    var service_type: [Service]?
+public struct ServicesDidGetResponse: Codable { //: Response {
+    let result: String
+    let error_code: String?
+    let message: String?
+    let services: [Service]?
 }
 
 public struct Service: Codable {
@@ -184,6 +187,7 @@ public struct Service: Codable {
     let service_type_id: String
     let service_name: String
     let koeff_time: String
+    let multiply: String
 }
 
 class Response: Codable {
