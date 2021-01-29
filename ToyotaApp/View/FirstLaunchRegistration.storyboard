@@ -49,6 +49,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию о себе" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEr-9E-ts0">
+                                <rect key="frame" x="20" y="140" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uEr-9E-ts0" secondAttribute="height" multiplier="187:40" id="FeN-1v-hzr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrP-ET-bHp">
                                 <rect key="frame" x="20" y="255" width="374" height="49"/>
                                 <constraints>
@@ -89,15 +98,6 @@
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию о себе" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEr-9E-ts0">
-                                <rect key="frame" x="20" y="140" width="374" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="uEr-9E-ts0" secondAttribute="height" multiplier="187:40" id="FeN-1v-hzr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ax1-4T-jTA" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="84" y="769" width="246" height="44"/>
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -123,7 +123,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="Ax1-4T-jTA" secondAttribute="trailing" constant="84" id="29d-El-Dxl"/>
-                            <constraint firstItem="wrP-ET-bHp" firstAttribute="top" secondItem="uEr-9E-ts0" secondAttribute="bottom" constant="35" id="3VF-3K-dET"/>
                             <constraint firstItem="wTR-aX-HgH" firstAttribute="top" secondItem="wrP-ET-bHp" secondAttribute="bottom" constant="19" id="3p1-PN-YGl"/>
                             <constraint firstItem="uEr-9E-ts0" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="8lC-Po-EjB"/>
                             <constraint firstItem="wrP-ET-bHp" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="KSd-AB-Esy"/>
@@ -131,7 +130,6 @@
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="wrP-ET-bHp" secondAttribute="trailing" constant="20" id="Moc-95-vjc"/>
                             <constraint firstItem="uEr-9E-ts0" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" id="OK2-bL-9oj"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="uEr-9E-ts0" secondAttribute="trailing" constant="20" id="OhC-9c-1C0"/>
-                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="Ax1-4T-jTA" secondAttribute="bottom" constant="49" id="S3T-zH-E2T"/>
                             <constraint firstItem="cfR-bq-rf7" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="VwM-sq-8P2"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="cfR-bq-rf7" secondAttribute="trailing" constant="20" id="b4V-mB-ZOB"/>
                             <constraint firstItem="DHD-Ih-oza" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="cWF-qE-Xe2"/>
@@ -139,6 +137,8 @@
                             <constraint firstItem="wTR-aX-HgH" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="doP-MU-Lsp"/>
                             <constraint firstItem="5fy-kg-Lxe" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="fF4-Er-kSz"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="DHD-Ih-oza" secondAttribute="trailing" constant="20" id="gPW-Xs-5wr"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="gyx-ec-rrW" secondAttribute="bottom" constant="21" id="hXa-AE-rBb"/>
+                            <constraint firstItem="wrP-ET-bHp" firstAttribute="top" secondItem="uEr-9E-ts0" secondAttribute="bottom" constant="35" id="jbL-VY-tn6"/>
                             <constraint firstItem="DHD-Ih-oza" firstAttribute="top" secondItem="5fy-kg-Lxe" secondAttribute="bottom" constant="26" id="lna-tv-KjZ"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="gyx-ec-rrW" secondAttribute="trailing" constant="157" id="nPU-0x-fxC"/>
                             <constraint firstItem="5fy-kg-Lxe" firstAttribute="top" secondItem="cfR-bq-rf7" secondAttribute="bottom" constant="52" id="oN5-Yk-jB8"/>
@@ -148,7 +148,7 @@
                             <constraint firstItem="cfR-bq-rf7" firstAttribute="top" secondItem="wTR-aX-HgH" secondAttribute="bottom" constant="17" id="vV1-rl-2VC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Данные" id="ZEk-mt-0o7"/>
+                    <navigationItem key="navigationItem" title="Данные" largeTitleDisplayMode="always" id="ZEk-mt-0o7"/>
                     <connections>
                         <outlet property="activitySwitcher" destination="gyx-ec-rrW" id="OD8-pH-Tui"/>
                         <outlet property="birthTextField" destination="DHD-Ih-oza" id="GeU-j7-joN"/>
@@ -304,7 +304,7 @@
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Проверить">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
@@ -384,7 +384,7 @@
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>

@@ -45,10 +45,13 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-8y-DBc">
-                    <rect key="frame" x="20" y="317" width="374" height="216"/>
+                    <rect key="frame" x="20" y="297" width="374" height="216"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="216" id="bMY-Y2-Grn"/>
+                    </constraints>
                 </datePicker>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Автомобиль" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iSR-Yy-vwZ" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="20" y="111" width="374" height="48.5"/>
+                    <rect key="frame" x="20" y="91" width="374" height="48.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48.333333333333314" id="Xj7-bD-91D"/>
                     </constraints>
@@ -56,25 +59,25 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите автомобиль" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftC-st-ACW">
-                    <rect key="frame" x="20" y="74" width="374" height="29"/>
+                    <rect key="frame" x="20" y="54" width="374" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дату " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-g3-kGj">
-                    <rect key="frame" x="20" y="280" width="374" height="29"/>
+                    <rect key="frame" x="20" y="260" width="374" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите автосалон" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNT-ec-uKb">
-                    <rect key="frame" x="20" y="174" width="374" height="29"/>
+                    <rect key="frame" x="20" y="154" width="374" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Автосалон" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="es1-ey-oMe" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="20" y="211" width="374" height="48"/>
+                    <rect key="frame" x="20" y="191" width="374" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48.333333333333314" id="vje-Cm-nwh"/>
                     </constraints>
@@ -82,7 +85,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cbb-Xu-bKV">
-                    <rect key="frame" x="132" y="350" width="150" height="150"/>
+                    <rect key="frame" x="132" y="332" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Cbb-Xu-bKV" secondAttribute="height" multiplier="1:1" id="naX-9b-MEl"/>
                     </constraints>
@@ -96,8 +99,7 @@
                 <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="es1-ey-oMe" secondAttribute="trailing" constant="20" id="3HJ-H5-sCd"/>
                 <constraint firstItem="1fJ-8y-DBc" firstAttribute="top" secondItem="MQa-g3-kGj" secondAttribute="bottom" constant="8" symbolic="YES" id="59U-IN-Lo2"/>
                 <constraint firstItem="es1-ey-oMe" firstAttribute="top" secondItem="uNT-ec-uKb" secondAttribute="bottom" constant="8" symbolic="YES" id="7lG-fk-F29"/>
-                <constraint firstItem="ftC-st-ACW" firstAttribute="top" secondItem="bb8-av-bes" secondAttribute="top" constant="30" id="9O3-cR-jc9"/>
-                <constraint firstItem="bb8-av-bes" firstAttribute="bottom" secondItem="Cbb-Xu-bKV" secondAttribute="bottom" constant="362" id="AQg-tj-ISV"/>
+                <constraint firstItem="ftC-st-ACW" firstAttribute="top" secondItem="bb8-av-bes" secondAttribute="top" constant="10" id="9O3-cR-jc9"/>
                 <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="uNT-ec-uKb" secondAttribute="trailing" constant="20" id="Dhw-iU-TJp"/>
                 <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="MQa-g3-kGj" secondAttribute="trailing" constant="20" id="LFD-5h-F7Y"/>
                 <constraint firstItem="cg0-rV-VQW" firstAttribute="leading" secondItem="bb8-av-bes" secondAttribute="leading" constant="94" id="MHI-Hp-FCN"/>
@@ -109,7 +111,7 @@
                 <constraint firstItem="1fJ-8y-DBc" firstAttribute="leading" secondItem="bb8-av-bes" secondAttribute="leading" constant="20" id="grW-GR-5AD"/>
                 <constraint firstItem="uNT-ec-uKb" firstAttribute="leading" secondItem="bb8-av-bes" secondAttribute="leading" constant="20" id="iQ0-zB-uLt"/>
                 <constraint firstItem="iSR-Yy-vwZ" firstAttribute="leading" secondItem="bb8-av-bes" secondAttribute="leading" constant="20" id="iTE-sZ-RT2"/>
-                <constraint firstItem="Cbb-Xu-bKV" firstAttribute="top" secondItem="bb8-av-bes" secondAttribute="top" constant="306" id="k5f-N9-xs1"/>
+                <constraint firstItem="Cbb-Xu-bKV" firstAttribute="top" secondItem="bb8-av-bes" secondAttribute="top" constant="288" id="k5f-N9-xs1"/>
                 <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="1fJ-8y-DBc" secondAttribute="trailing" constant="20" id="oKF-Ty-6ub"/>
                 <constraint firstItem="bb8-av-bes" firstAttribute="trailing" secondItem="cg0-rV-VQW" secondAttribute="trailing" constant="93" id="qCt-4s-jv1"/>
                 <constraint firstItem="iSR-Yy-vwZ" firstAttribute="top" secondItem="ftC-st-ACW" secondAttribute="bottom" constant="8" id="sgh-Wn-sHA"/>

@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="83" y="422.5" width="247" height="44"/>
+                                <rect key="frame" x="83" y="422.5" width="247" height="38"/>
                                 <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -82,7 +82,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-7v-DbB">
-                                <rect key="frame" x="157" y="389.5" width="100" height="100"/>
+                                <rect key="frame" x="157" y="383.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gKJ-7v-DbB" secondAttribute="height" multiplier="1:1" id="zak-Ed-hGm"/>
                                 </constraints>
@@ -251,7 +251,7 @@
     </scenes>
     <designables>
         <designable name="6ZA-bw-BOW">
-            <size key="intrinsicContentSize" width="67" height="44"/>
+            <size key="intrinsicContentSize" width="64" height="38"/>
         </designable>
         <designable name="YeZ-bJ-pbq">
             <size key="intrinsicContentSize" width="67" height="44"/>
