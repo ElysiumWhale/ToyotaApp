@@ -36,6 +36,7 @@ class CheckVinViewController: UIViewController, DisplayError {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
     }
 }
 

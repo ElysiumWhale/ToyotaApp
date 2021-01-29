@@ -40,7 +40,7 @@ class NetworkService {
         session.dataTask(with: buildPostRequest(for: page, with: params)).resume()
     }
     
-    func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {
+    private func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {
         var query = mainUrl
         query.path.append(page)
         

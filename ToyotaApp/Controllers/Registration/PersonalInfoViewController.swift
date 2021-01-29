@@ -20,6 +20,7 @@ class PersonalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+        hideKeyboardWhenTappedAround()
     }
     
     private func checkFields() -> Bool {

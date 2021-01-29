@@ -17,6 +17,7 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         let person = userInfo.person
         firstNameTextField.text = person.firstName
         secondNameTextField.text = person.secondName
