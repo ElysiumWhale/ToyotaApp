@@ -689,14 +689,6 @@
 				minimumVersion = 3.3.1;
 			};
 		};
-		A717CEBC252BC63E00CFB6FF /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SURYAKANTSHARMA/CountryPicker.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.9;
-			};
-		};
 		A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
@@ -722,11 +714,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A717CEB5252A210A00CFB6FF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
-		};
-		A717CEBD252BC63E00CFB6FF /* CountryPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A717CEBC252BC63E00CFB6FF /* XCRemoteSwiftPackageReference "CountryPicker" */;
-			productName = CountryPicker;
 		};
 		A7A085FC255C869C00807225 /* SwiftEntryKit */ = {
 			isa = XCSwiftPackageProductDependency;

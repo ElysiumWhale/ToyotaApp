@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "CountryPicker",
-        "repositoryURL": "https://github.com/SURYAKANTSHARMA/CountryPicker.git",
-        "state": {
-          "branch": null,
-          "revision": "ddc4b28db5c40c0f831fa1a6158dd03b1966757a",
-          "version": "1.2.9"
-        }
-      },
-      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {

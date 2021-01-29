@@ -2,12 +2,6 @@ import Foundation
 import UIKit
 
 class NavigationService {
-    #warning("not work")
-    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
-        let s = String(describing:viewController)
-        let view = Bundle.main.loadNibNamed(s, owner: viewController, options: nil)?.first
-        return view as! T
-    }
     
     class func loadAuth() {
         let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
