@@ -1,13 +1,14 @@
 import UIKit
 
 class PersonalInfoViewController: UIViewController {
-    @IBOutlet var firstNameTextField: UITextField!
-    @IBOutlet var secondNameTextField: UITextField!
-    @IBOutlet var lastNameTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var birthTextField: UITextField!
-    @IBOutlet var activitySwitcher: UIActivityIndicatorView!
-    @IBOutlet var nextButton: UIButton!
+    @IBOutlet private(set) var scrollView: UIScrollView!
+    @IBOutlet private(set) var firstNameTextField: UITextField!
+    @IBOutlet private(set) var secondNameTextField: UITextField!
+    @IBOutlet private(set) var lastNameTextField: UITextField!
+    @IBOutlet private(set) var emailTextField: UITextField!
+    @IBOutlet private(set) var birthTextField: UITextField!
+    @IBOutlet private(set) var activitySwitcher: UIActivityIndicatorView!
+    @IBOutlet private(set) var nextButton: UIButton!
     
     private let datePicker: UIDatePicker = UIDatePicker()
     
@@ -21,6 +22,8 @@ class PersonalInfoViewController: UIViewController {
         super.viewDidLoad()
         createDatePicker()
         hideKeyboardWhenTappedAround()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func checkFields() -> Bool {
@@ -94,14 +97,19 @@ extension PersonalInfoViewController {
 //MARK: - Navigation
 extension PersonalInfoViewController {
     override func viewWillAppear(_ animated: Bool) {
+        //addKeyboardObserver()
         if isConfigured {
             firstNameTextField.text = configuredProfile!.firstName
             secondNameTextField.text = configuredProfile!.secondName
             lastNameTextField.text = configuredProfile!.lastName
             emailTextField.text = configuredProfile!.email
-            #warning("Format data")
+            #warning("to-do: Format data")
             birthTextField.text  = configuredProfile!.birthday
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //removeKeyboardObserver()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,7 +151,27 @@ extension PersonalInfoViewController {
     }
 }
 
-//MARK: -
+//MARK: - Keyboard methods
+extension PersonalInfoViewController {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+        scrollView.contentInset = contentInsets
+        //scrollView.setContentOffset(CGPoint(x: 0.0, y: keyboardSize.height-30), animated: true)
+        scrollView.scrollIndicatorInsets = contentInsets
+      }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+}
+
+//MARK: - SegueWithRequestController
 extension PersonalInfoViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
     
@@ -184,3 +212,4 @@ extension PersonalInfoViewController: SegueWithRequestController {
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: params, completion: completionForSegue)
     }
 }
+

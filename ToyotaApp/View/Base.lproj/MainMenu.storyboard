@@ -299,7 +299,7 @@
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flv-Tw-9VG" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="82" y="532" width="249" height="43"/>
-                                <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="xwN-4l-qiz"/>
                                 </constraints>
@@ -386,7 +386,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaQ-SC-hqn" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="748" width="414" height="65"/>
-                                <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eaQ-SC-hqn" secondAttribute="height" multiplier="170:43" constant="157.02325581395348" id="UeK-Z0-1Th"/>
                                 </constraints>
@@ -591,7 +591,7 @@
                                                 <constraint firstItem="UqS-E4-fJj" firstAttribute="top" secondItem="Q4p-V1-tfg" secondAttribute="bottom" constant="20" id="w3d-wl-DZY"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                         <connections>
                                             <outlet property="brandNameTextField" destination="P7l-a9-SBk" id="Rmn-B8-ZJS"/>
                                             <outlet property="colorDesrTextField" destination="67I-T1-AeY" id="Jb2-bd-RRz"/>
@@ -629,13 +629,13 @@
     </scenes>
     <designables>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
+            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
+            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
         </designable>
     </designables>
     <resources>
@@ -648,6 +648,9 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
