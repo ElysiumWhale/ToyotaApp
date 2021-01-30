@@ -29,6 +29,8 @@ struct DefaultsKeys {
     static let showroom = "showroom"
     static let cars = "cars"
     static let car = "car"
+    
+    static let chosenCar = "chosenCar"
 }
 
 protocol WithDefaultsKey: Codable {

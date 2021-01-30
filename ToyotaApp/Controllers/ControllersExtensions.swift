@@ -2,11 +2,11 @@ import Foundation
 import UIKit
 
 class PickerController: UIViewController {
-    func configurePicker<T>(view: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
-        view.dataSource = delegate
-        view.delegate = delegate
-        textField.inputAccessoryView = buildToolbar(for: view, with: action)
-        textField.inputView = view
+    func configurePicker<T>(_ picker: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+        picker.dataSource = delegate
+        picker.delegate = delegate
+        textField.inputAccessoryView = buildToolbar(for: picker, with: action)
+        textField.inputView = picker
     }
     
     private func buildToolbar(for pickerView: UIPickerView, with action: Selector) -> UIToolbar {

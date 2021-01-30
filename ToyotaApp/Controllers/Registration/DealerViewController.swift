@@ -18,8 +18,8 @@ class DealerViewController: PickerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePicker(view: cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
-        configurePicker(view: showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
+        configurePicker(cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
+        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

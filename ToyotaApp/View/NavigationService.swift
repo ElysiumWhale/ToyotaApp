@@ -26,8 +26,8 @@ class NavigationService {
                     } else { fallbackCompletion() }
                 default: fallbackCompletion()
             }
-        } else if let _ = context.registerStatus {
-            NavigationService.loadMain(from: context.registeredUser)
+        } else if let _ = context.registerStatus, let user = context.registeredUser {
+            NavigationService.loadMain(from: user)
         } else if let page = context.registerPage, page == 1 {
             NavigationService.loadRegister()
         } else { fallbackCompletion() }
@@ -87,13 +87,16 @@ extension NavigationService {
             let pivc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.personalInfoViewController) as! PersonalInfoViewController
             pivc.configure(with: user.profile!)
             
-            let dvc = regStoryboard.instantiateViewController(identifier:       AppViewControllers.dealerViewController) as! DealerViewController
-            let cityName = user.showroom!.first!.cityName
+            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealerViewController) as! DealerViewController
+            
+            let firstShowroom = user.showroom!.first!
+            let cityName = firstShowroom.cityName
             let index = cities.firstIndex(where: { $0.name == cityName })!
-            dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: user.showroom!.first)
+            
+            dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: firstShowroom)
             
             let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVinViewController) as! CheckVinViewController
-            cvvc.showroomId = user.showroom!.first!.id
+            cvvc.showroomId = firstShowroom.id
             
             let controller = configureNavigationStack(with: [pivc, dvc, cvvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
@@ -116,7 +119,7 @@ extension NavigationService {
                 }
             }
             
-            pushTestCars()
+            //pushTestCars()
             
             switch DefaultsManager.buildUserFromDefaults() {
                 case .failure(_):

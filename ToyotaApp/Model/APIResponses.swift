@@ -118,7 +118,7 @@ public struct DTOCar: Codable {
     let showroomId: String?
     
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id = "car_id"
         case brandName = "car_brand_name"
         case modelName = "car_model_name"
         case colorName = "car_color_name"

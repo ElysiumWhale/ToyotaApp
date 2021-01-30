@@ -28,20 +28,20 @@ class ServicesViewController: PickerController {
             return
         }
         
-        let res: Result<Car,AppErrors> = DefaultsManager.retrieveAdditionalInfo(for: "chosenCar")
+        let res: Result<Car,AppErrors> = DefaultsManager.retrieveAdditionalInfo(for: DefaultsKeys.chosenCar)
         switch res {
             case .success(let data):
                 selectedCar = data
-            default:
-                displayError(whith: "Ошибка при обращении в память")
-                return
+            case .failure(_):
+                selectedCar = cars.array.first
+                DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
         }
         
         if cars.array.count == 1 {
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             carTextField.isEnabled = false
         } else {
-            configurePicker(view: carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
+            configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             carForServePicker.selectRow(cars.array.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0, inComponent: 0, animated: false)
             carTextField.isEnabled = true
@@ -75,7 +75,7 @@ class ServicesViewController: PickerController {
             selectedCar = cars.array[row]
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
             showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
-            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: "chosenCar")
+            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
             NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
     }
