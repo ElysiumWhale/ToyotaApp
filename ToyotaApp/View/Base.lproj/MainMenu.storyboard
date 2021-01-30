@@ -509,10 +509,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarCell" id="SbR-Dv-UBE" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="18" y="96.666666666666671" width="221.66666666666663" height="558.66666666666652"/>
+                                        <rect key="frame" x="18" y="169" width="221.66666666666663" height="414.33333333333326"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kCV-0v-fuc">
-                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666663" height="558.66666666666652"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666663" height="414.33333333333326"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Марка и Модель" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-a9-SBk">
@@ -561,11 +561,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IdD-3J-AEK">
-                                                    <rect key="frame" x="30" y="367.33333333333337" width="164.66666666666666" height="166"/>
+                                                    <rect key="frame" x="30" y="367.33333333333337" width="164.66666666666666" height="21.666666666666686"/>
                                                     <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="IdD-3J-AEK" secondAttribute="height" multiplier="150:150" id="qO4-hL-fvA"/>
-                                                    </constraints>
                                                     <imageReference key="image" image="car" catalog="system" symbolScale="large" renderingMode="template"/>
                                                 </imageView>
                                             </subviews>
@@ -629,13 +626,13 @@
     </scenes>
     <designables>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
+            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
+            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
+            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
         </designable>
     </designables>
     <resources>

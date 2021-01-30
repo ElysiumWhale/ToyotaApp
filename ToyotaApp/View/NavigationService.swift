@@ -26,8 +26,8 @@ class NavigationService {
                     } else { fallbackCompletion() }
                 default: fallbackCompletion()
             }
-        } else if let _ = context.registerStatus, let user = context.registeredUser {
-            NavigationService.loadMain(from: user)
+        } else if let _ = context.registerStatus {
+            NavigationService.loadMain(from: context.registeredUser)
         } else if let page = context.registerPage, page == 1 {
             NavigationService.loadRegister()
         } else { fallbackCompletion() }
