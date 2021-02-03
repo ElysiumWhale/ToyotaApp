@@ -22,7 +22,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ServiceMaintenanceViewController" customModule="ToyotaApp" customModuleProvider="target">
             <connections>
                 <outlet property="createRequestButton" destination="ktI-Ax-zvY" id="AJs-Mr-xPB"/>
-                <outlet property="datePicker" destination="BrR-xH-tWY" id="A4I-6A-4XI"/>
+                <outlet property="datePicker" destination="yDB-Mc-l4H" id="i2g-vM-qPD"/>
                 <outlet property="indicator" destination="drW-dv-5b7" id="b9H-BW-z6d"/>
                 <outlet property="servicesTextField" destination="Wke-Ky-H6P" id="Jfi-tb-8b1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="vKu-lO-swx"/>
@@ -58,9 +58,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="BrR-xH-tWY">
-                    <rect key="frame" x="20" y="195" width="374" height="216"/>
-                </datePicker>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дату и время" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfY-ZO-Tj8">
                     <rect key="frame" x="20" y="158" width="374" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
@@ -73,13 +70,20 @@
                         <constraint firstAttribute="width" secondItem="drW-dv-5b7" secondAttribute="height" multiplier="1:1" constant="1" id="x5I-b3-niB"/>
                     </constraints>
                 </activityIndicatorView>
+                <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDB-Mc-l4H">
+                    <rect key="frame" x="20" y="195" width="374" height="216"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="EWz-R5-uV1"/>
+                        <outlet property="delegate" destination="-1" id="Wfb-6R-FVC"/>
+                    </connections>
+                </pickerView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="drW-dv-5b7" secondAttribute="trailing" constant="132" id="6BV-dM-zWx"/>
-                <constraint firstItem="BrR-xH-tWY" firstAttribute="top" secondItem="KfY-ZO-Tj8" secondAttribute="bottom" constant="8" symbolic="YES" id="8rQ-E2-lTe"/>
                 <constraint firstItem="drW-dv-5b7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="132" id="EtN-bc-IvD"/>
+                <constraint firstItem="yDB-Mc-l4H" firstAttribute="top" secondItem="KfY-ZO-Tj8" secondAttribute="bottom" constant="8" symbolic="YES" id="Hso-2R-myb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ktI-Ax-zvY" secondAttribute="bottom" constant="21" id="Ngg-4c-TNb"/>
                 <constraint firstItem="ktI-Ax-zvY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="95" id="Nh7-5X-LsX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7oG-Wr-MSV" secondAttribute="trailing" constant="20" id="Oy8-sb-Tyx"/>
@@ -87,14 +91,14 @@
                 <constraint firstItem="KfY-ZO-Tj8" firstAttribute="top" secondItem="Wke-Ky-H6P" secondAttribute="bottom" constant="18.5" id="Xux-0u-OeP"/>
                 <constraint firstItem="KfY-ZO-Tj8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="YeV-Bb-Znr"/>
                 <constraint firstItem="Wke-Ky-H6P" firstAttribute="top" secondItem="7oG-Wr-MSV" secondAttribute="bottom" constant="8" symbolic="YES" id="ZK3-h2-3L1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yDB-Mc-l4H" secondAttribute="trailing" constant="20" id="c14-94-FQ8"/>
                 <constraint firstItem="7oG-Wr-MSV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="f4O-yZ-SyL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ktI-Ax-zvY" secondAttribute="trailing" constant="96" id="g7y-0g-Ppl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wke-Ky-H6P" secondAttribute="trailing" constant="20" id="iTJ-JM-pJf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KfY-ZO-Tj8" secondAttribute="trailing" constant="20" id="ivU-DZ-L2o"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BrR-xH-tWY" secondAttribute="trailing" constant="20" id="tfV-s5-omG"/>
+                <constraint firstItem="yDB-Mc-l4H" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="nQO-PG-de0"/>
                 <constraint firstItem="drW-dv-5b7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="192" id="wBB-Pd-Qch"/>
                 <constraint firstItem="7oG-Wr-MSV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="wBe-sf-INQ"/>
-                <constraint firstItem="BrR-xH-tWY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="wQh-nI-RZn"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="129.91071428571428"/>
         </view>

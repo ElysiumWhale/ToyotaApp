@@ -176,7 +176,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
-                                <rect key="frame" x="0.0" y="197" width="414" height="616"/>
+                                <rect key="frame" x="0.0" y="192" width="414" height="621"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
@@ -236,7 +236,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
-                                <rect key="frame" x="0.0" y="152" width="414" height="26"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="21"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -590,11 +590,11 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                         <connections>
-                                            <outlet property="brandNameTextField" destination="P7l-a9-SBk" id="Rmn-B8-ZJS"/>
-                                            <outlet property="colorDesrTextField" destination="67I-T1-AeY" id="Jb2-bd-RRz"/>
-                                            <outlet property="colorNameTextField" destination="Q4p-V1-tfg" id="bhD-9d-jIl"/>
-                                            <outlet property="liscencePlateTextField" destination="yi9-Oc-bu7" id="Ojq-0p-iNI"/>
-                                            <outlet property="vinTextField" destination="UqS-E4-fJj" id="4dJ-hs-BmN"/>
+                                            <outlet property="brandNameLabel" destination="P7l-a9-SBk" id="gbq-A3-fEg"/>
+                                            <outlet property="colorDesrLabel" destination="67I-T1-AeY" id="bKl-i0-XuQ"/>
+                                            <outlet property="colorNameLabel" destination="Q4p-V1-tfg" id="4Fi-1I-IFl"/>
+                                            <outlet property="liscencePlateLabel" destination="yi9-Oc-bu7" id="23p-tV-KmK"/>
+                                            <outlet property="vinTextLabel" destination="UqS-E4-fJj" id="rSI-sG-no5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -626,13 +626,13 @@
     </scenes>
     <designables>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
+            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
+            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
         </designable>
     </designables>
     <resources>

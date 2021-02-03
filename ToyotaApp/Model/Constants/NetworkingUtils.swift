@@ -32,6 +32,7 @@ struct RequestPath {
     struct Services {
         static let getServicesTypes = "get_service_type.php"
         static let getServices = "get_services.php"
+        static let getFreeTime = "get_free_time.php"
     }
 }
 
@@ -62,6 +63,7 @@ struct RequestKeys {
     
     struct Services {
         static let serviceTypeId = "service_type_id"
+        static let serviceId = "service_id"
     }
 }
 

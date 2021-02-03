@@ -66,3 +66,29 @@ public struct CellIdentifiers {
     static let NewsCell = "NewsCell"
     static let ServiceCell = "ServiceCell"
 }
+
+public struct TimeMap {
+    static let map: [Int:DateComponents] = [
+        18:.init(hour: 9, minute: 00),
+        19:.init(hour: 9, minute: 30),
+        20:.init(hour: 10, minute: 00),
+        21:.init(hour: 10, minute: 30),
+        22:.init(hour: 11, minute: 00),
+        23:.init(hour: 11, minute: 30),
+        24:.init(hour: 12, minute: 00),
+        25:.init(hour: 12, minute: 30),
+        26:.init(hour: 13, minute: 00),
+        27:.init(hour: 13, minute: 30),
+        28:.init(hour: 14, minute: 00),
+        29:.init(hour: 14, minute: 30),
+        30:.init(hour: 15, minute: 00),
+        31:.init(hour: 15, minute: 30),
+        32:.init(hour: 16, minute: 00),
+        33:.init(hour: 16, minute: 30),
+        34:.init(hour: 17, minute: 00),
+        35:.init(hour: 17, minute: 30),
+        36:.init(hour: 18, minute: 00),
+        37:.init(hour: 18, minute: 30),
+        38:.init(hour: 19, minute: 00)
+    ]
+}

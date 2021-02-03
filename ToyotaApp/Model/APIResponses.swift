@@ -175,7 +175,7 @@ public struct ServiceType: Codable {
 }
 
 //MARK: - GetServices
-public struct ServicesDidGetResponse: Codable { //: Response {
+public struct ServicesDidGetResponse: Codable {
     let result: String
     let error_code: String?
     let message: String?
@@ -184,15 +184,37 @@ public struct ServicesDidGetResponse: Codable { //: Response {
 
 public struct Service: Codable {
     let id: String
-    let showroom_id: String
-    let service_type_id: String
-    let service_name: String
-    let koeff_time: String
+    let showroomId: String
+    let serviceTypeId: String
+    let serviceName: String
+    let koeffTime: String
     let multiply: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case showroomId = "showroom_id"
+        case serviceTypeId = "service_type_id"
+        case serviceName = "service_name"
+        case koeffTime = "koeff_time"
+        case multiply
+    }
 }
 
-class Response: Codable {
-    var result: String
-    var error_code: String?
-    var message: String?
+//MARK: - GetFreeTime for Service
+public struct FreeTimeDidGetResponse: Codable {
+    let result: String
+    let errorCode: String?
+    let message: String?
+    let startDate: String?
+    let endDate: String?
+    let freeTimeDict: [String:[Int]]?
+    
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case errorCode = "error_code"
+        case message
+        case startDate = "start_date"
+        case endDate = "end_date"
+        case freeTimeDict = "free_time"
+    }
 }

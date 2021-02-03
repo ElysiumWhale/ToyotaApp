@@ -32,7 +32,7 @@ class ServicesViewController: PickerController {
         switch res {
             case .success(let data):
                 selectedCar = data
-            case .failure(_):
+            case .failure:
                 selectedCar = cars.array.first
                 DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
         }
@@ -93,20 +93,14 @@ extension ServicesViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch pickerView {
-            case carForServePicker: return cars.array.count
-            default: return 1
-        }
+        cars.array.count
     }
 }
 
 //MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch pickerView {
-            case carForServePicker: return cars.array[row].model
-            default: return "Object is missing"
-        }
+        cars.array[row].model
     }
 }
 
