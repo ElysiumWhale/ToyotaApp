@@ -66,8 +66,9 @@ class MyProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case myCarsSegueCode:
-                let destinationVC = segue.destination as? MyCarsViewController
-                destinationVC?.configure(with: userInfo!.cars)
+                let navVC = segue.destination as! UINavigationController
+                let destinationVC = navVC.topViewController as! MyCarsViewController
+                destinationVC.configure(with: userInfo!.cars)
             default: return
         }
     }

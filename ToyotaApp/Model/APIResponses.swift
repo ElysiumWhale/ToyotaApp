@@ -67,6 +67,8 @@ public struct Profile: Codable {
 //MARK: - ProfileDidSetResponse
 public struct ProfileDidSetResponse: Codable {
     let result: String
+    let error_code: String?
+    let message: String?
     let cities: [City]
 }
 

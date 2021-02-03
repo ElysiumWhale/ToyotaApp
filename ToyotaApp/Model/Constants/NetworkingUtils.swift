@@ -34,6 +34,10 @@ struct RequestPath {
         static let getServices = "get_services.php"
         static let getFreeTime = "get_free_time.php"
     }
+    
+    struct Profile {
+        static let getCities = "get_cities.php"
+    }
 }
 
 struct RequestKeys {

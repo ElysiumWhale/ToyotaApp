@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -31,11 +31,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Услуга" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wke-Ky-H6P" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="20" y="120" width="374" height="48.5"/>
+                    <rect key="frame" x="20" y="119.99999999999999" width="350" height="48.333333333333329"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48.333333333333314" id="X8f-7g-GwB"/>
                     </constraints>
@@ -43,32 +43,32 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите услугу" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oG-Wr-MSV">
-                    <rect key="frame" x="20" y="83" width="374" height="29"/>
+                    <rect key="frame" x="20" y="83" width="350" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите дату и время" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfY-ZO-Tj8">
-                    <rect key="frame" x="20" y="187" width="374" height="29"/>
+                    <rect key="frame" x="20" y="187" width="350" height="29"/>
                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="drW-dv-5b7">
-                    <rect key="frame" x="132" y="265" width="150" height="149"/>
+                    <rect key="frame" x="132" y="265" width="126" height="125"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="drW-dv-5b7" secondAttribute="height" multiplier="1:1" constant="1" id="x5I-b3-niB"/>
                     </constraints>
                 </activityIndicatorView>
                 <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDB-Mc-l4H">
-                    <rect key="frame" x="20" y="215" width="374" height="216"/>
+                    <rect key="frame" x="20" y="215" width="350" height="216"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="EWz-R5-uV1"/>
                         <outlet property="delegate" destination="-1" id="Wfb-6R-FVC"/>
                     </connections>
                 </pickerView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ktI-Ax-zvY" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="81" y="456" width="252" height="46"/>
+                    <rect key="frame" x="81" y="456" width="228" height="46"/>
                     <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="LVk-Fp-60X"/>
