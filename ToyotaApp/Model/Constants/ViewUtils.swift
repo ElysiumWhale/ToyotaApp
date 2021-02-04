@@ -8,6 +8,11 @@ enum ServicesControllers: String {
     case HelpOnRoadViewController = "4"
 }
 
+enum AddInfoType {
+    case first
+    case next
+}
+
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let auth = "Authentification"

@@ -37,6 +37,7 @@ struct RequestPath {
     
     struct Profile {
         static let getCities = "get_cities.php"
+        static let addShowroom = "add_showroom.php"
     }
 }
 

@@ -34,7 +34,7 @@ class MyCarsViewController: UIViewController {
         DispatchQueue.main.async { [self] in
             let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
             let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealerViewController) as! DealerViewController
-            addShowroomVC.configure(cityList: cities)
+            addShowroomVC.configure(cityList: cities, controllerType: .next)
             navigationController?.pushViewController(addShowroomVC, animated: true)
         }
     }

@@ -86,14 +86,13 @@ class ServiceMaintenanceViewController: PickerController {
             freeTime = freeTimeDict
         } else {
             freeTime = ["2021-02-02":[18,19,20,21,22,23,24],
-                        "2021-02-04":[22,25,30,32,34],
+                        "2021-02-05":[22,25,30,32,34],
                         "2021-05-21":[18,23,27,30]]
         }
         
         DispatchQueue.main.async { [self] in
             updateDates(from: freeTime)
             datePicker.selectRow(0, inComponent: 0, animated: false)
-            //
             datePicker.reloadAllComponents()
             indicator.stopAnimating()
             indicator.isHidden = true

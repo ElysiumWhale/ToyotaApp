@@ -10,8 +10,10 @@ class CheckVinViewController: UIViewController, DisplayError {
     @IBOutlet private var vinCodeTextField: UITextField!
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
+    @IBOutlet var skipStepButton: UIButton!
     
     var showroomId: String?
+    private var type: AddInfoType = .first
     
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.isHidden = true
@@ -34,9 +36,39 @@ class CheckVinViewController: UIViewController, DisplayError {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            case segueCode:
+                switch type {
+                    case .first:
+                        let destinationVC = segue.destination as! EndRegistrationViewController
+                        #warning("to-do: configure")
+                    case .next:
+                        navigationController?.dismiss(animated: true) {
+                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
+                            #warning("to-do: update userInfo")
+                        }
+                }
+            default: return
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        switch type {
+            case .first:
+                skipStepButton.isEnabled = true
+                skipStepButton.isHidden = false
+            case .next:
+                skipStepButton.isEnabled = false
+                skipStepButton.isHidden = true
+        }
         hideKeyboardWhenTappedAround()
+    }
+    
+    func configure(with showroom: String, controlerType: AddInfoType = .first) {
+        showroomId = showroom
+        type = controlerType
     }
 }
 
@@ -48,6 +80,8 @@ extension CheckVinViewController: SegueWithRequestController {
         guard let vin = vinCodeTextField.text else { displayError(); return }
         guard vin.count == 17 else { displayError(); return }
         makeRequest(skip: .no, vin: vin)
+        #warning("TEST")
+        //performSegue(withIdentifier: segueCode, sender: self)
     }
     
     @IBAction func skipButtonDidPressed(sender: Any?) { makeRequest(skip: .yes) }

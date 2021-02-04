@@ -1,5 +1,5 @@
 import UIKit
-    
+
 class DealerViewController: PickerController {
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var showroomTextField: UITextField!
@@ -7,6 +7,8 @@ class DealerViewController: PickerController {
     @IBOutlet var nextButtonIndicator: UIActivityIndicatorView!
     @IBOutlet var showroomLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
+    
+    private var type: AddInfoType = .first
     
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
@@ -37,19 +39,20 @@ class DealerViewController: PickerController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                let destinationVC = segue.destination as? CheckVinViewController
-                destinationVC?.showroomId = selectedShowroom!.id
+                let destinationVC = segue.destination as! CheckVinViewController
+                destinationVC.configure(with: selectedShowroom!.id, controlerType: type)
             default: return
         }
     }
     
-    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil) {
+    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil, controllerType: AddInfoType = .first) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
             selectedCity = city
             showrooms = list
             selectedShowroom = showroom
         }
+        type = controllerType
     }
 }
 
@@ -64,7 +67,15 @@ extension DealerViewController: SegueWithRequestController {
             nextButtonIndicator.isHidden = false
             let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
             
-            NetworkService.shared.makePostRequest(page: RequestPath.Registration.setShowroom, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+            var page = ""
+            switch type {
+                case .first:
+                    page = RequestPath.Registration.setShowroom
+                case .next:
+                    page = RequestPath.Profile.addShowroom
+            }
+            
+            NetworkService.shared.makePostRequest(page: page, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                  URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
                 completion: completionForSegue)
         } else { return }

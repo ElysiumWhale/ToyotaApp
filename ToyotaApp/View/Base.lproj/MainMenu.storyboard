@@ -646,13 +646,13 @@
     </scenes>
     <designables>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
+            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
+            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
         </designable>
     </designables>
     <resources>
