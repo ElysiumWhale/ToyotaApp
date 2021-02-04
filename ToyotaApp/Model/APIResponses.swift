@@ -108,7 +108,7 @@ public struct ShowroomDidSelectResponse: Codable {
 }
 
 public struct DTOCar: Codable {
-    let id: String?
+    let id: String
     let brandName: String
     let modelName: String
     let colorName: String?
@@ -120,7 +120,6 @@ public struct DTOCar: Codable {
     let showroomId: String?
     
     private enum CodingKeys: String, CodingKey {
-        #warning("FIX IT: chec_vin_code backing id instead car_id, value must be non optional")
         case id = "car_id"
         case brandName = "car_brand_name"
         case modelName = "car_model_name"
@@ -136,7 +135,7 @@ public struct DTOCar: Codable {
 
 extension DTOCar {
     func toDomain(with vin: String, showroom: String) -> Car {
-        return Car(id: id ?? "-1", showroomId: showroom,
+        return Car(id: id, showroomId: showroom,
                    brand: brandName, model: modelName,
                    color: colorName ?? "Empty",
                    colorSwatch: colorSwatch ?? "Empty",
@@ -146,7 +145,7 @@ extension DTOCar {
     }
     
     func toDomain() -> Car {
-        return Car(id: id ?? "-1", showroomId: showroomId ?? "-1",
+        return Car(id: id, showroomId: showroomId ?? "-1",
                    brand: brandName, model: modelName,
                    color: colorName ?? "Empty",
                    colorSwatch: colorSwatch ?? "Empty",
