@@ -36,3 +36,23 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+protocol BackgroundText {
+    func createBackground(with text: String?) -> UILabel?
+}
+
+extension BackgroundText {
+    func createBackground(with text: String?) -> UILabel? {
+        if let txt = text {
+            let messageLabel = UILabel()
+            messageLabel.text = txt
+            messageLabel.textColor = .systemGray
+            messageLabel.numberOfLines = 0;
+            messageLabel.lineBreakMode = .byWordWrapping
+            messageLabel.textAlignment = .center;
+            messageLabel.font = UIFont(name: "ToyotaType-Semibold", size: 25)
+            messageLabel.sizeToFit()
+            return messageLabel
+        } else { return nil }
+    }
+}

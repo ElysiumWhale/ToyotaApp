@@ -1,6 +1,6 @@
 import UIKit
 
-class MyCarsViewController: UIViewController {
+class MyCarsViewController: UIViewController, BackgroundText {
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
     @IBOutlet var indicator: UIActivityIndicatorView!
@@ -14,6 +14,11 @@ class MyCarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if user.cars.array.isEmpty {
+            carsCollection.backgroundView = createBackground(with: "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите.")
+        } else {
+            carsCollection.backgroundView = nil
+        }
     }
     
     func configure(with info: UserInfo) { user = info }

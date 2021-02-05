@@ -1,6 +1,6 @@
 import UIKit
 
-class ServicesViewController: PickerController {
+class ServicesViewController: PickerController, BackgroundText {
     @IBOutlet private(set) var carTextField: UITextField!
     @IBOutlet private(set) var showroomLabel: UILabel!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
@@ -25,7 +25,11 @@ class ServicesViewController: PickerController {
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
             showroomLabel.text = ""
+            servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
             return
+        }
+        if let _ = servicesList.backgroundView {
+            servicesList.backgroundView = nil
         }
         
         if let car = userInfo.cars.chosenCar {
