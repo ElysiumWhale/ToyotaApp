@@ -39,16 +39,8 @@ class CheckVinViewController: UIViewController, DisplayError {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                switch type {
-                    case .first:
-                        let destinationVC = segue.destination as! EndRegistrationViewController
-                        #warning("to-do: configure")
-                    case .next:
-                        navigationController?.dismiss(animated: true) {
-                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
-                            #warning("to-do: update userInfo")
-                        }
-                }
+                let destinationVC = segue.destination as! EndRegistrationViewController
+                #warning("to-do: configure message")
             default: return
         }
     }
@@ -80,8 +72,6 @@ extension CheckVinViewController: SegueWithRequestController {
         guard let vin = vinCodeTextField.text else { displayError(); return }
         guard vin.count == 17 else { displayError(); return }
         makeRequest(skip: .no, vin: vin)
-        #warning("TEST")
-        //performSegue(withIdentifier: segueCode, sender: self)
     }
     
     @IBAction func skipButtonDidPressed(sender: Any?) { makeRequest(skip: .yes) }
@@ -103,19 +93,28 @@ extension CheckVinViewController: SegueWithRequestController {
     var completionForSegue: (CarDidCheckResponse?) -> Void {
         { [self] response in
             if let response = response {
-               if let _ = response.error_code { displayError(response.message) }
-               else { DispatchQueue.main.async {
-                   if let userCar = response.car, let vin = vinCodeTextField.text {
-                       let car = userCar.toDomain(with: vin, showroom: showroomId!)
-                       DefaultsManager.pushUserInfo(info:
-                            UserInfo.Cars([car], chosen: car)
-                       )
-                       UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
-                       performSegue(withIdentifier: segueCode, sender: self)
-                   } else {
-                       performSegue(withIdentifier: segueCode, sender: self)
-                   }
-               } }
+                if let _ = response.error_code { displayError(response.message) }
+                else {
+                    DispatchQueue.main.async {
+                        if let userCar = response.car, let vin = vinCodeTextField.text {
+                            let car = userCar.toDomain(with: vin, showroom: showroomId!)
+                            switch type {
+                                case .first:
+                                    DefaultsManager.pushUserInfo(info: UserInfo.Cars([car], chosen: car))
+                                    UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
+                                    performSegue(withIdentifier: segueCode, sender: self)
+                                case .next:
+                                    let parent = navigationController?.viewControllers.first as? MyCarsViewController
+                                    parent?.addCar(car)
+                                    navigationController?.dismiss(animated: true) {
+                                        PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
+                                    }
+                            }
+                        } else {
+                            performSegue(withIdentifier: segueCode, sender: self)
+                        }
+                    }
+                }
             } else { displayError("Ошибка при получении данных") }
         }
     }

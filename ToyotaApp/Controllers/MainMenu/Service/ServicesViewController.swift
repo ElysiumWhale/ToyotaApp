@@ -4,7 +4,7 @@ class ServicesViewController: PickerController {
     @IBOutlet private(set) var carTextField: UITextField!
     @IBOutlet private(set) var showroomLabel: UILabel!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var servicesCollectionView: UICollectionView!
+    @IBOutlet private(set) var servicesList: UICollectionView!
     
     private var userInfo: UserInfo!
     
@@ -28,13 +28,11 @@ class ServicesViewController: PickerController {
             return
         }
         
-        let res: Result<Car,AppErrors> = DefaultsManager.retrieveAdditionalInfo(for: DefaultsKeys.chosenCar)
-        switch res {
-            case .success(let data):
-                selectedCar = data
-            case .failure:
-                selectedCar = cars.array.first
-                DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
+        if let car = userInfo.cars.chosenCar {
+            selectedCar = car
+        } else {
+            selectedCar = cars.array.first
+            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
         }
         
         if cars.array.count == 1 {
@@ -59,7 +57,7 @@ class ServicesViewController: PickerController {
             carTextField.isHidden = false
             if let resp = response, let types = resp.service_type {
                 serviceTypes = types
-                servicesCollectionView.reloadData()
+                servicesList.reloadData()
             }
         }
     }
@@ -69,7 +67,7 @@ class ServicesViewController: PickerController {
         let row = carForServePicker.selectedRow(inComponent: 0)
         if selectedCar!.id != cars.array[row].id {
             serviceTypes.removeAll()
-            servicesCollectionView.reloadData()
+            servicesList.reloadData()
             loadingIndicator.isHidden = false
             loadingIndicator.startAnimating()
             selectedCar = cars.array[row]

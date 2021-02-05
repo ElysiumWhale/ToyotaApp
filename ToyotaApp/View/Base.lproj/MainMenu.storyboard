@@ -265,7 +265,7 @@
                     <connections>
                         <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
                         <outlet property="loadingIndicator" destination="dcR-Qg-ywE" id="Vkt-l2-iLv"/>
-                        <outlet property="servicesCollectionView" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
+                        <outlet property="servicesList" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
                         <outlet property="showroomLabel" destination="InQ-8a-6i6" id="G0I-8w-kbs"/>
                     </connections>
                 </viewController>

@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserInfo: Codable {
+class UserInfo: Codable {
     let id: String
     var phone: Phone?
     var secretKey = ""
@@ -12,6 +12,11 @@ struct UserInfo: Codable {
     private(set) var person: PersonInfo = PersonInfo()
     private(set) var showrooms: Showrooms = Showrooms()
     private(set) var cars: Cars = Cars()
+    
+    func update(cars object: UserInfo.Cars) {
+        cars = object
+        DefaultsManager.pushUserInfo(info: cars)
+    }
     
     //MARK: - Inner Structs
     struct PersonInfo: WithDefaultsKey {

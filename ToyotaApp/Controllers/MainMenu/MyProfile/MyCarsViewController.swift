@@ -6,7 +6,7 @@ class MyCarsViewController: UIViewController {
     @IBOutlet var indicator: UIActivityIndicatorView!
     
     private let cellIdentrifier = CellIdentifiers.CarCell
-    private var cars: UserInfo.Cars = UserInfo.Cars()
+    private var user: UserInfo!
     
     override func viewWillAppear(_ animated: Bool) {
         indicator.stopAnimating()
@@ -16,7 +16,7 @@ class MyCarsViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func configure(with: UserInfo.Cars) { cars = with }
+    func configure(with info: UserInfo) { user = info }
     
     @IBAction func addCar(sender: Any?) {
         indicator.startAnimating()
@@ -38,16 +38,23 @@ class MyCarsViewController: UIViewController {
             navigationController?.pushViewController(addShowroomVC, animated: true)
         }
     }
+    
+    func addCar(_ car: Car) {
+        var cars = user.cars
+        cars.array.append(car)
+        user.update(cars: cars)
+    }
 }
 
+//MARK: - UICollectionViewDataSource
 extension MyCarsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cars.array.count
+        return user.cars.array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! CarCollectionViewCell
-        let car = cars.array[indexPath.row]
+        let car = user.cars.array[indexPath.row]
         cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, vin: car.vin)
         return cell
     }
