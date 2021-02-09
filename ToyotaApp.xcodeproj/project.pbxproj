@@ -13,6 +13,7 @@
 		1449CDCA25C4A6A400BBDAAE /* RepairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */; };
 		1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
+		1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78025D3355400E318D3 /* RoundedMKMapView.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
@@ -76,6 +77,7 @@
 		1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairingViewController.swift; sourceTree = "<group>"; };
 		1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepairingViewController.xib; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		1467F78025D3355400E318D3 /* RoundedMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedMKMapView.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */,
 				A78A4EF72548EA600026B76B /* NoPasteTextField.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
+				1467F78025D3355400E318D3 /* RoundedMKMapView.swift */,
 			);
 			path = "Custom Controls";
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				A793EEF6257F18A40094DF09 /* ServiceMaintenanceViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
+				1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
