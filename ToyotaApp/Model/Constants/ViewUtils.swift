@@ -70,6 +70,7 @@ public struct CellIdentifiers {
     static let CarCell = "CarCell"
     static let NewsCell = "NewsCell"
     static let ServiceCell = "ServiceCell"
+    static let OrderCell = "OrderCell"
 }
 
 public struct TimeMap {
