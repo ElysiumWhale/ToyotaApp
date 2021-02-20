@@ -68,12 +68,13 @@ extension SmsCodeViewController {
     private var completion: (CheckUserOrSmsCodeResponse?) -> Void {
         { [self] response in
             if let response = response {
-                    let defaults = UserDefaults.standard
-                    defaults.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
-                    defaults.setValue(response.userId!, forKey: DefaultsKeys.userId)
-                    defaults.setValue(true, forKeyPath: DefaultsKeys.isAuth)
-                    
-                    NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
+                DefaultsManager.pushModelInfo(info: UserId(response.userId!))
+                DefaultsManager.pushModelInfo(info: SecretKey(response.secretKey))
+                
+                #warning("redundant")
+                UserDefaults.standard.setValue(true, forKeyPath: DefaultsKeys.isAuth)
+                
+                NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
             }
             else {
                 DispatchQueue.main.async {

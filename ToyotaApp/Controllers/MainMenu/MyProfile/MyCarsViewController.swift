@@ -29,12 +29,12 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
     
     func completion(response: ProfileDidSetResponse?) {
-        guard response?.error_code == nil, let cities = response?.cities else {
-            indicator.stopAnimating()
-            PopUp.displayMessage(with: "Ошибка", description: response?.message ?? "Ошибка при загрузке городов", buttonText: "Ок")
-            return
-        }
         DispatchQueue.main.async { [self] in
+            guard response?.error_code == nil, let cities = response?.cities else {
+                indicator.stopAnimating()
+                PopUp.displayMessage(with: "Ошибка", description: response?.message ?? "Ошибка при загрузке городов", buttonText: "Ок")
+                return
+            }
             let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
             let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealerViewController) as! DealerViewController
             addShowroomVC.configure(cityList: cities, controllerType: .next)
