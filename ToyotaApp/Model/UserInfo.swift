@@ -123,3 +123,31 @@ struct Car: Codable {
 extension UserInfo.Phone: WithDefaultsKey {
     var key: String { DefaultsKeys.phone }
 }
+
+protocol DefaultValue: Codable {
+    associatedtype T: Codable
+    static var key: DefaultKeys { get }
+    var value: T { get set }
+}
+
+class UserId: DefaultValue {
+    typealias T = String
+    
+    static var key: DefaultKeys = .userId
+    var value: String
+    
+    init(_ id: String) {
+        value = id
+    }
+}
+
+class SecretKey: DefaultValue {
+    typealias T = String
+    
+    static var key: DefaultKeys = .secretKey
+    var value: String
+    
+    init(_ key: String) {
+        value = key
+    }
+}

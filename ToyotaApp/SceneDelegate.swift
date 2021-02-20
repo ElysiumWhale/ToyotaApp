@@ -7,18 +7,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        let defaults = UserDefaults.standard
+        guard let userId = DefaultsManager.retrieveAdditionalInfo(UserId.self)?.value,
+              let secretKey = DefaultsManager.retrieveAdditionalInfo(SecretKey.self)?.value else {
+            NavigationService.loadAuth()
+            return
+        }
+        NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
+        [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+         URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id),
+         URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
+        completion: resolveNavigation)
+    }
+}
+
+//MARK: - Navigation
+extension SceneDelegate {
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = window else { return }
+        window.rootViewController = vc
         
-        if let loggedUserId = defaults.string(forKey: DefaultsKeys.userId), let secretKey = defaults.string(forKey: DefaultsKeys.secretKey) {
-            
-            NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
-            [URLQueryItem(name: RequestKeys.Auth.userId, value: loggedUserId),
-             URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id),
-             URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
-            completion: resolveNavigation)
-        } else { NavigationService.loadAuth() }
+        UIView.transition(with: window,
+        duration: 0.5,
+        options: [.transitionFlipFromLeft],
+        animations: nil,
+        completion: nil)
     }
     
+    func resolveNavigation(response: CheckUserOrSmsCodeResponse?) -> Void {
+        guard let response = response else { NavigationService.loadAuth(); return }
+        DefaultsManager.pushAdditionalInfo(info: response.secretKey, for: DefaultsKeys.secretKey)
+        NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
+    }
+}
+
+//MARK: - SceneDid... EventHandlers
+extension SceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -45,28 +68,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-}
-
-//MARK: - Navigation
-extension SceneDelegate {
-    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
-        guard let window = window else { return }
-        window.rootViewController = vc
-        
-        UIView.transition(with: window,
-        duration: 0.5,
-        options: [.transitionFlipFromLeft],
-        animations: nil,
-        completion: nil)
-    }
-    
-    var resolveNavigation: (CheckUserOrSmsCodeResponse?) -> Void {
-        { response in
-            guard let response = response else { NavigationService.loadAuth(); return }
-            
-            UserDefaults.standard.setValue(response.secretKey, forKey: DefaultsKeys.secretKey)
-            NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
-        }
     }
 }

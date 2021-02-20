@@ -6,11 +6,13 @@ enum AppErrors: Error {
     case notFullProfile
 }
 
-enum DefaultKeys {
+enum DefaultKeys: String {
     case person
     case cars
     case showrooms
     case phone
+    case userId
+    case secretKey
 }
 
 struct DefaultsKeys {
@@ -96,6 +98,10 @@ public class DefaultsManager {
                 mappedKey = DefaultsKeys.person
             case .showrooms:
                 mappedKey = DefaultsKeys.showrooms
+            case .userId:
+                mappedKey = DefaultsKeys.userId
+            case .secretKey:
+                mappedKey = DefaultsKeys.secretKey
         }
         guard let data = defaults.data(forKey: mappedKey) else { return Result.failure(.keyValueDoesNotExist) }
         
@@ -106,13 +112,8 @@ public class DefaultsManager {
         catch { return Result.failure(.wrongKeyForValue) }
     }
     
-    class func retrieveAdditionalInfo<T>(for key: String) -> Result<T, AppErrors> where T: Codable {
-        guard let data = defaults.data(forKey: key) else { return Result.failure(.keyValueDoesNotExist) }
-        
-        do {
-            let object = try JSONDecoder().decode(T.self, from: data)
-            return Result.success(object)
-        }
-        catch { return Result.failure(.wrongKeyForValue) }
+    class func retrieveAdditionalInfo<T:DefaultValue>(_ type: T.Type) -> T? {
+        guard let data = defaults.data(forKey: T.key.rawValue) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
     }
 }
