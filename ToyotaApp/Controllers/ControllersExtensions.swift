@@ -56,3 +56,14 @@ extension BackgroundText {
         } else { return nil }
     }
 }
+
+extension UITabBarController {
+    func updateControllers(with user: UserInfo) {
+        guard let controllers = viewControllers, !controllers.isEmpty else { return }
+        for vc in controllers {
+            if let controller = vc as? WithUserInfo {
+                controller.setUser(info: user)
+            }
+        }
+    }
+}

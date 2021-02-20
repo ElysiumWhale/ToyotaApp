@@ -96,7 +96,7 @@ extension NavigationService {
             dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: firstShowroom)
             
             let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVinViewController) as! CheckVinViewController
-            cvvc.showroomId = firstShowroom.id
+            cvvc.configure(with: firstShowroom.toDomain())
             
             let controller = configureNavigationStack(with: [pivc, dvc, cvvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)

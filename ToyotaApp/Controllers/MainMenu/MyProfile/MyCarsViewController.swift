@@ -21,8 +21,6 @@ class MyCarsViewController: UIViewController, BackgroundText {
         }
     }
     
-    func configure(with info: UserInfo) { user = info }
-    
     @IBAction func addCar(sender: Any?) {
         indicator.startAnimating()
         indicator.isHidden = false
@@ -44,10 +42,18 @@ class MyCarsViewController: UIViewController, BackgroundText {
         }
     }
     
-    func addCar(_ car: Car) {
+    func addCar(_ car: Car, _ showroom: Showroom) {
+        if user.showrooms.array.firstIndex(where: { $0.id == showroom.id }) == nil {
+            var showrooms = user.showrooms
+            showrooms.array.append(showroom)
+            user.update(showrooms: showrooms)
+        }
         var cars = user.cars
         cars.array.append(car)
         user.update(cars: cars)
+        if let tabBatController = parent?.parent as? UITabBarController {
+            tabBatController.updateControllers(with: user)
+        }
     }
 }
 
@@ -62,5 +68,12 @@ extension MyCarsViewController: UICollectionViewDataSource {
         let car = user.cars.array[indexPath.row]
         cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, vin: car.vin)
         return cell
+    }
+}
+
+//MARK: - WithUserInfo
+extension MyCarsViewController: WithUserInfo {
+    func setUser(info: UserInfo) {
+        user = info
     }
 }

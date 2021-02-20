@@ -6,7 +6,7 @@ class NewsViewController: UIViewController {
     
     private var userInfo: UserInfo!
     
-    let cellIdentrifier = CellIdentifiers.NewsCell
+    let cellIdentifier = CellIdentifiers.NewsCell
     
     private var news: [News] = [News]()
     
@@ -24,13 +24,13 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentrifier, for: indexPath) as! NewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NewsTableViewCell
         cell.configure(with: news[indexPath.item])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        news.count
     }
 }
 

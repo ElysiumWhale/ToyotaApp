@@ -12,7 +12,7 @@ class CheckVinViewController: UIViewController, DisplayError {
     @IBOutlet private var indicator: UIActivityIndicatorView!
     @IBOutlet var skipStepButton: UIButton!
     
-    var showroomId: String?
+    private var showroom: Showroom?
     private var type: AddInfoType = .first
     
     @IBAction func vinValueDidChange(with sender: UITextField) {
@@ -58,8 +58,8 @@ class CheckVinViewController: UIViewController, DisplayError {
         hideKeyboardWhenTappedAround()
     }
     
-    func configure(with showroom: String, controlerType: AddInfoType = .first) {
-        showroomId = showroom
+    func configure(with: Showroom, controlerType: AddInfoType = .first) {
+        showroom = with
         type = controlerType
     }
 }
@@ -84,7 +84,7 @@ extension CheckVinViewController: SegueWithRequestController {
         let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
                     [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip.rawValue),
-                     URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId!),
+                     URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom!.id),
                      URLQueryItem(name: RequestKeys.CarInfo.vinCode, value: vin),
                      URLQueryItem(name: RequestKeys.Auth.userId, value: userId)],
                     completion: completionForSegue)
@@ -97,7 +97,7 @@ extension CheckVinViewController: SegueWithRequestController {
                 else {
                     DispatchQueue.main.async {
                         if let userCar = response.car, let vin = vinCodeTextField.text {
-                            let car = userCar.toDomain(with: vin, showroom: showroomId!)
+                            let car = userCar.toDomain(with: vin, showroom: showroom!.id)
                             switch type {
                                 case .first:
                                     DefaultsManager.pushUserInfo(info: UserInfo.Cars([car], chosen: car))
@@ -105,7 +105,7 @@ extension CheckVinViewController: SegueWithRequestController {
                                     performSegue(withIdentifier: segueCode, sender: self)
                                 case .next:
                                     let parent = navigationController?.viewControllers.first as? MyCarsViewController
-                                    parent?.addCar(car)
+                                    parent?.addCar(car, showroom!)
                                     navigationController?.dismiss(animated: true) {
                                         PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
                                     }

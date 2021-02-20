@@ -18,6 +18,11 @@ class UserInfo: Codable {
         DefaultsManager.pushUserInfo(info: cars)
     }
     
+    func update(showrooms object: UserInfo.Showrooms) {
+        showrooms = object
+        DefaultsManager.pushUserInfo(info: showrooms)
+    }
+    
     //MARK: - Inner Structs
     struct PersonInfo: WithDefaultsKey {
         var key: String = DefaultsKeys.person

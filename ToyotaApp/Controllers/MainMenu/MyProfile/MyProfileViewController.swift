@@ -67,8 +67,8 @@ class MyProfileViewController: UIViewController {
         switch segue.identifier {
             case myCarsSegueCode:
                 let navVC = segue.destination as! UINavigationController
-                let destinationVC = navVC.topViewController as! MyCarsViewController
-                destinationVC.configure(with: userInfo!)
+                let destinationVC = navVC.topViewController as! WithUserInfo
+                destinationVC.setUser(info: userInfo!)
             default: return
         }
     }

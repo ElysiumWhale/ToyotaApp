@@ -100,6 +100,12 @@ public struct DTOShowroom: Codable {
     }
 }
 
+extension DTOShowroom {
+    func toDomain() -> Showroom {
+        return Showroom(id, showroomName, cityName ?? "Empty")
+    }
+}
+
 //MARK: - ShowroomDidSelectResponse
 public struct ShowroomDidSelectResponse: Codable {
     let result: String

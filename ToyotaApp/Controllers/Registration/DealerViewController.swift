@@ -40,7 +40,7 @@ class DealerViewController: PickerController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as! CheckVinViewController
-                destinationVC.configure(with: selectedShowroom!.id, controlerType: type)
+                destinationVC.configure(with: Showroom(selectedShowroom!.id, selectedShowroom!.showroomName, selectedShowroom?.cityName ?? selectedCity!.name), controlerType: type)
             default: return
         }
     }
@@ -98,7 +98,9 @@ extension DealerViewController: SegueWithRequestController {
                 
                 if let _ = response.error_code { completion(error: response.message) }
                 else {
-                    DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.showroomName,  selectedCity!.name)]))
+                    if type == .first {
+                        DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.showroomName, selectedShowroom!.cityName ?? selectedCity!.name)]))
+                    }
                     completion(perform: true)
                 }
             } else { displayError(whith: "Сервер прислал неверные данные") }
