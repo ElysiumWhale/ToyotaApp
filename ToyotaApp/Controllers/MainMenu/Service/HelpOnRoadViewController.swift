@@ -46,6 +46,14 @@ class HelpOnRoadViewController: UIViewController, CLLocationManagerDelegate, MKM
                 default: return
             }
             
+//            switch manager.accuracyAuthorization {
+//                case .fullAccuracy:
+//                    break
+//                case .reducedAccuracy:
+//                    break
+//                default:
+//                    break
+//            }
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -59,11 +67,17 @@ class HelpOnRoadViewController: UIViewController, CLLocationManagerDelegate, MKM
             mapView.setRegion(viewRegion, animated: true)
         }
     }
+    
+    @IBAction func makeRequest(sender: UIButton) {
+        PopUp.displayMessage(with: "It", description: "works", buttonText: "yea!")
+    }
 }
 
+//MARK: - ServicesMapped
 extension HelpOnRoadViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         serviceType = service
         selectedCar = car
     }
 }
+

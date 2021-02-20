@@ -16,7 +16,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HelpOnRoadViewController" customModule="ToyotaApp" customModuleProvider="target">
             <connections>
                 <outlet property="mapView" destination="pcf-Fm-Wwl" id="UyY-99-76F"/>
-                <outlet property="requestButton" destination="CT8-xL-Myw" id="lV4-02-ipd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,43 +25,47 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcf-Fm-Wwl" customClass="RoundedMKMapView" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="11" y="62" width="391" height="644"/>
+                    <rect key="frame" x="11" y="62" width="391" height="675"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="8ii-oO-U20"/>
-                    </connections>
                 </mapView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CT8-xL-Myw" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                    <rect key="frame" x="87" y="746" width="239" height="44"/>
-                    <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
-                    <state key="normal" title="Вызвать">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brG-ZB-ftv" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                    <rect key="frame" x="81" y="775" width="251" height="43"/>
+                    <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="Mid-SN-08A"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Вызов">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="makeRequestWithSender:" destination="-1" eventType="touchUpInside" id="aL4-FG-Nlb"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CT8-xL-Myw" secondAttribute="bottom" constant="72" id="03p-BX-bLw"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CT8-xL-Myw" secondAttribute="trailing" constant="88" id="4ZY-xI-VJJ"/>
-                <constraint firstItem="CT8-xL-Myw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="87" id="Fta-Ea-IPY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="brG-ZB-ftv" secondAttribute="bottom" constant="44" id="F9f-e6-sfs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pcf-Fm-Wwl" secondAttribute="trailing" constant="12" id="P7a-e8-e1h"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="brG-ZB-ftv" secondAttribute="trailing" constant="82" id="ZNZ-JZ-WAH"/>
+                <constraint firstItem="brG-ZB-ftv" firstAttribute="top" secondItem="pcf-Fm-Wwl" secondAttribute="bottom" constant="38" id="e2B-Ha-WyZ"/>
+                <constraint firstItem="brG-ZB-ftv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="81" id="eMG-DV-5jz"/>
                 <constraint firstItem="pcf-Fm-Wwl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="gLW-nA-Ji8"/>
                 <constraint firstItem="pcf-Fm-Wwl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="ipv-AG-wHW"/>
-                <constraint firstItem="CT8-xL-Myw" firstAttribute="top" secondItem="pcf-Fm-Wwl" secondAttribute="bottom" constant="40" id="ldA-Nz-bl2"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="129.91071428571428"/>
         </view>
     </objects>
     <designables>
-        <designable name="CT8-xL-Myw">
-            <size key="intrinsicContentSize" width="87" height="44"/>
+        <designable name="brG-ZB-ftv">
+            <size key="intrinsicContentSize" width="55" height="38"/>
         </designable>
     </designables>
     <resources>
