@@ -13,10 +13,6 @@ class NetworkService {
         mainUrl = MainURL.buildHttp()
     }
     
-    private var profileId: URLQueryItem {
-        return URLQueryItem(name: RequestKeys.Auth.userId, value: UserDefaults.standard.string(forKey: DefaultsKeys.userId))
-    }
-    
     func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (T?)->Void = {_ in }) where T:Codable {
         let request = buildPostRequest(for: page, with: params)
         
@@ -36,7 +32,7 @@ class NetworkService {
         }.resume()
     }
     
-    func makeSimplePostRequest(page: String, params: [URLQueryItem] = []) {
+    func makeSimpleRequest(page: String, params: [URLQueryItem] = []) {
         session.dataTask(with: buildPostRequest(for: page, with: params)).resume()
     }
     
@@ -47,7 +43,6 @@ class NetworkService {
         let requestUrl = query.url!
         
         query.queryItems = []
-        query.queryItems!.append(profileId)
         query.queryItems!.append(contentsOf: params)
         
         let data = query.url!.query

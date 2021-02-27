@@ -1,129 +1,63 @@
 import Foundation
 
-class UserInfo: Codable {
-    let id: String
-    var phone: Phone?
-    var secretKey = ""
-    var isAuthorized: Bool = false
-    var isFullAccess: Bool = false
+class UserInfo {
+    let id: UserId
+    private(set) var phone: Phone
+    private var secretKey: SecretKey
+    private(set) var person: Person
+    private(set) var showrooms: Showrooms
+    private(set) var cars: Cars
     
-    typealias Phone = String
+    class func build() -> Result<UserInfo, AppErrors> {
+        let userId = DefaultsManager.getUserInfo(UserId.self)
+        let secretKey = DefaultsManager.getUserInfo(SecretKey.self)
+        let userPhone = DefaultsManager.getUserInfo(Phone.self)
+        let personInfo = DefaultsManager.getUserInfo(Person.self)
+        let showroomsInfo = DefaultsManager.getUserInfo(Showrooms.self)
+        
+        guard let id = userId, let key = secretKey, let phone = userPhone, let person = personInfo, let showrooms = showroomsInfo else {
+            return Result.failure(.notFullProfile)
+        }
+        var res: UserInfo
+        if let cars = DefaultsManager.getUserInfo(Cars.self) {
+            res = UserInfo(id, key, phone, person, showrooms, cars)
+        } else {
+            res = UserInfo(id, key, phone, person, showrooms)
+        }
+        return Result.success(res)
+    }
     
-    private(set) var person: PersonInfo = PersonInfo()
-    private(set) var showrooms: Showrooms = Showrooms()
-    private(set) var cars: Cars = Cars()
+    private init(_ userId: UserId, _ key: SecretKey, _ userPhone: Phone, _ personInfo: Person, _ showroomsInfo: Showrooms, _ carsInfo: Cars) {
+        id = userId
+        secretKey = key
+        phone = userPhone
+        person = personInfo
+        showrooms = showroomsInfo
+        cars = carsInfo
+    }
     
-    func update(cars object: UserInfo.Cars) {
-        cars = object
+    private init(_ userId: UserId, _ key: SecretKey, _ userPhone: Phone, _ personInfo: Person, _ showroomsInfo: Showrooms) {
+        id = userId
+        secretKey = key
+        phone = userPhone
+        person = personInfo
+        showrooms = showroomsInfo
+        cars = Cars(CarsInfo([Car]()))
+    }
+    
+    func add(car: Car, from showroom: Showroom) {
+        showrooms.value.append(showroom)
+        DefaultsManager.pushUserInfo(info: showrooms)
+        cars.value.array.append(car)
         DefaultsManager.pushUserInfo(info: cars)
     }
-    
-    func update(showrooms object: UserInfo.Showrooms) {
-        showrooms = object
-        DefaultsManager.pushUserInfo(info: showrooms)
-    }
-    
-    //MARK: - Inner Structs
-    struct PersonInfo: WithDefaultsKey {
-        var key: String = DefaultsKeys.person
-        
-        var firstName: String?
-        var lastName: String?
-        var secondName: String?
-        var email: String?
-        var birthday: String?
-        
-        static func toDomain(profile: Profile) -> PersonInfo {
-            return PersonInfo(firstName: profile.firstName, lastName: profile.lastName, secondName: profile.secondName, email: profile.email, birthday: profile.birthday)
-        }
-    }
-    
-    struct Cars: WithDefaultsKey {
-        var key: String { DefaultsKeys.cars }
-        var chosenCar: Car?
-        var array: [Car] = [Car]()
-        
-        init(_ cars: [Car]) {
-            array = cars
-        }
-        
-        init(_ cars: [Car], chosen car: Car) {
-            array = cars
-            chosenCar = car
-        }
-        
-        init() { }
-    }
-    
-    struct Showrooms: WithDefaultsKey {
-        var key: String { DefaultsKeys.showrooms }
-        var array: [Showroom] = [Showroom]()
-        
-        init(_ showrooms: [Showroom]) {
-            array = showrooms
-        }
-        
-        init() { }
-    }
-    
-    //MARK: - Constructors
-    init(userId: String) {
-        id = userId
-        isAuthorized = true
-    }
-    
-    init(userId: String, personInfo: PersonInfo) {
-        id = userId
-        isAuthorized = true
-        person = personInfo
-    }
-    
-    init(userId: String, personInfo: PersonInfo, showroomsList: Showrooms) {
-        id = userId
-        isAuthorized = true
-        person = personInfo
-        showrooms = showroomsList
-    }
-    
-    init(userId: String, personInfo: PersonInfo, showroomsList: Showrooms, carsList: Cars) {
-        id = userId
-        isAuthorized = true
-        person = personInfo
-        showrooms = showroomsList
-        cars = carsList
-        isFullAccess = true
-    }
 }
 
-struct Showroom: Codable {
-    let id: String
-    let showroomName: String
-    let cityName: String
+extension UserInfo {
     
-    init(_ sId: String, _ name: String, _ city: String) {
-        id = sId
-        showroomName = name
-        cityName = city
-    }
 }
 
-struct Car: Codable {
-    let id: String
-    let showroomId: String
-    let brand: String
-    let model: String
-    let color: String
-    let colorSwatch: String
-    let colorDescription: String
-    let isMetallic: String
-    let plate: String
-    let vin: String
-}
-
-extension UserInfo.Phone: WithDefaultsKey {
-    var key: String { DefaultsKeys.phone }
-}
-
+//MARK: - Default Value Classes
 protocol DefaultValue: Codable {
     associatedtype T: Codable
     static var key: DefaultKeys { get }
@@ -150,4 +84,110 @@ class SecretKey: DefaultValue {
     init(_ key: String) {
         value = key
     }
+}
+
+class Phone: DefaultValue {
+    typealias T = String
+    
+    static var key: DefaultKeys = .phone
+    var value: String
+    
+    init(_ phone: String) {
+        value = phone
+    }
+}
+
+class Person: DefaultValue {
+    typealias T = PersonInfo
+    
+    static var key: DefaultKeys = .person
+    var value: PersonInfo
+    
+    init(_ person: PersonInfo) {
+        value = person
+    }
+}
+
+class Showrooms: DefaultValue {
+    typealias T = [Showroom]
+    
+    static var key: DefaultKeys = .showrooms
+    var value: [Showroom]
+    
+    init(_ showrooms: [Showroom]) {
+        value = showrooms
+    }
+}
+
+class Cars: DefaultValue {
+    typealias T = CarsInfo
+    
+    static var key: DefaultKeys = .cars
+    var value: CarsInfo
+    
+    init(_ cars: CarsInfo) {
+        value = cars
+    }
+}
+
+//MARK: - Helper Classes
+class PersonInfo: Codable {
+    var firstName: String
+    var lastName: String
+    var secondName: String
+    var email: String
+    var birthday: String
+    
+    private static let empty = "Empty"
+    
+    init(firstName: String, lastName: String, secondName: String, email: String, birthday: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.secondName = secondName
+        self.email = email
+        self.birthday = birthday
+    }
+    
+    class func toDomain(_ profile: Profile) -> PersonInfo {
+        return PersonInfo(firstName: profile.firstName ?? empty,
+                          lastName: profile.lastName ?? empty,
+                          secondName: profile.secondName ?? empty,
+                          email: profile.email ?? empty,
+                          birthday: profile.birthday ?? empty)
+    }
+}
+
+class CarsInfo: Codable {
+    var chosenCar: Car?
+    var array: [Car]
+    
+    init(_ cars: [Car]) {
+        array = cars
+        chosenCar = array.first
+    }
+    
+    init(_ cars: [Car], chosen car: Car) {
+        array = cars
+        chosenCar = car
+    }
+}
+
+//MARK: - Helper Structs
+struct Showroom: Codable {
+    let id: String
+    let showroomName: String
+    let cityName: String
+}
+
+struct Car: Codable {
+    let id: String
+    let showroomId: String
+    let brand: String
+    let model: String
+    let color: String
+    let colorSwatch: String
+    let colorDescription: String
+    let isMetallic: String
+    let plate: String
+    let vin: String
 }

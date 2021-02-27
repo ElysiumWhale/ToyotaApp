@@ -59,8 +59,8 @@ extension AuthViewController: SegueWithRequestController {
             sendPhoneButton.isHidden = true
             indicator.isHidden = false
             view.endEditing(true)
-            DefaultsManager.pushUserInfo(info: UserInfo.Phone(phoneNumber.text!))
-            NetworkService.shared.makeSimplePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)])
+            DefaultsManager.pushUserInfo(info: Phone(phoneNumber.text!))
+            NetworkService.shared.makeSimpleRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)])
             performSegue(withIdentifier: segueCode, sender: self)
         }
     }

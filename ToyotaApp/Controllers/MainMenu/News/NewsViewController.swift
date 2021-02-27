@@ -14,7 +14,7 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         #warning("TEST NEWS")
         let url = URL(string: "https://www.vhv.rs/dpng/d/522-5221969_toyota-logo-symbol-vector-vector-toyota-logo-png.png")!
-        if let showroom = userInfo.showrooms.array.first {
+        if let showroom = userInfo.showrooms.value.first {
             news.append(News(title: "Функционал в разработке", content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!", date: Date(), showroomId: showroom.id, showroomName: showroom.showroomName, imgUrl: url))
         } else {
             news.append(News(title: "Функционал в разработке", content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!", date: Date(), showroomId: "", showroomName: "Тойота Самар", imgUrl: url))

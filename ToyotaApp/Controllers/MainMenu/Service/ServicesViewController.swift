@@ -9,7 +9,7 @@ class ServicesViewController: PickerController, BackgroundText {
     private var userInfo: UserInfo!
     
     private var carForServePicker: UIPickerView = UIPickerView()
-    private var cars: UserInfo.Cars { userInfo!.cars }
+    private var cars: CarsInfo { userInfo!.cars.value }
     private var selectedCar: Car?
     
     private var serviceTypes: [ServiceType] = [ServiceType]()
@@ -32,11 +32,12 @@ class ServicesViewController: PickerController, BackgroundText {
             servicesList.backgroundView = nil
         }
         
-        if let car = userInfo.cars.chosenCar {
+        if let car = cars.chosenCar {
             selectedCar = car
         } else {
             selectedCar = cars.array.first
-            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
+            cars.chosenCar = selectedCar
+            DefaultsManager.pushUserInfo(info: Cars(cars))
         }
         
         if cars.array.count == 1 {
@@ -49,7 +50,7 @@ class ServicesViewController: PickerController, BackgroundText {
             carTextField.isEnabled = true
         }
         
-        showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})?.showroomName ?? "Empty"
+        showroomLabel.text = userInfo.showrooms.value.first(where: {$0.id == selectedCar!.showroomId})?.showroomName ?? "Empty"
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
@@ -75,9 +76,10 @@ class ServicesViewController: PickerController, BackgroundText {
             loadingIndicator.isHidden = false
             loadingIndicator.startAnimating()
             selectedCar = cars.array[row]
+            cars.chosenCar = selectedCar
             carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
-            showroomLabel.text = userInfo.showrooms.array.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
-            DefaultsManager.pushAdditionalInfo(info: selectedCar, for: DefaultsKeys.chosenCar)
+            showroomLabel.text = userInfo.showrooms.value.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
+            DefaultsManager.pushUserInfo(info: Cars(cars))
             NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
     }

@@ -1,12 +1,11 @@
 import UIKit
 
 class SmsCodeViewController: UIViewController {
-
-    @IBOutlet var phoneNumberLabel: UILabel!
-    @IBOutlet var smsCodeTextField: UITextField!
-    @IBOutlet var sendSmsCodeButton: UIButton!
-    @IBOutlet var wrongCodeLabel: UILabel!
-    @IBOutlet var activitySwitcher: UIActivityIndicatorView!
+    @IBOutlet private var phoneNumberLabel: UILabel!
+    @IBOutlet private var smsCodeTextField: UITextField!
+    @IBOutlet private var sendSmsCodeButton: UIButton!
+    @IBOutlet private var wrongCodeLabel: UILabel!
+    @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     var phoneNumber: String?
     
     override func viewDidLoad() {
@@ -41,25 +40,16 @@ class SmsCodeViewController: UIViewController {
 }
 //MARK: - Navigation
 extension SmsCodeViewController {
-    func loadStoryboard(with name: String, controller: String, configure: @escaping (UIViewController) -> Void = {_ in }) {
-        DispatchQueue.main.async {
-            let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: controller)
-            configure(vc)
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         phoneNumberLabel?.text = phoneNumber
     }
     
-    
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        guard parent == nil else { return }
-        NetworkService.shared.makeSimplePostRequest(page: RequestPath.Registration.deleteTemp, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
+        guard parent != nil else { return }
+        NetworkService.shared.makeSimpleRequest(page: RequestPath.Registration.deleteTemp, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
     }
 }
 
@@ -68,12 +58,8 @@ extension SmsCodeViewController {
     private var completion: (CheckUserOrSmsCodeResponse?) -> Void {
         { [self] response in
             if let response = response {
-                DefaultsManager.pushModelInfo(info: UserId(response.userId!))
-                DefaultsManager.pushModelInfo(info: SecretKey(response.secretKey))
-                
-                #warning("redundant")
-                UserDefaults.standard.setValue(true, forKeyPath: DefaultsKeys.isAuth)
-                
+                DefaultsManager.pushUserInfo(info: UserId(response.userId!))
+                DefaultsManager.pushUserInfo(info: SecretKey(response.secretKey))
                 NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
             }
             else {

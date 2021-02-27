@@ -102,7 +102,7 @@ public struct DTOShowroom: Codable {
 
 extension DTOShowroom {
     func toDomain() -> Showroom {
-        return Showroom(id, showroomName, cityName ?? "Empty")
+        Showroom(id: id, showroomName: showroomName, cityName: cityName ?? "Empty")
     }
 }
 

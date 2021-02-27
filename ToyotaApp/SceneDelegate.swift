@@ -7,8 +7,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        guard let userId = DefaultsManager.retrieveAdditionalInfo(UserId.self)?.value,
-              let secretKey = DefaultsManager.retrieveAdditionalInfo(SecretKey.self)?.value else {
+        guard let userId = DefaultsManager.getUserInfo(UserId.self)?.value,
+              let secretKey = DefaultsManager.getUserInfo(SecretKey.self)?.value else {
             NavigationService.loadAuth()
             return
         }
@@ -35,7 +35,7 @@ extension SceneDelegate {
     
     func resolveNavigation(response: CheckUserOrSmsCodeResponse?) -> Void {
         guard let response = response else { NavigationService.loadAuth(); return }
-        DefaultsManager.pushAdditionalInfo(info: response.secretKey, for: DefaultsKeys.secretKey)
+        DefaultsManager.pushUserInfo(info: SecretKey(response.secretKey))
         NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
     }
 }

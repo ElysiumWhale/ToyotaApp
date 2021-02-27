@@ -139,7 +139,7 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController {
     private func buildParamsForRequest(from profile: Profile, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
-        let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.value
         requestParams.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)))
         requestParams.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
         requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
@@ -181,9 +181,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
                 cities = response.cities.map {
                     City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding:  String.Encoding.nonLossyASCII)!)
                 }
-                
-                DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile:    configuredProfile!))
-                
+                DefaultsManager.pushUserInfo(info: Person(PersonInfo.toDomain(configuredProfile!)))
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
                 }

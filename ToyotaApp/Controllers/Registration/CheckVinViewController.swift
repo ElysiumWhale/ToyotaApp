@@ -81,7 +81,7 @@ extension CheckVinViewController: SegueWithRequestController {
         checkVinButton.isHidden = true
         indicator.isHidden = false
         
-        let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.value
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
                     [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip.rawValue),
                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom!.id),
@@ -97,11 +97,10 @@ extension CheckVinViewController: SegueWithRequestController {
                 else {
                     DispatchQueue.main.async {
                         if let userCar = response.car, let vin = vinCodeTextField.text {
-                            let car = userCar.toDomain(with: vin, showroom: showroom!.id)
+                           let car = userCar.toDomain(with: vin, showroom: showroom!.id)
                             switch type {
                                 case .first:
-                                    DefaultsManager.pushUserInfo(info: UserInfo.Cars([car], chosen: car))
-                                    UserDefaults.standard.set(vin, forKey: DefaultsKeys.vin)
+                                    DefaultsManager.pushUserInfo(info: Cars(CarsInfo([car], chosen: car)))
                                     performSegue(withIdentifier: segueCode, sender: self)
                                 case .next:
                                     let parent = navigationController?.viewControllers.first as? MyCarsViewController

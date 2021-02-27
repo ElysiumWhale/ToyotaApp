@@ -40,7 +40,7 @@ class DealerViewController: PickerController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as! CheckVinViewController
-                destinationVC.configure(with: Showroom(selectedShowroom!.id, selectedShowroom!.showroomName, selectedShowroom?.cityName ?? selectedCity!.name), controlerType: type)
+                destinationVC.configure(with: Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom?.cityName ?? selectedCity!.name), controlerType: type)
             default: return
         }
     }
@@ -65,16 +65,8 @@ extension DealerViewController: SegueWithRequestController {
             nextButton?.isHidden = true
             nextButtonIndicator.startAnimating()
             nextButtonIndicator.isHidden = false
-            let userId = UserDefaults.standard.string(forKey: DefaultsKeys.userId)
-            
-            var page = ""
-            switch type {
-                case .first:
-                    page = RequestPath.Registration.setShowroom
-                case .next:
-                    page = RequestPath.Profile.addShowroom
-            }
-            
+            let userId = DefaultsManager.getUserInfo(UserId.self)!.value
+            let page = type == .first ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
             NetworkService.shared.makePostRequest(page: page, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                  URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
                 completion: completionForSegue)
@@ -99,7 +91,7 @@ extension DealerViewController: SegueWithRequestController {
                 if let _ = response.error_code { completion(error: response.message) }
                 else {
                     if type == .first {
-                        DefaultsManager.pushUserInfo(info: UserInfo.Showrooms([Showroom(selectedShowroom!.id, selectedShowroom!.showroomName, selectedShowroom!.cityName ?? selectedCity!.name)]))
+                        DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom!.cityName ?? selectedCity!.name)]))
                     }
                     completion(perform: true)
                 }

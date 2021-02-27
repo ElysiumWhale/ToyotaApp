@@ -46,6 +46,18 @@ class NavigationService {
     }
 }
 
+extension NavigationService {
+    class func loadStoryboard(with name: String, controller: String, configure: @escaping (UIViewController) -> Void = {_ in }) {
+        DispatchQueue.main.async {
+            let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: controller)
+            configure(vc)
+            switchRootView(controller: vc)
+        }
+        
+    }
+}
+
 //MARK: - LoadAuth
 extension NavigationService {
     class func loadAuth() {
@@ -112,16 +124,17 @@ extension NavigationService {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
             
             if let user = user {
-                DefaultsManager.pushUserInfo(info: UserInfo.PersonInfo.toDomain(profile: user.profile!))
-                DefaultsManager.pushUserInfo(info: UserInfo.Showrooms(user.showroom!.map { Showroom($0.id, $0.showroomName, $0.cityName!) }))
+                DefaultsManager.pushUserInfo(info: Person(PersonInfo.toDomain(user.profile!)))
+                DefaultsManager.pushUserInfo(info: Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
                 if let cars = user.car {
-                    DefaultsManager.pushUserInfo(info: UserInfo.Cars(cars.map { $0.toDomain() }))
+                    DefaultsManager.pushUserInfo(info: Cars(CarsInfo(cars.map { $0.toDomain() })))
                 }
             }
             
+            #warning("Push test cars")
             //pushTestCars()
             
-            switch DefaultsManager.buildUserFromDefaults() {
+            switch UserInfo.build() {
                 case .failure(_):
                     loadRegister()
                     PopUp.displayMessage(with: "Ошибка", description: "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных", buttonText: "Ок")
@@ -141,8 +154,7 @@ extension NavigationService {
     
     private class func pushTestCars() {
         let car = Car(id: "1", showroomId: "1", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
-         let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
-         DefaultsManager.pushUserInfo(info: UserInfo.Cars([car, car1], chosen: car))
-         DefaultsManager.pushAdditionalInfo(info: car, for: "chosenCar")
+        let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
+        DefaultsManager.pushUserInfo(info: Cars(CarsInfo([car, car1], chosen: car)))
     }
 }
