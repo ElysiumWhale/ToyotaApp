@@ -6,7 +6,8 @@ class MyCarsViewController: UIViewController, BackgroundText {
     @IBOutlet var indicator: UIActivityIndicatorView!
     
     private let cellIdentrifier = CellIdentifiers.CarCell
-    private var user: UserInfo!
+    private var user: UserProxy!
+    private var cars: [Car] { user.getCars.array }
     
     override func viewWillAppear(_ animated: Bool) {
         indicator.stopAnimating()
@@ -14,7 +15,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if user.cars.value.array.isEmpty {
+        if cars.isEmpty {
             carsCollection.backgroundView = createBackground(with: "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите.")
         } else {
             carsCollection.backgroundView = nil
@@ -44,14 +45,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     
     #warning("to-do: rework")
     func addCar(_ car: Car, _ showroom: Showroom) {
-        if user.showrooms.value.firstIndex(where: { $0.id == showroom.id }) == nil {
-            var showrooms = user.showrooms.value
-            showrooms.append(showroom)
-            //user.update(showrooms: showrooms)
-        }
-        var cars = user.cars.value
-        cars.array.append(car)
-        //user.update(cars: cars)
+        user.update(car, showroom)
         if let tabBatController = parent?.parent as? UITabBarController {
             tabBatController.updateControllers(with: user)
         }
@@ -61,12 +55,12 @@ class MyCarsViewController: UIViewController, BackgroundText {
 //MARK: - UICollectionViewDataSource
 extension MyCarsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return user.cars.value.array.count
+        cars.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! CarCollectionViewCell
-        let car = user.cars.value.array[indexPath.row]
+        let car = cars[indexPath.row]
         cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, vin: car.vin)
         return cell
     }
@@ -74,7 +68,7 @@ extension MyCarsViewController: UICollectionViewDataSource {
 
 //MARK: - WithUserInfo
 extension MyCarsViewController: WithUserInfo {
-    func setUser(info: UserInfo) {
+    func setUser(info: UserProxy) {
         user = info
     }
 }

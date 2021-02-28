@@ -9,7 +9,7 @@ protocol SegueWithRequestController {
 }
 
 protocol WithUserInfo {
-    func setUser(info: UserInfo)
+    func setUser(info: UserProxy)
 }
 
 protocol DisplayError {

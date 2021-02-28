@@ -139,7 +139,7 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController {
     private func buildParamsForRequest(from profile: Profile, date: String) -> [URLQueryItem] {
         var requestParams = [URLQueryItem]()
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.value
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
         requestParams.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)))
         requestParams.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
         requestParams.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
@@ -179,9 +179,9 @@ extension PersonalInfoViewController: SegueWithRequestController {
         { [self] response in
             if let response = response {
                 cities = response.cities.map {
-                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding:  String.Encoding.nonLossyASCII)!)
+                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
                 }
-                DefaultsManager.pushUserInfo(info: Person(PersonInfo.toDomain(configuredProfile!)))
+                DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
                 DispatchQueue.main.async {
                     performSegue(withIdentifier: segueCode, sender: self)
                 }
@@ -199,8 +199,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
         activitySwitcher.startAnimating()
         nextButton.isHidden = true
         
-        configuredProfile = Profile(phone: "",
-                                    firstName: firstNameTextField.text!,
+        configuredProfile = Profile(phone: nil, firstName: firstNameTextField.text!,
                                     lastName: lastNameTextField.text!,
                                     secondName: secondNameTextField.text!,
                                     email: emailTextField.text!,

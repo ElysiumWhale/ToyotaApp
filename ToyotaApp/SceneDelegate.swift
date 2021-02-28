@@ -7,8 +7,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        guard let userId = DefaultsManager.getUserInfo(UserId.self)?.value,
-              let secretKey = DefaultsManager.getUserInfo(SecretKey.self)?.value else {
+        guard let userId = DefaultsManager.getUserInfo(UserId.self)?.id,
+              let secretKey = DefaultsManager.getUserInfo(SecretKey.self)?.secret else {
             NavigationService.loadAuth()
             return
         }

@@ -12,13 +12,13 @@ class MyProfileViewController: UIViewController {
     
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     
-    private var userInfo: UserInfo!
+    private var user: UserProxy!
     private var isPersonEditing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        let person = userInfo.person.value
+        let person = user.getPerson
         firstNameTextField.text = person.firstName
         secondNameTextField.text = person.secondName
         lastNameTextField.text = person.lastName
@@ -68,7 +68,7 @@ class MyProfileViewController: UIViewController {
             case myCarsSegueCode:
                 let navVC = segue.destination as! UINavigationController
                 let destinationVC = navVC.topViewController as! WithUserInfo
-                destinationVC.setUser(info: userInfo!)
+                destinationVC.setUser(info: user)
             default: return
         }
     }
@@ -76,7 +76,7 @@ class MyProfileViewController: UIViewController {
 
 //MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
-    func setUser(info: UserInfo) {
-        userInfo = info
+    func setUser(info: UserProxy) {
+        user = info
     }
 }

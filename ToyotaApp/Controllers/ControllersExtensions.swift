@@ -58,7 +58,7 @@ extension BackgroundText {
 }
 
 extension UITabBarController {
-    func updateControllers(with user: UserInfo) {
+    func updateControllers(with user: UserProxy) {
         guard let controllers = viewControllers, !controllers.isEmpty else { return }
         for vc in controllers {
             if let controller = vc as? WithUserInfo {

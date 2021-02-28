@@ -124,10 +124,10 @@ extension NavigationService {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBarController) as! UITabBarController
             
             if let user = user {
-                DefaultsManager.pushUserInfo(info: Person(PersonInfo.toDomain(user.profile!)))
+                DefaultsManager.pushUserInfo(info: Person.toDomain(user.profile!))
                 DefaultsManager.pushUserInfo(info: Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
                 if let cars = user.car {
-                    DefaultsManager.pushUserInfo(info: Cars(CarsInfo(cars.map { $0.toDomain() })))
+                    DefaultsManager.pushUserInfo(info: Cars(cars.map { $0.toDomain() }))
                 }
             }
             
@@ -155,6 +155,6 @@ extension NavigationService {
     private class func pushTestCars() {
         let car = Car(id: "1", showroomId: "1", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
         let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
-        DefaultsManager.pushUserInfo(info: Cars(CarsInfo([car, car1], chosen: car)))
+        DefaultsManager.pushUserInfo(info: Cars([car, car1], chosen: car))
     }
 }

@@ -6,11 +6,11 @@ class ServicesViewController: PickerController, BackgroundText {
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private(set) var servicesList: UICollectionView!
     
-    private var userInfo: UserInfo!
+    private var user: UserProxy!
     
     private var carForServePicker: UIPickerView = UIPickerView()
-    private var cars: CarsInfo { userInfo!.cars.value }
-    private var selectedCar: Car?
+    private var cars: [Car] { user.getCars.array }
+    private var selectedCar: Car? { user.getCars.chosenCar }
     
     private var serviceTypes: [ServiceType] = [ServiceType]()
     
@@ -20,7 +20,7 @@ class ServicesViewController: PickerController, BackgroundText {
         super.viewDidLoad()
         carTextField.tintColor = .clear
         
-        guard !cars.array.isEmpty else {
+        guard !cars.isEmpty else {
             displayError(whith: "Увы, на данный момень Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
@@ -28,29 +28,21 @@ class ServicesViewController: PickerController, BackgroundText {
             servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
             return
         }
-        if let _ = servicesList.backgroundView {
-            servicesList.backgroundView = nil
-        }
+        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
         
-        if let car = cars.chosenCar {
-            selectedCar = car
-        } else {
-            selectedCar = cars.array.first
-            cars.chosenCar = selectedCar
-            DefaultsManager.pushUserInfo(info: Cars(cars))
-        }
+        let text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
         
-        if cars.array.count == 1 {
-            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
+        if cars.count == 1 {
+            carTextField.text = text
             carTextField.isEnabled = false
         } else {
             configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
-            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
-            carForServePicker.selectRow(cars.array.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0, inComponent: 0, animated: false)
+            carTextField.text = text
+            carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0, inComponent: 0, animated: false)
             carTextField.isEnabled = true
         }
         
-        showroomLabel.text = userInfo.showrooms.value.first(where: {$0.id == selectedCar!.showroomId})?.showroomName ?? "Empty"
+        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
@@ -70,15 +62,14 @@ class ServicesViewController: PickerController, BackgroundText {
     @objc private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
-        if selectedCar!.id != cars.array[row].id {
+        if selectedCar!.id != cars[row].id {
             serviceTypes.removeAll()
             servicesList.reloadData()
             loadingIndicator.isHidden = false
             loadingIndicator.startAnimating()
-            selectedCar = cars.array[row]
-            cars.chosenCar = selectedCar
-            carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
-            showroomLabel.text = userInfo.showrooms.value.first(where: {$0.id == selectedCar!.showroomId})!.showroomName
+            user.update(cars[row])
+            carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+            showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             DefaultsManager.pushUserInfo(info: Cars(cars))
             NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
@@ -87,8 +78,8 @@ class ServicesViewController: PickerController, BackgroundText {
 
 //MARK: - WithUserInfo
 extension ServicesViewController: WithUserInfo {
-    func setUser(info: UserInfo) {
-        userInfo = info
+    func setUser(info: UserProxy) {
+        user = info
     }
 }
 
@@ -97,14 +88,14 @@ extension ServicesViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        cars.array.count
+        cars.count
     }
 }
 
 //MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        cars.array[row].model
+        cars[row].model
     }
 }
 
