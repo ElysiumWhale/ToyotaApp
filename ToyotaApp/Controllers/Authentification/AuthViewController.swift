@@ -47,6 +47,8 @@ extension AuthViewController {
 
 //MAK: - SegueWithRequestController
 extension AuthViewController: SegueWithRequestController {
+    typealias Response = FailureResponse
+    
     var segueCode: String { SegueIdentifiers.NumberToCode }
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
@@ -64,6 +66,4 @@ extension AuthViewController: SegueWithRequestController {
             performSegue(withIdentifier: segueCode, sender: self)
         }
     }
-    
-    var completionForSegue: (FailureResponse?) -> Void { { _ in } }
 }

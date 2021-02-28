@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="105" width="345" height="45.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
@@ -510,87 +510,75 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="20" sectionInsetReference="layoutMargins" id="iar-QY-Ryp">
-                                    <size key="itemSize" width="369" height="545"/>
+                                    <size key="itemSize" width="226.33333333333331" height="316.66666666666663"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarCell" id="SbR-Dv-UBE" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="22.666666666666668" y="18" width="369" height="545"/>
+                                        <rect key="frame" x="94.333333333333329" y="18" width="225.66666666666669" height="316"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kCV-0v-fuc">
-                                            <rect key="frame" x="0.0" y="0.0" width="369" height="545"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="225.66666666666669" height="316"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yi9-Oc-bu7">
+                                                    <rect key="frame" x="30" y="51.666666666666664" width="164.66666666666666" height="28.666666666666664"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цвет" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-V1-tfg">
+                                                    <rect key="frame" x="30" y="88.333333333333329" width="164.66666666666666" height="28.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIN-код" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqS-E4-fJj">
+                                                    <rect key="frame" x="30" y="125.00000000000001" width="164.66666666666666" height="28.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание цвета" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67I-T1-AeY">
+                                                    <rect key="frame" x="32" y="160" width="160" height="28"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Марка и Модель" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-a9-SBk">
-                                                    <rect key="frame" x="30" y="26" width="308" height="28.666666666666671"/>
+                                                    <rect key="frame" x="30" y="15.000000000000002" width="164.66666666666666" height="28.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yi9-Oc-bu7">
-                                                    <rect key="frame" x="30" y="74.666666666666671" width="308" height="41"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="41" id="j4w-uD-Wjs"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цвет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-V1-tfg">
-                                                    <rect key="frame" x="30" y="135.66666666666666" width="308" height="41"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="41" id="NUx-No-3nV"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIN-код" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqS-E4-fJj">
-                                                    <rect key="frame" x="30" y="196.66666666666666" width="308" height="28.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание цвета" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67I-T1-AeY">
-                                                    <rect key="frame" x="30" y="245.33333333333334" width="308" height="28.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IdD-3J-AEK">
-                                                    <rect key="frame" x="30" y="386.33333333333337" width="308" height="152.33333333333337"/>
-                                                    <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="151.00000000000006" id="39a-5z-9Yd"/>
-                                                    </constraints>
-                                                    <imageReference key="image" image="car" catalog="system" symbolScale="large" renderingMode="template"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Q4p-V1-tfg" secondAttribute="trailing" constant="31" id="3dC-R4-rKC"/>
+                                                <constraint firstAttribute="trailing" secondItem="yi9-Oc-bu7" secondAttribute="trailing" constant="31" id="2Jc-fn-bE1"/>
                                                 <constraint firstItem="UqS-E4-fJj" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="3sG-Sg-pEd"/>
-                                                <constraint firstAttribute="trailing" secondItem="UqS-E4-fJj" secondAttribute="trailing" constant="31" id="4ZY-90-vwh"/>
-                                                <constraint firstAttribute="trailing" secondItem="67I-T1-AeY" secondAttribute="trailing" constant="31" id="5JZ-Az-8eX"/>
-                                                <constraint firstAttribute="bottom" secondItem="IdD-3J-AEK" secondAttribute="bottom" constant="7.3333333333331439" id="7QJ-vt-lFt"/>
-                                                <constraint firstAttribute="trailing" secondItem="P7l-a9-SBk" secondAttribute="trailing" constant="31" id="BL6-CE-5E5"/>
+                                                <constraint firstItem="67I-T1-AeY" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="31" id="7YU-9M-Hh2"/>
                                                 <constraint firstItem="P7l-a9-SBk" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="BdV-pu-MR6"/>
+                                                <constraint firstAttribute="trailing" secondItem="P7l-a9-SBk" secondAttribute="trailing" constant="31" id="CFJ-v6-iiQ"/>
                                                 <constraint firstItem="Q4p-V1-tfg" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="F5n-Kl-HZX"/>
-                                                <constraint firstItem="Q4p-V1-tfg" firstAttribute="top" secondItem="yi9-Oc-bu7" secondAttribute="bottom" constant="20" id="GMk-yf-q4l"/>
-                                                <constraint firstAttribute="trailing" secondItem="yi9-Oc-bu7" secondAttribute="trailing" constant="31" id="Iya-OP-pe9"/>
-                                                <constraint firstAttribute="trailing" secondItem="IdD-3J-AEK" secondAttribute="trailing" constant="31" id="Z8O-WX-uZb"/>
+                                                <constraint firstItem="Q4p-V1-tfg" firstAttribute="top" secondItem="yi9-Oc-bu7" secondAttribute="bottom" constant="8" id="GMk-yf-q4l"/>
+                                                <constraint firstItem="67I-T1-AeY" firstAttribute="top" secondItem="UqS-E4-fJj" secondAttribute="bottom" constant="6.3333333333333144" id="NWJ-CY-deT"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q4p-V1-tfg" secondAttribute="trailing" constant="31" id="X3H-C8-B3c"/>
+                                                <constraint firstAttribute="trailing" secondItem="UqS-E4-fJj" secondAttribute="trailing" constant="31" id="a1h-zQ-xET"/>
                                                 <constraint firstItem="yi9-Oc-bu7" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="be7-Fg-Gbd"/>
-                                                <constraint firstItem="IdD-3J-AEK" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="coM-i1-Yni"/>
-                                                <constraint firstItem="P7l-a9-SBk" firstAttribute="top" secondItem="kCV-0v-fuc" secondAttribute="top" constant="26" id="gc1-da-NU2"/>
-                                                <constraint firstItem="67I-T1-AeY" firstAttribute="top" secondItem="UqS-E4-fJj" secondAttribute="bottom" constant="20" id="ghW-zw-f12"/>
-                                                <constraint firstItem="67I-T1-AeY" firstAttribute="leading" secondItem="kCV-0v-fuc" secondAttribute="leading" constant="30" id="q21-Kv-yqG"/>
-                                                <constraint firstItem="yi9-Oc-bu7" firstAttribute="top" secondItem="P7l-a9-SBk" secondAttribute="bottom" constant="20" id="qaM-YG-w9f"/>
-                                                <constraint firstItem="UqS-E4-fJj" firstAttribute="top" secondItem="Q4p-V1-tfg" secondAttribute="bottom" constant="20" id="w3d-wl-DZY"/>
+                                                <constraint firstItem="UqS-E4-fJj" firstAttribute="leading" secondItem="67I-T1-AeY" secondAttribute="trailing" constant="-162" id="g41-is-OVi"/>
+                                                <constraint firstItem="P7l-a9-SBk" firstAttribute="top" secondItem="kCV-0v-fuc" secondAttribute="top" constant="15" id="gc1-da-NU2"/>
+                                                <constraint firstItem="yi9-Oc-bu7" firstAttribute="top" secondItem="P7l-a9-SBk" secondAttribute="bottom" constant="8" id="qaM-YG-w9f"/>
+                                                <constraint firstItem="UqS-E4-fJj" firstAttribute="top" secondItem="Q4p-V1-tfg" secondAttribute="bottom" constant="8" id="w3d-wl-DZY"/>
+                                                <constraint firstAttribute="bottom" secondItem="67I-T1-AeY" secondAttribute="bottom" constant="127.33333333333337" id="xQp-h3-p53"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
-                                        <size key="customSize" width="369" height="545"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="brandNameLabel" destination="P7l-a9-SBk" id="gbq-A3-fEg"/>
                                             <outlet property="colorDesrLabel" destination="67I-T1-AeY" id="bKl-i0-XuQ"/>
@@ -640,7 +628,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJw-LC-Zja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2899" y="1563"/>
+            <point key="canvasLocation" x="2898.5507246376815" y="1562.9464285714284"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyi-gj-wN3">

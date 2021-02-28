@@ -3,9 +3,13 @@ import UIKit
 
 protocol SegueWithRequestController {
     associatedtype Response: Codable
-    var completionForSegue: (Response?) -> Void  { get }
+    var completionForSegue: (Response?) -> Void { get }
     var segueCode: String { get }
     func nextButtonDidPressed(sender: Any?)
+}
+
+extension SegueWithRequestController {
+    var completionForSegue: (Response?) -> Void { { _ in  } }
 }
 
 protocol WithUserInfo {
