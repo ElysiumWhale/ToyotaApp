@@ -1,24 +1,37 @@
 import UIKit
 import PhoneNumberKit
 
+enum AuthType {
+    case first
+    case changeNumber
+}
+
 class AuthViewController: UIViewController {
+    @IBOutlet private var phoneNumber: PhoneNumberTextField!
+    @IBOutlet private var incorrectLabel: UILabel!
+    @IBOutlet private var informationLabel: UILabel!
+    @IBOutlet private var sendPhoneButton: UIButton!
+    @IBOutlet private var indicator: UIActivityIndicatorView!
     
-    @IBOutlet var phoneNumber: PhoneNumberTextField!
-    @IBOutlet var incorrectLabel: UILabel!
-    @IBOutlet var sendPhoneButton: UIButton!
-    @IBOutlet var indicator: UIActivityIndicatorView!
-       
+    private var type: AuthType = .first
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTextField()
     }
     
-    //MARK: - TEST METHOD
+    func configure(with authType: AuthType) {
+        type = authType
+    }
+    
     func configureTextField() {
         phoneNumber.layer.cornerRadius = 10
         phoneNumber.withPrefix = true
         phoneNumber.withFlag = true
         phoneNumber.maxDigits = 10
+        if type == .changeNumber {
+            informationLabel.text = "Введите новый номер:"
+        }
     }
     
     @IBAction func phoneNumberDidChange(sender: UITextField) {
@@ -32,8 +45,8 @@ extension AuthViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                let destinationVC = segue.destination as? SmsCodeViewController
-                destinationVC?.phoneNumber = phoneNumber?.text
+                let destinationVC = segue.destination as! SmsCodeViewController
+                destinationVC.configure(with: type, and: phoneNumber.text!)
             default: return
         }
     }
@@ -52,18 +65,27 @@ extension AuthViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.NumberToCode }
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
-        if !(phoneNumber.isValidNumber) {
+        guard phoneNumber.isValidNumber else {
             phoneNumber.layer.borderColor = UIColor.systemRed.cgColor
             phoneNumber.layer.borderWidth = 1.0
             incorrectLabel.isHidden = false
-        } else {
-            indicator.startAnimating()
-            sendPhoneButton.isHidden = true
-            indicator.isHidden = false
-            view.endEditing(true)
+            return
+        }
+        indicator.startAnimating()
+        sendPhoneButton.isHidden = true
+        indicator.isHidden = false
+        view.endEditing(true)
+        if type == .first {
             DefaultsManager.pushUserInfo(info: Phone(phoneNumber.text!))
-            NetworkService.shared.makeSimpleRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)])
-            performSegue(withIdentifier: segueCode, sender: self)
+        }
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completion)
+    }
+    
+    func completion(response: Response?) {
+        if response != nil {
+            DispatchQueue.main.async { [self] in
+                performSegue(withIdentifier: segueCode, sender: self)
+            }
         }
     }
 }

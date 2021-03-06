@@ -38,7 +38,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneNumberTextFieldWithDefault" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="64" y="326.5" width="285" height="54"/>
+                                <rect key="frame" x="64" y="321.5" width="285" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1t0-20-RV7" secondAttribute="height" multiplier="95:18" id="iHU-db-ydO"/>
                                 </constraints>
@@ -50,17 +50,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в личный кабинет:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRS-Ga-buk">
-                                <rect key="frame" x="49" y="287" width="316" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="wRS-Ga-buk" secondAttribute="height" multiplier="316:31" id="dBn-gL-bHr"/>
-                                </constraints>
+                                <rect key="frame" x="49" y="287" width="316" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="83" y="422.5" width="247" height="38"/>
-                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="83" y="417.5" width="247" height="38"/>
+                                <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,16 +70,16 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
-                                <rect key="frame" x="49" y="388.5" width="316" height="26"/>
+                                <rect key="frame" x="49" y="383.5" width="316" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="WWK-Hf-xZb" secondAttribute="height" multiplier="158:13" id="1ws-TA-Wcy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
+                                <color key="textColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-7v-DbB">
-                                <rect key="frame" x="157" y="383.5" width="100" height="100"/>
+                                <rect key="frame" x="157" y="378.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gKJ-7v-DbB" secondAttribute="height" multiplier="1:1" id="zak-Ed-hGm"/>
                                 </constraints>
@@ -117,6 +114,7 @@
                     <connections>
                         <outlet property="incorrectLabel" destination="WWK-Hf-xZb" id="X6I-ye-OM7"/>
                         <outlet property="indicator" destination="gKJ-7v-DbB" id="26p-Jw-JTN"/>
+                        <outlet property="informationLabel" destination="wRS-Ga-buk" id="GMM-xP-bPq"/>
                         <outlet property="phoneNumber" destination="1t0-20-RV7" id="hxj-90-OgU"/>
                         <outlet property="sendPhoneButton" destination="6ZA-bw-BOW" id="fGa-AC-hmi"/>
                         <segue destination="aSg-j3-GJZ" kind="show" identifier="NumberToCodeSegue" id="Qx6-m0-PJk"/>
@@ -165,17 +163,17 @@
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен неверный код!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rh-38-XPD">
                                 <rect key="frame" x="49" y="296" width="316" height="26"/>
-                                <color key="tintColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3rh-38-XPD" secondAttribute="height" multiplier="158:13" id="jZb-wY-cfY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
-                                <color key="textColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="highlightedColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeZ-bJ-pbq" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="82" y="420.5" width="249" height="44"/>
-                                <color key="backgroundColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,9 +259,6 @@
         <image name="ToyotaLogoBlack" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

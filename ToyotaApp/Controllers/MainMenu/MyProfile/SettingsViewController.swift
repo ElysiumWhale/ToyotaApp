@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBAction func changeNumber(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждение", description: "Вы действительно хотите изменить номер телефона?", confirmText: "Да", declineText: "Отмена") { [self] in
             SwiftEntryKit.dismiss()
+            NavigationService.loadAuthFrom(navigationController!)
         }
     }
 }
