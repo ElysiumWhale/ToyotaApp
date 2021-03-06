@@ -298,7 +298,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flv-Tw-9VG" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="82" y="532" width="249" height="43"/>
+                                <rect key="frame" x="82" y="476" width="249" height="43"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="xwN-4l-qiz"/>
@@ -317,7 +317,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex6-MZ-dwl">
-                                <rect key="frame" x="20" y="189" width="374" height="53"/>
+                                <rect key="frame" x="20" y="141" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ex6-MZ-dwl" secondAttribute="height" multiplier="374:53" id="c7M-5x-Syh"/>
                                 </constraints>
@@ -325,7 +325,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nU9-IG-kSQ">
-                                <rect key="frame" x="20" y="257" width="374" height="53"/>
+                                <rect key="frame" x="20" y="209" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nU9-IG-kSQ" secondAttribute="height" multiplier="374:53" id="1yM-Pf-e7f"/>
                                 </constraints>
@@ -333,7 +333,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отчество" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-EJ-Wih">
-                                <rect key="frame" x="20" y="325" width="374" height="53"/>
+                                <rect key="frame" x="20" y="277" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dEX-EJ-Wih" secondAttribute="height" multiplier="374:53" id="paQ-DX-BdQ"/>
                                 </constraints>
@@ -341,7 +341,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDU-o8-b7s">
-                                <rect key="frame" x="20" y="393" width="374" height="53"/>
+                                <rect key="frame" x="20" y="345" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oDU-o8-b7s" secondAttribute="height" multiplier="374:53" id="un1-aF-oza"/>
                                 </constraints>
@@ -349,7 +349,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Дата рождения" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewW-Fd-ItJ">
-                                <rect key="frame" x="20" y="461" width="374" height="53"/>
+                                <rect key="frame" x="20" y="413" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ewW-Fd-ItJ" secondAttribute="height" multiplier="374:53" id="x7j-lx-4L6"/>
                                 </constraints>
@@ -357,16 +357,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4r-pn-yH3">
-                                <rect key="frame" x="167" y="96.666666666666629" width="80" height="84.333333333333371"/>
+                                <rect key="frame" x="167" y="96.666666666666657" width="80" height="38.333333333333343"/>
                                 <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="KuI-kF-WhS"/>
-                                    <constraint firstAttribute="height" constant="81.000000000000028" id="ef5-O0-rQJ"/>
+                                    <constraint firstAttribute="width" secondItem="z4r-pn-yH3" secondAttribute="height" multiplier="16:7" id="WS1-QM-ezy"/>
                                 </constraints>
-                                <imageReference key="image" image="person.circle" catalog="system" symbolScale="large" renderingMode="template"/>
+                                <imageReference key="image" image="person.circle" catalog="system" symbolScale="large"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWu-G1-N7g" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="122" y="583" width="170" height="43"/>
+                                <rect key="frame" x="122" y="529" width="170" height="43"/>
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="8bC-3y-Q8d"/>
@@ -385,7 +384,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaQ-SC-hqn" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="752" width="414" height="61"/>
+                                <rect key="frame" x="212.66666666666663" y="752" width="201.33333333333337" height="61"/>
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="3yW-Hy-tf8"/>
@@ -403,14 +402,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm7-Ty-GQg" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="683" width="414" height="61"/>
+                                <rect key="frame" x="0.0" y="752" width="211.66666666666666" height="61"/>
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="2zM-qx-KIV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="История обращений" image="archivebox" catalog="system">
+                                <state key="normal" title="История" image="archivebox" catalog="system">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -430,30 +429,30 @@
                             <constraint firstItem="nU9-IG-kSQ" firstAttribute="top" secondItem="Ex6-MZ-dwl" secondAttribute="bottom" constant="15" id="5xl-Ks-HgN"/>
                             <constraint firstItem="z4r-pn-yH3" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="167" id="6nb-q3-du7"/>
                             <constraint firstItem="oDU-o8-b7s" firstAttribute="top" secondItem="dEX-EJ-Wih" secondAttribute="bottom" constant="15" id="6w7-q7-Hbt"/>
+                            <constraint firstItem="eaQ-SC-hqn" firstAttribute="leading" secondItem="bm7-Ty-GQg" secondAttribute="trailing" constant="1" id="7MC-Ga-CRD"/>
                             <constraint firstItem="Ibc-TL-wm1" firstAttribute="top" secondItem="mb5-0G-N5c" secondAttribute="top" id="87E-X8-iLy"/>
                             <constraint firstItem="bm7-Ty-GQg" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" id="8vj-ob-INO"/>
                             <constraint firstItem="ewW-Fd-ItJ" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="20" id="9cZ-fE-uob"/>
-                            <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="bm7-Ty-GQg" secondAttribute="trailing" id="DKf-bh-gUo"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="eaQ-SC-hqn" secondAttribute="trailing" id="Erc-VU-xIE"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="Ex6-MZ-dwl" secondAttribute="trailing" constant="20" id="FRu-fM-LKD"/>
                             <constraint firstItem="oDU-o8-b7s" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="20" id="IKp-es-a2c"/>
+                            <constraint firstItem="mb5-0G-N5c" firstAttribute="bottom" secondItem="bm7-Ty-GQg" secondAttribute="bottom" id="Mxn-8U-Lb5"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="ewW-Fd-ItJ" secondAttribute="trailing" constant="20" id="SZx-Qn-xga"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="bottom" secondItem="eaQ-SC-hqn" secondAttribute="bottom" id="Sa4-3n-yqs"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="flv-Tw-9VG" secondAttribute="trailing" constant="83" id="TVT-9L-CEc"/>
                             <constraint firstItem="dEX-EJ-Wih" firstAttribute="top" secondItem="nU9-IG-kSQ" secondAttribute="bottom" constant="15" id="Uj7-E7-A4H"/>
-                            <constraint firstItem="Ex6-MZ-dwl" firstAttribute="top" secondItem="z4r-pn-yH3" secondAttribute="bottom" constant="10" id="ddg-Zx-FwM"/>
+                            <constraint firstItem="Ex6-MZ-dwl" firstAttribute="top" secondItem="z4r-pn-yH3" secondAttribute="bottom" constant="8" id="ddg-Zx-FwM"/>
                             <constraint firstItem="z4r-pn-yH3" firstAttribute="top" secondItem="Ibc-TL-wm1" secondAttribute="bottom" constant="10" id="f0s-g7-mf9"/>
-                            <constraint firstItem="eaQ-SC-hqn" firstAttribute="top" secondItem="bm7-Ty-GQg" secondAttribute="bottom" constant="8" id="g6m-4D-KEf"/>
-                            <constraint firstItem="QWu-G1-N7g" firstAttribute="top" secondItem="flv-Tw-9VG" secondAttribute="bottom" constant="8" symbolic="YES" id="hBT-Xb-IHp"/>
-                            <constraint firstItem="flv-Tw-9VG" firstAttribute="top" secondItem="ewW-Fd-ItJ" secondAttribute="bottom" constant="18" id="jED-kc-KPX"/>
+                            <constraint firstItem="QWu-G1-N7g" firstAttribute="top" secondItem="flv-Tw-9VG" secondAttribute="bottom" constant="10" id="hBT-Xb-IHp"/>
+                            <constraint firstItem="flv-Tw-9VG" firstAttribute="top" secondItem="ewW-Fd-ItJ" secondAttribute="bottom" constant="10" id="jED-kc-KPX"/>
                             <constraint firstItem="ewW-Fd-ItJ" firstAttribute="top" secondItem="oDU-o8-b7s" secondAttribute="bottom" constant="15" id="jru-NR-aPe"/>
                             <constraint firstItem="Ibc-TL-wm1" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" id="nRb-II-jTb"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="oDU-o8-b7s" secondAttribute="trailing" constant="20" id="ozg-U4-9dS"/>
                             <constraint firstItem="Ex6-MZ-dwl" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="20" id="pBZ-JO-jgd"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="QWu-G1-N7g" secondAttribute="trailing" constant="122" id="pRu-Ro-Tac"/>
-                            <constraint firstItem="eaQ-SC-hqn" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" id="pcN-a5-DtN"/>
                             <constraint firstItem="mb5-0G-N5c" firstAttribute="trailing" secondItem="z4r-pn-yH3" secondAttribute="trailing" constant="167" id="rsG-bS-RKi"/>
                             <constraint firstItem="QWu-G1-N7g" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="122" id="t3d-RU-KJK"/>
+                            <constraint firstItem="bm7-Ty-GQg" firstAttribute="width" secondItem="eaQ-SC-hqn" secondAttribute="width" multiplier="1.07738" constant="-5.4761904761904532" id="tf4-Uo-YHQ"/>
                             <constraint firstItem="dEX-EJ-Wih" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="20" id="uiF-uj-Txe"/>
                             <constraint firstItem="nU9-IG-kSQ" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="20" id="x8X-pJ-hvf"/>
                             <constraint firstItem="flv-Tw-9VG" firstAttribute="leading" secondItem="mb5-0G-N5c" secondAttribute="leading" constant="82" id="xL1-mO-PId"/>
@@ -742,16 +741,16 @@
     </scenes>
     <designables>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
+            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
         </designable>
         <designable name="bm7-Ty-GQg">
-            <size key="intrinsicContentSize" width="206.66666666666666" height="26"/>
+            <size key="intrinsicContentSize" width="92.666666666666671" height="21"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
+            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
+            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
         </designable>
     </designables>
     <resources>

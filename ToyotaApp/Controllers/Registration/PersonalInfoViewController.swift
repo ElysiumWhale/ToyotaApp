@@ -20,7 +20,7 @@ class PersonalInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDatePicker()
+        configureDatePicker(datePicker, with: #selector(doneDidPress), for: birthTextField)
         hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -64,32 +64,8 @@ class PersonalInfoViewController: UIViewController {
 
 //MARK: - DatePicker logic
 extension PersonalInfoViewController {
-    func createDatePicker() {
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru")
-        datePicker.datePickerMode = .date
-        datePicker.maximumDate = Date()
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: nil, action: #selector(doneDidPress))
-        toolBar.setItems([flexible, doneButton], animated: true)
-        birthTextField.inputAccessoryView = toolBar
-        birthTextField.inputView = datePicker
-    }
-    
-    @objc private func doneDidPress(sender: Any?) {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru")
-        formatter.dateStyle = .medium
-        let formattedDate = formatter.string(from: datePicker.date)
-        
-        let internalFormatter = DateFormatter()
-        internalFormatter.dateFormat = "yyyy-MM-dd"
-        date = internalFormatter.string(from: datePicker.date)
-        
-        birthTextField.text = formattedDate
+    @IBAction private func doneDidPress(sender: Any?) {
+        date = formatSelectedDate(from: datePicker, to: birthTextField)
         view.endEditing(true)
     }
 }

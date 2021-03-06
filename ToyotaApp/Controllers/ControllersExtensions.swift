@@ -1,15 +1,9 @@
 import Foundation
 import UIKit
 
-class PickerController: UIViewController {
-    func configurePicker<T>(_ picker: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
-        picker.dataSource = delegate
-        picker.delegate = delegate
-        textField.inputAccessoryView = buildToolbar(for: picker, with: action)
-        textField.inputView = picker
-    }
-    
-    private func buildToolbar(for pickerView: UIPickerView, with action: Selector) -> UIToolbar {
+//MARK: -
+extension UIViewController {
+    func buildToolbar(with action: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -19,6 +13,40 @@ class PickerController: UIViewController {
     }
 }
 
+//MARK: -
+extension UIViewController {
+    func configurePicker<T>(_ picker: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+        picker.dataSource = delegate
+        picker.delegate = delegate
+        textField.inputAccessoryView = buildToolbar(with: action)
+        textField.inputView = picker
+    }
+}
+
+//MARK: -
+extension UIViewController {
+    func configureDatePicker(_ datePicker: UIDatePicker, with action: Selector, for textField: UITextField) {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "ru")
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        textField.inputAccessoryView = buildToolbar(with: action)
+        textField.inputView = datePicker
+    }
+    
+    func formatSelectedDate(from datePicker: UIDatePicker, to textField: UITextField) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru")
+        formatter.dateStyle = .medium
+        let formattedDate = formatter.string(from: datePicker.date)
+        textField.text = formattedDate
+        let internalFormatter = DateFormatter()
+        internalFormatter.dateFormat = "yyyy-MM-dd"
+        return internalFormatter.string(from: datePicker.date)
+    }
+}
+
+//MARK: - 
 extension UIViewController {
     func displayError(whith text: String) {
         PopUp.displayMessage(with: "Ошибка", description: text, buttonText: "Ок")

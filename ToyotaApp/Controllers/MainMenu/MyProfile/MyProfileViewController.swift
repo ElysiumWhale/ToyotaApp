@@ -7,8 +7,12 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private(set) var lastNameTextField: UITextField!
     @IBOutlet private(set) var birthTextField: UITextField!
     @IBOutlet private(set) var emailTextField: UITextField!
+    
     @IBOutlet private(set) var cancelButton: UIButton!
     @IBOutlet private(set) var saveButton: UIButton!
+    
+    private let datePicker: UIDatePicker = UIDatePicker()
+    private var date: String = ""
     
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     
@@ -51,6 +55,9 @@ class MyProfileViewController: UIViewController {
         emailTextField.isEnabled = with
         cancelButton.isEnabled = with
         cancelButton.isHidden = !with
+    @IBAction func dateDidSelect(sender: Any?) {
+        date = formatSelectedDate(from: datePicker, to: birthTextField)
+        view.endEditing(true)
     }
     
     @IBAction func logout(sender: Any?) {
