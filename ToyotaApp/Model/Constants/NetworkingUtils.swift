@@ -38,6 +38,11 @@ struct RequestPath {
     struct Profile {
         static let getCities = "get_cities.php"
         static let addShowroom = "add_showroom.php"
+        static let editProfile = "edit_profile.php"
+    }
+    
+    struct Settings {
+        static let changePhone = "change_phone_number.php"
     }
 }
 

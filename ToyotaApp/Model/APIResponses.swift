@@ -1,5 +1,21 @@
 import Foundation
 
+public struct SimpleResponse: Codable {
+    let result: String?
+}
+
+public struct Response: Codable {
+    let result: String
+    let errorCode: String?
+    let errorMessage: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
+    }
+}
+
 //MARK: - FailureResponse
 public struct FailureResponse: Codable {
     let result: String

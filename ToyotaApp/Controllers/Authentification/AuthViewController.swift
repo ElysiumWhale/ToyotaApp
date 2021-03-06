@@ -45,9 +45,9 @@ extension AuthViewController {
     }
 }
 
-//MAK: - SegueWithRequestController
+//MARK: - SegueWiRhRequestController
 extension AuthViewController: SegueWithRequestController {
-    typealias Response = FailureResponse
+    typealias TResponse = Response
     
     var segueCode: String { SegueIdentifiers.NumberToCode }
     

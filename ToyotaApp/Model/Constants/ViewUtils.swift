@@ -64,6 +64,7 @@ public struct SegueIdentifiers {
     static let ServiceNavToFeedback = "ServiceNavToFeedback"
     //MyProfile
     static let MyProfileToCars = "MyProfileToCars"
+    static let MyProfileToSettings = "MyProfileToSettings"
 }
 
 public struct CellIdentifiers {

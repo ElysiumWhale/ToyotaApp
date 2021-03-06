@@ -5,6 +5,8 @@ protocol UserProxy {
     func update(_ personData: Person)
     func update(_ add: Car, _ from: Showroom)
     func update(_ selected: Car)
+    var getId: String { get }
+    var getPhone: String { get }
     var getPerson: Person { get }
     var getShowrooms: Showrooms { get }
     var getSelectedShowroom: Showroom? { get }
@@ -66,6 +68,10 @@ class UserInfo {
 
 //MARK: - UserProxy
 extension UserInfo: UserProxy {
+    var getId: String { id.id }
+    
+    var getPhone: String { phone.phone }
+    
     var getPerson: Person { person }
     
     var getSelectedShowroom: Showroom? { showrooms.value.first(where: {$0.id == cars.chosenCar!.showroomId}) }

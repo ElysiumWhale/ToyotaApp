@@ -2,14 +2,14 @@ import Foundation
 import UIKit
 
 protocol SegueWithRequestController {
-    associatedtype Response: Codable
-    var completionForSegue: (Response?) -> Void { get }
+    associatedtype TResponse: Codable
+    var completionForSegue: (TResponse?) -> Void { get }
     var segueCode: String { get }
     func nextButtonDidPressed(sender: Any?)
 }
 
 extension SegueWithRequestController {
-    var completionForSegue: (Response?) -> Void { { _ in  } }
+    var completionForSegue: (TResponse?) -> Void { { _ in  } }
 }
 
 protocol WithUserInfo {

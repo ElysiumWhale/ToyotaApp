@@ -67,6 +67,13 @@ extension NavigationService {
             switchRootView(controller: controller)
         }
     }
+    
+    class func loadAuthFrom(_ navigationController: UINavigationController) {
+        let storyboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+        let controller = storyboard.instantiateViewController(identifier: AppViewControllers.auth) as! AuthViewController
+        controller.configure(with: .changeNumber)
+        navigationController.pushViewController(controller, animated: true)
+    }
 }
 
 //MARK: - LoadRegister overloads
