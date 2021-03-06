@@ -15,8 +15,10 @@ class MyProfileViewController: UIViewController {
     private var date: String = ""
     
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
+    private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
     
     private var user: UserProxy!
+    private var profile: Person { user.getPerson }
     private var isPersonEditing: Bool = false
     
     override func viewDidLoad() {
@@ -76,6 +78,10 @@ class MyProfileViewController: UIViewController {
                 let navVC = segue.destination as! UINavigationController
                 let destinationVC = navVC.topViewController as! WithUserInfo
                 destinationVC.setUser(info: user)
+            case settingsSegueCode:
+                let navVC = segue.destination as! UINavigationController
+                let settingsVC = navVC.topViewController as! WithUserInfo
+                settingsVC.setUser(info: user)
             default: return
         }
     }
