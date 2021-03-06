@@ -5,7 +5,7 @@ fileprivate struct FreeTime {
     let freeTime: [DateComponents]
 }
 
-class ServiceMaintenanceViewController: PickerController {
+class ServiceMaintenanceViewController: UIViewController {
     @IBOutlet private(set) var servicesTextField: UITextField!
     @IBOutlet private(set) var datePicker: UIPickerView!
     @IBOutlet private(set) var indicator: UIActivityIndicatorView!

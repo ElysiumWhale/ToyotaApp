@@ -1,6 +1,6 @@
 import UIKit
 
-class DealerViewController: PickerController {
+class DealerViewController: UIViewController {
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var showroomTextField: UITextField!
     @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView!

@@ -1,6 +1,6 @@
 import UIKit
 
-class ServicesViewController: PickerController, BackgroundText {
+class ServicesViewController: UIViewController, BackgroundText {
     @IBOutlet private(set) var carTextField: UITextField!
     @IBOutlet private(set) var showroomLabel: UILabel!
     @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
