@@ -1,10 +1,10 @@
 import UIKit
 
 class ServicesViewController: UIViewController, BackgroundText {
-    @IBOutlet private(set) var carTextField: UITextField!
-    @IBOutlet private(set) var showroomLabel: UILabel!
-    @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var servicesList: UICollectionView!
+    @IBOutlet private var carTextField: UITextField!
+    @IBOutlet private var showroomLabel: UILabel!
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private var servicesList: UICollectionView!
     
     private var user: UserProxy!
     
@@ -19,9 +19,10 @@ class ServicesViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
+        hideKeyboardWhenTappedAround()
         
         guard !cars.isEmpty else {
-            displayError(whith: "Увы, на данный момень Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+            displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
             showroomLabel.text = ""

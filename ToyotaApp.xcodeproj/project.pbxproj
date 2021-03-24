@@ -22,6 +22,7 @@
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */; };
 		14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */; };
+		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
 		A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */; };
@@ -88,6 +89,7 @@
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
 		14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpOnRoadViewController.xib; sourceTree = "<group>"; };
+		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */,
+				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
 				1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
+				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,

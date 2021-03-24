@@ -343,6 +343,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidChangeWithSender:" destination="CkW-Bd-toE" eventType="editingChanged" id="xxf-h9-ViR"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nU9-IG-kSQ">
                                 <rect key="frame" x="20" y="208" width="374" height="53"/>
@@ -351,6 +354,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidChangeWithSender:" destination="CkW-Bd-toE" eventType="editingChanged" id="bzP-Xm-LNd"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отчество" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-EJ-Wih">
                                 <rect key="frame" x="20" y="276" width="374" height="53"/>
@@ -359,6 +365,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidChangeWithSender:" destination="CkW-Bd-toE" eventType="editingChanged" id="4vJ-L5-yLL"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDU-o8-b7s">
                                 <rect key="frame" x="20" y="344" width="374" height="53"/>
@@ -367,6 +376,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidChangeWithSender:" destination="CkW-Bd-toE" eventType="editingChanged" id="qPm-4C-iKK"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Дата рождения" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewW-Fd-ItJ">
                                 <rect key="frame" x="20" y="412" width="374" height="53"/>
@@ -506,38 +518,38 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CarCell" id="SbR-Dv-UBE" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="97.666666666666671" y="18" width="218.33333333333337" height="289.33333333333331"/>
+                                        <rect key="frame" x="94.333333333333329" y="18" width="225.66666666666669" height="316"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kCV-0v-fuc">
-                                            <rect key="frame" x="0.0" y="0.0" width="218.33333333333337" height="289.33333333333331"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="225.66666666666669" height="316"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yi9-Oc-bu7">
-                                                    <rect key="frame" x="30" y="46.333333333333336" width="157.33333333333334" height="23.333333333333336"/>
+                                                    <rect key="frame" x="30" y="51.666666666666664" width="164.66666666666666" height="28.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цвет" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-V1-tfg">
-                                                    <rect key="frame" x="30" y="77.666666666666671" width="157.33333333333334" height="23.333333333333329"/>
+                                                    <rect key="frame" x="30" y="88.333333333333329" width="164.66666666666666" height="28.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIN-код" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqS-E4-fJj">
-                                                    <rect key="frame" x="30" y="109" width="157.33333333333334" height="23.333333333333343"/>
+                                                    <rect key="frame" x="30" y="125.00000000000001" width="164.66666666666666" height="28.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание цвета" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67I-T1-AeY">
-                                                    <rect key="frame" x="31" y="138.66666666666666" width="161" height="23.333333333333343"/>
+                                                    <rect key="frame" x="31" y="160" width="161" height="28.666666666666657"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Марка и Модель" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-a9-SBk">
-                                                    <rect key="frame" x="30" y="14.999999999999998" width="157.33333333333334" height="23.333333333333329"/>
+                                                    <rect key="frame" x="30" y="15.000000000000002" width="164.66666666666666" height="28.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -731,7 +743,6 @@
         <!--Navigation Controller-->
         <scene sceneID="5op-9v-4Q3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-L8-y20" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="lwh-3E-OOU" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="z6c-5n-AnJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bmf-Hu-NCW">
@@ -742,6 +753,7 @@
                         <segue destination="dXo-t3-V8C" kind="relationship" relationship="rootViewController" id="uJ6-wS-OzV"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-L8-y20" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2864" y="863"/>
         </scene>
@@ -754,12 +766,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWj-QZ-7ma">
-                                <rect key="frame" x="20" y="114.00000000000001" width="374" height="40.666666666666671"/>
+                                <rect key="frame" x="20" y="113.99999999999999" width="374" height="35.333333333333329"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Asi-5L-SBZ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="89" y="162.66666666666666" width="236" height="43"/>
+                                <rect key="frame" x="89" y="157.33333333333334" width="236" height="43"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="bkJ-f3-cco"/>
@@ -833,19 +845,19 @@
     </scenes>
     <designables>
         <designable name="Asi-5L-SBZ">
-            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
+            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
         </designable>
         <designable name="QWu-G1-N7g">
-            <size key="intrinsicContentSize" width="105.33333333333333" height="26"/>
+            <size key="intrinsicContentSize" width="100.33333333333333" height="21"/>
         </designable>
         <designable name="bm7-Ty-GQg">
-            <size key="intrinsicContentSize" width="96.666666666666671" height="26"/>
+            <size key="intrinsicContentSize" width="92.666666666666671" height="21"/>
         </designable>
         <designable name="eaQ-SC-hqn">
-            <size key="intrinsicContentSize" width="104.66666666666667" height="26"/>
+            <size key="intrinsicContentSize" width="102.66666666666667" height="21"/>
         </designable>
         <designable name="flv-Tw-9VG">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="26"/>
+            <size key="intrinsicContentSize" width="145.33333333333334" height="21"/>
         </designable>
     </designables>
     <resources>
