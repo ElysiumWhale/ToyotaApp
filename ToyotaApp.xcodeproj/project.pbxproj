@@ -10,6 +10,7 @@
 		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
 		1401F24325C0B28700E96D05 /* ServiceMaintenanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */; };
+		1443FDB1260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */; };
 		1449CDCA25C4A6A400BBDAAE /* RepairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */; };
 		1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
@@ -76,6 +77,7 @@
 		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceMaintenanceViewController.xib; sourceTree = "<group>"; };
+		1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDefaultsKeyClasses.swift; sourceTree = "<group>"; };
 		1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairingViewController.swift; sourceTree = "<group>"; };
 		1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepairingViewController.xib; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				1495724125B9FF940031A5AA /* NewsModel.swift */,
+				1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* OrderCell.swift in Sources */,
+				1443FDB1260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCollectionViewCell.swift in Sources */,
 				1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
