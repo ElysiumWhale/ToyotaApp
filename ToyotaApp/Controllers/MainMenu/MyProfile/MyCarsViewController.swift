@@ -6,7 +6,10 @@ class MyCarsViewController: UIViewController, BackgroundText {
     @IBOutlet var indicator: UIActivityIndicatorView!
     
     private let cellIdentrifier = CellIdentifiers.CarCell
-    private var user: UserProxy!
+    private var user: UserProxy! {
+        didSet { subscribe(on: user) }
+    }
+    
     private var cars: [Car] { user.getCars.array }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,16 +41,8 @@ class MyCarsViewController: UIViewController, BackgroundText {
             }
             let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
             let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealerViewController) as! DealerViewController
-            addShowroomVC.configure(cityList: cities, controllerType: .next)
+            addShowroomVC.configure(cityList: cities, controllerType: .next(with: user))
             navigationController?.pushViewController(addShowroomVC, animated: true)
-        }
-    }
-    
-    #warning("to-do: rework")
-    func addCar(_ car: Car, _ showroom: Showroom) {
-        user.update(car, showroom)
-        if let tabBatController = parent?.parent as? UITabBarController {
-            tabBatController.updateControllers(with: user)
         }
     }
 }
@@ -68,6 +63,18 @@ extension MyCarsViewController: UICollectionViewDataSource {
 
 //MARK: - WithUserInfo
 extension MyCarsViewController: WithUserInfo {
+    func subscribe(on proxy: UserProxy) {
+        proxy.getNotificator.add(observer: self)
+    }
+    
+    func unsubscribe(from proxy: UserProxy) {
+        proxy.getNotificator.remove(obsever: self)
+    }
+    
+    func userDidUpdate() {
+        carsCollection.reloadData()
+    }
+    
     func setUser(info: UserProxy) {
         user = info
     }

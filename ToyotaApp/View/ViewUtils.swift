@@ -8,9 +8,14 @@ enum ServicesControllers: String {
     case HelpOnRoadViewController = "4"
 }
 
+enum AuthType {
+    case first
+    case changeNumber(with: Notificator)
+}
+
 enum AddInfoType {
     case first
-    case next
+    case next(with: UserProxy)
 }
 
 public struct AppStoryboards {

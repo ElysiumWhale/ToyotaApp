@@ -66,8 +66,14 @@ extension DealerViewController: SegueWithRequestController {
             nextButtonIndicator.startAnimating()
             nextButtonIndicator.isHidden = false
             let userId = DefaultsManager.getUserInfo(UserId.self)!.id
-            let page = type == .first ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
-            NetworkService.shared.makePostRequest(page: page, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+            var page: String
+            if case .first = type {
+                page = RequestPath.Registration.setShowroom
+            } else {
+                page = RequestPath.Profile.addShowroom
+            }
+            NetworkService.shared.makePostRequest(page: page, params:
+                [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                  URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
                 completion: completionForSegue)
         } else { return }
@@ -90,7 +96,7 @@ extension DealerViewController: SegueWithRequestController {
                 
                 if let _ = response.error_code { completion(error: response.message) }
                 else {
-                    if type == .first {
+                    if case .first = type {
                         DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom!.cityName ?? selectedCity!.name)]))
                     }
                     completion(perform: true)

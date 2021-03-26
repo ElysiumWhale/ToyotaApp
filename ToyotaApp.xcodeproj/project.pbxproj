@@ -237,7 +237,6 @@
 		A777750E259BF72A006D30EA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				A74D2898253680FB00A1C856 /* NetworkingUtils.swift */,
 			);
 			path = Constants;
@@ -300,6 +299,7 @@
 		A791FDE225266F2700A595BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				1401F23525C0A06B00E96D05 /* ServicesViews */,
 				A791FDE8252672FA00A595BB /* Custom Controls */,

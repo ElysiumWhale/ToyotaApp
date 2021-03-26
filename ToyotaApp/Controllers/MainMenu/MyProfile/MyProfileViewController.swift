@@ -25,7 +25,9 @@ class MyProfileViewController: UIViewController {
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
     
-    private var user: UserProxy!
+    private var user: UserProxy! {
+        didSet { subscribe(on: user) }
+    }
     private var profile: Person { user.getPerson }
     
     private var state: EditingStates = .none {
@@ -171,6 +173,16 @@ class MyProfileViewController: UIViewController {
 
 //MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
+    func subscribe(on proxy: UserProxy) {
+        proxy.getNotificator.add(observer: self)
+    }
+    
+    func unsubscribe(from proxy: UserProxy) {
+        proxy.getNotificator.remove(obsever: self)
+    }
+    
+    func userDidUpdate() { updateFields() }
+    
     func setUser(info: UserProxy) {
         user = info
     }

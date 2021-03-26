@@ -102,12 +102,10 @@ extension CheckVinViewController: SegueWithRequestController {
                                 case .first:
                                     DefaultsManager.pushUserInfo(info: Cars([car], chosen: car))
                                     performSegue(withIdentifier: segueCode, sender: self)
-                                case .next:
-                                    let parent = navigationController?.viewControllers.first as? MyCarsViewController
-                                    parent?.addCar(car, showroom!)
-                                    navigationController?.dismiss(animated: true) {
-                                        PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
-                                    }
+                                case .next(let userProxy):
+                                    userProxy.update(car, showroom!)
+                                    PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
+                                    navigationController?.popToRootViewController(animated: true)
                             }
                         } else {
                             performSegue(withIdentifier: segueCode, sender: self)
