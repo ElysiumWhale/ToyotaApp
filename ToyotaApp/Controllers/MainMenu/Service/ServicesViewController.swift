@@ -6,7 +6,9 @@ class ServicesViewController: UIViewController, BackgroundText {
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private var servicesList: UICollectionView!
     
-    private var user: UserProxy!
+    private var user: UserProxy! {
+        didSet { subscribe(on: user) }
+    }
     
     private var carForServePicker: UIPickerView = UIPickerView()
     private var cars: [Car] { user.getCars.array }
@@ -21,31 +23,14 @@ class ServicesViewController: UIViewController, BackgroundText {
         carTextField.tintColor = .clear
         hideKeyboardWhenTappedAround()
         
-        guard !cars.isEmpty else {
-            displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
-            loadingIndicator.stopAnimating()
-            loadingIndicator.isHidden = true
-            showroomLabel.text = ""
-            servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
-            return
+        switch cars.count {
+            case 0:
+                interfaceIfNoCars()
+            case 1:
+                interfaceIfOneCar()
+            default:
+                interfaceIfManyCars()
         }
-        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
-        
-        let text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
-        
-        if cars.count == 1 {
-            carTextField.text = text
-            carTextField.isEnabled = false
-        } else {
-            configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
-            carTextField.text = text
-            carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0, inComponent: 0, animated: false)
-            carTextField.isEnabled = true
-        }
-        
-        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
-        
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
     func completion(response: ServicesTypesDidGetResponse?) {
@@ -75,12 +60,55 @@ class ServicesViewController: UIViewController, BackgroundText {
             NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
         }
     }
+    
+    private func interfaceIfOneCar() {
+        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
+        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+        carTextField.isEnabled = cars.count > 1
+        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
+    }
+    
+    private func interfaceIfNoCars() {
+        displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+        loadingIndicator.stopAnimating()
+        loadingIndicator.isHidden = true
+        showroomLabel.text = ""
+        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
+    }
+    
+    private func interfaceIfManyCars() {
+        carForServePicker = UIPickerView()
+        configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
+        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
+                                    inComponent: 0, animated: false)
+        interfaceIfOneCar()
+    }
 }
 
 //MARK: - WithUserInfo
 extension ServicesViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info
+    }
+    
+    func subscribe(on proxy: UserProxy) {
+        proxy.getNotificator.add(observer: self)
+    }
+    
+    func unsubscribe(from proxy: UserProxy) {
+        proxy.getNotificator.remove(obsever: self)
+    }
+    
+    func userDidUpdate() {
+        switch cars.count {
+            case 0:
+                interfaceIfNoCars()
+            case 1:
+                interfaceIfOneCar()
+            default:
+                interfaceIfManyCars()
+        }
     }
 }
 
