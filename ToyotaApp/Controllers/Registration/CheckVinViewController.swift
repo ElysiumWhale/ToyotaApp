@@ -90,29 +90,26 @@ extension CheckVinViewController: SegueWithRequestController {
                     completion: completionForSegue)
     }
     
-    var completionForSegue: (CarDidCheckResponse?) -> Void {
-        { [self] response in
-            if let response = response {
-                if let _ = response.error_code { displayError(response.message) }
-                else {
-                    DispatchQueue.main.async {
-                        if let userCar = response.car, let vin = vinCodeTextField.text {
-                           let car = userCar.toDomain(with: vin, showroom: showroom!.id)
-                            switch type {
-                                case .first:
-                                    DefaultsManager.pushUserInfo(info: Cars([car], chosen: car))
-                                    performSegue(withIdentifier: segueCode, sender: self)
-                                case .next(let userProxy):
-                                    userProxy.update(car, showroom!)
-                                    PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
-                                    navigationController?.popToRootViewController(animated: true)
-                            }
-                        } else {
-                            performSegue(withIdentifier: segueCode, sender: self)
-                        }
-                    }
-                }
-            } else { displayError("Ошибка при получении данных") }
+    func completionForSegue(for response: CarDidCheckResponse?) {
+        guard let data = response else {
+            displayError(response?.message ?? "Ошибка при получении данных")
+            return
+        }
+        DispatchQueue.main.async { [self] in
+            guard let userCar = data.car, let vin = vinCodeTextField.text else {
+                performSegue(withIdentifier: segueCode, sender: self)
+                return
+            }
+            let car = userCar.toDomain(with: vin, showroom: showroom!.id)
+            switch type {
+                case .first:
+                    DefaultsManager.pushUserInfo(info: Cars([car], chosen: car))
+                    performSegue(withIdentifier: segueCode, sender: self)
+                case .next(let userProxy):
+                    userProxy.update(car, showroom!)
+                    PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю",  buttonText: "Ок")
+                    navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
 }

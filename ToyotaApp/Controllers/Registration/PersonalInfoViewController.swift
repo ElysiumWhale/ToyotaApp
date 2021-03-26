@@ -151,22 +151,19 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
     
-    var completionForSegue: (ProfileDidSetResponse?) -> Void {
-        { [self] response in
-            if let response = response {
-                cities = response.cities.map {
-                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
-                }
-                DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
-                DispatchQueue.main.async {
-                    performSegue(withIdentifier: segueCode, sender: self)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    activitySwitcher.stopAnimating()
-                    nextButton.isHidden = false
-                }
-            }
+    func completionForSegue(for response: ProfileDidSetResponse?) {
+        guard let data = response else {
+            activitySwitcher.stopAnimating()
+            nextButton.isHidden = false
+            displayError(whith: response?.message ?? "Ошибка при отправке запроса")
+            return
+        }
+        cities = data.cities.map {
+            City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
+        }
+        DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
+        DispatchQueue.main.async { [self] in
+            performSegue(withIdentifier: segueCode, sender: self)
         }
     }
     

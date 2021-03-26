@@ -79,30 +79,27 @@ extension DealerViewController: SegueWithRequestController {
         } else { return }
     }
     
-    var completionForSegue: (ShowroomDidSelectResponse?) -> Void {
-        { [self] response in
-            if let response = response {
-                
-                func completion(perform segue: Bool = false, error: String? = nil) {
-                    DispatchQueue.main.async {
-                        nextButtonIndicator.stopAnimating()
-                        nextButtonIndicator.isHidden = true
-                        nextButton.isHidden = false
-                        if segue {
-                            performSegue(withIdentifier: segueCode, sender: self)
-                        } else { displayError(whith: error!) }
-                    }
-                }
-                
-                if let _ = response.error_code { completion(error: response.message) }
-                else {
-                    if case .first = type {
-                        DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom!.cityName ?? selectedCity!.name)]))
-                    }
-                    completion(perform: true)
-                }
-            } else { displayError(whith: "Сервер прислал неверные данные") }
+    func completionForSegue(for response: ShowroomDidSelectResponse?) {
+        guard response != nil, response?.error_code == nil else {
+            displayError(whith: response?.message ?? "Сервер прислал неверные данные")
+            return
         }
+        
+        func completion(perform segue: Bool = false, error: String? = nil) {
+            DispatchQueue.main.async { [self] in
+                nextButtonIndicator.stopAnimating()
+                nextButtonIndicator.isHidden = true
+                nextButton.isHidden = false
+                if segue {
+                    performSegue(withIdentifier: segueCode, sender: self)
+                } else { displayError(whith: error!) }
+            }
+        }
+        
+        if case .first = type {
+            DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom!.cityName ?? selectedCity!.name)]))
+        }
+        completion(perform: true)
     }
 }
 
