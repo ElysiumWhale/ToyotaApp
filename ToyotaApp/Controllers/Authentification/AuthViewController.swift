@@ -1,11 +1,6 @@
 import UIKit
 import PhoneNumberKit
 
-enum AuthType {
-    case first
-    case changeNumber
-}
-
 class AuthViewController: UIViewController {
     @IBOutlet private var phoneNumber: PhoneNumberTextField!
     @IBOutlet private var incorrectLabel: UILabel!
@@ -29,7 +24,7 @@ class AuthViewController: UIViewController {
         phoneNumber.withPrefix = true
         phoneNumber.withFlag = true
         phoneNumber.maxDigits = 10
-        if type == .changeNumber {
+        if case .changeNumber(_) = type {
             informationLabel.text = "Введите новый номер:"
         }
     }
@@ -75,7 +70,7 @@ extension AuthViewController: SegueWithRequestController {
         sendPhoneButton.isHidden = true
         indicator.isHidden = false
         view.endEditing(true)
-        if type == .first {
+        if case .first = type {
             DefaultsManager.pushUserInfo(info: Phone(phoneNumber.text!))
         }
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completion)

@@ -68,10 +68,10 @@ extension NavigationService {
         }
     }
     
-    class func loadAuthFrom(_ navigationController: UINavigationController) {
+    class func loadAuth(from navigationController: UINavigationController, with notificator: Notificator) {
         let storyboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
         let controller = storyboard.instantiateViewController(identifier: AppViewControllers.auth) as! AuthViewController
-        controller.configure(with: .changeNumber)
+        controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
     }
 }

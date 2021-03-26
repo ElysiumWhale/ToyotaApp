@@ -11,6 +11,7 @@ protocol UserProxy {
     var getShowrooms: Showrooms { get }
     var getSelectedShowroom: Showroom? { get }
     var getCars: Cars { get }
+    var getNotificator: Notificator { get }
 }
 
 extension UserProxy {
@@ -24,6 +25,8 @@ class UserInfo {
     private var person: Person
     private var showrooms: Showrooms
     private var cars: Cars
+    
+    private let notificator: Notificator
     
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         let userId = DefaultsManager.getUserInfo(UserId.self)
@@ -53,6 +56,7 @@ class UserInfo {
         person = personInfo
         showrooms = showroomsInfo
         cars = carsInfo
+        notificator = NotificationCentre()
     }
     
     private init(_ userId: UserId, _ key: SecretKey, _ userPhone: Phone,
@@ -63,11 +67,14 @@ class UserInfo {
         person = personInfo
         showrooms = showroomsInfo
         cars = Cars([Car]())
+        notificator = NotificationCentre()
     }
 }
 
 //MARK: - UserProxy
 extension UserInfo: UserProxy {
+    var getNotificator: Notificator { notificator }
+    
     var getId: String { id.id }
     
     var getPhone: String { phone.phone }
@@ -83,6 +90,7 @@ extension UserInfo: UserProxy {
     func update(_ personData: Person) {
         person = personData
         DefaultsManager.pushUserInfo(info: person)
+        notificator.notificateObservers()
     }
     
     func update(_ add: Car, _ from: Showroom) {
@@ -92,10 +100,12 @@ extension UserInfo: UserProxy {
         }
         cars.array.append(add)
         DefaultsManager.pushUserInfo(info: cars)
+        notificator.notificateObservers()
     }
     
     func update(_ selected: Car) {
         cars.chosenCar = selected
         DefaultsManager.pushUserInfo(info: cars)
+        notificator.notificateObservers()
     }
 }

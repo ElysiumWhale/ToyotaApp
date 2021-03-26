@@ -4,7 +4,9 @@ import SwiftEntryKit
 class SettingsViewController: UIViewController {
     @IBOutlet var phoneTextField: UITextField!
     
-    private var user: UserProxy!
+    private var user: UserProxy! {
+        didSet { subscribe(on: user) }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,12 +16,22 @@ class SettingsViewController: UIViewController {
     @IBAction func changeNumber(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждение", description: "Вы действительно хотите изменить номер телефона?", confirmText: "Да", declineText: "Отмена") { [self] in
             SwiftEntryKit.dismiss()
-            NavigationService.loadAuthFrom(navigationController!)
+            NavigationService.loadAuth(from: navigationController!, with: user.getNotificator)
         }
     }
 }
 
 extension SettingsViewController: WithUserInfo {
+    func subscribe(on proxy: UserProxy) {
+        proxy.getNotificator.add(observer: self)
+    }
+    
+    func unsubscribe(from proxy: UserProxy) {
+        proxy.getNotificator.remove(obsever: self)
+    }
+    
+    func userDidUpdate() { }
+    
     func setUser(info: UserProxy) {
         user = info
     }

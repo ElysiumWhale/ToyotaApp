@@ -82,15 +82,15 @@ extension SmsCodeViewController {
     }
     
     private func changeNumberCompletion(response: Response?) -> Void {
-        guard let response = response, response.errorCode == nil else {
+        guard let response = response, response.errorCode == nil, case .changeNumber(let proxy) = type else {
             displayError()
             return
         }
         DefaultsManager.pushUserInfo(info: Phone(phoneNumber!))
         DispatchQueue.main.async { [self] in
-            #warning("to-do: notificate model")
+            proxy.notificateObservers()
             navigationController?.dismiss(animated: true) {
-                PopUp.displayMessage(with: "Поздравляем", description: "Телефон упешно изменен", buttonText: "Ок")
+                PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: "Ок")
             }
         }
     }
