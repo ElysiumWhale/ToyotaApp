@@ -13,7 +13,7 @@ class DealerViewController: UIViewController {
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
     
-    var cities: [City] = [City]()
+    private var cities: [City] = [City]()
     private var selectedCity: City?
     private var showrooms: [DTOShowroom] = [DTOShowroom]()
     private var selectedShowroom: DTOShowroom?

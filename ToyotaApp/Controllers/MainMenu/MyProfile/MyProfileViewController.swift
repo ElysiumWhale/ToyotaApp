@@ -86,14 +86,14 @@ class MyProfileViewController: UIViewController {
         }
     }
     
-    func buildQueryParams() -> [URLQueryItem] {
-        var items: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId)]
-        items.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: firstNameTextField.text))
-        items.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: secondNameTextField.text))
-        items.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: lastNameTextField.text))
-        items.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: emailTextField.text))
-        items.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: birthTextField.text))
-        return items
+    func buildRequestParams() -> [URLQueryItem] {
+        var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId)]
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: firstNameTextField.text))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: secondNameTextField.text))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: lastNameTextField.text))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: emailTextField.text))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: birthTextField.text))
+        return params
     }
     
     @IBAction func enterEditMode(sender: UIButton) {
@@ -116,7 +116,7 @@ class MyProfileViewController: UIViewController {
         }
         
         state = .isLoading
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.editProfile, params: buildQueryParams(), completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Profile.editProfile, params: buildRequestParams(), completion: completion)
     }
     
     func completion(response: Response?) {
