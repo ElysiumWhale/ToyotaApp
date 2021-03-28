@@ -62,27 +62,33 @@ class ServicesViewController: UIViewController, BackgroundText {
     }
     
     private func interfaceIfOneCar() {
-        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
-        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
-        carTextField.isEnabled = cars.count > 1
-        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
+        DispatchQueue.main.async { [self] in
+            if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
+            carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+            carTextField.isEnabled = cars.count > 1
+            showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
+        }
     }
     
     private func interfaceIfNoCars() {
-        displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
-        loadingIndicator.stopAnimating()
-        loadingIndicator.isHidden = true
-        showroomLabel.text = ""
-        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
+        DispatchQueue.main.async { [self] in
+            displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте  автомобиль.")
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
+            showroomLabel.text = ""
+            servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
+        }
     }
     
     private func interfaceIfManyCars() {
-        carForServePicker = UIPickerView()
-        configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
-        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
-                                    inComponent: 0, animated: false)
-        interfaceIfOneCar()
+        DispatchQueue.main.async { [self] in
+            carForServePicker = UIPickerView()
+            configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
+            carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
+                                        inComponent: 0, animated: false)
+            interfaceIfOneCar()
+        }
     }
 }
 
@@ -114,7 +120,7 @@ extension ServicesViewController: WithUserInfo {
 
 //MARK: - UIPickerViewDataSource
 extension ServicesViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         cars.count

@@ -97,7 +97,11 @@ extension CheckVinViewController: SegueWithRequestController {
         }
         DispatchQueue.main.async { [self] in
             guard let userCar = data.car, let vin = vinCodeTextField.text else {
-                performSegue(withIdentifier: segueCode, sender: self)
+                if case .first = type {
+                    performSegue(withIdentifier: segueCode, sender: self)
+                } else {
+                    displayError(whith: response?.message ?? "ERROR")
+                }
                 return
             }
             let car = userCar.toDomain(with: vin, showroom: showroom!.id)
@@ -107,7 +111,7 @@ extension CheckVinViewController: SegueWithRequestController {
                     performSegue(withIdentifier: segueCode, sender: self)
                 case .next(let userProxy):
                     userProxy.update(car, showroom!)
-                    PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю",  buttonText: "Ок")
+                    PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
                     navigationController?.popToRootViewController(animated: true)
             }
         }
