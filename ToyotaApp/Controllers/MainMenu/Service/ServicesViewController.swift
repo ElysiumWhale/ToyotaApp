@@ -22,6 +22,7 @@ class ServicesViewController: UIViewController, BackgroundText {
         super.viewDidLoad()
         carTextField.tintColor = .clear
         hideKeyboardWhenTappedAround()
+        configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
         
         switch cars.count {
             case 0:
@@ -83,8 +84,7 @@ class ServicesViewController: UIViewController, BackgroundText {
     
     private func interfaceIfManyCars() {
         DispatchQueue.main.async { [self] in
-            carForServePicker = UIPickerView()
-            configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
+            carForServePicker.reloadAllComponents()
             carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
                                         inComponent: 0, animated: false)
             interfaceIfOneCar()

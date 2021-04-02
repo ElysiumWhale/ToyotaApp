@@ -3,7 +3,6 @@ import UIKit
 class MyCarsViewController: UIViewController, BackgroundText {
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
-    @IBOutlet var indicator: UIActivityIndicatorView!
     
     private let cellIdentrifier = CellIdentifiers.CarCell
     private var user: UserProxy! {
@@ -11,10 +10,6 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
     
     private var cars: [Car] { user.getCars.array }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        indicator.stopAnimating()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +21,6 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
     
     @IBAction func addCar(sender: Any?) {
-        indicator.startAnimating()
-        indicator.isHidden = false
         NetworkService.shared.makePostRequest(page: RequestPath.Profile.getCities, params:
             [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id)], completion: completion)
     }
@@ -35,7 +28,6 @@ class MyCarsViewController: UIViewController, BackgroundText {
     func completion(response: ProfileDidSetResponse?) {
         DispatchQueue.main.async { [self] in
             guard response?.error_code == nil, let cities = response?.cities else {
-                indicator.stopAnimating()
                 PopUp.displayMessage(with: "Ошибка", description: response?.message ?? "Ошибка при загрузке городов", buttonText: "Ок")
                 return
             }

@@ -49,6 +49,7 @@ class PersonalInfoViewController: UIViewController {
     
     @IBAction private func doneDidPress(sender: Any?) {
         date = formatSelectedDate(from: datePicker, to: birthTextField)
+        textFieldsWithError[birthTextField] = false
         view.endEditing(true)
     }
     
@@ -90,6 +91,12 @@ extension PersonalInfoViewController {
             emailTextField.text = configuredProfile!.email
             #warning("to-do: Format data")
             birthTextField.text  = configuredProfile!.birthday
+        }
+        
+        if activitySwitcher.isAnimating {
+            activitySwitcher.stopAnimating()
+            activitySwitcher.isHidden = true
+            nextButton.isHidden = false
         }
     }
     
