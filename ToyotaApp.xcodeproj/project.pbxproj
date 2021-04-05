@@ -16,6 +16,7 @@
 		1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78025D3355400E318D3 /* RoundedMKMapView.swift */; };
+		1467F78925D339DF00E318D3 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* Protocols.swift */; };
 		1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* OrderCell.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */; };
@@ -86,6 +87,7 @@
 		1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepairingViewController.xib; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		1467F78025D3355400E318D3 /* RoundedMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedMKMapView.swift; sourceTree = "<group>"; };
+		1467F78825D339DF00E318D3 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersHistoryViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
+				1467F78825D339DF00E318D3 /* Protocols.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				1401F23525C0A06B00E96D05 /* ServicesViews */,
 				A791FDE8252672FA00A595BB /* Custom Controls */,
@@ -463,6 +466,7 @@
 				A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
+				1467F78925D339DF00E318D3 /* Protocols.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
 				1449CDCA25C4A6A400BBDAAE /* RepairingViewController.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,

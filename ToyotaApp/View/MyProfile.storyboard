@@ -68,9 +68,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="82" y="431" width="249" height="43"/>
+                                <rect key="frame" x="126" y="395" width="161" height="43"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="5rX-2E-CHW"/>
                                     <constraint firstAttribute="height" constant="43" id="KyR-uI-AQE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
@@ -87,7 +88,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXL-vB-E0w">
-                                <rect key="frame" x="20" y="96" width="374" height="53"/>
+                                <rect key="frame" x="20" y="55" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jXL-vB-E0w" secondAttribute="height" multiplier="374:53" id="U3e-4i-5Ai"/>
                                 </constraints>
@@ -98,7 +99,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-h9-1jb">
-                                <rect key="frame" x="20" y="164" width="374" height="53"/>
+                                <rect key="frame" x="20" y="123" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bQ3-h9-1jb" secondAttribute="height" multiplier="374:53" id="LA3-51-JTT"/>
                                 </constraints>
@@ -109,7 +110,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отчество" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cF0-c8-RVQ">
-                                <rect key="frame" x="20" y="232" width="374" height="53"/>
+                                <rect key="frame" x="20" y="191" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cF0-c8-RVQ" secondAttribute="height" multiplier="374:53" id="WxB-8X-x2M"/>
                                 </constraints>
@@ -120,7 +121,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jf7-dL-lpo">
-                                <rect key="frame" x="20" y="300" width="374" height="53"/>
+                                <rect key="frame" x="20" y="259" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Jf7-dL-lpo" secondAttribute="height" multiplier="374:53" id="bEn-N4-aTu"/>
                                 </constraints>
@@ -131,25 +132,18 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Дата рождения" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oif-rQ-akP">
-                                <rect key="frame" x="20" y="368" width="374" height="53"/>
+                                <rect key="frame" x="20" y="327" width="374" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oif-rQ-akP" secondAttribute="height" multiplier="374:53" id="yId-B6-gDN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zD-9j-v9h">
-                                <rect key="frame" x="167" y="51" width="80" height="39"/>
-                                <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="6zD-9j-v9h" secondAttribute="height" multiplier="16:7" id="CC5-fx-RhN"/>
-                                </constraints>
-                                <imageReference key="image" image="person.circle" catalog="system" symbolScale="large"/>
-                            </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-CD-hXD" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="122" y="484" width="170" height="43"/>
+                                <rect key="frame" x="126" y="395" width="161" height="43"/>
                                 <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="cUR-eo-TT8"/>
                                     <constraint firstAttribute="height" constant="43" id="jTY-5S-ocd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
@@ -169,33 +163,28 @@
                         <viewLayoutGuide key="safeArea" id="QEl-wK-Y1s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="jXL-vB-E0w" firstAttribute="top" secondItem="6zD-9j-v9h" secondAttribute="bottom" constant="8" id="2NB-8u-aL4"/>
+                            <constraint firstItem="jXL-vB-E0w" firstAttribute="top" secondItem="QEl-wK-Y1s" secondAttribute="top" constant="11" id="1u2-gn-rge"/>
                             <constraint firstItem="bQ3-h9-1jb" firstAttribute="top" secondItem="jXL-vB-E0w" secondAttribute="bottom" constant="15" id="36G-Cr-zwq"/>
                             <constraint firstItem="Jf7-dL-lpo" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="36x-F3-llC"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="bQ3-h9-1jb" secondAttribute="trailing" constant="20" id="5dN-gm-1Mr"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="eyL-fs-0tQ" secondAttribute="bottom" id="8Bm-Mw-nP5"/>
-                            <constraint firstItem="6zD-9j-v9h" firstAttribute="top" secondItem="QEl-wK-Y1s" secondAttribute="top" constant="9.0000000000000853" id="BYz-5n-BW7"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="cF0-c8-RVQ" secondAttribute="trailing" constant="20" id="H3d-dd-DKP"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="CLN-ma-9CJ" secondAttribute="trailing" constant="83" id="HPc-5q-TTA"/>
                             <constraint firstItem="eyL-fs-0tQ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" id="Lao-P2-fdi"/>
                             <constraint firstItem="bQ3-h9-1jb" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="LvU-CX-6Vt"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="BpN-XY-i4j" secondAttribute="trailing" id="NVB-70-FD7"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="jXL-vB-E0w" secondAttribute="trailing" constant="20" id="Nd9-bZ-53X"/>
-                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="82" id="QLR-Ca-vzH"/>
-                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="top" secondItem="oif-rQ-akP" secondAttribute="bottom" constant="10" id="SUb-pl-VCS"/>
+                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="126" id="QLR-Ca-vzH"/>
+                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="top" secondItem="oif-rQ-akP" secondAttribute="bottom" constant="15" id="SUb-pl-VCS"/>
+                            <constraint firstItem="bXP-CD-hXD" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="126" id="Sfz-KN-3nq"/>
                             <constraint firstItem="cF0-c8-RVQ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="T4U-Is-7xD"/>
+                            <constraint firstItem="bXP-CD-hXD" firstAttribute="top" secondItem="oif-rQ-akP" secondAttribute="bottom" constant="15" id="aAp-fS-0bd"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="BpN-XY-i4j" secondAttribute="bottom" id="aGr-qY-ZMj"/>
-                            <constraint firstItem="bXP-CD-hXD" firstAttribute="top" secondItem="CLN-ma-9CJ" secondAttribute="bottom" constant="10" id="bFS-t6-dzS"/>
-                            <constraint firstItem="bXP-CD-hXD" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="122" id="c1H-GW-vHj"/>
                             <constraint firstItem="BpN-XY-i4j" firstAttribute="leading" secondItem="eyL-fs-0tQ" secondAttribute="trailing" constant="1" id="eAT-I3-W2N"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="Jf7-dL-lpo" secondAttribute="trailing" constant="20" id="in6-6L-Hjp"/>
                             <constraint firstItem="oif-rQ-akP" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="jUa-3V-bia"/>
                             <constraint firstItem="cF0-c8-RVQ" firstAttribute="top" secondItem="bQ3-h9-1jb" secondAttribute="bottom" constant="15" id="k8k-ks-29D"/>
                             <constraint firstItem="oif-rQ-akP" firstAttribute="top" secondItem="Jf7-dL-lpo" secondAttribute="bottom" constant="15" id="lw7-tv-Nm6"/>
                             <constraint firstItem="eyL-fs-0tQ" firstAttribute="width" secondItem="BpN-XY-i4j" secondAttribute="width" multiplier="1.07738" constant="-5.4761904761904532" id="uWQ-dw-Ril"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="bXP-CD-hXD" secondAttribute="trailing" constant="122" id="ugK-D1-o4t"/>
-                            <constraint firstItem="6zD-9j-v9h" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="167" id="xZu-H4-tX7"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="6zD-9j-v9h" secondAttribute="trailing" constant="167" id="ybR-13-elM"/>
                             <constraint firstItem="jXL-vB-E0w" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="yce-tu-EjV"/>
                             <constraint firstItem="Jf7-dL-lpo" firstAttribute="top" secondItem="cF0-c8-RVQ" secondAttribute="bottom" constant="15" id="ymA-z5-GvM"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="oif-rQ-akP" secondAttribute="trailing" constant="20" id="zpi-h9-PvI"/>
@@ -221,10 +210,12 @@
                     <connections>
                         <outlet property="birthTextField" destination="oif-rQ-akP" id="jBh-oo-baA"/>
                         <outlet property="cancelButton" destination="bXP-CD-hXD" id="ifT-d8-Lrl"/>
+                        <outlet property="cancelButtonLeadingConstant" destination="Sfz-KN-3nq" id="XSp-Mc-ZCQ"/>
                         <outlet property="emailTextField" destination="Jf7-dL-lpo" id="47E-IO-CDS"/>
                         <outlet property="firstNameTextField" destination="jXL-vB-E0w" id="dl8-uN-hc2"/>
                         <outlet property="lastNameTextField" destination="bQ3-h9-1jb" id="mgg-c6-45R"/>
                         <outlet property="saveButton" destination="CLN-ma-9CJ" id="KgI-XP-ysM"/>
+                        <outlet property="saveButtonLeadingConstraint" destination="QLR-Ca-vzH" id="mjp-z8-2VI"/>
                         <outlet property="secondNameTextField" destination="cF0-c8-RVQ" id="W5c-kP-GAJ"/>
                     </connections>
                 </viewController>
@@ -257,8 +248,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Brand Model" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e4-r8-4PR">
-                                                    <rect key="frame" x="12" y="7" width="327" height="36"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand Model" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e4-r8-4PR">
+                                                    <rect key="frame" x="12" y="7" width="327" height="36.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="8qK-Sq-gLZ"/>
                                                     </constraints>
@@ -268,8 +259,8 @@
                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="shadowOffset" width="2" height="2"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Color" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-1S-5pY">
-                                                    <rect key="frame" x="12" y="118" width="327" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-1S-5pY">
+                                                    <rect key="frame" x="12" y="123" width="327" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Nt2-K0-hCW"/>
                                                     </constraints>
@@ -277,8 +268,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Color Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-gk-ehc">
-                                                    <rect key="frame" x="12" y="153" width="327" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-gk-ehc">
+                                                    <rect key="frame" x="12" y="159" width="327" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="FRT-aa-ucQ"/>
                                                     </constraints>
@@ -286,8 +277,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="VIN" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-OZ-cow">
-                                                    <rect key="frame" x="12" y="190" width="327" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIN" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-OZ-cow">
+                                                    <rect key="frame" x="12" y="196" width="327" height="29"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -301,8 +292,8 @@
                                                     </constraints>
                                                     <imageReference key="image" image="car.fill" catalog="system" symbolScale="large"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="PLATE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
-                                                    <rect key="frame" x="12" y="45" width="327" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLATE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
+                                                    <rect key="frame" x="12" y="45.5" width="327" height="36.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -602,7 +593,6 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="pencil.slash" catalog="system" width="128" height="113"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">

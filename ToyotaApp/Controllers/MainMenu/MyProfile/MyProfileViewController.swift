@@ -17,6 +17,9 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var cancelButton: UIButton!
     @IBOutlet private var saveButton: UIButton!
     
+    @IBOutlet weak var saveButtonLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelButtonLeadingConstant: NSLayoutConstraint!
+    
     private let datePicker: UIDatePicker = UIDatePicker()
     private var date: String = "" {
         didSet { view.endEditing(true) }
@@ -39,11 +42,33 @@ class MyProfileViewController: UIViewController {
         for field in textFieldsWithError.keys {
             field.isEnabled = isEditing ? true : false
         }
+        
         cancelButton.isEnabled = isEditing ? true : false
-        if state != .isLoading {
-            cancelButton.isHidden = !isEditing
-            saveButton.setTitle(isEditing ? "Сохранить" : "Редактировать", for: .normal)
+        
+        var constant: CGFloat
+        if isEditing {
+            constant = 20
+        } else {
+            constant = view.bounds.width/2 - saveButton.bounds.width/2
         }
+        
+        let saveConstraint = NSLayoutConstraint(item: saveButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: constant)
+        let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
+        
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseOut, animations: { [self] in
+            view.removeConstraint(saveButtonLeadingConstraint)
+            view.addConstraint(saveConstraint)
+            view.removeConstraint(cancelButtonLeadingConstant)
+            view.addConstraint(cancelConstraint)
+            view.layoutIfNeeded()
+            if state != .isLoading {
+                isEditing ? cancelButton.fadeIn() : cancelButton.fadeOut()
+                saveButton.setTitle(isEditing ? "Сохранить" : "Редактировать", for: .normal)
+            }
+        }, completion: nil)
+        
+        saveButtonLeadingConstraint = saveConstraint
+        cancelButtonLeadingConstant = cancelConstraint
     }
     
     private var textFieldsWithError: [UITextField : Bool]!
