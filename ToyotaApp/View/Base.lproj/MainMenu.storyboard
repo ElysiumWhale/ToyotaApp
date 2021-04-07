@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="qV5-Is-7iF" kind="relationship" relationship="viewControllers" id="Olt-H6-9za"/>
@@ -51,7 +51,7 @@
                                     <navigationItem title="Акции" id="1JV-Kk-h0A"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rrl-n7-mhe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rrl-n7-mhe">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -112,7 +112,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="kAl-hd-kCz" secondAttribute="trailing" constant="20" symbolic="YES" id="zvd-Pv-plW"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -172,17 +172,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
-                                <rect key="frame" x="0.0" y="192" width="428" height="651"/>
+                                <rect key="frame" x="0.0" y="186" width="428" height="657"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ServiceCell" id="siq-pZ-bcK" customClass="ServiceCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="0.0" width="130" height="100"/>
+                                        <rect key="frame" x="10" y="10" width="130" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qWC-jp-dIf">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="100"/>
@@ -191,8 +191,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYF-uZ-XUo">
                                                     <rect key="frame" x="20" y="20" width="90" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="120" id="d83-ho-GdV"/>
-                                                        <constraint firstAttribute="width" constant="120" id="oxa-JO-gUz"/>
+                                                        <constraint firstAttribute="height" constant="60" id="d83-ho-GdV"/>
+                                                        <constraint firstAttribute="width" constant="90" id="oxa-JO-gUz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="16"/>
                                                     <color key="textColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -208,7 +208,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="aYF-uZ-XUo" secondAttribute="bottom" constant="20" id="weW-z6-HGe"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="130" height="100"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -232,7 +232,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
-                                <rect key="frame" x="0.0" y="152" width="428" height="21"/>
+                                <rect key="frame" x="0.0" y="152" width="428" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -243,7 +243,7 @@
                         <constraints>
                             <constraint firstItem="InQ-8a-6i6" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="6Tw-ag-Xad"/>
                             <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="17" id="7Qh-qj-Ysc"/>
-                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="InQ-8a-6i6" secondAttribute="bottom" constant="19" id="Jdm-IJ-D3q"/>
+                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="InQ-8a-6i6" secondAttribute="bottom" constant="8" id="Jdm-IJ-D3q"/>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="bottom" secondItem="afF-bh-RPv" secondAttribute="bottom" id="LMi-7d-yRX"/>
                             <constraint firstItem="InQ-8a-6i6" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="1.6666666666666572" id="Mhy-Zd-m4e"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="34" id="Qgv-mL-5MZ"/>
@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYw-e7-RDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="1616"/>
+            <point key="canvasLocation" x="1153.7383177570093" y="1615.9827213822896"/>
         </scene>
         <!--Item-->
         <scene sceneID="xWu-aZ-S5c">
