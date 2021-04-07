@@ -17,12 +17,6 @@ import UIKit
         liscencePlateLabel.text = plate.uppercased()
         colorDesrLabel.text = "Описание цвета: \(colorDesription)"
         vinTextLabel.text =  "VIN: \(vin.map { _ in "*" }.joined())"
-        
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.shadowRadius = 3.5
-        layer.shadowOpacity = 0.7
-        layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+        configureShadow(with: cornerRadius)
     }
 }

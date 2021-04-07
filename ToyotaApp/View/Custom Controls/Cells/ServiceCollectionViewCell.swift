@@ -13,5 +13,6 @@ import UIKit
     func configure(with label: String, type: ServicesControllers) {
         serviceName.text = label
         serviceType = type
+        configureShadow(with: cornerRadius)
     }
 }
