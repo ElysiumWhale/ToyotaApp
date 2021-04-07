@@ -64,6 +64,7 @@ class ServicesViewController: UIViewController, BackgroundText {
     
     private func interfaceIfOneCar() {
         DispatchQueue.main.async { [self] in
+            loadViewIfNeeded()
             if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             carTextField.isEnabled = cars.count > 1
@@ -74,6 +75,7 @@ class ServicesViewController: UIViewController, BackgroundText {
     
     private func interfaceIfNoCars() {
         DispatchQueue.main.async { [self] in
+            loadViewIfNeeded()
             displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте  автомобиль.")
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
@@ -84,6 +86,7 @@ class ServicesViewController: UIViewController, BackgroundText {
     
     private func interfaceIfManyCars() {
         DispatchQueue.main.async { [self] in
+            loadViewIfNeeded()
             carForServePicker.reloadAllComponents()
             carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
                                         inComponent: 0, animated: false)

@@ -97,7 +97,7 @@ extension CheckVinViewController: SegueWithRequestController {
         }
         DispatchQueue.main.async { [self] in
             guard let userCar = data.car, let vin = vinCodeTextField.text else {
-                if case .first = type {
+                if data.error_code != nil, case .first = type {
                     performSegue(withIdentifier: segueCode, sender: self)
                 } else {
                     displayError(whith: response?.message ?? "ERROR")

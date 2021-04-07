@@ -86,6 +86,12 @@ class MyProfileViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         updateFields()
+        
+        let saveConstraint = NSLayoutConstraint(item: saveButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: view.bounds.width/2 - saveButton.bounds.width/2)
+        view.removeConstraint(saveButtonLeadingConstraint)
+        view.addConstraint(saveConstraint)
+        saveButtonLeadingConstraint = saveConstraint
+        
         textFieldsWithError = [firstNameTextField : false, secondNameTextField : false,
                                lastNameTextField : false, emailTextField : false, birthTextField : false]
     }
@@ -172,7 +178,7 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction func logout(sender: Any?) {
-        PopUp.displayChoice(with: "Выход из аккаунта", description: "Вы действительно хотите выйти?", confirmText: "Да", declineText: "Нет") {
+        PopUp.displayChoice(with: "Подтверждние действия", description: "Вы действительно хотите выйти?", confirmText: "Да", declineText: "Нет") {
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
             UserDefaults.standard.synchronize()
             SwiftEntryKit.dismiss()
