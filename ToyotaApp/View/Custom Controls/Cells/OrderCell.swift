@@ -4,10 +4,15 @@ class OrderCell: UITableViewCell {
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var contentLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var carLabel: UILabel!
     
     func configure(with service: Service) {
-        dateLabel.text = "21.05.1998"
-        contentLabel.text = "Успешный вызов эвакуатора"
-        titleLabel.text = "Вызов эвакуатора"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy"
+        let dateString = dateFormatter.string(from: Date())
+        dateLabel.text = dateString
+        carLabel.text = "RAV4"
+        contentLabel.text = "Произведен успешный вызов эвакуатора"
+        titleLabel.text = "Оказание услуги"
     }
 }
