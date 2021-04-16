@@ -63,35 +63,26 @@ class ServicesViewController: UIViewController, BackgroundText {
     }
     
     private func interfaceIfOneCar() {
-        DispatchQueue.main.async { [self] in
-            loadViewIfNeeded()
-            if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
-            carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
-            carTextField.isEnabled = cars.count > 1
-            showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
-            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
-        }
+        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
+        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+        carTextField.isEnabled = cars.count > 1
+        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
     }
     
     private func interfaceIfNoCars() {
-        DispatchQueue.main.async { [self] in
-            loadViewIfNeeded()
-            displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте  автомобиль.")
-            loadingIndicator.stopAnimating()
-            loadingIndicator.isHidden = true
-            showroomLabel.text = ""
-            servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
-        }
+        displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте  автомобиль.")
+        loadingIndicator.stopAnimating()
+        loadingIndicator.isHidden = true
+        showroomLabel.text = ""
+        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
     }
     
     private func interfaceIfManyCars() {
-        DispatchQueue.main.async { [self] in
-            loadViewIfNeeded()
-            carForServePicker.reloadAllComponents()
-            carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
-                                        inComponent: 0, animated: false)
-            interfaceIfOneCar()
-        }
+        carForServePicker.reloadAllComponents()
+        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
+                                    inComponent: 0, animated: false)
+        interfaceIfOneCar()
     }
 }
 
@@ -110,13 +101,16 @@ extension ServicesViewController: WithUserInfo {
     }
     
     func userDidUpdate() {
-        switch cars.count {
-            case 0:
-                interfaceIfNoCars()
-            case 1:
-                interfaceIfOneCar()
-            default:
-                interfaceIfManyCars()
+        view.layoutIfNeeded()
+        DispatchQueue.main.async { [self] in
+            switch cars.count {
+                case 0:
+                    interfaceIfNoCars()
+                case 1:
+                    interfaceIfOneCar()
+                default:
+                    interfaceIfManyCars()
+            }
         }
     }
 }
@@ -160,5 +154,15 @@ extension ServicesViewController: UICollectionViewDelegate {
             vc.configure(with: serviceTypes[indexPath.row], car: selectedCar!)
             navigationController?.pushViewController(vc as! UIViewController, animated: true)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.05 * Double(indexPath.row),
+            animations: {
+                cell.alpha = 1
+        })
     }
 }
