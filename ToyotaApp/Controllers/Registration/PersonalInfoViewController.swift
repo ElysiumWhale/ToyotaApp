@@ -48,7 +48,7 @@ class PersonalInfoViewController: UIViewController {
     }
     
     @IBAction private func doneDidPress(sender: Any?) {
-        date = formatSelectedDate(from: datePicker, to: birthTextField)
+        date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
         textFieldsWithError[birthTextField] = false
         view.endEditing(true)
     }
@@ -84,13 +84,13 @@ class PersonalInfoViewController: UIViewController {
 extension PersonalInfoViewController {
     override func viewWillAppear(_ animated: Bool) {
         //addKeyboardObserver()
-        if isConfigured {
-            firstNameTextField.text = configuredProfile!.firstName
-            secondNameTextField.text = configuredProfile!.secondName
-            lastNameTextField.text = configuredProfile!.lastName
-            emailTextField.text = configuredProfile!.email
-            #warning("to-do: Format data")
-            birthTextField.text  = configuredProfile!.birthday
+        if isConfigured, let profile = configuredProfile {
+            firstNameTextField.text = profile.firstName
+            secondNameTextField.text = profile.secondName
+            lastNameTextField.text = profile.lastName
+            emailTextField.text = profile.email
+            birthTextField.text = formatDateForClient(from: profile.birthday!)
+            date = profile.birthday!
         }
         
         if activitySwitcher.isAnimating {
