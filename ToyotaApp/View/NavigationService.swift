@@ -139,7 +139,7 @@ extension NavigationService {
             }
             
             #warning("Push test cars")
-            //pushTestCars()
+            //Test.PushTestCars()
             
             switch UserInfo.build() {
                 case .failure(_):
@@ -157,11 +157,5 @@ extension NavigationService {
                     switchRootView(controller: controller)
             }
         }
-    }
-    
-    private class func pushTestCars() {
-        let car = Car(id: "1", showroomId: "1", brand: "Toyota", model: "Supra A90", color: "Белый жемчуг", colorSwatch: "#eeee", colorDescription: "Белый красивый", isMetallic: "1", plate: "а228аа163rus", vin: "22822822822822822")
-        let car1 = Car(id: "2", showroomId: "1", brand: "Toyota", model: "Camry 3.5", color: "Черный жемчуг", colorSwatch: "#eeee", colorDescription: "Черный красивый", isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
-        DefaultsManager.pushUserInfo(info: Cars([car, car1], chosen: car))
     }
 }

@@ -7,6 +7,12 @@ class OrderCell: UITableViewCell {
     @IBOutlet private var carLabel: UILabel!
     
     func configure(with service: Service) {
+        configureAsMock()
+    }
+}
+
+extension OrderCell {
+    func configureAsMock() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd.yyyy"
         let dateString = dateFormatter.string(from: Date())

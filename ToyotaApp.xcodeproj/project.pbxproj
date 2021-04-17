@@ -24,6 +24,7 @@
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */; };
 		14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */; };
+		14A8D8952617C25F0086BC12 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Test.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
@@ -94,6 +95,7 @@
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
 		14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpOnRoadViewController.xib; sourceTree = "<group>"; };
+		14A8D8942617C25F0086BC12 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				1495724125B9FF940031A5AA /* NewsModel.swift */,
 				1443FDAD260BEEEE007CEBB1 /* Notificator.swift */,
 				1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */,
+				14A8D8942617C25F0086BC12 /* Test.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
+				14A8D8952617C25F0086BC12 /* Test.swift in Sources */,
 				1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,

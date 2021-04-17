@@ -9,7 +9,7 @@ class OrdersHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        orders.append(.init(id: "1", showroomId: "1", serviceTypeId: "1", serviceName: "1", koeffTime: "1", multiply: "1"))
+        orders.append(Test.CreateOrder())
     }
     
 }
