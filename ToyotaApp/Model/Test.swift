@@ -21,4 +21,17 @@ public class Test {
         let url = URL(string: "https://www.vhv.rs/dpng/d/522-5221969_toyota-logo-symbol-vector-vector-toyota-logo-png.png")!
         return [News(title: "Функционал в разработке", content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!", date: Date(), showroomId: "-1", showroomName: "Тойота Самара Юг", imgUrl: url), News(title: "Функционал в разработке", content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!", date: Date(), showroomId: "-1", showroomName: "Тойота Самара Север", imgUrl: url)]
     }
+    
+    class func CreateFreeTimeDict() -> [String:[Int]] {
+        var result = [String:[Int]]()
+        var date: Date = Calendar.current.date(byAdding: DateComponents(hour: 4, minute: 30), to: Date())!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        for var i in 0...5 {
+            result[formatter.string(from: date)] = [1+i*2, 3+i*3, 4+i*3, 5+i*3-1, 6+i*3+1, 7+i*3+3]
+            date = Calendar.current.date(byAdding: DateComponents(day: 10, hour: 3), to: date)!
+            i+=1
+        }
+        return result
+    }
 }

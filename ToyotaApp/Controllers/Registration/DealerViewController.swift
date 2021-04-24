@@ -13,9 +13,9 @@ class DealerViewController: UIViewController {
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
     
-    private var cities: [City] = [City]()
+    private var cities: [City] = []
     private var selectedCity: City?
-    private var showrooms: [DTOShowroom] = [DTOShowroom]()
+    private var showrooms: [DTOShowroom] = []
     private var selectedShowroom: DTOShowroom?
     
     override func viewDidLoad() {
@@ -105,7 +105,7 @@ extension DealerViewController: SegueWithRequestController {
 
 //MARK: - Pickers actions
 extension DealerViewController {
-    @objc private func cityDidSelect(sender: Any?) {
+    @IBAction private func cityDidSelect(sender: Any?) {
         nextButton.isHidden = true
         if selectedShowroom != nil, !showrooms.isEmpty {
             selectedShowroom = nil
@@ -121,13 +121,6 @@ extension DealerViewController {
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
     }
     
-    @objc private func showroomDidSelect(sender: Any?) {
-        let row = showroomPicker.selectedRow(inComponent: 0)
-        selectedShowroom = showrooms[row]
-        showroomTextField?.text = showrooms[row].showroomName
-        view.endEditing(true)
-        nextButton.isHidden = false
-    }
     
     private var completionForSelectedCity: (CityDidSelectResponce?) -> Void {
         { [self] response in
@@ -149,6 +142,14 @@ extension DealerViewController {
                 uiCompletion()
             }
         }
+    }
+    
+    @IBAction private func showroomDidSelect(sender: Any?) {
+        let row = showroomPicker.selectedRow(inComponent: 0)
+        selectedShowroom = showrooms[row]
+        showroomTextField?.text = showrooms[row].showroomName
+        view.endEditing(true)
+        nextButton.isHidden = false
     }
 }
 

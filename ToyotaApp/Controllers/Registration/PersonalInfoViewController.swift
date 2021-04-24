@@ -10,11 +10,11 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
     
-    private var textFieldsWithError: [UITextField : Bool]!
-    
     private let datePicker: UIDatePicker = UIDatePicker()
     
-    private var cities: [City] = [City]()
+    private var textFieldsWithError: [UITextField : Bool]!
+    
+    private var cities: [City] = []
     private var date: String = ""
     
     private var isConfigured: Bool = false
@@ -22,7 +22,7 @@ class PersonalInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDatePicker(datePicker, with: #selector(doneDidPress), for: birthTextField)
+        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
         textFieldsWithError = [firstNameTextField : true, secondNameTextField : true,
                                lastNameTextField : true, emailTextField : true, birthTextField : true]
@@ -31,39 +31,33 @@ class PersonalInfoViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @IBAction func textDidChange(sender: UITextField) {
+    func configure(with profile: Profile) {
+        configuredProfile = profile
+        isConfigured = true
+    }
+    
+    private var hasErrors: Bool {
+        return !textFieldsWithError.values.allSatisfy({ !$0 })
+    }
+    
+    @IBAction private func textDidChange(sender: UITextField) {
         if let text = sender.text, text.count > 0, text.count < 25 {
             sender.borderStyle = .none
             sender.layer.borderColor = UIColor.gray.cgColor
             sender.layer.borderWidth = 0.15
             textFieldsWithError[sender] = false
         } else {
+            sender.borderStyle = .roundedRect
+            sender.layer.borderColor = UIColor.systemRed.cgColor
+            sender.layer.borderWidth = 0.5
             textFieldsWithError[sender] = true
         }
     }
     
-    func configure(with profile: Profile) {
-        configuredProfile = profile
-        isConfigured = true
-    }
-    
-    @IBAction private func doneDidPress(sender: Any?) {
+    @IBAction private func dateDidSelect(sender: Any?) {
         date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
         textFieldsWithError[birthTextField] = false
         view.endEditing(true)
-    }
-    
-    private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
-        var params = [URLQueryItem]()
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
-        params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)))
-        params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: profile.secondName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: profile.lastName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: profile.email))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
-        return params
     }
     
     private func displayErrors() {
@@ -116,7 +110,7 @@ extension PersonalInfoViewController {
 
 //MARK: - Keyboard methods
 extension PersonalInfoViewController {
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @IBAction func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
@@ -125,7 +119,7 @@ extension PersonalInfoViewController {
         scrollView.scrollIndicatorInsets = contentInsets
       }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @IBAction func keyboardWillHide(notification: NSNotification) {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
@@ -168,5 +162,16 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     birthday: date)
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: buildRequestParams(from: configuredProfile!, date: date), completion: completionForSegue)
     }
+    private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
+        var params = [URLQueryItem]()
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)))
+        params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: profile.secondName))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: profile.lastName))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: profile.email))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
+        return params
+    }
 }
-

@@ -5,7 +5,7 @@ fileprivate enum SkipCheckVin: String {
     case no = "0"
 }
 
-class CheckVinViewController: UIViewController, DisplayError {
+class CheckVinViewController: UIViewController {
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var vinCodeTextField: UITextField!
     @IBOutlet private var checkVinButton: UIButton!
@@ -20,7 +20,7 @@ class CheckVinViewController: UIViewController, DisplayError {
         vinCodeTextField.layer.borderWidth = 0
     }
     
-    func displayError(_ message: String? = nil) {
+    private func displayError(_ message: String? = nil) {
         DispatchQueue.main.async { [self] in
             if let mes = message {
                 PopUp.displayMessage(with: "Ошибка", description: mes, buttonText: "Ок")
@@ -30,7 +30,6 @@ class CheckVinViewController: UIViewController, DisplayError {
             errorLabel.isHidden = false
             if checkVinButton.isHidden {
                 indicator.stopAnimating()
-                indicator.isHidden = true
                 checkVinButton.isHidden = false
             }
         }

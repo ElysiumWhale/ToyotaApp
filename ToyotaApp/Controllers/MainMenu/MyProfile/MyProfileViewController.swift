@@ -20,10 +20,6 @@ class MyProfileViewController: UIViewController {
     
     private let datePicker: UIDatePicker = UIDatePicker()
     
-    private var date: String = "" {
-        didSet { view.endEditing(true) }
-    }
-    
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
     
@@ -38,7 +34,11 @@ class MyProfileViewController: UIViewController {
         didSet { switchInterface(state) }
     }
     
-    private var textFieldsWithError: [UITextField : Bool]!
+    private var date: String = "" {
+        didSet { view.endEditing(true) }
+    }
+    
+    private var textFieldsWithError: [UITextField : Bool] = [:]
     
     private var hasChanges: Bool {
         profile.firstName != firstNameTextField.text ||
@@ -74,7 +74,7 @@ class MyProfileViewController: UIViewController {
         let saveConstraint = NSLayoutConstraint(item: saveButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: constant)
         let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseOut, animations: { [self] in
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
             view.removeConstraint(saveButtonLeadingConstraint)
             view.addConstraint(saveConstraint)
             view.removeConstraint(cancelButtonLeadingConstant)
@@ -84,10 +84,13 @@ class MyProfileViewController: UIViewController {
                 isEditing ? cancelButton.fadeIn() : cancelButton.fadeOut()
                 saveButton.setTitle(isEditing ? "Сохранить" : "Редактировать", for: .normal)
             }
-        }, completion: nil)
+        })
         
         saveButtonLeadingConstraint = saveConstraint
         cancelButtonLeadingConstant = cancelConstraint
+        if state != .isLoading {
+            date = ""
+        }
     }
     
     private func updateFields() {
@@ -99,7 +102,7 @@ class MyProfileViewController: UIViewController {
         emailTextField.text = profile.email
     }
     
-    @IBAction func textDidChange(sender: UITextField) {
+    @IBAction private func textDidChange(sender: UITextField) {
         if let text = sender.text, text.count > 0, text.count < 25 {
             sender.layer.borderColor = UIColor.gray.cgColor
             sender.layer.borderWidth = 0.15
@@ -133,7 +136,7 @@ class MyProfileViewController: UIViewController {
         date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
     }
     
-    @IBAction func logout(sender: Any?) {
+    @IBAction private func logout(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждние действия", description: "Вы действительно хотите выйти?", confirmText: "Да", declineText: "Нет") {
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
             UserDefaults.standard.synchronize()
@@ -142,7 +145,7 @@ class MyProfileViewController: UIViewController {
         }
     }
     
-    // MARK: - Navigation
+    //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case myCarsSegueCode:
@@ -210,8 +213,10 @@ extension MyProfileViewController: WithUserInfo {
     }
     
     func userDidUpdate() {
-        view.layoutIfNeeded()
-        updateFields()
+        DispatchQueue.main.async { [self] in
+            view.layoutIfNeeded()
+            updateFields()
+        }
     }
     
     func setUser(info: UserProxy) {

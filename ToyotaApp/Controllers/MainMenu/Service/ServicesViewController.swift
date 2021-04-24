@@ -6,17 +6,16 @@ class ServicesViewController: UIViewController, BackgroundText {
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private var servicesList: UICollectionView!
     
+    private var carForServePicker: UIPickerView = UIPickerView()
+    private let cellIdentrifier = CellIdentifiers.ServiceCell
+    
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
     
-    private var carForServePicker: UIPickerView = UIPickerView()
     private var cars: [Car] { user.getCars.array }
     private var selectedCar: Car? { user.getCars.chosenCar }
-    
-    private var serviceTypes: [ServiceType] = [ServiceType]()
-    
-    private let cellIdentrifier = CellIdentifiers.ServiceCell
+    private var serviceTypes: [ServiceType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +45,11 @@ class ServicesViewController: UIViewController, BackgroundText {
         }
     }
     
-    @objc private func carDidSelect(sender: Any?) {
+    @IBAction private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
         if selectedCar!.id != cars[row].id {
             serviceTypes.removeAll()
-            servicesList.reloadData()
-            loadingIndicator.isHidden = false
             loadingIndicator.startAnimating()
             user.update(cars[row])
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
@@ -62,27 +59,6 @@ class ServicesViewController: UIViewController, BackgroundText {
         }
     }
     
-    private func interfaceIfOneCar() {
-        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
-        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
-        carTextField.isEnabled = cars.count > 1
-        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
-    }
-    
-    private func interfaceIfNoCars() {
-        displayError(whith: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте  автомобиль.")
-        loadingIndicator.stopAnimating()
-        loadingIndicator.isHidden = true
-        showroomLabel.text = ""
-        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
-    }
-    
-    private func interfaceIfManyCars() {
-        carForServePicker.reloadAllComponents()
-        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
-                                    inComponent: 0, animated: false)
-        interfaceIfOneCar()
     }
 }
 
@@ -101,8 +77,8 @@ extension ServicesViewController: WithUserInfo {
     }
     
     func userDidUpdate() {
-        view.layoutIfNeeded()
         DispatchQueue.main.async { [self] in
+            view.layoutIfNeeded()
             switch cars.count {
                 case 0:
                     interfaceIfNoCars()
@@ -112,6 +88,33 @@ extension ServicesViewController: WithUserInfo {
                     interfaceIfManyCars()
             }
         }
+    }
+}
+
+//MARK: - Configure UI for cars count
+extension ServicesViewController {
+    private func interfaceIfNoCars() {
+        displayError(with: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+        carTextField.isEnabled = false
+        loadingIndicator.stopAnimating()
+        showroomLabel.text = ""
+        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
+    }
+    
+    private func interfaceIfOneCar() {
+        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
+        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+        carTextField.isEnabled = cars.count > 1
+        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
+    }
+    
+    private func interfaceIfManyCars() {
+        carForServePicker.reloadAllComponents()
+        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
+                                    inComponent: 0, animated: false)
+        carTextField.isEnabled = true
+        interfaceIfOneCar()
     }
 }
 

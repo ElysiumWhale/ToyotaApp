@@ -16,10 +16,9 @@ class ServiceMaintenanceViewController: UIViewController {
     
     private var serviceType: ServiceType!
     private var chosenCar: Car!
-    private var services: [Service] = [Service]()
+    private var services: [Service] = []
     private var selectedService: Service?
-    
-    private var dates: [FreeTime] = [FreeTime]()
+    private var dates: [FreeTime] = []
     private var selectedDate: String {
         if !dates.isEmpty {
             let rowInFirst = datePicker.selectedRow(inComponent: 0)
@@ -58,7 +57,7 @@ class ServiceMaintenanceViewController: UIViewController {
         }
     }
     
-    @objc func serviceDidSelect(sender: Any?) {
+    @IBAction func serviceDidSelect(sender: Any?) {
         let row = servicePicker.selectedRow(inComponent: 0)
         selectedService = services[row]
         servicesTextField?.text = services[row].serviceName
@@ -116,8 +115,9 @@ class ServiceMaintenanceViewController: UIViewController {
             }
         }
     }
-    @IBAction func makeOrder(_ sender: UIButton) {
-        
+    
+    @IBAction private func makeOrder(_ sender: UIButton) {
+        PopUp.displayMessage(with: "Mock", description: "Mock", buttonText: "Ok")
     }
 }
 

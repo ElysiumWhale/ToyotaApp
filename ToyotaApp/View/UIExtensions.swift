@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+
 extension UIView {
     func fadeIn(_ duration: TimeInterval? = 0.05, onCompletion: (() -> Void)? = nil) {
         alpha = 0
@@ -31,5 +32,20 @@ extension UICollectionViewCell {
         layer.shadowOpacity = 0.7
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+    }
+}
+
+extension UIButton {
+    @IBInspectable var rounded: Bool {
+        get {
+            layer.cornerRadius == 0 ? true : false
+        }
+        set {
+            updateCornerRadius(isRounded: newValue)
+        }
+    }
+    
+    func updateCornerRadius(isRounded: Bool) {
+        layer.cornerRadius = isRounded ? frame.size.height / 2 : 0
     }
 }
