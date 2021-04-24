@@ -104,7 +104,7 @@ extension SmsCodeViewController {
                 if case .changeNumber(let notificator) = type, data.result == "ok" {
                     notificator.notificateObservers()
                     dismissNavigationWithDispatch(animated: true) {
-                        PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: "Ок")
+                        PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: CommonText.ok)
                     }
                 } else {
                     displayError(with: "Что то пошло не так... Попробуйте провести операцию смены номера, перезайдя в настройки") { [self] in

@@ -7,7 +7,7 @@ extension UIViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: action)
+        let doneButton = UIBarButtonItem(title: CommonText.choose, style: .done, target: self, action: action)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
@@ -66,7 +66,7 @@ extension UIViewController {
     func displayError(with text: String, beforePopUpAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
             beforePopUpAction()
-            PopUp.displayMessage(with: "Ошибка", description: text, buttonText: "Ок")
+            PopUp.displayMessage(with: CommonText.error, description: text, buttonText: CommonText.ok)
         }
     }
 }

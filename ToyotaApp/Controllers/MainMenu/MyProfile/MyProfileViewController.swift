@@ -83,7 +83,7 @@ class MyProfileViewController: UIViewController {
             view.layoutIfNeeded()
             if state != .isLoading {
                 isEditing ? cancelButton.fadeIn() : cancelButton.fadeOut()
-                saveButton.setTitle(isEditing ? "Сохранить" : "Редактировать", for: .normal)
+                saveButton.setTitle(isEditing ? CommonText.save : CommonText.edit, for: .normal)
             }
         })
         
@@ -139,7 +139,7 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction private func logout(sender: Any?) {
-        PopUp.displayChoice(with: "Подтверждние действия", description: "Вы действительно хотите выйти?", confirmText: "Да", declineText: "Нет") {
+        PopUp.displayChoice(with: "Подтверждние действия", description: "Вы действительно хотите выйти?", confirmText: CommonText.yes, declineText: CommonText.no) {
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
             UserDefaults.standard.synchronize()
             SwiftEntryKit.dismiss()
@@ -172,7 +172,7 @@ extension MyProfileViewController {
         }
         
         guard textFieldsWithError.allSatisfy({ !$0.value }) else {
-            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: "Ок")
+            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: CommonText.ok)
             return
         }
         
@@ -201,7 +201,7 @@ extension MyProfileViewController {
                 }
                 DispatchQueue.main.async { [self] in
                     user.update(Person(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, secondName: secondNameTextField.text!, email: emailTextField.text!, birthday: date))
-                    PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: "Ок")
+                    PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: CommonText.ok)
                     state = .none
                 }
             case .failure(let error):

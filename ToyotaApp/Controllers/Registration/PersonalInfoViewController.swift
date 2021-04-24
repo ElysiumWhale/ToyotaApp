@@ -122,7 +122,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
         if hasErrors {
-            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: "Ок")
+            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: CommonText.ok)
             return
         }
         

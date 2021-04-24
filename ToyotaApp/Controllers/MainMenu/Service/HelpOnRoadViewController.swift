@@ -69,7 +69,7 @@ class HelpOnRoadViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     @IBAction func makeRequest(sender: UIButton) {
-        PopUp.displayMessage(with: "Заявка отправлена", description: "В ближайшее время с Вами свяжется менеджер, также будет вызван эвакуатор", buttonText: "Ок")
+        PopUp.displayMessage(with: "Заявка отправлена", description: "В ближайшее время с Вами свяжется менеджер, также будет вызван эвакуатор", buttonText: CommonText.ok)
     }
 }
 

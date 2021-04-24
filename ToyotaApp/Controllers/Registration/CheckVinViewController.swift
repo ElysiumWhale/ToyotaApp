@@ -27,7 +27,7 @@ class CheckVinViewController: UIViewController {
     private func displayError(_ message: String? = nil) {
         DispatchQueue.main.async { [self] in
             if let mes = message {
-                PopUp.displayMessage(with: "Ошибка", description: mes, buttonText: "Ок")
+                PopUp.displayMessage(with: CommonText.error, description: mes, buttonText: CommonText.ok)
             }
             vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
             vinCodeTextField.layer.borderWidth = 1
@@ -116,7 +116,7 @@ extension CheckVinViewController: SegueWithRequestController {
                             performSegue(for: segueCode)
                         case .update(let proxy):
                             proxy.update(car, showroom!)
-                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: "Ок")
+                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
                             navigationController!.popToRootWithDispatch(animated: true)
                     }
                 } else {

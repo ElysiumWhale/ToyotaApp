@@ -105,6 +105,18 @@ public struct CellIdentifiers {
     static let OrderCell = "OrderCell"
 }
 
+#warning("todo: make string file")
+public struct CommonText {
+    static let save = "Сохранить"
+    static let cancel = "Отмена"
+    static let ok = "Ок"
+    static let error = "Ошибка"
+    static let edit = "Редактировать"
+    static let yes = "Да"
+    static let no = "Нет"
+    static let choose = "Выбрать"
+}
+
 public struct TimeMap {
     static let map: [Int:DateComponents] = [
         18:.init(hour: 9, minute: 00),
