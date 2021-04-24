@@ -1,5 +1,6 @@
 import Foundation
 
+///Keys for information **pushing to** and **retrieving from**  `UserDefaults`
 enum DefaultKeys: String {
     case phone
     case userId
@@ -7,12 +8,6 @@ enum DefaultKeys: String {
     case person
     case cars
     case showrooms
-    
-}
-
-struct DefaultsKeys {
-    static let brandId = "brandId"
-    static let vin = "vinCode"
 }
 
 public class DefaultsManager {

@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+//MARK: - FadeIn/Out UIView Animation
 extension UIView {
     func fadeIn(_ duration: TimeInterval? = 0.05, onCompletion: (() -> Void)? = nil) {
         alpha = 0
@@ -24,6 +25,7 @@ extension UIView {
     }
 }
 
+//MARK: - Configuring shadow for cell
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat) {
         layer.shadowColor = UIColor.black.cgColor
@@ -35,6 +37,7 @@ extension UICollectionViewCell {
     }
 }
 
+//MARK: - IBInspectable Corners radius for button
 extension UIButton {
     @IBInspectable var rounded: Bool {
         get {
