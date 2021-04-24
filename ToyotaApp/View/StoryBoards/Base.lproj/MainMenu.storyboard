@@ -51,65 +51,81 @@
                                     <navigationItem title="Акции" id="1JV-Kk-h0A"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rrl-n7-mhe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rrl-n7-mhe">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="211" id="nhl-Ak-Mb3" customClass="NewsTableViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="211"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="229" id="nhl-Ak-Mb3" customClass="NewsTableViewCell" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="229"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nhl-Ak-Mb3" id="BHo-CV-fsm">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="229"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title + Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAl-hd-kCz">
-                                                    <rect key="frame" x="20" y="7" width="388" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAl-hd-kCz">
+                                                    <rect key="frame" x="20" y="7" width="283" height="26"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="fJ4-8P-8f6"/>
+                                                        <constraint firstAttribute="width" constant="283" id="dpx-ue-qCb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAv-wn-fVa">
+                                                    <rect key="frame" x="311" y="7" width="97" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="97" id="Xla-pp-uR3"/>
+                                                        <constraint firstAttribute="height" constant="26" id="iTq-xu-rEl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSB-6r-XUD">
-                                                    <rect key="frame" x="20" y="45" width="245" height="120"/>
+                                                    <rect key="frame" x="20" y="41" width="283" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="283" id="bd5-J8-6nd"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ShowroomName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEE-LU-fKU">
-                                                    <rect key="frame" x="20" y="170" width="388" height="30"/>
+                                                    <rect key="frame" x="20" y="188" width="388" height="33"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="RPx-LA-feg"/>
+                                                        <constraint firstAttribute="height" constant="33" id="RPx-LA-feg"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AVh-3d-Wd1">
-                                                    <rect key="frame" x="287.33333333333331" y="45" width="120.66666666666669" height="120"/>
+                                                    <rect key="frame" x="311" y="41" width="97" height="78"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                     </accessibility>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="AVh-3d-Wd1" secondAttribute="height" multiplier="115:107" constant="-8.224299065420567" id="du8-db-Pcu"/>
+                                                        <constraint firstAttribute="height" constant="78" id="AX6-TF-MCS"/>
+                                                        <constraint firstAttribute="width" constant="97" id="Av3-uE-lM5"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="VEE-LU-fKU" secondAttribute="bottom" constant="11" id="4c7-1e-9go"/>
+                                                <constraint firstAttribute="bottom" secondItem="VEE-LU-fKU" secondAttribute="bottom" constant="8" id="4c7-1e-9go"/>
                                                 <constraint firstAttribute="trailing" secondItem="VEE-LU-fKU" secondAttribute="trailing" constant="20" id="7nf-eA-ANk"/>
-                                                <constraint firstItem="VEE-LU-fKU" firstAttribute="top" secondItem="WSB-6r-XUD" secondAttribute="bottom" constant="5" id="ARZ-uR-WLb"/>
+                                                <constraint firstItem="AVh-3d-Wd1" firstAttribute="top" secondItem="kAl-hd-kCz" secondAttribute="bottom" constant="8" symbolic="YES" id="99p-MY-sGz"/>
+                                                <constraint firstItem="VEE-LU-fKU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WSB-6r-XUD" secondAttribute="bottom" constant="14" id="ARZ-uR-WLb"/>
+                                                <constraint firstItem="RAv-wn-fVa" firstAttribute="top" secondItem="BHo-CV-fsm" secondAttribute="top" constant="7" id="CvJ-aQ-ria"/>
                                                 <constraint firstItem="kAl-hd-kCz" firstAttribute="leading" secondItem="BHo-CV-fsm" secondAttribute="leading" constant="20" symbolic="YES" id="FTN-0P-tGK"/>
+                                                <constraint firstItem="AVh-3d-Wd1" firstAttribute="leading" secondItem="WSB-6r-XUD" secondAttribute="trailing" constant="8" symbolic="YES" id="LhK-I4-2Bx"/>
                                                 <constraint firstItem="WSB-6r-XUD" firstAttribute="top" secondItem="kAl-hd-kCz" secondAttribute="bottom" constant="8" id="NnM-cR-hGn"/>
                                                 <constraint firstItem="WSB-6r-XUD" firstAttribute="leading" secondItem="BHo-CV-fsm" secondAttribute="leading" constant="20" symbolic="YES" id="TOp-4d-9DW"/>
                                                 <constraint firstItem="VEE-LU-fKU" firstAttribute="leading" secondItem="BHo-CV-fsm" secondAttribute="leading" constant="20" symbolic="YES" id="X5e-31-Vct"/>
-                                                <constraint firstItem="AVh-3d-Wd1" firstAttribute="top" secondItem="kAl-hd-kCz" secondAttribute="bottom" constant="8" id="ixH-Bi-7iH"/>
+                                                <constraint firstItem="VEE-LU-fKU" firstAttribute="top" relation="lessThanOrEqual" secondItem="AVh-3d-Wd1" secondAttribute="bottom" constant="69" id="iHl-lx-LmZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="AVh-3d-Wd1" secondAttribute="trailing" constant="20" id="jDx-ts-weW"/>
-                                                <constraint firstAttribute="trailing" secondItem="WSB-6r-XUD" secondAttribute="trailing" constant="163" id="jrz-dK-FFi"/>
-                                                <constraint firstItem="VEE-LU-fKU" firstAttribute="top" secondItem="AVh-3d-Wd1" secondAttribute="bottom" constant="5" id="lho-gc-ZkQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="RAv-wn-fVa" secondAttribute="trailing" constant="20" id="vYq-PI-0ku"/>
+                                                <constraint firstItem="RAv-wn-fVa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kAl-hd-kCz" secondAttribute="trailing" constant="8" id="wsD-j5-6Um"/>
                                                 <constraint firstItem="kAl-hd-kCz" firstAttribute="top" secondItem="BHo-CV-fsm" secondAttribute="top" constant="7" id="zsW-i0-HEh"/>
-                                                <constraint firstAttribute="trailing" secondItem="kAl-hd-kCz" secondAttribute="trailing" constant="20" symbolic="YES" id="zvd-Pv-plW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -119,10 +135,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <outlet property="backgroundView" destination="BHo-CV-fsm" id="FEd-KL-wbP"/>
                                             <outlet property="contentLabel" destination="WSB-6r-XUD" id="hvK-YB-oSQ"/>
+                                            <outlet property="dateLabel" destination="RAv-wn-fVa" id="LjA-rn-vsd"/>
                                             <outlet property="newsImage" destination="AVh-3d-Wd1" id="YFl-v5-qMl"/>
                                             <outlet property="showroomNameLabel" destination="VEE-LU-fKU" id="HAw-gJ-WSg"/>
-                                            <outlet property="titleDateLabel" destination="kAl-hd-kCz" id="uI5-eH-ca4"/>
+                                            <outlet property="titleLabel" destination="kAl-hd-kCz" id="uI5-eH-ca4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -153,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V7K-YM-Q8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079.7101449275365" y="142.63392857142856"/>
+            <point key="canvasLocation" x="2076.1682242990655" y="142.54859611231103"/>
         </scene>
         <!--Услуги-->
         <scene sceneID="vV6-m5-P55">
@@ -172,7 +190,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
-                                <rect key="frame" x="0.0" y="186" width="428" height="657"/>
+                                <rect key="frame" x="0.0" y="181" width="428" height="662"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
@@ -232,7 +250,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
-                                <rect key="frame" x="0.0" y="152" width="428" height="26"/>
+                                <rect key="frame" x="0.0" y="152" width="428" height="21"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

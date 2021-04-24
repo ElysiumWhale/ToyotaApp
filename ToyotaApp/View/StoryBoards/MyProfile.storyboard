@@ -78,7 +78,6 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Редактировать">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="pencil" catalog="system" symbolScale="medium"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
@@ -539,12 +538,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
-                                <rect key="frame" x="20" y="114" width="374" height="35.5"/>
+                                <rect key="frame" x="20" y="114" width="374" height="41"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="89" y="157.5" width="236" height="43"/>
+                                <rect key="frame" x="89" y="163" width="236" height="43"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
@@ -600,19 +599,19 @@
     </scenes>
     <designables>
         <designable name="BpN-XY-i4j">
-            <size key="intrinsicContentSize" width="103" height="21"/>
+            <size key="intrinsicContentSize" width="105" height="26"/>
         </designable>
         <designable name="CLN-ma-9CJ">
-            <size key="intrinsicContentSize" width="145.5" height="21"/>
+            <size key="intrinsicContentSize" width="131" height="38"/>
         </designable>
         <designable name="JBC-U9-UyU">
-            <size key="intrinsicContentSize" width="100.5" height="21"/>
+            <size key="intrinsicContentSize" width="105.5" height="26"/>
         </designable>
         <designable name="bXP-CD-hXD">
-            <size key="intrinsicContentSize" width="83" height="33"/>
+            <size key="intrinsicContentSize" width="88" height="38"/>
         </designable>
         <designable name="eyL-fs-0tQ">
-            <size key="intrinsicContentSize" width="93" height="21"/>
+            <size key="intrinsicContentSize" width="97" height="26"/>
         </designable>
     </designables>
     <resources>
