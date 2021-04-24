@@ -28,32 +28,22 @@ class ServiceMaintenanceViewController: UIViewController {
         } else { return "Empty" }
     }
     
-    private var formatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = .autoupdatingCurrent
-        return formatter
-    }
-    
-    private var displayFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        formatter.timeZone = .autoupdatingCurrent
-        return formatter
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = serviceType.service_type_name
         configurePicker(servicePicker, with: #selector(serviceDidSelect), for: servicesTextField, delegate: self)
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServices, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: chosenCar.showroomId),
              URLQueryItem(name: RequestKeys.Services.serviceTypeId, value: serviceType.id)],
-            completion: completion)
+            completion: servicesDidGetCompletion)
     }
     
-    func completion(response: ServicesDidGetResponse?) {
-        if let array = response?.services {
-            services = array
+    private func servicesDidGetCompletion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                services = data.services
+            case .failure(let error):
+                displayError(with: error.message ?? "Ошибка при получении сервисов, повторите попытку позднее")
+                navigationController!.popToRootWithDispatch(animated: true)
         }
     }
     
@@ -73,38 +63,28 @@ class ServiceMaintenanceViewController: UIViewController {
                 completion: didGetFreeTimeCompletion)
     }
     
-    func didGetFreeTimeCompletion(response: FreeTimeDidGetResponse?) {
-        guard response?.errorCode == nil else {
-            displayError(whith: response?.message ?? "Ошибка при получении времени для бронирования услуги")
-            indicator.stopAnimating()
-            return
-        }
-        
-        var freeTime: [String:[Int]] = [String:[Int]]()
-        if let freeTimeDict = response?.freeTimeDict {
-            freeTime = freeTimeDict
-        } else {
-            freeTime = ["2021-02-02":[18,19,20,21,22,23,24],
-                        "2021-02-05":[22,25,30,32,34],
-                        "2021-05-21":[18,23,27,30]]
-        }
-        
-        DispatchQueue.main.async { [self] in
-            updateDates(from: freeTime)
-            datePicker.selectRow(0, inComponent: 0, animated: false)
-            datePicker.reloadAllComponents()
-            indicator.stopAnimating()
-            indicator.isHidden = true
-            dateTimeLabel.isHidden = false
-            datePicker.isHidden = false
-            createRequestButton.isHidden = false
+    private func didGetFreeTimeCompletion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                DispatchQueue.main.async { [self] in
+                    updateDates(from: data.freeTimeDict ?? Test.CreateFreeTimeDict())
+                    datePicker.selectRow(0, inComponent: 0, animated: false)
+                    datePicker.reloadAllComponents()
+                    indicator.stopAnimating()
+                    dateTimeLabel.isHidden = false
+                    datePicker.isHidden = false
+                    createRequestButton.isHidden = false
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? "Ошибка при получении времени для бронирования услуги")
+                indicator.stopAnimating()
         }
     }
     
     private func updateDates(from dict: [String:[Int]]) {
         for (date, times) in dict {
-            #warning("to-do: date parsing is wrong")
-            if let date = Calendar.current.date(byAdding: DateComponents(hour: 4, nanosecond: 1), to: formatter.date(from: date)!)  {
+            #warning("to-do: fix date parsing (4 hour offset)")
+            if let date = Calendar.current.date(byAdding: DateComponents(hour: 4, second: 1), to: formatter.date(from: date)!)  {
                 if date > Date() {
                     var freeHoursMinutes = [DateComponents]()
                     for time in times {
@@ -126,6 +106,24 @@ extension ServiceMaintenanceViewController: ServicesMapped {
     func configure(with service: ServiceType, car: Car) {
         serviceType = service
         chosenCar = car
+    }
+}
+
+#warning("todo: use extension methods for VC")
+//MARK: - Date formatters
+extension ServiceMaintenanceViewController {
+    private var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = .autoupdatingCurrent
+        return formatter
+    }
+    
+    private var displayFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.timeZone = .autoupdatingCurrent
+        return formatter
     }
 }
 

@@ -4,7 +4,7 @@ import UIKit
 protocol SegueWithRequestController {
     associatedtype TResponse: Codable
     var segueCode: String { get }
-    func completionForSegue(for response: TResponse?)
+    func completionForSegue(for response: Result<TResponse, ErrorResponse>)
     func nextButtonDidPressed(sender: Any?)
 }
 
@@ -12,6 +12,7 @@ extension SegueWithRequestController {
     func completionForSegue(for response: TResponse?) { }
 }
 
+///Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
     func subscribe(on proxy: UserProxy)
@@ -25,10 +26,7 @@ extension WithUserInfo {
     func userDidUpdate() { }
 }
 
-protocol DisplayError {
-    func displayError(_ error: String?) -> Void
-}
-
+///Protocol for configuring Service controllers with XIBs
 protocol ServicesMapped {
     func configure(with service: ServiceType, car: Car)
 }

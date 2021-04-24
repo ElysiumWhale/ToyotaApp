@@ -1,11 +1,5 @@
 import Foundation
 
-enum AppErrors: Error {
-    case keyValueDoesNotExist
-    case wrongKeyForValue
-    case notFullProfile
-}
-
 enum DefaultKeys: String {
     case phone
     case userId

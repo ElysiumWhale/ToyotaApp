@@ -59,19 +59,6 @@ class PersonalInfoViewController: UIViewController {
         textFieldsWithError[birthTextField] = false
         view.endEditing(true)
     }
-    
-    private func displayErrors() {
-        DispatchQueue.main.async { [self] in
-            for (field, hasError) in textFieldsWithError {
-                if hasError {
-                    field.borderStyle = .roundedRect
-                    field.layer.borderColor = UIColor.systemRed.cgColor
-                    field.layer.borderWidth = 0.5
-                }
-            }
-        }
-        PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: "Ок")
-    }
 }
 
 //MARK: - Navigation
@@ -129,27 +116,13 @@ extension PersonalInfoViewController {
 
 //MARK: - SegueWithRequestController
 extension PersonalInfoViewController: SegueWithRequestController {
+    typealias TResponse = ProfileDidSetResponse
+    
     var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
     
-    func completionForSegue(for response: ProfileDidSetResponse?) {
-        guard let data = response else {
-            activitySwitcher.stopAnimating()
-            nextButton.isHidden = false
-            displayError(whith: response?.message ?? "Ошибка при отправке запроса")
-            return
-        }
-        cities = data.cities.map {
-            City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
-        }
-        DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
-        DispatchQueue.main.async { [self] in
-            performSegue(withIdentifier: segueCode, sender: self)
-        }
-    }
-    
     @IBAction func nextButtonDidPressed(sender: Any?) {
-        guard textFieldsWithError.allSatisfy({ !$0.value }) else {
-            displayErrors()
+        if hasErrors {
+            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: "Ок")
             return
         }
         
@@ -162,6 +135,23 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     birthday: date)
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: buildRequestParams(from: configuredProfile!, date: date), completion: completionForSegue)
     }
+    
+    func completionForSegue(for response: Result<ProfileDidSetResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                cities = data.cities.map {
+                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
+                }
+                DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
+                performSegue(for: segueCode)
+            case .failure(let error):
+                displayError(with: error.message ?? "Ошибка при отправке запроса") { [self] in
+                    activitySwitcher.stopAnimating()
+                    nextButton.isHidden = false
+                }
+        }
+    }
+    
     private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
         var params = [URLQueryItem]()
         let userId = DefaultsManager.getUserInfo(UserId.self)!.id

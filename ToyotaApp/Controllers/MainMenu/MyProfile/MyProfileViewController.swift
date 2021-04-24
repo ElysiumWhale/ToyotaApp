@@ -24,6 +24,7 @@ class MyProfileViewController: UIViewController {
     private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
     
     //MARK: - Properties
+    #warning("todo: make optional")
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
@@ -98,6 +99,7 @@ class MyProfileViewController: UIViewController {
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
         birthTextField.text = formatDateForClient(from: profile.birthday)
+        datePicker.date = dateFromServer(date: profile.birthday)
         date = ""
         emailTextField.text = profile.email
     }
@@ -175,7 +177,7 @@ extension MyProfileViewController {
         }
         
         state = .isLoading
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.editProfile, params: buildRequestParams(), completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Profile.editProfile, params: buildRequestParams(), completion: userDidUpdateCompletion)
     }
     
     private func buildRequestParams() -> [URLQueryItem] {
@@ -188,16 +190,24 @@ extension MyProfileViewController {
         return params
     }
     
-    private func completion(response: Response?) {
-        DispatchQueue.main.async { [self] in
-            if let success = response, success.errorCode == nil, success.result == "ok" {
-                user.update(Person(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, secondName: secondNameTextField.text!, email: emailTextField.text!, birthday: birthTextField.text!))
-                PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: "Ок")
-                state = .none
-            } else {
-                PopUp.displayMessage(with: "Ошибка", description: "Произошла ошибка при сохранении данных, повторите попытку позже", buttonText: "Ок")
-                state = .isEditing
-            }
+    private func userDidUpdateCompletion(for response: Result<Response, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                guard data.result == "ok" else {
+                    displayError(with: "Произошла ошибка при сохранении данных, повторите попытку позже") { [self] in
+                        state = .isEditing
+                    }
+                    return
+                }
+                DispatchQueue.main.async { [self] in
+                    user.update(Person(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, secondName: secondNameTextField.text!, email: emailTextField.text!, birthday: date))
+                    PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: "Ок")
+                    state = .none
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? "Произошла ошибка при сохранении данных, повторите попытку позже") { [self] in
+                    state = .isEditing
+                }
         }
     }
 }

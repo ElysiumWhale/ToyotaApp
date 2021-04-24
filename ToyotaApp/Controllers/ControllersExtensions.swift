@@ -34,42 +34,40 @@ extension UIViewController {
         textField.inputView = datePicker
     }
     
-    private var serverDateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }
-    
-    private var clientDateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru")
-        formatter.dateStyle = .medium
-        return formatter
-    }
-    
     func formatDate(from date: Date, withAssignTo textField: UITextField? = nil) -> String {
         if let textField = textField {
-            textField.text = clientDateFormatter.string(from: date)
+            textField.text = DateFormatter.ClientDateFormatter.string(from: date)
         }
-        return serverDateFormatter.string(from: date)
+        return DateFormatter.ServerDateFormatter.string(from: date)
     }
     
     func formatDateForServer(from date: Date) -> String {
-        serverDateFormatter.string(from: date)
+        DateFormatter.ServerDateFormatter.string(from: date)
     }
     
     func formatDateForClient(from string: String) -> String {
-        guard let date = serverDateFormatter.date(from: string) else {
-            return "Error while parsing"
+        guard let date = DateFormatter.ServerDateFormatter.date(from: string) else {
+            return DateFormatter.ServerDateFormatter.string(from: Date())
         }
-        return clientDateFormatter.string(from: date)
+        return DateFormatter.ClientDateFormatter.string(from: date)
+    }
+    
+    func dateFromClient(date string: String) -> Date {
+        return DateFormatter.ClientDateFormatter.date(from: string) ?? Date()
+    }
+    
+    func dateFromServer(date string: String) -> Date {
+        return DateFormatter.ServerDateFormatter.date(from: string) ?? Date()
     }
 }
 
 //MARK: - Error Displaying
 extension UIViewController {
-    func displayError(whith text: String) {
-        PopUp.displayMessage(with: "Ошибка", description: text, buttonText: "Ок")
+    func displayError(with text: String, beforePopUpAction: @escaping () -> Void = { }) {
+        DispatchQueue.main.async {
+            beforePopUpAction()
+            PopUp.displayMessage(with: "Ошибка", description: text, buttonText: "Ок")
+        }
     }
 }
 
@@ -87,6 +85,32 @@ extension UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+//MARK: - Navigation
+extension UIViewController {
+    func performSegue(for identifier: String, beforeAction: @escaping () -> Void = { }) {
+        DispatchQueue.main.async { [self] in
+            beforeAction()
+            performSegue(withIdentifier: identifier, sender: self)
+        }
+    }
+    
+    func dismissNavigationWithDispatch(animated: Bool, completion: @escaping () -> Void) {
+        DispatchQueue.main.async { [self] in
+            if let navigation = navigationController {
+                navigation.dismiss(animated: animated, completion: completion)
+            }
+        }
+    }
+}
+
+extension UINavigationController {
+    func popToRootWithDispatch(animated: Bool) {
+        DispatchQueue.main.async { [self] in
+            popToRootViewController(animated: animated)
+        }
     }
 }
 

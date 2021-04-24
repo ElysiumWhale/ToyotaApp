@@ -1,39 +1,33 @@
 import Foundation
 
-public struct SimpleResponse: Codable {
-    let result: String?
-}
-
+//MARK: - Default simple response
 public struct Response: Codable {
     let result: String
-    let errorCode: String?
-    let errorMessage: String?
     
     private enum CodingKeys: String, CodingKey {
         case result
-        case errorCode = "error_code"
-        case errorMessage = "error_message"
     }
 }
 
-//MARK: - FailureResponse
-public struct FailureResponse: Codable {
+//MARK: - ErrorResponse
+public struct ErrorResponse: Codable, Error {
+    #warning("todo: delete this field")
     let result: String
-    let errorCode: String
-    let errorMessage: String
+    let code: String
+    let message: String?
     
     private enum CodingKeys: String, CodingKey {
         case result
-        case errorCode = "error_code"
-        case errorMessage = "error_message"
+        case code = "error_code"
+        case message = "error_message"
     }
 }
 
 //MARK: - CheckUserResponce & SmsCodeDidSendResponse
 public struct CheckUserOrSmsCodeResponse: Codable {
     let result: String
-    let userId: String?
     let secretKey: String
+    let userId: String?
     let registerPage: Int?
     let registeredUser: RegisteredUser?
     let registerStatus: Int?
@@ -44,8 +38,8 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case result
-        case userId = "user_id"
         case secretKey = "secret_key"
+        case userId = "user_id"
         case registerPage = "register_page"
         case registeredUser = "registered_user"
         case registerStatus = "register_status"
@@ -57,7 +51,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
 }
 
 public struct RegisteredUser: Codable {
-    let profile: Profile?
+    let profile: Profile
     let showroom: [DTOShowroom]?
     let car: [DTOCar]?
 }
@@ -83,8 +77,6 @@ public struct Profile: Codable {
 //MARK: - ProfileDidSetResponse
 public struct ProfileDidSetResponse: Codable {
     let result: String
-    let error_code: String?
-    let message: String?
     let cities: [City]
 }
 
@@ -123,12 +115,6 @@ extension DTOShowroom {
 }
 
 //MARK: - ShowroomDidSelectResponse
-public struct ShowroomDidSelectResponse: Codable {
-    let result: String
-    let message: String
-    let error_code: String?
-}
-
 public struct DTOCar: Codable {
     let id: String
     let brandName: String
@@ -181,15 +167,13 @@ extension DTOCar {
 public struct CarDidCheckResponse: Codable {
     let result: String
     let message: String
-    let error_code: String?
     let car: DTOCar?
 }
 
 //MARK: - GetServicesTypes
 public struct ServicesTypesDidGetResponse: Codable {
     let result: String
-    let error_code: String?
-    let service_type: [ServiceType]?
+    let service_type: [ServiceType]
 }
 
 public struct ServiceType: Codable {
@@ -200,9 +184,7 @@ public struct ServiceType: Codable {
 //MARK: - GetServices
 public struct ServicesDidGetResponse: Codable {
     let result: String
-    let error_code: String?
-    let message: String?
-    let services: [Service]?
+    let services: [Service]
 }
 
 public struct Service: Codable {
@@ -226,16 +208,12 @@ public struct Service: Codable {
 //MARK: - GetFreeTime for Service
 public struct FreeTimeDidGetResponse: Codable {
     let result: String
-    let errorCode: String?
-    let message: String?
     let startDate: String?
     let endDate: String?
     let freeTimeDict: [String:[Int]]?
     
     private enum CodingKeys: String, CodingKey {
         case result
-        case errorCode = "error_code"
-        case message
         case startDate = "start_date"
         case endDate = "end_date"
         case freeTimeDict = "free_time"

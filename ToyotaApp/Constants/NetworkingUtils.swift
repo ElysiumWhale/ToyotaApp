@@ -1,11 +1,8 @@
 import Foundation
 
+///Dealer brands identificators for network requests
 struct Brand {
-    static let id = "1" //Toyota
-}
-
-struct DebugConst {
-    
+    static let Toyota = "1"
 }
 
 struct RequestType {

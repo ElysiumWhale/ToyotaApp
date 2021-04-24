@@ -1,7 +1,6 @@
 import Foundation
 
 class NetworkService {
-    
     public static let shared: NetworkService = NetworkService()
     
     let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -13,20 +12,22 @@ class NetworkService {
         mainUrl = MainURL.buildHttp()
     }
     
-    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (T?)->Void = {_ in }) where T:Codable {
+    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T:Codable {
         let request = buildPostRequest(for: page, with: params)
         
         session.dataTask(with: request) { (data, response, error) in
             if let response = response { print(response) }
             if let error = error { print(error) }
             if let data = data {
-                do {
-                    print(try JSONSerialization.jsonObject(with: data))
-                    let response = try JSONDecoder().decode(T.self, from: data)
-                    completion(response)
-                } catch {
-                    print(error.localizedDescription)
-                    completion(nil)
+                let json = try? JSONSerialization.jsonObject(with: data)
+                print(json ?? "Error while parsing json object")
+                
+                if let response = try? JSONDecoder().decode(T.self, from: data) {
+                    completion(Result.success(response))
+                } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                    completion(Result.failure(errorResponse))
+                } else {
+                    completion(Result.failure(ErrorResponse(result: "error", code: NetworkErrors.corruptedData.rawValue, message: AppErrors.serverBadResponse.rawValue)))
                 }
             }
         }.resume()

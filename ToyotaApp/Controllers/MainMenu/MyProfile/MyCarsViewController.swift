@@ -22,19 +22,20 @@ class MyCarsViewController: UIViewController, BackgroundText {
     
     @IBAction func addCar(sender: Any?) {
         NetworkService.shared.makePostRequest(page: RequestPath.Profile.getCities, params:
-            [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id)], completion: completion)
+            [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: carDidAddCompletion)
     }
     
-    func completion(response: ProfileDidSetResponse?) {
-        DispatchQueue.main.async { [self] in
-            guard response?.error_code == nil, let cities = response?.cities else {
-                PopUp.displayMessage(with: "Ошибка", description: response?.message ?? "Ошибка при загрузке городов", buttonText: "Ок")
-                return
-            }
-            let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-            let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealerViewController) as! DealerViewController
-            addShowroomVC.configure(cityList: cities, controllerType: .next(with: user))
-            navigationController?.pushViewController(addShowroomVC, animated: true)
+    private func carDidAddCompletion(for response: Result<ProfileDidSetResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                DispatchQueue.main.async { [self] in
+                    let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
+                    let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController
+                    addShowroomVC.configure(cityList: data.cities, controllerType: .update(with: user))
+                    navigationController?.pushViewController(addShowroomVC, animated: true)
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? "Ошибка при загрузке городов, повторите позднее")
         }
     }
 }
@@ -64,7 +65,9 @@ extension MyCarsViewController: WithUserInfo {
     }
     
     func userDidUpdate() {
-        carsCollection.reloadData()
+        DispatchQueue.main.async { [self] in
+            carsCollection.reloadData()
+        }
     }
     
     func setUser(info: UserProxy) {

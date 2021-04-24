@@ -8,7 +8,7 @@ class SmsCodeViewController: UIViewController {
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     
     private var phoneNumber: String!
-    private var type: AuthType = .first
+    private var type: AuthType = .register
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,29 +27,13 @@ class SmsCodeViewController: UIViewController {
         smsCodeTextField?.layer.borderWidth = 0
     }
     
-    @IBAction func login(with sender: UIButton) {
-        guard smsCodeTextField.text?.count == 4 else {
-            displayError()
-            return
-        }
-        sendSmsCodeButton.isHidden = true
-        activitySwitcher.startAnimating()
-        activitySwitcher.isHidden = false
-        view.endEditing(true)
-        
-        switch type {
-            case .first:
-                NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode, params:
-                    [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
-                     URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text),
-                     URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id)],
-                    completion: completion)
-            case .changeNumber:
-                NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone, params:
-                    [URLQueryItem(name: RequestKeys.Auth.userId, value: DefaultsManager.getUserInfo(UserId.self)!.id),
-                     URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text),
-                     URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)],
-                    completion: changeNumberCompletion)
+    private func displayError() {
+        DispatchQueue.main.async { [self] in
+            wrongCodeLabel.isHidden = false
+            activitySwitcher.stopAnimating()
+            sendSmsCodeButton.isHidden = false
+            smsCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
+            smsCodeTextField.layer.borderWidth = 1.0
         }
     }
 }
@@ -62,46 +46,77 @@ extension SmsCodeViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        let isPopping = parent == nil
-        if isPopping {
+        //parent == nil means that controller will be popped (backward navigation)
+        if parent == nil {
             NetworkService.shared.makeSimpleRequest(page: RequestPath.Registration.deleteTemp, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
         }
     }
 }
 
-//MARK: - Callbacks for requests
+//MARK: - Request handling
 extension SmsCodeViewController {
-    private func completion(response: CheckUserOrSmsCodeResponse?) -> Void {
-        guard let response = response else {
+    @IBAction func login(with sender: UIButton) {
+        guard smsCodeTextField.text?.count == 4 else {
             displayError()
             return
         }
-        DefaultsManager.pushUserInfo(info: UserId(response.userId!))
-        DefaultsManager.pushUserInfo(info: SecretKey(response.secretKey))
-        NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadRegister)
-    }
-    
-    private func changeNumberCompletion(response: Response?) -> Void {
-        guard let response = response, response.errorCode == nil, case .changeNumber(let proxy) = type else {
-            displayError()
-            return
-        }
-        DefaultsManager.pushUserInfo(info: Phone(phoneNumber!))
-        DispatchQueue.main.async { [self] in
-            proxy.notificateObservers()
-            navigationController?.dismiss(animated: true) {
-                PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: "Ок")
-            }
+        sendSmsCodeButton.isHidden = true
+        activitySwitcher.startAnimating()
+        view.endEditing(true)
+        
+        switch type {
+            case .register:
+                NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode, params: buildRequestParams(authType: type), completion: registerCompletion)
+            case .changeNumber(_):
+                NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone, params: buildRequestParams(authType: type), completion: changeNumberCompletion)
         }
     }
     
-    private func displayError() {
-        DispatchQueue.main.async { [self] in
-            wrongCodeLabel.isHidden = false
-            activitySwitcher.stopAnimating()
-            sendSmsCodeButton.isHidden = false
-            smsCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
-            smsCodeTextField.layer.borderWidth = 1.0
+    private func buildRequestParams(authType: AuthType) -> [URLQueryItem] {
+        var params = [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
+                      URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text)]
+        if case .register = authType {
+            params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota))
+        } else {
+            params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: DefaultsManager.getUserInfo(UserId.self)!.id))
+        }
+        return params
+    }
+    
+    private func registerCompletion(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                DefaultsManager.pushUserInfo(info: UserId(data.userId!))
+                DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
+                NavigationService.resolveNavigation(with: data) { _ in NavigationService.loadRegister() }
+            case .failure(let error):
+                displayError(with:  error.message ?? AppErrors.unknownError.rawValue) { [self] in
+                    activitySwitcher.stopAnimating()
+                    sendSmsCodeButton.isHidden = false
+                }
+        }
+    }
+    
+    #warning("todo: server must generate new secret key")
+    private func changeNumberCompletion(for response: Result<Response, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                if case .changeNumber(let notificator) = type, data.result == "ok" {
+                    notificator.notificateObservers()
+                    dismissNavigationWithDispatch(animated: true) {
+                        PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: "Ок")
+                    }
+                } else {
+                    displayError(with: "Что то пошло не так... Попробуйте провести операцию смены номера, перезайдя в настройки") { [self] in
+                        activitySwitcher.stopAnimating()
+                        sendSmsCodeButton.isHidden = false
+                    }
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
+                    activitySwitcher.stopAnimating()
+                    sendSmsCodeButton.isHidden = false
+                }
         }
     }
 }

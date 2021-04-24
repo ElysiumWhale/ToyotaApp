@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+//MARK: - Enums for VC logic
 enum ServicesControllers: String {
     case ServiceMaintenanceViewController = "1"
     case RepairngViewController = "2"
@@ -8,16 +9,41 @@ enum ServicesControllers: String {
     case HelpOnRoadViewController = "4"
 }
 
-enum AuthType {
-    case first
+///**Warning!** Equality comprasion will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
+/// In **rest** cases it will return `true`.
+enum AuthType: Equatable {
+    case register
     case changeNumber(with: Notificator)
+    
+    static func == (lhs: AuthType, rhs: AuthType) -> Bool {
+        if case register = lhs, case register = rhs {
+            return true
+        }
+        if case changeNumber(_) = lhs, case changeNumber(_) = rhs {
+            return true
+        }
+        return false
+    }
 }
 
-enum AddInfoType {
-    case first
-    case next(with: UserProxy)
+///**Warning!** Equality comprasion will result `false` **ONLY** if one operator is `.register` and another is `.update`.
+/// In **rest** cases it will return `true`.
+enum AddInfoType: Equatable {
+    case register
+    case update(with: UserProxy)
+    
+    static func == (lhs: AddInfoType, rhs: AddInfoType) -> Bool {
+        if case register = lhs, case register = rhs {
+            return true
+        }
+        if case update(_) = lhs, case update(_) = rhs {
+            return true
+        }
+        return false
+    }
 }
 
+//MARK: - Structs with view constants
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let auth = "Authentification"
@@ -26,14 +52,14 @@ public struct AppStoryboards {
 }
 
 public struct AppViewControllers {
-    static let mainMenuTabBarController = "MainMenuTabBarController"
+    static let mainMenuTabBar = "MainMenuTabBarController"
     static let authNavigation = "AuthNavigationController"
     static let registerNavigation = "RegisterNavigationController"
     
-    static let personalInfoViewController = "PersonalInfoViewController"
-    static let dealerViewController = "DealerViewController"
-    static let addingCarViewController = "AddingCarViewController"
-    static let checkVinViewController = "CheckVinViewController"
+    static let personalInfo = "PersonalInfoViewController"
+    static let dealer = "DealerViewController"
+    static let addingCar = "AddingCarViewController"
+    static let checkVin = "CheckVinViewController"
     
     static let auth = "AuthViewController"
     static let mainMenu = "MainMenuViewController"

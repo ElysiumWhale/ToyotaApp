@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
     @IBOutlet private var sendPhoneButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     
-    private var type: AuthType = .first
+    private var type: AuthType = .register
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,21 +66,33 @@ extension AuthViewController: SegueWithRequestController {
             incorrectLabel.isHidden = false
             return
         }
-        indicator.startAnimating()
         sendPhoneButton.isHidden = true
-        indicator.isHidden = false
+        indicator.startAnimating()
         view.endEditing(true)
-        if case .first = type {
+        if case .register = type {
             DefaultsManager.pushUserInfo(info: Phone(phoneNumber.text!))
         }
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completionForSegue)
     }
     
-    func completion(response: Response?) {
-        if response != nil {
-            DispatchQueue.main.async { [self] in
-                performSegue(withIdentifier: segueCode, sender: self)
-            }
+    #warning("todo: chage api for simple response (add field)")
+    func completionForSegue(for response: Result<Response, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                if data.result == "ok" {
+                    performSegue(for: segueCode)
+                } else {
+                    displayError(with: AppErrors.unknownError.rawValue) { [self] in
+                        indicator.stopAnimating()
+                        sendPhoneButton.isHidden = false
+                    }
+                }
+                
+            case .failure(let error):
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
+                    indicator.stopAnimating()
+                    sendPhoneButton.isHidden = false
+                }
         }
     }
 }

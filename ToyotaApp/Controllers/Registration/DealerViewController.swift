@@ -8,7 +8,7 @@ class DealerViewController: UIViewController {
     @IBOutlet var showroomLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
     
-    private var type: AddInfoType = .first
+    private var type: AddInfoType = .register
     
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
@@ -24,6 +24,19 @@ class DealerViewController: UIViewController {
         configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
     }
     
+    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil, controllerType: AddInfoType = .register) {
+        cities = cityList
+        if let list = showroomList, let city = city, let showroom = showroom {
+            selectedCity = city
+            showrooms = list
+            selectedShowroom = showroom
+        }
+        type = controllerType
+    }
+}
+
+//MARK: - Navigation
+extension DealerViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
             cityPicker.selectRow(cities.firstIndex(where: {$0.id == selectedCity.id})!, inComponent: 0, animated: true)
@@ -40,66 +53,55 @@ class DealerViewController: UIViewController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as! CheckVinViewController
-                destinationVC.configure(with: Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom?.cityName ?? selectedCity!.name), controlerType: type)
+                destinationVC.configure(with: Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name), controlerType: type)
             default: return
         }
-    }
-    
-    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil, controllerType: AddInfoType = .first) {
-        cities = cityList
-        if let list = showroomList, let city = city, let showroom = showroom {
-            selectedCity = city
-            showrooms = list
-            selectedShowroom = showroom
-        }
-        type = controllerType
     }
 }
 
 //MARK: - SegueWithRequestController
-extension DealerViewController: SegueWithRequestController {    
+extension DealerViewController: SegueWithRequestController {
+    typealias TResponse = Response
+    
     var segueCode: String { SegueIdentifiers.DealerToCheckVin }
     
-    @IBAction internal func nextButtonDidPressed(sender: Any?) {
-        if let showroom = selectedShowroom {
-            nextButton?.isHidden = true
-            nextButtonIndicator.startAnimating()
-            nextButtonIndicator.isHidden = false
-            let userId = DefaultsManager.getUserInfo(UserId.self)!.id
-            var page: String
-            if case .first = type {
-                page = RequestPath.Registration.setShowroom
-            } else {
-                page = RequestPath.Profile.addShowroom
-            }
-            NetworkService.shared.makePostRequest(page: page, params:
-                [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-                 URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
-                completion: completionForSegue)
-        } else { return }
-    }
-    
-    func completionForSegue(for response: ShowroomDidSelectResponse?) {
-        guard response != nil, response?.error_code == nil else {
-            displayError(whith: response?.message ?? "Сервер прислал неверные данные")
+    @IBAction func nextButtonDidPressed(sender: Any?) {
+        guard let showroom = selectedShowroom else {
+            displayError(with: "Выберите салон")
             return
         }
-        
-        func completion(perform segue: Bool = false, error: String? = nil) {
-            DispatchQueue.main.async { [self] in
-                nextButtonIndicator.stopAnimating()
-                nextButtonIndicator.isHidden = true
-                nextButton.isHidden = false
-                if segue {
-                    performSegue(withIdentifier: segueCode, sender: self)
-                } else { displayError(whith: error!) }
-            }
+        nextButton.isHidden = true
+        nextButtonIndicator.startAnimating()
+        nextButtonIndicator.isHidden = false
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
+        NetworkService.shared.makePostRequest(page: page, params:
+            [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+             URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
+            completion: completionForSegue)
+    }
+    
+    #warning("todo: rework response")
+    func completionForSegue(for response: Result<Response, ErrorResponse>) {
+        let uiCompletion = { [self] in
+            nextButton.isHidden = false
+            nextButtonIndicator.stopAnimating()
+            nextButtonIndicator.isHidden = true
         }
         
-        if case .first = type {
-            DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedShowroom!.cityName ?? selectedCity!.name)]))
+        switch response {
+            case .success(let data):
+                if data.result == "ok" {
+                    if type == .register {
+                        DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id,    showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
+                    }
+                    performSegue(for: segueCode, beforeAction: uiCompletion)
+                } else {
+                    displayError(with: "Требуется переработка Response", beforePopUpAction: uiCompletion)
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue, beforePopUpAction: uiCompletion)
         }
-        completion(perform: true)
     }
 }
 
@@ -118,29 +120,24 @@ extension DealerViewController {
         cityTextField?.text = cities[row].name
         cityTextFieldIndicator?.startAnimating()
         view.endEditing(true)
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.id)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
     }
     
-    
-    private var completionForSelectedCity: (CityDidSelectResponce?) -> Void {
-        { [self] response in
-            
-            func uiCompletion() {
-                DispatchQueue.main.async {
+    private func completionForSelectedCity(for response: Result<CityDidSelectResponce, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                showrooms = data.showrooms
+                DispatchQueue.main.async { [self] in
                     cityTextFieldIndicator.stopAnimating()
                     cityTextFieldIndicator.isHidden = true
                     showroomTextField.isHidden = false
                     showroomLabel.isHidden = false
                 }
-            }
-            
-            if let response = response {
-                showrooms = response.showrooms
-                uiCompletion()
-            } else {
-                showrooms = [DTOShowroom(id: "0", showroomName: "Ошибка десериализации", cityName: nil)]
-                uiCompletion()
-            }
+            case .failure(let error):
+                displayError(with: error.message ?? "Попробуйте выбрать город еще раз") { [self] in
+                    cityTextFieldIndicator.stopAnimating()
+                    cityTextFieldIndicator.isHidden = true
+                }
         }
     }
     

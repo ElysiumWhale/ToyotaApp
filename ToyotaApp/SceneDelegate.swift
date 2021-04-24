@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
         [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-         URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.id),
+         URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota),
          URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
         completion: resolveNavigation)
     }
@@ -33,10 +33,14 @@ extension SceneDelegate {
         completion: nil)
     }
     
-    func resolveNavigation(response: CheckUserOrSmsCodeResponse?) -> Void {
-        guard let response = response else { NavigationService.loadAuth(); return }
-        DefaultsManager.pushUserInfo(info: SecretKey(response.secretKey))
-        NavigationService.resolveNavigation(with: response, fallbackCompletion: NavigationService.loadAuth)
+    func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
+                NavigationService.resolveNavigation(with: data, fallbackCompletion: NavigationService.loadAuth)
+            case .failure(let error):
+                NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
+        }
     }
 }
 

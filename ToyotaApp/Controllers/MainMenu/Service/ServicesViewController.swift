@@ -33,18 +33,6 @@ class ServicesViewController: UIViewController, BackgroundText {
         }
     }
     
-    func completion(response: ServicesTypesDidGetResponse?) {
-        DispatchQueue.main.async { [self] in
-            loadingIndicator.stopAnimating()
-            loadingIndicator.isHidden = true
-            carTextField.isHidden = false
-            if let resp = response, let types = resp.service_type {
-                serviceTypes = types
-                servicesList.reloadData()
-            }
-        }
-    }
-    
     @IBAction private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
@@ -55,10 +43,28 @@ class ServicesViewController: UIViewController, BackgroundText {
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             DefaultsManager.pushUserInfo(info: Cars(cars))
-            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: completion)
+            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
         }
     }
     
+    private func carDidSelectCompletion(for response: Result<ServicesTypesDidGetResponse, ErrorResponse>) {
+        switch response {
+            case .success(let data):
+                DispatchQueue.main.async { [self] in
+                    loadingIndicator.stopAnimating()
+                    serviceTypes = data.service_type
+                    servicesList.reloadData()
+                    if serviceTypes.count < 1 {
+                        servicesList.backgroundView = createBackground(with: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.")
+                    } else {
+                        servicesList.backgroundView = nil;
+                    }
+                }
+            case .failure(let error):
+                displayError(with: error.message ?? "Ошибка загрузки доступных сервисов, попробуйте еще раз")
+                loadingIndicator.stopAnimating()
+                servicesList.backgroundView = createBackground(with: "Потяните вниз для загрузки доступных сервисов.")
+        }
     }
 }
 

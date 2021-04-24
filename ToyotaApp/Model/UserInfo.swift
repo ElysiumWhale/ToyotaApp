@@ -81,7 +81,7 @@ extension UserInfo: UserProxy {
     
     var getPerson: Person { person }
     
-    var getSelectedShowroom: Showroom? { showrooms.value.first(where: {$0.id == cars.chosenCar!.showroomId}) }
+    var getSelectedShowroom: Showroom? { showrooms.value.first(where: {$0.id == cars.chosenCar?.showroomId}) }
     
     var getShowrooms: Showrooms { showrooms }
     
@@ -99,6 +99,9 @@ extension UserInfo: UserProxy {
             DefaultsManager.pushUserInfo(info: showrooms)
         }
         cars.array.append(add)
+        if cars.chosenCar == nil {
+            cars.chosenCar = add
+        }
         DefaultsManager.pushUserInfo(info: cars)
         notificator.notificateObservers()
     }
