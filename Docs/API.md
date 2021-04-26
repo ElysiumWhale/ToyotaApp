@@ -1,5 +1,29 @@
 # Toyota API
 
+- [Toyota API](#toyota-api)
+  - [General](#general)
+  - [Testing](#testing)
+    - [Cars VINs](#cars-vins)
+  - [Requests](#requests)
+    - [Сhecking user registration at application launch](#сhecking-user-registration-at-application-launch)
+    - [Phone number registration](#phone-number-registration)
+    - [SMS-code checking](#sms-code-checking)
+    - [Profile creation](#profile-creation)
+    - [City choosing](#city-choosing)
+    - [Showroom setting](#showroom-setting)
+    - [VIN checking](#vin-checking)
+    - [Temp record deleting](#temp-record-deleting)
+    - [Getting the categories of services](#getting-the-categories-of-services)
+    - [Getting a services from a category](#getting-a-services-from-a-category)
+    - [Getting free time](#getting-free-time)
+    - [Adding new showroom](#adding-new-showroom)
+    - [Editing profile](#editing-profile)
+    - [Change phone number](#change-phone-number)
+    - [Test Drive booking](#test-drive-booking)
+  - [Deprecated](#deprecated)
+    - [Showroom choosing](#showroom-choosing)
+    - [Car checking](#car-checking)
+
 ## General
 
 API uses **only POST** queries.
