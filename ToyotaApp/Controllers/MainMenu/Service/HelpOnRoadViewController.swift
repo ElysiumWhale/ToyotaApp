@@ -1,14 +1,12 @@
 import UIKit
 import MapKit
 
-class HelpOnRoadViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class HelpOnRoadViewController: UIViewController {
+    @IBOutlet private var mapView: RoundedMKMapView!
+    @IBOutlet private var requestButton: UIButton!
     
-    @IBOutlet private(set) var mapView: RoundedMKMapView!
-    @IBOutlet private(set) var requestButton: UIButton!
-    
-    var locationManager: CLLocationManager!
-    var isInitiallyZoomedToUserLocation: Bool = false
-    
+    private var locationManager: CLLocationManager!
+    private var isInitiallyZoomedToUserLocation: Bool = false
     private var serviceType: ServiceType!
     private var selectedCar: Car!
     
@@ -19,56 +17,26 @@ class HelpOnRoadViewController: UIViewController, CLLocationManagerDelegate, MKM
     override func viewDidLoad() {
         super.viewDidLoad()
         let locManager = CLLocationManager()
+        locManager.delegate = self
         mapView.delegate = self
         navigationItem.title = "Вызов эвакуатора"
-        locManager.delegate = self
         if CLLocationManager.locationServicesEnabled() {
+            mapView.isUserInteractionEnabled = true
             mapView.showsUserLocation = true
             locationManager = locManager
             DispatchQueue.main.async { [self] in
                 locationManager.startUpdatingLocation()
-                
                 if let coordinate = locationManager.location?.coordinate {
                     zoomToUserLocation(coordinate)
                 }
             }
         } else {
-           // Do something to let users know why they need to turn it on.
+            PopUp.displayMessage(with: "Предупреждение", description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции", buttonText: CommonText.ok)
+            mapView.isUserInteractionEnabled = false
         }
     }
     
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-            switch manager.authorizationStatus {
-                case .authorizedAlways, .authorizedWhenInUse:
-                    mapView.showsUserLocation = true
-                case .notDetermined, .denied, .restricted:
-                    manager.requestWhenInUseAuthorization()
-                default: return
-            }
-            
-//            switch manager.accuracyAuthorization {
-//                case .fullAccuracy:
-//                    break
-//                case .reducedAccuracy:
-//                    break
-//                default:
-//                    break
-//            }
-    }
-    
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        zoomToUserLocation(userLocation.coordinate)
-    }
-    
-    func zoomToUserLocation(_ coordinate: CLLocationCoordinate2D) {
-        if !isInitiallyZoomedToUserLocation {
-           isInitiallyZoomedToUserLocation = true
-            let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
-            mapView.setRegion(viewRegion, animated: true)
-        }
-    }
-    
-    @IBAction func makeRequest(sender: UIButton) {
+    @IBAction private func makeRequest(sender: UIButton) {
         PopUp.displayMessage(with: "Заявка отправлена", description: "В ближайшее время с Вами свяжется менеджер, также будет вызван эвакуатор", buttonText: CommonText.ok)
     }
 }
@@ -81,3 +49,30 @@ extension HelpOnRoadViewController: ServicesMapped {
     }
 }
 
+//MARK: - CLLocationManagerDelegate
+extension HelpOnRoadViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                mapView.showsUserLocation = true
+            case .notDetermined, .denied, .restricted:
+                manager.requestWhenInUseAuthorization()
+            default: return
+        }
+    }
+}
+
+//MARK: - MKMapViewDelegate
+extension HelpOnRoadViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        zoomToUserLocation(userLocation.coordinate)
+    }
+    
+    private func zoomToUserLocation(_ coordinate: CLLocationCoordinate2D) {
+        if !isInitiallyZoomedToUserLocation {
+            isInitiallyZoomedToUserLocation = true
+            let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
+            mapView.setRegion(viewRegion, animated: true)
+        }
+    }
+}

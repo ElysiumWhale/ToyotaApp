@@ -14,6 +14,7 @@ class OrdersHistoryViewController: UIViewController {
     
 }
 
+//MARK: - UITableViewDataSource
 extension OrdersHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         orders.count
@@ -26,6 +27,7 @@ extension OrdersHistoryViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
 extension OrdersHistoryViewController: UITableViewDelegate {
     
 }
