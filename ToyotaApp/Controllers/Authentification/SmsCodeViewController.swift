@@ -97,19 +97,13 @@ extension SmsCodeViewController {
         }
     }
     
-    #warning("todo: server must generate new secret key")
     private func changeNumberCompletion(for response: Result<Response, ErrorResponse>) {
         switch response {
-            case .success(let data):
-                if case .changeNumber(let notificator) = type, data.result == "ok" {
+            case .success:
+                if case .changeNumber(let notificator) = type {
                     notificator.notificateObservers()
                     dismissNavigationWithDispatch(animated: true) {
                         PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: CommonText.ok)
-                    }
-                } else {
-                    displayError(with: "Что то пошло не так... Попробуйте провести операцию смены номера, перезайдя в настройки") { [self] in
-                        activitySwitcher.stopAnimating()
-                        sendSmsCodeButton.isHidden = false
                     }
                 }
             case .failure(let error):

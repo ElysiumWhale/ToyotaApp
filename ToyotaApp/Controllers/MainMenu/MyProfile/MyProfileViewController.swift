@@ -192,13 +192,7 @@ extension MyProfileViewController {
     
     private func userDidUpdateCompletion(for response: Result<Response, ErrorResponse>) {
         switch response {
-            case .success(let data):
-                guard data.result == "ok" else {
-                    displayError(with: "Произошла ошибка при сохранении данных, повторите попытку позже") { [self] in
-                        state = .isEditing
-                    }
-                    return
-                }
+            case .success:
                 DispatchQueue.main.async { [self] in
                     user.update(Person(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, secondName: secondNameTextField.text!, email: emailTextField.text!, birthday: date))
                     PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: CommonText.ok)

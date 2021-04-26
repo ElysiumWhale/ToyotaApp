@@ -75,19 +75,10 @@ extension AuthViewController: SegueWithRequestController {
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completionForSegue)
     }
     
-    #warning("todo: chage api for simple response (add field)")
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
         switch response {
-            case .success(let data):
-                if data.result == "ok" {
-                    performSegue(for: segueCode)
-                } else {
-                    displayError(with: AppErrors.unknownError.rawValue) { [self] in
-                        indicator.stopAnimating()
-                        sendPhoneButton.isHidden = false
-                    }
-                }
-                
+            case .success:
+                performSegue(for: segueCode)
             case .failure(let error):
                 displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
                     indicator.stopAnimating()

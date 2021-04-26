@@ -120,7 +120,7 @@ extension CheckVinViewController: SegueWithRequestController {
                             navigationController!.popToRootWithDispatch(animated: true)
                     }
                 } else {
-                    failureCompletion(ErrorResponse(result: "empty_car", code: "0", message: "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже"))
+                    failureCompletion(ErrorResponse(code: "0", message: "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже"))
                 }
             case .failure(let error):
                 failureCompletion(error)

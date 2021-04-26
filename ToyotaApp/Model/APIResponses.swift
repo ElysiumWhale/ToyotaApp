@@ -11,13 +11,10 @@ public struct Response: Codable {
 
 //MARK: - ErrorResponse
 public struct ErrorResponse: Codable, Error {
-    #warning("todo: delete this field")
-    let result: String
     let code: String
     let message: String?
     
     private enum CodingKeys: String, CodingKey {
-        case result
         case code = "error_code"
         case message = "error_message"
     }

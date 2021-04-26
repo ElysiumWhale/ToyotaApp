@@ -81,7 +81,6 @@ extension DealerViewController: SegueWithRequestController {
             completion: completionForSegue)
     }
     
-    #warning("todo: rework response")
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
         let uiCompletion = { [self] in
             nextButton.isHidden = false
@@ -90,15 +89,11 @@ extension DealerViewController: SegueWithRequestController {
         }
         
         switch response {
-            case .success(let data):
-                if data.result == "ok" {
-                    if type == .register {
-                        DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id,    showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
-                    }
-                    performSegue(for: segueCode, beforeAction: uiCompletion)
-                } else {
-                    displayError(with: "Требуется переработка Response", beforePopUpAction: uiCompletion)
+            case .success:
+                if type == .register {
+                    DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
                 }
+                performSegue(for: segueCode, beforeAction: uiCompletion)
             case .failure(let error):
                 displayError(with: error.message ?? AppErrors.unknownError.rawValue, beforePopUpAction: uiCompletion)
         }
