@@ -1,28 +1,82 @@
 # Toyota API
 
+<details> <summary>Table of contents</summary>
+
 - [Toyota API](#toyota-api)
   - [General](#general)
   - [Testing](#testing)
     - [Cars VINs](#cars-vins)
   - [Requests](#requests)
     - [Сhecking user registration at application launch](#сhecking-user-registration-at-application-launch)
+      - [**Success response**](#success-response)
+        - [**Variant 1:** Only phone number checking](#variant-1-only-phone-number-checking)
+        - [**Variant 2:** Only profile is selected](#variant-2-only-profile-is-selected)
+        - [**Variant 3:** Profile and showroom are selected](#variant-3-profile-and-showroom-are-selected)
+        - [**Variant 4:** Fully registered and authorized on device](#variant-4-fully-registered-and-authorized-on-device)
+      - [**Failure response**](#failure-response)
     - [Phone number registration](#phone-number-registration)
+      - [**Success response**](#success-response-1)
+      - [**Failure response**](#failure-response-1)
     - [SMS-code checking](#sms-code-checking)
+      - [**Success response**](#success-response-2)
+      - [**Failure response**](#failure-response-2)
     - [Profile creation](#profile-creation)
+      - [**Success response**](#success-response-3)
+      - [**Failure response**](#failure-response-3)
     - [City choosing](#city-choosing)
+      - [**Success response**](#success-response-4)
+      - [**Failure response**](#failure-response-4)
     - [Showroom setting](#showroom-setting)
+      - [**Success response**](#success-response-5)
+        - [**Variant 1:**](#variant-1)
+        - [**Variant 2:**](#variant-2)
+        - [**Variant 3:**](#variant-3)
+      - [**Failure response**](#failure-response-5)
+        - [**Variant 1:** Server error (showroom clients query)](#variant-1-server-error-showroom-clients-query)
+        - [**Variant 2:** Server error (showroom clients query)](#variant-2-server-error-showroom-clients-query)
+        - [**Variant 3:** Server error (update record query)](#variant-3-server-error-update-record-query)
+        - [**Variant 4:** Server error (insert record query)](#variant-4-server-error-insert-record-query)
     - [VIN checking](#vin-checking)
+      - [**Success response**](#success-response-6)
+        - [**Variant 1:** VIN Checking](#variant-1-vin-checking)
+        - [**Variant 2:** Skipping step](#variant-2-skipping-step)
+      - [**Failure response**](#failure-response-6)
+        - [**Variant 1:** Incorrect](#variant-1-incorrect)
+        - [**Variant 2:** Car is already linked](#variant-2-car-is-already-linked)
+        - [**Variant 3:** Car is already linked](#variant-3-car-is-already-linked)
     - [Temp record deleting](#temp-record-deleting)
+      - [**Success response**](#success-response-7)
+      - [**Failure response**](#failure-response-7)
     - [Getting the categories of services](#getting-the-categories-of-services)
+      - [**Success response**](#success-response-8)
+      - [**Failure response**](#failure-response-8)
     - [Getting a services from a category](#getting-a-services-from-a-category)
+      - [**Success response**](#success-response-9)
+      - [**Failure response**](#failure-response-9)
     - [Getting free time](#getting-free-time)
+      - [**Success response**](#success-response-10)
+      - [**Failure response**](#failure-response-10)
     - [Adding new showroom](#adding-new-showroom)
+      - [**Success response**](#success-response-11)
+      - [**Failure response**](#failure-response-11)
     - [Editing profile](#editing-profile)
+      - [**Success response**](#success-response-12)
+      - [**Failure response**](#failure-response-12)
     - [Change phone number](#change-phone-number)
+      - [**Success response**](#success-response-13)
+      - [**Failure response**](#failure-response-13)
     - [Test Drive booking](#test-drive-booking)
+      - [**Success response**](#success-response-14)
+      - [**Failure response**](#failure-response-14)
   - [Deprecated](#deprecated)
     - [Showroom choosing](#showroom-choosing)
+      - [**Success response**](#success-response-15)
+      - [**Failure response**](#failure-response-15)
     - [Car checking](#car-checking)
+      - [**Success response**](#success-response-16)
+      - [**Failure response**](#failure-response-16)
+
+</details>
 
 ---
 
@@ -53,15 +107,115 @@ SMS code for registration: **1234**
 
 ### Сhecking user registration at application launch
 
-**Path:**
+**Path:** `check_user.php`
 
 **Params:**
- * 1
- * 2
+ * `brand_id` - app const
+ * `user_id` - from app memory
+ * `secret_key` - from app memory
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+##### **Variant 1:** Only phone number checking
+
+```json
+{
+  "result":"ok",
+  "secret_key":"generated secret key",
+  "register_page":1
+}
+```
+
+##### **Variant 2:** Only profile is selected
+
+```json
+{
+  "result":"ok",
+  "secret_key":"generated secret key",
+  "register_page":2,
+  "registered_user":
+    {
+      "profile":
+        {
+          "first_name":"Иван",
+          "second_name":"Иваныч",
+          "last_name":"Иванов",
+          "phone":"8 909 111-11-11",
+          "email":"email@email.com",
+          "birthday":"2020-08-01"
+        }
+    },
+  "cities": [
+    {
+      "id":"1",
+      "city_name":"Самара"
+    },
+    {
+      "id":"2",
+      "city_name":"Тольятти"
+    }
+  ]
+}
+```
+
+##### **Variant 3:** Profile and showroom are selected
+
+```json
+{
+  "result":"ok",
+  "secret_key":"generated secret key",
+  "register_page":3,
+  "registered_user":
+    {
+      "profile":
+        {
+          "first_name":"Иван",
+          "second_name":"Иваныч",
+          "last_name":"Иванов",
+          "phone":"8 909 111-11-11",
+          "email":"email@email.com",
+          "birthday":"2020-08-01"
+        },
+      "showroom": [
+        {
+          "id":"1",
+          "showroom_name":"Тойота Центр Самара Юг",
+          "city_name":"Самара"
+        }
+      ]
+    },
+  "cities": [
+    {
+      "id":"1",
+      "city_name":"Самара"
+    },
+    {
+      "id":"2",
+      "city_name":"Тольятти"
+    }
+  ]
+}
+```
+
+##### **Variant 4:** Fully registered and authorized on device
+
+```json
+{
+  "result":"ok",
+  "secret_key":"generated secret key",
+  "register_status":1
+}
+```
+
+#### **Failure response**
+
+```json
+{ 
+  "result":"error_getting",
+  "error_code":"101",
+  "error_message":"Пользователь отсутствует в базе"
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -75,9 +229,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -91,9 +245,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -107,9 +261,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -124,29 +278,29 @@ SMS code for registration: **1234**
  * `city_id`  - selected by user
 
 
-**Success response:**
+#### **Success response**
 
 ```json
 {
   "result":"ok",
   "showrooms": [
-      {
-        "id":"1",
-        "showroom_name":"Тойота Центр Самара Юг"
-      },
-      {
-      	"id":"2",
-      	"showroom_name":"Тойота Центр Самара Север"
-      },
-      {
-      	"id":"7",
-      	"showroom_name":"Тойота Центр Самара Аврора"
-      }
+    {
+      "id":"1",
+      "showroom_name":"Тойота Центр Самара Юг"
+    },
+    {
+      "id":"2",
+      "showroom_name":"Тойота Центр Самара Север"
+    },
+    {
+      "id":"7",
+      "showroom_name":"Тойота Центр Самара Аврора"
+    }
    ]
 } 
 ```
 
-**Failure response:**
+#### **Failure response**
 
 ```json
 { 
@@ -168,9 +322,10 @@ SMS code for registration: **1234**
  * `user_id`  - got on previous step
  * `showroom_id` - selected by user
 
-**Success response:**
+#### **Success response**
 
-**Variant 1:**
+##### **Variant 1:**
+
 ```json
 {
   "result":"ok",
@@ -178,7 +333,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 2:**
+##### **Variant 2:**
+
 ```json
 {
   "result":"ok",
@@ -186,7 +342,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 3:**
+##### **Variant 3:**
+
 ```json
 {
   "result":"ok",
@@ -194,9 +351,10 @@ SMS code for registration: **1234**
 }
 ```
 
-**Failure response:**
+#### **Failure response**
 
-**Variant 1:** Server error (showroom clients query)
+##### **Variant 1:** Server error (showroom clients query)
+
 ```json
 {
   "result":"error_getting",
@@ -205,7 +363,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 2:** Server error (showroom clients query)
+##### **Variant 2:** Server error (showroom clients query)
+
 ```json
 {
   "result":"server_error",
@@ -214,7 +373,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 3:** Server error (update record query)
+##### **Variant 3:** Server error (update record query)
+
 ```json
 {
   "result":"server_error",
@@ -223,7 +383,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 4:** Server error (insert record query)
+##### **Variant 4:** Server error (insert record query)
+
 ```json
 {
   "result":"server_error",
@@ -246,9 +407,10 @@ SMS code for registration: **1234**
  * `showroom_id` - got on previous step
  * `vin_code` - entered by user
 
-**Success response:**
+#### **Success response**
 
-**Variant 1:** VIN Checking
+##### **Variant 1:** VIN Checking
+
 ```json
 {
   "result":"ok",
@@ -263,11 +425,12 @@ SMS code for registration: **1234**
       "color_metallic":"1",
       "license_plate":"а001аа163rus"
     },
-    "message":"Поздравляем! Вы успешно подтвердили владение данным автомобилем. Теперь он появится в списке Ваших авто."
+  "message":"Поздравляем! Вы успешно подтвердили владение данным автомобилем. Теперь он появится в списке Ваших авто."
 }
 ```
 
-**Variant 2:** Skipping step
+##### **Variant 2:** Skipping step
+
 ```json
 {
   "result":"ok",
@@ -276,9 +439,10 @@ SMS code for registration: **1234**
 }
 ```
 
-**Failure response:**
+#### **Failure response**
 
-**Variant 1:** Incorrect 
+##### **Variant 1:** Incorrect
+
 ```json
 {
   "result":"error_vin",
@@ -287,7 +451,8 @@ SMS code for registration: **1234**
 }
 ```
 
-**Variant 2:** Car is already linked
+##### **Variant 2:** Car is already linked
+
 ```json
 {
   "result":"error_select",
@@ -296,7 +461,8 @@ SMS code for registration: **1234**
 }
 ```
 	
-**Variant 3:** Car is already linked
+##### **Variant 3:** Car is already linked
+
 ```json
 {
   "result":"error_select",
@@ -317,9 +483,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -333,9 +499,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -349,9 +515,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -365,9 +531,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -381,9 +547,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -397,9 +563,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -413,9 +579,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -429,9 +595,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -447,9 +613,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
@@ -463,9 +629,9 @@ SMS code for registration: **1234**
  * 1
  * 2
 
-**Success response:**
+#### **Success response**
 
-**Failure response:**
+#### **Failure response**
 
 [**To table of contents**](#toyota-api)
 
