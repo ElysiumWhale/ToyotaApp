@@ -84,7 +84,7 @@
 
 API uses **only POST** queries.
 
-Base URL: http://cv39623.tmweb.ru/avtosalon/mobile/
+Base URL: <http://cv39623.tmweb.ru/avtosalon/mobile/>
 
 ## Testing
 
@@ -110,9 +110,10 @@ SMS code for registration: **1234**
 **Path:** `check_user.php`
 
 **Params:**
- * `brand_id` - app const
- * `user_id` - from app memory
- * `secret_key` - from app memory
+
+- `brand_id` - app const
+- `user_id` - from app memory
+- `secret_key` - from app memory
 
 #### **Success response**
 
@@ -226,8 +227,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -242,8 +244,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -258,8 +261,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -274,9 +278,9 @@ SMS code for registration: **1234**
 **Path:** `get_showrooms.php`
 
 **Params:**
- * `brand_id` - application const
- * `city_id`  - selected by user
 
+- `brand_id` - application const
+- `city_id`  - selected by user
 
 #### **Success response**
 
@@ -319,8 +323,9 @@ SMS code for registration: **1234**
 **Path:** `set_showroom.php`
 
 **Params:**
- * `user_id`  - got on previous step
- * `showroom_id` - selected by user
+
+- `user_id`  - got on previous step
+- `showroom_id` - selected by user
 
 #### **Success response**
 
@@ -402,10 +407,11 @@ SMS code for registration: **1234**
 **Path:** `check_vin_code.php`
 
 **Params:**
- * `skip_step` - **1**(skip this step)/**0**(enter vin code)
- * `user_id` - got on previous step
- * `showroom_id` - got on previous step
- * `vin_code` - entered by user
+
+- `skip_step` - **1**(skip this step)/**0**(enter vin code)
+- `user_id` - got on previous step
+- `showroom_id` - got on previous step
+- `vin_code` - entered by user
 
 #### **Success response**
 
@@ -460,7 +466,7 @@ SMS code for registration: **1234**
   "message":"Данный автомобиль уже привязан к Вашей учетной записи. Выберите другой автомобиль."
 }
 ```
-	
+
 ##### **Variant 3:** Car is already linked
 
 ```json
@@ -480,8 +486,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -496,8 +503,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -512,8 +520,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -528,8 +537,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -544,8 +554,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -560,8 +571,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -576,8 +588,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -592,8 +605,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -610,8 +624,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
@@ -626,8 +641,9 @@ SMS code for registration: **1234**
 **Path:**
 
 **Params:**
- * 1
- * 2
+
+- 1
+- 2
 
 #### **Success response**
 
