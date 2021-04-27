@@ -27,7 +27,7 @@ class NetworkService {
                 } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                     completion(Result.failure(errorResponse))
                 } else {
-                    completion(Result.failure(ErrorResponse(result: "error", code: NetworkErrors.corruptedData.rawValue, message: AppErrors.serverBadResponse.rawValue)))
+                    completion(Result.failure(ErrorResponse(code: NetworkErrors.corruptedData.rawValue, message: AppErrors.serverBadResponse.rawValue)))
                 }
             }
         }.resume()

@@ -93,13 +93,13 @@ SMS code for registration: **1234**
 ### Cars VINs
 
 - Самара Юг
-    1. 1234567890abcdefg
-    2. fDlFjcwmTkCl1dr8W
-    3. OKsf8jyHshgQ6pYAD
+  1. 1234567890abcdefg
+  2. fDlFjcwmTkCl1dr8W
+  3. OKsf8jyHshgQ6pYAD
 - Самара Север
-    1. uMGT0r6tF6zWZmBzH
-    2. IuQ381fbQbrECV9eu
-    3. K5MHrhBR6t5wTD5gm
+  1. uMGT0r6tF6zWZmBzH
+  2. IuQ381fbQbrECV9eu
+  3. K5MHrhBR6t5wTD5gm
 
 ---
 
