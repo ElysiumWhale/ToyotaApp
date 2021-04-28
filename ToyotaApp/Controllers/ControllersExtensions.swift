@@ -107,8 +107,9 @@ extension UIViewController {
 }
 
 extension UINavigationController {
-    func popToRootWithDispatch(animated: Bool) {
+    func popToRootWithDispatch(animated: Bool, beforeAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async { [self] in
+            beforeAction()
             popToRootViewController(animated: animated)
         }
     }

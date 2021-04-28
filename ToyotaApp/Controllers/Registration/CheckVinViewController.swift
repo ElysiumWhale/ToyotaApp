@@ -116,8 +116,10 @@ extension CheckVinViewController: SegueWithRequestController {
                             performSegue(for: segueCode)
                         case .update(let proxy):
                             proxy.update(car, showroom!)
-                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
-                            navigationController!.popToRootWithDispatch(animated: true)
+                            DispatchQueue.main.async { [self] in
+                                PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
+                                navigationController?.popToRootWithDispatch(animated: true)
+                            }
                     }
                 } else {
                     failureCompletion(ErrorResponse(code: "0", message: "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже"))

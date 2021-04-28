@@ -186,7 +186,7 @@ extension MyProfileViewController {
         params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: secondNameTextField.text))
         params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: lastNameTextField.text))
         params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: emailTextField.text))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: birthTextField.text))
+        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
         return params
     }
     
