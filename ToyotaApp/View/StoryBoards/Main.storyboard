@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WvF-7T-1fO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WvF-7T-1fO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ToyotaType-Book.ttf">
+            <string>ToyotaType-Book</string>
+        </array>
+        <array key="ToyotaType-Semibold.ttf">
+            <string>ToyotaType-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="uWB-mk-9Co">
@@ -51,11 +59,111 @@
             </objects>
             <point key="canvasLocation" x="-209" y="176"/>
         </scene>
+        <!--Connection Lost View Controller-->
+        <scene sceneID="ax5-UJ-sbP">
+            <objects>
+                <viewController storyboardIdentifier="ConnectionLostViewController" id="ijr-ca-IDa" customClass="ConnectionLostViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Zy-PL-BDB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Что то пошло не так..." textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3S-3m-gh8">
+                                <rect key="frame" x="40" y="306" width="334" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31.5" id="tWP-MN-ovu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проверьте соединение с интернетом и повторите попытку входа" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-yH-RBc">
+                                <rect key="frame" x="40" y="345" width="334" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0Ml-pN-0O4"/>
+                                    <constraint firstAttribute="width" constant="334" id="ySm-sn-4vf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-5h-3Lh">
+                                <rect key="frame" x="84" y="87" width="247" height="186"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="186" id="qUS-zc-Wga"/>
+                                    <constraint firstAttribute="width" constant="247" id="uOX-IR-Tvt"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-UX-4yU" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="69" y="473" width="275" height="44"/>
+                                <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UaE-6Y-6PO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <state key="normal" title="Повторить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reconnectWithSender:" destination="ijr-ca-IDa" eventType="touchUpInside" id="H7f-fZ-v72"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="4mc-GF-zXO">
+                                <rect key="frame" x="157" y="445" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Kza-Eo-CVv"/>
+                                    <constraint firstAttribute="height" constant="100" id="bxh-eS-NXJ"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rhk-Ky-80c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="9xc-UX-4yU" secondAttribute="trailing" constant="70" id="17A-ll-gZh"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="4mc-GF-zXO" secondAttribute="trailing" constant="157" id="1mi-lt-AAS"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="bottom" secondItem="9xc-UX-4yU" secondAttribute="bottom" constant="345" id="2Yg-xS-QfN"/>
+                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="top" secondItem="Rhk-Ky-80c" secondAttribute="top" constant="43" id="7ga-8c-rV4"/>
+                            <constraint firstItem="4mc-GF-zXO" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="157" id="AO4-yu-v2h"/>
+                            <constraint firstItem="9xc-UX-4yU" firstAttribute="top" secondItem="iy4-yH-RBc" secondAttribute="bottom" constant="28" id="BZC-5W-eLy"/>
+                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="84" id="N5A-Wx-J0y"/>
+                            <constraint firstItem="iy4-yH-RBc" firstAttribute="top" secondItem="n3S-3m-gh8" secondAttribute="bottom" constant="7.5" id="OO0-dd-L2w"/>
+                            <constraint firstItem="iy4-yH-RBc" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="40" id="Uue-4h-S1E"/>
+                            <constraint firstItem="n3S-3m-gh8" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="40" id="VG9-Su-uA9"/>
+                            <constraint firstItem="iy4-yH-RBc" firstAttribute="trailing" secondItem="Rhk-Ky-80c" secondAttribute="trailing" constant="-40" id="cbz-uu-U24"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="bottom" secondItem="4mc-GF-zXO" secondAttribute="bottom" constant="317" id="dL6-gn-a3N"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="KeH-5h-3Lh" secondAttribute="trailing" constant="83" id="dO3-8a-hgX"/>
+                            <constraint firstItem="4mc-GF-zXO" firstAttribute="top" secondItem="9xc-UX-4yU" secondAttribute="bottom" constant="-72" id="eJg-kx-h7B"/>
+                            <constraint firstItem="n3S-3m-gh8" firstAttribute="top" secondItem="KeH-5h-3Lh" secondAttribute="bottom" constant="33" id="eMu-EE-YC3"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="n3S-3m-gh8" secondAttribute="trailing" constant="40" id="pob-xW-fPr"/>
+                            <constraint firstItem="9xc-UX-4yU" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="69" id="qqT-V3-Zwb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="indicator" destination="4mc-GF-zXO" id="tgF-9B-gwh"/>
+                        <outlet property="retryButton" destination="9xc-UX-4yU" id="jEH-Ra-RVK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmA-g8-O89" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="598.55072463768124" y="174.77678571428569"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="9xc-UX-4yU">
+            <size key="intrinsicContentSize" width="115" height="44"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="ToyotaLogoBlack" width="128" height="128"/>
         <image name="ToyotaLogoWhite" width="128" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

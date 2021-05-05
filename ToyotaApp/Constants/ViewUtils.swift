@@ -46,9 +46,10 @@ enum AddInfoType: Equatable {
 //MARK: - Structs with view constants
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
+    static let main = "Main"
     static let auth = "Authentification"
     static let register = "FirstLaunchRegistration"
-    static let main = "MainMenu"
+    static let mainMenu = "MainMenu"
 }
 
 public struct AppViewControllers {
@@ -61,6 +62,7 @@ public struct AppViewControllers {
     static let addingCar = "AddingCarViewController"
     static let checkVin = "CheckVinViewController"
     
+    static let connectionLost = "ConnectionLostViewController"
     static let auth = "AuthViewController"
     static let mainMenu = "MainMenuViewController"
     static let offers = "OffersViewController"

@@ -56,6 +56,17 @@ extension NavigationService {
     }
 }
 
+extension NavigationService {
+    class func loadConnectionLost() {
+        let storyboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+        DispatchQueue.main.async {
+            let controller = storyboard.instantiateViewController(identifier: AppViewControllers.connectionLost) as! ConnectionLostViewController
+            //controller.configure()
+            switchRootView(controller: controller)
+        }
+    }
+}
+
 //MARK: - LoadAuth
 extension NavigationService {
     class func loadAuth(with error: String? = nil) {
@@ -130,7 +141,7 @@ extension NavigationService {
 //MARK: - LoadMain overloads
 extension NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
-        let mainStoryboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
+        let mainStoryboard = UIStoryboard(name: AppStoryboards.mainMenu, bundle: nil)
         DispatchQueue.main.async {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBar) as! UITabBarController
             

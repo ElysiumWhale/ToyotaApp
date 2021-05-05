@@ -39,7 +39,12 @@ extension SceneDelegate {
                 DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data, fallbackCompletion: NavigationService.loadAuth)
             case .failure(let error):
-                NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
+                switch error.code {
+                    case NetworkErrors.lostConnection.rawValue:
+                        NavigationService.loadConnectionLost()
+                    default:
+                        NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
+                }
         }
     }
 }
