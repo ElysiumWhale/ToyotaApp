@@ -19,7 +19,7 @@
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* OrderTVC.swift */; };
-		1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTVC.swift */; };
+		1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCVC.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */; };
@@ -92,7 +92,7 @@
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersHistoryViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* OrderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
-		1495723E25B9FEE40031A5AA /* NewsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVC.swift; sourceTree = "<group>"; };
+		1495723E25B9FEE40031A5AA /* NewsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCVC.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
 		14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpOnRoadViewController.xib; sourceTree = "<group>"; };
@@ -201,6 +201,7 @@
 		14E5A9CB26345B640057BEF3 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				1495723E25B9FEE40031A5AA /* NewsCVC.swift */,
 				A7AABF7F25A9EACB00C72F65 /* ServiceCVC.swift */,
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
 			);
@@ -210,7 +211,6 @@
 		14E5A9CC26345B720057BEF3 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				1495723E25B9FEE40031A5AA /* NewsTVC.swift */,
 				1467F79925DD73BC00E318D3 /* OrderTVC.swift */,
 			);
 			path = TableView;
@@ -502,7 +502,7 @@
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
-				1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */,
+				1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */,
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */,

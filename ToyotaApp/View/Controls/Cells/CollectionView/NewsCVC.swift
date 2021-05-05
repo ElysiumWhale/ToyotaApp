@@ -15,11 +15,8 @@ import Kingfisher
     func configure(with news: News) {
         showroomNameLabel.text = news.showroomName
         contentLabel.text = news.content
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM.dd.yyyy"
-        let dateString = dateFormatter.string(from: news.date)
         titleLabel.text = news.title
-        dateLabel.text = dateString
+        dateLabel.text = DateFormatter.CommonDateFormatter.string(from: news.date)
         //guard let imageUrl = news.imgUrl else { newsImage.image = nil; return }
         let resource = ImageResource(downloadURL: news.imgUrl)
         newsImage.kf.indicatorType = .activity
