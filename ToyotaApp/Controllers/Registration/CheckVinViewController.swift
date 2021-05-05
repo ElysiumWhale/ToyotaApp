@@ -10,7 +10,7 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var vinCodeTextField: UITextField!
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
-    @IBOutlet var skipStepButton: UIButton!
+    @IBOutlet private var skipStepButton: UIButton!
     
     private var showroom: Showroom?
     private var type: AddInfoType = .register

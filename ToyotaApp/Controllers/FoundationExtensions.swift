@@ -33,4 +33,11 @@ extension DateFormatter {
         formatter.dateStyle = .medium
         return formatter
     }
+    
+    ///Formats date in **"21.05.2026"**
+    static var CommonDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM.dd.yyyy"
+        return formatter
+    }
 }
