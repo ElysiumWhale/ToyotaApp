@@ -8,7 +8,7 @@ public class Test {
     }
     
     class func CreateOrder() -> Service {
-        .init(id: "1", showroomId: "1", serviceTypeId: "1", serviceName: "1", koeffTime: "1", multiply: "1")
+        .init(id: "1", serviceName: "1")
     }
     
     class func PushTestCars() {

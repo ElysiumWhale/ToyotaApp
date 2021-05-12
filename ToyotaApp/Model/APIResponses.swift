@@ -186,19 +186,11 @@ public struct ServicesDidGetResponse: Codable {
 
 public struct Service: Codable {
     let id: String
-    let showroomId: String
-    let serviceTypeId: String
     let serviceName: String
-    let koeffTime: String
-    let multiply: String
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case showroomId = "showroom_id"
-        case serviceTypeId = "service_type_id"
         case serviceName = "service_name"
-        case koeffTime = "koeff_time"
-        case multiply
     }
 }
 

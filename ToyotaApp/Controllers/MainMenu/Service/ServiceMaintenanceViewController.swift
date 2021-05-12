@@ -43,7 +43,9 @@ class ServiceMaintenanceViewController: UIViewController {
                 services = data.services
             case .failure(let error):
                 displayError(with: error.message ?? "Ошибка при получении сервисов, повторите попытку позднее")
-                navigationController!.popToRootWithDispatch(animated: true)
+                DispatchQueue.main.async { [self] in
+                    navigationController?.popToRootViewController(animated: true)
+                }
         }
     }
     
@@ -76,8 +78,9 @@ class ServiceMaintenanceViewController: UIViewController {
                     createRequestButton.isHidden = false
                 }
             case .failure(let error):
-                displayError(with: error.message ?? "Ошибка при получении времени для бронирования услуги")
-                indicator.stopAnimating()
+                displayError(with: error.message ?? "Ошибка при получении времени для бронирования услуги") { [self] in
+                    indicator.stopAnimating()
+                }
         }
     }
     
