@@ -3,9 +3,9 @@ import UIKit
 class ServicesViewController: UIViewController, BackgroundText {
     @IBOutlet private var carTextField: UITextField!
     @IBOutlet private var showroomLabel: UILabel!
-    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private var servicesList: UICollectionView!
     
+    private let refreshControl = UIRefreshControl()
     private var carForServePicker: UIPickerView = UIPickerView()
     private let cellIdentrifier = CellIdentifiers.ServiceCell
     
@@ -20,6 +20,10 @@ class ServicesViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните для обновления")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        servicesList.refreshControl = refreshControl
+        servicesList.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
         
@@ -33,12 +37,20 @@ class ServicesViewController: UIViewController, BackgroundText {
         }
     }
     
+    @IBAction private func refresh() {
+        serviceTypes.removeAll()
+        servicesList.reloadData()
+        refreshControl.beginRefreshing()
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
+    }
+    
     @IBAction private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
         if selectedCar!.id != cars[row].id {
             serviceTypes.removeAll()
-            loadingIndicator.startAnimating()
+            servicesList.reloadData()
+            refreshControl.beginRefreshing()
             user.update(cars[row])
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
@@ -51,7 +63,7 @@ class ServicesViewController: UIViewController, BackgroundText {
         switch response {
             case .success(let data):
                 DispatchQueue.main.async { [self] in
-                    loadingIndicator.stopAnimating()
+                    refreshControl.endRefreshing()
                     serviceTypes = data.service_type
                     servicesList.reloadData()
                     if serviceTypes.count < 1 {
@@ -61,9 +73,19 @@ class ServicesViewController: UIViewController, BackgroundText {
                     }
                 }
             case .failure(let error):
-                displayError(with: error.message ?? "Ошибка загрузки доступных сервисов, попробуйте еще раз")
-                loadingIndicator.stopAnimating()
-                servicesList.backgroundView = createBackground(with: "Потяните вниз для загрузки доступных сервисов.")
+                switch error.code {
+                    case NetworkErrors.lostConnection.rawValue:
+                        DispatchQueue.main.async { [self] in
+                            refreshControl.endRefreshing()
+                            servicesList.backgroundView = createBackground(with: "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз")
+                        }
+                    default:
+                        DispatchQueue.main.async { [self] in
+                            displayError(with: error.message ?? "Ошибка загрузки доступных сервисов, попробуйте еще раз")
+                            refreshControl.endRefreshing()
+                            servicesList.backgroundView = createBackground(with: "Потяните вниз для загрузки доступных сервисов.")
+                        }
+                }
         }
     }
 }
@@ -102,7 +124,7 @@ extension ServicesViewController {
     private func interfaceIfNoCars() {
         displayError(with: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
         carTextField.isEnabled = false
-        loadingIndicator.stopAnimating()
+        refreshControl.endRefreshing()
         showroomLabel.text = ""
         servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
     }
@@ -112,6 +134,7 @@ extension ServicesViewController {
         carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
         carTextField.isEnabled = cars.count > 1
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+        refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
     }
     

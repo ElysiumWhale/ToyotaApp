@@ -52,3 +52,10 @@ extension UIButton {
         layer.cornerRadius = isRounded ? frame.size.height / 2 : 0
     }
 }
+
+//MARK: - Normal action adding to button
+extension UIControl {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping() -> Void) {
+        addAction(UIAction { (action: UIAction) in closure() }, for: controlEvents)
+    }
+}

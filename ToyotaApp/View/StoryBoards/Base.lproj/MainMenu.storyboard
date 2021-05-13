@@ -253,12 +253,6 @@
                                     <outlet property="delegate" destination="KLr-04-N2s" id="I8F-dA-yj9"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Qg-ywE">
-                                <rect key="frame" x="132" y="389" width="164" height="164"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dcR-Qg-ywE" secondAttribute="height" multiplier="1:1" id="OdJ-E7-kRg"/>
-                                </constraints>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
                                 <rect key="frame" x="0.0" y="152" width="428" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
@@ -276,19 +270,15 @@
                             <constraint firstItem="InQ-8a-6i6" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="1.6666666666666572" id="Mhy-Zd-m4e"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="34" id="Qgv-mL-5MZ"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="hFj-Ca-ATU" secondAttribute="trailing" id="dMr-mg-zcd"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="dcR-Qg-ywE" secondAttribute="trailing" constant="132" id="fod-Cm-Z9e"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="bottom" secondItem="dcR-Qg-ywE" secondAttribute="bottom" constant="290" id="lFS-RE-PHn"/>
                             <constraint firstItem="r3W-A2-Oo1" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="mgy-Bp-8Ld"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="InQ-8a-6i6" secondAttribute="trailing" id="nB0-0V-wBb"/>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="ssl-hu-gq3"/>
-                            <constraint firstItem="dcR-Qg-ywE" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="132" id="zKa-QJ-ANJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf"/>
                     <navigationItem key="navigationItem" title="Услуги" largeTitleDisplayMode="always" id="9HU-D7-X9D"/>
                     <connections>
                         <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
-                        <outlet property="loadingIndicator" destination="dcR-Qg-ywE" id="Vkt-l2-iLv"/>
                         <outlet property="servicesList" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
                         <outlet property="showroomLabel" destination="InQ-8a-6i6" id="G0I-8w-kbs"/>
                     </connections>
