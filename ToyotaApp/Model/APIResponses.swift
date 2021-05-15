@@ -199,6 +199,6 @@ public struct FreeTimeDidGetResponse: Codable {
         case result
         case startDate = "start_date"
         case endDate = "end_date"
-        case freeTimeDict = "free_time"
+        case freeTimeDict = "free_times"
     }
 }
