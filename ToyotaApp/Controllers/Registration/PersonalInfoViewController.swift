@@ -139,9 +139,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
     func completionForSegue(for response: Result<ProfileDidSetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                cities = data.cities.map {
-                    City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
-                }
+                cities = data.cities.map { City(id: $0.id, name: $0.name) }
                 DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
                 performSegue(for: segueCode)
             case .failure(let error):

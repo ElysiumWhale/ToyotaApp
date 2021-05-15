@@ -34,16 +34,12 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let cars: [DTOCar]?
     
     private enum CodingKeys: String, CodingKey {
-        case result
+        case result, cities, showrooms, cars
         case secretKey = "secret_key"
         case userId = "user_id"
         case registerPage = "register_page"
         case registeredUser = "registered_user"
         case registerStatus = "register_status"
-        
-        case cities
-        case showrooms
-        case cars
     }
 }
 
@@ -62,12 +58,10 @@ public struct Profile: Codable {
     let birthday: String?
     
     private enum CodingKeys: String, CodingKey {
-        case phone
+        case phone, email, birthday
         case firstName = "first_name"
         case lastName = "last_name"
         case secondName = "second_name"
-        case email
-        case birthday
     }
 }
 

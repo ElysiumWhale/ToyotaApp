@@ -59,47 +59,6 @@ extension DealerViewController {
     }
 }
 
-//MARK: - SegueWithRequestController
-extension DealerViewController: SegueWithRequestController {
-    typealias TResponse = Response
-    
-    var segueCode: String { SegueIdentifiers.DealerToCheckVin }
-    
-    @IBAction func nextButtonDidPressed(sender: Any?) {
-        guard let showroom = selectedShowroom else {
-            displayError(with: "Выберите салон")
-            return
-        }
-        nextButton.isHidden = true
-        nextButtonIndicator.startAnimating()
-        nextButtonIndicator.isHidden = false
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
-        let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
-        NetworkService.shared.makePostRequest(page: page, params:
-            [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-             URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
-            completion: completionForSegue)
-    }
-    
-    func completionForSegue(for response: Result<Response, ErrorResponse>) {
-        let uiCompletion = { [self] in
-            nextButton.isHidden = false
-            nextButtonIndicator.stopAnimating()
-            nextButtonIndicator.isHidden = true
-        }
-        
-        switch response {
-            case .success:
-                if type == .register {
-                    DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
-                }
-                performSegue(for: segueCode, beforeAction: uiCompletion)
-            case .failure(let error):
-                displayError(with: error.message ?? AppErrors.unknownError.rawValue, beforePopUpAction: uiCompletion)
-        }
-    }
-}
-
 //MARK: - Pickers actions
 extension DealerViewController {
     @IBAction private func cityDidSelect(sender: Any?) {
@@ -124,14 +83,12 @@ extension DealerViewController {
                 showrooms = data.showrooms
                 DispatchQueue.main.async { [self] in
                     cityTextFieldIndicator.stopAnimating()
-                    cityTextFieldIndicator.isHidden = true
                     showroomTextField.isHidden = false
                     showroomLabel.isHidden = false
                 }
             case .failure(let error):
                 displayError(with: error.message ?? "Попробуйте выбрать город еще раз") { [self] in
                     cityTextFieldIndicator.stopAnimating()
-                    cityTextFieldIndicator.isHidden = true
                 }
         }
     }
@@ -142,6 +99,45 @@ extension DealerViewController {
         showroomTextField?.text = showrooms[row].showroomName
         view.endEditing(true)
         nextButton.isHidden = false
+    }
+}
+
+//MARK: - SegueWithRequestController
+extension DealerViewController: SegueWithRequestController {
+    typealias TResponse = Response
+    
+    var segueCode: String { SegueIdentifiers.DealerToCheckVin }
+    
+    @IBAction func nextButtonDidPressed(sender: Any?) {
+        guard let showroom = selectedShowroom else {
+            displayError(with: "Выберите салон")
+            return
+        }
+        nextButton.isHidden = true
+        nextButtonIndicator.startAnimating()
+        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
+        NetworkService.shared.makePostRequest(page: page, params:
+            [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+             URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
+            completion: completionForSegue)
+    }
+    
+    func completionForSegue(for response: Result<Response, ErrorResponse>) {
+        let uiCompletion = { [self] in
+            nextButton.isHidden = false
+            nextButtonIndicator.stopAnimating()
+        }
+        
+        switch response {
+            case .success:
+                if type == .register {
+                    DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
+                }
+                performSegue(for: segueCode, beforeAction: uiCompletion)
+            case .failure(let error):
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue, beforePopUpAction: uiCompletion)
+        }
     }
 }
 

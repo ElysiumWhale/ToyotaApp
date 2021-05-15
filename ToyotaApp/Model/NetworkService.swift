@@ -17,7 +17,7 @@ class NetworkService {
         
         session.dataTask(with: request) { (data, response, error) in
             if let response = response { print(response) }
-            if let error = error {
+            if error != nil {
                 #warning("todo: switch by error code")
                 completion(Result.failure(ErrorResponse(code: NetworkErrors.lostConnection.rawValue, message: AppErrors.connectionLost.rawValue)))
             }
