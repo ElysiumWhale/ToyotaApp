@@ -14,7 +14,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         if cars.isEmpty {
-            carsCollection.backgroundView = createBackground(with: "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите.")
+            carsCollection.backgroundView = createBackground(labelText: "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите.")
         } else {
             carsCollection.backgroundView = nil
         }

@@ -67,7 +67,7 @@ class ServicesViewController: UIViewController, BackgroundText {
                     serviceTypes = data.service_type
                     servicesList.reloadData()
                     if serviceTypes.count < 1 {
-                        servicesList.backgroundView = createBackground(with: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.")
+                        servicesList.backgroundView = createBackground(labelText: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.")
                     } else {
                         servicesList.backgroundView = nil;
                     }
@@ -77,13 +77,13 @@ class ServicesViewController: UIViewController, BackgroundText {
                     case NetworkErrors.lostConnection.rawValue:
                         DispatchQueue.main.async { [self] in
                             refreshControl.endRefreshing()
-                            servicesList.backgroundView = createBackground(with: "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз")
+                            servicesList.backgroundView = createBackground(labelText: "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз")
                         }
                     default:
                         DispatchQueue.main.async { [self] in
                             displayError(with: error.message ?? "Ошибка загрузки доступных сервисов, попробуйте еще раз")
                             refreshControl.endRefreshing()
-                            servicesList.backgroundView = createBackground(with: "Потяните вниз для загрузки доступных сервисов.")
+                            servicesList.backgroundView = createBackground(labelText: "Потяните вниз для загрузки доступных сервисов.")
                         }
                 }
         }
@@ -126,7 +126,7 @@ extension ServicesViewController {
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = ""
-        servicesList.backgroundView = createBackground(with: "Добавьте автомобиль для разблокировки функций")
+        servicesList.backgroundView = createBackground(labelText: "Добавьте автомобиль для разблокировки функций")
     }
     
     private func interfaceIfOneCar() {

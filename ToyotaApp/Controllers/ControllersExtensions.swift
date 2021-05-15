@@ -116,21 +116,21 @@ extension UINavigationController {
 }
 
 protocol BackgroundText {
-    func createBackground(with text: String?) -> UILabel?
+    func createBackground(labelText: String?) -> UILabel?
 }
 
 extension BackgroundText {
-    func createBackground(with text: String?) -> UILabel? {
-        if let txt = text {
-            let label = UILabel()
-            label.text = txt
-            label.textColor = .systemGray
-            label.numberOfLines = 0;
-            label.lineBreakMode = .byWordWrapping
-            label.textAlignment = .center;
-            label.font = UIFont(name: "ToyotaType-Semibold", size: 25)
-            label.sizeToFit()
-            return label
-        } else { return nil }
+    func createBackground(labelText: String?) -> UILabel? {
+        guard let text = labelText else { return nil }
+        let label = UILabel()
+        label.text = text
+        label.textColor = .systemGray
+        label.numberOfLines = 0;
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center;
+        label.font = UIFont(name: "ToyotaType-Semibold", size: 25)
+        label.sizeToFit()
+        return label
+    }
     }
 }
