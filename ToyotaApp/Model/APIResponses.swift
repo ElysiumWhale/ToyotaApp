@@ -16,7 +16,7 @@ public struct ErrorResponse: Codable, Error {
     
     private enum CodingKeys: String, CodingKey {
         case code = "error_code"
-        case message = "error_message"
+        case message
     }
 }
 
