@@ -6,11 +6,11 @@ fileprivate struct FreeTime {
 }
 
 class ServiceMaintenanceViewController: UIViewController {
-    @IBOutlet private(set) var servicesTextField: UITextField!
-    @IBOutlet private(set) var datePicker: UIPickerView!
-    @IBOutlet private(set) var indicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var createRequestButton: UIButton!
-    @IBOutlet private(set) var dateTimeLabel: UILabel!
+    @IBOutlet private var servicesTextField: UITextField!
+    @IBOutlet private var datePicker: UIPickerView!
+    @IBOutlet private var indicator: UIActivityIndicatorView!
+    @IBOutlet private var createRequestButton: UIButton!
+    @IBOutlet private var dateTimeLabel: UILabel!
     
     private var servicePicker: UIPickerView = UIPickerView()
     
@@ -86,16 +86,12 @@ class ServiceMaintenanceViewController: UIViewController {
     
     private func updateDates(from dict: [String:[Int]]) {
         for (date, times) in dict {
-            #warning("to-do: fix date parsing (4 hour offset)")
-            if let date = Calendar.current.date(byAdding: DateComponents(hour: 4, second: 1), to: formatter.date(from: date)!)  {
-                if date > Date() {
-                    var freeHoursMinutes = [DateComponents]()
-                    for time in times {
-                        freeHoursMinutes.append(TimeMap.map[time]!)
-                    }
-                    dates.append(FreeTime(date: date, freeTime: freeHoursMinutes))
-                }
+            guard let dateDebug = formatter.date(from: date), dateDebug > Date() else { continue }
+            var freeHoursMinutes = [DateComponents]()
+            for time in times {
+                if let trueTime = TimeMap.map[time] { freeHoursMinutes.append(trueTime) }
             }
+            dates.append(FreeTime(date: dateDebug, freeTime: freeHoursMinutes))
         }
     }
     

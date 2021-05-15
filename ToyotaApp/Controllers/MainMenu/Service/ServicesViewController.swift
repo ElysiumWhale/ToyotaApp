@@ -28,12 +28,9 @@ class ServicesViewController: UIViewController, BackgroundText {
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
         
         switch cars.count {
-            case 0:
-                interfaceIfNoCars()
-            case 1:
-                interfaceIfOneCar()
-            default:
-                interfaceIfManyCars()
+            case 0: interfaceIfNoCars()
+            case 1: interfaceIfOneCar()
+            default: interfaceIfManyCars()
         }
     }
     
@@ -66,25 +63,19 @@ class ServicesViewController: UIViewController, BackgroundText {
                     refreshControl.endRefreshing()
                     serviceTypes = data.service_type
                     servicesList.reloadData()
-                    if serviceTypes.count < 1 {
-                        servicesList.backgroundView = createBackground(labelText: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.")
-                    } else {
-                        servicesList.backgroundView = nil;
-                    }
+                    servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.") : nil
                 }
             case .failure(let error):
+                var labelMessage = ""
                 switch error.code {
                     case NetworkErrors.lostConnection.rawValue:
-                        DispatchQueue.main.async { [self] in
-                            refreshControl.endRefreshing()
-                            servicesList.backgroundView = createBackground(labelText: "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз")
-                        }
+                        labelMessage = "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз."
                     default:
-                        DispatchQueue.main.async { [self] in
-                            displayError(with: error.message ?? "Ошибка загрузки доступных сервисов, попробуйте еще раз")
-                            refreshControl.endRefreshing()
-                            servicesList.backgroundView = createBackground(labelText: "Потяните вниз для загрузки доступных сервисов.")
-                        }
+                        labelMessage = "Произошла ошибка при загрузке услуг. Потяните вниз для повторной загрузки доступных сервисов."
+                }
+                DispatchQueue.main.async { [self] in
+                    refreshControl.endRefreshing()
+                    servicesList.backgroundView = createBackground(labelText: labelMessage)
                 }
         }
     }
@@ -108,12 +99,9 @@ extension ServicesViewController: WithUserInfo {
         DispatchQueue.main.async { [self] in
             view.layoutIfNeeded()
             switch cars.count {
-                case 0:
-                    interfaceIfNoCars()
-                case 1:
-                    interfaceIfOneCar()
-                default:
-                    interfaceIfManyCars()
+                case 0: interfaceIfNoCars()
+                case 1: interfaceIfOneCar()
+                default: interfaceIfManyCars()
             }
         }
     }
@@ -142,7 +130,6 @@ extension ServicesViewController {
         carForServePicker.reloadAllComponents()
         carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
                                     inComponent: 0, animated: false)
-        carTextField.isEnabled = true
         interfaceIfOneCar()
     }
 }
@@ -180,6 +167,7 @@ extension ServicesViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        #warning("todo: Rework for special types")
         if let cell = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell {
             guard let type = AppViewControllers.ServicesMap.map[cell.serviceType] else { return }
             guard let vc = type.init(nibName: String(describing: type), bundle: Bundle.main) as? ServicesMapped else { return }
@@ -190,11 +178,8 @@ extension ServicesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0.05 * Double(indexPath.row),
-            animations: {
-                cell.alpha = 1
-        })
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.05 * Double(indexPath.row),
+                       animations: { cell.alpha = 1 })
     }
 }
