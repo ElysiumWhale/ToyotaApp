@@ -211,8 +211,7 @@ SMS code for registration: **1234**
 #### **Failure response**
 
 ```json
-{ 
-  "result":"error_getting",
+{
   "error_code":"101",
   "error_message":"Пользователь отсутствует в базе"
 }
@@ -307,8 +306,7 @@ SMS code for registration: **1234**
 #### **Failure response**
 
 ```json
-{ 
-  "result":"error_getting",
+{
   "error_code":"101",
   "error_message":"Не найдено ни одного салона"
 }
@@ -362,7 +360,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"error_getting",
   "error_code":"121",
   "message":"Ошибка сервера. Не удалось проверить статус регистрации пользователя."
 }
@@ -372,7 +369,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"server_error",
   "error_code":"104",
   "message":"Ошибка сервера. Не удалось проверить список клиентов салона."
 }
@@ -382,7 +378,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"server_error",
   "error_code":"104",
   "message":"Ошибка сервера. Не удалось обновить запись."
 }
@@ -392,7 +387,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"server_error",
   "error_code":"104",
   "message":"Ошибка сервера. Не удалось создать запись."
 }
@@ -451,7 +445,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"error_vin",
   "error_code":"107",
   "message":"VIN не подтвержден. Проверьте внимательно введённый vin-код и повторите попытку."
 }
@@ -461,7 +454,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"error_select",
   "error_code":"108",
   "message":"Данный автомобиль уже привязан к Вашей учетной записи. Выберите другой автомобиль."
 }
@@ -471,7 +463,6 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"error_select",
   "error_code":"108",
   "message":"Данный автомобиль уже выбран другим пользователем. Внимательно проверьте введённый Вами VIN-код - 1234567890abcdefg. Если введённый код верный - обратитесь в службу поддержки."
 }
