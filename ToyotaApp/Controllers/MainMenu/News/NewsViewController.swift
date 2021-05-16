@@ -3,6 +3,7 @@ import UIKit
 class NewsViewController: UIViewController {
     @IBOutlet private var newsCollection: UICollectionView!
     
+    private let refreshControl = UIRefreshControl()
     let cellIdentifier = CellIdentifiers.NewsCell
     
     private var user: UserProxy!
@@ -10,8 +11,24 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.layer.zPosition = -1
+        newsCollection.refreshControl = refreshControl
         newsCollection.alwaysBounceVertical = true
         news = Test.CreateNews()
+    }
+    
+    @IBAction func refresh() {
+        refreshControl.beginRefreshing()
+        news = Test.CreateNews()
+        newsCollection.reloadData()
+        endRefreshing()
+    }
+    
+    private func endRefreshing() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
+                                      execute: { [self] in refreshControl.endRefreshing() })
     }
 }
 
@@ -35,9 +52,7 @@ extension NewsViewController: UICollectionViewDelegate {
         UIView.animate(
             withDuration: 0.5,
             delay: 0.05 * Double(indexPath.row),
-            animations: {
-                cell.alpha = 1
-        })
+            animations: { cell.alpha = 1 })
     }
 }
 

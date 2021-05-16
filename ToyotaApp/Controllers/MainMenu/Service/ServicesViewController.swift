@@ -20,9 +20,11 @@ class ServicesViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
-        refreshControl.attributedTitle = NSAttributedString(string: "Потяните для обновления")
+        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.layer.zPosition = -1
         servicesList.refreshControl = refreshControl
+        
         servicesList.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
@@ -60,9 +62,9 @@ class ServicesViewController: UIViewController, BackgroundText {
         switch response {
             case .success(let data):
                 DispatchQueue.main.async { [self] in
-                    refreshControl.endRefreshing()
                     serviceTypes = data.service_type
                     servicesList.reloadData()
+                    endRefreshing()
                     servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: CommonText.noServices) : nil
                 }
             case .failure(let error):
@@ -74,10 +76,15 @@ class ServicesViewController: UIViewController, BackgroundText {
                         labelMessage = "\(CommonText.servicesError), \(CommonText.retryRefresh)"
                 }
                 DispatchQueue.main.async { [self] in
-                    refreshControl.endRefreshing()
+                    endRefreshing()
                     servicesList.backgroundView = createBackground(labelText: labelMessage)
                 }
         }
+    }
+    
+    private func endRefreshing() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
+                                      execute: { [self] in refreshControl.endRefreshing() })
     }
 }
 
