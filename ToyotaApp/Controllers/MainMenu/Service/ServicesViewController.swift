@@ -63,15 +63,15 @@ class ServicesViewController: UIViewController, BackgroundText {
                     refreshControl.endRefreshing()
                     serviceTypes = data.service_type
                     servicesList.reloadData()
-                    servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся.") : nil
+                    servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: CommonText.noServices) : nil
                 }
             case .failure(let error):
                 var labelMessage = ""
                 switch error.code {
                     case NetworkErrors.lostConnection.rawValue:
-                        labelMessage = "Ошибка сети, проверьте подключение и повторите попытку, потянув вниз."
+                        labelMessage = "\(CommonText.networkError) и \(CommonText.retryRefresh)"
                     default:
-                        labelMessage = "Произошла ошибка при загрузке услуг. Потяните вниз для повторной загрузки доступных сервисов."
+                        labelMessage = "\(CommonText.servicesError), \(CommonText.retryRefresh)"
                 }
                 DispatchQueue.main.async { [self] in
                     refreshControl.endRefreshing()

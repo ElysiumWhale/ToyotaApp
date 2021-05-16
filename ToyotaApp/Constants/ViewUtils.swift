@@ -117,6 +117,11 @@ public struct CommonText {
     static let yes = "Да"
     static let no = "Нет"
     static let choose = "Выбрать"
+    static let pullToRefresh = "Потяните вниз для обновления"
+    static let noServices = "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся."
+    static let networkError = "Ошибка сети, проверьте подключение"
+    static let retryRefresh = "потяните вниз для повторной загрузки."
+    static let servicesError = "Ошибка при загрузке услуг"
 }
 
 public struct TimeMap {

@@ -42,7 +42,7 @@ class ServiceMaintenanceViewController: UIViewController {
             case .success(let data):
                 services = data.services
             case .failure(let error):
-                displayError(with: error.message ?? "Ошибка при получении сервисов, повторите попытку позднее")
+                displayError(with: error.message ?? CommonText.servicesError)
                 DispatchQueue.main.async { [self] in
                     navigationController?.popToRootViewController(animated: true)
                 }
