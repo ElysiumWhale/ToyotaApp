@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "0be276f6a7fd54af4c3eb03f2d12e12d8c8a1a1d",
-          "version": "6.0.1"
+          "revision": "44450a8f564d7c0165f736ba2250649ff8d3e556",
+          "version": "6.3.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/marmelroy/PhoneNumberKit.git",
         "state": {
           "branch": null,
-          "revision": "c7d7b0c91ef0ad7e413022edfcf5d6f75561e2d5",
-          "version": "3.3.1"
+          "revision": "1ef0431b971f69c48ca5eb4cdba07f2c5da54c35",
+          "version": "3.3.3"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/huri000/SwiftEntryKit",
         "state": {
           "branch": null,
-          "revision": "f280a02c60f4c2563561312df26a357a1cf714e2",
-          "version": "1.2.6"
+          "revision": "c2d42574e4fe4e1f9719843f35add7922942a16b",
+          "version": "1.2.7"
         }
       }
     ]
