@@ -21,6 +21,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseServiceViewController" customModule="ToyotaApp" customModuleProvider="target">
             <connections>
+                <outlet property="datePicker" destination="Ib1-YJ-epN" id="1Wl-7y-hMd"/>
+                <outlet property="dateTimeLabel" destination="3Xs-QW-CH0" id="QJc-ly-0nT"/>
+                <outlet property="indicator" destination="kkg-eu-s7Q" id="3Tu-Ej-bTf"/>
+                <outlet property="primaryLabel" destination="e5B-Jx-JJg" id="tCV-Az-dwL"/>
+                <outlet property="primaryTextField" destination="vtn-Dd-Lsa" id="l6L-RT-3iW"/>
+                <outlet property="sendOrderButton" destination="jAi-5U-d5Q" id="lCL-Ra-lSR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
