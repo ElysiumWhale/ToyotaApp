@@ -169,7 +169,16 @@ public struct ServicesTypesDidGetResponse: Codable {
 
 public struct ServiceType: Codable {
     let id: String
-    let service_type_name: String
+    let serviceTypeName: String
+    let controlTypeId: String
+    let controlTypeDesc: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case serviceTypeName = "service_type_name"
+        case controlTypeId = "control_type_id"
+        case controlTypeDesc = "control_type_desc"
+    }
 }
 
 //MARK: - GetServices

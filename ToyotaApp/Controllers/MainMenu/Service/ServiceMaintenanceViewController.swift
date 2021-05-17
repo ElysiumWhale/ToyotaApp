@@ -30,7 +30,7 @@ class ServiceMaintenanceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = serviceType.service_type_name
+        navigationItem.title = serviceType.serviceTypeName
         configurePicker(servicePicker, with: #selector(serviceDidSelect), for: servicesTextField, delegate: self)
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServices, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: chosenCar.showroomId),
              URLQueryItem(name: RequestKeys.Services.serviceTypeId, value: serviceType.id)],

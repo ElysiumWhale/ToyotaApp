@@ -11,7 +11,7 @@ class TestDriveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = serviceType.service_type_name
+        navigationItem.title = serviceType.serviceTypeName
         datePicker.minimumDate = Date()
         indicator.stopAnimating()
         indicator.isHidden = true
