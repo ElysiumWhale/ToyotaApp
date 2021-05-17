@@ -8,6 +8,10 @@ This is box solution prototype for car dealers which want present their services
 
 ## Overview
 
+Main testing device: **iPhone XS iOS 14.5.1**
+
+Secondary testing device: **iPhone 7 14.5.1**
+
 SMS-code for testing: **1234** (will be generated and sent during pre-release testing)
 
 For testing HTTPS **is off** (will be turned on during pre-release testing)
@@ -53,4 +57,6 @@ List of mocks:
 - Working with secret auth key through keychain
 - Push notifications
 
+//City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
 
+//let resultdate = Calendar.current.date(byAdding: DateComponents(hour: 4, second: 1), to: formatter.date(from: date)!)
