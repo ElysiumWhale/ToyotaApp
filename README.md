@@ -33,8 +33,7 @@ VIN codes for cars in [API.md](Docs/API.md) (Testing section)
   - choosing car for downloading actual services (if user has more than 1 car)
   - ~~booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)~~
   - working with apple maps in HelpOnRoadVC (***Помощь на дороге***)
-
-#### Some details
+  - choosing service and date with time in ServiceMaintenanceViewController (***Сервисное обслуживание***)
 
 ### Mocks
 
