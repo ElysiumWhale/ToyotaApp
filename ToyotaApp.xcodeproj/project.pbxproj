@@ -28,6 +28,8 @@
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
+		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
+		14C7E66726501770000B24B6 /* BaseServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C7E66526501770000B24B6 /* BaseServiceViewController.xib */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
@@ -101,6 +103,8 @@
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
+		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
+		14C7E66526501770000B24B6 /* BaseServiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseServiceViewController.xib; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		1401F23525C0A06B00E96D05 /* Services Views */ = {
 			isa = PBXGroup;
 			children = (
+				14C7E66526501770000B24B6 /* BaseServiceViewController.xib */,
 				1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */,
 				1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */,
 				14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */,
@@ -323,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
+				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
 				A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */,
 				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
 				14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */,
@@ -486,6 +492,7 @@
 				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
 				1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */,
 				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
+				14C7E66726501770000B24B6 /* BaseServiceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +537,7 @@
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Test.swift in Sources */,
 				1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */,
+				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
