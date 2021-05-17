@@ -8,9 +8,11 @@ This is box solution prototype for car dealers which want present their services
 
 ## Overview
 
-> SMS-code for testing: **1234** (will be generated and sent during pre-release testing)
+SMS-code for testing: **1234** (will be generated and sent during pre-release testing)
 
-> For testing HTTPS **is off** (will be turned on during pre-release testing)
+For testing HTTPS **is off** (will be turned on during pre-release testing)
+
+VIN codes for cars in [API.md](Docs/API.md) (Testing section)
 
 ### Ready parts
 
@@ -25,12 +27,10 @@ This is box solution prototype for car dealers which want present their services
   - adding new cars
 - Services:
   - choosing car for downloading actual services (if user has more than 1 car)
-  - Booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)
-  - Working with apple maps in HelpOnRoadVC (***Помощь на дороге***)
+  - ~~booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)~~
+  - working with apple maps in HelpOnRoadVC (***Помощь на дороге***)
 
 #### Some details
-
-
 
 ### Mocks
 
@@ -38,7 +38,9 @@ List of mocks:
 
 - NewsViewController (represents possible view of news cells)
 - HistoryViewController (represents possible view of news cells)
-- Booking in some services is only popup showing
+- Service booking is not ready on server side...
+- TestDriveVC
+- RepairongVC
 
 ## Future release
 
@@ -47,4 +49,8 @@ List of mocks:
 - News from server created by admin of client module
 - Some UI adaptation for 4.7' iPhone generation
 - Delete cars
+- FontAwesome for services icons cells
+- Working with secret auth key through keychain
+- Push notifications
+
 
