@@ -19,10 +19,17 @@
       - [**Failure response**](#failure-response-1)
     - [SMS-code checking](#sms-code-checking)
       - [**Success response**](#success-response-2)
+        - [**Variant 1:** New account](#variant-1-new-account)
+        - [**Variant 2:** Empty account](#variant-2-empty-account)
+        - [**Variant 3:** Only profile](#variant-3-only-profile)
+        - [**Variant 4:** Profile and showroom](#variant-4-profile-and-showroom)
+        - [**Variant 5:** Full profile](#variant-5-full-profile)
       - [**Failure response**](#failure-response-2)
     - [Profile creation](#profile-creation)
       - [**Success response**](#success-response-3)
       - [**Failure response**](#failure-response-3)
+      - [**Variant 1:** Can't fill profile](#variant-1-cant-fill-profile)
+      - [**Variant 2:** Can't get cities](#variant-2-cant-get-cities)
     - [City choosing](#city-choosing)
       - [**Success response**](#success-response-4)
       - [**Failure response**](#failure-response-4)
@@ -72,9 +79,6 @@
     - [Showroom choosing](#showroom-choosing)
       - [**Success response**](#success-response-15)
       - [**Failure response**](#failure-response-15)
-    - [Car checking](#car-checking)
-      - [**Success response**](#success-response-16)
-      - [**Failure response**](#failure-response-16)
 
 </details>
 
@@ -223,16 +227,28 @@ SMS code for registration: **1234**
 
 ### Phone number registration
 
-**Path:**
+**Path:** `register_phone.php`
 
 **Params:**
 
-- 1
-- 2
+- `phone_number` - written by user
 
 #### **Success response**
 
+```json
+{
+  "result":"ok"
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"",
+  "error_message":""
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -240,16 +256,63 @@ SMS code for registration: **1234**
 
 ### SMS-code checking
 
-**Path:**
+**Path:** `check_code.php`
 
 **Params:**
 
-- 1
-- 2
+- `phone_number` - got on previous step
+- `code` - got via SMS
+- `brand_id` - app constant
 
 #### **Success response**
 
+##### **Variant 1:** New account
+
+```json
+{
+  "result":"ok",
+  "user_id":"generated_id",
+  "secret_key":"generated_secret_key"
+}
+```
+
+##### **Variant 2:** Empty account
+
+```json
+{
+  "result":"ok",
+  "secret_key":"generated secret key",
+  "user_id":"user id",
+  "register_page":1
+}
+```
+
+##### **Variant 3:** Only profile
+
+**[Look there](#variant-2-only-profile-is-selected)**
+
+##### **Variant 4:** Profile and showroom
+
+**[Look there](#variant-3-profile-and-showroom-are-selected)**
+
+##### **Variant 5:** Full profile
+
+**[Look there](#variant-4-fully-registered-and-authorized-on-device)**
+
+plus addiotional field:
+
+```json
+  "register_status":1
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"102",
+  "error_message":"Присланный Вами код не совпадает"
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -257,16 +320,55 @@ SMS code for registration: **1234**
 
 ### Profile creation
 
-**Path:**
+**Path:** `set_profile.php`
 
 **Params:**
 
-- 1
-- 2
+- `brand_id` - constant in app
+- `user_id` - got on previous step
+- `first_name` - written by user
+- `second_name` - written by user
+- `last_name` - written by user
+- `email` - written by user
+- `birthday` - written by user
 
 #### **Success response**
 
+```json
+{
+  "result": "ok",
+  "cities": [
+    {
+      "id": "1",
+      "city_name": "Самара"
+    },
+    {
+      "id": "2",
+      "city_name": "Тольятти"
+    }
+  ]
+}
+```
+
 #### **Failure response**
+
+#### **Variant 1:** Can't fill profile
+
+```json
+{
+  "error_code":"103",
+  "error_message":"Ошибка сервера. Не удалось заполнить профиль пользователя."
+}
+```
+
+#### **Variant 2:** Can't get cities
+
+```json
+{
+  "error_code":"101",
+  "error_message":"Ошибка сервера. Не удалось получить список городов."
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -299,7 +401,7 @@ SMS code for registration: **1234**
       "id":"7",
       "showroom_name":"Тойота Центр Самара Аврора"
     }
-   ]
+  ]
 } 
 ```
 
@@ -474,12 +576,12 @@ SMS code for registration: **1234**
 
 ### Temp record deleting
 
-**Path:**
+**Path:** `delete_tmp_record.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -491,12 +593,12 @@ SMS code for registration: **1234**
 
 ### Getting the categories of services
 
-**Path:**
+**Path:** `get_service_type.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -508,12 +610,12 @@ SMS code for registration: **1234**
 
 ### Getting a services from a category
 
-**Path:**
+**Path:** `get_services.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -525,12 +627,12 @@ SMS code for registration: **1234**
 
 ### Getting free time
 
-**Path:**
+**Path:** `get_free_time.php`
 
 **Params:**
 
-- 1
-- 2
+- ``
+- ``
 
 #### **Success response**
 
@@ -542,12 +644,12 @@ SMS code for registration: **1234**
 
 ### Adding new showroom
 
-**Path:**
+**Path:** `get_cities.php, get_showrooms.php, add_showroom.php`
 
 **Params:**
 
-- 1
-- 2
+- ``
+- ``
 
 #### **Success response**
 
@@ -559,12 +661,12 @@ SMS code for registration: **1234**
 
 ### Editing profile
 
-**Path:**
+**Path:** `edit_profile.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -576,12 +678,12 @@ SMS code for registration: **1234**
 
 ### Change phone number
 
-**Path:**
+**Path:** `register_phone.php, change_phone_number.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -593,12 +695,12 @@ SMS code for registration: **1234**
 
 ### Test Drive booking
 
-**Path:**
+**Path:** `get_cities.php, get_cars_ftd.php, get_showrooms_list_ftd.php, get_service_id.php, get_free_time.php, book_service.php`
 
 **Params:**
 
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
@@ -612,29 +714,12 @@ SMS code for registration: **1234**
 
 ### Showroom choosing
 
-**Path:**
+**Path:** `get_cars.php`
 
 **Params:**
 
-- 1
-- 2
-
-#### **Success response**
-
-#### **Failure response**
-
-[**To table of contents**](#toyota-api)
-
----
-
-### Car checking
-
-**Path:**
-
-**Params:**
-
-- 1
-- 2
+- `` -
+- `` -
 
 #### **Success response**
 
