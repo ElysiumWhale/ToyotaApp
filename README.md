@@ -55,7 +55,3 @@ List of mocks:
 - FontAwesome for services icons cells
 - Working with secret auth key through keychain
 - Push notifications
-
-//City(id: $0.id, name: String(data: $0.name.data(using: .nonLossyASCII)!, encoding: String.Encoding.nonLossyASCII)!)
-
-//let resultdate = Calendar.current.date(byAdding: DateComponents(hour: 4, second: 1), to: formatter.date(from: date)!)
