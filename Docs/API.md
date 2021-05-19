@@ -28,29 +28,20 @@
     - [Profile creation](#profile-creation)
       - [**Success response**](#success-response-3)
       - [**Failure response**](#failure-response-3)
-      - [**Variant 1:** Can't fill profile](#variant-1-cant-fill-profile)
-      - [**Variant 2:** Can't get cities](#variant-2-cant-get-cities)
+        - [**List of errors**](#list-of-errors)
     - [City choosing](#city-choosing)
       - [**Success response**](#success-response-4)
       - [**Failure response**](#failure-response-4)
     - [Showroom setting](#showroom-setting)
       - [**Success response**](#success-response-5)
-        - [**Variant 1:**](#variant-1)
-        - [**Variant 2:**](#variant-2)
-        - [**Variant 3:**](#variant-3)
       - [**Failure response**](#failure-response-5)
-        - [**Variant 1:** Server error (showroom clients query)](#variant-1-server-error-showroom-clients-query)
-        - [**Variant 2:** Server error (showroom clients query)](#variant-2-server-error-showroom-clients-query)
-        - [**Variant 3:** Server error (update record query)](#variant-3-server-error-update-record-query)
-        - [**Variant 4:** Server error (insert record query)](#variant-4-server-error-insert-record-query)
+        - [**List of errors**](#list-of-errors-1)
     - [VIN checking](#vin-checking)
       - [**Success response**](#success-response-6)
         - [**Variant 1:** VIN Checking](#variant-1-vin-checking)
         - [**Variant 2:** Skipping step](#variant-2-skipping-step)
       - [**Failure response**](#failure-response-6)
-        - [**Variant 1:** Incorrect](#variant-1-incorrect)
-        - [**Variant 2:** Car is already linked](#variant-2-car-is-already-linked)
-        - [**Variant 3:** Car is already linked](#variant-3-car-is-already-linked)
+        - [**List of errors**](#list-of-errors-2)
     - [Temp record deleting](#temp-record-deleting)
       - [**Success response**](#success-response-7)
       - [**Failure response**](#failure-response-7)
@@ -62,7 +53,10 @@
       - [**Failure response**](#failure-response-9)
     - [Getting free time](#getting-free-time)
       - [**Success response**](#success-response-10)
+        - [**Variant 1:** Anytime](#variant-1-anytime)
+        - [**Variant 2:** Time limits](#variant-2-time-limits)
       - [**Failure response**](#failure-response-10)
+        - [**List of errors**](#list-of-errors-3)
     - [Adding new showroom](#adding-new-showroom)
       - [**Success response**](#success-response-11)
       - [**Failure response**](#failure-response-11)
@@ -352,23 +346,19 @@ plus addiotional field:
 
 #### **Failure response**
 
-#### **Variant 1:** Can't fill profile
-
 ```json
 {
   "error_code":"103",
-  "error_message":"Ошибка сервера. Не удалось заполнить профиль пользователя."
+  "error_message":"Ошибка сервера."
 }
 ```
 
-#### **Variant 2:** Can't get cities
+##### **List of errors**
 
-```json
-{
-  "error_code":"101",
-  "error_message":"Ошибка сервера. Не удалось получить список городов."
-}
-```
+| Code | Message |
+|------|---------|
+| 101 | Не удалось получить список городов. |
+| 103 | Не удалось заполнить профиль пользователя. |
 
 [**To table of contents**](#toyota-api)
 
@@ -429,8 +419,6 @@ plus addiotional field:
 
 #### **Success response**
 
-##### **Variant 1:**
-
 ```json
 {
   "result":"ok",
@@ -438,61 +426,31 @@ plus addiotional field:
 }
 ```
 
-##### **Variant 2:**
-
-```json
-{
-  "result":"ok",
-  "message":"Новая запись успешно создана."
-}
-```
-
-##### **Variant 3:**
-
-```json
-{
-  "result":"ok",
-  "message":"Запись успешно обновлена."
-}
-```
+| Possible messages |
+|------------------- |
+| Запись уже была создана ранее. |
+| Новая запись успешно создана. |
+| Запись успешно обновлена. |
+|
 
 #### **Failure response**
-
-##### **Variant 1:** Server error (showroom clients query)
 
 ```json
 {
   "error_code":"121",
-  "message":"Ошибка сервера. Не удалось проверить статус регистрации пользователя."
+  "message":"Ошибка сервера."
 }
 ```
 
-##### **Variant 2:** Server error (showroom clients query)
+##### **List of errors**
 
-```json
-{
-  "error_code":"104",
-  "message":"Ошибка сервера. Не удалось проверить список клиентов салона."
-}
-```
-
-##### **Variant 3:** Server error (update record query)
-
-```json
-{
-  "error_code":"104",
-  "message":"Ошибка сервера. Не удалось обновить запись."
-}
-```
-
-##### **Variant 4:** Server error (insert record query)
-
-```json
-{
-  "error_code":"104",
-  "message":"Ошибка сервера. Не удалось создать запись."
-}
-```
+| Code | Message |
+|------|---------|
+| 104 | Не удалось проверить список клиентов салона. |
+| 104 | Не удалось обновить запись. |
+| 104 | Не удалось создать запись. |
+| 121 | Не удалось проверить статус регистрации пользователя. |
+|
 
 [**To table of contents**](#toyota-api)
 
@@ -543,32 +501,21 @@ plus addiotional field:
 
 #### **Failure response**
 
-##### **Variant 1:** Incorrect
-
 ```json
 {
   "error_code":"107",
-  "message":"VIN не подтвержден. Проверьте внимательно введённый vin-код и повторите попытку."
+  "message":"Ошибка"
 }
 ```
 
-##### **Variant 2:** Car is already linked
+##### **List of errors**
 
-```json
-{
-  "error_code":"108",
-  "message":"Данный автомобиль уже привязан к Вашей учетной записи. Выберите другой автомобиль."
-}
-```
-
-##### **Variant 3:** Car is already linked
-
-```json
-{
-  "error_code":"108",
-  "message":"Данный автомобиль уже выбран другим пользователем. Внимательно проверьте введённый Вами VIN-код - 1234567890abcdefg. Если введённый код верный - обратитесь в службу поддержки."
-}
-```
+| Code | Message |
+|------|---------|
+| 107 | VIN не подтвержден. Проверьте внимательно введённый vin-код и повторите попытку. |
+| 108 | Данный автомобиль уже привязан к Вашей учетной записи. Выберите другой автомобиль. |
+| 108 | Данный автомобиль уже выбран другим пользователем. Внимательно проверьте введённый Вами VIN-код - 1234567890abcdefg. Если введённый код верный - обратитесь в службу поддержки. |
+|
 
 [**To table of contents**](#toyota-api)
 
@@ -580,12 +527,24 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `phone_number` - got on [phone register step](#phone-number-registration)
 
 #### **Success response**
 
+```json
+{
+  "result":"ok"
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"108",
+  "message":"Ошибка сервера. Не удалось удалить временную запись."
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -597,12 +556,40 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `showroom_id` - got from selected by user car
 
 #### **Success response**
 
+```json
+{
+  "result":"ok",
+  "service_type": [
+    {
+      "id":"1",
+      "service_type_name":"Сервисное обслуживание",
+      "control_type_id":"0",
+      "control_type_name":"Тип № 0",
+      "control_type_desc":"Тип контроллера не выбран"
+    },
+    {
+      "id":"2",
+      "service_type_name":"Услуги сервиса",
+      "control_type_id":"0",
+      "control_type_name":"Тип № 0",
+      "control_type_desc":"Тип контроллера не выбран"
+    }
+  ]
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "message":"Ошибка сервера. Не удалось получить список категорий услуг."
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -614,12 +601,35 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `showroom_id` - got on [previous step](#getting-the-categories-of-services)
+- `service_type_id` - selected by user
 
 #### **Success response**
 
+```json
+{
+  "result":"ok",
+  "services": [
+    {
+      "id":"1",
+      "service_name":"Плановое ТО №1"
+    },
+    {
+      "id":"2",
+      "service_name":"Плановое ТО №2"
+    }
+  ]
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "message":"Ошибка сервера. Не удалось получить список услуг."
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -631,12 +641,57 @@ plus addiotional field:
 
 **Params:**
 
-- ``
-- ``
+- `showroom_id` - got on [previous step](#getting-the-categories-of-services)
+- `sid` - got on [previous step](#getting-a-services-from-a-category)
 
 #### **Success response**
 
+##### **Variant 1:** Anytime
+
+```json
+{
+  "result":"ok",
+  "message":"Время бронирования свободно на любую дату"
+}
+```
+
+##### **Variant 2:** Time limits
+
+```json
+{
+  "result":"ok",
+  "start_date":"2020-12-22",
+  "end_date":"2020-12-23",
+  "free_times": [
+    {
+      "2020-12-22":[18,20,21,22,34,35,36,37]
+    },
+    {
+      "2020-12-23":[18,19,20,21,22,23,24,25,26,27,28,29]
+    }
+  ]
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"104",
+  "message":"Ошибка сервера"
+}
+```
+
+##### **List of errors**
+
+| Code | Message |
+|------|---------|
+| 104 | Не удалось получить режим работы салона |
+| 104 | Не удалось получить данные по выбранной услуге |
+| 104 | Не удалось получить список постов |
+| 104 | Не удалось получить список свободных дат |
+| 104 | Не удалось получить список забронированного времени |
+|
 
 [**To table of contents**](#toyota-api)
 
@@ -648,12 +703,17 @@ plus addiotional field:
 
 **Params:**
 
-- ``
-- ``
+- `brand_id` - app constant
 
 #### **Success response**
 
+```json
+```
+
 #### **Failure response**
+
+```json
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -665,12 +725,29 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `user_id` - from memory
+- `first_name` - written by user
+- `second_name` - written by user
+- `last_name` - written by user
+- `email` - written by user
+- `birthday` - written by user
 
 #### **Success response**
 
+```json
+{
+  "result":"ok"
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "error_message":"Ошибка сервера. Не удалось обновить профиль пользователя."
+}
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -682,12 +759,19 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `user_id` - from memory
+- `code` - got via SMS
+- `phone_number` - written by user
 
 #### **Success response**
 
+```json
+```
+
 #### **Failure response**
+
+```json
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -699,12 +783,18 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `brand_id` - app constant
+- `city_id` - selected by user
 
 #### **Success response**
 
+```json
+```
+
 #### **Failure response**
+
+```json
+```
 
 [**To table of contents**](#toyota-api)
 
@@ -718,12 +808,40 @@ plus addiotional field:
 
 **Params:**
 
-- `` -
-- `` -
+- `showroom_id` - selected by user
+- `user_id` - got on previous step
 
 #### **Success response**
 
+```json
+{
+  "result":"ok",
+  "cars": [
+    {
+      "id":"3",
+      "car_brand_name":"Toyota",
+      "car_model_name":"Prado",
+      "color_swatch":"#edf5f6",
+      "car_color_name":"Айсберг",
+      "color_description":"Белая двухслойная",
+      "color_metallic":"1",
+      "license_plate":"а111аа163rus"
+    },
+    {
+      ...
+    }
+  ]
+}
+```
+
 #### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "error_message":"Ошибка сервера. Не удалось получить список автомобилей."
+}
+```
 
 [**To table of contents**](#toyota-api)
 

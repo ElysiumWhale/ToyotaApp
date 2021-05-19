@@ -43,7 +43,7 @@ List of mocks:
 - HistoryViewController (represents possible view of news cells)
 - Service booking is not ready on server side...
 - TestDriveVC
-- RepairongVC
+- RepairingVC
 
 ## Future release
 
