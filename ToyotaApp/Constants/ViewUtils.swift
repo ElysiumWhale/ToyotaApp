@@ -3,10 +3,10 @@ import UIKit
 
 //MARK: - Enums for VC logic
 enum ServicesControllers: String {
-    case ServiceMaintenanceViewController = "1"
-    case RepairngViewController = "2"
-    case TestDriveViewController = "3"
-    case HelpOnRoadViewController = "4"
+    case ServiceMaintenanceViewController = "6" //1
+    case RepairngViewController = "5" //2
+    case TestDriveViewController = "8" //3
+    case HelpOnRoadViewController = "2" //4
 }
 
 ///**Warning!** Equality comprasion will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
