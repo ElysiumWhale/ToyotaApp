@@ -4,6 +4,7 @@
 
 - [Toyota API](#toyota-api)
   - [General](#general)
+    - [Services controllers types](#services-controllers-types)
   - [Testing](#testing)
     - [Cars VINs](#cars-vins)
   - [Requests](#requests)
@@ -57,22 +58,37 @@
         - [**Variant 2:** Time limits](#variant-2-time-limits)
       - [**Failure response**](#failure-response-10)
         - [**List of errors**](#list-of-errors-3)
-    - [Adding new showroom](#adding-new-showroom)
+    - [Adding new showroom chain](#adding-new-showroom-chain)
+    - [Get cities](#get-cities)
       - [**Success response**](#success-response-11)
       - [**Failure response**](#failure-response-11)
-    - [Editing profile](#editing-profile)
+    - [Add new showroom](#add-new-showroom)
       - [**Success response**](#success-response-12)
       - [**Failure response**](#failure-response-12)
-    - [Change phone number](#change-phone-number)
+    - [Editing profile](#editing-profile)
       - [**Success response**](#success-response-13)
       - [**Failure response**](#failure-response-13)
-    - [Test Drive booking](#test-drive-booking)
+    - [Change phone number chain](#change-phone-number-chain)
+    - [Change phone](#change-phone)
       - [**Success response**](#success-response-14)
       - [**Failure response**](#failure-response-14)
-  - [Deprecated](#deprecated)
-    - [Showroom choosing](#showroom-choosing)
+    - [Test Drive booking chain](#test-drive-booking-chain)
+    - [Get cars for test drive](#get-cars-for-test-drive)
       - [**Success response**](#success-response-15)
       - [**Failure response**](#failure-response-15)
+    - [Get showrooms for test drive](#get-showrooms-for-test-drive)
+      - [**Success response**](#success-response-16)
+      - [**Failure response**](#failure-response-16)
+    - [Get service id](#get-service-id)
+      - [**Success response**](#success-response-17)
+      - [**Failure response**](#failure-response-17)
+    - [Book service](#book-service)
+      - [**Success response**](#success-response-18)
+      - [**Failure response**](#failure-response-18)
+  - [Deprecated](#deprecated)
+    - [Showroom choosing](#showroom-choosing)
+      - [**Success response**](#success-response-19)
+      - [**Failure response**](#failure-response-19)
 
 </details>
 
@@ -83,6 +99,26 @@
 API uses **only POST** queries.
 
 Base URL: <http://cv39623.tmweb.ru/avtosalon/mobile/>
+
+### Services controllers types
+
+| Id | Control type description | List of services |
+|----|--------------------------|------------------|
+| 0 | not defined |  |
+| 1 | timepick |  |
+| 2 | map | Помощь на дороге |
+| 3 | 1 question |  |
+| 4 | 2 questions |  |
+| 5 | 3 questions |  |
+| 6 | 1 question + timepick | Сервисное обслуживание |
+| 7 | 2 questions + timepick |  |
+| 8 | 3 questions + timepick | Тест драйв |
+| 9 | 1 question + map |  |
+| 10 | 2 questions + map |  |
+| 11 | 3 questions + map |  |
+| 12 | 1 question + timepick + map |  |
+| 13 | 2 questions + timepick + map |  |
+| 14 | 3 questions + timepick + map |  |
 
 ## Testing
 
@@ -693,9 +729,15 @@ plus addiotional field:
 
 ---
 
-### Adding new showroom
+### Adding new showroom chain
 
-**Path:** `get_cities.php, get_showrooms.php, add_showroom.php`
+**Request chain:** [Get cities](#get-cities) --> [Get showrooms](#city-choosing) --> [Add showroom](#add-new-showroom)
+
+---
+
+### Get cities
+
+**Path:** `get_cities.php`
 
 **Params:**
 
@@ -704,12 +746,65 @@ plus addiotional field:
 #### **Success response**
 
 ```json
+{
+  "result": "ok",
+  "cities": [
+    {
+      "id": "1",
+      "city_name": "Самара"
+    },
+    {
+      "id": "2",
+      "city_name": "Тольятти"
+    }
+  ]
+}
 ```
 
 #### **Failure response**
 
 ```json
+{
+  "error_code":"101",
+  "error_message":"Ошибка сервера. Не удалось получить список городов."
+}
 ```
+
+[**To table of contents**](#toyota-api)
+
+---
+
+### Add new showroom
+
+**Path:** `add_showroom.php`
+
+**Params:**
+
+- `user_id` - from memory
+- `showroom_id` - got on [previous step](#city-choosing)
+
+#### **Success response**
+
+```json
+{
+  "result":"ok",
+  "message":"Данный салон теперь появится в списке Ваших салонов."
+}
+```
+
+#### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "error_message":"Ошибка сервера."
+}
+```
+
+| Code | Message |
+|------|---------|
+| 104 | Не удалось проверить список клиентов салона |
+| 104 | Не удалось добавить салон |
 
 [**To table of contents**](#toyota-api)
 
@@ -749,9 +844,15 @@ plus addiotional field:
 
 ---
 
-### Change phone number
+### Change phone number chain
 
-**Path:** `register_phone.php, change_phone_number.php`
+**Request chain:** [Register phone](#phone-number-registration) --> [Change phone](#change-phone)
+
+---
+
+### Change phone
+
+**Path:** `change_phone_number.php`
 
 **Params:**
 
@@ -762,34 +863,169 @@ plus addiotional field:
 #### **Success response**
 
 ```json
+{
+  "result":"ok"
+}
 ```
 
 #### **Failure response**
 
 ```json
+{
+  "error_code":"104",
+  "error_message":"Ошибка сервера. Не удалось обновить номер телефона."
+}
 ```
 
 [**To table of contents**](#toyota-api)
 
 ---
 
-### Test Drive booking
+### Test Drive booking chain
 
-**Path:** `get_cities.php, get_cars_ftd.php, get_showrooms_list_ftd.php, get_service_id.php, get_free_time.php, book_service.php`
+**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get service id](#get-service-id) --> [Get free time](#getting-free-time) --> [Book service](#book-service)
+
+---
+
+### Get cars for test drive
+
+**Path:** `get_cars_ftd.php`
 
 **Params:**
 
 - `brand_id` - app constant
-- `city_id` - selected by user
+- `city_id` - got (selected by user) on [previous step](#get-cities)
 
 #### **Success response**
 
 ```json
+{
+  "result":"ok",
+  "cars": [
+    {
+      "id":"9",
+      "service_name":"Тойота LC 200"
+    },
+    {
+      "id":"10",
+      "service_name":"Тойота Camry"
+    }
+  ]
+}
 ```
 
 #### **Failure response**
 
 ```json
+{
+  "error_code":"104",
+  "error_message":"Ошибка сервера. Не удалось получить список автомобилей для тест драйва."
+}
+```
+
+[**To table of contents**](#toyota-api)
+
+---
+
+### Get showrooms for test drive
+
+**Path:** `get_showrooms_list_ftd.php`
+
+**Params:**
+
+- `brand_id` - app constant
+- `city_id` - selected by user
+- `service_id` - selected by user
+
+#### **Success response**
+
+```json
+{
+  "result":"ok",
+  "showrooms": [
+    {
+      "id":"1",
+      "showroom_name":"Тойота Центр Самара Юг"
+    },
+    {
+      "id":"2",
+      "showroom_name":"Тойота Центр Самара Север"
+    }
+  ]
+}
+```
+
+#### **Failure response**
+
+```json
+{
+  "error_code":"104",
+  "error_message":"Ошибка сервера. Не удалось получить список автосалонов с выбранным для тест драйва автомобилем."
+}
+```
+
+[**To table of contents**](#toyota-api)
+
+---
+
+### Get service id
+
+**Path:** `get_service_id.php`
+
+**Params:**
+
+- `showroom_id` - selected by user
+- `sid` - selected by user
+
+#### **Success response**
+
+```json
+{
+  "result":"ok",
+  "service_id":"24"
+}
+```
+
+#### **Failure response**
+
+```json
+{
+  "error_code":"104",
+  "error_message":"Ошибка сервера. Не удалось получить id услуги в выбранном автосалоне."
+}
+```
+
+[**To table of contents**](#toyota-api)
+
+---
+
+### Book service
+
+**Path:** `book_service.php`
+
+**Params:**
+
+- `user_id` - from memory
+- `showroom_id` - selected by user
+- `service_id` - selected by user
+- `date_booking` - selected by user
+- `start_booking` - selected by user
+
+#### **Success response**
+
+```json
+{
+  "result":"ok"
+}
+```
+
+#### **Failure response**
+
+```json
+{
+  "error_code":"104",
+  "error_message":"different options"
+}
 ```
 
 [**To table of contents**](#toyota-api)
