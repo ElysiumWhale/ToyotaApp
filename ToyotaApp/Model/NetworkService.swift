@@ -9,7 +9,7 @@ class NetworkService {
     private init() {
         #warning("MAKE ME HTTPS!")
         //To turn off delete dictionary AppTransportSecuritySettings in info.plist
-        mainUrl = MainURL.buildHttp()
+        mainUrl = MainURL.build()
     }
     
     func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T:Codable {
@@ -56,5 +56,11 @@ class NetworkService {
         request.httpBody = Data(data!.utf8)
         
         return request
+    }
+    
+    func buildImageUrl(_ path: String) -> URL {
+        var query = MainURL.buildImageUrl()
+        query.path.append(path)
+        return query.url!
     }
 }

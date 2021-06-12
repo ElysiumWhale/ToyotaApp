@@ -79,20 +79,21 @@ struct MainURL {
     private static let https = "https"
     private static let host = "cv39623.tmweb.ru"
     private static let path = "/avtosalon/mobile/"
+    private static let imgPath = "/avtosalon/"
     
-    static func buildHttp() -> URLComponents {
+    static func build(isSecure: Bool = false) -> URLComponents {
         var res = URLComponents()
-        res.scheme = http
+        res.scheme = isSecure ? https : http
         res.host = host
         res.path = path
         return res
     }
     
-    static func buildHttps() -> URLComponents {
+    static func buildImageUrl(isSecure: Bool = false) -> URLComponents {
         var res = URLComponents()
-        res.scheme = https
+        res.scheme = isSecure ? https : http
         res.host = host
-        res.path = path
+        res.path = imgPath
         return res
     }
 }
