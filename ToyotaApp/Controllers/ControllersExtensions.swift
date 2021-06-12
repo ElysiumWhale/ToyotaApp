@@ -128,9 +128,19 @@ extension BackgroundText {
         label.numberOfLines = 0;
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center;
-        label.font = UIFont(name: "ToyotaType-Semibold", size: 25)
+        label.font = UIFont.toyotaSemiBold(of: 25)
         label.sizeToFit()
         return label
     }
+    
+    func createBackground(buttonText: String, action: @escaping () -> Void) -> UIButton {
+        let button = RoundedButton()
+        button.setTitle(buttonText, for: .normal)
+        button.addAction(action)
+        button.backgroundColor = .init(red: 171, green: 97, blue: 99, alpha: 1)
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.toyotaSemiBold(of: 18)
+        button.sizeToFit()
+        return button
     }
 }

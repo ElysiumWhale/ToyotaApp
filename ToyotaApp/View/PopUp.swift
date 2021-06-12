@@ -5,7 +5,7 @@ import UIKit
 class PopUp {
     private init() { }
     
-    static let mainRedColor: EKColor = .init(red: 171, green: 97, blue: 99)
+    static let mainRedColor: EKColor = .init(UIColor.mainAppTint)
     
     class func displayChoice(with title: String, description: String, confirmText: String, declineText: String, confirmCompletion: @escaping () -> Void) {
         let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
@@ -43,7 +43,7 @@ class PopUp {
     }()
     
     class private func createButtons(_ confirmText: String, _ declineText: String, _ confirmCompletion: @escaping () -> Void) -> EKProperty.ButtonBarContent {
-        let buttonFont = EKProperty.LabelStyle(font: UIFont(name: "ToyotaType-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20), color: .white)
+        let buttonFont = EKProperty.LabelStyle(font: UIFont.toyotaSemiBold(of: 20), color: .white)
         let confirmButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: confirmText, style: buttonFont), backgroundColor: mainRedColor, highlightedBackgroundColor: .clear, action: confirmCompletion)
         let declineButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: declineText, style: buttonFont), backgroundColor: mainRedColor, highlightedBackgroundColor: .clear, action: { SwiftEntryKit.dismiss() })
         

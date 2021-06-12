@@ -59,3 +59,45 @@ extension UIControl {
         addAction(UIAction { (action: UIAction) in closure() }, for: controlEvents)
     }
 }
+
+//MARK: - UIPicker
+extension UIPickerView {
+    func configurePicker<T>(with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+        self.dataSource = delegate
+        self.delegate = delegate
+        textField.inputAccessoryView = UIToolbar.buildToolBar(for: delegate, with: action)
+        textField.inputView = self
+    }
+}
+
+//MARK: UIToolBar
+extension UIToolbar {
+    static func buildToolBar<T>(for delegate: T, with action: Selector) -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: delegate, action: nil)
+        let doneButton = UIBarButtonItem(title: CommonText.choose, style: .done, target: delegate, action: action)
+        toolBar.setItems([flexible, doneButton], animated: true)
+        return toolBar
+    }
+}
+
+//MARK: Fonts
+extension UIFont {
+    static func toyotaSemiBold(of size: CGFloat) -> UIFont {
+        return UIFont(name: "ToyotaType-Semibold", size: size)!
+    }
+    
+    static func toyotaLight(of size: CGFloat) -> UIFont {
+        return UIFont(name: "ToyotaType-Light", size: size)!
+    }
+    
+    #warning("todo: rest fonts")
+}
+
+//MARK: Main app tint
+extension UIColor {
+    static var mainAppTint: UIColor {
+        return UIColor(red: 171, green: 97, blue: 99, alpha: 1)
+    }
+}
