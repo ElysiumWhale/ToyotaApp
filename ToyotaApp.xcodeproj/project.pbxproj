@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
+		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 		A791FDE225266F2700A595BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */,
 				1467F78825D339DF00E318D3 /* UIExtensions.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
@@ -539,6 +542,7 @@
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
+				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
 				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
