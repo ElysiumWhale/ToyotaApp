@@ -166,7 +166,8 @@ extension ServicesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! ServiceCollectionViewCell
         let serviceType = serviceTypes[indexPath.row]
-        cell.configure(with: serviceType.serviceTypeName, type: ServicesControllers(rawValue: serviceType.controlTypeId)!)
+        //cell.configure(with: serviceType.serviceTypeName, type: ServicesControllers(rawValue: serviceType.controlTypeId)!)
+        cell.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
         return cell
     }
 }
@@ -174,12 +175,10 @@ extension ServicesViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        #warning("todo: Rework for special types")
-        if let cell = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell {
-            guard let type = AppViewControllers.ServicesMap.map[cell.serviceType] else { return }
-            guard let vc = type.init(nibName: String(describing: type), bundle: Bundle.main) as? ServicesMapped else { return }
-            vc.configure(with: serviceTypes[indexPath.row], car: selectedCar!)
-            navigationController?.pushViewController(vc as! UIViewController, animated: true)
+        if let _ = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell,
+           let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId) {
+            let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row], for: serviceType, user: user)
+            navigationController?.pushViewController(controller as! UIViewController, animated: true)
         }
     }
     

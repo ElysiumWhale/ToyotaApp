@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
+		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
+		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
@@ -19,6 +21,7 @@
 		1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCVC.swift */; };
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
+		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */; };
 		14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */; };
 		14A8D8952617C25F0086BC12 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Test.swift */; };
@@ -80,6 +83,8 @@
 /* Begin PBXFileReference section */
 		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
+		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDefaultsKeyClasses.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		1467F79925DD73BC00E318D3 /* OrderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCVC.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
 		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
 		14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpOnRoadViewController.xib; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
@@ -264,6 +270,7 @@
 		A75946A22523ECD400312EBE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				A77B9311253B035F0011282E /* APIResponses.swift */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
@@ -326,6 +333,8 @@
 				143CF0AA266CF90F00811FA3 /* Old */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
+				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
+				149CC28626765AB700B5172A /* TimePickerModule.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -495,6 +504,7 @@
 			files = (
 				A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
+				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
@@ -517,6 +527,7 @@
 				A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */,
 				1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
+				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
@@ -530,6 +541,7 @@
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
+				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */,

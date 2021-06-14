@@ -112,9 +112,10 @@ public struct CellIdentifiers {
     static let OrderCell = "OrderCell"
 }
 
-#warning("todo: make string file")
+#warning("todo: make .strings file")
 public struct CommonText {
     static let save = "Сохранить"
+    static let success = "Успех"
     static let cancel = "Отмена"
     static let ok = "Ок"
     static let error = "Ошибка"
@@ -153,4 +154,12 @@ public struct TimeMap {
         37:.init(hour: 18, minute: 30),
         38:.init(hour: 19, minute: 00)
     ]
+    
+    static func getFullSchedule() -> [DateComponents] {
+        var times: [DateComponents] = []
+        for key in 18...38 {
+            times.append(map[key]!)
+        }
+        return times
+    }
 }
