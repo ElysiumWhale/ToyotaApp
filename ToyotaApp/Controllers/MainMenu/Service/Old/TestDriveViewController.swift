@@ -17,9 +17,3 @@ class TestDriveViewController: UIViewController {
         indicator.isHidden = true
     }
 }
-
-extension TestDriveViewController: ServicesMapped {
-    func configure(with service: ServiceType, car: Car) {
-        serviceType = service
-    }
-}

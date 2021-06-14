@@ -71,13 +71,18 @@ public struct AppViewControllers {
     
     static let constructor = "ConstructorViewController"
     
-    struct ServicesMap {
+    struct ServicesMapOld {
         static let map: [ServicesControllers:UIViewController.Type] =
             [.TestDriveViewController:TestDriveViewController.self,
-             .ServiceMaintenanceViewController:ServiceMaintenanceViewController.self,
-             .RepairngViewController:RepairingViewController.self,
              .HelpOnRoadViewController:HelpOnRoadViewController.self]
     }
+    
+//    struct ServicesMap {
+//        static let map: [String:UIViewController.Type] =
+//            ["1":BaseServiceViewController.self,
+//             "2":TwoPicksServiceController.self,
+//             "3":ThreePicksServiceController.self]
+//    }
 }
 
 public struct SegueIdentifiers {

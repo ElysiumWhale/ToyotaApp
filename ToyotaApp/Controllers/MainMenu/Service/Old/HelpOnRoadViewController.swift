@@ -41,14 +41,6 @@ class HelpOnRoadViewController: UIViewController {
     }
 }
 
-//MARK: - ServicesMapped
-extension HelpOnRoadViewController: ServicesMapped {
-    func configure(with service: ServiceType, car: Car) {
-        serviceType = service
-        selectedCar = car
-    }
-}
-
 //MARK: - CLLocationManagerDelegate
 extension HelpOnRoadViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

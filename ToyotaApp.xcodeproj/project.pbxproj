@@ -9,11 +9,8 @@
 /* Begin PBXBuildFile section */
 		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
-		1401F24325C0B28700E96D05 /* ServiceMaintenanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */; };
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */; };
-		1449CDCA25C4A6A400BBDAAE /* RepairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */; };
-		1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78025D3355400E318D3 /* RoundedMKMapView.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
@@ -29,7 +26,6 @@
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
 		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
-		14C7E66726501770000B24B6 /* BaseServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C7E66526501770000B24B6 /* BaseServiceViewController.xib */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		A717CEB7252A210A00CFB6FF /* PhoneNumberKit-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB6252A210A00CFB6FF /* PhoneNumberKit-Static */; };
 		A717CEB9252A210A00CFB6FF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A717CEB8252A210A00CFB6FF /* PhoneNumberKit */; };
@@ -71,7 +67,6 @@
 		A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */; };
 		A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */; };
 		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
-		A793EEF6257F18A40094DF09 /* ServiceMaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */; };
 		A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A085F4255C7BC600807225 /* UserInfo.swift */; };
 		A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7A085FC255C869C00807225 /* SwiftEntryKit */; };
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
@@ -85,11 +80,8 @@
 /* Begin PBXFileReference section */
 		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
-		1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceMaintenanceViewController.xib; sourceTree = "<group>"; };
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDefaultsKeyClasses.swift; sourceTree = "<group>"; };
-		1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairingViewController.swift; sourceTree = "<group>"; };
-		1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepairingViewController.xib; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		1467F78025D3355400E318D3 /* RoundedMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedMKMapView.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -104,7 +96,6 @@
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
 		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
-		14C7E66526501770000B24B6 /* BaseServiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseServiceViewController.xib; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldExtension.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -146,7 +137,6 @@
 		A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Semibold.ttf"; sourceTree = "<group>"; };
 		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
 		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
-		A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMaintenanceViewController.swift; sourceTree = "<group>"; };
 		A7A085F4255C7BC600807225 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCVC.swift; sourceTree = "<group>"; };
@@ -174,13 +164,19 @@
 		1401F23525C0A06B00E96D05 /* Services Views */ = {
 			isa = PBXGroup;
 			children = (
-				14C7E66526501770000B24B6 /* BaseServiceViewController.xib */,
-				1401F24225C0B28700E96D05 /* ServiceMaintenanceViewController.xib */,
 				1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */,
 				14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */,
-				1449CDC925C4A6A400BBDAAE /* RepairingViewController.xib */,
 			);
 			path = "Services Views";
+			sourceTree = "<group>";
+		};
+		143CF0AA266CF90F00811FA3 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
+				14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */,
+			);
+			path = Old;
 			sourceTree = "<group>";
 		};
 		1495723B25B9FEAB0031A5AA /* Cells */ = {
@@ -327,12 +323,9 @@
 		A791FDDA2524E19300A595BB /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				143CF0AA266CF90F00811FA3 /* Old */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
-				A793EEF5257F18A40094DF09 /* ServiceMaintenanceViewController.swift */,
-				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
-				14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */,
-				1449CDC825C4A6A400BBDAAE /* RepairingViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -472,7 +465,6 @@
 				14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */,
 				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
 				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
-				1401F24325C0B28700E96D05 /* ServiceMaintenanceViewController.xib in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
 				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
@@ -490,9 +482,7 @@
 				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
 				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
 				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
-				1449CDCB25C4A6A400BBDAAE /* RepairingViewController.xib in Resources */,
 				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
-				14C7E66726501770000B24B6 /* BaseServiceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +499,6 @@
 				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
-				1449CDCA25C4A6A400BBDAAE /* RepairingViewController.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
@@ -517,7 +506,6 @@
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */,
-				A793EEF6257F18A40094DF09 /* ServiceMaintenanceViewController.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,

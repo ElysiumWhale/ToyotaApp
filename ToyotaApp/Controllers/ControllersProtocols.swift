@@ -25,8 +25,3 @@ extension WithUserInfo {
     func unsubscribe(from proxy: UserProxy) { }
     func userDidUpdate() { }
 }
-
-///Protocol for configuring Service controllers with XIBs
-protocol ServicesMapped {
-    func configure(with service: ServiceType, car: Car)
-}
