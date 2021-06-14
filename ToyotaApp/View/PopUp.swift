@@ -5,23 +5,30 @@ import UIKit
 class PopUp {
     private init() { }
     
-    static let mainRedColor: EKColor = .init(UIColor.mainAppTint)
+    static let mainRedColor: EKColor = .init(red: 171, green: 97, blue: 99)
     
     class func displayChoice(with title: String, description: String, confirmText: String, declineText: String, confirmCompletion: @escaping () -> Void) {
-        let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
-        let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
-        SwiftEntryKit.display(entry: EKAlertMessageView(with: .init(simpleMessage: .init(title: titleLabel, description: descrLabel), buttonBarContent: createButtons(confirmText, declineText, confirmCompletion))), using: attributesPreset)
+        DispatchQueue.main.async {
+            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize:  20), color: EKColor(light: .white, dark: .white), alignment: .center))
+            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font:  UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
+            SwiftEntryKit.display(entry: EKAlertMessageView(with: .init(simpleMessage: .init(title: titleLabel, description:    descrLabel), buttonBarContent: createButtons(confirmText, declineText, confirmCompletion))), using:     attributesPreset)
+        }
     }
     
-    class func displayMessage(with title: String, description: String, buttonText: String) {
-        SwiftEntryKit.display(entry: EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description, buttonText: buttonText)), using: attributesPreset)
+    class func displayMessage(with title: String, description: String, buttonText: String, dismissCompletion: @escaping () -> Void = { }) {
+        DispatchQueue.main.async {
+            SwiftEntryKit.display(entry: EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description, buttonText: buttonText, dismissCompletion)), using: attributesPreset)
+        }
     }
     
-    class private func popUpMessagePreset(title: String, description: String, buttonText: String) -> EKPopUpMessage {
+    class private func popUpMessagePreset(title: String, description: String, buttonText: String, _ dismissCompletion: @escaping () -> Void = { }) -> EKPopUpMessage {
             let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
             let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
             let button = EKProperty.ButtonContent(label: .init(text: buttonText, style: .init(font: UIFont.boldSystemFont(ofSize: 20), color: mainRedColor)), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear)
-            return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button, action: { SwiftEntryKit.dismiss() })
+            return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button) {
+                dismissCompletion()
+                SwiftEntryKit.dismiss()
+            }
     }
     
     private static var attributesPreset: EKAttributes = {
