@@ -136,7 +136,7 @@ class TimePickerModule: NSObject, IServiceModule {
     
     func buildQueryItems() -> [URLQueryItem] {
         if let (date, time) = selectedDate {
-            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date), URLQueryItem(name: RequestKeys.Services.startBooking, value: time)]
+            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date), URLQueryItem(name: RequestKeys.Services.startBooking, value: String(describing: TimeMap.serverMap[time]))]
         } else { return [] }
     }
     
@@ -158,7 +158,7 @@ class TimePickerModule: NSObject, IServiceModule {
             guard let dateDebug = formatter.date(from: date), dateDebug > Date() else { continue }
             var freeHoursMinutes = [DateComponents]()
             for time in times {
-                if let trueTime = TimeMap.map[time] { freeHoursMinutes.append(trueTime) }
+                if let trueTime = TimeMap.clientMap[time] { freeHoursMinutes.append(trueTime) }
             }
             dates.append(FreeTime(date: dateDebug, freeTime: freeHoursMinutes))
         }

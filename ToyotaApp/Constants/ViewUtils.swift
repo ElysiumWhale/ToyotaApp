@@ -68,21 +68,6 @@ public struct AppViewControllers {
     static let offers = "OffersViewController"
     static let services = "ServicesViewController"
     static let myCar = "MyCarViewController"
-    
-    static let constructor = "ConstructorViewController"
-    
-    struct ServicesMapOld {
-        static let map: [ServicesControllers:UIViewController.Type] =
-            [.TestDriveViewController:TestDriveViewController.self,
-             .HelpOnRoadViewController:HelpOnRoadViewController.self]
-    }
-    
-//    struct ServicesMap {
-//        static let map: [String:UIViewController.Type] =
-//            ["1":BaseServiceViewController.self,
-//             "2":TwoPicksServiceController.self,
-//             "3":ThreePicksServiceController.self]
-//    }
 }
 
 public struct SegueIdentifiers {
@@ -131,35 +116,55 @@ public struct CommonText {
 }
 
 public struct TimeMap {
-    static let map: [Int:DateComponents] = [
-        18:.init(hour: 9, minute: 00),
-        19:.init(hour: 9, minute: 30),
-        20:.init(hour: 10, minute: 00),
-        21:.init(hour: 10, minute: 30),
-        22:.init(hour: 11, minute: 00),
-        23:.init(hour: 11, minute: 30),
-        24:.init(hour: 12, minute: 00),
-        25:.init(hour: 12, minute: 30),
-        26:.init(hour: 13, minute: 00),
-        27:.init(hour: 13, minute: 30),
-        28:.init(hour: 14, minute: 00),
-        29:.init(hour: 14, minute: 30),
-        30:.init(hour: 15, minute: 00),
-        31:.init(hour: 15, minute: 30),
-        32:.init(hour: 16, minute: 00),
-        33:.init(hour: 16, minute: 30),
-        34:.init(hour: 17, minute: 00),
-        35:.init(hour: 17, minute: 30),
-        36:.init(hour: 18, minute: 00),
-        37:.init(hour: 18, minute: 30),
-        38:.init(hour: 19, minute: 00)
-    ]
-    
     static func getFullSchedule() -> [DateComponents] {
         var times: [DateComponents] = []
         for key in 18...38 {
-            times.append(map[key]!)
+            times.append(clientMap[key]!)
         }
         return times
     }
+    
+    static let clientMap: [Int:DateComponents] = [
+        14:.init(hour: 7, minute: 00), 15:.init(hour: 7, minute: 30),
+        16:.init(hour: 8, minute: 00), 17:.init(hour: 8, minute: 30),
+        18:.init(hour: 9, minute: 00), 19:.init(hour: 9, minute: 30),
+        20:.init(hour: 10, minute: 00), 21:.init(hour: 10, minute: 30),
+        22:.init(hour: 11, minute: 00), 23:.init(hour: 11, minute: 30),
+        24:.init(hour: 12, minute: 00), 25:.init(hour: 12, minute: 30),
+        26:.init(hour: 13, minute: 00), 27:.init(hour: 13, minute: 30),
+        28:.init(hour: 14, minute: 00), 29:.init(hour: 14, minute: 30),
+        30:.init(hour: 15, minute: 00), 31:.init(hour: 15, minute: 30),
+        32:.init(hour: 16, minute: 00), 33:.init(hour: 16, minute: 30),
+        34:.init(hour: 17, minute: 00), 35:.init(hour: 17, minute: 30),
+        36:.init(hour: 18, minute: 00), 37:.init(hour: 18, minute: 30),
+        38:.init(hour: 19, minute: 00), 39:.init(hour: 19, minute: 30),
+        40:.init(hour: 20, minute: 00), 41:.init(hour: 20, minute: 30)
+    ]
+    
+    static let serverMap: [String:Int] = [
+        "00:00":0, "00:30":1,
+        "01:00":2, "01:30":3,
+        "02:00":4, "02:30":5,
+        "03:00":6, "03:30":7,
+        "04:00":8, "04:30":9,
+        "05:00":10, "05:30":11,
+        "06:00":12, "06:30":13,
+        "07:00":14, "07:30":15,
+        "08:00":16, "08:30":17,
+        "09:00":18, "09:30":19,
+        "10:00":20, "10:30":21,
+        "11:00":22, "11:30":23,
+        "12:00":24, "12:30":25,
+        "13:00":26, "13:30":27,
+        "14:00":28, "14:30":29,
+        "15:00":30, "15:30":31,
+        "16:00":32, "16:30":33,
+        "17:00":34, "17:30":35,
+        "18:00":36, "18:30":37,
+        "19:00":38, "19:30":39,
+        "20:00":40, "20:30":41,
+        "21:00":42, "21:30":43,
+        "22:00":44, "22:30":45,
+        "23:00":46, "23:30":47
+    ]
 }
