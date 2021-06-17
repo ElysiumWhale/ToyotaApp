@@ -53,7 +53,7 @@ class TimePickerView: UIView {
     }
     
     override class var requiresConstraintBasedLayout: Bool {
-      return true
+        return true
     }
     
     func dataDidDownload() {

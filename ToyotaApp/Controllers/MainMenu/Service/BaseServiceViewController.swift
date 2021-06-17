@@ -2,7 +2,7 @@ import UIKit
 
 ///Unit for particular control logic realization.
 ///Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
-protocol IServiceModule: NSObject {
+protocol IServiceModule: AnyObject {
     var view: UIView? { get }
     var serviceType: ServiceType { get }
     var result: Result<Service, ErrorResponse>? { get }

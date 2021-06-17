@@ -4,6 +4,16 @@ import MapKit
 
 //MARK: - View
 class MapModuleView: UIView {
+    private(set) lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.toyotaSemiBold(of: 20)
+        label.textAlignment = .left
+        label.text = "Укажите местоположение"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private(set) lazy var map: MKMapView = {
         let map = MKMapView()
         map.mapType = .hybrid
@@ -28,22 +38,26 @@ class MapModuleView: UIView {
     }
     
     private func configureSubviews() {
+        addSubview(label)
         addSubview(map)
         setupLayout()
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            map.topAnchor.constraint(equalTo: topAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            map.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             map.leadingAnchor.constraint(equalTo: leadingAnchor),
-            map.leadingAnchor.constraint(equalTo: trailingAnchor),
+            map.trailingAnchor.constraint(equalTo: trailingAnchor),
             map.bottomAnchor.constraint(equalTo: bottomAnchor),
-            map.heightAnchor.constraint(equalToConstant: 400)
+            map.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
     
     override class var requiresConstraintBasedLayout: Bool {
-      return true
+        return true
     }
 }
 
@@ -54,8 +68,8 @@ class MapModule: NSObject, IServiceModule {
     private lazy var internalView: MapModuleView = {
         let map = MapModuleView()
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.map.delegate = self
         map.isHidden = true
+        map.map.delegate = self
         return map
     }()
     
@@ -74,25 +88,23 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func start(with params: [URLQueryItem]) {
-        DispatchQueue.main.async { [self] in
-            let locManager = CLLocationManager()
-            locManager.delegate = self
-            internalView.fadeIn(0.6)
-            if CLLocationManager.locationServicesEnabled() {
-                internalView.map.showsUserLocation = true
-                locationManager = locManager
-                locationManager.startUpdatingLocation()
-                if let coordinate = locationManager.location?.coordinate {
-                    zoomToUserLocation(coordinate)
-                }
-                result = .success(Service(id: "0", serviceName: "Success"))
-                delegate?.moduleDidUpdated(self)
-            } else {
-                PopUp.displayMessage(with: "Предупреждение", description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции", buttonText: CommonText.ok)
-                internalView.map.isUserInteractionEnabled = false
-                result = .failure(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
-                delegate?.moduleDidUpdated(self)
+        let locManager = CLLocationManager()
+        locManager.delegate = self
+        internalView.fadeIn(0.6)
+        if CLLocationManager.locationServicesEnabled() {
+            internalView.map.showsUserLocation = true
+            locationManager = locManager
+            locationManager.startUpdatingLocation()
+            if let coordinate = locationManager.location?.coordinate {
+                zoomToUserLocation(coordinate)
             }
+            result = .success(Service(id: "0", serviceName: "Success"))
+            delegate?.moduleDidUpdated(self)
+        } else {
+            PopUp.displayMessage(with: "Предупреждение", description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции", buttonText: CommonText.ok)
+            internalView.map.isUserInteractionEnabled = false
+            result = .failure(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
+            delegate?.moduleDidUpdated(self)
         }
     }
     
