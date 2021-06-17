@@ -74,6 +74,8 @@ struct RequestKeys {
         static let serviceId = "sid"//"service_id"
         static let dateBooking = "date_booking"
         static let startBooking = "start_booking"
+        static let longitude = "longitude"
+        static let latitude = "latitude"
     }
 }
 

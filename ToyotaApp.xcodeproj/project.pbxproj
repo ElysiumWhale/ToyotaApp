@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1401F23725C0A0E000E96D05 /* TestDriveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */; };
 		1401F23A25C0A13700E96D05 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401F23925C0A13700E96D05 /* TestDriveViewController.swift */; };
+		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDriveViewController.xib; sourceTree = "<group>"; };
 		1401F23925C0A13700E96D05 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
 				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
 				149CC28626765AB700B5172A /* TimePickerModule.swift */,
+				14025193267AAB89006CF4E2 /* MapModule.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
+				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				1495724225B9FF940031A5AA /* NewsModel.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
