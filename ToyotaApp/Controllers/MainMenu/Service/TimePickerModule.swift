@@ -60,18 +60,16 @@ class TimePickerView: UIView {
         DispatchQueue.main.async { [self] in
             datePicker.selectRow(0, inComponent: 0, animated: false)
             datePicker.reloadAllComponents()
-            isHidden = false
-            dateTimeLabel.isHidden = false
-            datePicker.isHidden = false
+            fadeIn(0.6)
         }
     }
 }
 
-//MARK:  - Module
+//MARK: - Module
 class TimePickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
     
-    private(set) lazy var internalView: TimePickerView = {
+    private lazy var internalView: TimePickerView = {
         let view = TimePickerView()
         view.datePicker.delegate = self
         view.datePicker.dataSource = self
@@ -140,10 +138,6 @@ class TimePickerModule: NSObject, IServiceModule {
         } else { return [] }
     }
     
-    func configure(for controller: IServiceController) {
-        delegate = controller
-    }
-    
     private func updateDates(from dict: [String:[Int]]?) {
         guard let dict = dict, !dict.isEmpty else {
             var date = Date()
@@ -155,12 +149,12 @@ class TimePickerModule: NSObject, IServiceModule {
         }
         
         for (date, times) in dict {
-            guard let dateDebug = formatter.date(from: date), dateDebug > Date() else { continue }
+            guard let parsedDate = formatter.date(from: date), parsedDate > Date() else { continue }
             var freeHoursMinutes = [DateComponents]()
             for time in times {
                 if let trueTime = TimeMap.clientMap[time] { freeHoursMinutes.append(trueTime) }
             }
-            dates.append(FreeTime(date: dateDebug, freeTime: freeHoursMinutes))
+            dates.append(FreeTime(date: parsedDate, freeTime: freeHoursMinutes))
         }
     }
 }

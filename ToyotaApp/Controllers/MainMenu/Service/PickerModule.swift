@@ -54,7 +54,7 @@ class PickerModuleView: UIView {
     }
     
     override class var requiresConstraintBasedLayout: Bool {
-      return true
+        return true
     }
 }
 
@@ -100,9 +100,9 @@ class PickerModule: NSObject, IServiceModule {
                     result = .failure(ErrorResponse(code: "-1", message: error.message ?? "Ошибка при выполнении запроса"))
                     delegate?.moduleDidUpdated(self)
                 case .success(let data):
-                    array = data.services
+                    array = data.services.isEmpty ? [Service(id: "-1", serviceName: "Нет доступных сервисов")] : data.services
                     DispatchQueue.main.async { [weak self] in
-                        self?.internalView.isHidden = false
+                        self?.internalView.fadeIn(0.6)
                         self?.internalView.servicePicker.reloadAllComponents()
                     }
             }
@@ -125,10 +125,6 @@ class PickerModule: NSObject, IServiceModule {
                 return []
         }
     }
-    
-    func configure(for controller: IServiceController) {
-        delegate = controller
-    }
 }
 
 //MARK: - UIPickerViewDataSource
@@ -143,8 +139,16 @@ extension PickerModule: UIPickerViewDataSource {
 //MARK: - UIPickerViewDelegate
 extension PickerModule: UIPickerViewDelegate {
     @IBAction func serviceDidSelect(sender: Any?) {
-        guard let array = array else { return }
+        guard let array = array, !array.isEmpty else {
+            view?.endEditing(true)
+            return
+        }
         let index = internalView.servicePicker.selectedRow(inComponent: 0)
+        if array[index].id == "-1" {
+            view?.endEditing(true)
+            return
+        }
+        i = 1 //costyl
         result = .success(array[index])
         internalView.textField.text = array[index].serviceName
         internalView.endEditing(true)

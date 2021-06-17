@@ -24,14 +24,20 @@ class ServiceModuleBuilder {
         var modules: [IServiceModule] = []
         switch controlType {
             case .notDefined: break
+            case .map:
+                modules.append(MapModule(with: serviceType, for: controller))
             case .onePick:
                 modules.append(PickerModule(with: serviceType, for: controller))
             case .onePickMap:
                 modules.append(PickerModule(with: serviceType, for: controller))
+                modules.append(MapModule(with: serviceType, for: controller))
             case .onePickTime:
                 modules.append(PickerModule(with: serviceType, for: controller))
                 modules.append(TimePickerModule(with: serviceType, for: controller))
-            #warning("todo: rest types")
+            case .onePickTimeMap:
+                modules.append(PickerModule(with: serviceType, for: controller))
+                modules.append(TimePickerModule(with: serviceType, for: controller))
+                modules.append(MapModule(with: serviceType, for: controller))
             default: break
         }
         controller.configure(with: serviceType, modules: modules, user: user)

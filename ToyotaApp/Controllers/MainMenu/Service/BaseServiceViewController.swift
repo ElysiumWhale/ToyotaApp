@@ -10,7 +10,6 @@ protocol IServiceModule: NSObject {
     func start(with params: [URLQueryItem])
     func buildQueryItems() -> [URLQueryItem]
     func configureViewText(with labelText: [String])
-    func configure(for delegate: IServiceController)
 }
 
 ///Controller which manages `IServiceModule`s.
@@ -80,7 +79,7 @@ class BaseServiceController: UIViewController, IServiceController {
                 case .success:
                     if let index = modules.firstIndex(where: { $0 === module }) {
                         if index + 1 == modules.count {
-                            bookButton.isHidden = false
+                            bookButton.fadeIn(0.6)
                             return
                         }
                         hideModules(after: index + 1)
@@ -93,7 +92,7 @@ class BaseServiceController: UIViewController, IServiceController {
     private func hideModules(after index: Int) {
         if index < modules.count - 1 {
             for index in index...modules.count-1 {
-                modules[index].view?.isHidden = true
+                modules[index].view?.fadeOut(0.6)
             }
         }
     }
@@ -113,16 +112,14 @@ class BaseServiceController: UIViewController, IServiceController {
         NetworkService.shared.makePostRequest(page: RequestPath.Services.bookService, params: params, completion: completion)
         
         func completion(for response: Result<Response, ErrorResponse>) {
-            //DispatchQueue.main.async { [self] in
-                switch response {
-                    case .success:
-                        PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [self] in
-                            navigationController?.popViewController(animated: true)
-                        }
-                    case .failure(let error):
-                        PopUp.displayMessage(with: CommonText.error, description: error.message ?? CommonText.servicesError, buttonText: CommonText.ok)
-                }
-            //}
+            switch response {
+                case .success:
+                    PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [self] in
+                        navigationController?.popViewController(animated: true)
+                    }
+                case .failure(let error):
+                    PopUp.displayMessage(with: CommonText.error, description: error.message ?? CommonText.servicesError, buttonText: CommonText.ok)
+            }
         }
     }
 }
