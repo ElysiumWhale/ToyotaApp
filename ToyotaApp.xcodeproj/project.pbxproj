@@ -24,8 +24,6 @@
 		1495724225B9FF940031A5AA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495724125B9FF940031A5AA /* NewsModel.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
-		14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */; };
-		14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */; };
 		14A8D8952617C25F0086BC12 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Test.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
@@ -99,8 +97,6 @@
 		1495723E25B9FEE40031A5AA /* NewsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCVC.swift; sourceTree = "<group>"; };
 		1495724125B9FF940031A5AA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
-		14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadViewController.swift; sourceTree = "<group>"; };
-		14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpOnRoadViewController.xib; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				1401F23625C0A0E000E96D05 /* TestDriveViewController.xib */,
-				14A0AF1625C1D2460094952C /* HelpOnRoadViewController.xib */,
 			);
 			path = "Services Views";
 			sourceTree = "<group>";
@@ -184,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				1401F23925C0A13700E96D05 /* TestDriveViewController.swift */,
-				14A0AF1525C1D2460094952C /* HelpOnRoadViewController.swift */,
 			);
 			path = Old;
 			sourceTree = "<group>";
@@ -477,7 +471,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A0AF1825C1D2460094952C /* HelpOnRoadViewController.xib in Resources */,
 				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
 				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
@@ -527,7 +520,6 @@
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
-				14A0AF1725C1D2460094952C /* HelpOnRoadViewController.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* OrderTVC.swift in Sources */,
 				1443FDB1260BFAB6007CEBB1 /* WithDefaultsKeyClasses.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */,
