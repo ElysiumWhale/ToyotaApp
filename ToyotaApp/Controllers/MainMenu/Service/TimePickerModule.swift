@@ -124,7 +124,7 @@ class TimePickerModule: NSObject, IServiceModule {
                     result = .failure(ErrorResponse(code: "1", message: error.message ?? "Ошибка"))
                     delegate?.moduleDidUpdated(self)
                 case .success(let data):
-                    updateDates(from: data.freeTimeDict)
+                    prepareTime(from: data.freeTimeDict)
                     internalView.dataDidDownload()
                     result = .success(Service(id: "0", serviceName: "Success"))
                     delegate?.moduleDidUpdated(self)
@@ -138,23 +138,23 @@ class TimePickerModule: NSObject, IServiceModule {
         } else { return [] }
     }
     
-    private func updateDates(from dict: [String:[Int]]?) {
-        guard let dict = dict, !dict.isEmpty else {
-            var date = Date()
-            for _ in 1...60 {
-                dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
-                date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
-            }
-            return
-        }
+    private func prepareTime(from timeDict: [String:[Int]]?) {
+        let skipDictCheck = timeDict == nil || timeDict?.count == 0
+        var date = Date()
         
-        for (date, times) in dict {
-            guard let parsedDate = formatter.date(from: date), parsedDate > Date() else { continue }
-            var freeHoursMinutes = [DateComponents]()
-            for time in times {
-                if let trueTime = TimeMap.clientMap[time] { freeHoursMinutes.append(trueTime) }
+        for _ in 1...60 {
+            if skipDictCheck {
+                dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
+            } else {
+                if let times = timeDict?[formatter.string(from: date)] {
+                    let trueTimes = times.compactMap { TimeMap.clientMap[$0] }
+                    dates.append(FreeTime(date: date, freeTime: trueTimes))
+                } else {
+                    dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
+                }
             }
-            dates.append(FreeTime(date: parsedDate, freeTime: freeHoursMinutes))
+            
+            date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
         }
     }
 }
