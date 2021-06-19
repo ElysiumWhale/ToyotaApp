@@ -104,10 +104,10 @@ extension NavigationService {
     class func loadRegister(with profile: Profile, and cities: [City]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier:  AppViewControllers.personalInfo) as! PersonalInfoViewController
+            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as! PersonalInfoViewController
             pivc.configure(with: profile)
             
-            let dvc = regStoryboard.instantiateViewController(identifier:   AppViewControllers.dealer) as! DealerViewController
+            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController
             dvc.configure(cityList: cities)
             
             let controller = configureNavigationStack(with: [pivc, dvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
@@ -118,7 +118,7 @@ extension NavigationService {
     class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier:      AppViewControllers.personalInfo) as! PersonalInfoViewController
+            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as! PersonalInfoViewController
             pivc.configure(with: user.profile)
             
             let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController

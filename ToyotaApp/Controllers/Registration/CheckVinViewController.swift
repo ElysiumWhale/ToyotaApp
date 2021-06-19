@@ -24,21 +24,6 @@ class CheckVinViewController: UIViewController {
         vin = vinCodeTextField.text ?? ""
     }
     
-    private func displayError(_ message: String? = nil) {
-        DispatchQueue.main.async { [self] in
-            if let mes = message {
-                PopUp.displayMessage(with: CommonText.error, description: mes, buttonText: CommonText.ok)
-            }
-            vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
-            vinCodeTextField.layer.borderWidth = 1
-            errorLabel.isHidden = false
-            if checkVinButton.isHidden {
-                indicator.stopAnimating()
-                checkVinButton.isHidden = false
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
@@ -69,7 +54,13 @@ extension CheckVinViewController: SegueWithRequestController {
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard vin.count == 17 else {
-            displayError()
+            vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
+            vinCodeTextField.layer.borderWidth = 1
+            errorLabel.fadeIn(0.3)
+            if checkVinButton.isHidden {
+                indicator.stopAnimating()
+                checkVinButton.fadeIn(0.6)
+            }
             return
         }
         makeRequest(skip: .no, vin: vin)
@@ -83,8 +74,7 @@ extension CheckVinViewController: SegueWithRequestController {
     
     private func makeRequest(skip: SkipCheckVin, vin: String? = "") {
         indicator.startAnimating()
-        checkVinButton.isHidden = true
-        indicator.isHidden = false
+        checkVinButton.fadeOut(0.6)
         
         let userId = DefaultsManager.getUserInfo(UserId.self)!.id
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
@@ -100,8 +90,7 @@ extension CheckVinViewController: SegueWithRequestController {
         func failureCompletion(_ error: ErrorResponse) {
             displayError(with: error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова") { [self] in
                 indicator.stopAnimating()
-                indicator.isHidden = true
-                checkVinButton.isHidden = false
+                checkVinButton.fadeIn(0.6)
             }
         }
         
@@ -116,9 +105,8 @@ extension CheckVinViewController: SegueWithRequestController {
                             performSegue(for: segueCode)
                         case .update(let proxy):
                             proxy.update(car, showroom!)
-                            DispatchQueue.main.async { [self] in
+                            popToRootWithDispatch(animated: true) {
                                 PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
-                                navigationController?.popToRootWithDispatch(animated: true)
                             }
                     }
                 } else {
