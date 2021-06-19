@@ -84,7 +84,7 @@ class TimePickerModule: NSObject, IServiceModule {
             let rowInFirst = internalView.datePicker.selectedRow(inComponent: 0)
             let rowInSecond = internalView.datePicker.selectedRow(inComponent: 1)
             let date = dates[rowInFirst]
-            return (formatter.string(from: date.date), date.freeTime[rowInSecond].getHourAndMinute())
+            return (DateFormatter.server.string(from: date.date), date.freeTime[rowInSecond].getHourAndMinute())
         } else { return nil }
     }
     
@@ -146,7 +146,7 @@ class TimePickerModule: NSObject, IServiceModule {
             if skipDictCheck {
                 dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
             } else {
-                if let times = timeDict?[formatter.string(from: date)] {
+                if let times = timeDict?[DateFormatter.server.string(from: date)] {
                     let trueTimes = times.compactMap { TimeMap.clientMap[$0] }
                     dates.append(FreeTime(date: date, freeTime: trueTimes))
                 } else {
@@ -156,23 +156,6 @@ class TimePickerModule: NSObject, IServiceModule {
             
             date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
         }
-    }
-}
-
-//MARK: - Date formatters
-extension TimePickerModule {
-    private var formatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = .autoupdatingCurrent
-        return formatter
-    }
-    
-    private var displayFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        formatter.timeZone = .autoupdatingCurrent
-        return formatter
     }
 }
 
@@ -204,7 +187,7 @@ extension TimePickerModule: UIPickerViewDelegate {
         pickerLabel.textAlignment = .center
         switch component {
             case 0: pickerLabel.text = dates.isEmpty ? "Empty" :
-                    displayFormatter.string(from: dates[row].date)
+                    DateFormatter.display.string(from: dates[row].date)
             case 1: pickerLabel.text = dates.isEmpty ? "Empty" :
                     dates[internalView.datePicker.selectedRow(inComponent:0)].freeTime[row].getHourAndMinute()
             default: pickerLabel.text = "Empty"

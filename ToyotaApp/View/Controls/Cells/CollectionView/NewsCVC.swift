@@ -16,7 +16,7 @@ import Kingfisher
         showroomNameLabel.text = news.showroomName
         contentLabel.text = news.content
         titleLabel.text = news.title
-        dateLabel.text = DateFormatter.CommonDateFormatter.string(from: news.date)
+        dateLabel.text = DateFormatter.common.string(from: news.date)
         //guard let imageUrl = news.imgUrl else { newsImage.image = nil; return }
         newsImage.kf.indicatorType = .activity
         newsImage.isOpaque = false

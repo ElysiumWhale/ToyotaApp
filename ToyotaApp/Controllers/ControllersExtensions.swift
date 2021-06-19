@@ -36,28 +36,28 @@ extension UIViewController {
     
     func formatDate(from date: Date, withAssignTo textField: UITextField? = nil) -> String {
         if let textField = textField {
-            textField.text = DateFormatter.ClientDateFormatter.string(from: date)
+            textField.text = DateFormatter.client.string(from: date)
         }
-        return DateFormatter.ServerDateFormatter.string(from: date)
+        return DateFormatter.server.string(from: date)
     }
     
     func formatDateForServer(from date: Date) -> String {
-        DateFormatter.ServerDateFormatter.string(from: date)
+        DateFormatter.server.string(from: date)
     }
     
     func formatDateForClient(from string: String) -> String {
-        guard let date = DateFormatter.ServerDateFormatter.date(from: string) else {
-            return DateFormatter.ServerDateFormatter.string(from: Date())
+        guard let date = DateFormatter.server.date(from: string) else {
+            return DateFormatter.server.string(from: Date())
         }
-        return DateFormatter.ClientDateFormatter.string(from: date)
+        return DateFormatter.client.string(from: date)
     }
     
     func dateFromClient(date string: String) -> Date {
-        return DateFormatter.ClientDateFormatter.date(from: string) ?? Date()
+        return DateFormatter.client.date(from: string) ?? Date()
     }
     
     func dateFromServer(date string: String) -> Date {
-        return DateFormatter.ServerDateFormatter.date(from: string) ?? Date()
+        return DateFormatter.server.date(from: string) ?? Date()
     }
 }
 
