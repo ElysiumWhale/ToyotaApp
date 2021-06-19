@@ -116,9 +116,12 @@ public struct CommonText {
 }
 
 public struct TimeMap {
-    static func getFullSchedule() -> [DateComponents] {
+    static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []
         for key in 18...38 {
+            if let now = hour, clientMap[key]!.hour ?? -1 < now + 1 {
+                continue
+            }
             times.append(clientMap[key]!)
         }
         return times

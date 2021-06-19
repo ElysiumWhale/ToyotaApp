@@ -140,20 +140,22 @@ class TimePickerModule: NSObject, IServiceModule {
     
     private func prepareTime(from timeDict: [String:[Int]]?) {
         let skipDictCheck = timeDict == nil || timeDict?.count == 0
+        let hour = Calendar.current.component(.hour, from: Date())
+        var times = [DateComponents]()
         var date = Date()
         
+        if (hour < 21) {
+            times = TimeMap.getFullSchedule(after: hour)
+            dates.append(FreeTime(date: date, freeTime: times))
+        }
+        date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
+        
         for _ in 1...60 {
-            if skipDictCheck {
-                dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
-            } else {
-                if let times = timeDict?[DateFormatter.server.string(from: date)] {
-                    let trueTimes = times.compactMap { TimeMap.clientMap[$0] }
-                    dates.append(FreeTime(date: date, freeTime: trueTimes))
-                } else {
-                    dates.append(FreeTime(date: date, freeTime: TimeMap.getFullSchedule()))
-                }
+            times = TimeMap.getFullSchedule()
+            if !skipDictCheck, let dictTimes = timeDict?[DateFormatter.server.string(from: date)] {
+                times = dictTimes.compactMap { TimeMap.clientMap[$0] }
             }
-            
+            dates.append(FreeTime(date: date, freeTime: times))
             date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
         }
     }

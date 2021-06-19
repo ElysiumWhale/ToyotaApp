@@ -63,10 +63,12 @@ extension UIViewController {
 
 //MARK: - Error Displaying
 extension UIViewController {
-    func displayError(with text: String, beforePopUpAction: @escaping () -> Void = { }) {
+    func displayError(with text: String? = nil, beforePopUpAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
             beforePopUpAction()
-            PopUp.displayMessage(with: CommonText.error, description: text, buttonText: CommonText.ok)
+            if let errorText = text {
+                PopUp.displayMessage(with: CommonText.error, description: errorText, buttonText: CommonText.ok)
+            }
         }
     }
 }
@@ -106,11 +108,11 @@ extension UIViewController {
     }
 }
 
-extension UINavigationController {
+extension UIViewController {
     func popToRootWithDispatch(animated: Bool, beforeAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async { [self] in
             beforeAction()
-            popToRootViewController(animated: animated)
+            navigationController?.popToRootViewController(animated: animated)
         }
     }
 }
