@@ -22,6 +22,7 @@ class MyProfileViewController: UIViewController {
     
     private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
     private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
+    private let myManagersSegueCode = SegueIdentifiers.MyManagersSegueCode
     
     //MARK: - Properties
     #warning("todo: make optional")
@@ -150,14 +151,13 @@ class MyProfileViewController: UIViewController {
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case myCarsSegueCode:
-                let navVC = segue.destination as! UINavigationController
-                let destinationVC = navVC.topViewController as! WithUserInfo
-                destinationVC.setUser(info: user)
-            case settingsSegueCode:
-                let navVC = segue.destination as! UINavigationController
-                let settingsVC = navVC.topViewController as! WithUserInfo
-                settingsVC.setUser(info: user)
+            case myCarsSegueCode, settingsSegueCode:
+                let navVC = segue.destination as? UINavigationController
+                let destinationVC = navVC?.topViewController as? WithUserInfo
+                destinationVC?.setUser(info: user)
+            case myManagersSegueCode:
+                let destinationVC = segue.destination as? WithUserInfo
+                destinationVC?.setUser(info: user)
             default: return
         }
     }

@@ -80,6 +80,7 @@ public struct SegueIdentifiers {
     //MyProfile
     static let MyProfileToCars = "MyProfileToCars"
     static let MyProfileToSettings = "MyProfileToSettings"
+    static let MyManagersSegueCode = "MyProfileToManagers"
 }
 
 public struct CellIdentifiers {
@@ -87,6 +88,7 @@ public struct CellIdentifiers {
     static let NewsCell = "NewsCell"
     static let ServiceCell = "ServiceCell"
     static let OrderCell = "OrderCell"
+    static let ManagerCell = "ManagerCell"
 }
 
 #warning("todo: make .strings file")

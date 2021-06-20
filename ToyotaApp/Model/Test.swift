@@ -34,4 +34,9 @@ public class Test {
         }
         return result
     }
+    
+    class func CreateManagers() -> [Manager] {
+        return [Manager(id: "-1", userId: "", firstName: "Valery", secondName: "Aboba", lastName: "Aboba", phone: "8-800-535-35-35", email: "aboba.val@gmail.com", imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg", showroomName: "Тойота Самара Юг"),
+                Manager(id: "-1", userId: "", firstName: "Valery", secondName: "Aboba", lastName: "Aboba", phone: "8-800-535-35-35", email: "aboba.val@gmail.com", imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg", showroomName: "Тойота Самара Север")]
+    }
 }

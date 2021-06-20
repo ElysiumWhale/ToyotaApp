@@ -23,6 +23,128 @@
         </array>
     </customFonts>
     <scenes>
+        <!--My Manager View Controller-->
+        <scene sceneID="AIc-Hz-Qxw">
+            <objects>
+                <viewController id="R2J-JN-bFz" customClass="MyManagerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DLq-jf-eXd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-zI-X4o">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PNS-mc-pOJ">
+                                    <size key="itemSize" width="350" height="350"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ManagerCell" id="Nv3-UC-DbY" customClass="ManagerCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="5" width="350" height="350"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя Фамилия" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34R-3D-ovy">
+                                                    <rect key="frame" x="15" y="183" width="315" height="49"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="sR8-Hc-Aeb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNg-KI-HWR">
+                                                    <rect key="frame" x="15" y="240" width="315" height="49"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="r0P-lf-UJP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9mM-Hi-KRT">
+                                                    <rect key="frame" x="115" y="38.5" width="120" height="130"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="133" id="LbC-gZ-NpN"/>
+                                                        <constraint firstAttribute="width" constant="120" id="wky-2l-Cj7"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="person.fill" catalog="system" symbolScale="medium"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Салон" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00j-fv-htC">
+                                                    <rect key="frame" x="8" y="6" width="335" height="26"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="9mM-Hi-KRT" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="115" id="2JV-ZX-UeA"/>
+                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="PNg-KI-HWR" secondAttribute="bottom" constant="83" id="72s-9I-goh"/>
+                                            <constraint firstItem="9mM-Hi-KRT" firstAttribute="top" secondItem="Nv3-UC-DbY" secondAttribute="top" constant="37" id="DnR-90-aaK"/>
+                                            <constraint firstAttribute="trailing" secondItem="00j-fv-htC" secondAttribute="trailing" constant="7" id="FIG-dG-d9F"/>
+                                            <constraint firstItem="PNg-KI-HWR" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="15" id="Hiz-DE-vra"/>
+                                            <constraint firstItem="00j-fv-htC" firstAttribute="top" secondItem="Nv3-UC-DbY" secondAttribute="top" constant="6" id="ILg-fu-21f"/>
+                                            <constraint firstItem="PNg-KI-HWR" firstAttribute="top" secondItem="34R-3D-ovy" secondAttribute="bottom" constant="8" symbolic="YES" id="QDg-4z-wq4"/>
+                                            <constraint firstItem="34R-3D-ovy" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="15" id="R8H-Jt-CL4"/>
+                                            <constraint firstItem="34R-3D-ovy" firstAttribute="top" secondItem="9mM-Hi-KRT" secondAttribute="bottom" constant="13" id="VO1-VW-0ul"/>
+                                            <constraint firstAttribute="trailing" secondItem="34R-3D-ovy" secondAttribute="trailing" constant="20" id="fEG-7N-csu"/>
+                                            <constraint firstAttribute="trailing" secondItem="9mM-Hi-KRT" secondAttribute="trailing" constant="115" id="mbi-9b-6d8"/>
+                                            <constraint firstAttribute="trailing" secondItem="PNg-KI-HWR" secondAttribute="trailing" constant="20" id="oGN-gP-c0p"/>
+                                            <constraint firstItem="00j-fv-htC" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="8" id="uwD-Vy-qob"/>
+                                        </constraints>
+                                        <size key="customSize" width="350" height="350"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="infoLabel" destination="PNg-KI-HWR" id="aFk-Xy-Juu"/>
+                                            <outlet property="nameLabel" destination="34R-3D-ovy" id="pWx-l4-04D"/>
+                                            <outlet property="photo" destination="9mM-Hi-KRT" id="EGm-KJ-OLP"/>
+                                            <outlet property="showroomLabel" destination="00j-fv-htC" id="qzM-Hm-PQQ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="R2J-JN-bFz" id="4wB-51-xNY"/>
+                                    <outlet property="delegate" destination="R2J-JN-bFz" id="zMT-pL-ef1"/>
+                                </connections>
+                            </collectionView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWk-bw-380">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Список менеджеров" id="EAu-oL-3P9"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gj7-c2-tSb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F3p-zI-X4o" firstAttribute="top" secondItem="GWk-bw-380" secondAttribute="bottom" id="Bbg-QQ-sdt"/>
+                            <constraint firstItem="GWk-bw-380" firstAttribute="leading" secondItem="Gj7-c2-tSb" secondAttribute="leading" id="N1H-cV-cFN"/>
+                            <constraint firstItem="GWk-bw-380" firstAttribute="top" secondItem="Gj7-c2-tSb" secondAttribute="top" id="Uty-bF-uS2"/>
+                            <constraint firstItem="Gj7-c2-tSb" firstAttribute="trailing" secondItem="F3p-zI-X4o" secondAttribute="trailing" id="XWG-21-KU1"/>
+                            <constraint firstItem="Gj7-c2-tSb" firstAttribute="bottom" secondItem="F3p-zI-X4o" secondAttribute="bottom" constant="-34" id="dJF-kZ-yVn"/>
+                            <constraint firstItem="Gj7-c2-tSb" firstAttribute="trailing" secondItem="GWk-bw-380" secondAttribute="trailing" id="ilh-Kc-JbY"/>
+                            <constraint firstItem="F3p-zI-X4o" firstAttribute="leading" secondItem="Gj7-c2-tSb" secondAttribute="leading" id="sJn-5f-3s4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="managersCollection" destination="F3p-zI-X4o" id="INB-fb-a27"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="358-l5-fhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1198.5507246376812" y="1595.7589285714284"/>
+        </scene>
         <!--Мое авто-->
         <scene sceneID="ie7-fA-n9e">
             <objects>
@@ -32,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j">
-                                <rect key="frame" x="157" y="539" width="150" height="61"/>
+                                <rect key="frame" x="212.5" y="801" width="201.5" height="61"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="xWd-OG-T0h"/>
@@ -50,14 +172,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ">
-                                <rect key="frame" x="0.0" y="539" width="156" height="61"/>
+                                <rect key="frame" x="0.0" y="801" width="211.5" height="61"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="1DL-6J-cs6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="История" image="archivebox" catalog="system">
+                                <state key="normal" title="Заявки" image="archivebox" catalog="system">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -68,7 +190,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ">
-                                <rect key="frame" x="126" y="275" width="161" height="43"/>
+                                <rect key="frame" x="126" y="395" width="161" height="43"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="161" id="5rX-2E-CHW"/>
@@ -139,7 +261,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-CD-hXD">
-                                <rect key="frame" x="126" y="275" width="161" height="43"/>
+                                <rect key="frame" x="126" y="395" width="161" height="43"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="161" id="cUR-eo-TT8"/>
@@ -157,6 +279,26 @@
                                     <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9Au-5O-NeZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0o-cG-eci">
+                                <rect key="frame" x="89" y="750" width="236" height="43"/>
+                                <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="0Vd-jl-P2O"/>
+                                    <constraint firstAttribute="width" constant="236" id="GGa-6a-kAv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Мой менеджер">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9PJ-xF-thN"/>
+                                    <segue destination="R2J-JN-bFz" kind="showDetail" identifier="MyProfileToManagers" id="vpb-JT-jOt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QEl-wK-Y1s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -166,6 +308,7 @@
                             <constraint firstItem="Jf7-dL-lpo" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="36x-F3-llC"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="bQ3-h9-1jb" secondAttribute="trailing" constant="20" id="5dN-gm-1Mr"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="eyL-fs-0tQ" secondAttribute="bottom" id="8Bm-Mw-nP5"/>
+                            <constraint firstItem="g0o-cG-eci" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="89" id="9I0-XV-Gr5"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="cF0-c8-RVQ" secondAttribute="trailing" constant="20" id="H3d-dd-DKP"/>
                             <constraint firstItem="eyL-fs-0tQ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" id="Lao-P2-fdi"/>
                             <constraint firstItem="bQ3-h9-1jb" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="LvU-CX-6Vt"/>
@@ -178,10 +321,12 @@
                             <constraint firstItem="bXP-CD-hXD" firstAttribute="top" secondItem="oif-rQ-akP" secondAttribute="bottom" constant="15" id="aAp-fS-0bd"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="BpN-XY-i4j" secondAttribute="bottom" id="aGr-qY-ZMj"/>
                             <constraint firstItem="BpN-XY-i4j" firstAttribute="leading" secondItem="eyL-fs-0tQ" secondAttribute="trailing" constant="1" id="eAT-I3-W2N"/>
+                            <constraint firstItem="BpN-XY-i4j" firstAttribute="top" secondItem="g0o-cG-eci" secondAttribute="bottom" constant="8" symbolic="YES" id="eg1-6L-eMe"/>
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="Jf7-dL-lpo" secondAttribute="trailing" constant="20" id="in6-6L-Hjp"/>
                             <constraint firstItem="oif-rQ-akP" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="jUa-3V-bia"/>
                             <constraint firstItem="cF0-c8-RVQ" firstAttribute="top" secondItem="bQ3-h9-1jb" secondAttribute="bottom" constant="15" id="k8k-ks-29D"/>
                             <constraint firstItem="oif-rQ-akP" firstAttribute="top" secondItem="Jf7-dL-lpo" secondAttribute="bottom" constant="15" id="lw7-tv-Nm6"/>
+                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="g0o-cG-eci" secondAttribute="trailing" constant="89" id="u8K-D1-wdT"/>
                             <constraint firstItem="eyL-fs-0tQ" firstAttribute="width" secondItem="BpN-XY-i4j" secondAttribute="width" multiplier="1.07738" constant="-5.4761904761904532" id="uWQ-dw-Ril"/>
                             <constraint firstItem="jXL-vB-E0w" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="yce-tu-EjV"/>
                             <constraint firstItem="Jf7-dL-lpo" firstAttribute="top" secondItem="cF0-c8-RVQ" secondAttribute="bottom" constant="15" id="ymA-z5-GvM"/>
@@ -437,14 +582,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PxO-s3-FKV">
-                                                    <rect key="frame" x="302" y="44.5" width="69" height="44"/>
+                                                    <rect key="frame" x="302" y="44" width="69" height="44"/>
                                                     <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46.5" id="LJy-87-dR1"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
-                                                    <rect key="frame" x="279" y="91" width="115" height="24"/>
+                                                    <rect key="frame" x="279" y="90.5" width="115" height="24.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="115" id="IKi-Ys-T8P"/>
                                                     </constraints>
@@ -538,12 +683,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
-                                <rect key="frame" x="20" y="114" width="374" height="35.5"/>
+                                <rect key="frame" x="20" y="114" width="374" height="41"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU">
-                                <rect key="frame" x="89" y="157.5" width="422" height="43"/>
+                                <rect key="frame" x="89" y="163" width="236" height="43"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
@@ -597,23 +742,6 @@
             <point key="canvasLocation" x="3658" y="863"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="BpN-XY-i4j">
-            <size key="intrinsicContentSize" width="105" height="26"/>
-        </designable>
-        <designable name="CLN-ma-9CJ">
-            <size key="intrinsicContentSize" width="131" height="38"/>
-        </designable>
-        <designable name="JBC-U9-UyU">
-            <size key="intrinsicContentSize" width="100.5" height="21"/>
-        </designable>
-        <designable name="bXP-CD-hXD">
-            <size key="intrinsicContentSize" width="88" height="38"/>
-        </designable>
-        <designable name="eyL-fs-0tQ">
-            <size key="intrinsicContentSize" width="97" height="26"/>
-        </designable>
-    </designables>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="car" catalog="system" width="128" height="93"/>

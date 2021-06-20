@@ -212,6 +212,34 @@ public struct FreeTimeDidGetResponse: Codable {
     }
 }
 
+//MARK: - GetManagers for users showrooms
+public struct ManagersDidGetResponse: Codable {
+    let result: String
+    let managers: [Manager]
+}
+
+public struct Manager: Codable {
+    let id: String
+    let userId: String
+    let firstName: String
+    let secondName: String
+    let lastName: String
+    let phone: String
+    let email: String
+    let imageUrl: String
+    let showroomName: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, phone, email
+        case userId = "user_id"
+        case firstName = "first_name"
+        case secondName = "second_name"
+        case lastName = "last_name"
+        case imageUrl = "avatar"
+        case showroomName = "showroom_name"
+    }
+}
+
 //MARK: - MOCK
 public struct News {
     let title: String
