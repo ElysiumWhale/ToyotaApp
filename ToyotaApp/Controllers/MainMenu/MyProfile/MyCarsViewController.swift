@@ -4,7 +4,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
     
-    private let cellIdentrifier = CellIdentifiers.CarCell
+    private let cellIdentifier = CellIdentifiers.CarCell
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
@@ -43,7 +43,7 @@ extension MyCarsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! CarCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CarCollectionViewCell
         let car = cars[indexPath.row]
         cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, vin: car.vin)
         return cell
