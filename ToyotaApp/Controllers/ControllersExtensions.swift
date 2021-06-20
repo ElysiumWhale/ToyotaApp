@@ -136,7 +136,7 @@ extension BackgroundText {
     }
     
     func createBackground(buttonText: String, action: @escaping () -> Void) -> UIButton {
-        let button = RoundedButton()
+        let button = UIButton()
         button.setTitle(buttonText, for: .normal)
         button.addAction(action)
         button.backgroundColor = .init(red: 171, green: 97, blue: 99, alpha: 1)

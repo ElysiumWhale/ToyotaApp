@@ -94,8 +94,8 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-UX-4yU" customClass="RoundedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="69" y="473" width="275" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-UX-4yU">
+                                <rect key="frame" x="69" y="371" width="275" height="44"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="UaE-6Y-6PO"/>

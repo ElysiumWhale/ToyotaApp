@@ -56,7 +56,6 @@
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
-		A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE5252672ED00A595BB /* RoundedButton.swift */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
 		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
 		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
@@ -129,7 +128,6 @@
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
-		A791FDE5252672ED00A595BB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
 		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				1495723B25B9FEAB0031A5AA /* Cells */,
-				A791FDE5252672ED00A595BB /* RoundedButton.swift */,
 				A717CEC0252BD21000CFB6FF /* PhoneTextFieldExtension.swift */,
 				A78A4EF72548EA600026B76B /* NoPasteTextField.swift */,
 				1467F78025D3355400E318D3 /* RoundedMKMapView.swift */,
@@ -505,7 +502,6 @@
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,
-				A791FDE6252672ED00A595BB /* RoundedButton.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
