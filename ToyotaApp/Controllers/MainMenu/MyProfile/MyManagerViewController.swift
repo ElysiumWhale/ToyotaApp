@@ -12,22 +12,21 @@ class MyManagerViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.getManagers, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId)], completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Profile.getManagers, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: completion)
         
         func completion(for response: Result<ManagersDidGetResponse, ErrorResponse>) {
             switch response {
                 case .failure(let error):
-                    managers = Test.CreateManagers()
-                    DispatchQueue.main.async { [weak self] in
-                        self?.managersCollection.reloadData()
+                    displayError(with: error.message ?? "") { [weak self] in
+                        self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? "Ошибка при загрузке списка менеджеров")
                     }
-                    //displayError(with: error.message ?? "") { [weak self] in
-                        //self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? "Ошибка при загрузке списка менеджеров")
-                    //}
                 case .success(let data):
                     managers = data.managers
                     DispatchQueue.main.async { [weak self] in
                         self?.managersCollection.reloadData()
+                        if data.managers.isEmpty {
+                            self?.managersCollection.backgroundView = self?.createBackground(labelText: "На данный момент к Вам не привязано ни одного менеджера")
+                        }
                     }
             }
         }

@@ -357,6 +357,7 @@
                         <outlet property="emailTextField" destination="Jf7-dL-lpo" id="47E-IO-CDS"/>
                         <outlet property="firstNameTextField" destination="jXL-vB-E0w" id="dl8-uN-hc2"/>
                         <outlet property="lastNameTextField" destination="bQ3-h9-1jb" id="mgg-c6-45R"/>
+                        <outlet property="managerButton" destination="g0o-cG-eci" id="YkG-8B-wI7"/>
                         <outlet property="saveButton" destination="CLN-ma-9CJ" id="KgI-XP-ysM"/>
                         <outlet property="saveButtonLeadingConstraint" destination="QLR-Ca-vzH" id="mjp-z8-2VI"/>
                         <outlet property="secondNameTextField" destination="cF0-c8-RVQ" id="W5c-kP-GAJ"/>

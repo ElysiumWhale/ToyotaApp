@@ -13,6 +13,7 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var lastNameTextField: UITextField!
     @IBOutlet private var birthTextField: UITextField!
     @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var managerButton: UIButton!
     @IBOutlet private var cancelButton: UIButton!
     @IBOutlet private var saveButton: UIButton!
     @IBOutlet private var saveButtonLeadingConstraint: NSLayoutConstraint!
@@ -103,6 +104,8 @@ class MyProfileViewController: UIViewController {
         datePicker.date = dateFromServer(date: profile.birthday)
         date = ""
         emailTextField.text = profile.email
+        
+        managerButton.isHidden = user.getCars.array.count < 1
     }
     
     @IBAction private func textDidChange(sender: UITextField) {
