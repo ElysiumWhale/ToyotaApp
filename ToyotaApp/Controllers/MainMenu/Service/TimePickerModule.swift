@@ -144,9 +144,11 @@ class TimePickerModule: NSObject, IServiceModule {
         var times = [DateComponents]()
         var date = Date()
         
-        if (hour < 21) {
+        if (hour < 20) {
             times = TimeMap.getFullSchedule(after: hour)
-            dates.append(FreeTime(date: date, freeTime: times))
+            if !times.isEmpty {
+                dates.append(FreeTime(date: date, freeTime: times))
+            }
         }
         date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
         
