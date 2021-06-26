@@ -1,12 +1,13 @@
 import UIKit
 
 class DealerViewController: UIViewController {
-    @IBOutlet var cityTextField: UITextField!
-    @IBOutlet var showroomTextField: UITextField!
-    @IBOutlet var cityTextFieldIndicator: UIActivityIndicatorView!
-    @IBOutlet var nextButtonIndicator: UIActivityIndicatorView!
-    @IBOutlet var showroomLabel: UILabel!
-    @IBOutlet var nextButton: UIButton!
+    @IBOutlet private var cityTextField: UITextField!
+    @IBOutlet private var showroomTextField: UITextField!
+    @IBOutlet private var showroomStackView: UIStackView!
+    @IBOutlet private var cityTextFieldIndicator: UIActivityIndicatorView!
+    @IBOutlet private var nextButtonIndicator: UIActivityIndicatorView!
+    @IBOutlet private var showroomLabel: UILabel!
+    @IBOutlet private var nextButton: UIButton!
     
     private var type: AddInfoType = .register
     
@@ -62,7 +63,7 @@ extension DealerViewController {
 //MARK: - Pickers actions
 extension DealerViewController {
     @IBAction private func cityDidSelect(sender: Any?) {
-        nextButton.isHidden = true
+        nextButton.fadeOut(0.6)
         if selectedShowroom != nil, !showrooms.isEmpty {
             selectedShowroom = nil
             showroomTextField.text = ""
@@ -83,8 +84,7 @@ extension DealerViewController {
                 showrooms = data.showrooms
                 DispatchQueue.main.async { [self] in
                     cityTextFieldIndicator.stopAnimating()
-                    showroomTextField.isHidden = false
-                    showroomLabel.isHidden = false
+                    showroomStackView.fadeIn(0.6)
                 }
             case .failure(let error):
                 displayError(with: error.message ?? "Попробуйте выбрать город еще раз") { [self] in
@@ -98,7 +98,7 @@ extension DealerViewController {
         selectedShowroom = showrooms[row]
         showroomTextField?.text = showrooms[row].showroomName
         view.endEditing(true)
-        nextButton.isHidden = false
+        nextButton.fadeIn(0.6)
     }
 }
 
@@ -113,7 +113,7 @@ extension DealerViewController: SegueWithRequestController {
             displayError(with: "Выберите салон")
             return
         }
-        nextButton.isHidden = true
+        nextButton.fadeOut(0.6)
         nextButtonIndicator.startAnimating()
         let userId = DefaultsManager.getUserInfo(UserId.self)!.id
         let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
@@ -125,7 +125,7 @@ extension DealerViewController: SegueWithRequestController {
     
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
         let uiCompletion = { [self] in
-            nextButton.isHidden = false
+            nextButton.fadeIn(0.6)
             nextButtonIndicator.stopAnimating()
         }
         

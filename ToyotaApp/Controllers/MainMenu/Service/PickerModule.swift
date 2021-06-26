@@ -9,6 +9,7 @@ class PickerModuleView: UIView {
         let label = UILabel()
         label.font = UIFont.toyotaSemiBold(of: 20)
         label.textAlignment = .left
+        label.text = "Выберите услугу"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

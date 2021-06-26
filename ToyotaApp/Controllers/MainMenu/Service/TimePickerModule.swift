@@ -18,6 +18,7 @@ class TimePickerView: UIView {
         let label = UILabel()
         label.font = UIFont.toyotaSemiBold(of: 20)
         label.textAlignment = .left
+        label.text = "Выберите дату и время"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -100,10 +101,7 @@ class TimePickerModule: NSObject, IServiceModule {
     }
     
     func configureViewText(with labelText: [String]) {
-        guard let view = view as? TimePickerView else {
-            return
-        }
-        view.dateTimeLabel.text = labelText[1]
+        internalView.dateTimeLabel.text = labelText.first ?? "123"
     }
     
     func start(with params: [URLQueryItem]) {
