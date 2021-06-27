@@ -78,7 +78,7 @@ extension DealerViewController {
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
     }
     
-    private func completionForSelectedCity(for response: Result<CityDidSelectResponce, ErrorResponse>) {
+    private func completionForSelectedCity(for response: Result<ShoroomsDidGetResponce, ErrorResponse>) {
         switch response {
             case .success(let data):
                 showrooms = data.showrooms

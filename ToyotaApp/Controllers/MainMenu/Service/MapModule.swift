@@ -98,7 +98,7 @@ class MapModule: NSObject, IServiceModule {
             if let coordinate = locationManager.location?.coordinate {
                 zoomToUserLocation(coordinate)
             }
-            result = .success(Service(id: "0", serviceName: "Success"))
+            result = .success(Service(id: "0", name: "Success"))
             delegate?.moduleDidUpdated(self)
         } else {
             PopUp.displayMessage(with: "Предупреждение", description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции", buttonText: CommonText.ok)

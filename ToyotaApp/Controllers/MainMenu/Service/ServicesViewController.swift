@@ -62,7 +62,7 @@ class ServicesViewController: UIViewController, BackgroundText {
         switch response {
             case .success(let data):
                 DispatchQueue.main.async { [self] in
-                    serviceTypes = data.service_type
+                    serviceTypes = data.serviceType
                     servicesList.reloadData()
                     endRefreshing()
                     servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: CommonText.noServices) : nil

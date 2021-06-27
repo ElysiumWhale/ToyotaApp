@@ -21,7 +21,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
             [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: carDidAddCompletion)
     }
     
-    private func carDidAddCompletion(for response: Result<ProfileDidSetResponse, ErrorResponse>) {
+    private func carDidAddCompletion(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
                 DispatchQueue.main.async { [self] in

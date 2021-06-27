@@ -151,7 +151,7 @@ extension PickerModule: UIPickerViewDelegate {
         }
         i = 1 //costyl
         result = .success(array[index])
-        internalView.textField.text = array[index].serviceName
+        internalView.textField.text = array[index].name
         internalView.endEditing(true)
         delegate?.moduleDidUpdated(self)
     }
@@ -160,11 +160,11 @@ extension PickerModule: UIPickerViewDelegate {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = UIFont.toyotaLight(of: 20)
         pickerLabel.textAlignment = .center
-        pickerLabel.text = array?[row].serviceName
+        pickerLabel.text = array?[row].name
         return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return array?[row].serviceName ?? "PickerModule.array is empty"
+        return array?[row].name ?? "PickerModule.array is empty"
     }
 }

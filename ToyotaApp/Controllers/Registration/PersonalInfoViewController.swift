@@ -116,7 +116,7 @@ extension PersonalInfoViewController {
 
 //MARK: - SegueWithRequestController
 extension PersonalInfoViewController: SegueWithRequestController {
-    typealias TResponse = ProfileDidSetResponse
+    typealias TResponse = CitiesDidGetResponse
     
     var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
     
@@ -136,7 +136,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: buildRequestParams(from: configuredProfile!, date: date), completion: completionForSegue)
     }
     
-    func completionForSegue(for response: Result<ProfileDidSetResponse, ErrorResponse>) {
+    func completionForSegue(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
                 cities = data.cities.map { City(id: $0.id, name: $0.name) }

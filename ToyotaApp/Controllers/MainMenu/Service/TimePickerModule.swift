@@ -124,7 +124,7 @@ class TimePickerModule: NSObject, IServiceModule {
                 case .success(let data):
                     prepareTime(from: data.freeTimeDict)
                     internalView.dataDidDownload()
-                    result = .success(Service(id: "0", serviceName: "Success"))
+                    result = .success(Service(id: "0", name: "Success"))
                     delegate?.moduleDidUpdated(self)
             }
         }

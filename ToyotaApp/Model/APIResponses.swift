@@ -65,8 +65,8 @@ public struct Profile: Codable {
     }
 }
 
-//MARK: - ProfileDidSetResponse
-public struct ProfileDidSetResponse: Codable {
+//MARK: - CitiesDidGetResponse
+public struct CitiesDidGetResponse: IServiceResponse {
     let result: String
     let cities: [City]
 }
@@ -81,8 +81,8 @@ public struct City: Codable {
     }
 }
 
-//MARK: - CityDidSelectResponce
-public struct CityDidSelectResponce: Codable {
+//MARK: - ShoroomsDidGetResponce
+public struct ShoroomsDidGetResponce: IServiceResponse {
     let result: String
     let showrooms: [DTOShowroom]
 }
@@ -164,7 +164,12 @@ public struct CarDidCheckResponse: Codable {
 //MARK: - GetServicesTypes
 public struct ServicesTypesDidGetResponse: Codable {
     let result: String
-    let service_type: [ServiceType]
+    let serviceType: [ServiceType]
+    
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case serviceType = "service_type"
+    }
 }
 
 public struct ServiceType: Codable {
@@ -189,11 +194,11 @@ public struct ServicesDidGetResponse: Codable {
 
 public struct Service: Codable {
     let id: String
-    let serviceName: String
+    let name: String
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case serviceName = "service_name"
+        case name = "service_name"
     }
 }
 
