@@ -21,6 +21,7 @@
 		1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCVC.swift */; };
 		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
+		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A8D8952617C25F0086BC12 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Test.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
@@ -92,6 +93,7 @@
 		1467F79925DD73BC00E318D3 /* OrderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCVC.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
+		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		A791FDDA2524E19300A595BB /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
 				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
@@ -516,6 +519,7 @@
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Test.swift in Sources */,
+				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,

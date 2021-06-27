@@ -72,8 +72,8 @@ class PickerModule: NSObject, IServiceModule {
     }()
     
     private(set) var serviceType: ServiceType
-    private(set) var result: Result<Service, ErrorResponse>?
-    private var array: [Service]?
+    private(set) var result: Result<IService, ErrorResponse>?
+    private var array: [IService]?
     
     private(set) weak var delegate: IServiceController?
     
@@ -93,20 +93,32 @@ class PickerModule: NSObject, IServiceModule {
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServices, params:
            [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),
             URLQueryItem(name: RequestKeys.Services.serviceTypeId, value: serviceType.id)],
-        completion: completion)
+        completion: internalCompletion)
         
-        func completion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
-            switch response {
-                case .failure(let error):
-                    result = .failure(ErrorResponse(code: "-1", message: error.message ?? "Ошибка при выполнении запроса"))
-                    delegate?.moduleDidUpdated(self)
-                case .success(let data):
-                    array = data.services.isEmpty ? [Service(id: "-1", serviceName: "Нет доступных сервисов")] : data.services
-                    DispatchQueue.main.async { [weak self] in
-                        self?.internalView.fadeIn(0.6)
-                        self?.internalView.servicePicker.reloadAllComponents()
-                    }
-            }
+        func internalCompletion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
+            completion(for: response)
+        }
+    }
+    
+    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], reponse type: TResponse.Type) {
+        NetworkService.shared.makePostRequest(page: page, params: params, completion: internalCompletion)
+        
+        func internalCompletion(for response: Result<TResponse, ErrorResponse>) {
+            completion(for: response)
+        }
+    }
+    
+    private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
+        switch response {
+            case .failure(let error):
+                result = .failure(ErrorResponse(code: "-1", message: error.message ?? "Ошибка при выполнении запроса"))
+                delegate?.moduleDidUpdated(self)
+            case .success(let data):
+                array = data.array.isEmpty ? [Service(id: "-1", name: "Нет доступных сервисов")] : data.array
+                DispatchQueue.main.async { [weak self] in
+                    self?.internalView.fadeIn(0.6)
+                    self?.internalView.servicePicker.reloadAllComponents()
+                }
         }
     }
     

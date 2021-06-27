@@ -78,7 +78,7 @@ class MapModule: NSObject, IServiceModule {
     
     private(set) var serviceType: ServiceType
     
-    private(set) var result: Result<Service, ErrorResponse>?
+    private(set) var result: Result<IService, ErrorResponse>?
     
     private(set) var delegate: IServiceController?
     

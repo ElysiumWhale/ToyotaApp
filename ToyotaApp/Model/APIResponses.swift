@@ -69,9 +69,11 @@ public struct Profile: Codable {
 public struct CitiesDidGetResponse: IServiceResponse {
     let result: String
     let cities: [City]
+    
+    var array: [IService] { cities }
 }
 
-public struct City: Codable {
+public struct City: IService {
     let id: String
     let name: String
     
@@ -85,9 +87,13 @@ public struct City: Codable {
 public struct ShoroomsDidGetResponce: IServiceResponse {
     let result: String
     let showrooms: [DTOShowroom]
+    
+    var array: [IService] { showrooms }
 }
 
-public struct DTOShowroom: Codable {
+public struct DTOShowroom: IService {
+    var name: String { showroomName }
+    
     let id: String
     let showroomName: String
     let cityName: String?
@@ -106,7 +112,9 @@ extension DTOShowroom {
 }
 
 //MARK: - ShowroomDidSelectResponse
-public struct DTOCar: Codable {
+public struct DTOCar: IService {
+    var name: String { "\(brandName) \(modelName)" }
+    
     let id: String
     let brandName: String
     let modelName: String
@@ -157,6 +165,7 @@ extension DTOCar {
 //MARK: - CarDidCheck
 public struct CarDidCheckResponse: Codable {
     let result: String
+    //todo: delete message
     let message: String
     let car: DTOCar?
 }
@@ -187,12 +196,14 @@ public struct ServiceType: Codable {
 }
 
 //MARK: - GetServices
-public struct ServicesDidGetResponse: Codable {
+public struct ServicesDidGetResponse: IServiceResponse {
     let result: String
     let services: [Service]
+    
+    var array: [IService] { services }
 }
 
-public struct Service: Codable {
+public struct Service: IService {
     let id: String
     let name: String
     
@@ -246,7 +257,7 @@ public struct Manager: Codable {
 }
 
 //MARK: - MOCK
-public struct News {
+public struct News: Codable {
     let title: String
     let content: String
     let date: Date

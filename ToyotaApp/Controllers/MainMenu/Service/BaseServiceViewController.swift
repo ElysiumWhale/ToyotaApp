@@ -1,26 +1,5 @@
 import UIKit
 
-///Unit for particular control logic realization.
-///Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
-protocol IServiceModule: AnyObject {
-    var view: UIView? { get }
-    var serviceType: ServiceType { get }
-    var result: Result<Service, ErrorResponse>? { get }
-    var delegate: IServiceController? { get }
-    func start(with params: [URLQueryItem])
-    func buildQueryItems() -> [URLQueryItem]
-    func configureViewText(with labelText: [String])
-}
-
-///Controller which manages `IServiceModule`s.
-///Configured by `ServiceModuleBuilder`
-protocol IServiceController: AnyObject {
-    var modules: [IServiceModule] { get }
-    var user: UserProxy? { get }
-    func moduleDidUpdated(_ module: IServiceModule)
-    func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy)
-}
-
 //MARK: Controller
 class BaseServiceController: UIViewController, IServiceController {
     private let scrollView = UIScrollView()
