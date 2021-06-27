@@ -1,5 +1,9 @@
 import Foundation
 
+fileprivate struct CustomServices {
+    static let TestDrive = "3"
+}
+
 enum ControllerServiceType: String {
     case notDefined = "0"
     case timepick = "1"
@@ -20,7 +24,16 @@ enum ControllerServiceType: String {
 
 class ServiceModuleBuilder {
     class func buildController(serviceType: ServiceType, for controlType: ControllerServiceType, user: UserProxy) -> IServiceController {
-        let controller: IServiceController = BaseServiceController()
+        var controller: IServiceController!
+        switch serviceType.id {
+            default: controller = BaseServiceController()
+        }
+        let modules = buildModules(with: serviceType, for: controlType, controller: controller)
+        controller.configure(with: serviceType, modules: modules, user: user)
+        return controller
+    }
+    
+    class func buildModules(with serviceType: ServiceType, for controlType: ControllerServiceType, controller: IServiceController) -> [IServiceModule] {
         var modules: [IServiceModule] = []
         switch controlType {
             case .notDefined: break
@@ -38,9 +51,13 @@ class ServiceModuleBuilder {
                 modules.append(PickerModule(with: serviceType, for: controller))
                 modules.append(TimePickerModule(with: serviceType, for: controller))
                 modules.append(MapModule(with: serviceType, for: controller))
+            case .threePicksTime:
+                modules.append(PickerModule(with: serviceType, for: controller))
+                modules.append(PickerModule(with: serviceType, for: controller))
+                modules.append(PickerModule(with: serviceType, for: controller))
+                modules.append(TimePickerModule(with: serviceType, for: controller))
             default: break
         }
-        controller.configure(with: serviceType, modules: modules, user: user)
-        return controller
+        return modules
     }
 }
