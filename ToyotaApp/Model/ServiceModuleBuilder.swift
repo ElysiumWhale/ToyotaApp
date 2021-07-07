@@ -26,6 +26,7 @@ class ServiceModuleBuilder {
     class func buildController(serviceType: ServiceType, for controlType: ControllerServiceType, user: UserProxy) -> IServiceController {
         var controller: IServiceController!
         switch serviceType.id {
+            case CustomServices.TestDrive: controller = TestDriveViewController()
             default: controller = BaseServiceController()
         }
         let modules = buildModules(with: serviceType, for: controlType, controller: controller)

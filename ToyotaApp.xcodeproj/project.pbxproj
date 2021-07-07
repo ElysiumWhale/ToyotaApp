@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
+		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
+		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
@@ -165,9 +167,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1419C7362683E0D7001F7EF3 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
 			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		1495723B25B9FEAB0031A5AA /* Cells */ = {
@@ -317,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
+				1419C7362683E0D7001F7EF3 /* Custom */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
 				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
@@ -487,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A717CEC1252BD21000CFB6FF /* PhoneTextFieldExtension.swift in Sources */,
+				1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,

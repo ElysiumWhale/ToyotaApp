@@ -256,6 +256,25 @@ public struct Manager: Codable {
     }
 }
 
+//MARK: - CarsDidGetResponse
+public struct CarsDidGetResponse: IServiceResponse {
+    var array: [IService] { cars }
+    
+    let result: String
+    let cars: [Service]
+}
+
+//MARK: - ServiceIdDidGetResponse
+public struct ServiceIdDidGetResponse: Codable {
+    let result: String
+    let serviceId: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case serviceId = "service_id"
+    }
+}
+
 //MARK: - MOCK
 public struct News: Codable {
     let title: String
