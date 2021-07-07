@@ -2,10 +2,10 @@ import UIKit
 
 //MARK: Controller
 class BaseServiceController: UIViewController, IServiceController {
-    private let scrollView = UIScrollView()
-    private let stackView = UIStackView()
+    private(set) var scrollView = UIScrollView()
+    private(set) var stackView = UIStackView()
     
-    private lazy var bookButton: UIButton = {
+    private(set) lazy var bookButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1)
         button.titleLabel?.font = UIFont.toyotaSemiBold(of: 20)
@@ -24,14 +24,25 @@ class BaseServiceController: UIViewController, IServiceController {
     
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
-        view.backgroundColor = .white
+        switch traitCollection.userInterfaceStyle {
+            case .light, .unspecified:
+                view.backgroundColor = .white
+            case .dark:
+                view.backgroundColor = .black
+            @unknown default:
+                view.backgroundColor = .white
+        }
+        
         view.addSubview(scrollView)
         hideKeyboardWhenTappedAround()
         setupScrollViewLayout()
         scrollView.addSubview(stackView)
         setupStackViewLayout()
+        start()
+    }
+    
+    func start() {
         for module in modules {
-            module.configureViewText(with: ["Выберите услугу", "Выберите дату и время", "Выберите местоположение"])
             stackView.addArrangedSubview(module.view ?? UIView())
         }
         stackView.addArrangedSubview(bookButton)
@@ -45,26 +56,23 @@ class BaseServiceController: UIViewController, IServiceController {
     }
     
     func moduleDidUpdated(_ module: IServiceModule) {
-        DispatchQueue.main.async { [self] in
-            var message: String = "Ошибка при запросе данных"
-            switch module.result {
-                case .failure(let error):
-                    if let mes = error.message { message = mes }
-                    fallthrough
-                case .none:
-                    PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [self] in
-                        navigationController?.popViewController(animated: true)
-                    }
-                case .success:
-                    if let index = modules.firstIndex(where: { $0 === module }) {
-                        if index + 1 == modules.count {
-                            bookButton.fadeIn(0.6)
-                            return
-                        }
-                        hideModules(after: index + 1)
-                        modules[index + 1].start(with: module.buildQueryItems())
-                    }
-            }
+        var message: String = "Ошибка при запросе данных"
+        switch module.result {
+            case .failure(let error):
+                if let mes = error.message { message = mes }
+                fallthrough
+            case .none:
+                PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [self] in
+                    navigationController?.popViewController(animated: true)
+                }
+            case .success:
+                guard let index = modules.firstIndex(where: { $0 === module }) else { return }
+                if index + 1 == modules.count {
+                    bookButton.fadeIn(0.6)
+                    return
+                }
+                hideModules(after: index + 1)
+                modules[index + 1].start(with: module.buildQueryItems())
         }
     }
     
@@ -76,7 +84,7 @@ class BaseServiceController: UIViewController, IServiceController {
         }
     }
     
-    private func bookService() {
+    func bookService() {
         guard let userId = user?.getId, let showroomId = user?.getSelectedShowroom?.id else { return }
         
         var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),

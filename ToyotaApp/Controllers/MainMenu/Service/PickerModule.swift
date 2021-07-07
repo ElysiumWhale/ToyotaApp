@@ -100,7 +100,7 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
     
-    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], reponse type: TResponse.Type) {
+    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
         NetworkService.shared.makePostRequest(page: page, params: params, completion: internalCompletion)
         
         func internalCompletion(for response: Result<TResponse, ErrorResponse>) {

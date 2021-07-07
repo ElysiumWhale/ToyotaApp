@@ -80,10 +80,10 @@ class TimePickerModule: NSObject, IServiceModule {
     
     private var dates: [FreeTime] = []
     
+    private var rowInFirst: Int = 0
+    private var rowInSecond: Int = 0
     private var selectedDate: (String, String)? {
         if !dates.isEmpty {
-            let rowInFirst = internalView.datePicker.selectedRow(inComponent: 0)
-            let rowInSecond = internalView.datePicker.selectedRow(inComponent: 1)
             let date = dates[rowInFirst]
             return (DateFormatter.server.string(from: date.date), date.freeTime[rowInSecond].getHourAndMinute())
         } else { return nil }
@@ -101,7 +101,7 @@ class TimePickerModule: NSObject, IServiceModule {
     }
     
     func configureViewText(with labelText: [String]) {
-        internalView.dateTimeLabel.text = labelText.first ?? "123"
+        internalView.dateTimeLabel.text = labelText.first ?? ""
     }
     
     func start(with params: [URLQueryItem]) {
@@ -115,18 +115,22 @@ class TimePickerModule: NSObject, IServiceModule {
         }
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: queryParams, completion: completion)
-        
-        func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
-            switch response {
-                case .failure(let error):
-                    result = .failure(ErrorResponse(code: "1", message: error.message ?? "Ошибка"))
-                    delegate?.moduleDidUpdated(self)
-                case .success(let data):
-                    prepareTime(from: data.freeTimeDict)
-                    internalView.dataDidDownload()
-                    result = .success(Service(id: "0", name: "Success"))
-                    delegate?.moduleDidUpdated(self)
-            }
+    }
+    
+    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: params, completion: completion)
+    }
+    
+    private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
+        switch response {
+            case .failure(let error):
+                result = .failure(ErrorResponse(code: "1", message: error.message ?? "Ошибка"))
+                delegate?.moduleDidUpdated(self)
+            case .success(let data):
+                prepareTime(from: data.freeTimeDict)
+                internalView.dataDidDownload()
+                result = .success(Service(id: "0", name: "Success"))
+                delegate?.moduleDidUpdated(self)
         }
     }
     
@@ -180,7 +184,9 @@ extension TimePickerModule: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             internalView.datePicker.reloadComponent(1)
+            rowInFirst = internalView.datePicker.selectedRow(inComponent: 0)
         }
+        rowInSecond = internalView.datePicker.selectedRow(inComponent: 1)
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
