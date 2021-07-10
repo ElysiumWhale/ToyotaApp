@@ -8,7 +8,7 @@
   - [Testing](#testing)
     - [Cars VINs](#cars-vins)
   - [Requests](#requests)
-    - [Сhecking user registration at application launch](#сhecking-user-registration-at-application-launch)
+    - [Сheck user registration at application launch](#сheck-user-registration-at-application-launch)
       - [**Success response**](#success-response)
         - [**Variant 1:** Only phone number checking](#variant-1-only-phone-number-checking)
         - [**Variant 2:** Only profile is selected](#variant-2-only-profile-is-selected)
@@ -18,7 +18,7 @@
     - [Phone number registration](#phone-number-registration)
       - [**Success response**](#success-response-1)
       - [**Failure response**](#failure-response-1)
-    - [SMS-code checking](#sms-code-checking)
+    - [Check SMS-code](#check-sms-code)
       - [**Success response**](#success-response-2)
         - [**Variant 1:** New account](#variant-1-new-account)
         - [**Variant 2:** Empty account](#variant-2-empty-account)
@@ -26,33 +26,33 @@
         - [**Variant 4:** Profile and showroom](#variant-4-profile-and-showroom)
         - [**Variant 5:** Full profile](#variant-5-full-profile)
       - [**Failure response**](#failure-response-2)
-    - [Profile creation](#profile-creation)
+    - [Set pofile data](#set-pofile-data)
       - [**Success response**](#success-response-3)
       - [**Failure response**](#failure-response-3)
         - [**List of errors**](#list-of-errors)
-    - [City choosing](#city-choosing)
+    - [Get showrooms (for brand & city)](#get-showrooms-for-brand--city)
       - [**Success response**](#success-response-4)
       - [**Failure response**](#failure-response-4)
-    - [Showroom setting](#showroom-setting)
+    - [Set showroom](#set-showroom)
       - [**Success response**](#success-response-5)
       - [**Failure response**](#failure-response-5)
         - [**List of errors**](#list-of-errors-1)
-    - [VIN checking](#vin-checking)
+    - [Check VIN-code](#check-vin-code)
       - [**Success response**](#success-response-6)
         - [**Variant 1:** VIN Checking](#variant-1-vin-checking)
         - [**Variant 2:** Skipping step](#variant-2-skipping-step)
       - [**Failure response**](#failure-response-6)
         - [**List of errors**](#list-of-errors-2)
-    - [Temp record deleting](#temp-record-deleting)
+    - [Delete temp phone](#delete-temp-phone)
       - [**Success response**](#success-response-7)
       - [**Failure response**](#failure-response-7)
-    - [Getting the categories of services](#getting-the-categories-of-services)
+    - [Get services categories/types](#get-services-categoriestypes)
       - [**Success response**](#success-response-8)
       - [**Failure response**](#failure-response-8)
-    - [Getting a services from a category](#getting-a-services-from-a-category)
+    - [Get services from the category](#get-services-from-the-category)
       - [**Success response**](#success-response-9)
       - [**Failure response**](#failure-response-9)
-    - [Getting free time](#getting-free-time)
+    - [Get free time](#get-free-time)
       - [**Success response**](#success-response-10)
         - [**Variant 1:** Anytime](#variant-1-anytime)
         - [**Variant 2:** Time limits](#variant-2-time-limits)
@@ -65,7 +65,7 @@
     - [Add new showroom](#add-new-showroom)
       - [**Success response**](#success-response-12)
       - [**Failure response**](#failure-response-12)
-    - [Editing profile](#editing-profile)
+    - [Edit profile data](#edit-profile-data)
       - [**Success response**](#success-response-13)
       - [**Failure response**](#failure-response-13)
     - [Change phone number chain](#change-phone-number-chain)
@@ -139,7 +139,7 @@ SMS code for registration: **1234**
 
 ## Requests
 
-### Сhecking user registration at application launch
+### Сheck user registration at application launch
 
 **Path:** `check_user.php`
 
@@ -284,7 +284,7 @@ SMS code for registration: **1234**
 
 ---
 
-### SMS-code checking
+### Check SMS-code
 
 **Path:** `check_code.php`
 
@@ -348,7 +348,7 @@ plus addiotional field:
 
 ---
 
-### Profile creation
+### Set pofile data
 
 **Path:** `set_profile.php`
 
@@ -400,7 +400,7 @@ plus addiotional field:
 
 ---
 
-### City choosing
+### Get showrooms (for brand & city)
 
 **Path:** `get_showrooms.php`
 
@@ -444,7 +444,7 @@ plus addiotional field:
 
 ---
 
-### Showroom setting
+### Set showroom
 
 **Path:** `set_showroom.php`
 
@@ -490,7 +490,7 @@ plus addiotional field:
 
 ---
 
-### VIN checking
+### Check VIN-code
 
 **Path:** `check_vin_code.php`
 
@@ -554,7 +554,7 @@ plus addiotional field:
 
 ---
 
-### Temp record deleting
+### Delete temp phone
 
 **Path:** `delete_tmp_record.php`
 
@@ -583,7 +583,7 @@ plus addiotional field:
 
 ---
 
-### Getting the categories of services
+### Get services categories/types
 
 **Path:** `get_service_type.php`
 
@@ -628,7 +628,7 @@ plus addiotional field:
 
 ---
 
-### Getting a services from a category
+### Get services from the category
 
 **Path:** `get_services.php`
 
@@ -668,7 +668,7 @@ plus addiotional field:
 
 ---
 
-### Getting free time
+### Get free time
 
 **Path:** `get_free_time.php`
 
@@ -810,7 +810,7 @@ plus addiotional field:
 
 ---
 
-### Editing profile
+### Edit profile data
 
 **Path:** `edit_profile.php`
 
