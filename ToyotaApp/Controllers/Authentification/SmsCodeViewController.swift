@@ -12,6 +12,8 @@ class SmsCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        smsCodeTextField.layer.cornerRadius = 10
     }
     
     func configure(with authType: AuthType, and number: String) {
@@ -23,17 +25,16 @@ class SmsCodeViewController: UIViewController {
         if sender.text?.count == 4 {
             sendSmsCodeButton!.isEnabled = true
         }
-        wrongCodeLabel.isHidden = true
-        smsCodeTextField?.layer.borderWidth = 0
+        wrongCodeLabel.fadeOut(0.3)
+        smsCodeTextField.toggleErrorState(hasError: false)
     }
     
     private func displayError() {
         DispatchQueue.main.async { [self] in
-            wrongCodeLabel.isHidden = false
+            wrongCodeLabel.fadeIn(0.3)
             activitySwitcher.stopAnimating()
-            sendSmsCodeButton.isHidden = false
-            smsCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
-            smsCodeTextField.layer.borderWidth = 1.0
+            sendSmsCodeButton.fadeIn(0.3)
+            smsCodeTextField.toggleErrorState(hasError: true)
         }
     }
 }
@@ -60,7 +61,7 @@ extension SmsCodeViewController {
             displayError()
             return
         }
-        sendSmsCodeButton.isHidden = true
+        sendSmsCodeButton.fadeOut(0.3)
         activitySwitcher.startAnimating()
         view.endEditing(true)
         
@@ -92,7 +93,7 @@ extension SmsCodeViewController {
             case .failure(let error):
                 displayError(with:  error.message ?? AppErrors.unknownError.rawValue) { [self] in
                     activitySwitcher.stopAnimating()
-                    sendSmsCodeButton.isHidden = false
+                    sendSmsCodeButton.fadeIn(0.3)
                 }
         }
     }
@@ -109,7 +110,7 @@ extension SmsCodeViewController {
             case .failure(let error):
                 displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
                     activitySwitcher.stopAnimating()
-                    sendSmsCodeButton.isHidden = false
+                    sendSmsCodeButton.fadeIn(0.3)
                 }
         }
     }

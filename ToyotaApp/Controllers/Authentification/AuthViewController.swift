@@ -1,8 +1,7 @@
 import UIKit
-import PhoneNumberKit
 
 class AuthViewController: UIViewController {
-    @IBOutlet private var phoneNumber: PhoneNumberTextField!
+    @IBOutlet private var phoneNumber: PhoneTextField!
     @IBOutlet private var incorrectLabel: UILabel!
     @IBOutlet private var informationLabel: UILabel!
     @IBOutlet private var sendPhoneButton: UIButton!
@@ -13,6 +12,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTextField()
+        hideKeyboardWhenTappedAround()
     }
     
     func configure(with authType: AuthType) {
@@ -20,18 +20,14 @@ class AuthViewController: UIViewController {
     }
     
     func configureTextField() {
-        phoneNumber.layer.cornerRadius = 10
-        phoneNumber.withPrefix = true
-        phoneNumber.withFlag = true
-        phoneNumber.maxDigits = 10
         if case .changeNumber(_) = type {
             informationLabel.text = "Введите новый номер:"
         }
     }
     
     @IBAction func phoneNumberDidChange(sender: UITextField) {
-       incorrectLabel!.isHidden = true
-       phoneNumber?.layer.borderWidth = 0
+        incorrectLabel.fadeOut(0.3)
+        phoneNumber.toggleErrorState(hasError: false)
     }
 }
 
@@ -41,15 +37,14 @@ extension AuthViewController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as! SmsCodeViewController
-                destinationVC.configure(with: type, and: phoneNumber.text!)
+                destinationVC.configure(with: type, and: phoneNumber.phone!)
+                indicator.stopAnimating()
             default: return
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        indicator.stopAnimating()
-        indicator.isHidden = true
-        sendPhoneButton.isHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        sendPhoneButton.fadeIn(0.3)
     }
 }
 
@@ -60,19 +55,19 @@ extension AuthViewController: SegueWithRequestController {
     var segueCode: String { SegueIdentifiers.NumberToCode }
     
     @IBAction func nextButtonDidPressed(sender: Any?) {
-        guard phoneNumber.isValidNumber else {
-            phoneNumber.layer.borderColor = UIColor.systemRed.cgColor
-            phoneNumber.layer.borderWidth = 1.0
-            incorrectLabel.isHidden = false
+        guard let phone = phoneNumber.validPhone else {
+            phoneNumber.toggleErrorState(hasError: true)
+            incorrectLabel.fadeIn(0.3)
             return
         }
-        sendPhoneButton.isHidden = true
+        
+        sendPhoneButton.fadeOut(0.3)
         indicator.startAnimating()
         view.endEditing(true)
         if case .register = type {
-            DefaultsManager.pushUserInfo(info: Phone(phoneNumber.text!))
+            DefaultsManager.pushUserInfo(info: Phone(phone))
         }
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber.text)], completion: completionForSegue)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.registerPhone, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phone)], completion: completionForSegue)
     }
     
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
@@ -82,7 +77,7 @@ extension AuthViewController: SegueWithRequestController {
             case .failure(let error):
                 displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
                     indicator.stopAnimating()
-                    sendPhoneButton.isHidden = false
+                    sendPhoneButton.fadeIn(0.3)
                 }
         }
     }
