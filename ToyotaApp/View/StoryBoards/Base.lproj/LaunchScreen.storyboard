@@ -12,28 +12,26 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
-                                <rect key="frame" x="87" y="265" width="240" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-7c-ro3">
+                                <rect key="frame" x="143" y="265" width="128" height="128"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="2jo-7c-ro3" secondAttribute="height" multiplier="15:8" constant="-41.25" id="UUL-zM-tsf"/>
+                                    <constraint firstAttribute="width" secondItem="2jo-7c-ro3" secondAttribute="height" multiplier="1:1" id="EgJ-Gg-eIn"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2jo-7c-ro3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="221" id="e24-Pd-qyQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2jo-7c-ro3" secondAttribute="bottom" constant="447" id="lUH-5F-FxJ"/>
-                            <constraint firstItem="2jo-7c-ro3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="t63-i6-24g"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2jo-7c-ro3" secondAttribute="trailing" constant="87" id="ynr-7r-Ngg"/>
+                            <constraint firstItem="2jo-7c-ro3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pw8-Oo-a1g"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,9 +41,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ToyotaLogoWhite" width="128" height="128"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="ToyotaLogo" width="128" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

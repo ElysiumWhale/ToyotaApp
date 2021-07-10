@@ -82,7 +82,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMc-aT-iiY">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="HPQ-S4-ELy"/>
                                                         </connections>
@@ -90,7 +90,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73P-tT-b5t">
                                                         <rect key="frame" x="0.0" y="70" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="family-name"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Gbg-uK-T3y"/>
                                                         </connections>
@@ -101,7 +101,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="28p-bM-bUe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="additional-name"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="additional-name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Tnj-d1-RV1"/>
                                                         </connections>
@@ -114,7 +114,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91W-OT-t1s">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="8HU-mo-RXd"/>
                                                         </connections>
@@ -125,7 +125,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="VUk-1x-WAR"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="RlQ-p9-69x"/>
                                                         </connections>

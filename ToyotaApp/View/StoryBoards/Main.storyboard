@@ -24,34 +24,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="m2z-gD-nA3">
-                                <rect key="frame" x="87" y="265" width="240" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="m2z-gD-nA3">
+                                <rect key="frame" x="143" y="265" width="128" height="128"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="m2z-gD-nA3" secondAttribute="height" multiplier="8:5" id="Xnl-Qo-rnS"/>
+                                    <constraint firstAttribute="width" secondItem="m2z-gD-nA3" secondAttribute="height" multiplier="1:1" id="JST-62-Cjq"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="DK7-pp-OLk">
-                                <rect key="frame" x="164" y="451" width="87" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="DK7-pp-OLk" secondAttribute="height" multiplier="87:37" id="tis-Wr-fNF"/>
-                                </constraints>
-                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="DK7-pp-OLk">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" systemColor="secondarySystemFillColor"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fR6-OV-7an"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DK7-pp-OLk" firstAttribute="top" secondItem="m2z-gD-nA3" secondAttribute="bottom" constant="36" id="74L-0n-dIe"/>
-                            <constraint firstItem="fR6-OV-7an" firstAttribute="trailing" secondItem="DK7-pp-OLk" secondAttribute="trailing" constant="163" id="7Aq-tl-zua"/>
-                            <constraint firstItem="fR6-OV-7an" firstAttribute="bottom" secondItem="DK7-pp-OLk" secondAttribute="bottom" constant="374" id="F2h-2s-pGF"/>
+                            <constraint firstItem="DK7-pp-OLk" firstAttribute="centerY" secondItem="1Yr-qM-7sR" secondAttribute="centerY" id="51i-SF-GPK"/>
                             <constraint firstItem="m2z-gD-nA3" firstAttribute="top" secondItem="fR6-OV-7an" secondAttribute="top" constant="221" id="JE7-ho-Uqq"/>
-                            <constraint firstItem="fR6-OV-7an" firstAttribute="trailing" secondItem="m2z-gD-nA3" secondAttribute="trailing" constant="87" id="PrL-IH-dpP"/>
-                            <constraint firstItem="m2z-gD-nA3" firstAttribute="leading" secondItem="fR6-OV-7an" secondAttribute="leading" constant="87" id="Tgl-nQ-GpF"/>
-                            <constraint firstItem="DK7-pp-OLk" firstAttribute="leading" secondItem="fR6-OV-7an" secondAttribute="leading" constant="164" id="q1y-dI-jkU"/>
+                            <constraint firstItem="m2z-gD-nA3" firstAttribute="centerX" secondItem="1Yr-qM-7sR" secondAttribute="centerX" id="ljH-Iy-CuK"/>
+                            <constraint firstItem="DK7-pp-OLk" firstAttribute="centerX" secondItem="1Yr-qM-7sR" secondAttribute="centerX" id="yWx-VM-i9M"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -68,37 +62,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Что то пошло не так..." textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3S-3m-gh8">
-                                <rect key="frame" x="40" y="306" width="334" height="31.5"/>
+                                <rect key="frame" x="87.5" y="260" width="239.5" height="31.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31.5" id="tWP-MN-ovu"/>
+                                    <constraint firstAttribute="width" constant="239.5" id="5yu-mx-zC5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проверьте соединение с интернетом и повторите попытку входа" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-yH-RBc">
-                                <rect key="frame" x="40" y="345" width="334" height="100"/>
+                                <rect key="frame" x="60.5" y="300" width="293" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="0Ml-pN-0O4"/>
-                                    <constraint firstAttribute="width" constant="334" id="ySm-sn-4vf"/>
+                                    <constraint firstAttribute="width" constant="293" id="WMX-Gw-4No"/>
+                                    <constraint firstAttribute="height" constant="100" id="yz7-I2-Dtc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-5h-3Lh">
-                                <rect key="frame" x="84" y="87" width="247" height="186"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-5h-3Lh">
+                                <rect key="frame" x="143" y="118" width="128" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="186" id="qUS-zc-Wga"/>
-                                    <constraint firstAttribute="width" constant="247" id="uOX-IR-Tvt"/>
+                                    <constraint firstAttribute="width" secondItem="KeH-5h-3Lh" secondAttribute="height" multiplier="1:1" id="8hq-uj-aEX"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-UX-4yU">
-                                <rect key="frame" x="69" y="371" width="275" height="44"/>
+                                <rect key="frame" x="69.5" y="805" width="275" height="44"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="UaE-6Y-6PO"/>
+                                    <constraint firstAttribute="width" constant="275" id="thm-1h-yRG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Повторить">
@@ -112,33 +106,23 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="4mc-GF-zXO">
-                                <rect key="frame" x="157" y="445" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Kza-Eo-CVv"/>
-                                    <constraint firstAttribute="height" constant="100" id="bxh-eS-NXJ"/>
-                                </constraints>
+                                <rect key="frame" x="188.5" y="808" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rhk-Ky-80c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="9xc-UX-4yU" secondAttribute="trailing" constant="70" id="17A-ll-gZh"/>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="4mc-GF-zXO" secondAttribute="trailing" constant="157" id="1mi-lt-AAS"/>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="bottom" secondItem="9xc-UX-4yU" secondAttribute="bottom" constant="345" id="2Yg-xS-QfN"/>
-                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="top" secondItem="Rhk-Ky-80c" secondAttribute="top" constant="43" id="7ga-8c-rV4"/>
-                            <constraint firstItem="4mc-GF-zXO" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="157" id="AO4-yu-v2h"/>
-                            <constraint firstItem="9xc-UX-4yU" firstAttribute="top" secondItem="iy4-yH-RBc" secondAttribute="bottom" constant="28" id="BZC-5W-eLy"/>
-                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="84" id="N5A-Wx-J0y"/>
-                            <constraint firstItem="iy4-yH-RBc" firstAttribute="top" secondItem="n3S-3m-gh8" secondAttribute="bottom" constant="7.5" id="OO0-dd-L2w"/>
-                            <constraint firstItem="iy4-yH-RBc" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="40" id="Uue-4h-S1E"/>
-                            <constraint firstItem="n3S-3m-gh8" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="40" id="VG9-Su-uA9"/>
-                            <constraint firstItem="iy4-yH-RBc" firstAttribute="trailing" secondItem="Rhk-Ky-80c" secondAttribute="trailing" constant="-40" id="cbz-uu-U24"/>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="bottom" secondItem="4mc-GF-zXO" secondAttribute="bottom" constant="317" id="dL6-gn-a3N"/>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="KeH-5h-3Lh" secondAttribute="trailing" constant="83" id="dO3-8a-hgX"/>
-                            <constraint firstItem="4mc-GF-zXO" firstAttribute="top" secondItem="9xc-UX-4yU" secondAttribute="bottom" constant="-72" id="eJg-kx-h7B"/>
-                            <constraint firstItem="n3S-3m-gh8" firstAttribute="top" secondItem="KeH-5h-3Lh" secondAttribute="bottom" constant="33" id="eMu-EE-YC3"/>
-                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="trailing" secondItem="n3S-3m-gh8" secondAttribute="trailing" constant="40" id="pob-xW-fPr"/>
-                            <constraint firstItem="9xc-UX-4yU" firstAttribute="leading" secondItem="Rhk-Ky-80c" secondAttribute="leading" constant="69" id="qqT-V3-Zwb"/>
+                            <constraint firstItem="9xc-UX-4yU" firstAttribute="top" secondItem="4mc-GF-zXO" secondAttribute="bottom" constant="-40" id="1PI-fi-fVU"/>
+                            <constraint firstItem="9xc-UX-4yU" firstAttribute="centerX" secondItem="0Zy-PL-BDB" secondAttribute="centerX" id="5fI-7n-xjd"/>
+                            <constraint firstItem="n3S-3m-gh8" firstAttribute="centerX" secondItem="0Zy-PL-BDB" secondAttribute="centerX" id="9ZR-uY-Fjt"/>
+                            <constraint firstItem="iy4-yH-RBc" firstAttribute="centerX" secondItem="0Zy-PL-BDB" secondAttribute="centerX" id="PXt-cC-fRK"/>
+                            <constraint firstItem="n3S-3m-gh8" firstAttribute="top" secondItem="KeH-5h-3Lh" secondAttribute="bottom" constant="14" id="WZv-1g-hjZ"/>
+                            <constraint firstItem="4mc-GF-zXO" firstAttribute="centerX" secondItem="0Zy-PL-BDB" secondAttribute="centerX" id="XLj-Nl-Azo"/>
+                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="centerX" secondItem="0Zy-PL-BDB" secondAttribute="centerX" id="rwz-B6-Ep2"/>
+                            <constraint firstItem="9xc-UX-4yU" firstAttribute="top" relation="lessThanOrEqual" secondItem="iy4-yH-RBc" secondAttribute="bottom" constant="405" id="sqq-AY-VXa"/>
+                            <constraint firstItem="iy4-yH-RBc" firstAttribute="top" secondItem="n3S-3m-gh8" secondAttribute="bottom" constant="8.5" id="tGl-23-p6m"/>
+                            <constraint firstItem="KeH-5h-3Lh" firstAttribute="top" secondItem="Rhk-Ky-80c" secondAttribute="top" constant="74" id="wve-23-cGo"/>
+                            <constraint firstItem="Rhk-Ky-80c" firstAttribute="bottom" secondItem="9xc-UX-4yU" secondAttribute="bottom" constant="13" id="xtW-TF-7H3"/>
                         </constraints>
                     </view>
                     <connections>
@@ -151,16 +135,10 @@
             <point key="canvasLocation" x="598.55072463768124" y="174.77678571428569"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="9xc-UX-4yU">
-            <size key="intrinsicContentSize" width="115" height="44"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="ToyotaLogoBlack" width="128" height="128"/>
-        <image name="ToyotaLogoWhite" width="128" height="128"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="ToyotaLogo" width="128" height="128"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
