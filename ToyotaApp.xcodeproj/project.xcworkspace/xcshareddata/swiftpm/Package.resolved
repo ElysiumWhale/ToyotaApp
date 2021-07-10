@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "PhoneNumberKit",
-        "repositoryURL": "https://github.com/marmelroy/PhoneNumberKit.git",
-        "state": {
-          "branch": null,
-          "revision": "1ef0431b971f69c48ca5eb4cdba07f2c5da54c35",
-          "version": "3.3.3"
-        }
-      },
-      {
         "package": "QuickLayout",
         "repositoryURL": "https://github.com/huri000/QuickLayout",
         "state": {
