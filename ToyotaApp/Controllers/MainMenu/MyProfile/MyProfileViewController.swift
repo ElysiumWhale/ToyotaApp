@@ -62,6 +62,11 @@ class MyProfileViewController: UIViewController {
         view.addConstraint(saveConstraint)
         saveButtonLeadingConstraint = saveConstraint
         
+        let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: view.bounds.width/2 - cancelButton.bounds.width/2)
+        view.removeConstraint(cancelButtonLeadingConstant)
+        view.addConstraint(cancelConstraint)
+        cancelButtonLeadingConstant = cancelConstraint
+        
         textFieldsWithError = [firstNameTextField : false, secondNameTextField : false,
                                lastNameTextField : false, emailTextField : false, birthTextField : false]
     }
@@ -71,26 +76,27 @@ class MyProfileViewController: UIViewController {
         for field in textFieldsWithError.keys {
             field.isEnabled = isEditing ? true : false
         }
-        cancelButton.isEnabled = isEditing
         
         let constant: CGFloat = isEditing ? 20 : view.bounds.width/2 - saveButton.bounds.width/2
         let saveConstraint = NSLayoutConstraint(item: saveButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: constant)
         let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
         
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
+            cancelButton.isEnabled = isEditing
             view.removeConstraint(saveButtonLeadingConstraint)
             view.addConstraint(saveConstraint)
             view.removeConstraint(cancelButtonLeadingConstant)
             view.addConstraint(cancelConstraint)
             view.layoutIfNeeded()
+            
             if state != .isLoading {
-                isEditing ? cancelButton.fadeIn() : cancelButton.fadeOut()
                 saveButton.setTitle(isEditing ? CommonText.save : CommonText.edit, for: .normal)
             }
+            
+            saveButtonLeadingConstraint = saveConstraint
+            cancelButtonLeadingConstant = cancelConstraint
         })
         
-        saveButtonLeadingConstraint = saveConstraint
-        cancelButtonLeadingConstant = cancelConstraint
         if state != .isLoading {
             date = ""
         }
