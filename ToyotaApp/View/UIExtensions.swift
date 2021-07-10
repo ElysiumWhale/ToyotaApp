@@ -31,6 +31,18 @@ extension UIView {
     }
 }
 
+//MARK: - UITextField error border
+extension UITextField {
+    func toggleErrorState(hasError: Bool) {
+        if hasError {
+            layer.borderColor = UIColor.systemRed.cgColor
+            layer.borderWidth = 1.0
+        } else {
+            layer.borderWidth = 0
+        }
+    }
+}
+
 //MARK: - Configuring shadow for cell
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat) {
