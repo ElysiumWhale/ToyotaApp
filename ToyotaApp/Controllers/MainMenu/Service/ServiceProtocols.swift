@@ -10,7 +10,7 @@ protocol IServiceModule: AnyObject {
     func start(with params: [URLQueryItem])
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type)
     func buildQueryItems() -> [URLQueryItem]
-    func configureViewText(with labelText: [String])
+    func configureViewText(with labelText: String)
 }
 
 extension IServiceModule {

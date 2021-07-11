@@ -84,8 +84,8 @@ class PickerModule: NSObject, IServiceModule {
         delegate = controller
     }
     
-    func configureViewText(with labelText: [String]) {
-        internalView.serviceNameLabel.text = labelText.first ?? "123"
+    func configureViewText(with labelText: String) {
+        internalView.serviceNameLabel.text = labelText
     }
     
     func start(with params: [URLQueryItem]) {

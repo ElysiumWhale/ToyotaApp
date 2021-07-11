@@ -7,10 +7,9 @@ class TestDriveViewController: BaseServiceController {
     
     override func start() {
         var labels = ["Выберите город", "Выберите машину", "Выберите салон", "Выберите время"]
-        for module in modules {
+        for (module, text) in zip(modules, labels) {
             stackView.addArrangedSubview(module.view ?? UIView())
-            module.configureViewText(with: labels)
-            labels.remove(at: 0)
+            module.configureViewText(with: text)
         }
         stackView.addArrangedSubview(bookButton)
         modules.first?.customStart(page: RequestPath.Profile.getCities, with: [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], response: CitiesDidGetResponse.self)

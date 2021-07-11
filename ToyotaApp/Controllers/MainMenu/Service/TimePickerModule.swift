@@ -101,8 +101,8 @@ class TimePickerModule: NSObject, IServiceModule {
         serviceType = type
     }
     
-    func configureViewText(with labelText: [String]) {
-        internalView.dateTimeLabel.text = labelText.first ?? ""
+    func configureViewText(with labelText: String) {
+        internalView.dateTimeLabel.text = labelText
     }
     
     func start(with params: [URLQueryItem]) {

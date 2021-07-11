@@ -113,8 +113,8 @@ class MapModule: NSObject, IServiceModule {
                 URLQueryItem(name: RequestKeys.Services.longitude, value: String(describing: locationManager.location?.coordinate.longitude.binade))]
     }
     
-    func configureViewText(with labelText: [String]) {
-        
+    func configureViewText(with labelText: String) {
+        internalView.label.text = labelText
     }
 }
 
