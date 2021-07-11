@@ -31,6 +31,10 @@ class MyManagerViewController: UIViewController, BackgroundText {
             }
         }
     }
+    
+    @IBAction func doneDidPress(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDataSource

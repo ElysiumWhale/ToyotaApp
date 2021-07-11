@@ -121,7 +121,14 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWk-bw-380">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
-                                    <navigationItem title="Список менеджеров" id="EAu-oL-3P9"/>
+                                    <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
+                                        <barButtonItem key="rightBarButtonItem" title="Готово" id="s7P-0B-VIf">
+                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <connections>
+                                                <action selector="doneDidPress:" destination="R2J-JN-bFz" id="Xt2-mC-Zfl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -482,10 +489,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Мои автомобили" id="av4-jq-zxX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GlH-M8-5jO">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="gTM-dL-QjO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Добавить" id="GlH-M8-5jO">
                             <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addCarWithSender:" destination="8QR-Ub-LLe" id="mL1-FP-DfA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="T6o-T0-N0D">
+                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="doneDidPress:" destination="8QR-Ub-LLe" id="3Hh-ta-QyG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -613,7 +627,14 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBM-0T-Bie">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
-                                    <navigationItem title="История обращений" id="c52-5Q-1pi"/>
+                                    <navigationItem title="История обращений" id="c52-5Q-1pi">
+                                        <barButtonItem key="rightBarButtonItem" title="Готово" id="Eqd-3c-9Rz">
+                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <connections>
+                                                <action selector="doneDidPressed:" destination="Geg-Qm-TUc" id="jge-qY-Thg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -711,6 +732,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="Kmn-gh-v3J">
                         <barButtonItem key="backBarButtonItem" title="Профиль" id="Gbg-An-FzE"/>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="9Ew-GO-WDO">
+                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="doneDidPress:" destination="NZm-fi-Vyv" id="UOe-lp-LzY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="phoneTextField" destination="ljs-M8-xSN" id="z5S-Ta-b1c"/>

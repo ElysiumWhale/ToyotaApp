@@ -12,6 +12,9 @@ class OrdersHistoryViewController: UIViewController {
         orders.append(Test.CreateOrder())
     }
     
+    @IBAction func doneDidPressed(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
 
 //MARK: - UITableViewDataSource

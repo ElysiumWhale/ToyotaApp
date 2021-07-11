@@ -21,6 +21,10 @@ class MyCarsViewController: UIViewController, BackgroundText {
             [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: carDidAddCompletion)
     }
     
+    @IBAction func doneDidPress(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
     private func carDidAddCompletion(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):

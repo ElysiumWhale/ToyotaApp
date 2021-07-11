@@ -19,6 +19,10 @@ class SettingsViewController: UIViewController {
             NavigationService.loadAuth(from: navigationController!, with: user.getNotificator)
         }
     }
+    
+    @IBAction func doneDidPress(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
 
 extension SettingsViewController: WithUserInfo {
