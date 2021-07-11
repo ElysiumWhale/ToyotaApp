@@ -113,7 +113,7 @@ extension DealerViewController: SegueWithRequestController {
             displayError(with: "Выберите салон")
             return
         }
-        nextButton.fadeOut(0.6)
+        nextButton.isHidden = true //not fadeOut() because of async race condition
         nextButtonIndicator.startAnimating()
         let userId = DefaultsManager.getUserInfo(UserId.self)!.id
         let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
@@ -124,9 +124,9 @@ extension DealerViewController: SegueWithRequestController {
     }
     
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
-        let uiCompletion = { [self] in
-            nextButton.fadeIn(0.6)
-            nextButtonIndicator.stopAnimating()
+        let uiCompletion = { [weak self] in
+            self?.nextButtonIndicator.stopAnimating()
+            self?.nextButton.fadeIn(0.6)
         }
         
         switch response {
