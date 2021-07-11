@@ -1048,6 +1048,8 @@ plus addiotional field:
 
 #### **Success response**
 
+> **Notice**: `imageUrl` builds with [Base image URL](#general)
+
 ```json
 {
   "result":"ok",
@@ -1092,8 +1094,6 @@ plus addiotional field:
 - `user_id` - got on previous step
 
 #### **Success response**
-
-> **Notice**: `imageUrl` builds with [Base image URL](#general)
 
 ```json
 {
