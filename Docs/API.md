@@ -85,10 +85,13 @@
     - [Book service](#book-service)
       - [**Success response**](#success-response-18)
       - [**Failure response**](#failure-response-18)
-  - [Deprecated](#deprecated)
-    - [Showroom choosing](#showroom-choosing)
+    - [Get managers](#get-managers)
       - [**Success response**](#success-response-19)
       - [**Failure response**](#failure-response-19)
+  - [Deprecated](#deprecated)
+    - [Showroom choosing](#showroom-choosing)
+      - [**Success response**](#success-response-20)
+      - [**Failure response**](#failure-response-20)
 
 </details>
 
@@ -1025,6 +1028,49 @@ plus addiotional field:
 {
   "error_code":"104",
   "error_message":"different options"
+}
+```
+
+[**To table of contents**](#toyota-api)
+
+---
+
+### Get managers
+
+**Path:** `get_managers.php`
+
+**Params:**
+
+- `user_id` - from memory
+- `brand_id` - app const
+
+#### **Success response**
+
+```json
+{
+  "result":"ok",
+  "managers": [
+    {
+      id: "1",
+      userId: "289",
+      firstName: "Валерий",
+      secondName: "Жма",
+      lastName: "Абоба",
+      phone: "+78005353535",
+      email: "aboba@yandex.ua",
+      imageUrl: ".../photoPath.img",
+      showroomName: "Тойота Самара Юг"
+    }
+  ]
+}
+```
+
+#### **Failure response**
+
+```json
+{
+  "error_code":"101",
+  "message":"Ошибка сервера."
 }
 ```
 
