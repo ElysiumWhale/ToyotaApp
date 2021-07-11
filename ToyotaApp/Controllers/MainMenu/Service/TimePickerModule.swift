@@ -132,6 +132,7 @@ class TimePickerModule: NSObject, IServiceModule {
                 internalView.dataDidDownload()
                 result = .success(Service(id: "0", name: "Success"))
                 delegate?.moduleDidUpdated(self)
+                internalView.fadeIn(0.6)
         }
     }
     

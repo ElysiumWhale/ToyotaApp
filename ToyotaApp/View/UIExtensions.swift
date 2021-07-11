@@ -3,12 +3,12 @@ import UIKit
 
 //MARK: - FadeIn/Out UIView Animation
 extension UIView {
-    func fadeIn(_ duration: TimeInterval? = 0.05, onCompletion: (() -> Void)? = nil) {
+    func fadeIn(_ duration: TimeInterval = 0.05, onCompletion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
             if let view = self, !view.isHidden { return }
             self?.alpha = 0
             self?.isHidden = false
-            UIView.animate(withDuration: duration!,
+            UIView.animate(withDuration: duration,
                            animations: { self?.alpha = 1 },
                            completion: { (value: Bool) in
                               if let complete = onCompletion { complete() }
@@ -17,10 +17,10 @@ extension UIView {
         }
     }
 
-    func fadeOut(_ duration: TimeInterval? = 0.05, onCompletion: (() -> Void)? = nil) {
+    func fadeOut(_ duration: TimeInterval = 0.05, onCompletion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
             if let view = self, view.isHidden { return }
-            UIView.animate(withDuration: duration!,
+            UIView.animate(withDuration: duration,
                            animations: { self?.alpha = 0 },
                            completion: { (value: Bool) in
                             self?.isHidden = true

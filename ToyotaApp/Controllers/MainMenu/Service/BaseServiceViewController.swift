@@ -64,16 +64,7 @@ class BaseServiceController: UIViewController, IServiceController {
                     bookButton.fadeIn(0.6)
                     return
                 }
-                hideModules(after: index + 1)
                 modules[index + 1].start(with: module.buildQueryItems())
-        }
-    }
-    
-    private func hideModules(after index: Int) {
-        if index < modules.count - 1 {
-            for index in index...modules.count-1 {
-                modules[index].view?.fadeOut(0.6)
-            }
         }
     }
     
