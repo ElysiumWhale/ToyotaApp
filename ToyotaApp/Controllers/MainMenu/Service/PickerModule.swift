@@ -131,10 +131,10 @@ class PickerModule: NSObject, IServiceModule {
             case .success(let data):
                 if i == 1 {
                     i += 1
-                    return [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.id)]
+                    return [URLQueryItem(name: RequestKeys.Services.sId, value: data.id)]
                 } else {
                     i -= 1
-                    return [URLQueryItem(name: "service_id", value: data.id)]
+                    return [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.id)]
                 }
             case .failure, .none:
                 return []

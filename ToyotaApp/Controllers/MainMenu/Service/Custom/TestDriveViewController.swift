@@ -34,11 +34,11 @@ class TestDriveViewController: BaseServiceController {
                         modules[1].customStart(page: RequestPath.Services.getTestDriveCars, with: params, response: CarsDidGetResponse.self)
                     case 1:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: try? modules[0].result?.get().id), URLQueryItem(name: "service_id", value: service.id)]
+                        let params = [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: try? modules[0].result?.get().id), URLQueryItem(name: RequestKeys.Services.serviceId, value: service.id)]
                         modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms, with: params, response: ShoroomsDidGetResponce.self)
                     case 2:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id), URLQueryItem(name: RequestKeys.Services.serviceId, value: try? modules[1].result?.get().id)]
+                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id), URLQueryItem(name: RequestKeys.Services.sId, value: try? modules[1].result?.get().id)]
                         NetworkService.shared.makePostRequest(page: RequestPath.Services.getTestDriveServiceId, params: params, completion: completion)
                     case 3:
                         bookButton.fadeIn(0.6)
@@ -52,7 +52,7 @@ class TestDriveViewController: BaseServiceController {
                                 navigationController?.popViewController(animated: true)
                             }
                         case .success(let data):
-                            let params = [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.serviceId), URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id)]
+                            let params = [URLQueryItem(name: RequestKeys.Services.sId, value: data.serviceId), URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id)]
                             modules[3].customStart(page: RequestPath.Services.getFreeTime, with: params, response: CarsDidGetResponse.self)
                     }
                 }

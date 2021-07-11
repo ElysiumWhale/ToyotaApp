@@ -75,7 +75,8 @@ struct RequestKeys {
     
     struct Services {
         static let serviceTypeId = "service_type_id"
-        static let serviceId = "sid"//"service_id"
+        static let sId = "sid"
+        static let serviceId = "service_id"
         static let dateBooking = "date_booking"
         static let startBooking = "start_booking"
         static let longitude = "longitude"
