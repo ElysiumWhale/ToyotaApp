@@ -9,6 +9,7 @@ class PickerModuleView: UIView {
         let label = UILabel()
         label.font = UIFont.toyotaSemiBold(of: 20)
         label.textAlignment = .left
+        label.textColor = .label
         label.text = "Выберите услугу"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -18,6 +19,7 @@ class PickerModuleView: UIView {
         let field = NoPasteTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = UIFont.toyotaLight(of: 22)
+        field.textColor = .label
         field.textAlignment = .center
         field.tintColor = .clear
         field.borderStyle = .roundedRect

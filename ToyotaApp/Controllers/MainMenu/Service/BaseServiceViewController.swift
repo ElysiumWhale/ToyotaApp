@@ -24,14 +24,7 @@ class BaseServiceController: UIViewController, IServiceController {
     
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
-        switch traitCollection.userInterfaceStyle {
-            case .light, .unspecified:
-                view.backgroundColor = .white
-            case .dark:
-                view.backgroundColor = .black
-            @unknown default:
-                view.backgroundColor = .white
-        }
+        view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)
         hideKeyboardWhenTappedAround()

@@ -7,9 +7,9 @@ class MapModuleView: UIView {
     private(set) lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.toyotaSemiBold(of: 20)
+        label.textColor = .label
         label.textAlignment = .left
         label.text = "Укажите местоположение"
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

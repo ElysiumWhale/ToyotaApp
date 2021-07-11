@@ -18,6 +18,7 @@ class TimePickerView: UIView {
         let label = UILabel()
         label.font = UIFont.toyotaSemiBold(of: 20)
         label.textAlignment = .left
+        label.textColor = .label
         label.text = "Выберите дату и время"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -192,6 +193,7 @@ extension TimePickerModule: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = UIFont.toyotaSemiBold(of: 20)
+        pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {
             case 0: pickerLabel.text = dates.isEmpty ? "Empty" :

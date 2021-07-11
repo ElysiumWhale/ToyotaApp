@@ -42,23 +42,11 @@ class PhoneTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-            let rect = super.textRect(forBounds: bounds)
-            return rect.inset(by: UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 10
-            ))
-        }
+        super.textRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
+    }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        let rect = super.editingRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 10
-        ))
+        super.editingRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
     }
     
     func customizeView() {
