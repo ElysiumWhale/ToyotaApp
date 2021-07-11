@@ -38,6 +38,8 @@ class ServiceModuleBuilder {
         var modules: [IServiceModule] = []
         switch controlType {
             case .notDefined: break
+            case .timepick:
+                modules.append(TimePickerModule(with: serviceType, for: controller))
             case .map:
                 modules.append(MapModule(with: serviceType, for: controller))
             case .onePick:

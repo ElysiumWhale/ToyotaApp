@@ -111,9 +111,9 @@ class TimePickerModule: NSObject, IServiceModule {
         }
         
         var queryParams: [URLQueryItem] = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
-        if !params.isEmpty {
-            queryParams.append(contentsOf: params)
-        }
+        
+        !params.isEmpty ? queryParams.append(contentsOf: params)
+                        : queryParams.append(URLQueryItem(name: RequestKeys.Services.sId, value: serviceType.id))
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: queryParams, completion: completion)
     }
@@ -136,8 +136,8 @@ class TimePickerModule: NSObject, IServiceModule {
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        if let (date, time) = selectedDate {
-            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date), URLQueryItem(name: RequestKeys.Services.startBooking, value: String(describing: TimeMap.serverMap[time]))]
+        if let (date, time) = selectedDate, let value = TimeMap.serverMap[time] {
+            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date), URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
         } else { return [] }
     }
     

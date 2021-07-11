@@ -39,7 +39,7 @@ class BaseServiceController: UIViewController, IServiceController {
             stackView.addArrangedSubview(module.view ?? UIView())
         }
         stackView.addArrangedSubview(bookButton)
-        modules.first?.start(with: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: user?.getSelectedShowroom?.id)])
+        modules.first?.start(with: [])
     }
     
     func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy) {
@@ -87,6 +87,10 @@ class BaseServiceController: UIViewController, IServiceController {
             let items = module.buildQueryItems()
             if items.count < 1 { return }
             params.append(contentsOf: items)
+        }
+        
+        if params.first(where: { $0.name == RequestKeys.Services.serviceId }) == nil {
+            params.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType!.id))
         }
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.bookService, params: params, completion: completion)
