@@ -103,6 +103,8 @@ API uses **only POST** queries.
 
 Base URL: <http://cv39623.tmweb.ru/avtosalon/mobile/>
 
+Base **image** URL: <http://cv39623.tmweb.ru/avtosalon> (using for downloading avatars for [managers](#get-managers))
+
 ### Services controllers types
 
 | Id | Control type description | List of services |
@@ -1090,6 +1092,8 @@ plus addiotional field:
 - `user_id` - got on previous step
 
 #### **Success response**
+
+> **Notice**: `imageUrl` builds with [Base image URL](#general)
 
 ```json
 {
