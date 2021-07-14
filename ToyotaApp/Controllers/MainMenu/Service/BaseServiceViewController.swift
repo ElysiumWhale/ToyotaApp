@@ -7,8 +7,8 @@ class BaseServiceController: UIViewController, IServiceController {
     
     private(set) lazy var bookButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1)
-        button.titleLabel?.font = UIFont.toyotaSemiBold(of: 20)
+        button.backgroundColor = UIColor.mainAppTint
+        button.titleLabel?.font = UIFont.toyotaSemibold(of: 20)
         button.layer.cornerRadius = 20
         button.setTitle("Оставить заявку", for: .normal)
         button.addAction { [self] in

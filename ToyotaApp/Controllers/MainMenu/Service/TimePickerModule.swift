@@ -16,7 +16,7 @@ class TimePickerView: UIView {
     
     private(set) lazy var dateTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaSemiBold(of: 20)
+        label.font = UIFont.toyotaSemibold(of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = "Выберите дату и время"
@@ -193,7 +193,7 @@ extension TimePickerModule: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
-        pickerLabel.font = UIFont.toyotaSemiBold(of: 20)
+        pickerLabel.font = UIFont.toyotaSemibold(of: 20)
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {

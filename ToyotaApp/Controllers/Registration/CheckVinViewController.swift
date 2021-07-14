@@ -28,7 +28,6 @@ class CheckVinViewController: UIViewController {
         switch segue.identifier {
             case segueCode:
                 let destinationVC = segue.destination as! EndRegistrationViewController
-                #warning("to-do: configure message")
             default: return
         }
     }

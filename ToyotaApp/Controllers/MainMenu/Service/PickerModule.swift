@@ -7,7 +7,7 @@ class PickerModuleView: UIView {
     
     private(set) lazy var serviceNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaSemiBold(of: 20)
+        label.font = UIFont.toyotaSemibold(of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = "Выберите услугу"
@@ -124,7 +124,7 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
     
-    #warning("todo: delete kostyl'")
+    #warning("todo: DELETE THIS KOSTYL'")
     var i = 1
     func buildQueryItems() -> [URLQueryItem] {
         switch result {

@@ -34,12 +34,8 @@ extension UIView {
 //MARK: - UITextField error border
 extension UITextField {
     func toggleErrorState(hasError: Bool) {
-        if hasError {
-            layer.borderColor = UIColor.systemRed.cgColor
-            layer.borderWidth = 1.0
-        } else {
-            layer.borderWidth = 0
-        }
+        layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
+        layer.borderWidth = hasError ? 1 : 0
     }
 }
 
@@ -88,7 +84,7 @@ extension UIPickerView {
     }
 }
 
-//MARK: UIToolBar
+//MARK: - UIToolBar
 extension UIToolbar {
     static func buildToolBar<T>(for delegate: T, with action: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
@@ -100,22 +96,20 @@ extension UIToolbar {
     }
 }
 
-//MARK: Fonts
+//MARK: - Fonts
 extension UIFont {
-    static func toyotaSemiBold(of size: CGFloat) -> UIFont {
-        return UIFont(name: "ToyotaType-Semibold", size: size)!
+    static func toyotaSemibold(of size: CGFloat) -> UIFont {
+        UIFont(name: "ToyotaType-Semibold", size: size)!
     }
     
     static func toyotaLight(of size: CGFloat) -> UIFont {
-        return UIFont(name: "ToyotaType-Light", size: size)!
+        UIFont(name: "ToyotaType-Light", size: size)!
     }
     
     #warning("todo: rest fonts")
 }
 
-//MARK: Main app tint
+//MARK: - Main app tint
 extension UIColor {
-    static var mainAppTint: UIColor {
-        return UIColor(red: 171, green: 97, blue: 99, alpha: 1)
-    }
+    static var mainAppTint: UIColor { UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1) }
 }
