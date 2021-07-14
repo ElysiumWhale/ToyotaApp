@@ -6,7 +6,7 @@ class TestDriveViewController: BaseServiceController {
     }
     
     override func start() {
-        var labels = ["Выберите город", "Выберите машину", "Выберите салон", "Выберите время"]
+        let labels = ["Выберите город", "Выберите машину", "Выберите салон", "Выберите время"]
         for (module, text) in zip(modules, labels) {
             stackView.addArrangedSubview(module.view ?? UIView())
             module.configureViewText(with: text)
