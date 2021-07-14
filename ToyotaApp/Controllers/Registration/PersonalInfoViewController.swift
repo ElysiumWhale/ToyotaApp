@@ -2,11 +2,11 @@ import UIKit
 
 class PersonalInfoViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var firstNameTextField: UITextField!
-    @IBOutlet private var secondNameTextField: UITextField!
-    @IBOutlet private var lastNameTextField: UITextField!
-    @IBOutlet private var emailTextField: UITextField!
-    @IBOutlet private var birthTextField: UITextField!
+    @IBOutlet private var firstNameTextField: InputTextField!
+    @IBOutlet private var secondNameTextField: InputTextField!
+    @IBOutlet private var lastNameTextField: InputTextField!
+    @IBOutlet private var emailTextField: InputTextField!
+    @IBOutlet private var birthTextField: InputTextField!
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
     
@@ -26,9 +26,6 @@ class PersonalInfoViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         textFieldsWithError = [firstNameTextField : true, secondNameTextField : true,
                                lastNameTextField : true, emailTextField : true, birthTextField : true]
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func configure(with profile: Profile) {
@@ -41,17 +38,9 @@ class PersonalInfoViewController: UIViewController {
     }
     
     @IBAction private func textDidChange(sender: UITextField) {
-        if let text = sender.text, text.count > 0, text.count < 25 {
-            sender.borderStyle = .none
-            sender.layer.borderColor = UIColor.gray.cgColor
-            sender.layer.borderWidth = 0.15
-            textFieldsWithError[sender] = false
-        } else {
-            sender.borderStyle = .roundedRect
-            sender.layer.borderColor = UIColor.systemRed.cgColor
-            sender.layer.borderWidth = 0.5
-            textFieldsWithError[sender] = true
-        }
+        let isNormal = sender.text != nil && sender.text!.count > 0 && sender.text!.count < 25
+        sender.toggleErrorState(hasError: !isNormal)
+        textFieldsWithError[sender] = !isNormal
     }
     
     @IBAction private func dateDidSelect(sender: Any?) {
@@ -64,7 +53,8 @@ class PersonalInfoViewController: UIViewController {
 //MARK: - Navigation
 extension PersonalInfoViewController {
     override func viewWillAppear(_ animated: Bool) {
-        //addKeyboardObserver()
+        setupKeyboard(isSubcribing: true)
+        
         if isConfigured, let profile = configuredProfile {
             firstNameTextField.text = profile.firstName
             secondNameTextField.text = profile.secondName
@@ -76,14 +66,13 @@ extension PersonalInfoViewController {
         
         if activitySwitcher.isAnimating {
             activitySwitcher.stopAnimating()
-            activitySwitcher.isHidden = true
-            nextButton.isHidden = false
+            nextButton.fadeIn(0.3)
         }
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        removeKeyboardObserver()
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        setupKeyboard(isSubcribing: false)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -97,12 +86,20 @@ extension PersonalInfoViewController {
 
 //MARK: - Keyboard methods
 extension PersonalInfoViewController {
+    private func setupKeyboard(isSubcribing: Bool) {
+        if isSubcribing {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        } else {
+            NotificationCenter.default.removeObserver(self)
+        }
+    }
+    
     @IBAction func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
         scrollView.contentInset = contentInsets
-        //scrollView.setContentOffset(CGPoint(x: 0.0, y: keyboardSize.height-30), animated: true)
         scrollView.scrollIndicatorInsets = contentInsets
       }
     
@@ -110,7 +107,6 @@ extension PersonalInfoViewController {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 
@@ -145,7 +141,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
             case .failure(let error):
                 displayError(with: error.message ?? "Ошибка при отправке запроса") { [self] in
                     activitySwitcher.stopAnimating()
-                    nextButton.isHidden = false
+                    nextButton.fadeIn(0.3)
                 }
         }
     }

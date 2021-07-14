@@ -150,7 +150,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E4W-EP-uCc">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NewsCVC" id="E4W-EP-uCc">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
@@ -191,7 +191,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="35" y="105" width="359" height="45.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
@@ -333,6 +333,11 @@
             <point key="canvasLocation" x="2079" y="1281"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="r3W-A2-Oo1">
+            <size key="intrinsicContentSize" width="121" height="45.333333333333336"/>
+        </designable>
+    </designables>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
