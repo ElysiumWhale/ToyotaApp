@@ -2,8 +2,8 @@ import UIKit
 
 class DealerViewController: UIViewController {
     @IBOutlet private var cityTextField: UITextField!
-    @IBOutlet private var showroomTextField: UITextField!
-    @IBOutlet private var showroomStackView: UIStackView!
+    @IBOutlet private var showroomTextField: NoCopyPasteTexField!
+    @IBOutlet private var showroomStackView: NoCopyPasteTexField!
     @IBOutlet private var cityTextFieldIndicator: UIActivityIndicatorView!
     @IBOutlet private var nextButtonIndicator: UIActivityIndicatorView!
     @IBOutlet private var showroomLabel: UILabel!

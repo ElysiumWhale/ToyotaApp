@@ -1,7 +1,7 @@
 import UIKit
 
 class ServicesViewController: UIViewController, BackgroundText {
-    @IBOutlet private var carTextField: UITextField!
+    @IBOutlet private var carTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomLabel: UILabel!
     @IBOutlet private var servicesList: UICollectionView!
     

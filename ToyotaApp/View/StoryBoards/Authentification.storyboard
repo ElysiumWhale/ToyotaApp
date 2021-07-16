@@ -38,16 +38,16 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-xK-K3K">
-                                <rect key="frame" x="30" y="287" width="354" height="81"/>
+                                <rect key="frame" x="30" y="287" width="354" height="86.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в личный кабинет:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRS-Ga-buk">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="26"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="31.5"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-20-RV7" customClass="PhoneTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="31" width="354" height="50"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="354" height="50"/>
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="gLd-Vb-gNq"/>
@@ -60,7 +60,7 @@
                                         </connections>
                                     </textField>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неккоректно введен номер!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Hf-xZb">
-                                        <rect key="frame" x="0.0" y="81" width="354" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="86.5" width="354" height="0.0"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                         <color key="textColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW">
-                                <rect key="frame" x="83" y="804" width="248" height="38"/>
+                                <rect key="frame" x="83" y="798" width="248" height="44"/>
                                 <color key="backgroundColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -154,7 +154,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Код из смс" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwn-0n-Fd3">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Код из смс" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwn-0n-Fd3" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="73" width="354" height="50"/>
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
@@ -226,7 +226,10 @@
     </scenes>
     <designables>
         <designable name="1t0-20-RV7">
-            <size key="intrinsicContentSize" width="175.5" height="27.5"/>
+            <size key="intrinsicContentSize" width="188" height="33"/>
+        </designable>
+        <designable name="bwn-0n-Fd3">
+            <size key="intrinsicContentSize" width="116" height="33"/>
         </designable>
     </designables>
     <resources>

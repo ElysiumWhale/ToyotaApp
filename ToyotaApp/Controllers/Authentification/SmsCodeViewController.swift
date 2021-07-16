@@ -2,7 +2,7 @@ import UIKit
 
 class SmsCodeViewController: UIViewController {
     @IBOutlet private var phoneNumberLabel: UILabel!
-    @IBOutlet private var smsCodeTextField: UITextField!
+    @IBOutlet private var smsCodeTextField: InputTextField!
     @IBOutlet private var sendSmsCodeButton: UIButton!
     @IBOutlet private var wrongCodeLabel: UILabel!
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
@@ -13,7 +13,6 @@ class SmsCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        smsCodeTextField.layer.cornerRadius = 10
     }
     
     func configure(with authType: AuthType, and number: String) {
@@ -22,9 +21,6 @@ class SmsCodeViewController: UIViewController {
     }
     
     @IBAction func codeValueDidChange(with sender: UITextField) {
-        if sender.text?.count == 4 {
-            sendSmsCodeButton!.isEnabled = true
-        }
         wrongCodeLabel.fadeOut(0.3)
         smsCodeTextField.toggleErrorState(hasError: false)
     }
@@ -68,7 +64,7 @@ extension SmsCodeViewController {
         switch type {
             case .register:
                 NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode, params: buildRequestParams(authType: type), completion: registerCompletion)
-            case .changeNumber(_):
+            case .changeNumber:
                 NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone, params: buildRequestParams(authType: type), completion: changeNumberCompletion)
         }
     }
@@ -76,11 +72,8 @@ extension SmsCodeViewController {
     private func buildRequestParams(authType: AuthType) -> [URLQueryItem] {
         var params = [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
                       URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text)]
-        if case .register = authType {
-            params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota))
-        } else {
-            params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: DefaultsManager.getUserInfo(UserId.self)!.id))
-        }
+        params.append(authType == .register ? URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)
+                                            : URLQueryItem(name: RequestKeys.Auth.userId, value: DefaultsManager.getUserInfo(UserId.self)!.id))
         return params
     }
     
@@ -91,9 +84,9 @@ extension SmsCodeViewController {
                 DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data) { _ in NavigationService.loadRegister() }
             case .failure(let error):
-                displayError(with:  error.message ?? AppErrors.unknownError.rawValue) { [self] in
-                    activitySwitcher.stopAnimating()
-                    sendSmsCodeButton.fadeIn(0.3)
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [weak self] in
+                    self?.activitySwitcher.stopAnimating()
+                    self?.sendSmsCodeButton.fadeIn(0.3)
                 }
         }
     }
@@ -108,9 +101,9 @@ extension SmsCodeViewController {
                     }
                 }
             case .failure(let error):
-                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
-                    activitySwitcher.stopAnimating()
-                    sendSmsCodeButton.fadeIn(0.3)
+                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [weak self] in
+                    self?.activitySwitcher.stopAnimating()
+                    self?.sendSmsCodeButton.fadeIn(0.3)
                 }
         }
     }
