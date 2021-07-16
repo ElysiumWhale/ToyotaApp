@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ToyotaType-SemiboldIt</string>
+		<string>ToyotaType-Semibold</string>
+		<string>ToyotaType-LightIt</string>
+		<string>ToyotaType-Light</string>
+		<string>ToyotaType-BoldIt</string>
+		<string>ToyotaType-Bold</string>
+		<string>ToyotaType-BlackIt</string>
+		<string>ToyotaType-Black</string>
+		<string>ToyotaType-RegularIt</string>
+		<string>ToyotaType-Regular</string>
+		<string>ToyotaType-BookIt</string>
+		<string>ToyotaType-Book</string>
+	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Для вызова эвакуатора необходимо предоставить доступ к геопозиции</string>
 	<key>CFBundleDevelopmentRegion</key>
