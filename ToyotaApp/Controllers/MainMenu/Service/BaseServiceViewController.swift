@@ -40,7 +40,7 @@ class BaseServiceController: UIViewController, IServiceController {
             stackView.addArrangedSubview(module.view ?? UIView())
         }
         stackView.addArrangedSubview(bookButton)
-        modules.first?.start(with: [])
+        modules.first?.start()
     }
     
     func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy) {

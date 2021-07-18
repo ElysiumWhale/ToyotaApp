@@ -15,6 +15,10 @@ protocol IServiceModule: AnyObject {
 
 extension IServiceModule {
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) { }
+    
+    func start(with params: [URLQueryItem] = []) {
+        start(with: [])
+    }
 }
 
 ///Controller which manages `IServiceModule`s.
