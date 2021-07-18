@@ -5,12 +5,13 @@ import UIKit
 class PopUp {
     private init() { }
     
-    static let mainRedColor: EKColor = .init(red: 171, green: 97, blue: 99)
+    private static let mainRedColor: EKColor = .init(red: 171, green: 97, blue: 99)
+    private static let font = UIFont.toyotaType(.semibold, of: 20)
     
     class func displayChoice(with title: String, description: String, confirmText: String, declineText: String, confirmCompletion: @escaping () -> Void) {
         DispatchQueue.main.async {
-            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.boldSystemFont(ofSize:  20), color: EKColor(light: .white, dark: .white), alignment: .center))
-            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font:  UIFont.boldSystemFont(ofSize: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
+            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: font, color: .white, alignment: .center))
+            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font:  font, color: .white, alignment: .center))
             SwiftEntryKit.display(entry: EKAlertMessageView(with: .init(simpleMessage: .init(title: titleLabel, description: descrLabel), buttonBarContent: createButtons(confirmText, declineText, confirmCompletion))), using: attributesPreset)
         }
     }
@@ -22,13 +23,14 @@ class PopUp {
     }
     
     class private func popUpMessagePreset(title: String, description: String, buttonText: String, _ dismissCompletion: @escaping () -> Void = { }) -> EKPopUpMessage {
-            let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: UIFont.toyotaSemibold(of: 20), color: EKColor(light: .white, dark: .white), alignment: .center))
-            let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: UIFont.toyotaSemibold(of: 20), color: EKColor(light: .white, dark: .black), alignment: .center))
-            let button = EKProperty.ButtonContent(label: .init(text: buttonText, style: .init(font: UIFont.toyotaSemibold(of: 20), color: mainRedColor)), backgroundColor: .init(UIColor.white), highlightedBackgroundColor: .clear)
-            return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button) {
-                dismissCompletion()
-                SwiftEntryKit.dismiss()
-            }
+        let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: font, color: .white, alignment: .center))
+        let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: font, color: .white, alignment: .center))
+        let button = EKProperty.ButtonContent(label: .init(text: buttonText, style: .init(font: font, color: mainRedColor)), backgroundColor: .white, highlightedBackgroundColor: .clear)
+        
+        return EKPopUpMessage(title: titleLabel, description: descrLabel, button: button) {
+            dismissCompletion()
+            SwiftEntryKit.dismiss()
+        }
     }
     
     private static var attributesPreset: EKAttributes = {
@@ -50,7 +52,7 @@ class PopUp {
     }()
     
     class private func createButtons(_ confirmText: String, _ declineText: String, _ confirmCompletion: @escaping () -> Void) -> EKProperty.ButtonBarContent {
-        let buttonFont = EKProperty.LabelStyle(font: UIFont.toyotaSemibold(of: 20), color: .white)
+        let buttonFont = EKProperty.LabelStyle(font: font, color: .white)
         let confirmButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: confirmText, style: buttonFont), backgroundColor: mainRedColor, highlightedBackgroundColor: .clear, action: confirmCompletion)
         let declineButton = EKProperty.ButtonContent.init(label: EKProperty.LabelContent.init(text: declineText, style: buttonFont), backgroundColor: mainRedColor, highlightedBackgroundColor: .clear, action: { SwiftEntryKit.dismiss() })
         

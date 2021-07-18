@@ -98,15 +98,29 @@ extension UIToolbar {
 
 //MARK: - Fonts
 extension UIFont {
-    static func toyotaSemibold(of size: CGFloat) -> UIFont {
-        UIFont(name: "ToyotaType-Semibold", size: size)!
+    enum ToyotaFonts: String {
+        case semibold = "Semibold"
+        case light = "Light"
+        case regular = "Regular"
+        case book = "Book"
+        case bold = "Bold"
+        case black = "Black"
+        
+        case lightItalic = "LightIt"
+        case bookItalic = "BookIt"
+        case regularItalic = "RegularIt"
+        case semiboldItalic = "SemiboldIt"
+        case boldItalic = "BoldIt"
+        case blackItalic = "BlackIt"
+        
+        func getName() -> String {
+            return "ToyotaType-\(self.rawValue)"
+        }
     }
     
-    static func toyotaLight(of size: CGFloat) -> UIFont {
-        UIFont(name: "ToyotaType-Light", size: size)!
+    static func toyotaType(_ type: ToyotaFonts, of size: CGFloat) -> UIFont {
+        UIFont(name: type.getName(), size: size)!
     }
-    
-    #warning("todo: rest fonts")
 }
 
 //MARK: - Main app tint

@@ -7,7 +7,7 @@ class PickerModuleView: UIView {
     
     private(set) lazy var serviceNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaSemibold(of: 20)
+        label.font = UIFont.toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = "Выберите услугу"
@@ -18,7 +18,7 @@ class PickerModuleView: UIView {
     private(set) var textField: NoPasteTextField = {
         let field = NoPasteTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont.toyotaLight(of: 22)
+        field.font = UIFont.toyotaType(.light, of: 22)
         field.textColor = .label
         field.textAlignment = .center
         field.tintColor = .clear
@@ -172,7 +172,7 @@ extension PickerModule: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
-        pickerLabel.font = UIFont.toyotaLight(of: 20)
+        pickerLabel.font = UIFont.toyotaType(.light, of: 20)
         pickerLabel.textAlignment = .center
         pickerLabel.text = array?[row].name
         return pickerLabel

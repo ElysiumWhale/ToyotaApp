@@ -23,7 +23,7 @@ class PhoneTextField: UITextField {
     
     override func draw(_ rect: CGRect) {
         prefixLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.height + 10, height: frame.size.height))
-        prefixLabel.font = UIFont.toyotaLight(of: 22)
+        prefixLabel.font = UIFont.toyotaType(.light, of: 22)
         prefixLabel.backgroundColor = .clear
         prefixLabel.textAlignment = .center
         prefixLabel.textColor = .label
