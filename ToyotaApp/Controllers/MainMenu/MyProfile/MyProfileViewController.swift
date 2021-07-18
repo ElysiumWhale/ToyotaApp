@@ -208,8 +208,8 @@ extension MyProfileViewController {
                     state = .none
                 }
             case .failure(let error):
-                displayError(with: error.message ?? "Произошла ошибка при сохранении данных, повторите попытку позже") { [self] in
-                    state = .isEditing
+                displayError(with: error.message ?? "Произошла ошибка при сохранении данных, повторите попытку позже") { [weak self] in
+                    self?.state = .isEditing
                 }
         }
     }

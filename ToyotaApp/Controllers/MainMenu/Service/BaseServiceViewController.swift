@@ -55,8 +55,8 @@ class BaseServiceController: UIViewController, IServiceController {
                 if let mes = error.message { message = mes }
                 fallthrough
             case .none:
-                PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [self] in
-                    navigationController?.popViewController(animated: true)
+                PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
                 }
             case .success:
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
@@ -89,8 +89,8 @@ class BaseServiceController: UIViewController, IServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [self] in
-                        navigationController?.popViewController(animated: true)
+                    PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [weak self] in
+                        self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
                     PopUp.displayMessage(with: CommonText.error, description: error.message ?? CommonText.servicesError, buttonText: CommonText.ok)

@@ -28,11 +28,12 @@ class MyCarsViewController: UIViewController, BackgroundText {
     private func carDidAddCompletion(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                DispatchQueue.main.async { [self] in
+                DispatchQueue.main.async { [weak self] in
+                    guard let vc = self else { return }
                     let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
                     let addShowroomVC =  register.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController
-                    addShowroomVC.configure(cityList: data.cities, controllerType: .update(with: user))
-                    navigationController?.pushViewController(addShowroomVC, animated: true)
+                    addShowroomVC.configure(cityList: data.cities, controllerType: .update(with: vc.user))
+                    vc.navigationController?.pushViewController(addShowroomVC, animated: true)
                 }
             case .failure(let error):
                 displayError(with: error.message ?? "Ошибка при загрузке городов, повторите позднее")

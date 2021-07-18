@@ -61,11 +61,12 @@ class ServicesViewController: UIViewController, BackgroundText {
     private func carDidSelectCompletion(for response: Result<ServicesTypesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                DispatchQueue.main.async { [self] in
-                    serviceTypes = data.serviceType
-                    servicesList.reloadData()
-                    endRefreshing()
-                    servicesList.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: CommonText.noServices) : nil
+                DispatchQueue.main.async { [weak self] in
+                    guard let vc = self else { return }
+                    vc.serviceTypes = data.serviceType
+                    vc.servicesList.reloadData()
+                    vc.endRefreshing()
+                    vc.servicesList.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: CommonText.noServices) : nil
                 }
             case .failure(let error):
                 var labelMessage = ""
@@ -75,16 +76,16 @@ class ServicesViewController: UIViewController, BackgroundText {
                     default:
                         labelMessage = "\(CommonText.servicesError), \(CommonText.retryRefresh)"
                 }
-                DispatchQueue.main.async { [self] in
-                    endRefreshing()
-                    servicesList.backgroundView = createBackground(labelText: labelMessage)
+                DispatchQueue.main.async { [weak self] in
+                    self?.endRefreshing()
+                    self?.servicesList.backgroundView = self?.createBackground(labelText: labelMessage)
                 }
         }
     }
     
     private func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [self] in refreshControl.endRefreshing() })
+                                      execute: { [weak self] in self?.refreshControl.endRefreshing() })
     }
 }
 
