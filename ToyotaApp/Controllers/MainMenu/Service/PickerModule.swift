@@ -90,6 +90,8 @@ class PickerModule: NSObject, IServiceModule {
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
+        result = nil
+        internalView.textField.text = ""
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServices, params:
            [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),
             URLQueryItem(name: RequestKeys.Services.serviceTypeId, value: serviceType.id)],
@@ -101,6 +103,8 @@ class PickerModule: NSObject, IServiceModule {
     }
     
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
+        result = nil
+        internalView.textField.text = ""
         NetworkService.shared.makePostRequest(page: page, params: params, completion: internalCompletion)
         
         func internalCompletion(for response: Result<TResponse, ErrorResponse>) {
