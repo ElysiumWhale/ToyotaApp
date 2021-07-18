@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
-		141E740226A466D80096A2ED /* QuickLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 141E740126A466D80096A2ED /* QuickLayout */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
@@ -159,7 +158,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
-				141E740226A466D80096A2ED /* QuickLayout in Frameworks */,
 				1495724625BA04F20031A5AA /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +412,6 @@
 			packageProductDependencies = (
 				A7A085FC255C869C00807225 /* SwiftEntryKit */,
 				1495724525BA04F20031A5AA /* Kingfisher */,
-				141E740126A466D80096A2ED /* QuickLayout */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -447,7 +444,6 @@
 			packageReferences = (
 				A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				141E740026A466D80096A2ED /* XCRemoteSwiftPackageReference "QuickLayout" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -742,14 +738,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		141E740026A466D80096A2ED /* XCRemoteSwiftPackageReference "QuickLayout" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/huri000/QuickLayout";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.1;
-			};
-		};
 		1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -769,11 +757,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		141E740126A466D80096A2ED /* QuickLayout */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 141E740026A466D80096A2ED /* XCRemoteSwiftPackageReference "QuickLayout" */;
-			productName = QuickLayout;
-		};
 		1495724525BA04F20031A5AA /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */;
