@@ -433,7 +433,7 @@
 				};
 			};
 			buildConfigurationList = A75946832523E32F00312EBE /* Build configuration list for PBXProject "ToyotaApp" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
