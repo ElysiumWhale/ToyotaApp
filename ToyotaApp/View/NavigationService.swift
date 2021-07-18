@@ -33,6 +33,7 @@ class NavigationService {
     
     private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: String) -> UINavigationController {
         let controller = storyboard.instantiateViewController(identifier: identifier) as! UINavigationController
+        controller.navigationBar.tintColor = UIColor.mainAppTint
         if let controllers = controllers, !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
@@ -152,9 +153,6 @@ extension NavigationService {
                     DefaultsManager.pushUserInfo(info: Cars(cars.map { $0.toDomain() }))
                 }
             }
-            
-            #warning("Push test cars")
-            //Test.PushTestCars()
             
             switch UserInfo.build() {
                 case .failure(_):

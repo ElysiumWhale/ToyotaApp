@@ -1,10 +1,6 @@
 import UIKit
 
 class TestDriveViewController: BaseServiceController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func start() {
         let labels = ["Выберите город", "Выберите машину", "Выберите салон", "Выберите время"]
         for (module, text) in zip(modules, labels) {
@@ -71,7 +67,6 @@ class TestDriveViewController: BaseServiceController {
     override func bookService() {
         guard let userId = user?.getId, let showroomId = try? modules[2].result?.get().id else { return }
         
-        //service_id?
         
         var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                                       URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]

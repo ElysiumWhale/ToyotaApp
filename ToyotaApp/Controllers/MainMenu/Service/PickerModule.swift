@@ -56,9 +56,7 @@ class PickerModuleView: UIView {
         ])
     }
     
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
+    override class var requiresConstraintBasedLayout: Bool { true }
 }
 
 //MARK: - Module

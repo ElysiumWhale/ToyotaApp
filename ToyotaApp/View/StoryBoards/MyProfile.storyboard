@@ -731,7 +731,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="Kmn-gh-v3J">
-                        <barButtonItem key="backBarButtonItem" title="Профиль" id="Gbg-An-FzE"/>
+                        <barButtonItem key="backBarButtonItem" title="Настройки" id="Gbg-An-FzE"/>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="9Ew-GO-WDO">
                             <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
