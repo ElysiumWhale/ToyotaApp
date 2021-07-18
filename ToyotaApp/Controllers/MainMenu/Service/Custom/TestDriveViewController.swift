@@ -56,22 +56,24 @@ class TestDriveViewController: BaseServiceController {
     }
     
     private func fadeOutAfter(module index: Int) {
-        if index+1 > 3 { return }
+        if index >= 2 { return }
         
-        for i in index+1...3 {
-            modules[i].view?.fadeOut(0.6)
+        for i in index+2...3 {
+            modules[i].view?.fadeOut(0.3)
         }
-        bookButton.fadeOut(0.6)
+        bookButton.fadeOut(0.3)
     }
     
     override func bookService() {
         guard let userId = user?.getId, let showroomId = try? modules[2].result?.get().id else { return }
         
-        
         var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-                                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
+                                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),
+                                      URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType?.id)]
         
         params.append(contentsOf: modules[3].buildQueryItems())
+        
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.bookService, params: params, completion: completion)
         
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
