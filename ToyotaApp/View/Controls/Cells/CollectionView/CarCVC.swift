@@ -5,18 +5,24 @@ import UIKit
     @IBOutlet private var colorNameLabel: UILabel!
     @IBOutlet private var liscencePlateLabel: UILabel!
     @IBOutlet private var colorDesrLabel: UILabel!
-    @IBOutlet private var vinTextLabel: UILabel!
+    @IBOutlet private var showroomName: UILabel!
+    @IBOutlet private var carImage: UIImageView!
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
     }
     
-    func configure(brand: String, model: String, color: String, plate: String, colorDesription: String, vin: String) {
+    func configure(brand: String, model: String, color: String, plate: String, colorDesription: String, showroom: String) {
         brandNameLabel.text = "\(brand) \(model)"
         colorNameLabel.text = "Цвет: \(color)"
         liscencePlateLabel.text = plate.uppercased()
-        colorDesrLabel.text = "Описание цвета: \(colorDesription)"
-        vinTextLabel.text =  "VIN: \(vin.map { _ in "*" }.joined())"
+        colorDesrLabel.text = "Описание: \(colorDesription)"
+        showroomName.text =  "Салон: \(showroom)"
         configureShadow(with: cornerRadius)
+        carImage.layer.borderWidth = 1
+        carImage.layer.masksToBounds = false
+        carImage.layer.borderColor = UIColor.mainAppTint.cgColor
+        carImage.layer.cornerRadius = carImage.frame.height/2
+        carImage.clipsToBounds = true
     }
 }

@@ -50,7 +50,8 @@ extension MyCarsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CarCollectionViewCell
         let car = cars[indexPath.row]
-        cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, vin: car.vin)
+        let showroomName = user.getShowrooms.value.first(where: {$0.id == car.showroomId})?.showroomName
+        cell.configure(brand: car.brand, model: car.model, color: car.color, plate: car.plate, colorDesription: car.colorDescription, showroom: showroomName ?? "Салон")
         return cell
     }
 }
