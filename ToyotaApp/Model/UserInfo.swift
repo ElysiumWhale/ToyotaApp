@@ -21,7 +21,6 @@ extension UserProxy {
 class UserInfo {
     let id: UserId
     private var phone: Phone
-    private var secretKey: SecretKey
     private var person: Person
     private var showrooms: Showrooms
     private var cars: Cars
@@ -30,43 +29,24 @@ class UserInfo {
     
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         let userId = DefaultsManager.getUserInfo(UserId.self)
-        let secretKey = DefaultsManager.getUserInfo(SecretKey.self)
         let userPhone = DefaultsManager.getUserInfo(Phone.self)
         let personInfo = DefaultsManager.getUserInfo(Person.self)
         let showroomsInfo = DefaultsManager.getUserInfo(Showrooms.self)
         
-        guard let id = userId, let key = secretKey, let phone = userPhone, let person = personInfo, let showrooms = showroomsInfo else {
+        guard let id = userId, let phone = userPhone, let person = personInfo, let showrooms = showroomsInfo else {
             return Result.failure(.notFullProfile)
         }
-        var res: UserInfo
-        if let cars = DefaultsManager.getUserInfo(Cars.self) {
-            res = UserInfo(id, key, phone, person, showrooms, cars)
-        } else {
-            res = UserInfo(id, key, phone, person, showrooms)
-        }
-        return Result.success(res)
+        
+        return Result.success(UserInfo(id, phone, person, showrooms, DefaultsManager.getUserInfo(Cars.self) ?? Cars([])))
     }
     
-    //MARK: - Constructors
-    private init(_ userId: UserId, _ key: SecretKey, _ userPhone: Phone,
-                 _ personInfo: Person, _ showroomsInfo: Showrooms, _ carsInfo: Cars) {
+    private init(_ userId: UserId, _ userPhone: Phone, _ personInfo: Person,
+                 _ showroomsInfo: Showrooms, _ carsInfo: Cars) {
         id = userId
-        secretKey = key
         phone = userPhone
         person = personInfo
         showrooms = showroomsInfo
         cars = carsInfo
-        notificator = NotificationCentre()
-    }
-    
-    private init(_ userId: UserId, _ key: SecretKey, _ userPhone: Phone,
-                 _ personInfo: Person, _ showroomsInfo: Showrooms) {
-        id = userId
-        secretKey = key
-        phone = userPhone
-        person = personInfo
-        showrooms = showroomsInfo
-        cars = Cars([Car]())
         notificator = NotificationCentre()
     }
 }
