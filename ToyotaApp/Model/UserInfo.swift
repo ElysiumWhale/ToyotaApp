@@ -28,16 +28,17 @@ class UserInfo {
     private let notificator: Notificator
     
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
-        let userId = DefaultsManager.getUserInfo(UserId.self)
-        let userPhone = DefaultsManager.getUserInfo(Phone.self)
-        let personInfo = DefaultsManager.getUserInfo(Person.self)
-        let showroomsInfo = DefaultsManager.getUserInfo(Showrooms.self)
+        let userId = KeychainManager.get(UserId.self)
+        let userPhone = KeychainManager.get(Phone.self)
+        let personInfo = KeychainManager.get(Person.self)
+        let showroomsInfo = KeychainManager.get(Showrooms.self)
         
         guard let id = userId, let phone = userPhone, let person = personInfo, let showrooms = showroomsInfo else {
             return Result.failure(.notFullProfile)
         }
+        let cars = KeychainManager.get(Cars.self) ?? Cars([])
         
-        return Result.success(UserInfo(id, phone, person, showrooms, DefaultsManager.getUserInfo(Cars.self) ?? Cars([])))
+        return Result.success(UserInfo(id, phone, person, showrooms, cars))
     }
     
     private init(_ userId: UserId, _ userPhone: Phone, _ personInfo: Person,
@@ -69,26 +70,26 @@ extension UserInfo: UserProxy {
     
     func update(_ personData: Person) {
         person = personData
-        DefaultsManager.pushUserInfo(info: person)
+        KeychainManager.set(person)
         notificator.notificateObservers()
     }
     
     func update(_ add: Car, _ from: Showroom) {
         if showrooms.value.first(where: {$0.id == from.id}) == nil {
             showrooms.value.append(from)
-            DefaultsManager.pushUserInfo(info: showrooms)
+            KeychainManager.set(showrooms)
         }
         cars.array.append(add)
         if cars.chosenCar == nil {
             cars.chosenCar = add
         }
-        DefaultsManager.pushUserInfo(info: cars)
+        KeychainManager.set(cars)
         notificator.notificateObservers()
     }
     
     func update(_ selected: Car) {
         cars.chosenCar = selected
-        DefaultsManager.pushUserInfo(info: cars)
+        KeychainManager.set(cars)
         notificator.notificateObservers()
     }
 }

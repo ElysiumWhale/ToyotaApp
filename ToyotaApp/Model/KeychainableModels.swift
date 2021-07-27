@@ -1,30 +1,25 @@
 import Foundation
 
-//MARK: - Classes with default key
-protocol WithDefaultKey: Codable {
-    static var key: DefaultKeys { get }
-}
-
-class UserId: WithDefaultKey {
-    static var key: DefaultKeys = .userId
-    var id: String
+class UserId: Keychainable {
+    static var key: KeychainKeys = .userId
+    let id: String
     
     init(_ value: String) {
         id = value
     }
 }
 
-class SecretKey: WithDefaultKey {
-    static var key: DefaultKeys = .secretKey
-    var secret: String
+class SecretKey: Keychainable {
+    static var key: KeychainKeys = .secretKey
+    let secret: String
     
     init(_ key: String) {
         secret = key
     }
 }
 
-class Phone: WithDefaultKey {
-    static var key: DefaultKeys = .phone
+class Phone: Keychainable {
+    static var key: KeychainKeys = .phone
     var phone: String
     
     init(_ number: String) {
@@ -32,8 +27,8 @@ class Phone: WithDefaultKey {
     }
 }
 
-class Showrooms: WithDefaultKey {
-    static var key: DefaultKeys = .showrooms
+class Showrooms: Keychainable {
+    static var key: KeychainKeys = .showrooms
     var value: [Showroom]
     
     init(_ showrooms: [Showroom]) {
@@ -41,8 +36,8 @@ class Showrooms: WithDefaultKey {
     }
 }
 
-class Person: WithDefaultKey {
-    static var key: DefaultKeys = .person
+class Person: Keychainable {
+    static var key: KeychainKeys = .person
     
     var firstName: String
     var lastName: String
@@ -69,8 +64,8 @@ class Person: WithDefaultKey {
     }
 }
 
-class Cars: WithDefaultKey {
-    static var key: DefaultKeys = .cars
+class Cars: Keychainable {
+    static var key: KeychainKeys = .cars
     
     var chosenCar: Car?
     var array: [Car]

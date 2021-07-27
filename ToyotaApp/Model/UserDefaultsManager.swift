@@ -10,6 +10,10 @@ enum DefaultKeys: String {
     case showrooms
 }
 
+protocol WithDefaultKey: Codable {
+    static var key: DefaultKeys { get }
+}
+
 public class DefaultsManager {
     private static let defaults = UserDefaults.standard
     

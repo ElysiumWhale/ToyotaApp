@@ -75,7 +75,7 @@ extension CheckVinViewController: SegueWithRequestController {
         indicator.startAnimating()
         checkVinButton.fadeOut(0.6)
         
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        let userId = KeychainManager.get(UserId.self)!.id
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
                     [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip.rawValue),
                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom!.id),
@@ -100,7 +100,7 @@ extension CheckVinViewController: SegueWithRequestController {
                 } else if let car = data.car?.toDomain(with: vin, showroom: showroom!.id) {
                     switch type {
                         case .register:
-                            DefaultsManager.pushUserInfo(info: Cars([car], chosen: car))
+                            KeychainManager.set(Cars([car]))
                             performSegue(for: segueCode)
                         case .update(let proxy):
                             proxy.update(car, showroom!)

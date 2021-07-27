@@ -115,7 +115,7 @@ extension DealerViewController: SegueWithRequestController {
         }
         nextButton.isHidden = true //not fadeOut() because of async race condition
         nextButtonIndicator.startAnimating()
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        let userId = KeychainManager.get(UserId.self)!.id
         let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
         NetworkService.shared.makePostRequest(page: page, params:
             [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
@@ -131,8 +131,14 @@ extension DealerViewController: SegueWithRequestController {
         
         switch response {
             case .success:
+                guard let showroom = selectedShowroom,
+                      let city = selectedCity else {
+                    displayError(with: AppErrors.unknownError.rawValue, beforePopUpAction: uiCompletion)
+                    return
+                }
+                
                 if type == .register {
-                    DefaultsManager.pushUserInfo(info: Showrooms([Showroom(id: selectedShowroom!.id, showroomName: selectedShowroom!.showroomName, cityName: selectedCity!.name)]))
+                    KeychainManager.set(Showrooms([Showroom(id: showroom.id, showroomName: showroom.showroomName, cityName: city.name)]))
                 }
                 performSegue(for: segueCode, beforeAction: uiCompletion)
             case .failure(let error):

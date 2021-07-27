@@ -150,8 +150,7 @@ class MyProfileViewController: UIViewController {
     
     @IBAction private func logout(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждние действия", description: "Вы действительно хотите выйти?", confirmText: CommonText.yes, declineText: CommonText.no) {
-            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-            UserDefaults.standard.synchronize()
+            KeychainManager.clearAll()
             SwiftEntryKit.dismiss()
             NavigationService.loadAuth()
         }

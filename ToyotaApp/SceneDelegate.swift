@@ -7,8 +7,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        guard let userId = DefaultsManager.getUserInfo(UserId.self)?.id,
-              let secretKey = DefaultsManager.getUserInfo(SecretKey.self)?.secret else {
+        guard let userId = KeychainManager.get(UserId.self)?.id,
+              let secretKey = KeychainManager.get(SecretKey.self)?.secret else {
             NavigationService.loadAuth()
             return
         }
@@ -36,13 +36,14 @@ extension SceneDelegate {
     func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
+                KeychainManager.set(SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data, fallbackCompletion: NavigationService.loadAuth)
             case .failure(let error):
                 switch error.code {
                     case NetworkErrors.lostConnection.rawValue:
                         NavigationService.loadConnectionLost()
                     default:
+                        KeychainManager.clear(SecretKey.self)
                         NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
                 }
         }

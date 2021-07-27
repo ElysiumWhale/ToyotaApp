@@ -136,7 +136,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
         switch response {
             case .success(let data):
                 cities = data.cities.map { City(id: $0.id, name: $0.name) }
-                DefaultsManager.pushUserInfo(info: Person.toDomain(configuredProfile!))
+                KeychainManager.set(Person.toDomain(configuredProfile!))
                 performSegue(for: segueCode)
             case .failure(let error):
                 displayError(with: error.message ?? "Ошибка при отправке запроса") { [self] in
@@ -148,7 +148,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
     
     private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
         var params = [URLQueryItem]()
-        let userId = DefaultsManager.getUserInfo(UserId.self)!.id
+        let userId = KeychainManager.get(UserId.self)!.id
         params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)))
         params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
         params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))

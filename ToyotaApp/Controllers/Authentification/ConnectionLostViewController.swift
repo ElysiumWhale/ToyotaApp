@@ -12,23 +12,24 @@ class ConnectionLostViewController: UIViewController {
         retryButton.isHidden = true
         indicator.startAnimating()
         
-        guard let userId = DefaultsManager.getUserInfo(UserId.self)?.id,
-              let secretKey = DefaultsManager.getUserInfo(SecretKey.self)?.secret else {
+        guard let userId = KeychainManager.get(UserId.self)?.id,
+              let secretKey = KeychainManager.get(SecretKey.self)?.secret else
+        {
             NavigationService.loadAuth()
             return
         }
         
         NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
-        [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-         URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota),
-         URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
+            [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
+             URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota),
+             URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
         completion: completion)
     }
     
     private func completion(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
+                KeychainManager.set(SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data, fallbackCompletion: NavigationService.loadAuth)
             case .failure(let error):
                 switch error.code {

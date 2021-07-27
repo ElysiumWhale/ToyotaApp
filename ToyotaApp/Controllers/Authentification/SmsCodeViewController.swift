@@ -73,15 +73,15 @@ extension SmsCodeViewController {
         var params = [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
                       URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text)]
         params.append(authType == .register ? URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)
-                                            : URLQueryItem(name: RequestKeys.Auth.userId, value: DefaultsManager.getUserInfo(UserId.self)!.id))
+                                            : URLQueryItem(name: RequestKeys.Auth.userId, value: KeychainManager.get(UserId.self)!.id))
         return params
     }
     
     private func registerCompletion(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
-                DefaultsManager.pushUserInfo(info: UserId(data.userId!))
-                DefaultsManager.pushUserInfo(info: SecretKey(data.secretKey))
+                KeychainManager.set(UserId(data.userId!))
+                KeychainManager.set(SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data) { _ in NavigationService.loadRegister() }
             case .failure(let error):
                 displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [weak self] in

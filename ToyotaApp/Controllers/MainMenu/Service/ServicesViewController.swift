@@ -53,7 +53,7 @@ class ServicesViewController: UIViewController, BackgroundText {
             user.update(cars[row])
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
-            DefaultsManager.pushUserInfo(info: Cars(cars))
+            KeychainManager.set(Cars(cars))
             NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
         }
     }

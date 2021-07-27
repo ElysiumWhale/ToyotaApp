@@ -147,10 +147,10 @@ extension NavigationService {
             let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBar) as! UITabBarController
             
             if let user = user {
-                DefaultsManager.pushUserInfo(info: Person.toDomain(user.profile))
-                DefaultsManager.pushUserInfo(info: Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
+                KeychainManager.set(Person.toDomain(user.profile))
+                KeychainManager.set(Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
                 if let cars = user.car {
-                    DefaultsManager.pushUserInfo(info: Cars(cars.map { $0.toDomain() }))
+                    KeychainManager.set(Cars(cars.map { $0.toDomain() }))
                 }
             }
             
