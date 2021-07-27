@@ -113,7 +113,7 @@ class TimePickerModule: NSObject, IServiceModule {
         var queryParams: [URLQueryItem] = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
         
         !params.isEmpty ? queryParams.append(contentsOf: params)
-                        : queryParams.append(URLQueryItem(name: RequestKeys.Services.sId, value: serviceType.id))
+                        : queryParams.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType.id))
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: queryParams, completion: completion)
     }

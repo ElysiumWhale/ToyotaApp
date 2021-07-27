@@ -126,18 +126,10 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
     
-    #warning("todo: DELETE THIS KOSTYL'")
-    var i = 1
     func buildQueryItems() -> [URLQueryItem] {
         switch result {
             case .success(let data):
-                if i == 1 {
-                    i += 1
-                    return [URLQueryItem(name: RequestKeys.Services.sId, value: data.id)]
-                } else {
-                    i -= 1
-                    return [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.id)]
-                }
+                return [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.id)]
             case .failure, .none:
                 return []
         }
@@ -165,7 +157,6 @@ extension PickerModule: UIPickerViewDelegate {
             view?.endEditing(true)
             return
         }
-        i = 1 //costyl
         result = .success(array[index])
         internalView.textField.text = array[index].name
         internalView.endEditing(true)

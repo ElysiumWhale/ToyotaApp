@@ -34,23 +34,11 @@ class TestDriveViewController: BaseServiceController {
                         modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms, with: params, response: ShoroomsDidGetResponce.self)
                     case 2:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id), URLQueryItem(name: RequestKeys.Services.sId, value: try? modules[1].result?.get().id)]
-                        NetworkService.shared.makePostRequest(page: RequestPath.Services.getTestDriveServiceId, params: params, completion: completion)
+                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id), URLQueryItem(name: RequestKeys.Services.serviceId, value: try? modules[1].result?.get().id)]
+                        modules[3].customStart(page: RequestPath.Services.getFreeTime, with: params, response: CarsDidGetResponse.self)
                     case 3:
                         bookButton.fadeIn(0.6)
                     default: return
-                }
-                
-                func completion(for response: Result<ServiceIdDidGetResponse, ErrorResponse>) {
-                    switch response {
-                        case .failure(let error):
-                            PopUp.displayMessage(with: CommonText.error, description: error.message ?? message, buttonText: CommonText.ok) { [self] in
-                                navigationController?.popViewController(animated: true)
-                            }
-                        case .success(let data):
-                            let params = [URLQueryItem(name: RequestKeys.Services.sId, value: data.serviceId), URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id)]
-                            modules[3].customStart(page: RequestPath.Services.getFreeTime, with: params, response: CarsDidGetResponse.self)
-                    }
                 }
         }
     }
