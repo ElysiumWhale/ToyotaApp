@@ -1013,8 +1013,10 @@ plus addiotional field:
 - `user_id` - from memory
 - `showroom_id` - selected by user
 - `service_id` - selected by user
-- `date_booking` - selected by user
-- `start_booking` - selected by user
+- `date_booking` - selected by user (optional)
+- `start_booking` - selected by user (optional)
+- `longitude` - got from a map (optional)
+- `latitude` - got from a map (optional)
 
 #### **Success response**
 
