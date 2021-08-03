@@ -31,7 +31,7 @@ class AuthViewController: UIViewController {
     }
 }
 
-//MARK: - Navigation
+// MARK: - Navigation
 extension AuthViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -48,7 +48,7 @@ extension AuthViewController {
     }
 }
 
-//MARK: - SegueWiRhRequestController
+// MARK: - SegueWiRhRequestController
 extension AuthViewController: SegueWithRequestController {
     typealias TResponse = Response
     

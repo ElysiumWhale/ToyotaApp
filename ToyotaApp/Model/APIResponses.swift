@@ -1,26 +1,26 @@
 import Foundation
 
-//MARK: - Default simple response
+// MARK: - Default simple response
 public struct Response: Codable {
     let result: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case result
     }
 }
 
-//MARK: - ErrorResponse
+// MARK: - ErrorResponse
 public struct ErrorResponse: Codable, Error {
     let code: String
     let message: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case code = "error_code"
         case message
     }
 }
 
-//MARK: - CheckUserResponce & SmsCodeDidSendResponse
+// MARK: - CheckUserResponce & SmsCodeDidSendResponse
 public struct CheckUserOrSmsCodeResponse: Codable {
     let result: String
     let secretKey: String
@@ -28,11 +28,11 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let registerPage: Int?
     let registeredUser: RegisteredUser?
     let registerStatus: Int?
-    
+
     let cities: [City]?
     let showrooms: [DTOShowroom]?
     let cars: [DTOCar]?
-    
+
     private enum CodingKeys: String, CodingKey {
         case result, cities, showrooms, cars
         case secretKey = "secret_key"
@@ -56,7 +56,7 @@ public struct Profile: Codable {
     let secondName: String?
     let email: String?
     let birthday: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case phone, email, birthday
         case firstName = "first_name"
@@ -65,39 +65,39 @@ public struct Profile: Codable {
     }
 }
 
-//MARK: - CitiesDidGetResponse
+// MARK: - CitiesDidGetResponse
 public struct CitiesDidGetResponse: IServiceResponse {
     let result: String
     let cities: [City]
-    
+
     var array: [IService] { cities }
 }
 
 public struct City: IService {
     let id: String
     let name: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case id
         case name = "city_name"
     }
 }
 
-//MARK: - ShoroomsDidGetResponce
+// MARK: - ShoroomsDidGetResponce
 public struct ShoroomsDidGetResponce: IServiceResponse {
     let result: String
     let showrooms: [DTOShowroom]
-    
+
     var array: [IService] { showrooms }
 }
 
 public struct DTOShowroom: IService {
     var name: String { showroomName }
-    
+
     let id: String
     let showroomName: String
     let cityName: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case id
         case showroomName = "showroom_name"
@@ -111,10 +111,10 @@ extension DTOShowroom {
     }
 }
 
-//MARK: - ShowroomDidSelectResponse
+// MARK: - ShowroomDidSelectResponse
 public struct DTOCar: IService {
     var name: String { "\(brandName) \(modelName)" }
-    
+
     let id: String
     let brandName: String
     let modelName: String
@@ -125,7 +125,7 @@ public struct DTOCar: IService {
     let licensePlate: String?
     let vin: String?
     let showroomId: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case id = "car_id"
         case brandName = "car_brand_name"
@@ -150,7 +150,7 @@ extension DTOCar {
                    isMetallic: isMetallic ?? "0",
                    plate: licensePlate ?? "Empty", vin: vin)
     }
-    
+
     func toDomain() -> Car {
         return Car(id: id, showroomId: showroomId ?? "-1",
                    brand: brandName, model: modelName,
@@ -162,19 +162,18 @@ extension DTOCar {
     }
 }
 
-//MARK: - CarDidCheck
+// MARK: - CarDidCheck
 public struct CarDidCheckResponse: Codable {
     let result: String
-    //todo: delete message
-    let message: String
+    let message: String // todo: delete message
     let car: DTOCar?
 }
 
-//MARK: - GetServicesTypes
+// MARK: - GetServicesTypes
 public struct ServicesTypesDidGetResponse: Codable {
     let result: String
     let serviceType: [ServiceType]
-    
+
     private enum CodingKeys: String, CodingKey {
         case result
         case serviceType = "service_type"
@@ -186,7 +185,7 @@ public struct ServiceType: Codable {
     let serviceTypeName: String
     let controlTypeId: String
     let controlTypeDesc: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case id
         case serviceTypeName = "service_type_name"
@@ -195,31 +194,31 @@ public struct ServiceType: Codable {
     }
 }
 
-//MARK: - GetServices
+// MARK: - GetServices
 public struct ServicesDidGetResponse: IServiceResponse {
     let result: String
     let services: [Service]
-    
+
     var array: [IService] { services }
 }
 
 public struct Service: IService {
     let id: String
     let name: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case id
         case name = "service_name"
     }
 }
 
-//MARK: - GetFreeTime for Service
+// MARK: - GetFreeTime for Service
 public struct FreeTimeDidGetResponse: Codable {
     let result: String
     let startDate: String?
     let endDate: String?
-    let freeTimeDict: [String:[Int]]?
-    
+    let freeTimeDict: [String: [Int]]?
+
     private enum CodingKeys: String, CodingKey {
         case result
         case startDate = "start_date"
@@ -228,7 +227,7 @@ public struct FreeTimeDidGetResponse: Codable {
     }
 }
 
-//MARK: - GetManagers for users showrooms
+// MARK: - GetManagers for users showrooms
 public struct ManagersDidGetResponse: Codable {
     let result: String
     let managers: [Manager]
@@ -244,7 +243,7 @@ public struct Manager: Codable {
     let email: String
     let imageUrl: String
     let showroomName: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case id, phone, email
         case userId = "user_id"
@@ -256,26 +255,15 @@ public struct Manager: Codable {
     }
 }
 
-//MARK: - CarsDidGetResponse
+// MARK: - CarsDidGetResponse
 public struct CarsDidGetResponse: IServiceResponse {
     var array: [IService] { cars }
-    
+
     let result: String
     let cars: [Service]
 }
 
-//MARK: - ServiceIdDidGetResponse
-public struct ServiceIdDidGetResponse: Codable {
-    let result: String
-    let serviceId: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case result
-        case serviceId = "service_id"
-    }
-}
-
-//MARK: - MOCK
+// MARK: - MOCK
 public struct News: Codable {
     let title: String
     let content: String

@@ -1,6 +1,6 @@
 import UIKit
 
-//MARK: Controller
+// MARK: Controller
 class BaseServiceController: UIViewController, IServiceController {
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
@@ -100,7 +100,7 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 }
 
-//MARK: Constraints setup
+// MARK: Constraints setup
 extension BaseServiceController {
     private func setupScrollViewLayout() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false

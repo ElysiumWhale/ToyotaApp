@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import MapKit
 
-//MARK: - View
+// MARK: - View
 class MapModuleView: UIView {
     private(set) lazy var label: UILabel = {
         let label = UILabel()
@@ -61,7 +61,7 @@ class MapModuleView: UIView {
     }
 }
 
-//MARK: - Module
+// MARK: - Module
 class MapModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
     
@@ -118,7 +118,7 @@ class MapModule: NSObject, IServiceModule {
     }
 }
 
-//MARK: - MKMapViewDelegate
+// MARK: - MKMapViewDelegate
 extension MapModule: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         zoomToUserLocation(userLocation.coordinate)
@@ -133,7 +133,7 @@ extension MapModule: MKMapViewDelegate {
     }
 }
 
-//MARK: - CLLocationManagerDelegate
+// MARK: - CLLocationManagerDelegate
 extension MapModule: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {

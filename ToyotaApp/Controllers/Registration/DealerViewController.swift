@@ -36,7 +36,7 @@ class DealerViewController: UIViewController {
     }
 }
 
-//MARK: - Navigation
+// MARK: - Navigation
 extension DealerViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let selectedCity = selectedCity, let selectedShowroom = selectedShowroom {
@@ -60,7 +60,7 @@ extension DealerViewController {
     }
 }
 
-//MARK: - Pickers actions
+// MARK: - Pickers actions
 extension DealerViewController {
     @IBAction private func cityDidSelect(sender: Any?) {
         nextButton.fadeOut(0.6)
@@ -102,7 +102,7 @@ extension DealerViewController {
     }
 }
 
-//MARK: - SegueWithRequestController
+// MARK: - SegueWithRequestController
 extension DealerViewController: SegueWithRequestController {
     typealias TResponse = Response
     
@@ -147,7 +147,7 @@ extension DealerViewController: SegueWithRequestController {
     }
 }
 
-//MARK: - UIPickerViewDataSource
+// MARK: - UIPickerViewDataSource
 extension DealerViewController : UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     

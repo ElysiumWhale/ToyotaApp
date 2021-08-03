@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-//MARK: - View
+// MARK: - View
 class PickerModuleView: UIView {
     private(set) var servicePicker: UIPickerView = UIPickerView()
     
@@ -59,7 +59,7 @@ class PickerModuleView: UIView {
     override class var requiresConstraintBasedLayout: Bool { true }
 }
 
-//MARK: - Module
+// MARK: - Module
 class PickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
     
@@ -136,7 +136,7 @@ class PickerModule: NSObject, IServiceModule {
     }
 }
 
-//MARK: - UIPickerViewDataSource
+// MARK: - UIPickerViewDataSource
 extension PickerModule: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     

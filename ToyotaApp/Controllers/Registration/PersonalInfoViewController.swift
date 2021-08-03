@@ -50,7 +50,7 @@ class PersonalInfoViewController: UIViewController {
     }
 }
 
-//MARK: - Navigation
+// MARK: - Navigation
 extension PersonalInfoViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupKeyboard(isSubcribing: true)
@@ -84,7 +84,7 @@ extension PersonalInfoViewController {
     }
 }
 
-//MARK: - Keyboard methods
+// MARK: - Keyboard methods
 extension PersonalInfoViewController {
     private func setupKeyboard(isSubcribing: Bool) {
         if isSubcribing {
@@ -110,7 +110,7 @@ extension PersonalInfoViewController {
     }
 }
 
-//MARK: - SegueWithRequestController
+// MARK: - SegueWithRequestController
 extension PersonalInfoViewController: SegueWithRequestController {
     typealias TResponse = CitiesDidGetResponse
     

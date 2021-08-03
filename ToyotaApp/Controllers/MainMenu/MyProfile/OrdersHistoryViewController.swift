@@ -9,7 +9,7 @@ class OrdersHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        orders.append(Test.CreateOrder())
+        orders.append(Test.createOrder())
     }
     
     @IBAction func doneDidPressed(_ sender: Any) {
@@ -17,7 +17,7 @@ class OrdersHistoryViewController: UIViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension OrdersHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         orders.count
@@ -30,7 +30,7 @@ extension OrdersHistoryViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension OrdersHistoryViewController: UITableViewDelegate {
     
 }

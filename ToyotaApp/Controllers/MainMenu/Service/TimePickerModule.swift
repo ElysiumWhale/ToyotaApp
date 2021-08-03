@@ -67,7 +67,7 @@ class TimePickerView: UIView {
     }
 }
 
-//MARK: - Module
+// MARK: - Module
 class TimePickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
     
@@ -167,7 +167,7 @@ class TimePickerModule: NSObject, IServiceModule {
     }
 }
 
-//MARK: - UIPickerViewDataSource
+// MARK: - UIPickerViewDataSource
 extension TimePickerModule: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 2 }
     
@@ -181,7 +181,7 @@ extension TimePickerModule: UIPickerViewDataSource {
     }
 }
 
-//MARK: - UIPickerViewDelegate
+// MARK: - UIPickerViewDelegate
 extension TimePickerModule: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {

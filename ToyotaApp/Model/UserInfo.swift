@@ -52,7 +52,7 @@ class UserInfo {
     }
 }
 
-//MARK: - UserProxy
+// MARK: - UserProxy
 extension UserInfo: UserProxy {
     var getNotificator: Notificator { notificator }
     

@@ -68,7 +68,7 @@ extension NavigationService {
     }
 }
 
-//MARK: - LoadAuth
+// MARK: - LoadAuth
 extension NavigationService {
     class func loadAuth(with error: String? = nil) {
         let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
@@ -89,7 +89,7 @@ extension NavigationService {
     }
 }
 
-//MARK: - LoadRegister overloads
+// MARK: - LoadRegister overloads
 extension NavigationService {
     class func loadRegister(with error: String? = nil) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
@@ -139,7 +139,7 @@ extension NavigationService {
     }
 }
 
-//MARK: - LoadMain overloads
+// MARK: - LoadMain overloads
 extension NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.mainMenu, bundle: nil)

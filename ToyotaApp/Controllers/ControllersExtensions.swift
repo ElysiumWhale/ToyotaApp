@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Toolbar for controls
+// MARK: - Toolbar for controls
 extension UIViewController {
     func buildToolbar(with action: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
@@ -13,7 +13,7 @@ extension UIViewController {
     }
 }
 
-//MARK: - UIPicker
+// MARK: - UIPicker
 extension UIViewController {
     func configurePicker<T>(_ picker: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
         picker.dataSource = delegate
@@ -23,7 +23,7 @@ extension UIViewController {
     }
 }
 
-//MARK: - UIDatePicker & Date Formatting
+// MARK: - UIDatePicker & Date Formatting
 extension UIViewController {
     func configureDatePicker(_ datePicker: UIDatePicker, with action: Selector, for textField: UITextField) {
         datePicker.preferredDatePickerStyle = .wheels
@@ -61,7 +61,7 @@ extension UIViewController {
     }
 }
 
-//MARK: - Error Displaying
+// MARK: - Error Displaying
 extension UIViewController {
     func displayError(with text: String? = nil, beforePopUpAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
@@ -73,7 +73,7 @@ extension UIViewController {
     }
 }
 
-//MARK: - Dismissing controls
+// MARK: - Dismissing controls
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -90,7 +90,7 @@ extension UIViewController {
     }
 }
 
-//MARK: - Navigation
+// MARK: - Navigation
 extension UIViewController {
     func performSegue(for identifier: String, beforeAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async { [self] in

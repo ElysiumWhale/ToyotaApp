@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-//MARK: - FadeIn/Out UIView Animation
+// MARK: - FadeIn/Out UIView Animation
 extension UIView {
     func fadeIn(_ duration: TimeInterval = 0.05, onCompletion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
@@ -31,7 +31,7 @@ extension UIView {
     }
 }
 
-//MARK: - UITextField error border
+// MARK: - UITextField error border
 extension UITextField {
     func toggleErrorState(hasError: Bool) {
         layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
@@ -39,7 +39,7 @@ extension UITextField {
     }
 }
 
-//MARK: - Configuring shadow for cell
+// MARK: - Configuring shadow for cell
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat) {
         layer.shadowColor = UIColor.black.cgColor
@@ -51,7 +51,7 @@ extension UICollectionViewCell {
     }
 }
 
-//MARK: - IBInspectable Corners radius for button
+// MARK: - IBInspectable Corners radius for button
 extension UIButton {
     @IBInspectable var rounded: Bool {
         get {
@@ -67,14 +67,14 @@ extension UIButton {
     }
 }
 
-//MARK: - Normal action adding to button
+// MARK: - Normal action adding to button
 extension UIControl {
     func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping() -> Void) {
         addAction(UIAction { (action: UIAction) in closure() }, for: controlEvents)
     }
 }
 
-//MARK: - UIPicker
+// MARK: - UIPicker
 extension UIPickerView {
     func configurePicker<T>(with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
         self.dataSource = delegate
@@ -84,7 +84,7 @@ extension UIPickerView {
     }
 }
 
-//MARK: - UIToolBar
+// MARK: - UIToolBar
 extension UIToolbar {
     static func buildToolBar<T>(for delegate: T, with action: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
@@ -96,7 +96,7 @@ extension UIToolbar {
     }
 }
 
-//MARK: - Fonts
+// MARK: - Fonts
 extension UIFont {
     enum ToyotaFonts: String {
         case semibold = "Semibold"
@@ -123,7 +123,7 @@ extension UIFont {
     }
 }
 
-//MARK: - Main app tint
+// MARK: - Main app tint
 extension UIColor {
     static var mainAppTint: UIColor { UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1) }
 }

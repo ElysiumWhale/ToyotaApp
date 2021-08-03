@@ -16,12 +16,12 @@ class NewsViewController: UIViewController {
         refreshControl.layer.zPosition = -1
         newsCollection.refreshControl = refreshControl
         newsCollection.alwaysBounceVertical = true
-        news = Test.CreateNews()
+        news = Test.createNews()
     }
     
     @IBAction func refresh() {
         refreshControl.beginRefreshing()
-        news = Test.CreateNews()
+        news = Test.createNews()
         newsCollection.reloadData()
         endRefreshing()
     }
@@ -32,7 +32,7 @@ class NewsViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         news.count
@@ -45,7 +45,7 @@ extension NewsViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 extension NewsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
@@ -56,7 +56,7 @@ extension NewsViewController: UICollectionViewDelegate {
     }
 }
 
-//MARK: - WithUserInfo
+// MARK: - WithUserInfo
 extension NewsViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info

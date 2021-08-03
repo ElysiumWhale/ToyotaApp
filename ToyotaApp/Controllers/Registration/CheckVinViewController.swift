@@ -45,7 +45,7 @@ class CheckVinViewController: UIViewController {
     }
 }
 
-//MARK: - SegueWithRequestController
+// MARK: - SegueWithRequestController
 extension CheckVinViewController: SegueWithRequestController {
     typealias TResponse = CarDidCheckResponse
     

@@ -34,7 +34,7 @@ class SmsCodeViewController: UIViewController {
         }
     }
 }
-//MARK: - Navigation
+// MARK: - Navigation
 extension SmsCodeViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,7 +50,7 @@ extension SmsCodeViewController {
     }
 }
 
-//MARK: - Request handling
+// MARK: - Request handling
 extension SmsCodeViewController {
     @IBAction func login(with sender: UIButton) {
         guard smsCodeTextField.text?.count == 4 else {

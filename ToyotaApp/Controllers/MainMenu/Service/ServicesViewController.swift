@@ -89,7 +89,7 @@ class ServicesViewController: UIViewController, BackgroundText {
     }
 }
 
-//MARK: - WithUserInfo
+// MARK: - WithUserInfo
 extension ServicesViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info
@@ -115,7 +115,7 @@ extension ServicesViewController: WithUserInfo {
     }
 }
 
-//MARK: - Configure UI for cars count
+// MARK: - Configure UI for cars count
 extension ServicesViewController {
     private func interfaceIfNoCars() {
         displayError(with: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
@@ -142,7 +142,7 @@ extension ServicesViewController {
     }
 }
 
-//MARK: - UIPickerViewDataSource
+// MARK: - UIPickerViewDataSource
 extension ServicesViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
@@ -151,14 +151,14 @@ extension ServicesViewController: UIPickerViewDataSource {
     }
 }
 
-//MARK: - UIPickerViewDelegate
+// MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         cars[row].model
     }
 }
 
-//MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension ServicesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         serviceTypes.count
@@ -172,7 +172,7 @@ extension ServicesViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let _ = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell,
