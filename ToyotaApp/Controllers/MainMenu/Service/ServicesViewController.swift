@@ -4,19 +4,19 @@ class ServicesViewController: UIViewController, BackgroundText {
     @IBOutlet private var carTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomLabel: UILabel!
     @IBOutlet private var servicesList: UICollectionView!
-    
+
     private let refreshControl = UIRefreshControl()
     private var carForServePicker: UIPickerView = UIPickerView()
     private let cellIdentrifier = CellIdentifiers.ServiceCell
-    
+
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
-    
+
     private var cars: [Car] { user.getCars.array }
     private var selectedCar: Car? { user.getCars.chosenCar }
     private var serviceTypes: [ServiceType] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
@@ -30,14 +30,17 @@ class ServicesViewController: UIViewController, BackgroundText {
             default: interfaceIfManyCars()
         }
     }
-    
+
     @IBAction private func refresh() {
         serviceTypes.removeAll()
         servicesList.reloadData()
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+                                              params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
+                                                                    value: selectedCar!.showroomId)],
+                                              completion: carDidSelectCompletion)
     }
-    
+
     @IBAction private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
@@ -49,10 +52,13 @@ class ServicesViewController: UIViewController, BackgroundText {
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             KeychainManager.set(Cars(cars))
-            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
+            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+                                                  params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
+                                                                        value: selectedCar!.showroomId)],
+                                                  completion: carDidSelectCompletion)
         }
     }
-    
+
     private func carDidSelectCompletion(for response: Result<ServicesTypesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
@@ -77,7 +83,7 @@ class ServicesViewController: UIViewController, BackgroundText {
                 }
         }
     }
-    
+
     private func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
                                       execute: { [weak self] in self?.refreshControl.endRefreshing() })
@@ -89,15 +95,15 @@ extension ServicesViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info
     }
-    
+
     func subscribe(on proxy: UserProxy) {
         proxy.getNotificator.add(observer: self)
     }
-    
+
     func unsubscribe(from proxy: UserProxy) {
         proxy.getNotificator.remove(obsever: self)
     }
-    
+
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
             view.layoutIfNeeded()
@@ -119,7 +125,7 @@ extension ServicesViewController {
         showroomLabel.text = ""
         servicesList.backgroundView = createBackground(labelText: "Добавьте автомобиль для разблокировки функций")
     }
-    
+
     private func interfaceIfOneCar() {
         refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -131,9 +137,12 @@ extension ServicesViewController {
         carTextField.isEnabled = cars.count > 1
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes, params: [URLQueryItem(name:  RequestKeys.CarInfo.showroomId, value: selectedCar!.showroomId)], completion: carDidSelectCompletion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+                                              params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
+                                                                    value: selectedCar!.showroomId)],
+                                              completion: carDidSelectCompletion)
     }
-    
+
     private func interfaceIfManyCars() {
         carForServePicker.reloadAllComponents()
         carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
@@ -145,7 +154,7 @@ extension ServicesViewController {
 // MARK: - UIPickerViewDataSource
 extension ServicesViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         cars.count
     }
@@ -163,25 +172,25 @@ extension ServicesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         serviceTypes.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as! ServiceCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as? ServiceCollectionViewCell
         let serviceType = serviceTypes[indexPath.row]
-        cell.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
-        return cell
+        cell?.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
+        return cell!
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let _ = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell,
-           let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId) {
-            let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row], for: serviceType, user: user)
-            navigationController?.pushViewController(controller as! UIViewController, animated: true)
+        if collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell != nil,
+           let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId),
+           let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row],for: serviceType, user: user) as? UIViewController {
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 0.5,

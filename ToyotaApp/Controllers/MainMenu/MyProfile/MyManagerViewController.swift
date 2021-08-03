@@ -2,17 +2,19 @@ import UIKit
 
 class MyManagerViewController: UIViewController, BackgroundText {
     @IBOutlet private var managersCollection: UICollectionView!
-    
+
     private let cellIdentifier = CellIdentifiers.ManagerCell
-    
+
     private var user: UserProxy!
-    
     private var managers: [Manager] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.getManagers, params: [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: completion)
+        let params = [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId),
+                      URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)]
+        NetworkService.shared.makePostRequest(page: RequestPath.Profile.getManagers,
+                                              params: params, completion: completion)
         
         func completion(for response: Result<ManagersDidGetResponse, ErrorResponse>) {
             switch response {
@@ -31,7 +33,7 @@ class MyManagerViewController: UIViewController, BackgroundText {
             }
         }
     }
-    
+
     @IBAction func doneDidPress(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -42,11 +44,11 @@ extension MyManagerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         managers.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ManagerCollectionViewCell
-        cell.configure(from: managers[indexPath.row])
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ManagerCollectionViewCell
+        cell?.configure(from: managers[indexPath.row])
+        return cell!
     }
 }
 

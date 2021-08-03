@@ -9,40 +9,40 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet private var birthTextField: InputTextField!
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
-    
+
     private let datePicker: UIDatePicker = UIDatePicker()
-    
-    private var textFieldsWithError: [UITextField : Bool]!
-    
+
+    private var textFieldsWithError: [UITextField: Bool] = [:]
+
     private var cities: [City] = []
     private var date: String = ""
-    
+
     private var isConfigured: Bool = false
-    private var configuredProfile: Profile? = nil
-    
+    private var configuredProfile: Profile?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
-        textFieldsWithError = [firstNameTextField : true, secondNameTextField : true,
-                               lastNameTextField : true, emailTextField : true, birthTextField : true]
+        textFieldsWithError = [firstNameTextField: true, secondNameTextField: true,
+                               lastNameTextField: true, emailTextField: true, birthTextField: true]
     }
-    
+
     func configure(with profile: Profile) {
         configuredProfile = profile
         isConfigured = true
     }
-    
+
     private var hasErrors: Bool {
         return !textFieldsWithError.values.allSatisfy({ !$0 })
     }
-    
+
     @IBAction private func textDidChange(sender: UITextField) {
-        let isNormal = sender.text != nil && sender.text!.count > 0 && sender.text!.count < 25
+        let isNormal = sender.text != nil && !sender.text!.isEmpty && sender.text!.count < 25
         sender.toggleErrorState(hasError: !isNormal)
         textFieldsWithError[sender] = !isNormal
     }
-    
+
     @IBAction private func dateDidSelect(sender: Any?) {
         date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
         textFieldsWithError[birthTextField] = false
@@ -69,16 +69,16 @@ extension PersonalInfoViewController {
             nextButton.fadeIn(0.3)
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         setupKeyboard(isSubcribing: false)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                let destinationVC = segue.destination as! DealerViewController
-                destinationVC.configure(cityList: cities)
+                let destinationVC = segue.destination as? DealerViewController
+                destinationVC?.configure(cityList: cities)
             default: return
         }
     }
@@ -88,21 +88,25 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController {
     private func setupKeyboard(isSubcribing: Bool) {
         if isSubcribing {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                                   name: UIResponder.keyboardWillShowNotification,
+                                                   object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                                   name: UIResponder.keyboardWillHideNotification,
+                                                   object: nil)
         } else {
             NotificationCenter.default.removeObserver(self)
         }
     }
-    
+
     @IBAction func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
       }
-    
+
     @IBAction func keyboardWillHide(notification: NSNotification) {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         scrollView.contentInset = contentInsets
@@ -113,9 +117,9 @@ extension PersonalInfoViewController {
 // MARK: - SegueWithRequestController
 extension PersonalInfoViewController: SegueWithRequestController {
     typealias TResponse = CitiesDidGetResponse
-    
+
     var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
-    
+
     @IBAction func nextButtonDidPressed(sender: Any?) {
         if hasErrors {
             PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: CommonText.ok)
@@ -129,9 +133,11 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     secondName: secondNameTextField.text!,
                                     email: emailTextField.text!,
                                     birthday: date)
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile, params: buildRequestParams(from: configuredProfile!, date: date), completion: completionForSegue)
+        NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile,
+                                              params: buildRequestParams(from: configuredProfile!, date: date),
+                                              completion: completionForSegue)
     }
-    
+
     func completionForSegue(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
         switch response {
             case .success(let data):
@@ -145,7 +151,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
                 }
         }
     }
-    
+
     private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
         var params = [URLQueryItem]()
         let userId = KeychainManager.get(UserId.self)!.id

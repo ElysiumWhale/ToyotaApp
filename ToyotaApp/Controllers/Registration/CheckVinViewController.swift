@@ -1,6 +1,6 @@
 import UIKit
 
-fileprivate enum SkipCheckVin: String {
+private enum SkipCheckVin: String {
     case yes = "1"
     case no = "0"
 }
@@ -11,34 +11,34 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var checkVinButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     @IBOutlet private var skipStepButton: UIButton!
-    
+
     private var showroom: Showroom?
     private var type: AddInfoType = .register
-    
+
     private var isSkipped: Bool = false
     private var vin: String = ""
-    
+
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.isHidden = true
         vinCodeTextField.layer.borderWidth = 0
         vin = vinCodeTextField.text ?? ""
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
-                let destinationVC = segue.destination as! EndRegistrationViewController
+                let destinationVC = segue.destination as? EndRegistrationViewController
             default: return
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         skipStepButton.isEnabled = type == .register
         skipStepButton.isHidden = type != .register
         hideKeyboardWhenTappedAround()
     }
-    
+
     func configure(with: Showroom, controlerType: AddInfoType = .register) {
         showroom = with
         type = controlerType
@@ -48,9 +48,9 @@ class CheckVinViewController: UIViewController {
 // MARK: - SegueWithRequestController
 extension CheckVinViewController: SegueWithRequestController {
     typealias TResponse = CarDidCheckResponse
-    
+
     var segueCode: String { SegueIdentifiers.CarToEndRegistration }
-    
+
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard vin.count == 17 else {
             vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
@@ -64,13 +64,13 @@ extension CheckVinViewController: SegueWithRequestController {
         }
         makeRequest(skip: .no, vin: vin)
     }
-    
+
     @IBAction func skipButtonDidPressed(sender: Any?) {
         if type != .register { return }
         isSkipped = true
         makeRequest(skip: .yes)
     }
-    
+
     private func makeRequest(skip: SkipCheckVin, vin: String? = "") {
         indicator.startAnimating()
         checkVinButton.fadeOut(0.6)
@@ -83,13 +83,12 @@ extension CheckVinViewController: SegueWithRequestController {
                      URLQueryItem(name: RequestKeys.Auth.userId, value: userId)],
                     completion: completionForSegue)
     }
-    
+
     func completionForSegue(for response: Result<CarDidCheckResponse, ErrorResponse>) {
         
         func failureCompletion(_ error: ErrorResponse) {
             displayError(with: error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова") { [self] in
                 indicator.stopAnimating()
-                checkVinButton.fadeIn(0.6)
             }
         }
         

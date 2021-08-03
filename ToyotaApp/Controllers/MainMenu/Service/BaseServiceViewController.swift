@@ -4,7 +4,7 @@ import UIKit
 class BaseServiceController: UIViewController, IServiceController {
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
-    
+
     private(set) lazy var bookButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.mainAppTint
@@ -17,11 +17,11 @@ class BaseServiceController: UIViewController, IServiceController {
         button.isHidden = true
         return button
     }()
-    
+
     private(set) var serviceType: ServiceType?
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
-    
+
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
         navigationItem.backButtonTitle = "Услуги"
@@ -34,7 +34,7 @@ class BaseServiceController: UIViewController, IServiceController {
         setupStackViewLayout()
         start()
     }
-    
+
     func start() {
         for module in modules {
             stackView.addArrangedSubview(module.view ?? UIView())
@@ -42,13 +42,13 @@ class BaseServiceController: UIViewController, IServiceController {
         stackView.addArrangedSubview(bookButton)
         modules.first?.start()
     }
-    
+
     func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy) {
         self.modules = modules
         self.user = user
         self.serviceType = service
     }
-    
+
     func moduleDidUpdated(_ module: IServiceModule) {
         var message: String = "Ошибка при запросе данных"
         switch module.result {
@@ -68,7 +68,7 @@ class BaseServiceController: UIViewController, IServiceController {
                 modules[index + 1].start(with: module.buildQueryItems())
         }
     }
-    
+
     func bookService() {
         guard let userId = user?.getId, let showroomId = user?.getSelectedShowroom?.id else { return }
         
@@ -90,7 +90,7 @@ class BaseServiceController: UIViewController, IServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [weak self] in
+                    PopUp.displayMessage(with: CommonText.success,description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [weak self] in
                         self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
@@ -113,11 +113,11 @@ extension BaseServiceController {
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
-    
+
     private func setupStackViewLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 20;
+        stackView.spacing = 20
         stackView.distribution = .fillProportionally
         NSLayoutConstraint.activate([
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 20),

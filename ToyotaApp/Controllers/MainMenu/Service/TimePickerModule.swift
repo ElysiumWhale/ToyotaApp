@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-fileprivate struct FreeTime {
+private struct FreeTime {
     let date: Date
     let freeTime: [DateComponents]
 }
@@ -13,7 +13,7 @@ class TimePickerView: UIView {
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
-    
+
     private(set) lazy var dateTimeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.toyotaType(.semibold, of: 20)
@@ -23,23 +23,23 @@ class TimePickerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureSubviews()
     }
-    
+
     private func configureSubviews() {
         addSubview(dateTimeLabel)
         addSubview(datePicker)
         setupLayout()
     }
-    
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             dateTimeLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -53,11 +53,11 @@ class TimePickerView: UIView {
             dateTimeLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -5)
         ])
     }
-    
+
     override class var requiresConstraintBasedLayout: Bool {
         return true
     }
-    
+
     func dataDidDownload() {
         DispatchQueue.main.async { [self] in
             datePicker.selectRow(0, inComponent: 0, animated: false)
@@ -70,7 +70,7 @@ class TimePickerView: UIView {
 // MARK: - Module
 class TimePickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
-    
+
     private lazy var internalView: TimePickerView = {
         let view = TimePickerView()
         view.datePicker.delegate = self
@@ -78,9 +78,9 @@ class TimePickerModule: NSObject, IServiceModule {
         view.isHidden = true
         return view
     }()
-    
+
     private var dates: [FreeTime] = []
-    
+
     private var rowInFirst: Int = 0
     private var rowInSecond: Int = 0
     private var selectedDate: (String, String)? {
@@ -89,22 +89,22 @@ class TimePickerModule: NSObject, IServiceModule {
             return (DateFormatter.server.string(from: date.date), date.freeTime[rowInSecond].getHourAndMinute())
         } else { return nil }
     }
-    
+
     private(set) var serviceType: ServiceType
-    
+
     private(set) var result: Result<IService, ErrorResponse>?
-    
+
     private(set) weak var delegate: IServiceController?
-    
+
     init(with type: ServiceType, for controller: IServiceController) {
         delegate = controller
         serviceType = type
     }
-    
+
     func configureViewText(with labelText: String) {
         internalView.dateTimeLabel.text = labelText
     }
-    
+
     func start(with params: [URLQueryItem]) {
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
@@ -117,11 +117,11 @@ class TimePickerModule: NSObject, IServiceModule {
         
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: queryParams, completion: completion)
     }
-    
+
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: params, completion: completion)
     }
-    
+
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
@@ -135,20 +135,21 @@ class TimePickerModule: NSObject, IServiceModule {
                 internalView.fadeIn(0.6)
         }
     }
-    
+
     func buildQueryItems() -> [URLQueryItem] {
         if let (date, time) = selectedDate, let value = TimeMap.serverMap[time] {
-            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date), URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
+            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date),
+                    URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
         } else { return [] }
     }
-    
-    private func prepareTime(from timeDict: [String:[Int]]?) {
-        let skipDictCheck = timeDict == nil || timeDict?.count == 0
+
+    private func prepareTime(from timeDict: [String: [Int]]?) {
+        let skipDictCheck = timeDict == nil || timeDict!.isEmpty
         let hour = Calendar.current.component(.hour, from: Date())
         var times = [DateComponents]()
         var date = Date()
         
-        if (hour < 20) {
+        if hour < 20 {
             times = TimeMap.getFullSchedule(after: hour)
             if !times.isEmpty {
                 dates.append(FreeTime(date: date, freeTime: times))
@@ -170,7 +171,7 @@ class TimePickerModule: NSObject, IServiceModule {
 // MARK: - UIPickerViewDataSource
 extension TimePickerModule: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 2 }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
             case 0: return dates.count
@@ -190,7 +191,7 @@ extension TimePickerModule: UIPickerViewDelegate {
         }
         rowInSecond = internalView.datePicker.selectedRow(inComponent: 1)
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = UIFont.toyotaType(.semibold, of: 20)
@@ -200,7 +201,7 @@ extension TimePickerModule: UIPickerViewDelegate {
             case 0: pickerLabel.text = dates.isEmpty ? "Empty" :
                     DateFormatter.display.string(from: dates[row].date)
             case 1: pickerLabel.text = dates.isEmpty ? "Empty" :
-                    dates[internalView.datePicker.selectedRow(inComponent:0)].freeTime[row].getHourAndMinute()
+                    dates[internalView.datePicker.selectedRow(inComponent: 0)].freeTime[row].getHourAndMinute()
             default: pickerLabel.text = "Empty"
         }
         return pickerLabel
