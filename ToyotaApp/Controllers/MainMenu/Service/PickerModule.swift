@@ -145,7 +145,7 @@ extension PickerModule: UIPickerViewDataSource {
     }
 }
 
-//MARK: - UIPickerViewDelegate
+// MARK: - UIPickerViewDelegate
 extension PickerModule: UIPickerViewDelegate {
     @IBAction func serviceDidSelect(sender: Any?) {
         guard let array = array, !array.isEmpty else {

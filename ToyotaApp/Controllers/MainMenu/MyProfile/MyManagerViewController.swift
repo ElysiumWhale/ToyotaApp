@@ -37,7 +37,7 @@ class MyManagerViewController: UIViewController, BackgroundText {
     }
 }
 
-//MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension MyManagerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         managers.count
@@ -50,7 +50,7 @@ extension MyManagerViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 extension MyManagerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
@@ -61,7 +61,7 @@ extension MyManagerViewController: UICollectionViewDelegate {
     }
 }
 
-//MARK: - WithUserInfo
+// MARK: - WithUserInfo
 extension MyManagerViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info

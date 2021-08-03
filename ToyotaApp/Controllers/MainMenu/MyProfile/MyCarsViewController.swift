@@ -41,7 +41,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
 }
 
-//MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension MyCarsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cars.count
@@ -56,7 +56,7 @@ extension MyCarsViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - WithUserInfo
+// MARK: - WithUserInfo
 extension MyCarsViewController: WithUserInfo {
     func subscribe(on proxy: UserProxy) {
         proxy.getNotificator.add(observer: self)

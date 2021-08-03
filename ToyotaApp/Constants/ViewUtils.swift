@@ -35,7 +35,7 @@ enum AddInfoType: Equatable {
     }
 }
 
-//MARK: - Structs with view constants
+// MARK: - Structs with view constants
 public struct AppStoryboards {
     static let launchScreen = "LaunchScreen"
     static let main = "Main"

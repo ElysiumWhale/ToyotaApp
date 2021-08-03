@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-//MARK: - Navigation
+// MARK: - Navigation
 extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard let window = window else { return }
@@ -50,7 +50,7 @@ extension SceneDelegate {
     }
 }
 
-//MARK: - SceneDid... EventHandlers
+// MARK: - SceneDid... EventHandlers
 extension SceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

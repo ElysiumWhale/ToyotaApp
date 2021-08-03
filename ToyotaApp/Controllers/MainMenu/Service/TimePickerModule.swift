@@ -6,7 +6,7 @@ fileprivate struct FreeTime {
     let freeTime: [DateComponents]
 }
 
-//MARK: - View
+// MARK: - View
 class TimePickerView: UIView {
     private(set) lazy var datePicker: UIPickerView = {
         let picker = UIPickerView()

@@ -11,7 +11,7 @@ class OrderCell: UITableViewCell {
     }
 }
 
-//MARK: - Mock
+// MARK: - Mock
 extension OrderCell {
     func configureAsMock() {
         let dateFormatter = DateFormatter()

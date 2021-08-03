@@ -25,7 +25,7 @@ class MyProfileViewController: UIViewController {
     private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
     private let myManagersSegueCode = SegueIdentifiers.MyManagersSegueCode
     
-    //MARK: - Properties
+    // MARK: - Properties
     #warning("todo: make optional")
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
@@ -156,7 +156,7 @@ class MyProfileViewController: UIViewController {
         }
     }
     
-    //MARK: - Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case myCarsSegueCode, settingsSegueCode:
@@ -172,7 +172,7 @@ class MyProfileViewController: UIViewController {
     }
 }
 
-//MARK: - Update user information logic
+// MARK: - Update user information logic
 extension MyProfileViewController {
     private func updateUserInfo() {
         guard hasChanges else {
@@ -215,7 +215,7 @@ extension MyProfileViewController {
     }
 }
 
-//MARK: - WithUserInfo
+// MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
     func subscribe(on proxy: UserProxy) {
         proxy.getNotificator.add(observer: self)

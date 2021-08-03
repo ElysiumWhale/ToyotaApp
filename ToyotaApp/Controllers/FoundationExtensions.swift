@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Formatting hours and minutes
+// MARK: - Formatting hours and minutes
 extension DateComponents {
     ///Format components in format **"hh:mm"**
     ///
@@ -19,7 +19,7 @@ extension DateComponents {
     }
 }
 
-//MARK: - Server & Client Formatters
+// MARK: - Server & Client Formatters
 extension DateFormatter {
     /**
      Formats date in **yyyy-MM-dd**
