@@ -8,7 +8,10 @@ class TestDriveViewController: BaseServiceController {
             module.configureViewText(with: text)
         }
         stackView.addArrangedSubview(bookButton)
-        modules.first?.customStart(page: RequestPath.Profile.getCities, with: [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], response: CitiesDidGetResponse.self)
+        modules.first?.customStart(page: RequestPath.Profile.getCities,
+                                   with: [URLQueryItem(name: RequestKeys.Auth.brandId,
+                                                       value: Brand.Toyota)],
+                                   response: CitiesDidGetResponse.self)
     }
     
     override func moduleDidUpdated(_ module: IServiceModule) {
@@ -26,32 +29,49 @@ class TestDriveViewController: BaseServiceController {
                 switch index {
                     case 0:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.cityId, value: service.id), URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)]
-                        modules[1].customStart(page: RequestPath.Services.getTestDriveCars, with: params, response: CarsDidGetResponse.self)
+                        let params = [URLQueryItem(name: RequestKeys.CarInfo.cityId,
+                                                   value: service.id),
+                                      URLQueryItem(name: RequestKeys.Auth.brandId,
+                                                   value: Brand.Toyota)]
+                        modules[1].customStart(page: RequestPath.Services.getTestDriveCars,
+                                               with: params,
+                                               response: CarsDidGetResponse.self)
                     case 1:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: try? modules[0].result?.get().id), URLQueryItem(name: RequestKeys.Services.serviceId, value: service.id)]
-                        modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms, with: params, response: ShoroomsDidGetResponce.self)
+                        let params = [URLQueryItem(name: RequestKeys.Auth.brandId,
+                                                   value: Brand.Toyota),
+                                      URLQueryItem(name: RequestKeys.CarInfo.cityId,
+                                                   value: try? modules[0].result?.get().id),
+                                      URLQueryItem(name: RequestKeys.Services.serviceId,
+                                                   value: service.id)]
+                        modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms,
+                                               with: params,
+                                               response: ShoroomsDidGetResponce.self)
                     case 2:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: service.id), URLQueryItem(name: RequestKeys.Services.serviceId, value: try? modules[1].result?.get().id)]
-                        modules[3].customStart(page: RequestPath.Services.getFreeTime, with: params, response: CarsDidGetResponse.self)
+                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
+                                                   value: service.id),
+                                      URLQueryItem(name: RequestKeys.Services.serviceId,
+                                                   value: try? modules[1].result?.get().id)]
+                        modules[3].customStart(page: RequestPath.Services.getFreeTime,
+                                               with: params,
+                                               response: CarsDidGetResponse.self)
                     case 3:
                         bookButton.fadeIn(0.6)
                     default: return
                 }
         }
     }
-    
+
     private func fadeOutAfter(module index: Int) {
         if index >= 2 { return }
         
-        for i in index+2...3 {
-            modules[i].view?.fadeOut(0.3)
+        for index in index+2...3 {
+            modules[index].view?.fadeOutOld(0.3)
         }
         bookButton.fadeOut(0.3)
     }
-    
+
     override func bookService() {
         guard let userId = user?.getId, let showroomId = try? modules[2].result?.get().id else { return }
         
@@ -66,7 +86,9 @@ class TestDriveViewController: BaseServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: CommonText.success, description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [self] in
+                    PopUp.displayMessage(with: CommonText.success,
+                                         description: "Заявка оставлена и будет обработана в ближайшее время",
+                                         buttonText: CommonText.ok) { [self] in
                         navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):

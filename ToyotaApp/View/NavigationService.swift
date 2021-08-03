@@ -24,22 +24,24 @@ class NavigationService {
                     } else { fallbackCompletion(AppErrors.serverBadResponse.rawValue) }
                 default: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
             }
-        } else if let _ = context.registerStatus {
+        } else if context.registerStatus != nil {
             NavigationService.loadMain(from: context.registeredUser)
         } else if let page = context.registerPage, page == 1 {
             NavigationService.loadRegister()
         } else { fallbackCompletion(AppErrors.serverBadResponse.rawValue) }
     }
-    
+
     private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: String) -> UINavigationController {
-        let controller = storyboard.instantiateViewController(identifier: identifier) as! UINavigationController
+        guard let controller = storyboard.instantiateViewController(identifier: identifier) as? UINavigationController else {
+            fatalError()
+        }
         controller.navigationBar.tintColor = UIColor.mainAppTint
         if let controllers = controllers, !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
         return controller
     }
-    
+
     private class func switchRootView(controller: UIViewController) {
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
     }
@@ -61,7 +63,9 @@ extension NavigationService {
     class func loadConnectionLost() {
         let storyboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
-            let controller = storyboard.instantiateViewController(identifier: AppViewControllers.connectionLost) as! ConnectionLostViewController
+            guard let controller = storyboard.instantiateViewController(identifier: AppViewControllers.connectionLost) as? ConnectionLostViewController else {
+                fatalError()
+            }
             //controller.configure()
             switchRootView(controller: controller)
         }
@@ -80,10 +84,12 @@ extension NavigationService {
             }
         }
     }
-    
+
     class func loadAuth(from navigationController: UINavigationController, with notificator: Notificator) {
         let storyboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-        let controller = storyboard.instantiateViewController(identifier: AppViewControllers.auth) as! AuthViewController
+        guard let controller = storyboard.instantiateViewController(identifier: AppViewControllers.auth) as? AuthViewController else {
+            fatalError()
+        }
         controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
     }
@@ -101,39 +107,49 @@ extension NavigationService {
             }
         }
     }
-    
+
     class func loadRegister(with profile: Profile, and cities: [City]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as! PersonalInfoViewController
-            pivc.configure(with: profile)
+            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
+            pivc?.configure(with: profile)
             
-            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController
-            dvc.configure(cityList: cities)
+            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
+            dvc?.configure(cityList: cities)
             
-            let controller = configureNavigationStack(with: [pivc, dvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
+            guard let personalController = pivc, let dealerController = dvc else {
+                fatalError()
+            }
+            
+            let controllers = [personalController, dealerController]
+            let controller = configureNavigationStack(with: controllers, for: regStoryboard,
+                                                      identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
         }
     }
-    
+
     class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom]) {
         let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
         DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as! PersonalInfoViewController
-            pivc.configure(with: user.profile)
+            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
+            pivc?.configure(with: user.profile)
             
-            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as! DealerViewController
+            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
             
             let firstShowroom = user.showroom!.first!
             let cityName = firstShowroom.cityName
             let index = cities.firstIndex(where: { $0.name == cityName })!
             
-            dvc.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: firstShowroom)
+            dvc?.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: firstShowroom)
             
-            let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVin) as! CheckVinViewController
-            cvvc.configure(with: firstShowroom.toDomain())
+            let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVin) as? CheckVinViewController
+            cvvc?.configure(with: firstShowroom.toDomain())
             
-            let controller = configureNavigationStack(with: [pivc, dvc, cvvc], for: regStoryboard, identifier: AppViewControllers.registerNavigation)
+            guard let personalController = pivc, let dealerController = dvc, let checkController = cvvc else {
+                fatalError()
+            }
+            let controllers = [personalController, dealerController, checkController]
+            let controller = configureNavigationStack(with: controllers, for: regStoryboard, identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
         }
     }
@@ -144,7 +160,9 @@ extension NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.mainMenu, bundle: nil)
         DispatchQueue.main.async {
-            let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBar) as! UITabBarController
+            guard let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBar) as? UITabBarController else {
+                fatalError()
+            }
             
             if let user = user {
                 KeychainManager.set(Person.toDomain(user.profile))

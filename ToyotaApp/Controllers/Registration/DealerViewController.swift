@@ -8,23 +8,23 @@ class DealerViewController: UIViewController {
     @IBOutlet private var nextButtonIndicator: UIActivityIndicatorView!
     @IBOutlet private var showroomLabel: UILabel!
     @IBOutlet private var nextButton: UIButton!
-    
+
     private var type: AddInfoType = .register
-    
+
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
-    
+
     private var cities: [City] = []
     private var selectedCity: City?
     private var showrooms: [DTOShowroom] = []
     private var selectedShowroom: DTOShowroom?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePicker(cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
         configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
     }
-    
+
     func configure(cityList: [City], showroomList: [DTOShowroom]? = nil, city: City? = nil, showroom: DTOShowroom? = nil, controllerType: AddInfoType = .register) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
@@ -49,7 +49,7 @@ extension DealerViewController {
             nextButton.isHidden = false
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case segueCode:
@@ -77,7 +77,7 @@ extension DealerViewController {
         view.endEditing(true)
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms, params: [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)), URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)], completion: completionForSelectedCity)
     }
-    
+
     private func completionForSelectedCity(for response: Result<ShoroomsDidGetResponce, ErrorResponse>) {
         switch response {
             case .success(let data):
@@ -92,7 +92,7 @@ extension DealerViewController {
                 }
         }
     }
-    
+
     @IBAction private func showroomDidSelect(sender: Any?) {
         let row = showroomPicker.selectedRow(inComponent: 0)
         selectedShowroom = showrooms[row]
@@ -105,9 +105,9 @@ extension DealerViewController {
 // MARK: - SegueWithRequestController
 extension DealerViewController: SegueWithRequestController {
     typealias TResponse = Response
-    
+
     var segueCode: String { SegueIdentifiers.DealerToCheckVin }
-    
+
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard let showroom = selectedShowroom else {
             displayError(with: "Выберите салон")
@@ -122,7 +122,7 @@ extension DealerViewController: SegueWithRequestController {
              URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)],
             completion: completionForSegue)
     }
-    
+
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
         let uiCompletion = { [weak self] in
             self?.nextButtonIndicator.stopAnimating()
@@ -148,9 +148,9 @@ extension DealerViewController: SegueWithRequestController {
 }
 
 // MARK: - UIPickerViewDataSource
-extension DealerViewController : UIPickerViewDataSource {
+extension DealerViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
             case cityPicker: return cities.count
@@ -160,8 +160,8 @@ extension DealerViewController : UIPickerViewDataSource {
     }
 }
 
-//MARK: - UIPickerViewDelegate
-extension DealerViewController : UIPickerViewDelegate {
+// MARK: - UIPickerViewDelegate
+extension DealerViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
             case cityPicker: return cities[row].name

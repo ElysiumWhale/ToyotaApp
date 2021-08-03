@@ -20,7 +20,8 @@ extension Storyboarded where Self: UIViewController {
         let name = String(describing: self)
         let viewControllerIdentifier = name.components(separatedBy: ".")[1]
         let storyboard = UIStoryboard(name: storyBoard.rawValue, bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier) as! Self
+        guard let result = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier) as? Self else { fatalError() }
+        return result
     }
     
     static func instantinate(from storyboard: Storyboards) { }

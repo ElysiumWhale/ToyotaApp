@@ -17,10 +17,9 @@ class PhoneTextField: UITextField {
     var phone: String? {
         if let prefix = prefix, let text = text {
             return prefix + text
-        }
-        else { return nil }
+        } else { return nil }
     }
-    
+
     override func draw(_ rect: CGRect) {
         prefixLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.height + 10, height: frame.size.height))
         prefixLabel.font = UIFont.toyotaType(.light, of: 22)
@@ -31,16 +30,16 @@ class PhoneTextField: UITextField {
         leftView = prefixLabel
         leftViewMode = .always
     }
-    
+
     override func prepareForInterfaceBuilder() {
         customizeView()
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         customizeView()
     }
-    
+
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         super.textRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
     }
@@ -48,19 +47,19 @@ class PhoneTextField: UITextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         super.editingRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
     }
-    
+
     func customizeView() {
         delegate = self
         layer.cornerRadius = 10
         clipsToBounds = true
         
-        if let p = placeholder {
-            let place = NSAttributedString(string: p, attributes: [.foregroundColor: UIColor.placeholderText])
+        if let placeholder = placeholder {
+            let place = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.placeholderText])
             attributedPlaceholder = place
             textColor = .label
         }
     }
-    
+
     var validPhone: String? {
         guard let phone = phone, let prefixCount = prefix?.filter({$0.isNumber}).count else {
             return nil
@@ -78,6 +77,7 @@ class PhoneTextField: UITextField {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension PhoneTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if range.location >= 10 {
