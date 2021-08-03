@@ -20,11 +20,6 @@ class ServicesViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
-        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        refreshControl.layer.zPosition = -1
-        servicesList.refreshControl = refreshControl
-        
         servicesList.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
@@ -126,6 +121,11 @@ extension ServicesViewController {
     }
     
     private func interfaceIfOneCar() {
+        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.layer.zPosition = -1
+        servicesList.refreshControl = refreshControl
+         
         if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
         carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
         carTextField.isEnabled = cars.count > 1
