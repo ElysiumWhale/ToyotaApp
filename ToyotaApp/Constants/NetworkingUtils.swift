@@ -1,6 +1,6 @@
 import Foundation
 
-///Dealer brands identificators for network requests
+/// Dealer brands identificators for network requests
 struct Brand {
     static let Toyota = "1"
 }
@@ -75,7 +75,6 @@ struct RequestKeys {
     
     struct Services {
         static let serviceTypeId = "service_type_id"
-        static let sId = "sid"
         static let serviceId = "service_id"
         static let dateBooking = "date_booking"
         static let startBooking = "start_booking"
