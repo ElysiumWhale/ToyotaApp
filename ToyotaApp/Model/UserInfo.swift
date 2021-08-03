@@ -14,19 +14,15 @@ protocol UserProxy {
     var getNotificator: Notificator { get }
 }
 
-extension UserProxy {
-    static func build() -> Result<UserProxy, AppErrors> { UserInfo.buildUser() }
-}
-
 class UserInfo {
     let id: UserId
     private var phone: Phone
     private var person: Person
     private var showrooms: Showrooms
     private var cars: Cars
-    
+
     private let notificator: Notificator
-    
+
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         let userId = KeychainManager.get(UserId.self)
         let userPhone = KeychainManager.get(Phone.self)
@@ -40,7 +36,7 @@ class UserInfo {
         
         return Result.success(UserInfo(id, phone, person, showrooms, cars))
     }
-    
+
     private init(_ userId: UserId, _ userPhone: Phone, _ personInfo: Person,
                  _ showroomsInfo: Showrooms, _ carsInfo: Cars) {
         id = userId
@@ -54,26 +50,30 @@ class UserInfo {
 
 // MARK: - UserProxy
 extension UserInfo: UserProxy {
+    static func build() -> Result<UserProxy, AppErrors> {
+        buildUser()
+    }
+
     var getNotificator: Notificator { notificator }
-    
+
     var getId: String { id.id }
-    
+
     var getPhone: String { phone.phone }
-    
+
     var getPerson: Person { person }
-    
+
     var getSelectedShowroom: Showroom? { showrooms.value.first(where: {$0.id == cars.chosenCar?.showroomId}) }
-    
+
     var getShowrooms: Showrooms { showrooms }
-    
+
     var getCars: Cars { cars }
-    
+
     func update(_ personData: Person) {
         person = personData
         KeychainManager.set(person)
         notificator.notificateObservers()
     }
-    
+
     func update(_ add: Car, _ from: Showroom) {
         if showrooms.value.first(where: {$0.id == from.id}) == nil {
             showrooms.value.append(from)
@@ -86,7 +86,7 @@ extension UserInfo: UserProxy {
         KeychainManager.set(cars)
         notificator.notificateObservers()
     }
-    
+
     func update(_ selected: Car) {
         cars.chosenCar = selected
         KeychainManager.set(cars)

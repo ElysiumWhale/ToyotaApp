@@ -8,11 +8,11 @@ class NetworkService {
     
     private init() {
         #warning("MAKE ME HTTPS!")
-        //To turn off delete dictionary AppTransportSecuritySettings in info.plist
+        // To turn off delete dictionary AppTransportSecuritySettings in info.plist
         mainUrl = MainURL.build()
     }
     
-    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T:Codable {
+    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T: Codable {
         let request = buildPostRequest(for: page, with: params)
         
         session.dataTask(with: request) { (data, response, error) in
@@ -30,7 +30,8 @@ class NetworkService {
                 } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                     completion(Result.failure(errorResponse))
                 } else {
-                    completion(Result.failure(ErrorResponse(code: NetworkErrors.corruptedData.rawValue, message: AppErrors.serverBadResponse.rawValue)))
+                    completion(Result.failure(ErrorResponse(code: NetworkErrors.corruptedData.rawValue,
+                                                            message: AppErrors.serverBadResponse.rawValue)))
                 }
             }
         }.resume()

@@ -8,7 +8,7 @@ protocol Notificator {
 
 class NotificationCentre: Notificator {
     
-    private var observers: [ObjectIdentifier : Observer] = [:]
+    private var observers: [ObjectIdentifier: Observer] = [:]
     
     func add(observer: WithUserInfo) {
         let id = ObjectIdentifier(observer)

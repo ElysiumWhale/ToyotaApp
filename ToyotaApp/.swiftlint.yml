@@ -10,6 +10,9 @@ excluded:
 - Pods
 - SwiftLint/Common/3rdPartyLib
 
+trailing_whitespace:
+    ignores_empty_lines: true
+
 line_length:
     warning: 150
     error: 200

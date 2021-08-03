@@ -1,6 +1,6 @@
 import Foundation
 
-fileprivate struct CustomServices {
+private struct CustomServices {
     static let TestDrive = "3"
 }
 

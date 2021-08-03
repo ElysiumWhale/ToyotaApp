@@ -80,7 +80,7 @@ class MapModule: NSObject, IServiceModule {
     
     private(set) var result: Result<IService, ErrorResponse>?
     
-    private(set) var delegate: IServiceController?
+    private(set) weak var delegate: IServiceController?
     
     init(with type: ServiceType, for controller: IServiceController) {
         serviceType = type

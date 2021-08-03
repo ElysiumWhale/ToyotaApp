@@ -5,7 +5,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        if scene as? UIWindowScene == nil { return }
         
         guard let userId = KeychainManager.get(UserId.self)?.id,
               let secretKey = KeychainManager.get(SecretKey.self)?.secret else {

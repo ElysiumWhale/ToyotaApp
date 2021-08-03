@@ -127,9 +127,9 @@ extension BackgroundText {
         let label = UILabel()
         label.text = text
         label.textColor = .systemGray
-        label.numberOfLines = 0;
+        label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center;
+        label.textAlignment = .center
         label.font = UIFont.toyotaType(.semibold, of: 25)
         label.sizeToFit()
         return label
