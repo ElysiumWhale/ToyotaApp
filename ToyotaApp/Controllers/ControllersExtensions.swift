@@ -46,29 +46,24 @@ extension UIViewController {
     }
     
     func formatDateForClient(from string: String) -> String {
-        guard let date = DateFormatter.server.date(from: string) else {
-            return DateFormatter.server.string(from: Date())
-        }
-        return DateFormatter.client.string(from: date)
+        DateFormatter.client.string(from: DateFormatter.server.date(from: string) ?? Date())
     }
     
     func dateFromClient(date string: String) -> Date {
-        return DateFormatter.client.date(from: string) ?? Date()
+        DateFormatter.client.date(from: string) ?? Date()
     }
     
     func dateFromServer(date string: String) -> Date {
-        return DateFormatter.server.date(from: string) ?? Date()
+        DateFormatter.server.date(from: string) ?? Date()
     }
 }
 
 // MARK: - Error Displaying
 extension UIViewController {
-    func displayError(with text: String? = nil, beforePopUpAction: @escaping () -> Void = { }) {
+    func displayError(with text: String, beforePopUpAction: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
             beforePopUpAction()
-            if let errorText = text {
-                PopUp.displayMessage(with: CommonText.error, description: errorText, buttonText: CommonText.ok)
-            }
+            PopUp.displayMessage(with: CommonText.error, description: text, buttonText: CommonText.ok)
         }
     }
 }
@@ -92,10 +87,9 @@ extension UIViewController {
 
 // MARK: - Navigation
 extension UIViewController {
-    func performSegue(for identifier: String, beforeAction: @escaping () -> Void = { }) {
-        DispatchQueue.main.async { [self] in
-            beforeAction()
-            performSegue(withIdentifier: identifier, sender: self)
+    func performSegue(for identifier: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.performSegue(withIdentifier: identifier, sender: self)
         }
     }
     
@@ -110,9 +104,9 @@ extension UIViewController {
 
 extension UIViewController {
     func popToRootWithDispatch(animated: Bool, beforeAction: @escaping () -> Void = { }) {
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.async { [weak self] in
             beforeAction()
-            navigationController?.popToRootViewController(animated: animated)
+            self?.navigationController?.popToRootViewController(animated: animated)
         }
     }
 }
