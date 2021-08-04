@@ -28,7 +28,7 @@
                         <color key="selectedImageTintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qV5-Is-7iF" kind="relationship" relationship="viewControllers" id="Olt-H6-9za"/>
+                        <segue destination="3kv-dm-Vwl" kind="relationship" relationship="viewControllers" id="uZK-ED-GPs"/>
                         <segue destination="t2J-oM-keC" kind="relationship" relationship="viewControllers" id="h1K-uG-G1b"/>
                         <segue destination="Yh5-n3-Vaq" kind="relationship" relationship="viewControllers" id="kfI-0C-f2e"/>
                     </connections>
@@ -38,6 +38,23 @@
             <point key="canvasLocation" x="1155" y="143"/>
         </scene>
         <!--Акции-->
+        <scene sceneID="7Ly-3P-v7C">
+            <objects>
+                <navigationController id="3kv-dm-Vwl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Акции" image="star.fill" catalog="system" id="0QZ-qX-QXd"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oso-H2-Y3E">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qV5-Is-7iF" kind="relationship" relationship="rootViewController" id="tiu-LG-wU3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qfx-dm-EOn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="871"/>
+        </scene>
+        <!--Акции-->
         <scene sceneID="1am-hM-fZp">
             <objects>
                 <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,12 +62,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbw-ah-eiG">
-                                <rect key="frame" x="0.0" y="44" width="428" height="44"/>
-                                <items>
-                                    <navigationItem title="Акции" id="1JV-Kk-h0A"/>
-                                </items>
-                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sMe-5f-6CG">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -71,7 +82,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asU-aA-mHd">
                                                     <rect key="frame" x="20" y="8" width="215" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="283" id="3mf-mJ-i47"/>
+                                                        <constraint firstAttribute="width" constant="215" id="3mf-mJ-i47"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -90,7 +101,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-Xs-lo2">
                                                     <rect key="frame" x="20" y="52" width="215" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="283" id="yx0-3V-BvG"/>
+                                                        <constraint firstAttribute="width" constant="215" id="yx0-3V-BvG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -163,25 +174,23 @@
                         <viewLayoutGuide key="safeArea" id="Y7t-Y5-2GI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xbw-ah-eiG" firstAttribute="top" secondItem="Y7t-Y5-2GI" secondAttribute="top" id="5BG-6l-afc"/>
-                            <constraint firstItem="sMe-5f-6CG" firstAttribute="top" secondItem="xbw-ah-eiG" secondAttribute="bottom" id="Aln-D9-SgC"/>
                             <constraint firstItem="sMe-5f-6CG" firstAttribute="leading" secondItem="Y7t-Y5-2GI" secondAttribute="leading" id="Fof-9H-prQ"/>
                             <constraint firstItem="Y7t-Y5-2GI" firstAttribute="trailing" secondItem="sMe-5f-6CG" secondAttribute="trailing" id="GDA-XQ-Bh3"/>
                             <constraint firstItem="Y7t-Y5-2GI" firstAttribute="bottom" secondItem="sMe-5f-6CG" secondAttribute="bottom" id="hgm-g5-nTm"/>
-                            <constraint firstItem="Y7t-Y5-2GI" firstAttribute="trailing" secondItem="xbw-ah-eiG" secondAttribute="trailing" id="lBX-2z-iYQ"/>
-                            <constraint firstItem="xbw-ah-eiG" firstAttribute="leading" secondItem="Y7t-Y5-2GI" secondAttribute="leading" id="mcN-i9-XZu"/>
+                            <constraint firstItem="sMe-5f-6CG" firstAttribute="top" secondItem="Y7t-Y5-2GI" secondAttribute="top" id="tNs-c6-eB9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Акции" image="star.fill" catalog="system" id="mSA-PA-rV7">
                         <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Акции" id="cqc-0O-Xyb"/>
                     <connections>
                         <outlet property="newsCollection" destination="sMe-5f-6CG" id="RaZ-fK-b6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V7K-YM-Q8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2076.1682242990655" y="142.54859611231103"/>
+            <point key="canvasLocation" x="302.803738317757" y="1615.9827213822896"/>
         </scene>
         <!--Услуги-->
         <scene sceneID="vV6-m5-P55">
@@ -283,11 +292,11 @@
             </objects>
             <point key="canvasLocation" x="1153.7383177570093" y="1615.9827213822896"/>
         </scene>
-        <!--Item-->
+        <!--Услуги-->
         <scene sceneID="xWu-aZ-S5c">
             <objects>
                 <navigationController id="t2J-oM-keC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="bookmark.fill" catalog="system" id="7xw-yK-Xhz"/>
+                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" selectedImage="bookmark.fill" id="7xw-yK-Xhz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSz-xi-BdF">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -300,11 +309,11 @@
             </objects>
             <point key="canvasLocation" x="1154" y="871"/>
         </scene>
-        <!--Item-->
+        <!--Профиль-->
         <scene sceneID="IyJ-sk-tIT">
             <objects>
                 <navigationController id="Yh5-n3-Vaq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="person.fill" catalog="system" id="yjf-Bn-rXF"/>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="person.fill" catalog="system" selectedImage="person.fill" id="yjf-Bn-rXF"/>
                     <navigationItem key="navigationItem" id="kAU-62-jV5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o8I-Za-UAS">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -326,7 +335,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GLq-8s-RM7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="1281"/>
+            <point key="canvasLocation" x="2079" y="1300"/>
         </scene>
     </scenes>
     <designables>
