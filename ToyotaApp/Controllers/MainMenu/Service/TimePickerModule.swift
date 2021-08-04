@@ -59,10 +59,10 @@ class TimePickerView: UIView {
     }
 
     func dataDidDownload() {
-        DispatchQueue.main.async { [self] in
-            datePicker.selectRow(0, inComponent: 0, animated: false)
-            datePicker.reloadAllComponents()
-            fadeIn(0.6)
+        DispatchQueue.main.async { [weak self] in
+            self?.datePicker.selectRow(0, inComponent: 0, animated: false)
+            self?.datePicker.reloadAllComponents()
+            self?.fadeIn()
         }
     }
 }
@@ -75,7 +75,7 @@ class TimePickerModule: NSObject, IServiceModule {
         let view = TimePickerView()
         view.datePicker.delegate = self
         view.datePicker.dataSource = self
-        view.isHidden = true
+        view.alpha = 0
         return view
     }()
 
@@ -115,11 +115,13 @@ class TimePickerModule: NSObject, IServiceModule {
         !params.isEmpty ? queryParams.append(contentsOf: params)
                         : queryParams.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType.id))
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: queryParams, completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime,
+                                              params: queryParams, completion: completion)
     }
 
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime, params: params, completion: completion)
+        NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime,
+                                              params: params, completion: completion)
     }
 
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
@@ -129,18 +131,18 @@ class TimePickerModule: NSObject, IServiceModule {
                 delegate?.moduleDidUpdated(self)
             case .success(let data):
                 prepareTime(from: data.freeTimeDict)
-                internalView.dataDidDownload()
                 result = .success(Service(id: "0", name: "Success"))
                 delegate?.moduleDidUpdated(self)
-                internalView.fadeIn(0.6)
+                internalView.dataDidDownload()
         }
     }
 
     func buildQueryItems() -> [URLQueryItem] {
-        if let (date, time) = selectedDate, let value = TimeMap.serverMap[time] {
-            return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date),
-                    URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
-        } else { return [] }
+        guard let (date, time) = selectedDate, let value = TimeMap.serverMap[time] else {
+            return []
+        }
+        return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date),
+                URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
     }
 
     private func prepareTime(from timeDict: [String: [Int]]?) {

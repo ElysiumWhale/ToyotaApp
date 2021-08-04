@@ -14,7 +14,7 @@ class BaseServiceController: UIViewController, IServiceController {
         button.addAction { [self] in
             bookService()
         }
-        button.isHidden = true
+        button.alpha = 0
         return button
     }()
 
@@ -61,11 +61,14 @@ class BaseServiceController: UIViewController, IServiceController {
                 }
             case .success:
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-                if index + 1 == modules.count {
-                    bookButton.fadeIn(0.6)
-                    return
+                DispatchQueue.main.async { [weak self] in
+                    guard let controller = self else { return }
+                    if index + 1 == controller.modules.count {
+                        controller.bookButton.fadeIn()
+                        return
+                    }
+                    controller.modules[index + 1].start(with: module.buildQueryItems())
                 }
-                modules[index + 1].start(with: module.buildQueryItems())
         }
     }
 
@@ -90,11 +93,15 @@ class BaseServiceController: UIViewController, IServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: CommonText.success,description: "Заявка оставлена и будет обработана в ближайшее время", buttonText: CommonText.ok) { [weak self] in
+                    PopUp.displayMessage(with: CommonText.success,
+                                         description: "Заявка оставлена и будет обработана в ближайшее время",
+                                         buttonText: CommonText.ok) { [weak self] in
                         self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
-                    PopUp.displayMessage(with: CommonText.error, description: error.message ?? CommonText.servicesError, buttonText: CommonText.ok)
+                    PopUp.displayMessage(with: CommonText.error,
+                                         description: error.message ?? CommonText.servicesError,
+                                         buttonText: CommonText.ok)
             }
         }
     }

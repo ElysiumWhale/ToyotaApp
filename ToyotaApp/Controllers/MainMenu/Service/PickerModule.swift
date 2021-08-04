@@ -67,7 +67,7 @@ class PickerModule: NSObject, IServiceModule {
         let internalView = PickerModuleView()
         internalView.servicePicker.configurePicker(with: #selector(serviceDidSelect), for: internalView.textField, delegate: self)
         internalView.textField.placeholder = "Услуга"
-        internalView.isHidden = true
+        internalView.alpha = 0
         return internalView
     }()
     
@@ -120,7 +120,7 @@ class PickerModule: NSObject, IServiceModule {
             case .success(let data):
                 array = data.array.isEmpty ? [Service(id: "-1", name: "Нет доступных сервисов")] : data.array
                 DispatchQueue.main.async { [weak self] in
-                    self?.internalView.fadeIn(0.6)
+                    self?.internalView.fadeIn()
                     self?.internalView.servicePicker.reloadAllComponents()
                 }
         }
@@ -138,10 +138,10 @@ class PickerModule: NSObject, IServiceModule {
 
 // MARK: - UIPickerViewDataSource
 extension PickerModule: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return array?.count ?? 0
+        array?.count ?? 0
     }
 }
 
@@ -172,6 +172,6 @@ extension PickerModule: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return array?[row].name ?? "PickerModule.array is empty"
+        array?[row].name ?? "PickerModule.array is empty"
     }
 }

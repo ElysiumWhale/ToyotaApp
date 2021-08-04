@@ -57,19 +57,24 @@ class TestDriveViewController: BaseServiceController {
                                                with: params,
                                                response: CarsDidGetResponse.self)
                     case 3:
-                        bookButton.fadeIn(0.6)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.bookButton.fadeIn()
+                        }
                     default: return
                 }
         }
     }
 
     private func fadeOutAfter(module index: Int) {
-        if index >= 2 { return }
-        
-        for index in index+2...3 {
-            modules[index].view?.fadeOutOld(0.3)
+        DispatchQueue.main.async { [weak self] in
+            guard let view = self else { return }
+            if index >= 2 { return }
+            
+            for index in index+2...3 {
+                view.modules[index].view?.fadeOut()
+            }
+            view.bookButton.fadeOut()
         }
-        bookButton.fadeOut(0.3)
     }
 
     override func bookService() {
@@ -92,7 +97,9 @@ class TestDriveViewController: BaseServiceController {
                         navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
-                    PopUp.displayMessage(with: CommonText.error, description: error.message ?? CommonText.servicesError, buttonText: CommonText.ok)
+                    PopUp.displayMessage(with: CommonText.error,
+                                         description: error.message ?? CommonText.servicesError,
+                                         buttonText: CommonText.ok)
             }
         }
     }

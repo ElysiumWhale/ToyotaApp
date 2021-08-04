@@ -68,7 +68,7 @@ class MapModule: NSObject, IServiceModule {
     private lazy var internalView: MapModuleView = {
         let map = MapModuleView()
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.isHidden = true
+        map.alpha = 0
         map.map.delegate = self
         return map
     }()
@@ -90,7 +90,7 @@ class MapModule: NSObject, IServiceModule {
     func start(with params: [URLQueryItem]) {
         let locManager = CLLocationManager()
         locManager.delegate = self
-        internalView.fadeIn(0.6)
+        internalView.fadeIn()
         if CLLocationManager.locationServicesEnabled() {
             internalView.map.showsUserLocation = true
             locationManager = locManager
@@ -101,7 +101,9 @@ class MapModule: NSObject, IServiceModule {
             result = .success(Service(id: "0", name: "Success"))
             delegate?.moduleDidUpdated(self)
         } else {
-            PopUp.displayMessage(with: "Предупреждение", description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции", buttonText: CommonText.ok)
+            PopUp.displayMessage(with: "Предупреждение",
+                                 description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции",
+                                 buttonText: CommonText.ok)
             internalView.map.isUserInteractionEnabled = false
             result = .failure(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
             delegate?.moduleDidUpdated(self)
@@ -109,8 +111,10 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        return [URLQueryItem(name: RequestKeys.Services.latitude, value: String(describing: locationManager?.location?.coordinate.latitude.binade)),
-                URLQueryItem(name: RequestKeys.Services.longitude, value: String(describing: locationManager.location?.coordinate.longitude.binade))]
+        [URLQueryItem(name: RequestKeys.Services.latitude,
+                      value: String(describing: locationManager.location?.coordinate.latitude.binade)),
+        URLQueryItem(name: RequestKeys.Services.longitude,
+                     value: String(describing: locationManager.location?.coordinate.longitude.binade))]
     }
     
     func configureViewText(with labelText: String) {
