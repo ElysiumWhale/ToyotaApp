@@ -12,6 +12,7 @@ class SmsCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        wrongCodeLabel.alpha = 0
         hideKeyboardWhenTappedAround()
     }
     
@@ -57,15 +58,19 @@ extension SmsCodeViewController {
             displayError()
             return
         }
-        sendSmsCodeButton.fadeOut(0.3)
+        sendSmsCodeButton.fadeOut()
         activitySwitcher.startAnimating()
         view.endEditing(true)
         
         switch type {
             case .register:
-                NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode, params: buildRequestParams(authType: type), completion: registerCompletion)
+                NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode,
+                                                      params: buildRequestParams(authType: type),
+                                                      completion: registerCompletion)
             case .changeNumber:
-                NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone, params: buildRequestParams(authType: type), completion: changeNumberCompletion)
+                NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone,
+                                                      params: buildRequestParams(authType: type),
+                                                      completion: changeNumberCompletion)
         }
     }
     
@@ -84,9 +89,12 @@ extension SmsCodeViewController {
                 KeychainManager.set(SecretKey(data.secretKey))
                 NavigationService.resolveNavigation(with: data) { _ in NavigationService.loadRegister() }
             case .failure(let error):
-                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.activitySwitcher.stopAnimating()
-                    self?.sendSmsCodeButton.fadeIn(0.3)
+                    self?.sendSmsCodeButton.fadeIn()
+                    PopUp.displayMessage(with: CommonText.error,
+                                         description: error.message ?? AppErrors.unknownError.rawValue,
+                                         buttonText: CommonText.ok)
                 }
         }
     }
@@ -97,13 +105,18 @@ extension SmsCodeViewController {
                 if case .changeNumber(let notificator) = type {
                     notificator.notificateObservers()
                     dismissNavigationWithDispatch(animated: true) {
-                        PopUp.displayMessage(with: "Подтверждение", description: "Телефон упешно изменен", buttonText: CommonText.ok)
+                        PopUp.displayMessage(with: "Подтверждение",
+                                             description: "Телефон упешно изменен",
+                                             buttonText: CommonText.ok)
                     }
                 }
             case .failure(let error):
-                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.activitySwitcher.stopAnimating()
-                    self?.sendSmsCodeButton.fadeIn(0.3)
+                    self?.sendSmsCodeButton.fadeIn()
+                    PopUp.displayMessage(with: CommonText.error,
+                                         description: error.message ?? AppErrors.unknownError.rawValue,
+                                         buttonText: CommonText.ok)
                 }
         }
     }

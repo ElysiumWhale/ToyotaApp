@@ -11,6 +11,7 @@ class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        incorrectLabel.alpha = 0
         configureTextField()
         hideKeyboardWhenTappedAround()
     }
@@ -44,7 +45,7 @@ extension AuthViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        sendPhoneButton.fadeIn(0.3)
+        sendPhoneButton.fadeIn()
     }
 }
 
@@ -61,7 +62,7 @@ extension AuthViewController: SegueWithRequestController {
             return
         }
         
-        sendPhoneButton.fadeOut(0.3)
+        sendPhoneButton.fadeOut()
         indicator.startAnimating()
         view.endEditing(true)
         if case .register = type {
@@ -74,14 +75,18 @@ extension AuthViewController: SegueWithRequestController {
     }
 
     func completionForSegue(for response: Result<Response, ErrorResponse>) {
-        switch response {
-            case .success:
-                performSegue(for: segueCode)
-            case .failure(let error):
-                displayError(with: error.message ?? AppErrors.unknownError.rawValue) { [self] in
-                    indicator.stopAnimating()
-                    sendPhoneButton.fadeIn(0.3)
-                }
+        DispatchQueue.main.async { [weak self] in
+            guard let view = self else { return }
+            view.indicator.stopAnimating()
+            view.sendPhoneButton.fadeIn()
+            switch response {
+                case .success:
+                    view.performSegue(withIdentifier: view.segueCode, sender: view)
+                case .failure(let error):
+                    PopUp.displayMessage(with: CommonText.error,
+                                         description: error.message ?? AppErrors.unknownError.rawValue,
+                                         buttonText: CommonText.ok)
+            }
         }
     }
 }
