@@ -216,7 +216,7 @@
                                     <constraint firstAttribute="width" secondItem="77N-z1-1oO" secondAttribute="height" multiplier="1:1" id="CQV-hT-Sjf"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io">
                                 <rect key="frame" x="84" y="784" width="246" height="43"/>
                                 <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -240,7 +240,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-wp-mLq">
-                                <rect key="frame" x="20" y="185" width="374" height="93"/>
+                                <rect key="frame" x="20" y="185" width="374" height="204.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLs-bh-NNn">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="93"/>
@@ -258,17 +258,17 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wUJ-a2-MAD">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="10"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wUJ-a2-MAD">
+                                        <rect key="frame" x="0.0" y="113" width="374" height="91.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите салон" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICh-r4-niT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5RZ-s5-2c2" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="10" width="374" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="46" width="374" height="45.5"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -298,7 +298,6 @@
                         <outlet property="cityTextFieldIndicator" destination="77N-z1-1oO" id="Elb-6j-ePp"/>
                         <outlet property="nextButton" destination="JAZ-G9-1Io" id="VTy-QX-BD9"/>
                         <outlet property="nextButtonIndicator" destination="hrn-D5-1Xb" id="keQ-Kb-L61"/>
-                        <outlet property="showroomLabel" destination="ICh-r4-niT" id="nCr-6O-Pps"/>
                         <outlet property="showroomStackView" destination="wUJ-a2-MAD" id="rhC-Ye-EKE"/>
                         <outlet property="showroomTextField" destination="5RZ-s5-2c2" id="p3c-q7-6OJ"/>
                         <segue destination="3my-7G-TR7" kind="show" identifier="DealerToCheckVin" id="ra1-wl-V7k"/>
@@ -317,7 +316,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sqW-gg-58W">
-                                <rect key="frame" x="20" y="200" width="374" height="144"/>
+                                <rect key="frame" x="20" y="200" width="374" height="178"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите VIN-код Вашего автомобиля для регистрации в системе:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSf-4E-D5C">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="86"/>
@@ -340,8 +339,8 @@
                                             <action selector="vinValueDidChangeWith:" destination="3my-7G-TR7" eventType="editingChanged" id="F8f-us-wvZ"/>
                                         </connections>
                                     </textField>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен некорректный VIN-код!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-sU-Ndd">
-                                        <rect key="frame" x="0.0" y="144" width="374" height="0.0"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен некорректный VIN-код!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-sU-Ndd">
+                                        <rect key="frame" x="0.0" y="152" width="374" height="26"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
