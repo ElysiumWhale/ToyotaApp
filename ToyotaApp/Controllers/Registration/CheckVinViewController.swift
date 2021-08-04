@@ -19,8 +19,8 @@ class CheckVinViewController: UIViewController {
     private var vin: String = ""
 
     @IBAction func vinValueDidChange(with sender: UITextField) {
-        errorLabel.isHidden = true
-        vinCodeTextField.layer.borderWidth = 0
+        errorLabel.fadeOut(0.3)
+        vinCodeTextField.toggleErrorState(hasError: false)
         vin = vinCodeTextField.text ?? ""
     }
 
@@ -34,7 +34,7 @@ class CheckVinViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        skipStepButton.isEnabled = type == .register
+        errorLabel.alpha = 0
         skipStepButton.isHidden = type != .register
         hideKeyboardWhenTappedAround()
     }
@@ -53,13 +53,8 @@ extension CheckVinViewController: SegueWithRequestController {
 
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard vin.count == 17 else {
-            vinCodeTextField.layer.borderColor = UIColor.systemRed.cgColor
-            vinCodeTextField.layer.borderWidth = 1
+            vinCodeTextField.toggleErrorState(hasError: true)
             errorLabel.fadeIn(0.3)
-            if checkVinButton.isHidden {
-                indicator.stopAnimating()
-                checkVinButton.fadeIn(0.6)
-            }
             return
         }
         makeRequest(skip: .no, vin: vin)
@@ -72,8 +67,8 @@ extension CheckVinViewController: SegueWithRequestController {
     }
 
     private func makeRequest(skip: SkipCheckVin, vin: String? = "") {
+        checkVinButton.fadeOut()
         indicator.startAnimating()
-        checkVinButton.fadeOut(0.6)
         
         let userId = KeychainManager.get(UserId.self)!.id
         NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkVin, params:
@@ -86,32 +81,40 @@ extension CheckVinViewController: SegueWithRequestController {
 
     func completionForSegue(for response: Result<CarDidCheckResponse, ErrorResponse>) {
         
-        func failureCompletion(_ error: ErrorResponse) {
-            displayError(with: error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова") { [self] in
-                indicator.stopAnimating()
+        let completion = { [weak self] (isSuccess: Bool, parameter: String) in
+            guard let view = self else { return }
+            DispatchQueue.main.async {
+                view.indicator.stopAnimating()
+                view.checkVinButton.fadeIn()
+                
+                isSuccess ? view.performSegue(withIdentifier: view.segueCode, sender: view)
+                          : PopUp.displayMessage(with: CommonText.error, description: parameter,
+                                                 buttonText: CommonText.ok)
             }
         }
         
         switch response {
             case .success(let data):
                 if isSkipped {
-                    performSegue(for: segueCode)
-                } else if let car = data.car?.toDomain(with: vin, showroom: showroom!.id) {
-                    switch type {
-                        case .register:
-                            KeychainManager.set(Cars([car]))
-                            performSegue(for: segueCode)
-                        case .update(let proxy):
-                            proxy.update(car, showroom!)
-                            popToRootWithDispatch(animated: true) {
-                                PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
-                            }
-                    }
-                } else {
-                    failureCompletion(ErrorResponse(code: "0", message: "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже"))
+                    completion(true, segueCode)
+                    return
+                }
+                guard let car = data.car?.toDomain(with: vin, showroom: showroom!.id) else {
+                    completion(false, "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже")
+                    return
+                }
+                switch type {
+                    case .register:
+                        KeychainManager.set(Cars([car]))
+                        performSegue(for: segueCode)
+                    case .update(let proxy):
+                        proxy.update(car, showroom!)
+                        popToRootWithDispatch(animated: true) {
+                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
+                        }
                 }
             case .failure(let error):
-                failureCompletion(error)
+                completion(false, error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова")
         }
     }
 }

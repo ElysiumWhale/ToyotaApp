@@ -66,7 +66,7 @@ extension PersonalInfoViewController {
         
         if activitySwitcher.isAnimating {
             activitySwitcher.stopAnimating()
-            nextButton.fadeIn(0.3)
+            nextButton.fadeIn()
         }
     }
 
@@ -126,8 +126,8 @@ extension PersonalInfoViewController: SegueWithRequestController {
             return
         }
         
+        nextButton.fadeOut()
         activitySwitcher.startAnimating()
-        nextButton.isHidden = true
         configuredProfile = Profile(phone: nil, firstName: firstNameTextField.text!,
                                     lastName: lastNameTextField.text!,
                                     secondName: secondNameTextField.text!,
@@ -139,16 +139,25 @@ extension PersonalInfoViewController: SegueWithRequestController {
     }
 
     func completionForSegue(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
+        
+        let completion = { [weak self] (isSuccess: Bool, parameter: String) in
+            guard let view = self else { return }
+            DispatchQueue.main.async {
+                view.activitySwitcher.stopAnimating()
+                view.nextButton.fadeIn()
+                isSuccess ? view.performSegue(withIdentifier: view.segueCode, sender: view)
+                          : PopUp.displayMessage(with: CommonText.error, description: parameter,
+                                                 buttonText: CommonText.ok)
+            }
+        }
+        
         switch response {
             case .success(let data):
                 cities = data.cities.map { City(id: $0.id, name: $0.name) }
                 KeychainManager.set(Person.toDomain(configuredProfile!))
-                performSegue(for: segueCode)
+                completion(true, segueCode)
             case .failure(let error):
-                displayError(with: error.message ?? "Ошибка при отправке запроса") { [self] in
-                    activitySwitcher.stopAnimating()
-                    nextButton.fadeIn(0.3)
-                }
+                completion(false, error.message ?? "Ошибка при отправке запроса")
         }
     }
 
