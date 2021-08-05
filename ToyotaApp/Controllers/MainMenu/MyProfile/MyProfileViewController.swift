@@ -57,86 +57,18 @@ class MyProfileViewController: UIViewController {
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         updateFields()
         
-        let saveConstraint = NSLayoutConstraint(item: saveButton as Any,
-                                                attribute: .leading, relatedBy: .equal,
-                                                toItem: view, attribute: .leading,
-                                                multiplier: 1.0,
-                                                constant: view.bounds.width/2 - saveButton.bounds.width/2)
+        let constraints = getConstraints(for: state)
         view.removeConstraint(saveButtonLeadingConstraint)
-        view.addConstraint(saveConstraint)
-        saveButtonLeadingConstraint = saveConstraint
-        
-        let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any,
-                                                  attribute: .leading, relatedBy: .equal,
-                                                  toItem: view, attribute: .leading,
-                                                  multiplier: 1.0,
-                                                  constant: view.bounds.width/2 - cancelButton.bounds.width/2)
+        view.addConstraint(constraints.save)
+        saveButtonLeadingConstraint = constraints.save
         view.removeConstraint(cancelButtonLeadingConstant)
-        view.addConstraint(cancelConstraint)
-        cancelButtonLeadingConstant = cancelConstraint
+        view.addConstraint(constraints.cancel)
+        cancelButtonLeadingConstant = constraints.cancel
         
         textFieldsWithError = [firstNameTextField: false, secondNameTextField: false,
                                lastNameTextField: false, emailTextField: false, birthTextField: false]
-    }
-
-    private func switchInterface(_ state: EditingStates) {
-        let isEditing = state == .isEditing
         for field in textFieldsWithError.keys {
-            field.isEnabled = isEditing ? true : false
-        }
-        
-        let constant: CGFloat = isEditing ? 20 : view.bounds.width/2 - saveButton.bounds.width/2
-        let saveConstraint = NSLayoutConstraint(item: saveButton as Any,
-                                                attribute: .leading, relatedBy: .equal,
-                                                toItem: view, attribute: .leading,
-                                                multiplier: 1.0, constant: constant)
-        let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any,
-                                                  attribute: .leading, relatedBy: .equal,
-                                                  toItem: view, attribute: .leading,
-                                                  multiplier: 1.0,
-                                                  constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
-        
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
-            cancelButton.isEnabled = isEditing
-            view.removeConstraint(saveButtonLeadingConstraint)
-            view.addConstraint(saveConstraint)
-            view.removeConstraint(cancelButtonLeadingConstant)
-            view.addConstraint(cancelConstraint)
-            view.layoutIfNeeded()
-            
-            if state != .isLoading {
-                saveButton.setTitle(isEditing ? CommonText.save : CommonText.edit, for: .normal)
-            }
-            
-            saveButtonLeadingConstraint = saveConstraint
-            cancelButtonLeadingConstant = cancelConstraint
-        })
-        
-        if state != .isLoading {
-            date = ""
-        }
-    }
-
-    private func updateFields() {
-        firstNameTextField.text = profile.firstName
-        secondNameTextField.text = profile.secondName
-        lastNameTextField.text = profile.lastName
-        birthTextField.text = formatDateForClient(from: profile.birthday)
-        datePicker.date = dateFromServer(date: profile.birthday)
-        date = ""
-        emailTextField.text = profile.email
-        managerButton.isHidden = user.getCars.array.count < 1
-    }
-
-    @IBAction private func textDidChange(sender: UITextField) {
-        if let text = sender.text, !text.isEmpty, text.count < 25 {
-            sender.layer.borderColor = UIColor.gray.cgColor
-            sender.layer.borderWidth = 0.15
-            textFieldsWithError[sender] = false
-        } else {
-            sender.layer.borderColor = UIColor.systemRed.cgColor
-            sender.layer.borderWidth = 0.5
-            textFieldsWithError[sender] = true
+            field.layer.cornerRadius = 5
         }
     }
 
@@ -171,7 +103,7 @@ class MyProfileViewController: UIViewController {
             NavigationService.loadAuth()
         }
     }
-
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -184,6 +116,74 @@ class MyProfileViewController: UIViewController {
                 let destinationVC = segue.destination as? WithUserInfo
                 destinationVC?.setUser(info: user)
             default: return
+        }
+    }
+}
+
+// MARK: - UI
+extension MyProfileViewController {
+    private func getConstraints(for state: EditingStates) -> (save: NSLayoutConstraint, cancel: NSLayoutConstraint) {
+        let isEditing = state == .isEditing
+        let constant: CGFloat = isEditing ? 20 : view.bounds.width/2 - saveButton.bounds.width/2
+        let saveConstraint = NSLayoutConstraint(item: saveButton as Any,
+                                                attribute: .leading, relatedBy: .equal,
+                                                toItem: view, attribute: .leading,
+                                                multiplier: 1.0, constant: constant)
+        let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any,
+                                                  attribute: .leading, relatedBy: .equal,
+                                                  toItem: view, attribute: .leading,
+                                                  multiplier: 1.0,
+                                                  constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
+        return (saveConstraint, cancelConstraint)
+    }
+    
+    private func switchInterface(_ state: EditingStates) {
+        let isEditing = state == .isEditing
+        for field in textFieldsWithError.keys {
+            field.isEnabled = isEditing ? true : false
+        }
+        
+        let constraints = getConstraints(for: state)
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
+            cancelButton.isEnabled = isEditing
+            view.removeConstraint(saveButtonLeadingConstraint)
+            view.addConstraint(constraints.save)
+            view.removeConstraint(cancelButtonLeadingConstant)
+            view.addConstraint(constraints.cancel)
+            view.layoutIfNeeded()
+            
+            if state != .isLoading {
+                saveButton.setTitle(isEditing ? CommonText.save : CommonText.edit, for: .normal)
+            }
+            
+            saveButtonLeadingConstraint = constraints.save
+            cancelButtonLeadingConstant = constraints.cancel
+        })
+        
+        if state != .isLoading {
+            date = ""
+        }
+    }
+
+    private func updateFields() {
+        firstNameTextField.text = profile.firstName
+        secondNameTextField.text = profile.secondName
+        lastNameTextField.text = profile.lastName
+        birthTextField.text = formatDateForClient(from: profile.birthday)
+        datePicker.date = dateFromServer(date: profile.birthday)
+        date = ""
+        emailTextField.text = profile.email
+        managerButton.isHidden = user.getCars.array.count < 1
+    }
+
+    @IBAction private func textDidChange(sender: UITextField) {
+        if let text = sender.text, !text.isEmpty, text.count < 25 {
+            sender.toggleErrorState(hasError: false)
+            textFieldsWithError[sender] = false
+        } else {
+            sender.toggleErrorState(hasError: true)
+            textFieldsWithError[sender] = true
         }
     }
 }
