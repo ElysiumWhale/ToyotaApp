@@ -31,6 +31,16 @@ public class KeychainManager {
         }
     }
     
+    class func update<T: Keychainable>(_ type: T.Type, update: (T?) -> T) {
+        guard let data = wrapper.data(forKey: type.key.rawValue),
+              let value = try? JSONDecoder().decode(T.self, from: data) else {
+            set(update(nil))
+            return
+        }
+        
+        set(update(value))
+    }
+    
     class func clear<T: Keychainable>(_ type: T.Type) {
         wrapper.remove(forKey: type.key.rawValue)
     }
