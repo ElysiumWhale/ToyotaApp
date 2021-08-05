@@ -3,33 +3,6 @@ import UIKit
 
 // MARK: - FadeIn/Out UIView Animation
 extension UIView {
-    func fadeInOld(_ duration: TimeInterval = 0.05, onCompletion: (() -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            if let view = self, !view.isHidden { return }
-            self?.alpha = 0
-            self?.isHidden = false
-            UIView.animate(withDuration: duration,
-                           animations: { self?.alpha = 1 },
-                           completion: { _ in
-                              if let complete = onCompletion { complete() }
-                           }
-            )
-        }
-    }
-
-    func fadeOutOld(_ duration: TimeInterval = 0.05, onCompletion: (() -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            if let view = self, view.isHidden { return }
-            UIView.animate(withDuration: duration,
-                           animations: { self?.alpha = 0 },
-                           completion: { _ in
-                            self?.isHidden = true
-                            if let complete = onCompletion { complete() }
-                           }
-            )
-        }
-    }
-
     func fadeIn(_ duration: TimeInterval = 0.5) {
         if alpha == 0 {
             UIView.animate(withDuration: duration,
