@@ -111,10 +111,17 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        [URLQueryItem(name: RequestKeys.Services.latitude,
-                      value: String(describing: locationManager.location?.coordinate.latitude.binade)),
-        URLQueryItem(name: RequestKeys.Services.longitude,
-                     value: String(describing: locationManager.location?.coordinate.longitude.binade))]
+        guard locationManager.authorizationStatus == .authorizedAlways ||
+              locationManager.authorizationStatus == .authorizedWhenInUse,
+              let latitude = locationManager.location?.coordinate.latitude,
+              let longitude = locationManager.location?.coordinate.longitude else {
+            return []
+        }
+        
+        return [URLQueryItem(name: RequestKeys.Services.latitude,
+                             value: latitude.description),
+                URLQueryItem(name: RequestKeys.Services.longitude,
+                             value: longitude.description)]
     }
     
     func configureViewText(with labelText: String) {
