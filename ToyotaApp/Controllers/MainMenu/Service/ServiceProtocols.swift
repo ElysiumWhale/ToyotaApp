@@ -1,7 +1,29 @@
 import UIKit
 
-///Unit for particular control logic realization.
-///Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
+/// States which represent current activity of module
+enum ModuleStates {
+    /// Default state before start
+    case idle
+    /// Occurs when user successfully interacted with module view
+    case didChose(_ service: IService)
+    /// Occures when module prepared for user interacting (downloaded data etc)
+    case didDownload
+    /// Occures when something goes wrong: processing user input or preparing for it
+    case error(_ error: ErrorResponse)
+    
+    /// Returns chosen service if state is `.didChose` or `nil` in rest cases
+    func getService() -> IService? {
+        switch self {
+            case .idle, .didDownload, .error:
+                return nil
+            case .didChose(let service):
+                return service
+        }
+    }
+}
+
+/// Unit for particular control logic realization.
+/// Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
 protocol IServiceModule: AnyObject {
     var view: UIView? { get }
     var serviceType: ServiceType { get }
