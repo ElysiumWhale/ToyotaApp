@@ -18,7 +18,9 @@ import Kingfisher
         if let url = NetworkService.shared.buildImageUrl(manager.imageUrl) {
             photo.kf.indicatorType = .activity
             photo.isOpaque = false
-            photo.kf.setImage(with: ImageResource(downloadURL: url), placeholder: UIImage(named: "person.fill"), options: [.transition(.fade(0.7))], progressBlock: nil)
+            photo.kf.setImage(with: ImageResource(downloadURL: url),
+                              placeholder: UIImage(named: "person.fill"),
+                              options: [.transition(.fade(0.7))], progressBlock: nil)
         }
         configureShadow(with: cornerRadius)
     }

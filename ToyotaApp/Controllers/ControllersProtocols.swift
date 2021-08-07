@@ -12,7 +12,7 @@ extension SegueWithRequestController {
     func completionForSegue(for response: TResponse?) { }
 }
 
-///Protocol for controllers which work with `UserProxy`
+/// Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
     func subscribe(on proxy: UserProxy)

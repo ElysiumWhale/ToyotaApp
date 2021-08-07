@@ -17,7 +17,7 @@ import Kingfisher
         contentLabel.text = news.content
         titleLabel.text = news.title
         dateLabel.text = DateFormatter.common.string(from: news.date)
-        //guard let imageUrl = news.imgUrl else { newsImage.image = nil; return }
+        // guard let imageUrl = news.imgUrl else { newsImage.image = nil; return }
         newsImage.kf.indicatorType = .activity
         newsImage.isOpaque = false
         newsImage.kf.setImage(with: ImageResource(downloadURL: news.imgUrl), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)

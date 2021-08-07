@@ -19,7 +19,7 @@ public struct ErrorResponse: Codable, Error {
         case message
     }
     
-    static func getDefault(_ message: String?) -> ErrorResponse{
+    static func getDefault(_ message: String?) -> ErrorResponse {
         return ErrorResponse(code: "-1", message: message ?? "Ошибка при выполнении запроса")
     }
 }

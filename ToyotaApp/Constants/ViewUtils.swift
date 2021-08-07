@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-/// **Warning!** Equality comprasion will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
+/// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
 /// In **rest** cases it will return `true`.
 enum AuthType: Equatable {
     case register
@@ -11,14 +11,14 @@ enum AuthType: Equatable {
         if case register = lhs, case register = rhs {
             return true
         }
-        if case changeNumber(_) = lhs, case changeNumber(_) = rhs {
+        if case changeNumber = lhs, case changeNumber = rhs {
             return true
         }
         return false
     }
 }
 
-/// **Warning!** Equality comprasion will result `false` **ONLY** if one operator is `.register` and another is `.update`.
+/// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.update`.
 /// In **rest** cases it will return `true`.
 enum AddInfoType: Equatable {
     case register
@@ -28,7 +28,7 @@ enum AddInfoType: Equatable {
         if case register = lhs, case register = rhs {
             return true
         }
-        if case update(_) = lhs, case update(_) = rhs {
+        if case update = lhs, case update = rhs {
             return true
         }
         return false

@@ -44,7 +44,7 @@ extension SmsCodeViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        //parent == nil means that controller will be popped (backward navigation)
+        // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
             NetworkService.shared.makeSimpleRequest(page: RequestPath.Registration.deleteTemp, params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
         }

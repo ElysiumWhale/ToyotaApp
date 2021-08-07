@@ -25,7 +25,7 @@ public class Test {
                        model: "Camry 3.5", color: "Черный жемчуг",
                        colorSwatch: "#eeee", colorDescription: "Черный красивый",
                        isMetallic: "1", plate: "м148мм163rus", vin: "22822822822822822")
-        //DefaultsManager.pushUserInfo(info: Cars([car, car1], chosen: car))
+        // DefaultsManager.pushUserInfo(info: Cars([car, car1], chosen: car))
         KeychainManager.set(Cars([car, car1]))
     }
     

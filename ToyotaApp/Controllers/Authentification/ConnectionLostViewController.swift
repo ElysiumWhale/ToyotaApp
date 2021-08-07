@@ -13,8 +13,7 @@ class ConnectionLostViewController: UIViewController {
         indicator.startAnimating()
         
         guard let userId = KeychainManager.get(UserId.self)?.id,
-              let secretKey = KeychainManager.get(SecretKey.self)?.secret else
-        {
+              let secretKey = KeychainManager.get(SecretKey.self)?.secret else {
             NavigationService.loadAuth()
             return
         }

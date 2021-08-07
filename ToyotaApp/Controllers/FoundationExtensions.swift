@@ -3,9 +3,9 @@ import UIKit
 
 // MARK: - Formatting hours and minutes
 extension DateComponents {
-    ///Format components in format **"hh:mm"**
+    /// Format components in format **"hh:mm"**
     ///
-    ///Example: **18:01**
+    /// Example: **18:01**
     func getHourAndMinute() -> String {
         var hourStr = "00"
         var minStr = "00"

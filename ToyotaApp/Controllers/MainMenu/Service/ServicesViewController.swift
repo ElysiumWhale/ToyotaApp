@@ -186,7 +186,7 @@ extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell != nil,
            let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId),
-           let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row],for: serviceType, user: user) as? UIViewController {
+           let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row], for: serviceType, user: user) as? UIViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
