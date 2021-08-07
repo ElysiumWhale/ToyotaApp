@@ -18,6 +18,10 @@ public struct ErrorResponse: Codable, Error {
         case code = "error_code"
         case message
     }
+    
+    static func getDefault(_ message: String?) -> ErrorResponse{
+        return ErrorResponse(code: "-1", message: message ?? "Ошибка при выполнении запроса")
+    }
 }
 
 // MARK: - CheckUserResponce & SmsCodeDidSendResponse
@@ -210,6 +214,10 @@ public struct Service: IService {
         case id
         case name = "service_name"
     }
+}
+
+extension Service {
+    static let empty = Service(id: "-1", name: "Нет доступных сервисов")
 }
 
 // MARK: - GetFreeTime for Service

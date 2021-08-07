@@ -11,8 +11,8 @@ class BaseServiceController: UIViewController, IServiceController {
         button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 20)
         button.layer.cornerRadius = 20
         button.setTitle("Оставить заявку", for: .normal)
-        button.addAction { [self] in
-            bookService()
+        button.addAction { [weak self] in
+            self?.bookService()
         }
         button.alpha = 0
         return button

@@ -11,6 +11,7 @@ enum AppErrors: String, Error {
     case wrongKeyForValue
     case notFullProfile
     case unknownError = "Произошла непредвиденная ошибка, повторите действие"
+    case requestError = "Ошибка при запросе данных"
     case serverBadResponse = "Сервер прислал неверные данные"
     case connectionLost = "Потеряно соедниние с интернетом, проверьте подключение"
 }

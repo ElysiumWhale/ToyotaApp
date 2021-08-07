@@ -98,6 +98,7 @@ public struct CommonText {
     static let cancel = "Отмена"
     static let ok = "Ок"
     static let error = "Ошибка"
+    static let warning = "Предупреждение"
     static let edit = "Редактировать"
     static let yes = "Да"
     static let no = "Нет"
