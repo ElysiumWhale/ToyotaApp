@@ -14,47 +14,35 @@ class TestDriveViewController: BaseServiceController {
                                    response: CitiesDidGetResponse.self)
     }
     
-    override func moduleDidUpdated(_ module: IServiceModule) {
-        var message: String = "Ошибка при запросе данных"
-        switch module.result {
-            case .failure(let error):
-                if let mes = error.message { message = mes }
-                fallthrough
-            case .none:
-                PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [self] in
+    override func moduleDidUpdate(_ module: IServiceModule) {
+        switch module.state {
+            case .idle: return
+            case .didDownload:
+                DispatchQueue.main.async { [weak self] in
+                }
+            case .error(let error):
+                PopUp.displayMessage(with: CommonText.error,
+                                     description: error.message ?? AppErrors.requestError.rawValue,
+                                     buttonText: CommonText.ok) { [self] in
                     navigationController?.popViewController(animated: true)
                 }
-            case .success(let service):
+            case .didChose(let service):
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
                 switch index {
                     case 0:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.cityId,
-                                                   value: service.id),
-                                      URLQueryItem(name: RequestKeys.Auth.brandId,
-                                                   value: Brand.Toyota)]
                         modules[1].customStart(page: RequestPath.Services.getTestDriveCars,
-                                               with: params,
+                                               with: buildParams(for: index, value: service.id),
                                                response: CarsDidGetResponse.self)
                     case 1:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.Auth.brandId,
-                                                   value: Brand.Toyota),
-                                      URLQueryItem(name: RequestKeys.CarInfo.cityId,
-                                                   value: try? modules[0].result?.get().id),
-                                      URLQueryItem(name: RequestKeys.Services.serviceId,
-                                                   value: service.id)]
                         modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms,
-                                               with: params,
+                                               with: buildParams(for: index, value: service.id),
                                                response: ShoroomsDidGetResponce.self)
                     case 2:
                         fadeOutAfter(module: index)
-                        let params = [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
-                                                   value: service.id),
-                                      URLQueryItem(name: RequestKeys.Services.serviceId,
-                                                   value: try? modules[1].result?.get().id)]
                         modules[3].customStart(page: RequestPath.Services.getFreeTime,
-                                               with: params,
+                                               with: buildParams(for: index, value: service.id),
                                                response: CarsDidGetResponse.self)
                     case 3:
                         DispatchQueue.main.async { [weak self] in
@@ -62,6 +50,29 @@ class TestDriveViewController: BaseServiceController {
                         }
                     default: return
                 }
+        }
+    }
+    
+    private func buildParams(for index: Int, value: String) -> [URLQueryItem] {
+        switch index {
+            case 0:
+                return [URLQueryItem(name: RequestKeys.CarInfo.cityId,
+                                     value: value),
+                        URLQueryItem(name: RequestKeys.Auth.brandId,
+                                     value: Brand.Toyota)]
+            case 1:
+                return [URLQueryItem(name: RequestKeys.Auth.brandId,
+                                     value: Brand.Toyota),
+                        URLQueryItem(name: RequestKeys.CarInfo.cityId,
+                                     value: modules[0].state.getService()?.id),
+                        URLQueryItem(name: RequestKeys.Services.serviceId,
+                                     value: value)]
+            case 2:
+                return [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
+                                     value: value),
+                        URLQueryItem(name: RequestKeys.Services.serviceId,
+                                     value: modules[1].state.getService()?.id)]
+            default: return []
         }
     }
 
@@ -78,7 +89,7 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let userId = user?.getId, let showroomId = try? modules[2].result?.get().id else { return }
+        guard let userId = user?.getId, let showroomId = modules[2].state.getService()?.id else { return }
         
         var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                                       URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),

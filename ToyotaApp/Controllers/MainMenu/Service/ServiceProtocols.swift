@@ -27,7 +27,7 @@ enum ModuleStates {
 protocol IServiceModule: AnyObject {
     var view: UIView? { get }
     var serviceType: ServiceType { get }
-    var result: Result<IService, ErrorResponse>? { get }
+    var state: ModuleStates { get }
     var delegate: IServiceController? { get }
     func start(with params: [URLQueryItem])
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type)
@@ -43,12 +43,12 @@ extension IServiceModule {
     }
 }
 
-///Controller which manages `IServiceModule`s.
-///Configured by `ServiceModuleBuilder`
+/// Controller which manages `IServiceModule`s.
+/// Configured by `ServiceModuleBuilder`
 protocol IServiceController: AnyObject {
     var modules: [IServiceModule] { get }
     var user: UserProxy? { get }
-    func moduleDidUpdated(_ module: IServiceModule)
+    func moduleDidUpdate(_ module: IServiceModule)
     func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy)
 }
 

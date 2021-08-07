@@ -49,17 +49,19 @@ class BaseServiceController: UIViewController, IServiceController {
         self.serviceType = service
     }
 
-    func moduleDidUpdated(_ module: IServiceModule) {
-        var message: String = "Ошибка при запросе данных"
-        switch module.result {
-            case .failure(let error):
-                if let mes = error.message { message = mes }
-                fallthrough
-            case .none:
-                PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok) { [weak self] in
+    func moduleDidUpdate(_ module: IServiceModule) {
+        switch module.state {
+            case .idle: return
+            case .didDownload:
+                DispatchQueue.main.async { [weak self] in
+                }
+            case .error(let error):
+                PopUp.displayMessage(with: CommonText.error,
+                                     description: error.message ?? AppErrors.requestError.rawValue,
+                                     buttonText: CommonText.ok) { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
                 }
-            case .success:
+            case .didChose:
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
                 DispatchQueue.main.async { [weak self] in
                     guard let controller = self else { return }

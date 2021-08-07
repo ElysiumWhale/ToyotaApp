@@ -72,7 +72,11 @@ class PickerModule: NSObject, IServiceModule {
     }()
     
     private(set) var serviceType: ServiceType
-    private(set) var result: Result<IService, ErrorResponse>?
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            delegate?.moduleDidUpdate(self)
+        }
+    }
     private var array: [IService]?
     
     private(set) weak var delegate: IServiceController?
@@ -87,10 +91,10 @@ class PickerModule: NSObject, IServiceModule {
     }
     
     func start(with params: [URLQueryItem]) {
+        state = .idle
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
-        result = nil
         internalView.textField.text = ""
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getServices, params:
            [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),
@@ -103,7 +107,7 @@ class PickerModule: NSObject, IServiceModule {
     }
     
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
-        result = nil
+        state = .idle
         internalView.textField.text = ""
         NetworkService.shared.makePostRequest(page: page, params: params, completion: internalCompletion)
         
@@ -115,23 +119,23 @@ class PickerModule: NSObject, IServiceModule {
     private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
-                result = .failure(ErrorResponse(code: "-1", message: error.message ?? "Ошибка при выполнении запроса"))
-                delegate?.moduleDidUpdated(self)
+                state = .error(ErrorResponse.getDefault(error.message))
             case .success(let data):
-                array = data.array.isEmpty ? [Service(id: "-1", name: "Нет доступных сервисов")] : data.array
+                array = data.array.isEmpty ? [Service.empty] : data.array
                 DispatchQueue.main.async { [weak self] in
-                    self?.internalView.fadeIn()
-                    self?.internalView.servicePicker.reloadAllComponents()
+                    guard let module = self else { return }
+                    module.internalView.fadeIn()
+                    module.internalView.servicePicker.reloadAllComponents()
+                    module.state = .didDownload
                 }
         }
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        switch result {
-            case .success(let data):
+        switch state {
+            case .didChose(let data):
                 return [URLQueryItem(name: RequestKeys.Services.serviceId, value: data.id)]
-            case .failure, .none:
-                return []
+            default: return []
         }
     }
 }
@@ -157,10 +161,10 @@ extension PickerModule: UIPickerViewDelegate {
             view?.endEditing(true)
             return
         }
-        result = .success(array[index])
+        
         internalView.textField.text = array[index].name
         internalView.endEditing(true)
-        delegate?.moduleDidUpdated(self)
+        state = .didChose(array[index])
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

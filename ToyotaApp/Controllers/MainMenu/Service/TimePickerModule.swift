@@ -91,8 +91,11 @@ class TimePickerModule: NSObject, IServiceModule {
     }
 
     private(set) var serviceType: ServiceType
-
-    private(set) var result: Result<IService, ErrorResponse>?
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            delegate?.moduleDidUpdate(self)
+        }
+    }
 
     private(set) weak var delegate: IServiceController?
 
@@ -106,11 +109,12 @@ class TimePickerModule: NSObject, IServiceModule {
     }
 
     func start(with params: [URLQueryItem]) {
+        state = .idle
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
         
-        var queryParams: [URLQueryItem] = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
+        var queryParams = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
         
         !params.isEmpty ? queryParams.append(contentsOf: params)
                         : queryParams.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType.id))
@@ -120,6 +124,7 @@ class TimePickerModule: NSObject, IServiceModule {
     }
 
     func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
+        state = .idle
         NetworkService.shared.makePostRequest(page: RequestPath.Services.getFreeTime,
                                               params: params, completion: completion)
     }
@@ -127,13 +132,16 @@ class TimePickerModule: NSObject, IServiceModule {
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
-                result = .failure(ErrorResponse(code: "1", message: error.message ?? "Ошибка"))
-                delegate?.moduleDidUpdated(self)
+                state = .error(ErrorResponse.getDefault(error.message))
             case .success(let data):
                 prepareTime(from: data.freeTimeDict)
-                result = .success(Service(id: "0", name: "Success"))
-                delegate?.moduleDidUpdated(self)
                 internalView.dataDidDownload()
+                DispatchQueue.main.async { [weak self] in
+                    guard let module = self else { return }
+                    module.rowInFirst = module.internalView.datePicker.selectedRow(inComponent: 0)
+                    module.rowInSecond = module.internalView.datePicker.selectedRow(inComponent: 1)
+                    module.state = .didChose(Service.empty)
+                }
         }
     }
 

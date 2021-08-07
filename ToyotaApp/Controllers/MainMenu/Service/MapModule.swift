@@ -77,8 +77,11 @@ class MapModule: NSObject, IServiceModule {
     private var isInitiallyZoomedToUserLocation: Bool = false
     
     private(set) var serviceType: ServiceType
-    
-    private(set) var result: Result<IService, ErrorResponse>?
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            delegate?.moduleDidUpdate(self)
+        }
+    }
     
     private(set) weak var delegate: IServiceController?
     
@@ -88,6 +91,7 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func start(with params: [URLQueryItem]) {
+        state = .idle
         let locManager = CLLocationManager()
         locManager.delegate = self
         internalView.fadeIn()
@@ -98,15 +102,13 @@ class MapModule: NSObject, IServiceModule {
             if let coordinate = locationManager.location?.coordinate {
                 zoomToUserLocation(coordinate)
             }
-            result = .success(Service(id: "0", name: "Success"))
-            delegate?.moduleDidUpdated(self)
+            state = .didChose(Service.empty)
         } else {
-            PopUp.displayMessage(with: "Предупреждение",
+            PopUp.displayMessage(with: CommonText.warning,
                                  description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции",
                                  buttonText: CommonText.ok)
             internalView.map.isUserInteractionEnabled = false
-            result = .failure(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
-            delegate?.moduleDidUpdated(self)
+            state = .error(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
         }
     }
     
