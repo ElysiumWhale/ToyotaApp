@@ -10,10 +10,11 @@ extension UIView {
         }
     }
 
-    func fadeOut(_ duration: TimeInterval = 0.5) {
+    func fadeOut(_ duration: TimeInterval = 0.5, completion: @escaping () -> Void = { }) {
         if alpha == 1 {
             UIView.animate(withDuration: duration,
-                           animations: { [weak self] in self?.alpha = 0 }
+                           animations: { [weak self] in self?.alpha = 0 },
+                           completion: { _ in completion() }
             )
         }
     }
@@ -114,4 +115,5 @@ extension UIFont {
 // MARK: - Main app tint
 extension UIColor {
     static var mainAppTint: UIColor { UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1) }
+    static var loadingTint: UIColor { UIColor(white: 0.3, alpha: 0.5) }
 }

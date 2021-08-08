@@ -17,6 +17,22 @@ class BaseServiceController: UIViewController, IServiceController {
         button.alpha = 0
         return button
     }()
+    
+    lazy var loadingView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.color = .white
+        view.addSubview(indicator)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        indicator.startAnimating()
+        view.backgroundColor = UIColor.loadingTint
+        view.alpha = 0
+        return view
+    }()
 
     private(set) var serviceType: ServiceType?
     private(set) var user: UserProxy?
@@ -32,6 +48,8 @@ class BaseServiceController: UIViewController, IServiceController {
         setupScrollViewLayout()
         scrollView.addSubview(stackView)
         setupStackViewLayout()
+        view.addSubview(loadingView)
+        loadingView.fadeIn()
         start()
     }
 
@@ -54,11 +72,17 @@ class BaseServiceController: UIViewController, IServiceController {
             case .idle: return
             case .didDownload:
                 DispatchQueue.main.async { [weak self] in
+                    self?.loadingView.fadeOut {
+                        self?.loadingView.removeFromSuperview()
+                    }
                 }
             case .error(let error):
                 PopUp.displayMessage(with: CommonText.error,
                                      description: error.message ?? AppErrors.requestError.rawValue,
                                      buttonText: CommonText.ok) { [weak self] in
+                    self?.loadingView.fadeOut {
+                        self?.loadingView.removeFromSuperview()
+                    }
                     self?.navigationController?.popViewController(animated: true)
                 }
             case .didChose:
@@ -66,9 +90,14 @@ class BaseServiceController: UIViewController, IServiceController {
                 DispatchQueue.main.async { [weak self] in
                     guard let controller = self else { return }
                     if index + 1 == controller.modules.count {
+                        controller.loadingView.fadeOut {
+                            controller.loadingView.removeFromSuperview()
+                        }
                         controller.bookButton.fadeIn()
                         return
                     }
+                    controller.view.addSubview(controller.loadingView)
+                    controller.loadingView.fadeIn()
                     controller.modules[index + 1].start(with: module.buildQueryItems())
                 }
         }

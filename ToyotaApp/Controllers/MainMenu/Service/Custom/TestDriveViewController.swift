@@ -8,6 +8,8 @@ class TestDriveViewController: BaseServiceController {
             module.configureViewText(with: text)
         }
         stackView.addArrangedSubview(bookButton)
+        view.addSubview(loadingView)
+        loadingView.fadeIn()
         modules.first?.customStart(page: RequestPath.Profile.getCities,
                                    with: [URLQueryItem(name: RequestKeys.Auth.brandId,
                                                        value: Brand.Toyota)],
@@ -19,12 +21,18 @@ class TestDriveViewController: BaseServiceController {
             case .idle: return
             case .didDownload:
                 DispatchQueue.main.async { [weak self] in
+                    self?.loadingView.fadeOut {
+                        self?.loadingView.removeFromSuperview()
+                    }
                 }
             case .error(let error):
                 PopUp.displayMessage(with: CommonText.error,
                                      description: error.message ?? AppErrors.requestError.rawValue,
-                                     buttonText: CommonText.ok) { [self] in
-                    navigationController?.popViewController(animated: true)
+                                     buttonText: CommonText.ok) { [weak self] in
+                    self?.loadingView.fadeOut {
+                        self?.loadingView.removeFromSuperview()
+                    }
+                    self?.navigationController?.popViewController(animated: true)
                 }
             case .didChose(let service):
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
@@ -46,6 +54,9 @@ class TestDriveViewController: BaseServiceController {
                                                response: CarsDidGetResponse.self)
                     case 3:
                         DispatchQueue.main.async { [weak self] in
+                            self?.loadingView.fadeOut {
+                                self?.loadingView.removeFromSuperview()
+                            }
                             self?.bookButton.fadeIn()
                         }
                     default: return
@@ -78,13 +89,17 @@ class TestDriveViewController: BaseServiceController {
 
     private func fadeOutAfter(module index: Int) {
         DispatchQueue.main.async { [weak self] in
-            guard let view = self else { return }
+            guard let controller = self else { return }
+            
+            controller.view.addSubview(controller.loadingView)
+            controller.loadingView.fadeIn()
+            
             if index >= 2 { return }
             
             for index in index+2...3 {
-                view.modules[index].view?.fadeOut()
+                controller.modules[index].view?.fadeOut()
             }
-            view.bookButton.fadeOut()
+            controller.bookButton.fadeOut()
         }
     }
 
