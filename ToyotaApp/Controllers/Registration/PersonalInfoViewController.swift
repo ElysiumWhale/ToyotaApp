@@ -62,6 +62,9 @@ extension PersonalInfoViewController {
             emailTextField.text = profile.email
             birthTextField.text = formatDateForClient(from: profile.birthday!)
             date = profile.birthday!
+            textFieldsWithError.forEach {
+                textFieldsWithError[$0.key] = false
+            }
         }
         
         if activitySwitcher.isAnimating {
