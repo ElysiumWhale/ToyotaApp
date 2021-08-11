@@ -7,7 +7,7 @@ struct CheckUserContext {
         case empty
         case startRegister
         case register(_ page: Int, _ user: RegisteredUser)
-        case main(_ user: RegisteredUser)
+        case main(_ user: RegisteredUser?)
     }
     
     let response: CheckUserOrSmsCodeResponse
@@ -18,8 +18,8 @@ struct CheckUserContext {
                              : (response.registeredUser != nil ? .register(page, response.registeredUser!)
                                                                : .empty)
         }
-        if response.registerStatus != nil, let user = response.registeredUser {
-            return .main(user)
+        if response.registerStatus != nil, response.registerPage == nil {
+            return .main(response.registeredUser)
         }
         return .empty
     }
@@ -191,7 +191,7 @@ extension NavigationService {
             }
             
             switch UserInfo.build() {
-                case .failure(_):
+                case .failure:
                     loadRegister(with: "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных")
                 case .success(let user):
                     for child in controller.viewControllers! {
