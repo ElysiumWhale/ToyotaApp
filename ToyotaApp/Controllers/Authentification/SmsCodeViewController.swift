@@ -87,7 +87,8 @@ extension SmsCodeViewController {
             case .success(let data):
                 KeychainManager.set(UserId(data.userId!))
                 KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: data) { _ in NavigationService.loadRegister() }
+                NavigationService.resolveNavigation(with: CheckUserContext(response: data),
+                                                    fallbackCompletion: NavigationService.loadRegister)
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
                     self?.activitySwitcher.stopAnimating()

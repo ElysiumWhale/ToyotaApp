@@ -1,6 +1,30 @@
 import Foundation
 import UIKit
 
+// MARK: - Context for navigation
+struct CheckUserContext {
+    enum States {
+        case empty
+        case startRegister
+        case register(_ page: Int, _ user: RegisteredUser)
+        case main(_ user: RegisteredUser)
+    }
+    
+    let response: CheckUserOrSmsCodeResponse
+    
+    var state: States {
+        if response.registerStatus == nil, let page = response.registerPage {
+            return page == 1 ? .startRegister
+                             : (response.registeredUser != nil ? .register(page, response.registeredUser!)
+                                                               : .empty)
+        }
+        if response.registerStatus != nil, let user = response.registeredUser {
+            return .main(user)
+        }
+        return .empty
+    }
+}
+
 class NavigationService {
 //    #warning("not work")
 //    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
@@ -9,26 +33,20 @@ class NavigationService {
 //        return view as! T
 //    }
     
-    class func resolveNavigation(with context: CheckUserOrSmsCodeResponse, fallbackCompletion: (String?) -> Void) {
-        if context.registerStatus == nil, let page = context.registerPage,
-           let user = context.registeredUser, page > 1 {
-            switch page {
-                case 2:
-                    if let cities = context.cities {
-                        NavigationService.loadRegister(with: user.profile, and: cities)
-                    } else { fallbackCompletion(AppErrors.serverBadResponse.rawValue) }
-                case 3:
-                    if let cities = context.cities,
-                       let showrooms = user.showroom {
-                           NavigationService.loadRegister(with: user, cities, showrooms)
-                    } else { fallbackCompletion(AppErrors.serverBadResponse.rawValue) }
-                default: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
-            }
-        } else if context.registerStatus != nil {
-            NavigationService.loadMain(from: context.registeredUser)
-        } else if let page = context.registerPage, page == 1 {
-            NavigationService.loadRegister()
-        } else { fallbackCompletion(AppErrors.serverBadResponse.rawValue) }
+    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: (String?) -> Void) {
+        switch context.state {
+            case .empty: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
+            case .main(let user): NavigationService.loadMain(from: user)
+            case .startRegister: NavigationService.loadRegister()
+            case .register(let page, let user):
+                switch page {
+                    case 2 where context.response.cities != nil:
+                        NavigationService.loadRegister(with: user.profile, and: context.response.cities!)
+                    case 3 where context.response.cities != nil && user.showroom != nil:
+                        NavigationService.loadRegister(with: user, context.response.cities!, user.showroom!)
+                    default: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
+                }
+        }
     }
 
     private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: String) -> UINavigationController {

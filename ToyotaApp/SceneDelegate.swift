@@ -37,7 +37,7 @@ extension SceneDelegate {
         switch response {
             case .success(let data):
                 KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: data, fallbackCompletion: NavigationService.loadAuth)
+                                                    fallbackCompletion: NavigationService.loadAuth)
             case .failure(let error):
                 switch error.code {
                     case NetworkErrors.lostConnection.rawValue:
