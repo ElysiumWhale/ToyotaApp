@@ -108,6 +108,8 @@ public struct CommonText {
     static let networkError = "Ошибка сети, проверьте подключение"
     static let retryRefresh = "потяните вниз для повторной загрузки."
     static let servicesError = "Ошибка при загрузке услуг"
+    static let stillNoConnection = "Соединение с интернетом все еще отсутствует"
+    static let errorWhileAuth = "При входе произошла ошибка, войдите повторно"
 }
 
 public struct TimeMap {

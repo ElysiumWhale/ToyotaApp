@@ -124,9 +124,8 @@ class BaseServiceController: UIViewController, IServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: CommonText.success,
-                                         description: "Заявка оставлена и будет обработана в ближайшее время",
-                                         buttonText: CommonText.ok) { [weak self] in
+                    PopUp.display(.success(description: "Заявка оставлена и будет обработана в ближайшее время"))
+                    DispatchQueue.main.async { [weak self] in
                         self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):

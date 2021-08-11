@@ -197,7 +197,7 @@ extension MyProfileViewController {
         }
         
         guard textFieldsWithError.allSatisfy({ !$0.value }) else {
-            PopUp.displayMessage(with: "Неккоректные данные", description: "Проверьте введенную информацию!", buttonText: CommonText.ok)
+            PopUp.display(.error(description: "Неккоректные данные. Проверьте введенную информацию!"))
             return
         }
         
@@ -226,11 +226,12 @@ extension MyProfileViewController {
                                        secondName: secondNameTextField.text!,
                                        email: emailTextField.text!,
                                        birthday: date))
-                    PopUp.displayMessage(with: "Успех", description: "Личная информация успешно обновлена", buttonText: CommonText.ok)
+                    PopUp.display(.success(description: "Личная информация успешно обновлена"))
                     state = .none
                 }
-            case .failure(let error):
-                displayError(with: error.message ?? "Произошла ошибка при сохранении данных, повторите попытку позже") { [weak self] in
+            case .failure:
+                DispatchQueue.main.async { [weak self] in
+                    PopUp.display(.error(description: "Произошла ошибка при сохранении данных, повторите попытку позже"))
                     self?.state = .isEditing
                 }
         }

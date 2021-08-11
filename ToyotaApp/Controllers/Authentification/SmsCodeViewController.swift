@@ -93,9 +93,7 @@ extension SmsCodeViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.activitySwitcher.stopAnimating()
                     self?.sendSmsCodeButton.fadeIn()
-                    PopUp.displayMessage(with: CommonText.error,
-                                         description: error.message ?? AppErrors.unknownError.rawValue,
-                                         buttonText: CommonText.ok)
+                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
                 }
         }
     }
@@ -105,19 +103,14 @@ extension SmsCodeViewController {
             case .success:
                 if case .changeNumber(let notificator) = type {
                     notificator.notificateObservers()
-                    dismissNavigationWithDispatch(animated: true) {
-                        PopUp.displayMessage(with: "Подтверждение",
-                                             description: "Телефон упешно изменен",
-                                             buttonText: CommonText.ok)
-                    }
+                    PopUp.display(.success(description: "Телефон упешно изменен"))
+                    dismissNavigationWithDispatch(animated: true)
                 }
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
                     self?.activitySwitcher.stopAnimating()
                     self?.sendSmsCodeButton.fadeIn()
-                    PopUp.displayMessage(with: CommonText.error,
-                                         description: error.message ?? AppErrors.unknownError.rawValue,
-                                         buttonText: CommonText.ok)
+                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
                 }
         }
     }

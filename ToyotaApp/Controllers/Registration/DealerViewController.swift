@@ -95,8 +95,9 @@ extension DealerViewController {
                     self?.showroomStackView.fadeIn()
                 }
             case .failure(let error):
-                displayError(with: error.message ?? "Попробуйте выбрать город еще раз") { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.cityTextFieldIndicator.stopAnimating()
+                    PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
                 }
         }
     }
@@ -150,7 +151,7 @@ extension DealerViewController: SegueWithRequestController {
             
             switch result {
                 case .fail(let message):
-                    PopUp.displayMessage(with: CommonText.error, description: message, buttonText: CommonText.ok)
+                    PopUp.display(.error(description: message))
                 case .success:
                     view.performSegue(withIdentifier: view.segueCode, sender: view)
             }

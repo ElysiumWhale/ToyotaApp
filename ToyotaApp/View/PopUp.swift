@@ -21,7 +21,7 @@ class PopUp {
         }
     }
 
-    class func displayMessage(with title: String, description: String, buttonText: String, dismissCompletion: @escaping () -> Void = { }) {
+    class func displayMessage(with title: String, description: String, buttonText: String = CommonText.ok, dismissCompletion: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
             let view = EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description,
                                                                    buttonText: buttonText, dismissCompletion))
@@ -74,5 +74,24 @@ class PopUp {
                                                      action: { SwiftEntryKit.dismiss() })
         
         return EKProperty.ButtonBarContent(with: confirmButton, declineButton, separatorColor: .clear, expandAnimatedly: true)
+    }
+}
+
+extension PopUp {
+    enum MessageTypes {
+        case error(description: String)
+        case warning(description: String)
+        case success(description: String)
+    }
+    
+    static func display(_ type: MessageTypes) {
+        switch type {
+            case .error(let text):
+                displayMessage(with: CommonText.error, description: text)
+            case .warning(let text):
+                displayMessage(with: CommonText.warning, description: text)
+            case .success(let text):
+                displayMessage(with: CommonText.success, description: text)
+        }
     }
 }

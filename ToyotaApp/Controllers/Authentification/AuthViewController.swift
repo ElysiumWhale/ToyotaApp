@@ -83,9 +83,7 @@ extension AuthViewController: SegueWithRequestController {
                 case .success:
                     view.performSegue(withIdentifier: view.segueCode, sender: view)
                 case .failure(let error):
-                    PopUp.displayMessage(with: CommonText.error,
-                                         description: error.message ?? AppErrors.unknownError.rawValue,
-                                         buttonText: CommonText.ok)
+                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
             }
         }
     }

@@ -88,8 +88,7 @@ extension CheckVinViewController: SegueWithRequestController {
                 view.checkVinButton.fadeIn()
                 
                 isSuccess ? view.performSegue(withIdentifier: view.segueCode, sender: view)
-                          : PopUp.displayMessage(with: CommonText.error, description: parameter,
-                                                 buttonText: CommonText.ok)
+                          : PopUp.display(.error(description: parameter))
             }
         }
         
@@ -109,9 +108,8 @@ extension CheckVinViewController: SegueWithRequestController {
                         performSegue(for: segueCode)
                     case .update(let proxy):
                         proxy.update(car, showroom!)
-                        popToRootWithDispatch(animated: true) {
-                            PopUp.displayMessage(with: "Успешно", description: "Автомобиль успешно привязан к профилю", buttonText: CommonText.ok)
-                        }
+                        PopUp.display(.success(description: "Автомобиль успешно привязан к профилю"))
+                        popToRootWithDispatch(animated: true)
                 }
             case .failure(let error):
                 completion(false, error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова")

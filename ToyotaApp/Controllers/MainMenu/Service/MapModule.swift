@@ -104,9 +104,7 @@ class MapModule: NSObject, IServiceModule {
             }
             state = .didChose(Service.empty)
         } else {
-            PopUp.displayMessage(with: CommonText.warning,
-                                 description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции",
-                                 buttonText: CommonText.ok)
+            PopUp.display(.warning(description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции"))
             internalView.map.isUserInteractionEnabled = false
             state = .error(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
         }

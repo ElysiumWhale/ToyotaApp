@@ -19,7 +19,10 @@ class MyManagerViewController: UIViewController, BackgroundText {
         func completion(for response: Result<ManagersDidGetResponse, ErrorResponse>) {
             switch response {
                 case .failure(let error):
-                    displayError(with: error.message ?? "") { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
+                        if let mes = error.message {
+                            PopUp.display(.error(description: mes))
+                        }
                         self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? "Ошибка при загрузке списка менеджеров")
                     }
                 case .success(let data):

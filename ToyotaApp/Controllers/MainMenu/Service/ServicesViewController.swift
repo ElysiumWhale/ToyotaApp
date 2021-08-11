@@ -119,7 +119,7 @@ extension ServicesViewController: WithUserInfo {
 // MARK: - Configure UI for cars count
 extension ServicesViewController {
     private func interfaceIfNoCars() {
-        displayError(with: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль.")
+        PopUp.display(.warning(description: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль."))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = ""

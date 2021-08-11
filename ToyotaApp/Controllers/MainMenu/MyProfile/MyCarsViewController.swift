@@ -36,7 +36,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
                     vc.navigationController?.pushViewController(addShowroomVC!, animated: true)
                 }
             case .failure(let error):
-                displayError(with: error.message ?? "Ошибка при загрузке городов, повторите позднее")
+                PopUp.display(.error(description: error.message ?? "Ошибка при загрузке городов, повторите позднее"))
         }
     }
 }
