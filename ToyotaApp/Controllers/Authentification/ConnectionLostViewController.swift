@@ -1,17 +1,41 @@
 import UIKit
 
 class ConnectionLostViewController: UIViewController {
+// MARK: - View
+    var controller: ConnectionLostController?
+    
     @IBOutlet private var retryButton: UIButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        controller = ConnectionLostController(view: self)
     }
     
     @IBAction func reconnect(sender: UIButton) {
         retryButton.isHidden = true
         indicator.startAnimating()
-        
+        controller?.reconnect()
+    }
+    
+    func displayError() {
+        DispatchQueue.main.async { [weak self] in
+            self?.indicator.stopAnimating()
+            self?.retryButton.isHidden = false
+            PopUp.display(.error(description: CommonText.stillNoConnection))
+        }
+    }
+}
+
+// MARK: - Controller
+class ConnectionLostController {
+    weak var view: ConnectionLostViewController?
+    
+    init(view: ConnectionLostViewController) {
+        self.view = view
+    }
+    
+    func reconnect() {
         guard let userId = KeychainManager.get(UserId.self)?.id,
               let secretKey = KeychainManager.get(SecretKey.self)?.secret else {
             NavigationService.loadAuth()
@@ -33,14 +57,8 @@ class ConnectionLostViewController: UIViewController {
                                                     fallbackCompletion: NavigationService.loadAuth)
             case .failure(let error):
                 switch error.code {
-                    case NetworkErrors.lostConnection.rawValue:
-                        DispatchQueue.main.async { [self] in
-                            indicator.stopAnimating()
-                            retryButton.isHidden = false
-                            displayError(with: "Соединение с интернетом все еще отсутствует")
-                        }
-                    default:
-                        NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
+                    case NetworkErrors.lostConnection.rawValue: view?.displayError()
+                    default: NavigationService.loadAuth(with: error.message ?? CommonText.errorWhileAuth)
                 }
         }
     }
