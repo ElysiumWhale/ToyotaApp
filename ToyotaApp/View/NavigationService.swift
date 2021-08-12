@@ -13,10 +13,12 @@ struct CheckUserContext {
     let response: CheckUserOrSmsCodeResponse
     
     var state: States {
-        if response.registerStatus == nil, let page = response.registerPage {
-            return page == 1 ? .startRegister
-                             : (response.registeredUser != nil ? .register(page, response.registeredUser!)
-                                                               : .empty)
+        if response.registerStatus == nil {
+            if response.registerPage == nil || response.registerPage == 1 {
+                return .startRegister
+            } else if let page = response.registerPage {
+                return response.registeredUser != nil ? .register(page, response.registeredUser!) : .empty
+            }
         }
         if response.registerStatus != nil, response.registerPage == nil {
             return .main(response.registeredUser)
@@ -25,6 +27,12 @@ struct CheckUserContext {
     }
 }
 
+enum RegistrationStates {
+    case error(message: String)
+    case firstPage
+    case secondPage(_ profile: Profile, _ cities: [City])
+    case thirdPage(_ user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom])
+}
 class NavigationService {
 //    #warning("not work")
 //    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
@@ -33,18 +41,18 @@ class NavigationService {
 //        return view as! T
 //    }
     
-    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: (String?) -> Void) {
+    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: () -> Void) {
         switch context.state {
-            case .empty: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
+            case .empty: fallbackCompletion()
             case .main(let user): NavigationService.loadMain(from: user)
-            case .startRegister: NavigationService.loadRegister()
+            case .startRegister: NavigationService.loadRegister(.firstPage)
             case .register(let page, let user):
                 switch page {
                     case 2 where context.response.cities != nil:
-                        NavigationService.loadRegister(with: user.profile, and: context.response.cities!)
+                        NavigationService.loadRegister(.secondPage(user.profile, context.response.cities!))
                     case 3 where context.response.cities != nil && user.showroom != nil:
-                        NavigationService.loadRegister(with: user, context.response.cities!, user.showroom!)
-                    default: fallbackCompletion(AppErrors.serverBadResponse.rawValue)
+                        NavigationService.loadRegister(.thirdPage(user, context.response.cities!, user.showroom!))
+                    default: fallbackCompletion()
                 }
         }
     }
@@ -115,59 +123,41 @@ extension NavigationService {
 
 // MARK: - LoadRegister overloads
 extension NavigationService {
-    class func loadRegister(with error: String? = nil) {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
+    class func loadRegister(_ state: RegistrationStates) {
+        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: .main)
         DispatchQueue.main.async {
-            let controller = configureNavigationStack(for: regStoryboard, identifier: AppViewControllers.registerNavigation)
-            switchRootView(controller: controller)
-            if let error = error {
-                controller.displayError(with: error)
+            var controller: UINavigationController
+            var controllers: [UIViewController]?
+            switch state {
+                case .error(let message):
+                    PopUp.display(.error(description: message))
+                case .firstPage: break
+                case .secondPage(let profile, let cities):
+                    let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
+                    pivc?.configure(with: profile)
+                    
+                    let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
+                    dvc?.configure(cityList: cities)
+                    
+                    controllers = [pivc!, dvc!]
+                case .thirdPage(let user, let cities, let showrooms):
+                    let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
+                    pivc?.configure(with: user.profile)
+                    
+                    let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
+                    let firstShowroom = user.showroom!.first!
+                    let cityName = firstShowroom.cityName
+                    let index = cities.firstIndex(where: { $0.name == cityName })!
+                    dvc?.configure(cityList: cities, showroomList: showrooms,
+                                   city: cities[index], showroom: firstShowroom)
+                    
+                    let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVin) as? CheckVinViewController
+                    cvvc?.configure(with: firstShowroom.toDomain())
+                    
+                    controllers = [pivc!, dvc!, cvvc!]
             }
-        }
-    }
-
-    class func loadRegister(with profile: Profile, and cities: [City]) {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-        DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
-            pivc?.configure(with: profile)
-            
-            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
-            dvc?.configure(cityList: cities)
-            
-            guard let personalController = pivc, let dealerController = dvc else {
-                fatalError()
-            }
-            
-            let controllers = [personalController, dealerController]
-            let controller = configureNavigationStack(with: controllers, for: regStoryboard,
-                                                      identifier: AppViewControllers.registerNavigation)
-            switchRootView(controller: controller)
-        }
-    }
-
-    class func loadRegister(with user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom]) {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-        DispatchQueue.main.async {
-            let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
-            pivc?.configure(with: user.profile)
-            
-            let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
-            
-            let firstShowroom = user.showroom!.first!
-            let cityName = firstShowroom.cityName
-            let index = cities.firstIndex(where: { $0.name == cityName })!
-            
-            dvc?.configure(cityList: cities, showroomList: showrooms, city: cities[index], showroom: firstShowroom)
-            
-            let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVin) as? CheckVinViewController
-            cvvc?.configure(with: firstShowroom.toDomain())
-            
-            guard let personalController = pivc, let dealerController = dvc, let checkController = cvvc else {
-                fatalError()
-            }
-            let controllers = [personalController, dealerController, checkController]
-            let controller = configureNavigationStack(with: controllers, for: regStoryboard, identifier: AppViewControllers.registerNavigation)
+            controller = configureNavigationStack(with: controllers, for: regStoryboard,
+                                                  identifier: AppViewControllers.registerNavigation)
             switchRootView(controller: controller)
         }
     }
@@ -192,7 +182,7 @@ extension NavigationService {
             
             switch UserInfo.build() {
                 case .failure:
-                    loadRegister(with: "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных")
+                    loadRegister(.error(message: "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных"))
                 case .success(let user):
                     for child in controller.viewControllers! {
                         if let top = child as? WithUserInfo {

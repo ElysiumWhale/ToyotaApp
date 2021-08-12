@@ -30,8 +30,9 @@ class PopUp {
     }
 
     class private func popUpMessagePreset(title: String, description: String, buttonText: String, _ dismissCompletion: @escaping () -> Void = { }) -> EKPopUpMessage {
-        let titleLabel = EKProperty.LabelContent(text: title, style: EKProperty.LabelStyle(font: font, color: .white, alignment: .center))
-        let descrLabel = EKProperty.LabelContent(text: description, style: EKProperty.LabelStyle(font: font, color: .white, alignment: .center))
+        let labelStyle = EKProperty.LabelStyle(font: font, color: .white, alignment: .center)
+        let titleLabel = EKProperty.LabelContent(text: title, style: labelStyle)
+        let descrLabel = EKProperty.LabelContent(text: description, style: labelStyle)
         let buttonContent = EKProperty.LabelContent(text: buttonText, style: .init(font: font, color: mainRedColor))
         let button = EKProperty.ButtonContent(label: buttonContent,
                                               backgroundColor: .white,

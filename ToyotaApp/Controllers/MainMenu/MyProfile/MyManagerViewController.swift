@@ -59,10 +59,9 @@ extension MyManagerViewController: UICollectionViewDataSource {
 extension MyManagerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0.05 * Double(indexPath.row),
-            animations: { cell.alpha = 1 })
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.05 * Double(indexPath.row),
+                       animations: { cell.alpha = 1 })
     }
 }
 
