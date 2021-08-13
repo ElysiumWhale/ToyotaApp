@@ -888,7 +888,7 @@ plus addiotional field:
 
 ### Test Drive booking chain
 
-**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get service id](#get-service-id) --> [Get free time](#getting-free-time) --> [Book service](#book-service)
+**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get free time](#getting-free-time) --> [Book service](#book-service)
 
 ---
 
@@ -966,37 +966,6 @@ plus addiotional field:
 {
   "error_code":"104",
   "error_message":"Ошибка сервера. Не удалось получить список автосалонов с выбранным для тест драйва автомобилем."
-}
-```
-
-[**To table of contents**](#toyota-api)
-
----
-
-### Get service id
-
-**Path:** `get_service_id.php`
-
-**Params:**
-
-- `showroom_id` - selected by user
-- `sid` - selected by user
-
-#### **Success response**
-
-```json
-{
-  "result":"ok",
-  "service_id":"24"
-}
-```
-
-#### **Failure response**
-
-```json
-{
-  "error_code":"104",
-  "error_message":"Ошибка сервера. Не удалось получить id услуги в выбранном автосалоне."
 }
 ```
 
