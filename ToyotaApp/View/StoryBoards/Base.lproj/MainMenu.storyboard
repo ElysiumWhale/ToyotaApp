@@ -3,6 +3,7 @@
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -25,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" name="MainTint"/>
                     </tabBar>
                     <connections>
                         <segue destination="3kv-dm-Vwl" kind="relationship" relationship="viewControllers" id="uZK-ED-GPs"/>
@@ -99,7 +100,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-Xs-lo2">
-                                                    <rect key="frame" x="20" y="52" width="215" height="23"/>
+                                                    <rect key="frame" x="20" y="52" width="215" height="18.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="215" id="yx0-3V-BvG"/>
                                                     </constraints>
@@ -145,7 +146,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="2h9-it-bzG" secondAttribute="bottom" constant="8" id="xuP-H4-1WK"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="MainTint"/>
                                         <size key="customSize" width="360" height="240"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -181,7 +182,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Акции" image="star.fill" catalog="system" id="mSA-PA-rV7">
-                        <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" name="MainTint"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Акции" id="cqc-0O-Xyb"/>
                     <connections>
@@ -241,7 +242,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="aYF-uZ-XUo" secondAttribute="bottom" constant="11" id="weW-z6-HGe"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="MainTint"/>
                                         <size key="customSize" width="130" height="100"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -280,7 +281,9 @@
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="ssl-hu-gq3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf"/>
+                    <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf">
+                        <color key="badgeColor" name="MainTint"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Услуги" largeTitleDisplayMode="always" id="9HU-D7-X9D"/>
                     <connections>
                         <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
@@ -347,6 +350,9 @@
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="MainTint">
+            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

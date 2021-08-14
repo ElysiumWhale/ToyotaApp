@@ -102,9 +102,7 @@ extension UIFont {
         case boldItalic = "BoldIt"
         case blackItalic = "BlackIt"
 
-        func getName() -> String {
-            return "ToyotaType-\(self.rawValue)"
-        }
+        func getName() -> String { "ToyotaType-\(self.rawValue)" }
     }
 
     static func toyotaType(_ type: ToyotaFonts, of size: CGFloat) -> UIFont {
@@ -114,6 +112,10 @@ extension UIFont {
 
 // MARK: - Main app tint
 extension UIColor {
-    static var mainAppTint: UIColor { UIColor(red: 0.63, green: 0.394, blue: 0.396, alpha: 1) }
-    static var loadingTint: UIColor { UIColor(white: 0.3, alpha: 0.5) }
+    enum AppTints: String {
+        case mainRed = "MainTint"
+        case loading = "Loading"
+    }
+    
+    static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
 }

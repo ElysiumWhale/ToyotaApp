@@ -7,7 +7,7 @@ class BaseServiceController: UIViewController, IServiceController {
 
     private(set) lazy var bookButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.mainAppTint
+        button.backgroundColor = UIColor.appTint(.mainRed)
         button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 20)
         button.layer.cornerRadius = 20
         button.setTitle("Оставить заявку", for: .normal)
@@ -29,7 +29,7 @@ class BaseServiceController: UIViewController, IServiceController {
             indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         indicator.startAnimating()
-        view.backgroundColor = UIColor.loadingTint
+        view.backgroundColor = UIColor.appTint(.loading)
         view.alpha = 0
         return view
     }()

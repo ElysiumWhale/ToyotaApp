@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +32,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-zI-X4o">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-zI-X4o" customClass="ManagersCollectionView" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PNS-mc-pOJ">
@@ -83,7 +84,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="MainTint"/>
                                         <constraints>
                                             <constraint firstItem="9mM-Hi-KRT" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="115" id="2JV-ZX-UeA"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="PNg-KI-HWR" secondAttribute="bottom" constant="83" id="72s-9I-goh"/>
@@ -123,7 +124,7 @@
                                 <items>
                                     <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="s7P-0B-VIf">
-                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="tintColor" name="MainTint"/>
                                             <connections>
                                                 <action selector="doneDidPress:" destination="R2J-JN-bFz" id="Xt2-mC-Zfl"/>
                                             </connections>
@@ -181,7 +182,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ">
                                 <rect key="frame" x="126" y="345" width="161" height="43"/>
-                                <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="MainTint"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="161" id="5rX-2E-CHW"/>
                                     <constraint firstAttribute="height" constant="43" id="KyR-uI-AQE"/>
@@ -242,7 +243,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0o-cG-eci">
                                 <rect key="frame" x="89" y="738" width="236" height="43"/>
-                                <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="MainTint"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="236" id="GGa-6a-kAv"/>
                                     <constraint firstAttribute="height" constant="43" id="raw-mI-LHz"/>
@@ -265,7 +266,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ">
                                         <rect key="frame" x="0.0" y="0.0" width="205.5" height="61"/>
-                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="MainTint"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="1DL-6J-cs6"/>
                                         </constraints>
@@ -283,7 +284,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j">
                                         <rect key="frame" x="208.5" y="0.0" width="205.5" height="61"/>
-                                        <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="MainTint"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="xWd-OG-T0h"/>
                                         </constraints>
@@ -422,7 +423,7 @@
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZp-dz-K0M">
                                                     <rect key="frame" x="75" y="388" width="200" height="193.5"/>
-                                                    <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="tintColor" name="MainTint"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="mZp-dz-K0M" secondAttribute="height" multiplier="1:1" id="lAO-Cv-20I"/>
                                                     </constraints>
@@ -445,7 +446,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="Zv6-Li-VZg"/>
                                                                 <constraint firstAttribute="width" constant="40" id="aX4-pF-dBj"/>
                                                             </constraints>
-                                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="tintColor" name="MainTint"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
                                                             </state>
@@ -456,7 +457,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="Bfd-xD-R2a"/>
                                                                 <constraint firstAttribute="width" constant="40" id="wwS-iN-b9Q"/>
                                                             </constraints>
-                                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="tintColor" name="MainTint"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
                                                             </state>
@@ -522,13 +523,13 @@
                     <navigationItem key="navigationItem" title="Мои автомобили" id="av4-jq-zxX">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="gTM-dL-QjO"/>
                         <barButtonItem key="leftBarButtonItem" title="Добавить" id="GlH-M8-5jO">
-                            <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="MainTint"/>
                             <connections>
                                 <action selector="addCarWithSender:" destination="8QR-Ub-LLe" id="mL1-FP-DfA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="T6o-T0-N0D">
-                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" name="MainTint"/>
                             <connections>
                                 <action selector="doneDidPress:" destination="8QR-Ub-LLe" id="3Hh-ta-QyG"/>
                             </connections>
@@ -608,7 +609,7 @@
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PxO-s3-FKV">
                                                     <rect key="frame" x="302" y="44" width="69" height="44"/>
-                                                    <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" name="MainTint"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46.5" id="LJy-87-dR1"/>
                                                     </constraints>
@@ -660,7 +661,7 @@
                                 <items>
                                     <navigationItem title="История обращений" id="c52-5Q-1pi">
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="Eqd-3c-9Rz">
-                                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="tintColor" name="MainTint"/>
                                             <connections>
                                                 <action selector="doneDidPressed:" destination="Geg-Qm-TUc" id="jge-qY-Thg"/>
                                             </connections>
@@ -716,7 +717,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU">
                                 <rect key="frame" x="89" y="163" width="236" height="43"/>
-                                <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="MainTint"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
@@ -764,7 +765,7 @@
                     <navigationItem key="navigationItem" title="Настройки" id="Kmn-gh-v3J">
                         <barButtonItem key="backBarButtonItem" title="Настройки" id="Gbg-An-FzE"/>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="9Ew-GO-WDO">
-                            <color key="tintColor" red="0.62979251150000004" green="0.39362567659999997" blue="0.3955948353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" name="MainTint"/>
                             <connections>
                                 <action selector="doneDidPress:" destination="NZm-fi-Vyv" id="UOe-lp-LzY"/>
                             </connections>
@@ -789,6 +790,9 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <namedColor name="MainTint">
+            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

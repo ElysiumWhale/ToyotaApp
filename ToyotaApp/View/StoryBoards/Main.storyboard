@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Entry Point View Controller-->
         <scene sceneID="uWB-mk-9Co">
             <objects>
-                <viewController id="WvF-7T-1fO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntryPointViewController" id="WvF-7T-1fO" customClass="EntryPointViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Yr-qM-7sR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
