@@ -107,23 +107,23 @@ Base **image** URL: <http://cv39623.tmweb.ru/avtosalon> (using for downloading a
 
 ### Services controllers types
 
-| Id | Control type description | List of services |
-|----|--------------------------|------------------|
-| 0 | not defined |  |
-| 1 | timepick |  |
-| 2 | map | Помощь на дороге |
-| 3 | 1 question |  |
-| 4 | 2 questions |  |
-| 5 | 3 questions |  |
-| 6 | 1 question + timepick | Сервисное обслуживание |
-| 7 | 2 questions + timepick |  |
-| 8 | 3 questions + timepick | Тест драйв |
-| 9 | 1 question + map |  |
-| 10 | 2 questions + map |  |
-| 11 | 3 questions + map |  |
-| 12 | 1 question + timepick + map |  |
-| 13 | 2 questions + timepick + map |  |
-| 14 | 3 questions + timepick + map |  |
+| Id  | Control type description         | List of services       | Realization is required |
+| --- | -------------------------------- | ---------------------- |:-----------------------:|
+| 0   | not defined                      |                        |   :heavy_check_mark:    |
+| 1   | timepick                         |                        |   :heavy_check_mark:    |
+| 2   | map                              | Помощь на дороге       |   :heavy_check_mark:    |
+| 3   | 1 question                       |                        |   :heavy_check_mark:    |
+| 4   | ~~2 questions~~                  |                        |                         |
+| 5   | ~~3 questions~~                  |                        |                         |
+| 6   | 1 question + timepick            | Сервисное обслуживание |   :heavy_check_mark:    |
+| 7   | ~~2 questions + timepick~~       |                        |                         |
+| 8   | 3 questions + timepick           | Тест драйв             |   :heavy_check_mark:    |
+| 9   | 1 question + map                 |                        |   :heavy_check_mark:    |
+| 10  | ~~2 questions + map~~            |                        |                         |
+| 11  | ~~3 questions + map~~            |                        |                         |
+| 12  | 1 question + timepick + map      |                        |   :heavy_check_mark:    |
+| 13  | ~~2 questions + timepick + map~~ |                        |                         |
+| 14  | ~~3 questions + timepick + map~~ |                        |                         |
 
 ## Testing
 
