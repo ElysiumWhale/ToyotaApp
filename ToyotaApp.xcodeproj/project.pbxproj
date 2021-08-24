@@ -16,6 +16,7 @@
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
+		144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */; };
 		1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78025D3355400E318D3 /* RoundedMKMapView.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* OrdersHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */; };
@@ -92,6 +93,7 @@
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedButton.swift; sourceTree = "<group>"; };
 		1467F78025D3355400E318D3 /* RoundedMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedMKMapView.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* OrdersHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersHistoryViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				1467F78025D3355400E318D3 /* RoundedMKMapView.swift */,
 				149092612696502100390D04 /* PhoneTextField.swift */,
 				1433C7C7269F304C00BCB70B /* InputTextField.swift */,
+				144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				1467F78125D3355400E318D3 /* RoundedMKMapView.swift in Sources */,
 				14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */,
+				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* OrderTVC.swift in Sources */,
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,

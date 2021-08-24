@@ -348,8 +348,8 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi">
-                                <rect key="frame" x="87" y="783" width="239" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="87" y="808" width="239" height="44"/>
                                 <color key="backgroundColor" name="MainTint"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Проверить">
@@ -360,10 +360,11 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="K4f-dO-g1M"/>
+                                    <outlet property="keyboardConstraint" destination="RC7-eI-paa" id="dED-lL-3KU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Dr-7q-bsh">
-                                <rect key="frame" x="96" y="728" width="222" height="38"/>
+                                <rect key="frame" x="96" y="761" width="222" height="38"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <state key="normal" title="Пропустить этот шаг">
                                     <color key="titleColor" systemColor="systemBlueColor"/>
@@ -373,25 +374,22 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="U0j-hc-Xop">
-                                <rect key="frame" x="188.5" y="787" width="37" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="U0j-hc-Xop" secondAttribute="height" multiplier="1:1" id="s8p-jr-sbf"/>
-                                </constraints>
+                                <rect key="frame" x="188" y="811.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8kL-Vl-afN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="U0j-hc-Xop" firstAttribute="centerX" secondItem="IJ5-Dd-Ubi" secondAttribute="centerX" id="20L-4r-K4a"/>
+                            <constraint firstItem="U0j-hc-Xop" firstAttribute="centerY" secondItem="IJ5-Dd-Ubi" secondAttribute="centerY" id="25x-EA-QdW"/>
                             <constraint firstItem="sqW-gg-58W" firstAttribute="top" secondItem="8kL-Vl-afN" secondAttribute="top" constant="60" id="29C-1g-fcT"/>
-                            <constraint firstItem="U0j-hc-Xop" firstAttribute="top" secondItem="IJ5-Dd-Ubi" secondAttribute="bottom" constant="-40" id="6Fj-Do-jud"/>
                             <constraint firstAttribute="trailing" secondItem="4Dr-7q-bsh" secondAttribute="trailing" constant="96" id="9c9-d8-I8u"/>
                             <constraint firstItem="4Dr-7q-bsh" firstAttribute="leading" secondItem="FVG-Ex-bir" secondAttribute="leading" constant="96" id="BLK-8j-dYV"/>
+                            <constraint firstItem="8kL-Vl-afN" firstAttribute="bottom" secondItem="4Dr-7q-bsh" secondAttribute="bottom" constant="63" id="Evy-p8-ucy"/>
                             <constraint firstItem="8kL-Vl-afN" firstAttribute="trailing" secondItem="IJ5-Dd-Ubi" secondAttribute="trailing" constant="88" id="KPm-9E-bTJ"/>
                             <constraint firstItem="sqW-gg-58W" firstAttribute="leading" secondItem="FVG-Ex-bir" secondAttribute="leading" constant="20" id="MpG-a9-UB6"/>
-                            <constraint firstItem="8kL-Vl-afN" firstAttribute="bottom" secondItem="IJ5-Dd-Ubi" secondAttribute="bottom" constant="35" id="RC7-eI-paa"/>
-                            <constraint firstItem="IJ5-Dd-Ubi" firstAttribute="top" secondItem="4Dr-7q-bsh" secondAttribute="bottom" constant="17" id="Twx-ZX-8OL"/>
+                            <constraint firstItem="8kL-Vl-afN" firstAttribute="bottom" secondItem="IJ5-Dd-Ubi" secondAttribute="bottom" constant="10" id="RC7-eI-paa"/>
                             <constraint firstAttribute="trailing" secondItem="sqW-gg-58W" secondAttribute="trailing" constant="20" id="aHT-3n-WzG"/>
-                            <constraint firstItem="U0j-hc-Xop" firstAttribute="centerX" secondItem="FVG-Ex-bir" secondAttribute="centerX" id="bvE-l5-4e4"/>
                             <constraint firstItem="IJ5-Dd-Ubi" firstAttribute="leading" secondItem="8kL-Vl-afN" secondAttribute="leading" constant="87" id="mnz-e8-hcn"/>
                             <constraint firstItem="sqW-gg-58W" firstAttribute="centerX" secondItem="FVG-Ex-bir" secondAttribute="centerX" id="pln-Hv-Ixp"/>
                         </constraints>
@@ -509,7 +507,7 @@
     <resources>
         <image name="ToyotaLogo" width="128" height="128"/>
         <namedColor name="MainTint">
-            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

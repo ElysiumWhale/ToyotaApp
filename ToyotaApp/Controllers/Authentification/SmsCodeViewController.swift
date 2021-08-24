@@ -3,7 +3,7 @@ import UIKit
 class SmsCodeViewController: UIViewController {
     @IBOutlet private var phoneNumberLabel: UILabel!
     @IBOutlet private var smsCodeTextField: InputTextField!
-    @IBOutlet private var sendSmsCodeButton: UIButton!
+    @IBOutlet private var sendSmsCodeButton: KeyboardBindedButton!
     @IBOutlet private var wrongCodeLabel: UILabel!
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     
@@ -13,7 +13,8 @@ class SmsCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         wrongCodeLabel.alpha = 0
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboardWhenSwipedDown()
+        sendSmsCodeButton.bindToKeyboard()
     }
     
     func configure(with authType: AuthType, and number: String) {

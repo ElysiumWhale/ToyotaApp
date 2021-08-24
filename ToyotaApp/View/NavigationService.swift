@@ -106,7 +106,7 @@ extension NavigationService {
             let controller = configureNavigationStack(for: authStoryboard, identifier: AppViewControllers.authNavigation)
             switchRootView(controller: controller)
             if let error = error {
-                controller.displayError(with: error)
+                PopUp.display(.error(description: error))
             }
         }
     }

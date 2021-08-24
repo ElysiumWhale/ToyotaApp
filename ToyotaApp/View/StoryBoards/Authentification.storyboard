@@ -68,8 +68,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bw-BOW">
-                                <rect key="frame" x="83" y="798" width="248" height="44"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5vD-fo-53e">
+                                <rect key="frame" x="188.5" y="811.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fF1-EO-lCx" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="83" y="808" width="248" height="44"/>
                                 <color key="backgroundColor" name="MainTint"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -79,27 +82,25 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="nextButtonDidPressedWithSender:" destination="LPT-FS-7SW" eventType="touchUpInside" id="bhT-bt-H9d"/>
+                                    <action selector="nextButtonDidPressedWithSender:" destination="LPT-FS-7SW" eventType="touchUpInside" id="g5M-DP-WMj"/>
+                                    <outlet property="keyboardConstraint" destination="1s3-Wh-dYh" id="fnB-PY-XeC"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-7v-DbB">
-                                <rect key="frame" x="188.5" y="801" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ps3-YR-5ER"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ps3-YR-5ER" firstAttribute="bottom" secondItem="fF1-EO-lCx" secondAttribute="bottom" constant="10" id="1s3-Wh-dYh"/>
+                            <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="fF1-EO-lCx" secondAttribute="trailing" constant="83" id="6jE-AW-0St"/>
+                            <constraint firstItem="fF1-EO-lCx" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="83" id="8Da-cI-SG7"/>
                             <constraint firstItem="LJH-As-hEM" firstAttribute="centerX" secondItem="iDb-kf-4Kb" secondAttribute="centerX" id="9gZ-ip-oaO"/>
                             <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="bCg-xK-K3K" secondAttribute="trailing" constant="30" id="D2z-j2-STu"/>
                             <constraint firstItem="LJH-As-hEM" firstAttribute="top" secondItem="ps3-YR-5ER" secondAttribute="top" constant="1" id="IOf-1J-OlD"/>
-                            <constraint firstItem="ps3-YR-5ER" firstAttribute="trailing" secondItem="6ZA-bw-BOW" secondAttribute="trailing" constant="83" id="Ig7-T9-BzU"/>
-                            <constraint firstItem="ps3-YR-5ER" firstAttribute="bottom" secondItem="6ZA-bw-BOW" secondAttribute="bottom" constant="20" id="LqB-9H-xRi"/>
-                            <constraint firstItem="gKJ-7v-DbB" firstAttribute="centerX" secondItem="iDb-kf-4Kb" secondAttribute="centerX" id="PTA-e0-lsj"/>
-                            <constraint firstItem="6ZA-bw-BOW" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="83" id="UNd-b3-Gs7"/>
+                            <constraint firstItem="5vD-fo-53e" firstAttribute="centerX" secondItem="fF1-EO-lCx" secondAttribute="centerX" id="MxI-nf-cmO"/>
                             <constraint firstItem="bCg-xK-K3K" firstAttribute="leading" secondItem="ps3-YR-5ER" secondAttribute="leading" constant="30" id="UeM-Nl-hda"/>
                             <constraint firstItem="bCg-xK-K3K" firstAttribute="centerX" secondItem="iDb-kf-4Kb" secondAttribute="centerX" id="ZKS-9D-bGM"/>
+                            <constraint firstItem="5vD-fo-53e" firstAttribute="centerY" secondItem="fF1-EO-lCx" secondAttribute="centerY" id="kOl-dk-DnE"/>
                             <constraint firstItem="bCg-xK-K3K" firstAttribute="top" secondItem="LJH-As-hEM" secondAttribute="bottom" constant="18" id="wqb-68-JdD"/>
-                            <constraint firstItem="gKJ-7v-DbB" firstAttribute="top" secondItem="6ZA-bw-BOW" secondAttribute="bottom" constant="-41" id="zFs-VC-mYe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title=" " id="f34-Z8-Ak9">
@@ -107,10 +108,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="incorrectLabel" destination="WWK-Hf-xZb" id="X6I-ye-OM7"/>
-                        <outlet property="indicator" destination="gKJ-7v-DbB" id="26p-Jw-JTN"/>
+                        <outlet property="indicator" destination="5vD-fo-53e" id="LsL-gK-wgC"/>
                         <outlet property="informationLabel" destination="wRS-Ga-buk" id="GMM-xP-bPq"/>
                         <outlet property="phoneNumber" destination="1t0-20-RV7" id="hxj-90-OgU"/>
-                        <outlet property="sendPhoneButton" destination="6ZA-bw-BOW" id="fGa-AC-hmi"/>
+                        <outlet property="sendPhoneButton" destination="fF1-EO-lCx" id="Tfe-Mk-ANF"/>
                         <segue destination="aSg-j3-GJZ" kind="show" identifier="NumberToCodeSegue" id="Qx6-m0-PJk"/>
                     </connections>
                 </viewController>
@@ -126,8 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeZ-bJ-pbq">
-                                <rect key="frame" x="83" y="798" width="249" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeZ-bJ-pbq" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="83" y="808" width="248" height="44"/>
                                 <color key="backgroundColor" name="MainTint"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -138,6 +139,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginWith:" destination="aSg-j3-GJZ" eventType="touchUpInside" id="ctl-K8-KgR"/>
+                                    <outlet property="keyboardConstraint" destination="hDs-3O-Dyk" id="pAM-XB-hyY"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="m8S-lG-OtC">
@@ -177,19 +179,19 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a71-Ud-3b3">
-                                <rect key="frame" x="188.5" y="802" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="811.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Rg-B1-f3B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="YeZ-bJ-pbq" secondAttribute="trailing" constant="82" id="3X1-Ug-9e5"/>
+                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="YeZ-bJ-pbq" secondAttribute="trailing" constant="83" id="3X1-Ug-9e5"/>
                             <constraint firstItem="m8S-lG-OtC" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="30" id="9Nl-jY-zoS"/>
                             <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="m8S-lG-OtC" secondAttribute="trailing" constant="30" id="A0S-fW-PML"/>
+                            <constraint firstItem="a71-Ud-3b3" firstAttribute="centerX" secondItem="YeZ-bJ-pbq" secondAttribute="centerX" id="DSH-ka-K1g"/>
                             <constraint firstItem="m8S-lG-OtC" firstAttribute="top" secondItem="AMQ-DY-tbj" secondAttribute="top" constant="204" id="JIK-dN-Civ"/>
-                            <constraint firstItem="a71-Ud-3b3" firstAttribute="top" secondItem="YeZ-bJ-pbq" secondAttribute="bottom" constant="-40" id="M5H-GB-RgB"/>
-                            <constraint firstItem="a71-Ud-3b3" firstAttribute="centerX" secondItem="AMQ-DY-tbj" secondAttribute="centerX" id="PGL-ao-LfP"/>
-                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="bottom" secondItem="YeZ-bJ-pbq" secondAttribute="bottom" constant="20" id="hDs-3O-Dyk"/>
+                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="bottom" secondItem="YeZ-bJ-pbq" secondAttribute="bottom" constant="10" id="hDs-3O-Dyk"/>
+                            <constraint firstItem="a71-Ud-3b3" firstAttribute="centerY" secondItem="YeZ-bJ-pbq" secondAttribute="centerY" id="nQV-k2-bjv"/>
                             <constraint firstItem="YeZ-bJ-pbq" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="83" id="voB-Z0-a2b"/>
                         </constraints>
                     </view>
@@ -236,7 +238,7 @@
     <resources>
         <image name="ToyotaLogo" width="128" height="128"/>
         <namedColor name="MainTint">
-            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

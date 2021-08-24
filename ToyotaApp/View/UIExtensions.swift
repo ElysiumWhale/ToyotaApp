@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 // MARK: - FadeIn/Out UIView Animation
@@ -17,6 +16,20 @@ extension UIView {
                            completion: { _ in completion() }
             )
         }
+    }
+}
+
+// MARK: - Dismiss keyboard on swipe down
+extension UIView {
+    func hideKeyboardWhenSwipedDown() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        swipe.cancelsTouchesInView = false
+        swipe.direction = [.down]
+        self.addGestureRecognizer(swipe)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
     }
 }
 

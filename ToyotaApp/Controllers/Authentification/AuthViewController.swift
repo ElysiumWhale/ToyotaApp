@@ -4,7 +4,7 @@ class AuthViewController: UIViewController {
     @IBOutlet private var phoneNumber: PhoneTextField!
     @IBOutlet private var incorrectLabel: UILabel!
     @IBOutlet private var informationLabel: UILabel!
-    @IBOutlet private var sendPhoneButton: UIButton!
+    @IBOutlet private var sendPhoneButton: KeyboardBindedButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
     private var type: AuthType = .register
@@ -13,7 +13,8 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         incorrectLabel.alpha = 0
         configureTextField()
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboardWhenSwipedDown()
+        sendPhoneButton.bindToKeyboard()
     }
 
     func configure(with authType: AuthType) {

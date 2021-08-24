@@ -119,7 +119,7 @@ extension DealerViewController: SegueWithRequestController {
 
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard let showroom = selectedShowroom else {
-            displayError(with: "Выберите салон")
+            PopUp.display(.error(description: "Выберите салон"))
             return
         }
         

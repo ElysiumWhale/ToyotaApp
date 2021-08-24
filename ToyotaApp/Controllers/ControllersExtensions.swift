@@ -58,16 +58,6 @@ extension UIViewController {
     }
 }
 
-// MARK: - Error Displaying
-extension UIViewController {
-    func displayError(with text: String, beforePopUpAction: @escaping () -> Void = { }) {
-        DispatchQueue.main.async {
-            beforePopUpAction()
-            PopUp.displayMessage(with: CommonText.error, description: text, buttonText: CommonText.ok)
-        }
-    }
-}
-
 // MARK: - Dismissing controls
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {

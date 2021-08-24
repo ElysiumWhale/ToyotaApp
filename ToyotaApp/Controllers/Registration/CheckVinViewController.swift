@@ -8,7 +8,7 @@ private enum SkipCheckVin: String {
 class CheckVinViewController: UIViewController {
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var vinCodeTextField: UITextField!
-    @IBOutlet private var checkVinButton: UIButton!
+    @IBOutlet private var checkVinButton: KeyboardBindedButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
     @IBOutlet private var skipStepButton: UIButton!
 
@@ -36,7 +36,8 @@ class CheckVinViewController: UIViewController {
         super.viewDidLoad()
         errorLabel.alpha = 0
         skipStepButton.isHidden = type != .register
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboardWhenSwipedDown()
+        checkVinButton.bindToKeyboard()
     }
 
     func configure(with: Showroom, controlerType: AddInfoType = .register) {
