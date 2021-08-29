@@ -5,8 +5,8 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
 
-    private(set) lazy var bookButton: UIButton = {
-        let button = UIButton()
+    private(set) lazy var bookButton: BookButton = {
+        let button = BookButton()
         button.backgroundColor = UIColor.appTint(.mainRed)
         button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 20)
         button.layer.cornerRadius = 20
@@ -77,14 +77,23 @@ class BaseServiceController: UIViewController, IServiceController {
                     }
                 }
             case .error(let error):
-                PopUp.displayMessage(with: CommonText.error,
-                                     description: error.message ?? AppErrors.requestError.rawValue,
-                                     buttonText: CommonText.ok) { [weak self] in
+                PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue)) { [weak self] in
                     self?.loadingView.fadeOut {
                         self?.loadingView.removeFromSuperview()
                     }
                     self?.navigationController?.popViewController(animated: true)
                 }
+            case .block(let message):
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadingView.fadeOut {
+                        self?.loadingView.removeFromSuperview()
+                    }
+                    if self?.modules.last === module {
+                        self?.bookButton.fadeIn()
+                    }
+                    self?.bookButton.isEnabled = false
+                }
+                PopUp.display(.warning(description: message ?? AppErrors.requestError.rawValue))
             case .didChose:
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
                 DispatchQueue.main.async { [weak self] in
@@ -129,9 +138,7 @@ class BaseServiceController: UIViewController, IServiceController {
                         self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
-                    PopUp.displayMessage(with: CommonText.error,
-                                         description: error.message ?? CommonText.servicesError,
-                                         buttonText: CommonText.ok)
+                    PopUp.display(.error(description: error.message ?? CommonText.servicesError))
             }
         }
     }

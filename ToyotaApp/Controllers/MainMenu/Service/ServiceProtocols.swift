@@ -11,10 +11,14 @@ enum ModuleStates {
     /// Occures when something goes wrong: processing user input or preparing for it
     case error(_ error: ErrorResponse)
     
+    /// Occures when we need block some controls in module and book button
+    /// - **Example:** user restricted access to location in `MapModule`
+    case block(_ message: String?)
+    
     /// Returns chosen service if state is `.didChose` or `nil` in rest cases
     func getService() -> IService? {
         switch self {
-            case .idle, .didDownload, .error:
+            case .idle, .didDownload, .error, .block:
                 return nil
             case .didChose(let service):
                 return service

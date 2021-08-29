@@ -34,6 +34,8 @@ class TestDriveViewController: BaseServiceController {
                     }
                     self?.navigationController?.popViewController(animated: true)
                 }
+            case .block:
+                break
             case .didChose(let service):
                 guard let index = modules.firstIndex(where: { $0 === module }) else { return }
                 switch index {

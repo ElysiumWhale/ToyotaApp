@@ -91,28 +91,36 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func start(with params: [URLQueryItem]) {
-        state = .idle
-        let locManager = CLLocationManager()
-        locManager.delegate = self
-        internalView.fadeIn()
         if CLLocationManager.locationServicesEnabled() {
-            internalView.map.showsUserLocation = true
-            locationManager = locManager
-            locationManager.startUpdatingLocation()
-            if let coordinate = locationManager.location?.coordinate {
-                zoomToUserLocation(coordinate)
+            let locManager = CLLocationManager()
+            locManager.requestWhenInUseAuthorization()
+            DispatchQueue.global(qos: .userInitiated).async { [self] in
+                while locManager.authorizationStatus == .notDetermined {
+                    // nothing
+                }
+                switch locManager.authorizationStatus {
+                    case .authorizedAlways, .authorizedWhenInUse:
+                        locationManager = locManager
+                        DispatchQueue.main.async { [self] in
+                            internalView.map.showsUserLocation = true
+                        }
+                        state = .didChose(Service.empty)
+                    default:
+                        DispatchQueue.main.async { [self] in
+                            internalView.map.isUserInteractionEnabled = false
+                        }
+                        state = .block("Для использования услуги необходимо предоставить доступ к геопозиции")
+                }
             }
-            state = .didChose(Service.empty)
+            internalView.fadeIn()
         } else {
-            PopUp.display(.warning(description: "Для использования услуги Помощь на дороге необходимо предоставить доступ к геопозиции"))
             internalView.map.isUserInteractionEnabled = false
-            state = .error(ErrorResponse(code: "-1", message: "Нет доступа к геолокации"))
+            state = .block("Для использования услуги необходимо включить сервисы геолокации на устройстве и предоставить доступ к геопозиции")
         }
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        guard locationManager.authorizationStatus == .authorizedAlways ||
-              locationManager.authorizationStatus == .authorizedWhenInUse,
+        guard locationManager.hasAccessToLocation,
               let latitude = locationManager.location?.coordinate.latitude,
               let longitude = locationManager.location?.coordinate.longitude else {
             return []
@@ -140,19 +148,6 @@ extension MapModule: MKMapViewDelegate {
             isInitiallyZoomedToUserLocation = true
             let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
             internalView.map.setRegion(viewRegion, animated: true)
-        }
-    }
-}
-
-// MARK: - CLLocationManagerDelegate
-extension MapModule: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                internalView.map.showsUserLocation = true
-            case .notDetermined, .denied, .restricted:
-                manager.requestWhenInUseAuthorization()
-            default: return
         }
     }
 }

@@ -85,14 +85,14 @@ extension PopUp {
         case success(description: String)
     }
     
-    static func display(_ type: MessageTypes) {
+    static func display(_ type: MessageTypes, completion: @escaping () -> Void = { }) {
         switch type {
             case .error(let text):
-                displayMessage(with: CommonText.error, description: text)
+                displayMessage(with: CommonText.error, description: text, dismissCompletion: completion)
             case .warning(let text):
-                displayMessage(with: CommonText.warning, description: text)
+                displayMessage(with: CommonText.warning, description: text, dismissCompletion: completion)
             case .success(let text):
-                displayMessage(with: CommonText.success, description: text)
+                displayMessage(with: CommonText.success, description: text, dismissCompletion: completion)
         }
     }
 }
