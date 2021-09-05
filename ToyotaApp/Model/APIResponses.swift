@@ -271,6 +271,36 @@ public struct CarsDidGetResponse: IServiceResponse {
     let cars: [Service]
 }
 
+// MARK: - BookingsDidGetResponse
+public struct BookingsResponse: Codable {
+    let result: String
+    let booking: [Booking]
+}
+
+public struct Booking: Codable {
+    let date: String
+    let startTime: String
+    let latitude: String
+    let longitude: String
+    let status: String
+    let carName: String
+    let licensePlate: String
+    let showroomName: String
+    let serviceName: String
+    let postName: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case latitude, longitude, status
+        case date = "date_booking"
+        case startTime = "booking_start_time"
+        case carName = "car_model_name"
+        case licensePlate = "license_plate"
+        case showroomName = "showroom_name"
+        case serviceName = "service_name"
+        case postName = "post_name"
+    }
+}
+
 // MARK: - MOCK
 public struct News: Codable {
     let title: String

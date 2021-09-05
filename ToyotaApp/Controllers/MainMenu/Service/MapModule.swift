@@ -120,8 +120,7 @@ class MapModule: NSObject, IServiceModule {
     }
     
     func buildQueryItems() -> [URLQueryItem] {
-        guard locationManager.hasAccessToLocation,
-              let latitude = locationManager.location?.coordinate.latitude,
+        guard let latitude = locationManager.location?.coordinate.latitude,
               let longitude = locationManager.location?.coordinate.longitude else {
             return []
         }

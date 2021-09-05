@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -563,90 +564,97 @@
         <!--История обращений-->
         <scene sceneID="bwj-HR-VmS">
             <objects>
-                <viewController title="История обращений" id="Geg-Qm-TUc" customClass="OrdersHistoryViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="История обращений" id="Geg-Qm-TUc" customClass="BookingsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xEv-oI-OfE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oHv-YW-SG0">
-                                <rect key="frame" x="0.0" y="56" width="414" height="768"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oHv-YW-SG0">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <color key="separatorColor" name="MainTint"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="139" id="MeP-4c-svk" customClass="OrderCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="139"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookingCell" rowHeight="139" id="MeP-4c-svk" customClass="BookingCell" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MeP-4c-svk" id="w4Y-CV-ZJz">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
-                                                    <rect key="frame" x="279" y="11" width="115" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="115" id="wgA-dx-Anh"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dnz-LW-lUV">
+                                                    <rect key="frame" x="15" y="11" width="344" height="24.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вызов эвакуатора" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-uE-sHF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="24.5"/>
+                                                            <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
+                                                            <rect key="frame" x="229" y="0.0" width="115" height="24.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="115" id="r42-es-Hol"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Успешный вызов эвакуатора" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-0h-NzZ">
+                                                    <rect key="frame" x="15" y="42" width="216" height="48.5"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вызов эвакуатора" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-uE-sHF">
-                                                    <rect key="frame" x="15" y="11" width="246" height="24"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-2e-xUR">
+                                                    <rect key="frame" x="239" y="43" width="120" height="91"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PxO-s3-FKV">
+                                                            <rect key="frame" x="0.0" y="-3" width="120" height="45"/>
+                                                            <color key="tintColor" name="MainTint"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="uam-uw-FiM"/>
+                                                            </constraints>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="black"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-mU-hXC">
+                                                            <rect key="frame" x="0.0" y="45.5" width="120" height="20"/>
+                                                            <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А344РС163RUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
+                                                            <rect key="frame" x="0.0" y="71" width="120" height="20"/>
+                                                            <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="246" id="Iv2-PJ-Rzt"/>
+                                                        <constraint firstAttribute="width" constant="120" id="BQ8-ek-QOv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Успешный вызов эвакуатора" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-0h-NzZ">
-                                                    <rect key="frame" x="15" y="43" width="246" height="85"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="85" id="vLq-pd-RY9"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PxO-s3-FKV">
-                                                    <rect key="frame" x="302" y="44" width="69" height="44"/>
-                                                    <color key="tintColor" name="MainTint"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="46.5" id="LJy-87-dR1"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
-                                                    <rect key="frame" x="279" y="90.5" width="115" height="24.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="115" id="IKi-Ys-T8P"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PxO-s3-FKV" firstAttribute="leading" secondItem="QFf-0h-NzZ" secondAttribute="trailing" constant="41" id="7qE-qr-01Q"/>
-                                                <constraint firstAttribute="trailing" secondItem="EQ4-5H-1JU" secondAttribute="trailing" constant="20" id="C2I-4b-B4h"/>
-                                                <constraint firstAttribute="trailing" secondItem="buJ-4j-bpP" secondAttribute="trailing" constant="20" symbolic="YES" id="Dcf-Ce-uMU"/>
+                                                <constraint firstAttribute="trailing" secondItem="uZK-2e-xUR" secondAttribute="trailing" constant="15" id="AHb-OS-BSw"/>
+                                                <constraint firstItem="uZK-2e-xUR" firstAttribute="top" secondItem="EQ4-5H-1JU" secondAttribute="bottom" constant="7.5" id="EJS-qr-3J7"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dnz-LW-lUV" secondAttribute="trailing" constant="15" id="Eaf-6u-J8K"/>
+                                                <constraint firstAttribute="bottom" secondItem="uZK-2e-xUR" secondAttribute="bottom" constant="5" id="EvE-6i-NEG"/>
                                                 <constraint firstItem="QFf-0h-NzZ" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="QBU-20-V3Y"/>
-                                                <constraint firstItem="buJ-4j-bpP" firstAttribute="leading" secondItem="QFf-0h-NzZ" secondAttribute="trailing" constant="18" id="VSU-oT-nb2"/>
-                                                <constraint firstItem="ZQg-uE-sHF" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="a5b-bh-rxD"/>
-                                                <constraint firstItem="buJ-4j-bpP" firstAttribute="top" secondItem="PxO-s3-FKV" secondAttribute="bottom" constant="1.5" id="dTg-A7-jie"/>
-                                                <constraint firstItem="ZQg-uE-sHF" firstAttribute="top" secondItem="w4Y-CV-ZJz" secondAttribute="top" constant="11" id="eNT-Mf-Evu"/>
-                                                <constraint firstItem="QFf-0h-NzZ" firstAttribute="top" secondItem="ZQg-uE-sHF" secondAttribute="bottom" constant="8" symbolic="YES" id="hGT-i2-G0F"/>
-                                                <constraint firstAttribute="trailing" secondItem="QFf-0h-NzZ" secondAttribute="trailing" constant="153" id="ide-rY-u72"/>
-                                                <constraint firstItem="QFf-0h-NzZ" firstAttribute="top" secondItem="EQ4-5H-1JU" secondAttribute="bottom" constant="8" symbolic="YES" id="po5-kY-AtV"/>
-                                                <constraint firstItem="EQ4-5H-1JU" firstAttribute="top" secondItem="w4Y-CV-ZJz" secondAttribute="top" constant="11" id="ppH-n8-Kiw"/>
-                                                <constraint firstAttribute="bottom" secondItem="buJ-4j-bpP" secondAttribute="bottom" constant="24" id="qYi-DM-mkA"/>
-                                                <constraint firstItem="EQ4-5H-1JU" firstAttribute="leading" secondItem="ZQg-uE-sHF" secondAttribute="trailing" constant="18" id="tTq-Xs-32o"/>
-                                                <constraint firstAttribute="trailing" secondItem="PxO-s3-FKV" secondAttribute="trailing" constant="43" id="xUU-BZ-nz3"/>
-                                                <constraint firstAttribute="bottom" secondItem="QFf-0h-NzZ" secondAttribute="bottom" constant="11" id="yZY-Ex-glQ"/>
+                                                <constraint firstItem="Dnz-LW-lUV" firstAttribute="top" secondItem="w4Y-CV-ZJz" secondAttribute="top" constant="11" id="cqQ-0V-Lw4"/>
+                                                <constraint firstItem="QFf-0h-NzZ" firstAttribute="top" secondItem="ZQg-uE-sHF" secondAttribute="bottom" constant="6.5" id="cyy-yw-Bf1"/>
+                                                <constraint firstItem="Dnz-LW-lUV" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="v7u-f1-ky2"/>
+                                                <constraint firstItem="uZK-2e-xUR" firstAttribute="leading" secondItem="QFf-0h-NzZ" secondAttribute="trailing" constant="8" id="wMa-qx-d9d"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QFf-0h-NzZ" secondAttribute="bottom" constant="11" id="yZY-Ex-glQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="carLabel" destination="buJ-4j-bpP" id="zN2-CL-jNA"/>
+                                            <outlet property="carImage" destination="PxO-s3-FKV" id="sGW-L8-yg6"/>
+                                            <outlet property="carLabel" destination="vDe-mU-hXC" id="2qx-9k-xYu"/>
                                             <outlet property="contentLabel" destination="QFf-0h-NzZ" id="CWO-jW-Cwi"/>
                                             <outlet property="dateLabel" destination="EQ4-5H-1JU" id="CMH-Gs-VJ7"/>
+                                            <outlet property="licenseLabel" destination="buJ-4j-bpP" id="deN-gw-c5K"/>
                                             <outlet property="titleLabel" destination="ZQg-uE-sHF" id="s4c-W7-x7u"/>
                                         </connections>
                                     </tableViewCell>
@@ -675,7 +683,7 @@
                         <constraints>
                             <constraint firstItem="szs-Cg-E8O" firstAttribute="trailing" secondItem="KBM-0T-Bie" secondAttribute="trailing" id="0Q2-8c-sHr"/>
                             <constraint firstItem="oHv-YW-SG0" firstAttribute="leading" secondItem="szs-Cg-E8O" secondAttribute="leading" id="2wm-bD-3Cc"/>
-                            <constraint firstItem="szs-Cg-E8O" firstAttribute="bottom" secondItem="oHv-YW-SG0" secondAttribute="bottom" constant="-16" id="I2q-Hj-WuA"/>
+                            <constraint firstItem="szs-Cg-E8O" firstAttribute="bottom" secondItem="oHv-YW-SG0" secondAttribute="bottom" constant="-34" id="I2q-Hj-WuA"/>
                             <constraint firstItem="KBM-0T-Bie" firstAttribute="leading" secondItem="szs-Cg-E8O" secondAttribute="leading" id="NJq-rd-dwV"/>
                             <constraint firstItem="oHv-YW-SG0" firstAttribute="top" secondItem="KBM-0T-Bie" secondAttribute="bottom" id="Q96-Tb-4gl"/>
                             <constraint firstItem="szs-Cg-E8O" firstAttribute="trailing" secondItem="oHv-YW-SG0" secondAttribute="trailing" id="npv-0L-hul"/>
@@ -683,7 +691,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ordersList" destination="oHv-YW-SG0" id="YnN-Pg-uGp"/>
+                        <outlet property="bookingsTable" destination="oHv-YW-SG0" id="YnN-Pg-uGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytH-kk-kt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -791,7 +799,7 @@
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="MainTint">
-            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

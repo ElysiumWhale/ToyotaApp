@@ -87,7 +87,7 @@ public struct CellIdentifiers {
     static let CarCell = "CarCell"
     static let NewsCell = "NewsCell"
     static let ServiceCell = "ServiceCell"
-    static let OrderCell = "OrderCell"
+    static let BookingCell = "BookingCell"
     static let ManagerCell = "ManagerCell"
 }
 
