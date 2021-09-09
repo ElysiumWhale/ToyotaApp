@@ -5,9 +5,9 @@ struct Brand {
     static let Toyota = "1"
 }
 
-struct RequestType {
-    static let POST = "POST"
-    static let GET = "GET"
+enum RequestType: String {
+    case POST = "POST"
+    case GET = "GET"
 }
 
 enum RequestPath {
