@@ -54,10 +54,7 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 
     func start() {
-        for module in modules {
-            stackView.addArrangedSubview(module.view ?? UIView())
-        }
-        stackView.addArrangedSubview(bookButton)
+        stackView.addArrangedSubview(modules.first?.view ?? UIView())
         modules.first?.start()
     }
 
@@ -102,12 +99,16 @@ class BaseServiceController: UIViewController, IServiceController {
                         controller.loadingView.fadeOut {
                             controller.loadingView.removeFromSuperview()
                         }
+                        if !controller.stackView.arrangedSubviews.contains(controller.bookButton) {
+                            controller.stackView.addArrangedSubview(controller.bookButton)
+                        }
                         controller.bookButton.fadeIn()
                         return
                     }
                     controller.view.addSubview(controller.loadingView)
                     controller.loadingView.fadeIn()
                     controller.modules[index + 1].start(with: module.buildQueryItems())
+                    controller.stackView.addArrangedSubview(controller.modules[index+1].view ?? UIView())
                 }
         }
     }
@@ -128,7 +129,8 @@ class BaseServiceController: UIViewController, IServiceController {
             params.append(URLQueryItem(.services(.serviceId), serviceType!.id))
         }
         
-        NetworkService.shared.makePostRequest(page: .services(.bookService), params: params, completion: completion)
+        NetworkService.shared.makePostRequest(page: .services(.bookService),
+                                              params: params, completion: completion)
         
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
