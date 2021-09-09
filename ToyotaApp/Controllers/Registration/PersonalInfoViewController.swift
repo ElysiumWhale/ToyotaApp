@@ -136,7 +136,7 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     secondName: secondNameTextField.text!,
                                     email: emailTextField.text!,
                                     birthday: date)
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.setProfile,
+        NetworkService.shared.makePostRequest(page: .regisrtation(.setProfile),
                                               params: buildRequestParams(from: configuredProfile!, date: date),
                                               completion: completionForSegue)
     }

@@ -17,7 +17,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
 
     @IBAction func addCar(sender: Any?) {
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.getCities, params:
+        NetworkService.shared.makePostRequest(page: .profile(.getCities), params:
             [URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)], completion: carDidAddCompletion)
     }
 

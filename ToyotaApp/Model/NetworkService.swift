@@ -12,8 +12,8 @@ class NetworkService {
         mainUrl = MainURL.build()
     }
     
-    func makePostRequest<T>(page: String, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T: Codable {
-        let request = buildPostRequest(for: page, with: params)
+    func makePostRequest<T>(page: RequestPath, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T: Codable {
+        let request = buildPostRequest(for: page.rawValue, with: params)
         
         session.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse {

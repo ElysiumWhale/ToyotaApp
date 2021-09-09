@@ -10,7 +10,7 @@ class TestDriveViewController: BaseServiceController {
         stackView.addArrangedSubview(bookButton)
         view.addSubview(loadingView)
         loadingView.fadeIn()
-        modules.first?.customStart(page: RequestPath.Profile.getCities,
+        modules.first?.customStart(page: .profile(.getCities),
                                    with: [URLQueryItem(name: RequestKeys.Auth.brandId,
                                                        value: Brand.Toyota)],
                                    response: CitiesDidGetResponse.self)
@@ -41,17 +41,17 @@ class TestDriveViewController: BaseServiceController {
                 switch index {
                     case 0:
                         fadeOutAfter(module: index)
-                        modules[1].customStart(page: RequestPath.Services.getTestDriveCars,
+                        modules[1].customStart(page: .services(.getTestDriveCars),
                                                with: buildParams(for: index, value: service.id),
                                                response: CarsDidGetResponse.self)
                     case 1:
                         fadeOutAfter(module: index)
-                        modules[2].customStart(page: RequestPath.Services.getTestDriveShowrooms,
+                        modules[2].customStart(page: .services(.getTestDriveShowrooms),
                                                with: buildParams(for: index, value: service.id),
                                                response: ShoroomsDidGetResponce.self)
                     case 2:
                         fadeOutAfter(module: index)
-                        modules[3].customStart(page: RequestPath.Services.getFreeTime,
+                        modules[3].customStart(page: .services(.getFreeTime),
                                                with: buildParams(for: index, value: service.id),
                                                response: CarsDidGetResponse.self)
                     case 3:
@@ -114,7 +114,7 @@ class TestDriveViewController: BaseServiceController {
         
         params.append(contentsOf: modules[3].buildQueryItems())
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.bookService, params: params, completion: completion)
+        NetworkService.shared.makePostRequest(page: .services(.bookService), params: params, completion: completion)
         
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {

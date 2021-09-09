@@ -42,7 +42,7 @@ class ConnectionLostController {
             return
         }
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Start.checkUser, params:
+        NetworkService.shared.makePostRequest(page: .start(.checkUser), params:
             [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
              URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota),
              URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],

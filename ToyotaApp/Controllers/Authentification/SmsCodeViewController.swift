@@ -65,11 +65,11 @@ extension SmsCodeViewController {
         
         switch type {
             case .register:
-                NetworkService.shared.makePostRequest(page: RequestPath.Registration.checkCode,
+                NetworkService.shared.makePostRequest(page: .regisrtation(.checkCode),
                                                       params: buildRequestParams(authType: type),
                                                       completion: registerCompletion)
             case .changeNumber:
-                NetworkService.shared.makePostRequest(page: RequestPath.Settings.changePhone,
+                NetworkService.shared.makePostRequest(page: .setting(.changePhone),
                                                       params: buildRequestParams(authType: type),
                                                       completion: changeNumberCompletion)
         }

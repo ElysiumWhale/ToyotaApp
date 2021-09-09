@@ -10,42 +10,58 @@ struct RequestType {
     static let GET = "GET"
 }
 
-struct RequestPath {
-    struct Start {
-        static let checkUser = "check_user.php"
+enum RequestPath {
+    case start(_ page: Start)
+    case regisrtation(_ page: Registration)
+    case services(_ page: Services)
+    case profile(_ page: Profile)
+    case setting(_ page: Settings)
+    
+    var rawValue: String {
+        switch self {
+            case .start(let page): return page.rawValue
+            case .regisrtation(let page): return page.rawValue
+            case .services(let page): return page.rawValue
+            case .profile(let page): return page.rawValue
+            case .setting(let page): return page.rawValue
+        }
     }
     
-    struct Registration {
-        static let registerPhone = "register_phone.php"
-        static let checkCode = "check_code.php"
-        static let setProfile = "set_profile.php"
-        static let getShowrooms = "get_showrooms.php"
-        static let setShowroom = "set_showroom.php"
-        static let checkCar = "check_car.php"
-        static let checkVin = "check_vin_code.php"
-        static let deleteTemp = "delete_tmp_record.php"
+    enum Start: String {
+        case checkUser = "check_user.php"
     }
     
-    struct Services {
-        static let getServicesTypes = "get_service_type.php"
-        static let getServices = "get_services.php"
-        static let getFreeTime = "get_free_time.php"
-        static let bookService = "book_service.php"
-        static let getTestDriveCars = "get_cars_ftd.php"
-        static let getTestDriveShowrooms = "get_showrooms_list_ftd.php"
-        static let getTestDriveServiceId = "get_service_id.php"
+    enum Registration: String {
+        case registerPhone = "register_phone.php"
+        case checkCode = "check_code.php"
+        case setProfile = "set_profile.php"
+        case getShowrooms = "get_showrooms.php"
+        case setShowroom = "set_showroom.php"
+        case checkCar = "check_car.php"
+        case checkVin = "check_vin_code.php"
+        case deleteTemp = "delete_tmp_record.php"
     }
     
-    struct Profile {
-        static let getCities = "get_cities.php"
-        static let addShowroom = "add_showroom.php"
-        static let editProfile = "edit_profile.php"
-        static let getManagers = "get_managers.php"
-        static let getBookings = "get_users_booking.php"
+    enum Services: String {
+        case getServicesTypes = "get_service_type.php"
+        case getServices = "get_services.php"
+        case getFreeTime = "get_free_time.php"
+        case bookService = "book_service.php"
+        case getTestDriveCars = "get_cars_ftd.php"
+        case getTestDriveShowrooms = "get_showrooms_list_ftd.php"
+        case getTestDriveServiceId = "get_service_id.php"
     }
     
-    struct Settings {
-        static let changePhone = "change_phone_number.php"
+    enum Profile: String {
+        case getCities = "get_cities.php"
+        case addShowroom = "add_showroom.php"
+        case editProfile = "edit_profile.php"
+        case getManagers = "get_managers.php"
+        case getBookings = "get_users_booking.php"
+    }
+    
+    enum Settings: String {
+        case changePhone = "change_phone_number.php"
     }
 }
 

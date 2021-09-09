@@ -81,7 +81,7 @@ extension DealerViewController {
         view.endEditing(true)
         let params = [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)),
                       URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)]
-        NetworkService.shared.makePostRequest(page: RequestPath.Registration.getShowrooms,
+        NetworkService.shared.makePostRequest(page: .regisrtation(.getShowrooms),
                                               params: params,
                                               completion: completionForSelectedCity)
     }
@@ -130,7 +130,7 @@ extension DealerViewController: SegueWithRequestController {
             nextButton.fadeOut()
             nextButtonIndicator.startAnimating()
             let userId = KeychainManager.get(UserId.self)!.id
-            let page = type == .register ? RequestPath.Registration.setShowroom : RequestPath.Profile.addShowroom
+            let page: RequestPath = type == .register ? .regisrtation(.setShowroom) : .profile(.addShowroom)
             let params = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
                           URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)]
             NetworkService.shared.makePostRequest(page: page, params: params,

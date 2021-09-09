@@ -34,13 +34,13 @@ protocol IServiceModule: AnyObject {
     var state: ModuleStates { get }
     var delegate: IServiceController? { get }
     func start(with params: [URLQueryItem])
-    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type)
+    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type)
     func buildQueryItems() -> [URLQueryItem]
     func configureViewText(with labelText: String)
 }
 
 extension IServiceModule {
-    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) { }
+    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) { }
     
     func start(with params: [URLQueryItem] = []) {
         start(with: [])

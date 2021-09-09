@@ -202,7 +202,7 @@ extension MyProfileViewController {
         }
         
         state = .isLoading
-        NetworkService.shared.makePostRequest(page: RequestPath.Profile.editProfile,
+        NetworkService.shared.makePostRequest(page: .profile(.editProfile),
                                               params: buildRequestParams(),
                                               completion: userDidUpdateCompletion)
     }

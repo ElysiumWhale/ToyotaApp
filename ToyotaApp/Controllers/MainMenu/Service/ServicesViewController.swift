@@ -35,7 +35,7 @@ class ServicesViewController: UIViewController, BackgroundText {
         serviceTypes.removeAll()
         servicesList.reloadData()
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+        NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
                                               params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
                                                                     value: selectedCar!.showroomId)],
                                               completion: carDidSelectCompletion)
@@ -52,7 +52,7 @@ class ServicesViewController: UIViewController, BackgroundText {
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             KeychainManager.set(Cars(cars))
-            NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+            NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
                                                   params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
                                                                         value: selectedCar!.showroomId)],
                                                   completion: carDidSelectCompletion)
@@ -137,7 +137,7 @@ extension ServicesViewController {
         carTextField.isEnabled = cars.count > 1
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.getServicesTypes,
+        NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
                                               params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
                                                                     value: selectedCar!.showroomId)],
                                               completion: carDidSelectCompletion)

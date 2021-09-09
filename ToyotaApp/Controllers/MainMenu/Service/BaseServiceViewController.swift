@@ -128,7 +128,7 @@ class BaseServiceController: UIViewController, IServiceController {
             params.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType!.id))
         }
         
-        NetworkService.shared.makePostRequest(page: RequestPath.Services.bookService, params: params, completion: completion)
+        NetworkService.shared.makePostRequest(page: .services(.bookService), params: params, completion: completion)
         
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
