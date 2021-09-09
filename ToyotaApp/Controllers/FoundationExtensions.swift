@@ -83,7 +83,7 @@ extension DateFormatter {
     }
 }
 
-// MARK: -
+// MARK: - Init with request key
 extension URLQueryItem {
     init(_ key: RequestKeys, _ value: String?) {
         self.init(name: key.rawValue, value: value)

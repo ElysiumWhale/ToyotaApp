@@ -183,6 +183,16 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		146590F926EAB5CD0056E37D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
+				149CC28626765AB700B5172A /* TimePickerModule.swift */,
+				14025193267AAB89006CF4E2 /* MapModule.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		1495723B25B9FEAB0031A5AA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,9 +339,9 @@
 			children = (
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
-				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 				14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */,
+				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -340,12 +350,10 @@
 			isa = PBXGroup;
 			children = (
 				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
-				1419C7362683E0D7001F7EF3 /* Custom */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
-				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
-				149CC28626765AB700B5172A /* TimePickerModule.swift */,
-				14025193267AAB89006CF4E2 /* MapModule.swift */,
+				1419C7362683E0D7001F7EF3 /* Custom */,
+				146590F926EAB5CD0056E37D /* Modules */,
 			);
 			path = Service;
 			sourceTree = "<group>";

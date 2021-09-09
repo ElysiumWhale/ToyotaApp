@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 private struct FreeTime {
@@ -123,7 +122,7 @@ class TimePickerModule: NSObject, IServiceModule {
                                               params: queryParams, completion: completion)
     }
 
-    func customStart<TResponse: IServiceResponse>(page: String, with params: [URLQueryItem], response type: TResponse.Type) {
+    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
         state = .idle
         NetworkService.shared.makePostRequest(page: .services(.getFreeTime),
                                               params: params, completion: completion)
