@@ -82,3 +82,10 @@ extension DateFormatter {
         return formatter
     }
 }
+
+// MARK: -
+extension URLQueryItem {
+    init(_ key: RequestKeys, _ value: String?) {
+        self.init(name: key.rawValue, value: value)
+    }
+}

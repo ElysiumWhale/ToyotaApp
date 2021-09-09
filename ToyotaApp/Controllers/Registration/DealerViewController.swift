@@ -79,8 +79,8 @@ extension DealerViewController {
         cityTextField?.text = cities[row].name
         cityTextFieldIndicator.startAnimating()
         view.endEditing(true)
-        let params = [URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)),
-                      URLQueryItem(name: RequestKeys.CarInfo.cityId, value: selectedCity!.id)]
+        let params = [URLQueryItem(.auth(.brandId), Brand.Toyota),
+                      URLQueryItem(.carInfo(.cityId), selectedCity!.id)]
         NetworkService.shared.makePostRequest(page: .regisrtation(.getShowrooms),
                                               params: params,
                                               completion: completionForSelectedCity)
@@ -131,8 +131,8 @@ extension DealerViewController: SegueWithRequestController {
             nextButtonIndicator.startAnimating()
             let userId = KeychainManager.get(UserId.self)!.id
             let page: RequestPath = type == .register ? .regisrtation(.setShowroom) : .profile(.addShowroom)
-            let params = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-                          URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom.id)]
+            let params = [URLQueryItem(.auth(.userId), userId),
+                          URLQueryItem(.carInfo(.showroomId), showroom.id)]
             NetworkService.shared.makePostRequest(page: page, params: params,
                                                   completion: completionForSegue)
         }

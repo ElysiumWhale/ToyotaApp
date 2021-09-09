@@ -166,13 +166,13 @@ extension PersonalInfoViewController: SegueWithRequestController {
     private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
         var params = [URLQueryItem]()
         let userId = KeychainManager.get(UserId.self)!.id
-        params.append(URLQueryItem(name: RequestKeys.Auth.brandId, value: String(Brand.Toyota)))
-        params.append(URLQueryItem(name: RequestKeys.Auth.userId, value: userId))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: profile.firstName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: profile.secondName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: profile.lastName))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: profile.email))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
+        params.append(URLQueryItem(.auth(.brandId), Brand.Toyota))
+        params.append(URLQueryItem(.auth(.userId), userId))
+        params.append(URLQueryItem(.personalInfo(.firstName), profile.firstName))
+        params.append(URLQueryItem(.personalInfo(.secondName), profile.secondName))
+        params.append(URLQueryItem(.personalInfo(.lastName), profile.lastName))
+        params.append(URLQueryItem(.personalInfo(.email), profile.email))
+        params.append(URLQueryItem(.personalInfo(.birthday), date))
         return params
     }
 }

@@ -115,8 +115,8 @@ class BaseServiceController: UIViewController, IServiceController {
     func bookService() {
         guard let userId = user?.getId, let showroomId = user?.getSelectedShowroom?.id else { return }
         
-        var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-                                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
+        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
+                                      URLQueryItem(.carInfo(.showroomId), showroomId)]
         
         for module in modules {
             let items = module.buildQueryItems()
@@ -124,8 +124,8 @@ class BaseServiceController: UIViewController, IServiceController {
             params.append(contentsOf: items)
         }
         
-        if params.first(where: { $0.name == RequestKeys.Services.serviceId }) == nil {
-            params.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType!.id))
+        if params.first(where: { $0.name == RequestKeys.Services.serviceId.rawValue }) == nil {
+            params.append(URLQueryItem(.services(.serviceId), serviceType!.id))
         }
         
         NetworkService.shared.makePostRequest(page: .services(.bookService), params: params, completion: completion)

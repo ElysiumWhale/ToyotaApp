@@ -13,10 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         NetworkService.shared.makePostRequest(page: .start(.checkUser), params:
-        [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-         URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota),
-         URLQueryItem(name: RequestKeys.Auth.secretKey, value: secretKey)],
-        completion: resolveNavigation)
+                                                [URLQueryItem(.auth(.userId), userId),
+                                                 URLQueryItem(.auth(.brandId), Brand.Toyota),
+                                                 URLQueryItem(.auth(.secretKey), secretKey)],
+                                              completion: resolveNavigation)
     }
 }
 

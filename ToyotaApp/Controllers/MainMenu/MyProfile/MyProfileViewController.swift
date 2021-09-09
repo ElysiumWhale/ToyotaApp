@@ -208,12 +208,12 @@ extension MyProfileViewController {
     }
 
     private func buildRequestParams() -> [URLQueryItem] {
-        var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId)]
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.firstName, value: firstNameTextField.text))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.secondName, value: secondNameTextField.text))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.lastName, value: lastNameTextField.text))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.email, value: emailTextField.text))
-        params.append(URLQueryItem(name: RequestKeys.PersonalInfo.birthday, value: date))
+        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), user.getId)]
+        params.append(URLQueryItem(.personalInfo(.firstName), firstNameTextField.text))
+        params.append(URLQueryItem(.personalInfo(.secondName), secondNameTextField.text))
+        params.append(URLQueryItem(.personalInfo(.lastName), lastNameTextField.text))
+        params.append(URLQueryItem(.personalInfo(.email), emailTextField.text))
+        params.append(URLQueryItem(.personalInfo(.birthday), date))
         return params
     }
 

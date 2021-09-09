@@ -47,7 +47,7 @@ extension SmsCodeViewController {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
-            NetworkService.shared.makeSimpleRequest(page: .regisrtation(.deleteTemp), params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber)])
+            NetworkService.shared.makeSimpleRequest(page: .regisrtation(.deleteTemp), params: [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber)])
         }
     }
 }
@@ -76,10 +76,10 @@ extension SmsCodeViewController {
     }
     
     private func buildRequestParams(authType: AuthType) -> [URLQueryItem] {
-        var params = [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber, value: phoneNumber),
-                      URLQueryItem(name: RequestKeys.Auth.code, value: smsCodeTextField!.text)]
-        params.append(authType == .register ? URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)
-                                            : URLQueryItem(name: RequestKeys.Auth.userId, value: KeychainManager.get(UserId.self)!.id))
+        var params = [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber),
+                      URLQueryItem(.auth(.code), smsCodeTextField!.text)]
+        params.append(authType == .register ? URLQueryItem(.auth(.brandId), Brand.Toyota)
+                                            : URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)!.id))
         return params
     }
     

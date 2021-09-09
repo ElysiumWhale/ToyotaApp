@@ -70,8 +70,7 @@ extension AuthViewController: SegueWithRequestController {
             KeychainManager.set(Phone(phone))
         }
         NetworkService.shared.makePostRequest(page: .regisrtation(.registerPhone),
-                                              params: [URLQueryItem(name: RequestKeys.PersonalInfo.phoneNumber,
-                                                                    value: phone)],
+                                              params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
                                               completion: completionForSegue)
     }
 

@@ -36,8 +36,8 @@ class ServicesViewController: UIViewController, BackgroundText {
         servicesList.reloadData()
         refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                              params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
-                                                                    value: selectedCar!.showroomId)],
+                                              params: [URLQueryItem(.carInfo(.showroomId),
+                                                                    selectedCar!.showroomId)],
                                               completion: carDidSelectCompletion)
     }
 
@@ -53,8 +53,8 @@ class ServicesViewController: UIViewController, BackgroundText {
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             KeychainManager.set(Cars(cars))
             NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                                  params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
-                                                                        value: selectedCar!.showroomId)],
+                                                  params: [URLQueryItem(.carInfo(.showroomId),
+                                                                        selectedCar!.showroomId)],
                                                   completion: carDidSelectCompletion)
         }
     }
@@ -138,8 +138,8 @@ extension ServicesViewController {
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
         refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                              params: [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
-                                                                    value: selectedCar!.showroomId)],
+                                              params: [URLQueryItem(.carInfo(.showroomId),
+                                                                    selectedCar!.showroomId)],
                                               completion: carDidSelectCompletion)
     }
 

@@ -114,10 +114,10 @@ class TimePickerModule: NSObject, IServiceModule {
             return
         }
         
-        var queryParams = [URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId)]
+        var queryParams = [URLQueryItem(.carInfo(.showroomId), showroomId)]
         
         !params.isEmpty ? queryParams.append(contentsOf: params)
-                        : queryParams.append(URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType.id))
+            : queryParams.append(URLQueryItem(.services(.serviceId), serviceType.id))
         
         NetworkService.shared.makePostRequest(page: .services(.getFreeTime),
                                               params: queryParams, completion: completion)
@@ -149,8 +149,8 @@ class TimePickerModule: NSObject, IServiceModule {
         guard let (date, time) = selectedDate, let value = TimeMap.serverMap[time] else {
             return []
         }
-        return [URLQueryItem(name: RequestKeys.Services.dateBooking, value: date),
-                URLQueryItem(name: RequestKeys.Services.startBooking, value: "\(value)")]
+        return [URLQueryItem(.services(.dateBooking), date),
+                URLQueryItem(.services(.startBooking), "\(value)")]
     }
 
     private func prepareTime(from timeDict: [String: [Int]]?) {

@@ -25,7 +25,7 @@ class BookingsViewController: UIViewController, BackgroundText {
     @objc private func refresh(_ sender: Any?) {
         refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: .profile(.getBookings),
-                                              params: [URLQueryItem(name: RequestKeys.Auth.userId, value: KeychainManager.get(UserId.self)?.id)],
+                                              params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
                                               completion: bookingsDidDownloadCompletion)
     }
     

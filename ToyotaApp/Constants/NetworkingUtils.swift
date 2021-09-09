@@ -6,8 +6,8 @@ struct Brand {
 }
 
 enum RequestType: String {
-    case POST = "POST"
-    case GET = "GET"
+    case POST
+    case GET
 }
 
 enum RequestPath {
@@ -65,38 +65,52 @@ enum RequestPath {
     }
 }
 
-struct RequestKeys {
-    struct Auth {
-        static let userId = "user_id"
-        static let secretKey = "secret_key"
-        static let code = "code"
-        static let brandId = "brand_id"
+enum RequestKeys {
+    case auth(_ key: Auth)
+    case personalInfo(_ key: PersonalInfo)
+    case carInfo(_ key: CarInfo)
+    case services(_ ket: Services)
+    
+    var rawValue: String {
+        switch self {
+            case .auth(let key): return key.rawValue
+            case .personalInfo(let key): return key.rawValue
+            case .carInfo(let key): return key.rawValue
+            case .services(let key): return key.rawValue
+        }
     }
     
-    struct PersonalInfo {
-        static let phoneNumber = "phone_number"
-        static let firstName = "first_name"
-        static let secondName = "second_name"
-        static let lastName = "last_name"
-        static let birthday = "birthday"
-        static let email = "email"
+    enum Auth: String {
+        case userId = "user_id"
+        case secretKey = "secret_key"
+        case code = "code"
+        case brandId = "brand_id"
     }
     
-    struct CarInfo {
-        static let cityId = "city_id"
-        static let showroomId = "showroom_id"
-        static let carId = "car_id"
-        static let skipStep = "skip_step"
-        static let vinCode = "vin_code"
+    enum PersonalInfo: String {
+        case phoneNumber = "phone_number"
+        case firstName = "first_name"
+        case secondName = "second_name"
+        case lastName = "last_name"
+        case birthday = "birthday"
+        case email = "email"
     }
     
-    struct Services {
-        static let serviceTypeId = "service_type_id"
-        static let serviceId = "service_id"
-        static let dateBooking = "date_booking"
-        static let startBooking = "start_booking"
-        static let longitude = "longitude"
-        static let latitude = "latitude"
+    enum CarInfo: String {
+        case cityId = "city_id"
+        case showroomId = "showroom_id"
+        case carId = "car_id"
+        case skipStep = "skip_step"
+        case vinCode = "vin_code"
+    }
+    
+    enum Services: String {
+        case serviceTypeId = "service_type_id"
+        case serviceId = "service_id"
+        case dateBooking = "date_booking"
+        case startBooking = "start_booking"
+        case longitude = "longitude"
+        case latitude = "latitude"
     }
 }
 

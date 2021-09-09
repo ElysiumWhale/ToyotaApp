@@ -11,8 +11,7 @@ class TestDriveViewController: BaseServiceController {
         view.addSubview(loadingView)
         loadingView.fadeIn()
         modules.first?.customStart(page: .profile(.getCities),
-                                   with: [URLQueryItem(name: RequestKeys.Auth.brandId,
-                                                       value: Brand.Toyota)],
+                                   with: [URLQueryItem(.auth(.brandId), Brand.Toyota)],
                                    response: CitiesDidGetResponse.self)
     }
     
@@ -69,22 +68,17 @@ class TestDriveViewController: BaseServiceController {
     private func buildParams(for index: Int, value: String) -> [URLQueryItem] {
         switch index {
             case 0:
-                return [URLQueryItem(name: RequestKeys.CarInfo.cityId,
-                                     value: value),
-                        URLQueryItem(name: RequestKeys.Auth.brandId,
-                                     value: Brand.Toyota)]
+                return [URLQueryItem(.carInfo(.cityId), value),
+                        URLQueryItem(.auth(.brandId), Brand.Toyota)]
             case 1:
-                return [URLQueryItem(name: RequestKeys.Auth.brandId,
-                                     value: Brand.Toyota),
-                        URLQueryItem(name: RequestKeys.CarInfo.cityId,
-                                     value: modules[0].state.getService()?.id),
-                        URLQueryItem(name: RequestKeys.Services.serviceId,
-                                     value: value)]
+                return [URLQueryItem(.auth(.brandId), Brand.Toyota),
+                        URLQueryItem(.carInfo(.cityId),
+                                     modules[0].state.getService()?.id),
+                        URLQueryItem(.services(.serviceId), value)]
             case 2:
-                return [URLQueryItem(name: RequestKeys.CarInfo.showroomId,
-                                     value: value),
-                        URLQueryItem(name: RequestKeys.Services.serviceId,
-                                     value: modules[1].state.getService()?.id)]
+                return [URLQueryItem(.carInfo(.showroomId), value),
+                        URLQueryItem(.services(.serviceId),
+                                     modules[1].state.getService()?.id)]
             default: return []
         }
     }
@@ -108,9 +102,9 @@ class TestDriveViewController: BaseServiceController {
     override func bookService() {
         guard let userId = user?.getId, let showroomId = modules[2].state.getService()?.id else { return }
         
-        var params: [URLQueryItem] = [URLQueryItem(name: RequestKeys.Auth.userId, value: userId),
-                                      URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroomId),
-                                      URLQueryItem(name: RequestKeys.Services.serviceId, value: serviceType?.id)]
+        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
+                                      URLQueryItem(.carInfo(.showroomId), showroomId),
+                                      URLQueryItem(.services(.serviceId), serviceType?.id)]
         
         params.append(contentsOf: modules[3].buildQueryItems())
         

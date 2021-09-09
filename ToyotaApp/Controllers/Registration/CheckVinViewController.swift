@@ -73,11 +73,11 @@ extension CheckVinViewController: SegueWithRequestController {
         
         let userId = KeychainManager.get(UserId.self)!.id
         NetworkService.shared.makePostRequest(page: .regisrtation(.checkVin), params:
-                    [URLQueryItem(name: RequestKeys.CarInfo.skipStep, value: skip.rawValue),
-                     URLQueryItem(name: RequestKeys.CarInfo.showroomId, value: showroom!.id),
-                     URLQueryItem(name: RequestKeys.CarInfo.vinCode, value: vin),
-                     URLQueryItem(name: RequestKeys.Auth.userId, value: userId)],
-                    completion: completionForSegue)
+                                                [URLQueryItem(.carInfo(.skipStep), skip.rawValue),
+                                                 URLQueryItem(.carInfo(.showroomId), showroom!.id),
+                                                 URLQueryItem(.carInfo(.vinCode), vin),
+                                                 URLQueryItem(.auth(.userId), userId)],
+                                              completion: completionForSegue)
     }
 
     func completionForSegue(for response: Result<CarDidCheckResponse, ErrorResponse>) {

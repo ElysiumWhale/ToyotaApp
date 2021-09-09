@@ -125,10 +125,8 @@ class MapModule: NSObject, IServiceModule {
             return []
         }
         
-        return [URLQueryItem(name: RequestKeys.Services.latitude,
-                             value: latitude.description),
-                URLQueryItem(name: RequestKeys.Services.longitude,
-                             value: longitude.description)]
+        return [URLQueryItem(.services(.latitude), latitude.description),
+                URLQueryItem(.services(.longitude), longitude.description)]
     }
     
     func configureViewText(with labelText: String) {

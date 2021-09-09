@@ -11,8 +11,8 @@ class MyManagerViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let params = [URLQueryItem(name: RequestKeys.Auth.userId, value: user.getId),
-                      URLQueryItem(name: RequestKeys.Auth.brandId, value: Brand.Toyota)]
+        let params = [URLQueryItem(.auth(.userId), user.getId),
+                      URLQueryItem(.auth(.brandId), Brand.Toyota)]
         NetworkService.shared.makePostRequest(page: .profile(.getManagers),
                                               params: params, completion: completion)
         
