@@ -21,16 +21,3 @@ class BookingCell: UITableViewCell {
         }
     }
 }
-
-// MARK: - Mock
-extension BookingCell {
-    func configureAsMock() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM.dd.yyyy"
-        let dateString = dateFormatter.string(from: Date())
-        dateLabel.text = dateString
-        carLabel.text = "RAV4"
-        contentLabel.text = "Произведен успешный вызов эвакуатора"
-        titleLabel.text = "Оказание услуги"
-    }
-}

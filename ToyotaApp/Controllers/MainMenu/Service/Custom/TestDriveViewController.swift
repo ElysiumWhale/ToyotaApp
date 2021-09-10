@@ -100,11 +100,13 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let userId = user?.getId, let showroomId = modules[2].state.getService()?.id else { return }
+        guard let userId = user?.getId,
+              let showroomId = modules[2].state.getService()?.id,
+              let carId = modules[1].state.getService()?.id else { return }
         
         var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
                                       URLQueryItem(.carInfo(.showroomId), showroomId),
-                                      URLQueryItem(.services(.serviceId), serviceType?.id)]
+                                      URLQueryItem(.services(.serviceId), carId)]
         
         params.append(contentsOf: modules[3].buildQueryItems())
         

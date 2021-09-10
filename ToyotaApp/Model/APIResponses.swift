@@ -275,6 +275,7 @@ public struct CarsDidGetResponse: IServiceResponse {
 public struct BookingsResponse: Codable {
     let result: String
     let booking: [Booking]
+    let count: Int
 }
 
 public struct Booking: Codable {
