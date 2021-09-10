@@ -76,51 +76,14 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 
     func moduleDidUpdate(_ module: IServiceModule) {
-        switch module.state {
-            case .idle: return
-            case .didDownload:
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingView.fadeOut {
-                        self?.loadingView.removeFromSuperview()
-                    }
-                }
-            case .error(let error):
-                PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue)) { [weak self] in
-                    self?.loadingView.fadeOut {
-                        self?.loadingView.removeFromSuperview()
-                    }
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            case .block(let message):
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingView.fadeOut {
-                        self?.loadingView.removeFromSuperview()
-                    }
-                    if self?.modules.last === module {
-                        self?.bookButton.fadeIn()
-                    }
-                    self?.bookButton.isEnabled = false
-                }
-                PopUp.display(.warning(description: message ?? AppErrors.requestError.rawValue))
-            case .didChose:
-                guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let controller = self else { return }
-                    if index + 1 == controller.modules.count {
-                        controller.loadingView.fadeOut {
-                            controller.loadingView.removeFromSuperview()
-                        }
-                        if !controller.stackView.arrangedSubviews.contains(controller.bookButton) {
-                            controller.stackView.addArrangedSubview(controller.bookButton)
-                        }
-                        controller.bookButton.fadeIn()
-                        return
-                    }
-                    controller.view.addSubview(controller.loadingView)
-                    controller.loadingView.fadeIn()
-                    controller.modules[index + 1].start(with: module.buildQueryItems())
-                    controller.stackView.addArrangedSubview(controller.modules[index+1].view ?? UIView())
-                }
+        DispatchQueue.main.async { [weak self] in
+            switch module.state {
+                case .idle: return
+                case .didDownload: self?.endLoading()
+                case .error(let error): self?.didRaiseError(module, error)
+                case .block(let message): self?.didBlock(module, message)
+                case .didChose: self?.didChose(module)
+            }
         }
     }
 
@@ -157,7 +120,57 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 }
 
-// MARK: Constraints setup
+// MARK: - Module update actions
+extension BaseServiceController {
+    private func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
+        PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
+        endLoading()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func didBlock(_ module: IServiceModule, _ message: String?) {
+        endLoading()
+        if modules.last === module {
+            bookButton.fadeIn()
+        }
+        bookButton.isEnabled = false
+        
+        PopUp.display(.warning(description: message ?? AppErrors.requestError.rawValue))
+    }
+    
+    private func didChose(_ module: IServiceModule) {
+        guard let index = modules.firstIndex(where: { $0 === module }) else { return }
+        
+        if index + 1 == modules.count {
+            endLoading()
+            if !stackView.arrangedSubviews.contains(bookButton) {
+                stackView.addArrangedSubview(bookButton)
+            }
+            bookButton.fadeIn()
+            return
+        }
+        
+        startLoading()
+        modules[index + 1].start(with: module.buildQueryItems())
+        stackView.addArrangedSubview(modules[index+1].view ?? UIView())
+    }
+}
+
+// MARK: - Loading view utils
+extension BaseServiceController {
+    func startLoading() {
+        view.addSubview(loadingView)
+        loadingView.fadeIn()
+    }
+    
+    func endLoading() {
+        loadingView.fadeOut { [self] in
+            loadingView.removeFromSuperview()
+        }
+    }
+}
+
+// MARK: - Constraints setup
 extension BaseServiceController {
     private func setupScrollViewLayout() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
