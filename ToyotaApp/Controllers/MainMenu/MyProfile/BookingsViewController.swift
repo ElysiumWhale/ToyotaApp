@@ -43,7 +43,7 @@ class BookingsViewController: UIViewController, BackgroundText {
                                         longitude: "", status: "0", carName: "Land Cruiser 300",
                                         licensePlate: "А344РС163RUS", showroomName: "Тойота Самара Юг",
                                         serviceName: "Плановый технический осмотр", postName: "Samara Gorod"))
-                bookings.sort(by: { serverFormatter.date(from: $0.date)! > serverFormatter.date(from: $1.date)! })
+                bookings.sort(by: { serverFormatter.date(from: $0.date) ?? Date() > serverFormatter.date(from: $1.date) ?? Date() })
                 DispatchQueue.main.async { [weak self] in
                     guard let controller = self else { return }
                     controller.endRefreshing()
