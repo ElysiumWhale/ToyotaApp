@@ -96,10 +96,9 @@ class TimePickerModule: NSObject, IServiceModule {
         }
     }
 
-    private(set) weak var delegate: IServiceController?
+    internal weak var delegate: IServiceController?
 
-    init(with type: ServiceType, for controller: IServiceController) {
-        delegate = controller
+    init(with type: ServiceType) {
         serviceType = type
     }
 

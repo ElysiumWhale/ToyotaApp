@@ -32,7 +32,7 @@ protocol IServiceModule: AnyObject {
     var view: UIView? { get }
     var serviceType: ServiceType { get }
     var state: ModuleStates { get }
-    var delegate: IServiceController? { get }
+    var delegate: IServiceController? { get set }
     func start(with params: [URLQueryItem])
     func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type)
     func buildQueryItems() -> [URLQueryItem]
@@ -53,7 +53,6 @@ protocol IServiceController: AnyObject {
     var modules: [IServiceModule] { get }
     var user: UserProxy? { get }
     func moduleDidUpdate(_ module: IServiceModule)
-    func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy)
 }
 
 protocol IService: Codable {

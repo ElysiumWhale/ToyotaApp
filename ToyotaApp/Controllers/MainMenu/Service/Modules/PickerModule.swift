@@ -78,11 +78,10 @@ class PickerModule: NSObject, IServiceModule {
     }
     private var array: [IService]?
     
-    private(set) weak var delegate: IServiceController?
+    internal weak var delegate: IServiceController?
     
-    init(with type: ServiceType, for controller: IServiceController) {
+    init(with type: ServiceType) {
         serviceType = type
-        delegate = controller
     }
     
     func configureViewText(with labelText: String) {

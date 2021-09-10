@@ -38,6 +38,17 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
+    init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
+        super.init(nibName: nil, bundle: .main)
+        self.modules = modules
+        self.user = user
+        self.serviceType = service
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
         navigationItem.backButtonTitle = "Услуги"

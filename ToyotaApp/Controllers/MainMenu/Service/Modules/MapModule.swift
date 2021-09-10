@@ -82,11 +82,10 @@ class MapModule: NSObject, IServiceModule {
         }
     }
     
-    private(set) weak var delegate: IServiceController?
+    internal weak var delegate: IServiceController?
     
-    init(with type: ServiceType, for controller: IServiceController) {
+    init(with type: ServiceType) {
         serviceType = type
-        delegate = controller
     }
     
     func start(with params: [URLQueryItem]) {
