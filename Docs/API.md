@@ -7,6 +7,10 @@
     - [Services controllers types](#services-controllers-types)
   - [Testing](#testing)
     - [Cars VINs](#cars-vins)
+  - [Flows](#flows)
+    - [Adding new showroom](#adding-new-showroom)
+    - [Change phone number](#change-phone-number)
+    - [Test Drive booking](#test-drive-booking)
   - [Requests](#requests)
     - [Сheck user registration at application launch](#сheck-user-registration-at-application-launch)
       - [**Success response**](#success-response)
@@ -58,7 +62,6 @@
         - [**Variant 2:** Time limits](#variant-2-time-limits)
       - [**Failure response**](#failure-response-10)
         - [**List of errors**](#list-of-errors-3)
-    - [Adding new showroom chain](#adding-new-showroom-chain)
     - [Get cities](#get-cities)
       - [**Success response**](#success-response-11)
       - [**Failure response**](#failure-response-11)
@@ -68,11 +71,9 @@
     - [Edit profile data](#edit-profile-data)
       - [**Success response**](#success-response-13)
       - [**Failure response**](#failure-response-13)
-    - [Change phone number chain](#change-phone-number-chain)
     - [Change phone](#change-phone)
       - [**Success response**](#success-response-14)
       - [**Failure response**](#failure-response-14)
-    - [Test Drive booking chain](#test-drive-booking-chain)
     - [Get cars for test drive](#get-cars-for-test-drive)
       - [**Success response**](#success-response-15)
       - [**Failure response**](#failure-response-15)
@@ -139,6 +140,26 @@ SMS code for registration: **1234**
   1. uMGT0r6tF6zWZmBzH
   2. IuQ381fbQbrECV9eu
   3. K5MHrhBR6t5wTD5gm
+
+---
+
+## Flows
+
+### Adding new showroom
+
+**Request chain:** [Get cities](#get-cities) —> [Get showrooms](#city-choosing) —> [Add showroom](#add-new-showroom)
+
+---
+
+### Change phone number
+
+**Request chain:** [Register phone](#phone-number-registration) —> [Change phone](#change-phone)
+
+---
+
+### Test Drive booking
+
+**Request chain:** [Get cities](#get-cities) —> [Get cars fot test drive](#get-cars-for-test-drive) —> [Get showrooms for test drive](#get-showrooms-for-test-drive) —> [Get free time](#getting-free-time) —> [Book service](#book-service) (`service_id` - chosen car)
 
 ---
 
@@ -734,12 +755,6 @@ plus addiotional field:
 
 ---
 
-### Adding new showroom chain
-
-**Request chain:** [Get cities](#get-cities) --> [Get showrooms](#city-choosing) --> [Add showroom](#add-new-showroom)
-
----
-
 ### Get cities
 
 **Path:** `get_cities.php`
@@ -849,12 +864,6 @@ plus addiotional field:
 
 ---
 
-### Change phone number chain
-
-**Request chain:** [Register phone](#phone-number-registration) --> [Change phone](#change-phone)
-
----
-
 ### Change phone
 
 **Path:** `change_phone_number.php`
@@ -883,12 +892,6 @@ plus addiotional field:
 ```
 
 [**To table of contents**](#toyota-api)
-
----
-
-### Test Drive booking chain
-
-**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get free time](#getting-free-time) --> [Book service](#book-service) (`service_id` - chosen car)
 
 ---
 
