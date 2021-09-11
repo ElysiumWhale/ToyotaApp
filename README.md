@@ -31,7 +31,7 @@ VIN codes for cars in [API.md](Docs/API.md) (Testing section)
   - adding new cars
 - Services:
   - choosing car for downloading actual services (if user has more than 1 car)
-  - ~~booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)~~
+  - booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)
   - working with apple maps in HelpOnRoadVC (***Помощь на дороге***)
   - choosing service and date with time in ServiceMaintenanceViewController (***Сервисное обслуживание***)
 
@@ -40,15 +40,11 @@ VIN codes for cars in [API.md](Docs/API.md) (Testing section)
 List of mocks:
 
 - NewsViewController (represents possible view of news cells)
-- HistoryViewController (represents possible view of news cells)
-- Service booking is not ready on server side...
-- TestDriveVC
-- RepairingVC
 
 ## Future release
 
-- Dynamic adding of servcies categories created by admin of client module (several types of VC with inheritance for code reusabitiy (types: 1,2,3 choices, map, map with time)
-- Booking history
+- ~~Dynamic adding of servcies categories created by admin of client module (several types of VC with inheritance for code reusabitiy (types: 1,2,3 choices, map, map with time)~~
+- ~~Booking history~~
 - News from server created by admin of client module
 - Some UI adaptation for 4.7' iPhone generation
 - Delete cars
