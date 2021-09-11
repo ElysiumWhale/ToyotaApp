@@ -80,19 +80,17 @@
     - [Get showrooms for test drive](#get-showrooms-for-test-drive)
       - [**Success response**](#success-response-16)
       - [**Failure response**](#failure-response-16)
-    - [Get service id](#get-service-id)
+    - [Book service](#book-service)
       - [**Success response**](#success-response-17)
       - [**Failure response**](#failure-response-17)
-    - [Book service](#book-service)
+    - [Get managers](#get-managers)
       - [**Success response**](#success-response-18)
       - [**Failure response**](#failure-response-18)
-    - [Get managers](#get-managers)
-      - [**Success response**](#success-response-19)
-      - [**Failure response**](#failure-response-19)
   - [Deprecated](#deprecated)
     - [Showroom choosing](#showroom-choosing)
-      - [**Success response**](#success-response-20)
-      - [**Failure response**](#failure-response-20)
+      - [**Success response**](#success-response-19)
+      - [**Failure response**](#failure-response-19)
+  - [Palette](#palette)
 
 </details>
 
@@ -1102,3 +1100,26 @@ plus addiotional field:
 [**To table of contents**](#toyota-api)
 
 ---
+
+## Palette
+
+```json
+{
+  "error_code":"100",
+  "error_message":"Message"
+}
+```
+
+```json
+{
+  "result":"ok"
+}
+```
+
+| Code | Message |
+|------|---------|
+| 100 |  |
+
+| Possible messages |
+|------------------- |
+| Message |
