@@ -888,7 +888,7 @@ plus addiotional field:
 
 ### Test Drive booking chain
 
-**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get free time](#getting-free-time) --> [Book service](#book-service)
+**Request chain:** [Get cities](#get-cities) --> [Get cars fot test drive](#get-cars-for-test-drive) --> [Get showrooms for test drive](#get-showrooms-for-test-drive) --> [Get free time](#getting-free-time) --> [Book service](#book-service) (`service_id` - chosen car)
 
 ---
 
@@ -981,7 +981,7 @@ plus addiotional field:
 
 - `user_id` - from memory
 - `showroom_id` - selected by user
-- `service_id` - selected by user
+- `service_id` - selected by user (can vary for custom services -> see chains)
 - `date_booking` - selected by user (optional)
 - `start_booking` - selected by user (optional)
 - `longitude` - got from a map (optional)
