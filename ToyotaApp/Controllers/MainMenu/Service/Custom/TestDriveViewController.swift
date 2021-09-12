@@ -16,52 +16,37 @@ class TestDriveViewController: BaseServiceController {
     }
     
     override func moduleDidUpdate(_ module: IServiceModule) {
-        switch module.state {
-            case .idle: return
-            case .didDownload:
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingView.fadeOut {
-                        self?.loadingView.removeFromSuperview()
-                    }
-                }
-            case .error(let error):
-                PopUp.displayMessage(with: CommonText.error,
-                                     description: error.message ?? AppErrors.requestError.rawValue,
-                                     buttonText: CommonText.ok) { [weak self] in
-                    self?.loadingView.fadeOut {
-                        self?.loadingView.removeFromSuperview()
-                    }
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            case .block:
-                break
-            case .didChose(let service):
-                guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-                switch index {
-                    case 0:
-                        fadeOutAfter(module: index)
-                        modules[1].customStart(page: .services(.getTestDriveCars),
-                                               with: buildParams(for: index, value: service.id),
-                                               response: CarsDidGetResponse.self)
-                    case 1:
-                        fadeOutAfter(module: index)
-                        modules[2].customStart(page: .services(.getTestDriveShowrooms),
-                                               with: buildParams(for: index, value: service.id),
-                                               response: ShoroomsDidGetResponce.self)
-                    case 2:
-                        fadeOutAfter(module: index)
-                        modules[3].customStart(page: .services(.getFreeTime),
-                                               with: buildParams(for: index, value: service.id),
-                                               response: CarsDidGetResponse.self)
-                    case 3:
-                        DispatchQueue.main.async { [weak self] in
-                            self?.loadingView.fadeOut {
-                                self?.loadingView.removeFromSuperview()
-                            }
-                            self?.bookButton.fadeIn()
-                        }
-                    default: return
-                }
+        DispatchQueue.main.async { [weak self] in
+            switch module.state {
+                case .idle: return
+                case .didDownload: self?.endLoading()
+                case .error(let error): self?.didRaiseError(module, error)
+                case .block: break
+                case .didChose(let service): self?.didChose(service, in: module)
+            }
+        }
+    }
+    
+    override func didChose(_ service: IService, in module: IServiceModule) {
+        guard let index = modules.firstIndex(where: { $0 === module }) else { return }
+        index < 3 ? fadeOutAfter(module: index) : endLoading()
+        let params = buildParams(for: index, value: service.id)
+        switch index {
+            case 0:
+                modules[1].customStart(page: .services(.getTestDriveCars),
+                                       with: params,
+                                       response: CarsDidGetResponse.self)
+            case 1:
+                modules[2].customStart(page: .services(.getTestDriveShowrooms),
+                                       with: params,
+                                       response: ShoroomsDidGetResponce.self)
+            case 2:
+                modules[3].customStart(page: .services(.getFreeTime),
+                                       with: params,
+                                       response: CarsDidGetResponse.self)
+            case 3:
+                bookButton.fadeIn()
+            default: return
         }
     }
     
@@ -86,9 +71,7 @@ class TestDriveViewController: BaseServiceController {
     private func fadeOutAfter(module index: Int) {
         DispatchQueue.main.async { [weak self] in
             guard let controller = self else { return }
-            
-            controller.view.addSubview(controller.loadingView)
-            controller.loadingView.fadeIn()
+            controller.startLoading()
             
             if index >= 2 { return }
             

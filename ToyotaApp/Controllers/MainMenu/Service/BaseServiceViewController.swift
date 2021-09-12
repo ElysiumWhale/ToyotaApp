@@ -82,7 +82,7 @@ class BaseServiceController: UIViewController, IServiceController {
                 case .didDownload: self?.endLoading()
                 case .error(let error): self?.didRaiseError(module, error)
                 case .block(let message): self?.didBlock(module, message)
-                case .didChose: self?.didChose(module)
+                case .didChose(let service): self?.didChose(service, in: module)
             }
         }
     }
@@ -118,17 +118,14 @@ class BaseServiceController: UIViewController, IServiceController {
             }
         }
     }
-}
 
-// MARK: - Module update actions
-extension BaseServiceController {
-    private func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
+    func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
         PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
         endLoading()
         navigationController?.popViewController(animated: true)
     }
-    
-    private func didBlock(_ module: IServiceModule, _ message: String?) {
+
+    func didBlock(_ module: IServiceModule, _ message: String?) {
         endLoading()
         if modules.last === module {
             bookButton.fadeIn()
@@ -137,8 +134,8 @@ extension BaseServiceController {
         
         PopUp.display(.warning(description: message ?? AppErrors.requestError.rawValue))
     }
-    
-    private func didChose(_ module: IServiceModule) {
+
+    func didChose(_ service: IService, in module: IServiceModule) {
         guard let index = modules.firstIndex(where: { $0 === module }) else { return }
         
         if index + 1 == modules.count {
