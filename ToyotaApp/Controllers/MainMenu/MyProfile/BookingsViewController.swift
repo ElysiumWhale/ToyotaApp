@@ -22,7 +22,7 @@ class BookingsViewController: UIViewController, BackgroundText {
         dismiss(animated: true)
     }
     
-    @objc private func refresh(_ sender: Any?) {
+    @objc private func refresh(_ sender: Any? = nil) {
         refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: .profile(.getBookings),
                                               params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
@@ -81,7 +81,7 @@ extension BookingsViewController: UITableViewDelegate {
         cell.alpha = 0
         UIView.animate(
             withDuration: 0.1,
-            delay: 0.05 * Double(indexPath.row),
+            delay: 0.05,
             animations: { cell.alpha = 1 })
     }
 }

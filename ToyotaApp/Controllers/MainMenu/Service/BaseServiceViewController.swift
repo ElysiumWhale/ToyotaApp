@@ -18,7 +18,7 @@ class BaseServiceController: UIViewController, IServiceController {
         return button
     }()
     
-    lazy var loadingView: UIView = {
+    private(set) lazy var loadingView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.color = .white

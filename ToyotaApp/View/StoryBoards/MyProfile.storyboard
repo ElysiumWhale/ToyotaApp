@@ -590,7 +590,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
                                                             <rect key="frame" x="229" y="0.0" width="115" height="24.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="115" id="r42-es-Hol"/>
@@ -608,24 +608,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-2e-xUR">
-                                                    <rect key="frame" x="239" y="43" width="120" height="91"/>
+                                                    <rect key="frame" x="239" y="43" width="120" height="45"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PxO-s3-FKV">
-                                                            <rect key="frame" x="0.0" y="-3" width="120" height="45"/>
-                                                            <color key="tintColor" name="MainTint"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="uam-uw-FiM"/>
-                                                            </constraints>
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="black"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-mU-hXC">
-                                                            <rect key="frame" x="0.0" y="45.5" width="120" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-mU-hXC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А344РС163RUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
-                                                            <rect key="frame" x="0.0" y="71" width="120" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А344РС163RUS" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
+                                                            <rect key="frame" x="0.0" y="25" width="120" height="20"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -635,26 +627,58 @@
                                                         <constraint firstAttribute="width" constant="120" id="BQ8-ek-QOv"/>
                                                     </constraints>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-Nv-uWA">
+                                                    <rect key="frame" x="15" y="108" width="99.5" height="20"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-gK-ccD">
+                                                            <rect key="frame" x="5" y="2" width="13.5" height="16"/>
+                                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                                            <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small" weight="regular"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Предстоит" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12e-FG-6DS">
+                                                            <rect key="frame" x="21" y="0.0" width="73.5" height="18"/>
+                                                            <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="secondaryTint"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="5pB-ys-Cqm"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SbV-gK-ccD" secondAttribute="bottom" id="5vj-cj-XW2"/>
+                                                        <constraint firstItem="SbV-gK-ccD" firstAttribute="leading" secondItem="hfa-Nv-uWA" secondAttribute="leading" constant="5" id="6sP-Sp-ahV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="12e-FG-6DS" secondAttribute="trailing" constant="5" id="NUu-bz-i1F"/>
+                                                        <constraint firstItem="12e-FG-6DS" firstAttribute="leading" secondItem="SbV-gK-ccD" secondAttribute="trailing" constant="2.5" id="ONK-10-now"/>
+                                                        <constraint firstAttribute="bottom" secondItem="12e-FG-6DS" secondAttribute="bottom" constant="2" id="ORA-2w-fEF"/>
+                                                        <constraint firstItem="12e-FG-6DS" firstAttribute="top" secondItem="hfa-Nv-uWA" secondAttribute="top" id="jeI-eP-4jG"/>
+                                                        <constraint firstItem="SbV-gK-ccD" firstAttribute="top" secondItem="hfa-Nv-uWA" secondAttribute="top" constant="0.5" id="sje-pK-ztZ"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="uZK-2e-xUR" secondAttribute="trailing" constant="15" id="AHb-OS-BSw"/>
                                                 <constraint firstItem="uZK-2e-xUR" firstAttribute="top" secondItem="EQ4-5H-1JU" secondAttribute="bottom" constant="7.5" id="EJS-qr-3J7"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dnz-LW-lUV" secondAttribute="trailing" constant="15" id="Eaf-6u-J8K"/>
-                                                <constraint firstAttribute="bottom" secondItem="uZK-2e-xUR" secondAttribute="bottom" constant="5" id="EvE-6i-NEG"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uZK-2e-xUR" secondAttribute="bottom" constant="5" id="EvE-6i-NEG"/>
                                                 <constraint firstItem="QFf-0h-NzZ" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="QBU-20-V3Y"/>
                                                 <constraint firstItem="Dnz-LW-lUV" firstAttribute="top" secondItem="w4Y-CV-ZJz" secondAttribute="top" constant="11" id="cqQ-0V-Lw4"/>
                                                 <constraint firstItem="QFf-0h-NzZ" firstAttribute="top" secondItem="ZQg-uE-sHF" secondAttribute="bottom" constant="6.5" id="cyy-yw-Bf1"/>
+                                                <constraint firstAttribute="bottom" secondItem="hfa-Nv-uWA" secondAttribute="bottom" constant="11" id="rx6-b8-zAf"/>
+                                                <constraint firstItem="hfa-Nv-uWA" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="sKT-ES-Wxj"/>
                                                 <constraint firstItem="Dnz-LW-lUV" firstAttribute="leading" secondItem="w4Y-CV-ZJz" secondAttribute="leading" constant="15" id="v7u-f1-ky2"/>
                                                 <constraint firstItem="uZK-2e-xUR" firstAttribute="leading" secondItem="QFf-0h-NzZ" secondAttribute="trailing" constant="8" id="wMa-qx-d9d"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QFf-0h-NzZ" secondAttribute="bottom" constant="11" id="yZY-Ex-glQ"/>
+                                                <constraint firstItem="hfa-Nv-uWA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QFf-0h-NzZ" secondAttribute="bottom" constant="10.5" id="wpH-gf-2Fn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="carImage" destination="PxO-s3-FKV" id="sGW-L8-yg6"/>
                                             <outlet property="carLabel" destination="vDe-mU-hXC" id="2qx-9k-xYu"/>
                                             <outlet property="contentLabel" destination="QFf-0h-NzZ" id="CWO-jW-Cwi"/>
                                             <outlet property="dateLabel" destination="EQ4-5H-1JU" id="CMH-Gs-VJ7"/>
                                             <outlet property="licenseLabel" destination="buJ-4j-bpP" id="deN-gw-c5K"/>
+                                            <outlet property="statusImage" destination="SbV-gK-ccD" id="2zD-5L-khG"/>
+                                            <outlet property="statusLabel" destination="12e-FG-6DS" id="z8i-hr-V0D"/>
+                                            <outlet property="statusView" destination="hfa-Nv-uWA" id="XnJ-HS-FyW"/>
                                             <outlet property="titleLabel" destination="ZQg-uE-sHF" id="s4c-W7-x7u"/>
                                         </connections>
                                     </tableViewCell>
@@ -691,7 +715,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bookingsTable" destination="oHv-YW-SG0" id="YnN-Pg-uGp"/>
+                        <outlet property="bookingsTable" destination="oHv-YW-SG0" id="ohG-Pk-w9u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytH-kk-kt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -793,6 +817,7 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="car" catalog="system" width="128" height="93"/>
         <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
@@ -801,11 +826,17 @@
         <namedColor name="MainTint">
             <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="secondaryTint">
+            <color red="0.77600002288818359" green="0.77600002288818359" blue="0.78400003910064697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
