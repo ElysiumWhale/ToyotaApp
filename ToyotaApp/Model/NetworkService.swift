@@ -12,54 +12,48 @@ class NetworkService {
         let request = buildPostRequest(for: page.rawValue, with: params)
         
         session.dataTask(with: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse {
-                #if DEBUG
-                print("\n", "Request status code: ", response.statusCode, "\n")
-                #endif
-            }
-            if error != nil {
+            guard error == nil else {
                 #warning("todo: switch by error code")
-                completion(Result.failure(ErrorResponse(code: NetworkErrors.lostConnection.rawValue, message: AppErrors.connectionLost.rawValue)))
+                completion(Result.failure(.lostConnection))
+                return
             }
-            if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data)
-                print(json ?? "Error while parsing json object")
-                
-                if let response = try? JSONDecoder().decode(T.self, from: data) {
-                    completion(Result.success(response))
-                } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                    completion(Result.failure(errorResponse))
-                } else {
-                    completion(Result.failure(ErrorResponse(code: NetworkErrors.corruptedData.rawValue,
-                                                            message: AppErrors.serverBadResponse.rawValue)))
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(Result.failure(.corruptedData))
                 }
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data)
+            print(json ?? "Error while parsing json object")
+            
+            if let response = try? JSONDecoder().decode(T.self, from: data) {
+                completion(Result.success(response))
+            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                completion(Result.failure(errorResponse))
+            } else {
+                completion(Result.failure(.corruptedData))
             }
         }.resume()
     }
     
-    func makeSimpleRequest(page: RequestPath, params: [URLQueryItem] = []) {
+    class func makeSimpleRequest(page: RequestPath, params: [URLQueryItem] = []) {
         session.dataTask(with: buildPostRequest(for: page.rawValue, with: params)).resume()
     }
     
-    private func buildPostRequest(for page: String, with params: [URLQueryItem] = []) -> URLRequest {
-        var query = mainUrl
-        query.path.append(page)
-        
-        let requestUrl = query.url!
-        
-        query.queryItems = []
-        query.queryItems!.append(contentsOf: params)
-        
-        let data = query.url!.query
-        
-        var request = URLRequest(url: requestUrl)
         request.httpMethod = RequestType.POST.rawValue
-        request.httpBody = Data(data!.utf8)
-        
+    class private func buildPostRequest(for page: String,
+                                        with params: [URLQueryItem] = []) -> URLRequest {
+        var mainURL = mainUrl
+        mainURL.path.append(page)
+        mainURL.queryItems = params
+        var request = URLRequest(url: mainURL.url!)
+        request.httpBody = Data(mainURL.url!.query!.utf8)
         return request
     }
     
-    func buildImageUrl(_ path: String) -> URL? {
+    class func buildImageUrl(_ path: String) -> URL? {
         var query = MainURL.buildImageUrl()
         query.path.append(path)
         return query.url

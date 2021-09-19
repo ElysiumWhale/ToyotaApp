@@ -24,9 +24,9 @@ class BookingsViewController: UIViewController, BackgroundText {
 
     @objc private func refresh(_ sender: Any? = nil) {
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: .profile(.getBookings),
-                                              params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
-                                              completion: bookingsDidDownloadCompletion)
+        NetworkService.makePostRequest(page: .profile(.getBookings),
+                                       params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
+                                       completion: bookingsDidDownloadCompletion)
     }
     
     private func endRefreshing() {
@@ -39,10 +39,9 @@ class BookingsViewController: UIViewController, BackgroundText {
             case .success(let data):
                 let serverFormatter = DateFormatter.server
                 bookings = data.booking
-                bookings.append(Booking(date: "2021.09.11", startTime: "21", latitude: "",
-                                        longitude: "", status: "0", carName: "Land Cruiser 300",
-                                        licensePlate: "А344РС163RUS", showroomName: "Тойота Самара Юг",
-                                        serviceName: "Плановый технический осмотр", postName: "Samara Gorod"))
+                #if DEBUG
+                bookings.append(.mock)
+                #endif
                 bookings.sort(by: { serverFormatter.date(from: $0.date) ?? Date() > serverFormatter.date(from: $1.date) ?? Date() })
                 DispatchQueue.main.async { [weak self] in
                     guard let controller = self else { return }
