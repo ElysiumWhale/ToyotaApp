@@ -69,9 +69,9 @@ extension AuthViewController: SegueWithRequestController {
         if case .register = type {
             KeychainManager.set(Phone(phone))
         }
-        NetworkService.shared.makePostRequest(page: .regisrtation(.registerPhone),
-                                              params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
-                                              completion: completionForSegue)
+        NetworkService.makePostRequest(page: .regisrtation(.registerPhone),
+                                       params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
+                                       completion: completionForSegue)
     }
 
     func completionForSegue(for response: Result<Response, ErrorResponse>) {

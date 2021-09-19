@@ -136,9 +136,9 @@ extension PersonalInfoViewController: SegueWithRequestController {
                                     secondName: secondNameTextField.text!,
                                     email: emailTextField.text!,
                                     birthday: date)
-        NetworkService.shared.makePostRequest(page: .regisrtation(.setProfile),
-                                              params: buildRequestParams(from: configuredProfile!, date: date),
-                                              completion: completionForSegue)
+        NetworkService.makePostRequest(page: .regisrtation(.setProfile),
+                                       params: buildRequestParams(from: configuredProfile!, date: date),
+                                       completion: completionForSegue)
     }
 
     func completionForSegue(for response: Result<CitiesDidGetResponse, ErrorResponse>) {

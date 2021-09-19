@@ -21,7 +21,7 @@ class BookingsViewController: UIViewController, BackgroundText {
     @IBAction func doneDidPressed(_ sender: Any) {
         dismiss(animated: true)
     }
-    
+
     @objc private func refresh(_ sender: Any? = nil) {
         refreshControl.beginRefreshing()
         NetworkService.shared.makePostRequest(page: .profile(.getBookings),

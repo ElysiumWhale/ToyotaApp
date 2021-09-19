@@ -81,9 +81,9 @@ extension DealerViewController {
         view.endEditing(true)
         let params = [URLQueryItem(.auth(.brandId), Brand.Toyota),
                       URLQueryItem(.carInfo(.cityId), selectedCity!.id)]
-        NetworkService.shared.makePostRequest(page: .regisrtation(.getShowrooms),
-                                              params: params,
-                                              completion: completionForSelectedCity)
+        NetworkService.makePostRequest(page: .regisrtation(.getShowrooms),
+                                       params: params,
+                                       completion: completionForSelectedCity)
     }
 
     private func completionForSelectedCity(for response: Result<ShoroomsDidGetResponce, ErrorResponse>) {
@@ -133,8 +133,8 @@ extension DealerViewController: SegueWithRequestController {
             let page: RequestPath = type == .register ? .regisrtation(.setShowroom) : .profile(.addShowroom)
             let params = [URLQueryItem(.auth(.userId), userId),
                           URLQueryItem(.carInfo(.showroomId), showroom.id)]
-            NetworkService.shared.makePostRequest(page: page, params: params,
-                                                  completion: completionForSegue)
+            NetworkService.makePostRequest(page: page, params: params,
+                                           completion: completionForSegue)
         }
     }
     

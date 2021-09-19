@@ -42,11 +42,11 @@ class ConnectionLostController {
             return
         }
         
-        NetworkService.shared.makePostRequest(page: .start(.checkUser), params:
-                                                [URLQueryItem(.auth(.userId), userId),
-                                                 URLQueryItem(.auth(.brandId), Brand.Toyota),
-                                                 URLQueryItem(.auth(.secretKey), secretKey)],
-                                              completion: completion)
+        NetworkService.makePostRequest(page: .start(.checkUser),
+                                       params: [URLQueryItem(.auth(.userId), userId),
+                                                URLQueryItem(.auth(.brandId), Brand.Toyota),
+                                                URLQueryItem(.auth(.secretKey), secretKey)],
+                                       completion: completion)
     }
     
     private func completion(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {

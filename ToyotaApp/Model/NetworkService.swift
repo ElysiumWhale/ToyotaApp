@@ -1,18 +1,14 @@
 import Foundation
 
 class NetworkService {
-    public static let shared: NetworkService = NetworkService()
+    private static let session = URLSession(configuration: URLSessionConfiguration.default)
     
-    let session = URLSession(configuration: URLSessionConfiguration.default)
-    private var mainUrl: URLComponents
+    #warning("MAKE ME HTTPS!")
+    private static let mainUrl: URLComponents = MainURL.build()
     
-    private init() {
-        #warning("MAKE ME HTTPS!")
-        // To turn off delete dictionary AppTransportSecuritySettings in info.plist
-        mainUrl = MainURL.build()
-    }
-    
-    func makePostRequest<T>(page: RequestPath, params: [URLQueryItem] = [], completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) where T: Codable {
+    class func makePostRequest<T: Codable>(page: RequestPath,
+                                           params: [URLQueryItem] = [],
+                                           completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) {
         let request = buildPostRequest(for: page.rawValue, with: params)
         
         session.dataTask(with: request) { (data, response, error) in

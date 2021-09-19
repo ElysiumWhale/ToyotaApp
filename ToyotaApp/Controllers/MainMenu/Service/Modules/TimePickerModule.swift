@@ -117,14 +117,14 @@ class TimePickerModule: NSObject, IServiceModule {
         !params.isEmpty ? queryParams.append(contentsOf: params)
             : queryParams.append(URLQueryItem(.services(.serviceId), serviceType.id))
         
-        NetworkService.shared.makePostRequest(page: .services(.getFreeTime),
-                                              params: queryParams, completion: completion)
+        NetworkService.makePostRequest(page: .services(.getFreeTime),
+                                       params: queryParams, completion: completion)
     }
-
+    
     func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
         state = .idle
-        NetworkService.shared.makePostRequest(page: .services(.getFreeTime),
-                                              params: params, completion: completion)
+        NetworkService.makePostRequest(page: .services(.getFreeTime),
+                                       params: params, completion: completion)
     }
 
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {

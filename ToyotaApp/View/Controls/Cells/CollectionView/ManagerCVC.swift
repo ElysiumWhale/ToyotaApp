@@ -15,7 +15,7 @@ import Kingfisher
         showroomLabel.text = manager.showroomName
         nameLabel.text = "\(manager.firstName) \(manager.lastName)"
         infoLabel.text = "\(manager.phone) \(manager.email)"
-        if let url = NetworkService.shared.buildImageUrl(manager.imageUrl) {
+        if let url = NetworkService.buildImageUrl(manager.imageUrl) {
             photo.kf.indicatorType = .activity
             photo.isOpaque = false
             photo.kf.setImage(with: ImageResource(downloadURL: url),

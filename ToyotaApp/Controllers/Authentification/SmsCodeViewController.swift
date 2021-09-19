@@ -47,7 +47,8 @@ extension SmsCodeViewController {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
-            NetworkService.shared.makeSimpleRequest(page: .regisrtation(.deleteTemp), params: [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber)])
+            NetworkService.makeSimpleRequest(page: .regisrtation(.deleteTemp),
+                                             params: [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber)])
         }
     }
 }
@@ -65,13 +66,13 @@ extension SmsCodeViewController {
         
         switch type {
             case .register:
-                NetworkService.shared.makePostRequest(page: .regisrtation(.checkCode),
-                                                      params: buildRequestParams(authType: type),
-                                                      completion: registerCompletion)
+                NetworkService.makePostRequest(page: .regisrtation(.checkCode),
+                                               params: buildRequestParams(authType: type),
+                                               completion: registerCompletion)
             case .changeNumber:
-                NetworkService.shared.makePostRequest(page: .setting(.changePhone),
-                                                      params: buildRequestParams(authType: type),
-                                                      completion: changeNumberCompletion)
+                NetworkService.makePostRequest(page: .setting(.changePhone),
+                                               params: buildRequestParams(authType: type),
+                                               completion: changeNumberCompletion)
         }
     }
     

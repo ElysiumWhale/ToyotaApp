@@ -94,10 +94,10 @@ class PickerModule: NSObject, IServiceModule {
             return
         }
         internalView.textField.text = ""
-        NetworkService.shared.makePostRequest(page: .services(.getServices), params:
-                                                [URLQueryItem(.carInfo(.showroomId), showroomId),
-                                                 URLQueryItem(.services(.serviceTypeId), serviceType.id)],
-                                              completion: internalCompletion)
+        NetworkService.makePostRequest(page: .services(.getServices),
+                                       params: [URLQueryItem(.carInfo(.showroomId), showroomId),
+                                                URLQueryItem(.services(.serviceTypeId), serviceType.id)],
+                                       completion: internalCompletion)
         
         func internalCompletion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
             completion(for: response)
@@ -107,7 +107,7 @@ class PickerModule: NSObject, IServiceModule {
     func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
         state = .idle
         internalView.textField.text = ""
-        NetworkService.shared.makePostRequest(page: page, params: params, completion: internalCompletion)
+        NetworkService.makePostRequest(page: page, params: params, completion: internalCompletion)
         
         func internalCompletion(for response: Result<TResponse, ErrorResponse>) {
             completion(for: response)

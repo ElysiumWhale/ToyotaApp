@@ -12,11 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             NavigationService.loadAuth()
             return
         }
-        NetworkService.shared.makePostRequest(page: .start(.checkUser), params:
-                                                [URLQueryItem(.auth(.userId), userId),
-                                                 URLQueryItem(.auth(.brandId), Brand.Toyota),
-                                                 URLQueryItem(.auth(.secretKey), secretKey)],
-                                              completion: resolveNavigation)
+        NetworkService.makePostRequest(page: .start(.checkUser),
+                                       params: [URLQueryItem(.auth(.userId), userId),
+                                                URLQueryItem(.auth(.brandId), Brand.Toyota),
+                                                URLQueryItem(.auth(.secretKey), secretKey)],
+                                       completion: resolveNavigation)
     }
 }
 

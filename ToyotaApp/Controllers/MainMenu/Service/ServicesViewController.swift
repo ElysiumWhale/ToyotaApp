@@ -35,10 +35,10 @@ class ServicesViewController: UIViewController, BackgroundText {
         serviceTypes.removeAll()
         servicesList.reloadData()
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                              params: [URLQueryItem(.carInfo(.showroomId),
-                                                                    selectedCar!.showroomId)],
-                                              completion: carDidSelectCompletion)
+        NetworkService.makePostRequest(page: .services(.getServicesTypes),
+                                       params: [URLQueryItem(.carInfo(.showroomId),
+                                                             selectedCar!.showroomId)],
+                                       completion: carDidSelectCompletion)
     }
 
     @IBAction private func carDidSelect(sender: Any?) {
@@ -52,10 +52,10 @@ class ServicesViewController: UIViewController, BackgroundText {
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
             showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
             KeychainManager.set(Cars(cars))
-            NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                                  params: [URLQueryItem(.carInfo(.showroomId),
-                                                                        selectedCar!.showroomId)],
-                                                  completion: carDidSelectCompletion)
+            NetworkService.makePostRequest(page: .services(.getServicesTypes),
+                                           params: [URLQueryItem(.carInfo(.showroomId),
+                                                                 selectedCar!.showroomId)],
+                                           completion: carDidSelectCompletion)
         }
     }
 
@@ -137,10 +137,10 @@ extension ServicesViewController {
         carTextField.isEnabled = cars.count > 1
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
         refreshControl.beginRefreshing()
-        NetworkService.shared.makePostRequest(page: .services(.getServicesTypes),
-                                              params: [URLQueryItem(.carInfo(.showroomId),
-                                                                    selectedCar!.showroomId)],
-                                              completion: carDidSelectCompletion)
+        NetworkService.makePostRequest(page: .services(.getServicesTypes),
+                                       params: [URLQueryItem(.carInfo(.showroomId),
+                                                             selectedCar!.showroomId)],
+                                       completion: carDidSelectCompletion)
     }
 
     private func interfaceIfManyCars() {

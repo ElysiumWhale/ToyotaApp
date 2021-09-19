@@ -13,8 +13,8 @@ class MyManagerViewController: UIViewController, BackgroundText {
         
         let params = [URLQueryItem(.auth(.userId), user.getId),
                       URLQueryItem(.auth(.brandId), Brand.Toyota)]
-        NetworkService.shared.makePostRequest(page: .profile(.getManagers),
-                                              params: params, completion: completion)
+        NetworkService.makePostRequest(page: .profile(.getManagers),
+                                       params: params, completion: completion)
         
         func completion(for response: Result<ManagersDidGetResponse, ErrorResponse>) {
             switch response {

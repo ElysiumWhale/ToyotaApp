@@ -202,9 +202,9 @@ extension MyProfileViewController {
         }
         
         state = .isLoading
-        NetworkService.shared.makePostRequest(page: .profile(.editProfile),
-                                              params: buildRequestParams(),
-                                              completion: userDidUpdateCompletion)
+        NetworkService.makePostRequest(page: .profile(.editProfile),
+                                       params: buildRequestParams(),
+                                       completion: userDidUpdateCompletion)
     }
 
     private func buildRequestParams() -> [URLQueryItem] {

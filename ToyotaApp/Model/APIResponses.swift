@@ -24,6 +24,14 @@ public struct ErrorResponse: Codable, Error {
     }
 }
 
+extension ErrorResponse {
+    static let lostConnection = ErrorResponse(code: "-101",
+                                              message: AppErrors.connectionLost.rawValue)
+    
+    static let corruptedData = ErrorResponse(code: "-100",
+                                             message: AppErrors.serverBadResponse.rawValue)
+}
+
 // MARK: - CheckUserResponce & SmsCodeDidSendResponse
 public struct CheckUserOrSmsCodeResponse: Codable {
     let result: String
