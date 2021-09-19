@@ -42,7 +42,6 @@ class NetworkService {
         session.dataTask(with: buildPostRequest(for: page.rawValue, with: params)).resume()
     }
     
-        request.httpMethod = RequestType.POST.rawValue
     class private func buildPostRequest(for page: String,
                                         with params: [URLQueryItem] = []) -> URLRequest {
         var mainURL = mainUrl
