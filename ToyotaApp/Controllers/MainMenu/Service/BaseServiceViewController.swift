@@ -88,10 +88,13 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 
     func bookService() {
-        guard let userId = user?.getId, let showroomId = user?.getSelectedShowroom?.id else { return }
+        guard let userId = user?.getId,
+              let showroomId = user?.getSelectedShowroom?.id,
+              let carId = user?.getCars.chosenCar?.id else { return }
         
         var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
-                                      URLQueryItem(.carInfo(.showroomId), showroomId)]
+                                      URLQueryItem(.carInfo(.showroomId), showroomId),
+                                      URLQueryItem(.carInfo(.carId), carId)]
         
         for module in modules {
             let items = module.buildQueryItems()
