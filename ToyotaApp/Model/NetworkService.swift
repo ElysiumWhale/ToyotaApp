@@ -48,6 +48,7 @@ class NetworkService {
         mainURL.path.append(page)
         mainURL.queryItems = params
         var request = URLRequest(url: mainURL.url!)
+        request.httpMethod = RequestType.POST.rawValue
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request
     }

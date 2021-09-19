@@ -1,6 +1,6 @@
 import UIKit
 
-private enum BookingStatus: String {
+enum BookingStatus: String, Codable {
     case future = "0"
     case cancelled = "1"
     case done = "2"
@@ -28,14 +28,14 @@ class BookingCell: UITableViewCell {
         titleLabel.text = booking.showroomName
         contentLabel.text = booking.serviceName
         carLabel.text = booking.carName.isEmptyOrWithoutAuto ? "" : booking.carName
-        licenseLabel.text = booking.licensePlate
+        licenseLabel.text = booking.licensePlate.uppercased()
         dateLabel.text = DateFormatter.display.string(from: DateFormatter.server.date(from: booking.date) ?? Date())
         configureStatusView(with: booking)
     }
 
     private func configureStatusView(with booking: Booking) {
         statusView.layer.cornerRadius = 5
-        let status = BookingStatus(rawValue: booking.status) ?? .cancelled
+        let status = booking.status
         let bookingDate = DateFormatter.server.date(from: booking.date) ?? Calendar.current.startOfDay(for: Date())
         let key = Int(booking.startTime) ?? 14
         var date = bookingDate

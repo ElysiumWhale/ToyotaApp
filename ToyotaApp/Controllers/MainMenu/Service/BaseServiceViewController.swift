@@ -113,10 +113,8 @@ class BaseServiceController: UIViewController, IServiceController {
             }
         }
     }
-}
 
-// MARK: - Modules updates processing
-extension BaseServiceController {
+    // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
         DispatchQueue.main.async { [weak self] in
             switch module.state {

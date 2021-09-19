@@ -291,7 +291,7 @@ public struct Booking: Codable {
     let startTime: String
     let latitude: String
     let longitude: String
-    let status: String
+    let status: BookingStatus
     let carName: String
     let licensePlate: String
     let showroomName: String
