@@ -2,6 +2,8 @@ import UIKit
 
 // MARK: Controller
 class BaseServiceController: UIViewController, IServiceController {
+
+    // MARK: - View
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
 
@@ -17,7 +19,7 @@ class BaseServiceController: UIViewController, IServiceController {
         button.alpha = 0
         return button
     }()
-    
+
     private(set) lazy var loadingView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
@@ -34,6 +36,7 @@ class BaseServiceController: UIViewController, IServiceController {
         return view
     }()
 
+    // MARK: - Models
     private(set) var serviceType: ServiceType?
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
@@ -44,11 +47,11 @@ class BaseServiceController: UIViewController, IServiceController {
         self.user = user
         self.serviceType = service
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
         navigationItem.backButtonTitle = "Услуги"
@@ -75,18 +78,6 @@ class BaseServiceController: UIViewController, IServiceController {
         self.serviceType = service
     }
 
-    func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
-            switch module.state {
-                case .idle: return
-                case .didDownload: self?.endLoading()
-                case .error(let error): self?.didRaiseError(module, error)
-                case .block(let message): self?.didBlock(module, message)
-                case .didChose(let service): self?.didChose(service, in: module)
-            }
-        }
-    }
-
     func bookService() {
         guard let userId = user?.getId,
               let showroomId = user?.getSelectedShowroom?.id,
@@ -102,6 +93,7 @@ class BaseServiceController: UIViewController, IServiceController {
             params.append(contentsOf: items)
         }
         
+        // Note: - Redundant
         if params.first(where: { $0.name == RequestKeys.Services.serviceId.rawValue }) == nil {
             params.append(URLQueryItem(.services(.serviceId), serviceType!.id))
         }
@@ -118,6 +110,21 @@ class BaseServiceController: UIViewController, IServiceController {
                     }
                 case .failure(let error):
                     PopUp.display(.error(description: error.message ?? CommonText.servicesError))
+            }
+        }
+    }
+}
+
+// MARK: - Modules updates processing
+extension BaseServiceController {
+    func moduleDidUpdate(_ module: IServiceModule) {
+        DispatchQueue.main.async { [weak self] in
+            switch module.state {
+                case .idle: return
+                case .didDownload: self?.endLoading()
+                case .error(let error): self?.didRaiseError(module, error)
+                case .block(let message): self?.didBlock(module, message)
+                case .didChose(let service): self?.didChose(service, in: module)
             }
         }
     }
