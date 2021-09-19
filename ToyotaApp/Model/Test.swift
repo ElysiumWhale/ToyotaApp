@@ -66,3 +66,10 @@ public class Test {
                         showroomName: "Тойота Самара Север")]
     }
 }
+
+extension Booking {
+    static let mock = Booking(date: "2021.09.11", startTime: "21", latitude: "89.12",
+                              longitude: "-35.54", status: "2", carName: "Toyota RAV4",
+                              licensePlate: "А344РС163RUS", showroomName: "Тойота Центр Самара Юг",
+                              serviceName: "Плановый технический осмотр", postName: "Samara Gorod")
+}

@@ -9,7 +9,7 @@ private enum BookingStatus: String {
         switch self {
             case .future: return date < Date() ? (.systemRed, "Не исполнено") : (.systemYellow, "Предстоит")
             case .cancelled: return (.systemRed, "Не исполнено")
-            case .done: return (.systemRed, "Исполнено")
+            case .done: return (.systemGreen, "Исполнено")
         }
     }
 }
