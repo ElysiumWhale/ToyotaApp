@@ -13,7 +13,8 @@ class MyCarsViewController: UIViewController, BackgroundText {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите.") : nil
+        carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .noCarsBackground)
+                                                     : nil
     }
 
     @IBAction func addCar(sender: Any?) {

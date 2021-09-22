@@ -67,15 +67,15 @@ class ServicesViewController: UIViewController, BackgroundText {
                     vc.serviceTypes = data.serviceType
                     vc.servicesList.reloadData()
                     vc.endRefreshing()
-                    vc.servicesList.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: CommonText.noServices) : nil
+                    vc.servicesList.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .noServices) : nil
                 }
             case .failure(let error):
                 var labelMessage = ""
                 switch error.code {
                     case NetworkErrors.lostConnection.rawValue:
-                        labelMessage = "\(CommonText.networkError) и \(CommonText.retryRefresh)"
+                        labelMessage = .networkError + " и " + .retryRefresh
                     default:
-                        labelMessage = "\(CommonText.servicesError), \(CommonText.retryRefresh)"
+                        labelMessage = .servicesError + ", " + .retryRefresh
                 }
                 DispatchQueue.main.async { [weak self] in
                     self?.endRefreshing()
@@ -119,15 +119,15 @@ extension ServicesViewController: WithUserInfo {
 // MARK: - Configure UI for cars count
 extension ServicesViewController {
     private func interfaceIfNoCars() {
-        PopUp.display(.warning(description: "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль."))
+        PopUp.display(.warning(description: .blockFunctionsAlert))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = ""
-        servicesList.backgroundView = createBackground(labelText: "Добавьте автомобиль для разблокировки функций")
+        servicesList.backgroundView = createBackground(labelText: .addAutoToUnlock)
     }
 
     private func interfaceIfOneCar() {
-        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
+        refreshControl.attributedTitle = NSAttributedString(string: .pullToRefresh)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refreshControl.layer.zPosition = -1
         servicesList.refreshControl = refreshControl

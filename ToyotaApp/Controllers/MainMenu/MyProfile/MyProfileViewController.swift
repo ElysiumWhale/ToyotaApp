@@ -97,7 +97,7 @@ class MyProfileViewController: UIViewController {
     @IBAction private func logout(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждние действия",
                             description: "Вы действительно хотите выйти?",
-                            confirmText: CommonText.yes, declineText: CommonText.no) {
+                            confirmText: .yes, declineText: .no) {
             KeychainManager.clearAll()
             SwiftEntryKit.dismiss()
             NavigationService.loadAuth()
@@ -154,7 +154,7 @@ extension MyProfileViewController {
             view.layoutIfNeeded()
             
             if state != .isLoading {
-                saveButton.setTitle(isEditing ? CommonText.save : CommonText.edit, for: .normal)
+                saveButton.setTitle(isEditing ? .save : .edit, for: .normal)
             }
             
             saveButtonLeadingConstraint = constraints.save

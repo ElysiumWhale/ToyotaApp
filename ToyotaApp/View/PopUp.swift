@@ -21,7 +21,7 @@ class PopUp {
         }
     }
 
-    class func displayMessage(with title: String, description: String, buttonText: String = CommonText.ok, dismissCompletion: @escaping () -> Void = { }) {
+    class func displayMessage(with title: String, description: String, buttonText: String = .ok, dismissCompletion: @escaping () -> Void = { }) {
         DispatchQueue.main.async {
             let view = EKPopUpMessageView(with: popUpMessagePreset(title: title, description: description,
                                                                    buttonText: buttonText, dismissCompletion))
@@ -88,11 +88,11 @@ extension PopUp {
     static func display(_ type: MessageTypes, completion: @escaping () -> Void = { }) {
         switch type {
             case .error(let text):
-                displayMessage(with: CommonText.error, description: text, dismissCompletion: completion)
+                displayMessage(with: .error, description: text, dismissCompletion: completion)
             case .warning(let text):
-                displayMessage(with: CommonText.warning, description: text, dismissCompletion: completion)
+                displayMessage(with: .warning, description: text, dismissCompletion: completion)
             case .success(let text):
-                displayMessage(with: CommonText.success, description: text, dismissCompletion: completion)
+                displayMessage(with: .success, description: text, dismissCompletion: completion)
         }
     }
 }

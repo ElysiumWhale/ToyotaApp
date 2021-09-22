@@ -10,7 +10,7 @@ class BookingsViewController: UIViewController, BackgroundText {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl.attributedTitle = NSAttributedString(string: CommonText.pullToRefresh)
+        refreshControl.attributedTitle = NSAttributedString(string: .pullToRefresh)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refreshControl.layer.zPosition = -1
         bookingsTable.refreshControl = refreshControl

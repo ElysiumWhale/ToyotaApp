@@ -91,27 +91,6 @@ public struct CellIdentifiers {
     static let ManagerCell = "ManagerCell"
 }
 
-#warning("todo: make .strings file")
-public struct CommonText {
-    static let save = "Сохранить"
-    static let success = "Успех"
-    static let cancel = "Отмена"
-    static let ok = "Ок"
-    static let error = "Ошибка"
-    static let warning = "Предупреждение"
-    static let edit = "Редактировать"
-    static let yes = "Да"
-    static let no = "Нет"
-    static let choose = "Выбрать"
-    static let pullToRefresh = "Потяните вниз для обновления"
-    static let noServices = "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся."
-    static let networkError = "Ошибка сети, проверьте подключение"
-    static let retryRefresh = "потяните вниз для повторной загрузки."
-    static let servicesError = "Ошибка при загрузке услуг"
-    static let stillNoConnection = "Соединение с интернетом все еще отсутствует"
-    static let errorWhileAuth = "При входе произошла ошибка, войдите повторно"
-}
-
 public struct TimeMap {
     static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []

@@ -7,7 +7,7 @@ extension UIViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: CommonText.choose, style: .done, target: self, action: action)
+        let doneButton = UIBarButtonItem(title: .choose, style: .done, target: self, action: action)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }

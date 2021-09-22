@@ -89,3 +89,27 @@ extension URLQueryItem {
         self.init(name: key.rawValue, value: value)
     }
 }
+
+#warning("todo: make .strings file")
+extension String {
+    static let save = "Сохранить"
+    static let success = "Успех"
+    static let cancel = "Отмена"
+    static let ok = "Ок"
+    static let error = "Ошибка"
+    static let warning = "Предупреждение"
+    static let edit = "Редактировать"
+    static let yes = "Да"
+    static let no = "Нет"
+    static let choose = "Выбрать"
+    static let pullToRefresh = "Потяните вниз для обновления"
+    static let noServices = "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся."
+    static let networkError = "Ошибка сети, проверьте подключение"
+    static let retryRefresh = "потяните вниз для повторной загрузки."
+    static let servicesError = "Ошибка при загрузке услуг"
+    static let stillNoConnection = "Соединение с интернетом все еще отсутствует"
+    static let errorWhileAuth = "При входе произошла ошибка, войдите повторно"
+    static let noCarsBackground = "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите."
+    static let blockFunctionsAlert = "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль."
+    static let addAutoToUnlock = "Добавьте автомобиль для разблокировки функций"
+}
