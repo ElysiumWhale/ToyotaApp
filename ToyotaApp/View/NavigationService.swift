@@ -169,7 +169,7 @@ extension NavigationService {
             
             switch UserInfo.build() {
                 case .failure:
-                    loadRegister(.error(message: "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных"))
+                    loadRegister(.error(message: .profileLoadError))
                 case .success(let user):
                     for child in controller.viewControllers! {
                         if let top = child as? WithUserInfo {

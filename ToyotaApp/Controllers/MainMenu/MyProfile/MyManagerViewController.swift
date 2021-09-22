@@ -23,14 +23,14 @@ class MyManagerViewController: UIViewController, BackgroundText {
                         if let mes = error.message {
                             PopUp.display(.error(description: mes))
                         }
-                        self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? "Ошибка при загрузке списка менеджеров")
+                        self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? .managersLoadError)
                     }
                 case .success(let data):
                     managers = data.managers
                     DispatchQueue.main.async { [weak self] in
                         self?.managersCollection.reloadData()
                         if data.managers.isEmpty {
-                            self?.managersCollection.backgroundView = self?.createBackground(labelText: "На данный момент к Вам не привязано ни одного менеджера")
+                            self?.managersCollection.backgroundView = self?.createBackground(labelText: .noManagersBackground)
                         }
                     }
             }
