@@ -49,7 +49,7 @@ extension IServiceModule {
 
 /// Controller which manages `IServiceModule`s.
 /// Configured by `ServiceModuleBuilder`
-protocol IServiceController: AnyObject {
+protocol IServiceController: UIViewController {
     var modules: [IServiceModule] { get }
     var user: UserProxy? { get }
     func moduleDidUpdate(_ module: IServiceModule)

@@ -69,7 +69,7 @@ enum RequestKeys {
     case auth(_ key: Auth)
     case personalInfo(_ key: PersonalInfo)
     case carInfo(_ key: CarInfo)
-    case services(_ ket: Services)
+    case services(_ key: Services)
     
     var rawValue: String {
         switch self {

@@ -106,11 +106,11 @@ extension ServicesViewController: WithUserInfo {
 
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
-            view.layoutIfNeeded()
+            view.setNeedsLayout()
             switch cars.count {
-                case 0: interfaceIfNoCars()
                 case 1: interfaceIfOneCar()
-                default: interfaceIfManyCars()
+                case 2...: interfaceIfManyCars()
+                default: interfaceIfNoCars()
             }
         }
     }
@@ -184,11 +184,14 @@ extension ServicesViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell != nil,
-           let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId),
-           let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row], for: serviceType, user: user) as? UIViewController {
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        guard collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell != nil,
+              let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId) else {
+                  return
+              }
+
+        let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row],
+                                                              for: serviceType, user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

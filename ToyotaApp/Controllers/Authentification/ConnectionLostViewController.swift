@@ -53,7 +53,8 @@ class ConnectionLostController {
         switch response {
             case .success(let data):
                 KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) { NavigationService.loadAuth()
+                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
+                    NavigationService.loadAuth()
                 }
             case .failure(let error):
                 switch error.errorCode {

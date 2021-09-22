@@ -15,7 +15,7 @@ class BookingsViewController: UIViewController, BackgroundText {
         refreshControl.layer.zPosition = -1
         bookingsTable.refreshControl = refreshControl
         bookingsTable.tableFooterView = UIView()
-        refresh(nil)
+        refresh()
     }
 
     @IBAction func doneDidPressed(_ sender: Any) {
