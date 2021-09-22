@@ -132,3 +132,15 @@ extension UIColor {
     
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
 }
+
+// MARK: - Sugar instatiate
+extension UIStoryboard {
+
+    /// Causes **fatalError()** when `ViewController` is not mapped to identifier
+    func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
+        guard let result = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController else {
+            fatalError("Identifier \(viewController) is not mapped to type \(ViewController.Type.self)")
+        }
+        return result
+    }
+}

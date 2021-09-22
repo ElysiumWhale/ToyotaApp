@@ -44,6 +44,23 @@ public struct AppStoryboards {
     static let mainMenu = "MainMenu"
 }
 
+enum ViewControllers: String {
+    case mainMenuTabBar = "MainMenuTabBarController"
+    case authNavigation = "AuthNavigationController"
+    case registerNavigation = "RegisterNavigationController"
+    case personalInfo = "PersonalInfoViewController"
+    case dealer = "DealerViewController"
+    case addingCar = "AddingCarViewController"
+    case checkVin = "CheckVinViewController"
+    case connectionLost = "ConnectionLostViewController"
+    case auth = "AuthViewController"
+    case mainMenu = "MainMenuViewController"
+    case offers = "OffersViewController"
+    case services = "ServicesViewController"
+    case myCar = "MyCarViewController"
+}
+
+#warning("Deprecated")
 public struct AppViewControllers {
     static let mainMenuTabBar = "MainMenuTabBarController"
     static let authNavigation = "AuthNavigationController"

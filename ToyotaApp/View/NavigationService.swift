@@ -34,13 +34,6 @@ enum RegistrationStates {
     case thirdPage(_ user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom])
 }
 class NavigationService {
-//    #warning("not work")
-//    class func instantinateXIB<T>( _ viewController: T.Type) -> T {
-//        let s = String(describing:viewController)
-//        let view = Bundle.main.loadNibNamed(s, owner: viewController, options: nil)?.first
-//        return view as! T
-//    }
-    
     class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: () -> Void) {
         switch context.state {
             case .empty: fallbackCompletion()
@@ -89,10 +82,8 @@ extension NavigationService {
     class func loadConnectionLost() {
         let storyboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
-            guard let controller = storyboard.instantiateViewController(identifier: AppViewControllers.connectionLost) as? ConnectionLostViewController else {
-                fatalError()
-            }
-            //controller.configure()
+            let controller: ConnectionLostViewController = storyboard.instantiate(.connectionLost)
+            // controller.configure()
             switchRootView(controller: controller)
         }
     }
@@ -113,9 +104,7 @@ extension NavigationService {
 
     class func loadAuth(from navigationController: UINavigationController, with notificator: Notificator) {
         let storyboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
-        guard let controller = storyboard.instantiateViewController(identifier: AppViewControllers.auth) as? AuthViewController else {
-            fatalError()
-        }
+        let controller: AuthViewController = storyboard.instantiate(.auth)
         controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
     }
@@ -133,28 +122,28 @@ extension NavigationService {
                     PopUp.display(.error(description: message))
                 case .firstPage: break
                 case .secondPage(let profile, let cities):
-                    let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
-                    pivc?.configure(with: profile)
+                    let pivc: PersonalInfoViewController = regStoryboard.instantiate(.personalInfo)
+                    pivc.configure(with: profile)
                     
-                    let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
-                    dvc?.configure(cityList: cities)
+                    let dvc: DealerViewController = regStoryboard.instantiate(.dealer)
+                    dvc.configure(cityList: cities)
                     
-                    controllers = [pivc!, dvc!]
+                    controllers = [pivc, dvc]
                 case .thirdPage(let user, let cities, let showrooms):
-                    let pivc = regStoryboard.instantiateViewController(identifier: AppViewControllers.personalInfo) as? PersonalInfoViewController
-                    pivc?.configure(with: user.profile)
+                    let pivc: PersonalInfoViewController = regStoryboard.instantiate(.personalInfo)
+                    pivc.configure(with: user.profile)
                     
-                    let dvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
+                    let dvc: DealerViewController = regStoryboard.instantiate(.dealer)
                     let firstShowroom = user.showroom!.first!
                     let cityName = firstShowroom.cityName
                     let index = cities.firstIndex(where: { $0.name == cityName })!
-                    dvc?.configure(cityList: cities, showroomList: showrooms,
+                    dvc.configure(cityList: cities, showroomList: showrooms,
                                    city: cities[index], showroom: firstShowroom)
                     
-                    let cvvc = regStoryboard.instantiateViewController(identifier: AppViewControllers.checkVin) as? CheckVinViewController
-                    cvvc?.configure(with: firstShowroom.toDomain())
+                    let cvvc: CheckVinViewController = regStoryboard.instantiate(.checkVin)
+                    cvvc.configure(with: firstShowroom.toDomain())
                     
-                    controllers = [pivc!, dvc!, cvvc!]
+                    controllers = [pivc, dvc, cvvc]
             }
             controller = configureNavigationStack(with: controllers, for: regStoryboard,
                                                   identifier: AppViewControllers.registerNavigation)
@@ -168,9 +157,7 @@ extension NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
         let mainStoryboard = UIStoryboard(name: AppStoryboards.mainMenu, bundle: nil)
         DispatchQueue.main.async {
-            guard let controller = mainStoryboard.instantiateViewController(identifier: AppViewControllers.mainMenuTabBar) as? UITabBarController else {
-                fatalError()
-            }
+            let controller: UITabBarController = mainStoryboard.instantiate(.mainMenuTabBar)
             
             if let user = user {
                 KeychainManager.set(Person.toDomain(user.profile))
