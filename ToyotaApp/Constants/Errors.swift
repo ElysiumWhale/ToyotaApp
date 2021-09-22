@@ -1,9 +1,19 @@
 import Foundation
 
 enum NetworkErrors: String, Error {
+    case request = "-1"
     case corruptedData = "-100"
     case lostConnection = "-101"
     case responseTimeout = "-102"
+
+    var message: String {
+        switch self {
+            case .request: return AppErrors.requestError.rawValue
+            case .corruptedData: return AppErrors.serverBadResponse.rawValue
+            case .lostConnection: return AppErrors.connectionLost.rawValue
+            case .responseTimeout: return AppErrors.responseTimeout.rawValue
+        }
+    }
 }
 
 enum AppErrors: String, Error {
@@ -14,4 +24,42 @@ enum AppErrors: String, Error {
     case requestError = "Ошибка при запросе данных"
     case serverBadResponse = "Сервер прислал неверные данные"
     case connectionLost = "Потеряно соедниние с интернетом, проверьте подключение"
+    case responseTimeout = "Превышено время ожидания ответа"
+}
+
+// MARK: - ErrorResponse
+public struct ErrorResponse: Codable, Error {
+    let code: String
+    let message: String?
+
+    var errorCode: NetworkErrors {
+        return .init(rawValue: code) ?? .request
+    }
+    
+    init(code: String, message: String?) {
+        self.code = code
+        self.message = message
+    }
+
+    init(code: NetworkErrors, message: String? = nil) {
+        self.code = code.rawValue
+        self.message = message ?? code.message
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case code = "error_code"
+        case message
+    }
+}
+
+extension ErrorResponse {
+    static func requestError(_ message: String? = nil) -> ErrorResponse {
+        .init(code: .request, message: message)
+    }
+
+    static let lostConnection = ErrorResponse(code: .lostConnection)
+
+    static let corruptedData = ErrorResponse(code: .corruptedData)
+
+    static let responseTimeout = ErrorResponse(code: .responseTimeout)
 }

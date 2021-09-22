@@ -117,7 +117,7 @@ class PickerModule: NSObject, IServiceModule {
     private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
-                state = .error(ErrorResponse.getDefault(error.message))
+                state = .error(.requestError(error.message))
             case .success(let data):
                 array = data.array.isEmpty ? [Service.empty] : data.array
                 DispatchQueue.main.async { [weak self] in

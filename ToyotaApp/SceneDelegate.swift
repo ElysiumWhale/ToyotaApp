@@ -41,8 +41,8 @@ extension SceneDelegate {
                     NavigationService.loadAuth()
                 }
             case .failure(let error):
-                switch error.code {
-                    case NetworkErrors.lostConnection.rawValue:
+                switch error.errorCode {
+                    case .lostConnection:
                         NavigationService.loadConnectionLost()
                     default:
                         KeychainManager.clear(SecretKey.self)

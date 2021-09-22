@@ -9,29 +9,6 @@ public struct Response: Codable {
     }
 }
 
-// MARK: - ErrorResponse
-public struct ErrorResponse: Codable, Error {
-    let code: String
-    let message: String?
-
-    private enum CodingKeys: String, CodingKey {
-        case code = "error_code"
-        case message
-    }
-    
-    static func getDefault(_ message: String?) -> ErrorResponse {
-        return ErrorResponse(code: "-1", message: message ?? "Ошибка при выполнении запроса")
-    }
-}
-
-extension ErrorResponse {
-    static let lostConnection = ErrorResponse(code: "-101",
-                                              message: AppErrors.connectionLost.rawValue)
-    
-    static let corruptedData = ErrorResponse(code: "-100",
-                                             message: AppErrors.serverBadResponse.rawValue)
-}
-
 // MARK: - CheckUserResponce & SmsCodeDidSendResponse
 public struct CheckUserOrSmsCodeResponse: Codable {
     let result: String

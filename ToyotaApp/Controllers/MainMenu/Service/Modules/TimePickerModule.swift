@@ -130,7 +130,7 @@ class TimePickerModule: NSObject, IServiceModule {
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
-                state = .error(ErrorResponse.getDefault(error.message))
+                state = .error(.requestError(error.message))
             case .success(let data):
                 prepareTime(from: data.freeTimeDict)
                 internalView.dataDidDownload()

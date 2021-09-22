@@ -71,8 +71,8 @@ class ServicesViewController: UIViewController, BackgroundText {
                 }
             case .failure(let error):
                 var labelMessage = ""
-                switch error.code {
-                    case NetworkErrors.lostConnection.rawValue:
+                switch error.errorCode {
+                    case .lostConnection:
                         labelMessage = .networkError + " и " + .retryRefresh
                     default:
                         labelMessage = .servicesError + ", " + .retryRefresh

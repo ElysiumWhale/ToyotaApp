@@ -56,8 +56,8 @@ class ConnectionLostController {
                 NavigationService.resolveNavigation(with: CheckUserContext(response: data)) { NavigationService.loadAuth()
                 }
             case .failure(let error):
-                switch error.code {
-                    case NetworkErrors.lostConnection.rawValue: view?.displayError()
+                switch error.errorCode {
+                    case .lostConnection: view?.displayError()
                     default: NavigationService.loadAuth(with: error.message ?? .errorWhileAuth)
                 }
         }
