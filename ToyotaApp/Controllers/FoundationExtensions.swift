@@ -92,6 +92,47 @@ extension URLQueryItem {
 
 #warning("todo: make .strings file")
 extension String {
+    static func common(_ string: CommonStrings) -> String {
+        string.rawValue
+    }
+    
+    static func background(_ string: BackgroundString) -> String {
+        string.rawValue
+    }
+    
+    static func error(_ string: AppErrors) -> String {
+        string.rawValue
+    }
+    
+    enum CommonStrings: String {
+        case save = "Сохранить"
+        case success = "Успех"
+        case cancel = "Отмена"
+        case ok = "Ок"
+        case error = "Ошибка"
+        case warning = "Предупреждение"
+        case edit = "Редактировать"
+        case yes = "Да"
+        case no = "Нет"
+        case choose = "Выбрать"
+        case pullToRefresh = "Потяните вниз для обновления"
+        case retryRefresh = "потяните вниз для повторной загрузки."
+        case personalDataSaved = "Личная информация успешно обновлена"
+        case bookingSuccess = "Заявка оставлена и будет обработана в ближайшее время"
+    }
+    
+    enum BackgroundString: String {
+        case noBookings = "На данный момент нет ни одного обращения."
+        case noManagers = "На данный момент к Вам не привязано ни одного менеджера"
+        case noCars = "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите."
+        case noServices = "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся."
+        case addAutoToUnlock = "Добавьте автомобиль для разблокировки функций"
+        case somethingWentWrong = "Что то пошло не так..."
+    }
+}
+
+#warning("Deprecated")
+extension String {
     static let save = "Сохранить"
     static let success = "Успех"
     static let cancel = "Отмена"
