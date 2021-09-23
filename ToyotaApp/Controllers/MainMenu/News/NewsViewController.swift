@@ -1,9 +1,9 @@
 import UIKit
 
-class NewsViewController: UIViewController {
-    @IBOutlet private var newsCollection: UICollectionView!
+class NewsViewController: RefreshableController {
+    @IBOutlet private(set) var refreshableView: UICollectionView!
 
-    private let refreshControl = UIRefreshControl()
+    private(set) var refreshControl = UIRefreshControl()
     let cellIdentifier = CellIdentifiers.NewsCell
 
     private var user: UserProxy!
@@ -11,24 +11,16 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl.attributedTitle = NSAttributedString(string: .pullToRefresh)
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        refreshControl.layer.zPosition = -1
-        newsCollection.refreshControl = refreshControl
-        newsCollection.alwaysBounceVertical = true
+        configureRefresh()
+        refreshableView.alwaysBounceVertical = true
         news = Test.createNews()
     }
 
-    @IBAction func refresh() {
+    func startRefreshing() {
         refreshControl.beginRefreshing()
         news = Test.createNews()
-        newsCollection.reloadData()
+        refreshableView.reloadData()
         endRefreshing()
-    }
-
-    private func endRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [self] in refreshControl.endRefreshing() })
     }
 }
 

@@ -1,12 +1,13 @@
 import UIKit
 
-class ServicesViewController: UIViewController, BackgroundText {
+class ServicesViewController: RefreshableController, BackgroundText {
     @IBOutlet private var carTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomLabel: UILabel!
-    @IBOutlet private var servicesList: UICollectionView!
+    @IBOutlet private(set) var refreshableView: UICollectionView!
 
-    private let refreshControl = UIRefreshControl()
+    private(set) var refreshControl = UIRefreshControl()
     private var carForServePicker: UIPickerView = UIPickerView()
+
     private let cellIdentrifier = CellIdentifiers.ServiceCell
 
     private var user: UserProxy! {
@@ -20,20 +21,20 @@ class ServicesViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         carTextField.tintColor = .clear
-        servicesList.alwaysBounceVertical = true
+        refreshableView.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
         
         switch cars.count {
-            case 0: interfaceIfNoCars()
-            case 1: interfaceIfOneCar()
-            default: interfaceIfManyCars()
+            case 0: layoutIfNoCars()
+            case 1: layoutIfOneCar()
+            default: layoutIfManyCars()
         }
     }
 
-    @IBAction private func refresh() {
+    func startRefreshing() {
         serviceTypes.removeAll()
-        servicesList.reloadData()
+        refreshableView.reloadData()
         refreshControl.beginRefreshing()
         NetworkService.makePostRequest(page: .services(.getServicesTypes),
                                        params: [URLQueryItem(.carInfo(.showroomId),
@@ -46,7 +47,7 @@ class ServicesViewController: UIViewController, BackgroundText {
         let row = carForServePicker.selectedRow(inComponent: 0)
         if selectedCar!.id != cars[row].id {
             serviceTypes.removeAll()
-            servicesList.reloadData()
+            refreshableView.reloadData()
             refreshControl.beginRefreshing()
             user.update(cars[row])
             carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
@@ -65,9 +66,9 @@ class ServicesViewController: UIViewController, BackgroundText {
                 DispatchQueue.main.async { [weak self] in
                     guard let vc = self else { return }
                     vc.serviceTypes = data.serviceType
-                    vc.servicesList.reloadData()
+                    vc.refreshableView.reloadData()
                     vc.endRefreshing()
-                    vc.servicesList.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .noServices) : nil
+                    vc.refreshableView.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .noServices) : nil
                 }
             case .failure(let error):
                 var labelMessage = ""
@@ -79,14 +80,9 @@ class ServicesViewController: UIViewController, BackgroundText {
                 }
                 DispatchQueue.main.async { [weak self] in
                     self?.endRefreshing()
-                    self?.servicesList.backgroundView = self?.createBackground(labelText: labelMessage)
+                    self?.refreshableView.backgroundView = self?.createBackground(labelText: labelMessage)
                 }
         }
-    }
-
-    private func endRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak self] in self?.refreshControl.endRefreshing() })
     }
 }
 
@@ -108,9 +104,9 @@ extension ServicesViewController: WithUserInfo {
         DispatchQueue.main.async { [self] in
             view.setNeedsLayout()
             switch cars.count {
-                case 1: interfaceIfOneCar()
-                case 2...: interfaceIfManyCars()
-                default: interfaceIfNoCars()
+                case 1: layoutIfOneCar()
+                case 2...: layoutIfManyCars()
+                default: layoutIfNoCars()
             }
         }
     }
@@ -118,21 +114,17 @@ extension ServicesViewController: WithUserInfo {
 
 // MARK: - Configure UI for cars count
 extension ServicesViewController {
-    private func interfaceIfNoCars() {
+    private func layoutIfNoCars() {
         PopUp.display(.warning(description: .blockFunctionsAlert))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = ""
-        servicesList.backgroundView = createBackground(labelText: .addAutoToUnlock)
+        refreshableView.backgroundView = createBackground(labelText: .addAutoToUnlock)
     }
 
-    private func interfaceIfOneCar() {
-        refreshControl.attributedTitle = NSAttributedString(string: .pullToRefresh)
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        refreshControl.layer.zPosition = -1
-        servicesList.refreshControl = refreshControl
-         
-        if servicesList.backgroundView != nil { servicesList.backgroundView = nil }
+    private func layoutIfOneCar() {
+        configureRefresh()
+        if refreshableView.backgroundView != nil { refreshableView.backgroundView = nil }
         carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
         carTextField.isEnabled = cars.count > 1
         showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
@@ -143,11 +135,11 @@ extension ServicesViewController {
                                        completion: carDidSelectCompletion)
     }
 
-    private func interfaceIfManyCars() {
+    private func layoutIfManyCars() {
         carForServePicker.reloadAllComponents()
         carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
                                     inComponent: 0, animated: false)
-        interfaceIfOneCar()
+        layoutIfOneCar()
     }
 }
 
