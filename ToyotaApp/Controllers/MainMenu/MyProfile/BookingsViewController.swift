@@ -23,7 +23,7 @@ class BookingsViewController: RefreshableController, BackgroundText {
         refreshControl.beginRefreshing()
         NetworkService.makePostRequest(page: .profile(.getBookings),
                                        params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
-                                       completion: bookingsDidDownloadCompletion)
+                                       completion: bookingsDidDownload)
     }
 
     private func bookingsDidDownload(_ response: Result<BookingsResponse, ErrorResponse>) {
