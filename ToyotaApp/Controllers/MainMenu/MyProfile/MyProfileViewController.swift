@@ -97,7 +97,7 @@ class MyProfileViewController: UIViewController {
     @IBAction private func logout(sender: Any?) {
         PopUp.displayChoice(with: "Подтверждние действия",
                             description: "Вы действительно хотите выйти?",
-                            confirmText: .yes, declineText: .no) {
+                            confirmText: .common(.yes), declineText: .common(.no)) {
             KeychainManager.clearAll()
             SwiftEntryKit.dismiss()
             NavigationService.loadAuth()
@@ -154,7 +154,7 @@ extension MyProfileViewController {
             view.layoutIfNeeded()
             
             if state != .isLoading {
-                saveButton.setTitle(isEditing ? .save : .edit, for: .normal)
+                saveButton.setTitle(isEditing ? .common(.save) : .common(.edit), for: .normal)
             }
             
             saveButtonLeadingConstraint = constraints.save
@@ -197,7 +197,7 @@ extension MyProfileViewController {
         }
         
         guard textFieldsWithError.allSatisfy({ !$0.value }) else {
-            PopUp.display(.error(description: "Неккоректные данные. Проверьте введенную информацию!"))
+            PopUp.display(.error(description: .error(.checkInput)))
             return
         }
         
@@ -226,12 +226,12 @@ extension MyProfileViewController {
                                        secondName: secondNameTextField.text!,
                                        email: emailTextField.text!,
                                        birthday: date))
-                    PopUp.display(.success(description: "Личная информация успешно обновлена"))
+                    PopUp.display(.success(description: .common(.personalDataSaved)))
                     state = .none
                 }
-            case .failure:
+            case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
-                    PopUp.display(.error(description: "Произошла ошибка при сохранении данных, повторите попытку позже"))
+                    PopUp.display(.error(description: error.message ?? .error(.savingError)))
                     self?.state = .isEditing
                 }
         }

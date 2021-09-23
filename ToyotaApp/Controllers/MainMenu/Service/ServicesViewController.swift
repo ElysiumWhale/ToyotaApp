@@ -68,19 +68,19 @@ class ServicesViewController: RefreshableController, BackgroundText {
                     vc.serviceTypes = data.serviceType
                     vc.refreshableView.reloadData()
                     vc.endRefreshing()
-                    vc.refreshableView.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .noServices) : nil
+                    vc.refreshableView.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .background(.noServices)) : nil
                 }
             case .failure(let error):
                 var labelMessage = ""
                 switch error.errorCode {
                     case .lostConnection:
-                        labelMessage = .networkError + " и " + .retryRefresh
+                        labelMessage = .error(.networkError) + " и "
                     default:
-                        labelMessage = .servicesError + ", " + .retryRefresh
+                        labelMessage = .error(.servicesError) + ", "
                 }
                 DispatchQueue.main.async { [weak self] in
                     self?.endRefreshing()
-                    self?.refreshableView.backgroundView = self?.createBackground(labelText: labelMessage)
+                    self?.refreshableView.backgroundView = self?.createBackground(labelText: labelMessage + .common(.retryRefresh))
                 }
         }
     }
@@ -115,11 +115,11 @@ extension ServicesViewController: WithUserInfo {
 // MARK: - Configure UI for cars count
 extension ServicesViewController {
     private func layoutIfNoCars() {
-        PopUp.display(.warning(description: .blockFunctionsAlert))
+        PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = ""
-        refreshableView.backgroundView = createBackground(labelText: .addAutoToUnlock)
+        refreshableView.backgroundView = createBackground(labelText: .background(.addAutoToUnlock))
     }
 
     private func layoutIfOneCar() {

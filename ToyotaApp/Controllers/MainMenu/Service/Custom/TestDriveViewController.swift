@@ -99,11 +99,11 @@ class TestDriveViewController: BaseServiceController {
         func completion(for response: Result<Response, ErrorResponse>) {
             switch response {
                 case .success:
-                    PopUp.displayMessage(with: .success, description: "Заявка оставлена и будет обработана в ближайшее время") { [self] in
+                    PopUp.display(.success(description: .common(.bookingSuccess))) { [self] in
                         navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
-                    PopUp.display(.error(description: error.message ?? .servicesError))
+                    PopUp.display(.error(description: error.message ?? .error(.servicesError)))
             }
         }
     }

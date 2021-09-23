@@ -169,7 +169,7 @@ extension NavigationService {
             
             switch UserInfo.build() {
                 case .failure:
-                    loadRegister(.error(message: .profileLoadError))
+                    loadRegister(.error(message: .error(.profileLoadError)))
                 case .success(let user):
                     for child in controller.viewControllers! {
                         if let top = child as? WithUserInfo {

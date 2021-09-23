@@ -13,7 +13,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .noCarsBackground)
+        carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
                                                      : nil
     }
 
@@ -38,7 +38,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
                     vc.navigationController?.pushViewController(addShowroomVC!, animated: true)
                 }
             case .failure(let error):
-                PopUp.display(.error(description: error.message ?? "Ошибка при загрузке городов, повторите позднее"))
+                PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
         }
     }
 }

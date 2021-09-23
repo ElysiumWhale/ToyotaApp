@@ -40,14 +40,14 @@ class BookingsViewController: RefreshableController, BackgroundText {
                     controller.endRefreshing()
                     controller.refreshableView.reloadData()
                     if controller.bookings.isEmpty {
-                        controller.refreshableView.backgroundView = controller.createBackground(labelText: "На данный момент нет ни одного обращения.")
+                        controller.refreshableView.backgroundView = controller.createBackground(labelText: .background(.noBookings))
                     }
                 }
             case .failure(let error):
                 PopUp.display(.error(description: error.message ?? AppErrors.requestError.rawValue))
                 DispatchQueue.main.async { [weak self] in
                     self?.endRefreshing()
-                    self?.refreshableView.backgroundView = self?.createBackground(labelText: "Что то пошло не так...")
+                    self?.refreshableView.backgroundView = self?.createBackground(labelText: .background(.somethingWentWrong))
                 }
         }
     }

@@ -22,7 +22,7 @@ class ConnectionLostViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.indicator.stopAnimating()
             self?.retryButton.isHidden = false
-            PopUp.display(.error(description: .stillNoConnection))
+            PopUp.display(.error(description: .error(.stillNoConnection)))
         }
     }
 }
@@ -59,7 +59,7 @@ class ConnectionLostController {
             case .failure(let error):
                 switch error.errorCode {
                     case .lostConnection: view?.displayError()
-                    default: NavigationService.loadAuth(with: error.message ?? .errorWhileAuth)
+                    default: NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
                 }
         }
     }

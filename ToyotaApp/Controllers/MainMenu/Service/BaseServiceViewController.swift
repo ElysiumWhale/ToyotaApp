@@ -109,7 +109,7 @@ class BaseServiceController: UIViewController, IServiceController {
                         self?.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let error):
-                    PopUp.display(.error(description: error.message ?? .servicesError))
+                    PopUp.display(.error(description: error.message ?? .error(.servicesError)))
             }
         }
     }
