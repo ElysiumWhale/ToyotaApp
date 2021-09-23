@@ -166,10 +166,10 @@ extension ServicesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentrifier, for: indexPath) as? ServiceCollectionViewCell
+        let cell: ServiceCollectionViewCell = collectionView.dequeue(for: indexPath)
         let serviceType = serviceTypes[indexPath.row]
-        cell?.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
-        return cell!
+        cell.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
+        return cell
     }
 }
 

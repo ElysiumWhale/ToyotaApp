@@ -60,9 +60,9 @@ extension BookingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BookingCell
-        cell?.configure(with: bookings[indexPath.item])
-        return cell!
+        let cell: BookingCell = tableView.dequeue(for: indexPath)
+        cell.configure(with: bookings[indexPath.item])
+        return cell
     }
 }
 

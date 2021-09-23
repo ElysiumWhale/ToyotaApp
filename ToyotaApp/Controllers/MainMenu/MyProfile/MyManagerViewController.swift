@@ -49,9 +49,9 @@ extension MyManagerViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ManagerCollectionViewCell
-        cell?.configure(from: managers[indexPath.row])
-        return cell!
+        let cell: ManagerCollectionViewCell = collectionView.dequeue(for: indexPath)
+        cell.configure(from: managers[indexPath.row])
+        return cell
     }
 }
 
