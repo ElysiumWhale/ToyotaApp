@@ -144,3 +144,42 @@ extension UIStoryboard {
         return result
     }
 }
+
+// MARK: - Dequeue helpers
+extension UITableView {
+    enum TableCells: String {
+        /// BookingCell
+        case bookingCell = "BookingCell"
+    }
+    
+    func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
+        let cell = dequeueReusableCell(withIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
+        if let result = cell {
+            return result
+        } else {
+            fatalError("Can't dequeue cell.")
+        }
+    }
+}
+
+extension UICollectionView {
+    enum CollectionCells: String {
+        /// CarCell
+        case car = "CarCell"
+        /// NewsCell
+        case news = "NewsCell"
+        /// ServiceCell
+        case service = "ServiceCell"
+        /// ManagerCell
+        case manager = "ManagerCell"
+    }
+    
+    func dequeue<TCell: IdentifiableCollectionCell>(for indexPath: IndexPath) -> TCell {
+        let cell = dequeueReusableCell(withReuseIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
+        if let result = cell {
+            return result
+        } else {
+            fatalError("Can't dequeue cell.")
+        }
+    }
+}
