@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -80,7 +81,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMc-aT-iiY" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="name"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="HPQ-S4-ELy"/>
                                                         </connections>
@@ -88,7 +89,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73P-tT-b5t" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="70" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Gbg-uK-T3y"/>
                                                         </connections>
@@ -99,7 +100,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="28p-bM-bUe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="additional-name"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="additional-name"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Tnj-d1-RV1"/>
                                                         </connections>
@@ -118,7 +119,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91W-OT-t1s" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="280" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="8HU-mo-RXd"/>
                                                         </connections>
@@ -241,10 +242,10 @@
                                 </constraints>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-wp-mLq">
-                                <rect key="frame" x="20" y="185" width="374" height="204.5"/>
+                                <rect key="frame" x="20" y="185" width="374" height="202"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLs-bh-NNn">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="93"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="92"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
@@ -253,14 +254,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="47"/>
+                                                <rect key="frame" x="0.0" y="46" width="374" height="46"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="26"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wUJ-a2-MAD">
-                                        <rect key="frame" x="0.0" y="113" width="374" height="91.5"/>
+                                        <rect key="frame" x="0.0" y="112" width="374" height="90"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите салон" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICh-r4-niT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
@@ -269,7 +270,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5RZ-s5-2c2" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="45.5"/>
+                                                <rect key="frame" x="0.0" y="46" width="374" height="44"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -335,7 +336,7 @@
                                             <constraint firstAttribute="height" constant="50" id="PYm-JP-g9j"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <connections>
                                             <action selector="vinValueDidChangeWith:" destination="3my-7G-TR7" eventType="editingChanged" id="F8f-us-wvZ"/>
                                         </connections>
@@ -480,28 +481,28 @@
     </scenes>
     <designables>
         <designable name="27y-0O-l0g">
-            <size key="intrinsicContentSize" width="185" height="37.5"/>
+            <size key="intrinsicContentSize" width="190" height="37.5"/>
         </designable>
         <designable name="5RZ-s5-2c2">
-            <size key="intrinsicContentSize" width="106.5" height="45.5"/>
+            <size key="intrinsicContentSize" width="111.5" height="44"/>
         </designable>
         <designable name="73P-tT-b5t">
-            <size key="intrinsicContentSize" width="114.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="119.5" height="37.5"/>
         </designable>
         <designable name="91W-OT-t1s">
-            <size key="intrinsicContentSize" width="237" height="37.5"/>
+            <size key="intrinsicContentSize" width="242" height="37.5"/>
         </designable>
         <designable name="WLH-tK-IJr">
-            <size key="intrinsicContentSize" width="100.5" height="47"/>
+            <size key="intrinsicContentSize" width="105.5" height="46"/>
         </designable>
         <designable name="dp7-UB-djO">
-            <size key="intrinsicContentSize" width="30" height="27.5"/>
+            <size key="intrinsicContentSize" width="35" height="27.5"/>
         </designable>
         <designable name="kqe-yN-RfG">
-            <size key="intrinsicContentSize" width="115.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="120.5" height="37.5"/>
         </designable>
         <designable name="tMc-aT-iiY">
-            <size key="intrinsicContentSize" width="51" height="37.5"/>
+            <size key="intrinsicContentSize" width="56" height="37.5"/>
         </designable>
     </designables>
     <resources>
