@@ -25,3 +25,32 @@ extension WithUserInfo {
     func unsubscribe(from proxy: UserProxy) { }
     func userDidUpdate() { }
 }
+
+// MARK: - Refreshable
+typealias RefreshableController = UIViewController & Refreshable
+
+/// Protocol for UIViewController with UIRefreshControl
+protocol Refreshable: UIViewController {
+    associatedtype RefreshableView: UIScrollView
+    
+    var refreshControl: UIRefreshControl { get }
+    var refreshableView: RefreshableView! { get }
+
+    func configureRefresh()
+    func startRefreshing()
+    func endRefreshing()
+}
+
+extension Refreshable {
+    func configureRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: .pullToRefresh)
+        refreshControl.addAction(for: .valueChanged, startRefreshing)
+        refreshControl.layer.zPosition = -1
+        refreshableView.refreshControl = refreshControl
+    }
+
+    func endRefreshing() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
+                                      execute: { [weak self] in self?.refreshControl.endRefreshing() })
+    }
+}
