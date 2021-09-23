@@ -14,7 +14,7 @@ enum BookingStatus: String, Codable {
     }
 }
 
-class BookingCell: UITableViewCell {
+class BookingCell: TableCell {
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var contentLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
@@ -24,6 +24,8 @@ class BookingCell: UITableViewCell {
     @IBOutlet private var statusImage: UIImageView!
     @IBOutlet private var statusLabel: UILabel!
 
+    class var identifier: UITableView.TableCells { .bookingCell }
+    
     func configure(with booking: Booking) {
         titleLabel.text = booking.showroomName
         contentLabel.text = booking.serviceName

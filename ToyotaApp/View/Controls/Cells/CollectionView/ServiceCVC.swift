@@ -1,6 +1,6 @@
 import UIKit
 
-@IBDesignable class ServiceCollectionViewCell: UICollectionViewCell {
+@IBDesignable class ServiceCollectionViewCell: CollectionCell {
     @IBOutlet private var serviceName: UILabel!
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
@@ -8,6 +8,8 @@ import UIKit
     }
     
     private(set) var controllerType: ControllerServiceType!
+    
+    class var identifier: UICollectionView.CollectionCells { .service }
     
     func configure(name: String, type: ControllerServiceType) {
         serviceName.text = name

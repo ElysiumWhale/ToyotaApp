@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-@IBDesignable class NewsCollectionViewCell: UICollectionViewCell {
+@IBDesignable class NewsCollectionViewCell: CollectionCell {
     @IBOutlet private var showroomNameLabel: UILabel!
     @IBOutlet private var contentLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
@@ -11,6 +11,8 @@ import Kingfisher
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
     }
+    
+    class var identifier: UICollectionView.CollectionCells { .news }
     
     func configure(with news: News) {
         showroomNameLabel.text = news.showroomName

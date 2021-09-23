@@ -1,6 +1,6 @@
 import UIKit
 
-@IBDesignable class CarCollectionViewCell: UICollectionViewCell {
+@IBDesignable class CarCollectionViewCell: CollectionCell {
     @IBOutlet private var brandNameLabel: UILabel!
     @IBOutlet private var colorNameLabel: UILabel!
     @IBOutlet private var liscencePlateLabel: UILabel!
@@ -11,6 +11,8 @@ import UIKit
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
     }
+    
+    class var identifier: UICollectionView.CollectionCells { .car }
     
     func configure(brand: String, model: String, color: String, plate: String, colorDesription: String, showroom: String) {
         brandNameLabel.text = "\(brand) \(model)"
