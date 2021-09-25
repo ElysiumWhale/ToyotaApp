@@ -4,7 +4,7 @@ class NetworkService {
     private static let session = URLSession(configuration: URLSessionConfiguration.default)
     
     #warning("MAKE ME HTTPS!")
-    private static let mainUrl: URLComponents = MainURL.build()
+    private static let mainUrl = MainURL.build()
     
     class func makePostRequest<T: Codable>(page: RequestPath,
                                            params: [URLQueryItem] = [],
@@ -34,6 +34,36 @@ class NetworkService {
                 completion(Result.failure(errorResponse))
             } else {
                 completion(Result.failure(.corruptedData))
+            }
+        }.resume()
+    }
+    
+    class func makeRequest<T: Codable>(page: RequestPath,
+                                           params: [URLQueryItem] = [],
+                                           handler: RequestHandler<T>) {
+        let request = buildPostRequest(for: page.rawValue, with: params)
+        
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                #warning("todo: switch by error code")
+                handler.onFailure?(.lostConnection)
+                return
+            }
+            
+            guard let data = data else {
+                handler.onFailure?(.corruptedData)
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data)
+            print(json ?? "Error while parsing json object")
+            
+            if let response = try? JSONDecoder().decode(T.self, from: data) {
+                handler.onSuccess?(response)
+            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                handler.onFailure?(errorResponse)
+            } else {
+                handler.onFailure?(.corruptedData)
             }
         }.resume()
     }

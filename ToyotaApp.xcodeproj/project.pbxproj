@@ -10,6 +10,7 @@
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		141F06ED26DBC57400AC02EA /* BookButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F06EC26DBC57400AC02EA /* BookButton.swift */; };
+		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
@@ -88,6 +89,7 @@
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		141F06EC26DBC57400AC02EA /* BookButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookButton.swift; sourceTree = "<group>"; };
+		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
@@ -181,6 +183,26 @@
 				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		1425230126FFBCAC00B177B7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A77AA962252E7993004D12E8 /* NetworkService.swift */,
+				A77B9311253B035F0011282E /* APIResponses.swift */,
+				1425230326FFBD7C00B177B7 /* RequestHandler.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1425230226FFBCC500B177B7 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				1494038E26B0929F0088C7E4 /* KeychainManager.swift */,
+				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
+				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		146590F926EAB5CD0056E37D /* Modules */ = {
@@ -288,14 +310,11 @@
 		A75946A22523ECD400312EBE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A77AA962252E7993004D12E8 /* NetworkService.swift */,
-				A77B9311253B035F0011282E /* APIResponses.swift */,
-				1494038E26B0929F0088C7E4 /* KeychainManager.swift */,
-				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
+				1425230226FFBCC500B177B7 /* Persistance */,
+				1425230126FFBCAC00B177B7 /* Network */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 				1443FDAD260BEEEE007CEBB1 /* Notificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
-				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				14A8D8942617C25F0086BC12 /* Test.swift */,
 			);
 			path = Model;
@@ -548,6 +567,7 @@
 				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
+				1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
