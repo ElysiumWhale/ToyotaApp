@@ -1,6 +1,7 @@
 import UIKit
 
 class DealerViewController: UIViewController {
+    // MARK: - UI
     @IBOutlet private var cityTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomStackView: UIStackView!
@@ -8,16 +9,50 @@ class DealerViewController: UIViewController {
     @IBOutlet private var nextButtonIndicator: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
 
-    private var type: AddInfoType = .register
-
     private var cityPicker: UIPickerView = UIPickerView()
     private var showroomPicker: UIPickerView = UIPickerView()
 
+    // MARK: - Data
+    private let segueCode = SegueIdentifiers.DealerToCheckVin
+
+    private var type: AddInfoType = .register
     private var cities: [City] = []
     private var selectedCity: City?
     private var showrooms: [DTOShowroom] = []
     private var selectedShowroom: DTOShowroom?
 
+    // MARK: - Request handlers
+    private lazy var showroomsHandler: RequestHandler<ShoroomsDidGetResponce> = {
+        let handler = RequestHandler<ShoroomsDidGetResponce>()
+        handler.onSuccess = { [weak self] data in
+            self?.showrooms = data.showrooms
+            DispatchQueue.main.async {
+                self?.cityTextFieldIndicator.stopAnimating()
+                self?.showroomStackView.fadeIn()
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
+            DispatchQueue.main.async {
+                self?.cityTextFieldIndicator.stopAnimating()
+            }
+        }
+        return handler
+    }()
+    
+    private lazy var setInfoHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+        handler.onSuccess = { [weak self] data in
+            self?.handleSuccess(response: data)
+        }
+        handler.onFailure = { [weak self] error in
+            self?.interfaceCompletion(for: .fail(message: error.message ?? .error(.unknownError)))
+        }
+        return handler
+    }()
+    
+    // MARK: - Public methods
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.alpha = 0
@@ -81,25 +116,9 @@ extension DealerViewController {
         view.endEditing(true)
         let params = [URLQueryItem(.auth(.brandId), Brand.Toyota),
                       URLQueryItem(.carInfo(.cityId), selectedCity!.id)]
-        NetworkService.makePostRequest(page: .regisrtation(.getShowrooms),
-                                       params: params,
-                                       completion: completionForSelectedCity)
-    }
-
-    private func completionForSelectedCity(for response: Result<ShoroomsDidGetResponce, ErrorResponse>) {
-        switch response {
-            case .success(let data):
-                showrooms = data.showrooms
-                DispatchQueue.main.async { [weak self] in
-                    self?.cityTextFieldIndicator.stopAnimating()
-                    self?.showroomStackView.fadeIn()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async { [weak self] in
-                    self?.cityTextFieldIndicator.stopAnimating()
-                    PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
-                }
-        }
+        NetworkService.makeRequest(page: .registration(.getShowrooms),
+                                   params: params,
+                                   handler: showroomsHandler)
     }
 
     @IBAction private func showroomDidSelect(sender: Any?) {
@@ -111,74 +130,66 @@ extension DealerViewController {
     }
 }
 
-// MARK: - SegueWithRequestController
-extension DealerViewController: SegueWithRequestController {
-    typealias TResponse = Response
-
-    var segueCode: String { SegueIdentifiers.DealerToCheckVin }
-
+// MARK: - Settings showroom button handling
+extension DealerViewController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard let showroom = selectedShowroom else {
-            PopUp.display(.error(description: "Выберите салон"))
+            PopUp.display(.error(description: .common(.chooseShowroom)))
             return
         }
         
+        
         if let showrooms = KeychainManager.get(Showrooms.self)?.value, !showrooms.isEmpty,
-           showrooms.first(where: { $0.id == showroom.id }) != nil {
+           showrooms.any({ $0.id == showroom.id }) {
             performSegue(for: segueCode)
-        } else {
-            nextButton.fadeOut()
-            nextButtonIndicator.startAnimating()
-            let userId = KeychainManager.get(UserId.self)!.id
-            let params = [URLQueryItem(.auth(.userId), userId),
-                          URLQueryItem(.carInfo(.showroomId), showroom.id)]
-            NetworkService.makePostRequest(page: page, params: params,
-                                           completion: completionForSegue)
+            return
         }
+        
+        nextButton.fadeOut()
+        nextButtonIndicator.startAnimating()
+        let userId = KeychainManager.get(UserId.self)!.id
         let page: RequestPath = type == .register ? .registration(.setShowroom)
                                                   : .profile(.addShowroom)
+        let params = [URLQueryItem(.auth(.userId), userId),
+                      URLQueryItem(.carInfo(.showroomId), showroom.id)]
+        NetworkService.makeRequest(page: page, params: params,
+                                   handler: setInfoHandler)
     }
-    
+
     private enum UIResult {
         case fail(message: String)
         case success
     }
-    
+
+    private func handleSuccess(response: Response) {
+        guard let showroom = selectedShowroom,
+              let city = selectedCity else {
+                  interfaceCompletion(for: .fail(message: .error(.unknownError)))
+                  return
+              }
+        
+        KeychainManager.update(Showrooms.self) { showrooms in
+            let showroom = Showroom(id: showroom.id, showroomName: showroom.showroomName, cityName: city.name)
+            guard let showrooms = showrooms else { return Showrooms([showroom]) }
+            
+            showrooms.value.append(showroom)
+            return showrooms
+        }
+        
+        interfaceCompletion(for: .success)
+    }
+
     private func interfaceCompletion(for result: UIResult) {
-        DispatchQueue.main.async { [weak self] in
-            guard let view = self else { return }
-            view.nextButtonIndicator.stopAnimating()
-            view.nextButton.fadeIn()
+        DispatchQueue.main.async { [self] in
+            nextButtonIndicator.stopAnimating()
+            nextButton.fadeIn()
             
             switch result {
                 case .fail(let message):
                     PopUp.display(.error(description: message))
                 case .success:
-                    view.performSegue(withIdentifier: view.segueCode, sender: view)
+                    performSegue(withIdentifier: SegueIdentifiers.DealerToCheckVin, sender: self)
             }
-        }
-    }
-    
-    func completionForSegue(for response: Result<Response, ErrorResponse>) {
-        switch response {
-            case .success:
-                guard let showroom = selectedShowroom,
-                      let city = selectedCity else {
-                    interfaceCompletion(for: .fail(message: AppErrors.unknownError.rawValue))
-                    return
-                }
-                
-                KeychainManager.update(Showrooms.self) { showrooms in
-                    let showroom = Showroom(id: showroom.id, showroomName: showroom.showroomName, cityName: city.name)
-                    guard let showrooms = showrooms else { return Showrooms([showroom]) }
-                    
-                    showrooms.value.append(showroom)
-                    return showrooms
-                }
-                
-                interfaceCompletion(for: .success)
-            case .failure(let error):
-                interfaceCompletion(for: .fail(message: error.message ?? AppErrors.unknownError.rawValue))
         }
     }
 }
