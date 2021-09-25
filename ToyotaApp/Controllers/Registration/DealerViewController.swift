@@ -130,12 +130,13 @@ extension DealerViewController: SegueWithRequestController {
             nextButton.fadeOut()
             nextButtonIndicator.startAnimating()
             let userId = KeychainManager.get(UserId.self)!.id
-            let page: RequestPath = type == .register ? .regisrtation(.setShowroom) : .profile(.addShowroom)
             let params = [URLQueryItem(.auth(.userId), userId),
                           URLQueryItem(.carInfo(.showroomId), showroom.id)]
             NetworkService.makePostRequest(page: page, params: params,
                                            completion: completionForSegue)
         }
+        let page: RequestPath = type == .register ? .registration(.setShowroom)
+                                                  : .profile(.addShowroom)
     }
     
     private enum UIResult {

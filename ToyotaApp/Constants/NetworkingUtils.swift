@@ -12,7 +12,7 @@ enum RequestType: String {
 
 enum RequestPath {
     case start(_ page: Start)
-    case regisrtation(_ page: Registration)
+    case registration(_ page: Registration)
     case services(_ page: Services)
     case profile(_ page: Profile)
     case setting(_ page: Settings)
@@ -20,7 +20,7 @@ enum RequestPath {
     var rawValue: String {
         switch self {
             case .start(let page): return page.rawValue
-            case .regisrtation(let page): return page.rawValue
+            case .registration(let page): return page.rawValue
             case .services(let page): return page.rawValue
             case .profile(let page): return page.rawValue
             case .setting(let page): return page.rawValue

@@ -72,7 +72,7 @@ extension CheckVinViewController: SegueWithRequestController {
         indicator.startAnimating()
         
         let userId = KeychainManager.get(UserId.self)!.id
-        NetworkService.makePostRequest(page: .regisrtation(.checkVin), params:
+        NetworkService.makePostRequest(page: .registration(.checkVin), params:
                                         [URLQueryItem(.carInfo(.skipStep), skip.rawValue),
                                          URLQueryItem(.carInfo(.showroomId), showroom!.id),
                                          URLQueryItem(.carInfo(.vinCode), vin),
