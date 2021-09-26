@@ -5,7 +5,8 @@ class KeyboardBindedButton: UIButton {
     
     func bindToKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange),
-                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
     }
     
     @objc func keyboardWillChange(_ notification: NSNotification) {

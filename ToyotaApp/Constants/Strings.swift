@@ -26,10 +26,13 @@ extension String {
         case no = "Нет"
         case choose = "Выбрать"
         case chooseShowroom = "Выберите салон"
+        case enterNewNumber = "Введите новый номер"
         case pullToRefresh = "Потяните вниз для обновления"
         case retryRefresh = "потяните вниз для повторной загрузки."
         case personalDataSaved = "Личная информация успешно обновлена"
         case bookingSuccess = "Заявка оставлена и будет обработана в ближайшее время"
+        case autoLinked = "Автомобиль успешно привязан к профилю"
+        case phoneChanged = "Телефон упешно изменен"
     }
     
     enum BackgroundString: String {

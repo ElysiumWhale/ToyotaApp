@@ -35,6 +35,7 @@ enum AppErrors: String, Error {
     case citiesLoadError = "Ошибка при загрузке городов, повторите позднее"
     case savingError = "Произошла ошибка при сохранении данных, повторите попытку позже"
     case checkInput = "Неккоректные данные. Проверьте введенную информацию!"
+    case vinCodeError = "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова"
 }
 
 // MARK: - ErrorResponse

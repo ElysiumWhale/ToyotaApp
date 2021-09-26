@@ -35,7 +35,18 @@ extension UIView {
 
 // MARK: - UITextField error border
 extension UITextField {
+    enum FieldState {
+        case error
+        case normal
+    }
+    
     func toggleErrorState(hasError: Bool) {
+        layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
+        layer.borderWidth = hasError ? 1 : 0
+    }
+    
+    func toggle(state: FieldState) {
+        let hasError = state == .error
         layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
         layer.borderWidth = hasError ? 1 : 0
     }
