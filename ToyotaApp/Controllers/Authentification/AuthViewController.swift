@@ -7,29 +7,73 @@ class AuthViewController: UIViewController {
     @IBOutlet private var sendPhoneButton: KeyboardBindedButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
+    private let segueCode = SegueIdentifiers.NumberToCode
+
     private var type: AuthType = .register
+
+    private lazy var authRequestHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(isSuccess: true)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handle(isSuccess: false)
+                PopUp.display(.error(description: error.message ?? .error(.unknownError)))
+            }
+        }
+        
+        return handler
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         incorrectLabel.alpha = 0
-        configureTextField()
         view.hideKeyboardWhenSwipedDown()
         sendPhoneButton.bindToKeyboard()
+        
+        if case .changeNumber = type {
+            informationLabel.text = .common(.enterNewNumber)
+        }
     }
 
     func configure(with authType: AuthType) {
         type = authType
     }
 
-    func configureTextField() {
-        if case .changeNumber(_) = type {
-            informationLabel.text = "Введите новый номер:"
-        }
-    }
-
     @IBAction func phoneNumberDidChange(sender: UITextField) {
         incorrectLabel.fadeOut(0.3)
-        phoneNumber.toggleErrorState(hasError: false)
+        phoneNumber.toggle(state: .normal)
+    }
+
+    @IBAction func nextButtonDidPressed(sender: Any?) {
+        guard let phone = phoneNumber.validPhone else {
+            phoneNumber.toggleErrorState(hasError: true)
+            incorrectLabel.fadeIn(0.3)
+            return
+        }
+        
+        sendPhoneButton.fadeOut()
+        indicator.startAnimating()
+        view.endEditing(true)
+        if case .register = type {
+            KeychainManager.set(Phone(phone))
+        }
+        NetworkService.makeRequest(page: .registration(.registerPhone),
+                                   params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
+                                   handler: authRequestHandler)
+    }
+
+    private func handle(isSuccess: Bool) {
+        indicator.stopAnimating()
+        sendPhoneButton.fadeIn()
+        if isSuccess {
+            performSegue(withIdentifier: segueCode, sender: self)
+        }
     }
 }
 
@@ -47,44 +91,5 @@ extension AuthViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         sendPhoneButton.fadeIn()
-    }
-}
-
-// MARK: - SegueWiRhRequestController
-extension AuthViewController: SegueWithRequestController {
-    typealias TResponse = Response
-
-    var segueCode: String { SegueIdentifiers.NumberToCode }
-
-    @IBAction func nextButtonDidPressed(sender: Any?) {
-        guard let phone = phoneNumber.validPhone else {
-            phoneNumber.toggleErrorState(hasError: true)
-            incorrectLabel.fadeIn(0.3)
-            return
-        }
-        
-        sendPhoneButton.fadeOut()
-        indicator.startAnimating()
-        view.endEditing(true)
-        if case .register = type {
-            KeychainManager.set(Phone(phone))
-        }
-        NetworkService.makePostRequest(page: .registration(.registerPhone),
-                                       params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
-                                       completion: completionForSegue)
-    }
-
-    func completionForSegue(for response: Result<Response, ErrorResponse>) {
-        DispatchQueue.main.async { [weak self] in
-            guard let view = self else { return }
-            view.indicator.stopAnimating()
-            view.sendPhoneButton.fadeIn()
-            switch response {
-                case .success:
-                    view.performSegue(withIdentifier: view.segueCode, sender: view)
-                case .failure(let error):
-                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
-            }
-        }
     }
 }

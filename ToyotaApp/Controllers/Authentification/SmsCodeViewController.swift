@@ -6,34 +6,69 @@ class SmsCodeViewController: UIViewController {
     @IBOutlet private var sendSmsCodeButton: KeyboardBindedButton!
     @IBOutlet private var wrongCodeLabel: UILabel!
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
-    
+
     private var phoneNumber: String!
     private var type: AuthType = .register
-    
+
+    private lazy var registerHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
+        let handler = RequestHandler<CheckUserOrSmsCodeResponse>()
+        
+        handler.onSuccess = { [weak self] data in
+            KeychainManager.set(UserId(data.userId!))
+            KeychainManager.set(SecretKey(data.secretKey))
+            if self == nil { return }
+            NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
+                NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handle(error)
+            }
+        }
+        
+        return handler
+    }()
+
+    private lazy var changeNumberHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+        
+        handler.onSuccess = { [weak self] data in
+            self?.handleSuccess()
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handle(error)
+            }
+        }
+        
+        return handler
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         wrongCodeLabel.alpha = 0
         view.hideKeyboardWhenSwipedDown()
         sendSmsCodeButton.bindToKeyboard()
     }
-    
+
     func configure(with authType: AuthType, and number: String) {
         type = authType
         phoneNumber = number
     }
-    
+
     @IBAction func codeValueDidChange(with sender: UITextField) {
         wrongCodeLabel.fadeOut(0.3)
-        smsCodeTextField.toggleErrorState(hasError: false)
+        smsCodeTextField.toggle(state: .normal)
     }
-    
+
     private func displayError() {
-        DispatchQueue.main.async { [self] in
-            wrongCodeLabel.fadeIn(0.3)
-            activitySwitcher.stopAnimating()
-            sendSmsCodeButton.fadeIn(0.3)
-            smsCodeTextField.toggleErrorState(hasError: true)
-        }
+        wrongCodeLabel.fadeIn(0.3)
+        activitySwitcher.stopAnimating()
+        sendSmsCodeButton.fadeIn(0.3)
+        smsCodeTextField.toggle(state: .error)
     }
 }
 // MARK: - Navigation
@@ -42,7 +77,7 @@ extension SmsCodeViewController {
         super.viewWillAppear(animated)
         phoneNumberLabel.text = phoneNumber
     }
-    
+
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
@@ -66,16 +101,16 @@ extension SmsCodeViewController {
         
         switch type {
             case .register:
-                NetworkService.makePostRequest(page: .registration(.checkCode),
-                                               params: buildRequestParams(authType: type),
-                                               completion: registerCompletion)
+                NetworkService.makeRequest(page: .registration(.checkCode),
+                                           params: buildRequestParams(authType: type),
+                                           handler: registerHandler)
             case .changeNumber:
-                NetworkService.makePostRequest(page: .setting(.changePhone),
-                                               params: buildRequestParams(authType: type),
-                                               completion: changeNumberCompletion)
+                NetworkService.makeRequest(page: .setting(.changePhone),
+                                           params: buildRequestParams(authType: type),
+                                           handler: changeNumberHandler)
         }
     }
-    
+
     private func buildRequestParams(authType: AuthType) -> [URLQueryItem] {
         var params = [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber),
                       URLQueryItem(.auth(.code), smsCodeTextField!.text)]
@@ -83,38 +118,18 @@ extension SmsCodeViewController {
                                             : URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)!.id))
         return params
     }
-    
-    private func registerCompletion(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
-        switch response {
-            case .success(let data):
-                KeychainManager.set(UserId(data.userId!))
-                KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                    NavigationService.loadRegister(.error(message: AppErrors.serverBadResponse.rawValue))
-                }
-            case .failure(let error):
-                DispatchQueue.main.async { [weak self] in
-                    self?.activitySwitcher.stopAnimating()
-                    self?.sendSmsCodeButton.fadeIn()
-                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
-                }
-        }
+
+    private func handle(_ error: ErrorResponse) {
+        activitySwitcher.stopAnimating()
+        sendSmsCodeButton.fadeIn()
+        PopUp.display(.error(description: error.message ?? .error(.unknownError)))
     }
-    
-    private func changeNumberCompletion(for response: Result<Response, ErrorResponse>) {
-        switch response {
-            case .success:
-                if case .changeNumber(let notificator) = type {
-                    notificator.notificateObservers()
-                    PopUp.display(.success(description: "Телефон упешно изменен"))
-                    dismissNavigationWithDispatch(animated: true)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async { [weak self] in
-                    self?.activitySwitcher.stopAnimating()
-                    self?.sendSmsCodeButton.fadeIn()
-                    PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
-                }
+
+    private func handleSuccess() {
+        if case .changeNumber(let notificator) = type {
+            notificator.notificateObservers()
+            PopUp.display(.success(description: .common(.phoneChanged)))
+            dismissNavigationWithDispatch(animated: true)
         }
     }
 }

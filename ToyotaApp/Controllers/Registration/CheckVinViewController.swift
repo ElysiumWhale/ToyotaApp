@@ -12,11 +12,24 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var indicator: UIActivityIndicatorView!
     @IBOutlet private var skipStepButton: UIButton!
 
+    private let segueCode = SegueIdentifiers.CarToEndRegistration
+
     private var showroom: Showroom?
     private var type: AddInfoType = .register
 
     private var isSkipped: Bool = false
     private var vin: String = ""
+
+    private lazy var requestHandler: RequestHandler<CarDidCheckResponse> = {
+        let handler = RequestHandler<CarDidCheckResponse>()
+        handler.onSuccess = { [weak self] data in
+            self?.handleSuccess(data)
+        }
+        handler.onFailure = { [weak self] error in
+            self?.interfaceCompletion(false, error.message ?? .error(.vinCodeError))
+        }
+        return handler
+    }()
 
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.fadeOut(0.3)
@@ -47,11 +60,7 @@ class CheckVinViewController: UIViewController {
 }
 
 // MARK: - SegueWithRequestController
-extension CheckVinViewController: SegueWithRequestController {
-    typealias TResponse = CarDidCheckResponse
-
-    var segueCode: String { SegueIdentifiers.CarToEndRegistration }
-
+extension CheckVinViewController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard vin.count == 17 else {
             vinCodeTextField.toggleErrorState(hasError: true)
@@ -72,48 +81,41 @@ extension CheckVinViewController: SegueWithRequestController {
         indicator.startAnimating()
         
         let userId = KeychainManager.get(UserId.self)!.id
-        NetworkService.makePostRequest(page: .registration(.checkVin), params:
-                                        [URLQueryItem(.carInfo(.skipStep), skip.rawValue),
-                                         URLQueryItem(.carInfo(.showroomId), showroom!.id),
-                                         URLQueryItem(.carInfo(.vinCode), vin),
-                                         URLQueryItem(.auth(.userId), userId)],
-                                       completion: completionForSegue)
+        NetworkService.makeRequest(page: .registration(.checkVin),
+                                   params: [URLQueryItem(.carInfo(.skipStep), skip.rawValue),
+                                            URLQueryItem(.carInfo(.showroomId), showroom!.id),
+                                            URLQueryItem(.carInfo(.vinCode), vin),
+                                            URLQueryItem(.auth(.userId), userId)],
+                                   handler: requestHandler)
     }
 
-    func completionForSegue(for response: Result<CarDidCheckResponse, ErrorResponse>) {
-        
-        let completion = { [weak self] (isSuccess: Bool, parameter: String) in
-            guard let view = self else { return }
-            DispatchQueue.main.async {
-                view.indicator.stopAnimating()
-                view.checkVinButton.fadeIn()
-                
-                isSuccess ? view.performSegue(withIdentifier: view.segueCode, sender: view)
-                          : PopUp.display(.error(description: parameter))
-            }
+    private func handleSuccess(_ response: CarDidCheckResponse) {
+        if isSkipped {
+            interfaceCompletion(true, segueCode)
+            return
         }
-        
-        switch response {
-            case .success(let data):
-                if isSkipped {
-                    completion(true, segueCode)
-                    return
-                }
-                guard let car = data.car?.toDomain(with: vin, showroom: showroom!.id) else {
-                    completion(false, "Сервер прислал неверные данные, проверьте ввод и повторите регистрацию позже")
-                    return
-                }
-                switch type {
-                    case .register:
-                        KeychainManager.set(Cars([car]))
-                        performSegue(for: segueCode)
-                    case .update(let proxy):
-                        proxy.update(car, showroom!)
-                        PopUp.display(.success(description: "Автомобиль успешно привязан к профилю"))
-                        popToRootWithDispatch(animated: true)
-                }
-            case .failure(let error):
-                completion(false, error.message ?? "Ошибка при проверке VIN-кода, проверьте правильность кода и попробуйте снова")
+        guard let car = response.car?.toDomain(with: vin, showroom: showroom!.id) else {
+            interfaceCompletion(false, .error(.serverBadResponse))
+            return
+        }
+        switch type {
+            case .register:
+                KeychainManager.set(Cars([car]))
+                performSegue(for: segueCode)
+            case .update(let proxy):
+                proxy.update(car, showroom!)
+                PopUp.display(.success(description: .common(.autoLinked)))
+                popToRootWithDispatch(animated: true)
+        }
+    }
+
+    private func interfaceCompletion(_ isSuccess: Bool, _ parameter: String) {
+        DispatchQueue.main.async { [self] in
+            indicator.stopAnimating()
+            checkVinButton.fadeIn()
+            
+            isSuccess ? performSegue(withIdentifier: segueCode, sender: self)
+                      : PopUp.display(.error(description: parameter))
         }
     }
 }

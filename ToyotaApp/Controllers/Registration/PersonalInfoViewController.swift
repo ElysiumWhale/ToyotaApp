@@ -10,6 +10,7 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
 
+    private let segueCode = SegueIdentifiers.PersonInfoToDealer
     private let datePicker: UIDatePicker = UIDatePicker()
 
     private var textFieldsWithError: [UITextField: Bool] = [:]
@@ -19,6 +20,26 @@ class PersonalInfoViewController: UIViewController {
 
     private var isConfigured: Bool = false
     private var configuredProfile: Profile?
+
+    private lazy var requestHandler: RequestHandler<CitiesDidGetResponse> = {
+        let handler = RequestHandler<CitiesDidGetResponse>()
+        
+        handler.onSuccess = { [weak self] data in
+            self?.handle(data)
+            DispatchQueue.main.async {
+                self?.handleUI(isSuccess: true)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handleUI(isSuccess: false)
+                PopUp.display(.error(description: error.message ?? .error(.requestError)))
+            }
+        }
+        
+        return handler
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,49 +138,37 @@ extension PersonalInfoViewController {
     }
 }
 
-// MARK: - SegueWithRequestController
-extension PersonalInfoViewController: SegueWithRequestController {
-    typealias TResponse = CitiesDidGetResponse
-
-    var segueCode: String { SegueIdentifiers.PersonInfoToDealer }
-
+// MARK: - Requrst handling
+extension PersonalInfoViewController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
-        if hasErrors {
-            PopUp.display(.error(description: "Неккоректные данные. Проверьте введенную информацию!"))
-            return
+        guard !hasErrors, let firstName = firstNameTextField.text,
+              let lastName = lastNameTextField.text,
+              let secondName = secondNameTextField.text,
+              let email = emailTextField.text else {
+                  PopUp.display(.error(description: .error(.checkInput)))
+                  return
         }
         
         nextButton.fadeOut()
         activitySwitcher.startAnimating()
-        configuredProfile = Profile(phone: nil, firstName: firstNameTextField.text!,
-                                    lastName: lastNameTextField.text!,
-                                    secondName: secondNameTextField.text!,
-                                    email: emailTextField.text!,
-                                    birthday: date)
-        NetworkService.makePostRequest(page: .registration(.setProfile),
-                                       params: buildRequestParams(from: configuredProfile!, date: date),
-                                       completion: completionForSegue)
+        configuredProfile = Profile(phone: nil, firstName: firstName,
+                                    lastName: lastName, secondName: secondName,
+                                    email: email, birthday: date)
+        NetworkService.makeRequest(page: .registration(.setProfile),
+                                   params: buildRequestParams(from: configuredProfile!, date: date),
+                                   handler: requestHandler)
     }
 
-    func completionForSegue(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
-        
-        let completion = { [weak self] (isSuccess: Bool, parameter: String) in
-            guard let view = self else { return }
-            DispatchQueue.main.async {
-                view.activitySwitcher.stopAnimating()
-                view.nextButton.fadeIn()
-                isSuccess ? view.performSegue(withIdentifier: view.segueCode, sender: view)
-                          : PopUp.display(.error(description: parameter))
-            }
-        }
-        
-        switch response {
-            case .success(let data):
-                cities = data.cities.map { City(id: $0.id, name: $0.name) }
-                KeychainManager.set(Person.toDomain(configuredProfile!))
-                completion(true, segueCode)
-            case .failure(let error):
-                completion(false, error.message ?? "Ошибка при отправке запроса")
+    private func handle(_ response: CitiesDidGetResponse) {
+        cities = response.cities.map { City(id: $0.id, name: $0.name) }
+        KeychainManager.set(Person.toDomain(configuredProfile!))
+    }
+
+    private func handleUI(isSuccess: Bool) {
+        activitySwitcher.stopAnimating()
+        nextButton.fadeIn()
+        if isSuccess {
+            performSegue(withIdentifier: segueCode, sender: self)
         }
     }
 
