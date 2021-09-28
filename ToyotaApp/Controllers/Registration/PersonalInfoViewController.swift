@@ -1,7 +1,7 @@
 import UIKit
 
-class PersonalInfoViewController: UIViewController {
-    @IBOutlet private var scrollView: UIScrollView!
+class PersonalInfoViewController: KeyboardableController {
+    @IBOutlet private(set) var scrollView: UIScrollView!
     @IBOutlet private var firstNameTextField: InputTextField!
     @IBOutlet private var secondNameTextField: InputTextField!
     @IBOutlet private var lastNameTextField: InputTextField!
@@ -108,37 +108,7 @@ extension PersonalInfoViewController {
     }
 }
 
-// MARK: - Keyboard methods
-extension PersonalInfoViewController {
-    private func setupKeyboard(isSubcribing: Bool) {
-        if isSubcribing {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                                   name: UIResponder.keyboardWillShowNotification,
-                                                   object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                                   name: UIResponder.keyboardWillHideNotification,
-                                                   object: nil)
-        } else {
-            NotificationCenter.default.removeObserver(self)
-        }
-    }
-
-    @IBAction func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-      }
-
-    @IBAction func keyboardWillHide(notification: NSNotification) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-}
-
-// MARK: - Requrst handling
+// MARK: - Request handling
 extension PersonalInfoViewController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard !hasErrors, let firstName = firstNameTextField.text,
