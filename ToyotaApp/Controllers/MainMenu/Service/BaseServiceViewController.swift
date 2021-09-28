@@ -12,7 +12,7 @@ class BaseServiceController: UIViewController, IServiceController {
         button.backgroundColor = UIColor.appTint(.mainRed)
         button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 20)
         button.layer.cornerRadius = 20
-        button.setTitle("Оставить заявку", for: .normal)
+        button.setTitle(.common(.book), for: .normal)
         button.addAction { [weak self] in
             self?.bookService()
         }
@@ -41,6 +41,23 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
+    private lazy var bookingRequestHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+        
+        handler.onSuccess = { [weak self] _ in
+            PopUp.display(.success(description: .common(.bookingSuccess)))
+            DispatchQueue.main.async {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        handler.onFailure = { error in
+            PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+        }
+        
+        return handler
+    }()
+
     init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
         super.init(nibName: nil, bundle: .main)
         self.modules = modules
@@ -54,7 +71,7 @@ class BaseServiceController: UIViewController, IServiceController {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
-        navigationItem.backButtonTitle = "Услуги"
+        navigationItem.backButtonTitle = .common(.services)
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)
@@ -98,20 +115,8 @@ class BaseServiceController: UIViewController, IServiceController {
             params.append(URLQueryItem(.services(.serviceId), serviceType!.id))
         }
         
-        NetworkService.makePostRequest(page: .services(.bookService),
-                                       params: params, completion: completion)
-        
-        func completion(for response: Result<Response, ErrorResponse>) {
-            switch response {
-                case .success:
-                    PopUp.display(.success(description: "Заявка оставлена и будет обработана в ближайшее время"))
-                    DispatchQueue.main.async { [weak self] in
-                        self?.navigationController?.popViewController(animated: true)
-                    }
-                case .failure(let error):
-                    PopUp.display(.error(description: error.message ?? .error(.servicesError)))
-            }
-        }
+        NetworkService.makeRequest(page: .services(.bookService),
+                                   params: params, handler: bookingRequestHandler)
     }
 
     // MARK: - Modules updates processing

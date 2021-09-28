@@ -11,6 +11,22 @@ class MyCarsViewController: UIViewController, BackgroundText {
 
     private var cars: [Car] { user.getCars.array }
 
+    private lazy var citiesRequestHandle: RequestHandler<CitiesDidGetResponse> = {
+        let handler = RequestHandler<CitiesDidGetResponse>()
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(data)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
+        }
+        
+        return handler
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
@@ -18,28 +34,20 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
 
     @IBAction func addCar(sender: Any?) {
-        NetworkService.makePostRequest(page: .profile(.getCities),
-                                       params: [URLQueryItem(.auth(.brandId), Brand.Toyota)],
-                                       completion: carDidAddCompletion)
+        NetworkService.makeRequest(page: .profile(.getCities),
+                                   params: [URLQueryItem(.auth(.brandId), Brand.Toyota)],
+                                   handler: citiesRequestHandle)
     }
 
     @IBAction func doneDidPress(_ sender: Any) {
         dismiss(animated: true)
     }
 
-    private func carDidAddCompletion(for response: Result<CitiesDidGetResponse, ErrorResponse>) {
-        switch response {
-            case .success(let data):
-                DispatchQueue.main.async { [weak self] in
-                    guard let vc = self else { return }
-                    let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-                    let addShowroomVC = register.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
-                    addShowroomVC?.configure(cityList: data.cities, controllerType: .update(with: vc.user))
-                    vc.navigationController?.pushViewController(addShowroomVC!, animated: true)
-                }
-            case .failure(let error):
-                PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
-        }
+    private func handle(_ response: CitiesDidGetResponse) {
+        let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
+        let addShowroomVC = register.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
+        addShowroomVC?.configure(cityList: response.cities, controllerType: .update(with: user))
+        navigationController?.pushViewController(addShowroomVC!, animated: true)
     }
 }
 

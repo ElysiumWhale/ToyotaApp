@@ -8,37 +8,43 @@ class MyManagerViewController: UIViewController, BackgroundText {
     private var user: UserProxy!
     private var managers: [Manager] = []
 
+    private lazy var managersRequestHandler: RequestHandler<ManagersDidGetResponse> = {
+        let handler = RequestHandler<ManagersDidGetResponse>()
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(data)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? .error(.managersLoadError))
+            }
+        }
+        
+        return handler
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let params = [URLQueryItem(.auth(.userId), user.getId),
                       URLQueryItem(.auth(.brandId), Brand.Toyota)]
-        NetworkService.makePostRequest(page: .profile(.getManagers),
-                                       params: params, completion: completion)
-        
-        func completion(for response: Result<ManagersDidGetResponse, ErrorResponse>) {
-            switch response {
-                case .failure(let error):
-                    DispatchQueue.main.async { [weak self] in
-                        if let mes = error.message {
-                            PopUp.display(.error(description: mes))
-                        }
-                        self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? .error(.managersLoadError))
-                    }
-                case .success(let data):
-                    managers = data.managers
-                    DispatchQueue.main.async { [weak self] in
-                        self?.managersCollection.reloadData()
-                        if data.managers.isEmpty {
-                            self?.managersCollection.backgroundView = self?.createBackground(labelText: .background(.noManagers))
-                        }
-                    }
-            }
-        }
+        NetworkService.makeRequest(page: .profile(.getManagers),
+                                   params: params, handler: managersRequestHandler)
     }
 
     @IBAction func doneDidPress(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    private func handle(_ response: ManagersDidGetResponse) {
+        managers = response.managers
+        managersCollection.reloadData()
+        if response.managers.isEmpty {
+            managersCollection.backgroundView = createBackground(labelText: .background(.noManagers))
+        }
     }
 }
 

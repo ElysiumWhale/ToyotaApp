@@ -10,6 +10,24 @@ class ServicesViewController: RefreshableController, BackgroundText {
 
     private let cellIdentrifier = CellIdentifiers.ServiceCell
 
+    private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesDidGetResponse> = {
+        let handler = RequestHandler<ServicesTypesDidGetResponse>()
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(success: data)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handle(failure: error)
+            }
+        }
+        
+        return handler
+    }()
+
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
@@ -26,9 +44,9 @@ class ServicesViewController: RefreshableController, BackgroundText {
         configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
         
         switch cars.count {
-            case 0: layoutIfNoCars()
             case 1: layoutIfOneCar()
-            default: layoutIfManyCars()
+            case 2...: layoutIfManyCars()
+            default: layoutIfNoCars()
         }
     }
 
@@ -36,53 +54,41 @@ class ServicesViewController: RefreshableController, BackgroundText {
         serviceTypes.removeAll()
         refreshableView.reloadData()
         refreshControl.beginRefreshing()
-        NetworkService.makePostRequest(page: .services(.getServicesTypes),
-                                       params: [URLQueryItem(.carInfo(.showroomId),
-                                                             selectedCar!.showroomId)],
-                                       completion: carDidSelectCompletion)
+        makeRequest()
     }
 
     @IBAction private func carDidSelect(sender: Any?) {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
-        if selectedCar!.id != cars[row].id {
-            serviceTypes.removeAll()
-            refreshableView.reloadData()
-            refreshControl.beginRefreshing()
+        if let car = selectedCar, car.id != cars[row].id,
+           let showroomName = user.getSelectedShowroom?.showroomName {
             user.update(cars[row])
-            carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
-            showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+            carTextField.text = "\(car.brand) \(car.model)"
+            showroomLabel.text = showroomName
             KeychainManager.set(Cars(cars))
-            NetworkService.makePostRequest(page: .services(.getServicesTypes),
-                                           params: [URLQueryItem(.carInfo(.showroomId),
-                                                                 selectedCar!.showroomId)],
-                                           completion: carDidSelectCompletion)
+            startRefreshing()
         }
     }
 
-    private func carDidSelectCompletion(for response: Result<ServicesTypesDidGetResponse, ErrorResponse>) {
-        switch response {
-            case .success(let data):
-                DispatchQueue.main.async { [weak self] in
-                    guard let vc = self else { return }
-                    vc.serviceTypes = data.serviceType
-                    vc.refreshableView.reloadData()
-                    vc.endRefreshing()
-                    vc.refreshableView.backgroundView = vc.serviceTypes.count < 1 ? vc.createBackground(labelText: .background(.noServices)) : nil
-                }
-            case .failure(let error):
-                var labelMessage = ""
-                switch error.errorCode {
-                    case .lostConnection:
-                        labelMessage = .error(.networkError) + " и "
-                    default:
-                        labelMessage = .error(.servicesError) + ", "
-                }
-                DispatchQueue.main.async { [weak self] in
-                    self?.endRefreshing()
-                    self?.refreshableView.backgroundView = self?.createBackground(labelText: labelMessage + .common(.retryRefresh))
-                }
-        }
+    private func handle(success response: ServicesTypesDidGetResponse) {
+        serviceTypes = response.serviceType
+        refreshableView.reloadData()
+        endRefreshing()
+        refreshableView.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: .background(.noServices)) : nil
+    }
+
+    private func handle(failure error: ErrorResponse) {
+        let labelMessage = error.errorCode == .lostConnection ? .error(.networkError) + " и "
+                                                              : .error(.servicesError) + ", "
+        endRefreshing()
+        refreshableView.backgroundView = createBackground(labelText: labelMessage + .common(.retryRefresh))
+    }
+
+    private func makeRequest() {
+        NetworkService.makeRequest(page: .services(.getServicesTypes),
+                                   params: [URLQueryItem(.carInfo(.showroomId),
+                                                         selectedCar!.showroomId)],
+                                   handler: servicesTypesRequestHandler)
     }
 }
 
@@ -125,14 +131,11 @@ extension ServicesViewController {
     private func layoutIfOneCar() {
         configureRefresh()
         if refreshableView.backgroundView != nil { refreshableView.backgroundView = nil }
-        carTextField.text = "\(selectedCar?.brand ?? "Brand") \(selectedCar?.model ?? "Model")"
+        carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
         carTextField.isEnabled = cars.count > 1
-        showroomLabel.text = user.getSelectedShowroom?.showroomName ?? "Showroom"
+        showroomLabel.text = user.getSelectedShowroom!.showroomName
         refreshControl.beginRefreshing()
-        NetworkService.makePostRequest(page: .services(.getServicesTypes),
-                                       params: [URLQueryItem(.carInfo(.showroomId),
-                                                             selectedCar!.showroomId)],
-                                       completion: carDidSelectCompletion)
+        makeRequest()
     }
 
     private func layoutIfManyCars() {
