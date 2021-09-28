@@ -54,3 +54,48 @@ extension Refreshable {
                                       execute: { [weak self] in self?.refreshControl.endRefreshing() })
     }
 }
+
+// MARK: - Keyboard auto insets
+typealias KeyboardableController = UIViewController & Keyboardable
+
+protocol Keyboardable: UIViewController {
+    associatedtype ScrollableView: UIScrollView
+    
+    var scrollView: ScrollableView! { get }
+    
+    func setupKeyboard(isSubcribing: Bool)
+    func keyboardWillShow(notification: Notification)
+    func keyboardWillHide(notification: Notification)
+}
+
+extension Keyboardable {
+    func setupKeyboard(isSubcribing: Bool) {
+        if isSubcribing {
+            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                                   object: nil, queue: .main) { [weak self] notification in
+                self?.keyboardWillShow(notification: notification)
+            }
+            
+            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                                   object: nil, queue: .main) { [weak self] notification in
+                self?.keyboardWillHide(notification: notification)
+            }
+        } else {
+            NotificationCenter.default.removeObserver(self)
+        }
+    }
+    
+    func keyboardWillShow(notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+      }
+
+    func keyboardWillHide(notification: Notification) {
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+}
