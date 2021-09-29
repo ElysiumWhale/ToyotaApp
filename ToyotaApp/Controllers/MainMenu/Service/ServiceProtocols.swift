@@ -1,5 +1,10 @@
 import UIKit
 
+enum ModuleAppearances {
+    case title(_ string: String)
+    case placeholder(_ string: String)
+}
+
 /// States which represent current activity of module
 enum ModuleStates {
     /// Default state before start
@@ -10,11 +15,11 @@ enum ModuleStates {
     case didDownload
     /// Occures when something goes wrong: processing user input or preparing for it
     case error(_ error: ErrorResponse)
-    
+
     /// Occures when we need block some controls in module and book button
     /// - **Example:** user restricted access to location in `MapModule`
     case block(_ message: String?)
-    
+
     /// Returns chosen service if state is `.didChose` or `nil` in rest cases
     func getService() -> IService? {
         switch self {
@@ -34,17 +39,23 @@ protocol IServiceModule: AnyObject {
     var state: ModuleStates { get }
     var delegate: IServiceController? { get set }
     func start(with params: [URLQueryItem])
-    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type)
+    func customStart<TResponse: IServiceResponse>(page: RequestPath,
+                                                  with params: [URLQueryItem],
+                                                  response type: TResponse.Type)
     func buildQueryItems() -> [URLQueryItem]
-    func configureViewText(with labelText: String)
+    func configure(appearance: [ModuleAppearances])
 }
 
 extension IServiceModule {
-    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) { }
-    
+    func customStart<TResponse: IServiceResponse>(page: RequestPath,
+                                                  with params: [URLQueryItem],
+                                                  response type: TResponse.Type) { }
+
     func start(with params: [URLQueryItem] = []) {
         start(with: [])
     }
+
+    func configure(appearance: [ModuleAppearances]) { }
 }
 
 /// Controller which manages `IServiceModule`s.

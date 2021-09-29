@@ -8,11 +8,11 @@ class MapModuleView: UIView {
         label.font = UIFont.toyotaType(.semibold, of: 20)
         label.textColor = .label
         label.textAlignment = .left
-        label.text = "Укажите местоположение"
+        label.text = .common(.enterLocation)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private(set) lazy var map: MKMapView = {
         let map = MKMapView()
         map.mapType = .hybrid
@@ -25,23 +25,23 @@ class MapModuleView: UIView {
         map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureSubviews()
     }
-    
+
     private func configureSubviews() {
         addSubview(label)
         addSubview(map)
         setupLayout()
     }
-    
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
@@ -54,7 +54,7 @@ class MapModuleView: UIView {
             map.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
-    
+
     override class var requiresConstraintBasedLayout: Bool {
         return true
     }
@@ -63,7 +63,7 @@ class MapModuleView: UIView {
 // MARK: - Module
 class MapModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
-    
+
     private lazy var internalView: MapModuleView = {
         let map = MapModuleView()
         map.translatesAutoresizingMaskIntoConstraints = false
@@ -71,23 +71,23 @@ class MapModule: NSObject, IServiceModule {
         map.map.delegate = self
         return map
     }()
-    
+
     private var locationManager: CLLocationManager!
     private var isInitiallyZoomedToUserLocation: Bool = false
-    
+
     private(set) var serviceType: ServiceType
     private(set) var state: ModuleStates = .idle {
         didSet {
             delegate?.moduleDidUpdate(self)
         }
     }
-    
+
     internal weak var delegate: IServiceController?
-    
+
     init(with type: ServiceType) {
         serviceType = type
     }
-    
+
     func start(with params: [URLQueryItem]) {
         if CLLocationManager.locationServicesEnabled() {
             let locManager = CLLocationManager()
@@ -116,7 +116,7 @@ class MapModule: NSObject, IServiceModule {
             state = .block("Для использования услуги необходимо включить сервисы геолокации на устройстве и предоставить доступ к геопозиции")
         }
     }
-    
+
     func buildQueryItems() -> [URLQueryItem] {
         guard let latitude = locationManager.location?.coordinate.latitude,
               let longitude = locationManager.location?.coordinate.longitude else {
@@ -126,9 +126,15 @@ class MapModule: NSObject, IServiceModule {
         return [URLQueryItem(.services(.latitude), latitude.description),
                 URLQueryItem(.services(.longitude), longitude.description)]
     }
-    
-    func configureViewText(with labelText: String) {
-        internalView.label.text = labelText
+
+    func configure(appearance: [ModuleAppearances]) {
+        for appearance in appearance {
+            switch appearance {
+                case .title(let title):
+                    internalView.label.text = title
+                default: return
+            }
+        }
     }
 }
 
@@ -137,7 +143,7 @@ extension MapModule: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         zoomToUserLocation(userLocation.coordinate)
     }
-    
+
     private func zoomToUserLocation(_ coordinate: CLLocationCoordinate2D) {
         if !isInitiallyZoomedToUserLocation {
             isInitiallyZoomedToUserLocation = true

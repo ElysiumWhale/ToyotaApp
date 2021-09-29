@@ -2,10 +2,11 @@ import UIKit
 
 class TestDriveViewController: BaseServiceController {
     override func start() {
-        let labels = ["Выберите город", "Выберите машину", "Выберите салон", "Выберите время"]
-        for (module, text) in zip(modules, labels) {
+        let configs = configurationForModules()
+        
+        for (module, config) in zip(modules, configs) {
             stackView.addArrangedSubview(module.view ?? UIView())
-            module.configureViewText(with: text)
+            module.configure(appearance: config)
         }
         stackView.addArrangedSubview(bookButton)
         view.addSubview(loadingView)
@@ -106,5 +107,12 @@ class TestDriveViewController: BaseServiceController {
                     PopUp.display(.error(description: error.message ?? .error(.servicesError)))
             }
         }
+
+extension TestDriveViewController {
+    func configurationForModules() -> [[ModuleAppearances]] {
+        return [[.title(.common(.chooseCity)), .placeholder(.common(.city))],
+                [.title(.common(.chooseCar)), .placeholder(.common(.car))],
+                [.title(.common(.chooseShowroom)), .placeholder(.common(.showroom))],
+                [.title(.common(.chooseTime))]]
     }
 }

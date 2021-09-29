@@ -102,8 +102,14 @@ class TimePickerModule: NSObject, IServiceModule {
         serviceType = type
     }
 
-    func configureViewText(with labelText: String) {
-        internalView.dateTimeLabel.text = labelText
+    func configure(appearance: [ModuleAppearances]) {
+        for appearance in appearance {
+            switch appearance {
+                case .title(let title):
+                    internalView.dateTimeLabel.text = title
+                default: return
+            }
+        }
     }
 
     func start(with params: [URLQueryItem]) {
@@ -120,7 +126,7 @@ class TimePickerModule: NSObject, IServiceModule {
         NetworkService.makePostRequest(page: .services(.getFreeTime),
                                        params: queryParams, completion: completion)
     }
-    
+
     func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
         state = .idle
         NetworkService.makePostRequest(page: .services(.getFreeTime),

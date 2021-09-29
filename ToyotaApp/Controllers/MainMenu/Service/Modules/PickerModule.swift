@@ -3,17 +3,17 @@ import UIKit
 // MARK: - View
 class PickerModuleView: UIView {
     private(set) var servicePicker: UIPickerView = UIPickerView()
-    
+
     private(set) lazy var serviceNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
-        label.text = "Выберите услугу"
+        label.text = .common(.chooseService)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private(set) var textField: NoPasteTextField = {
         let field = NoPasteTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -24,23 +24,23 @@ class PickerModuleView: UIView {
         field.borderStyle = .roundedRect
         return field
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureSubviews()
     }
-    
+
     private func configureSubviews() {
         addSubview(serviceNameLabel)
         addSubview(textField)
         setupLayout()
     }
-    
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             serviceNameLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -54,22 +54,23 @@ class PickerModuleView: UIView {
             serviceNameLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10)
         ])
     }
-    
+
     override class var requiresConstraintBasedLayout: Bool { true }
 }
 
 // MARK: - Module
 class PickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
-    
+
     private(set) lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configurePicker(with: #selector(serviceDidSelect), for: internalView.textField, delegate: self)
-        internalView.textField.placeholder = "Услуга"
+        internalView.servicePicker.configurePicker(with: #selector(serviceDidSelect),
+                                                   for: internalView.textField, delegate: self)
+        internalView.textField.placeholder = .common(.service)
         internalView.alpha = 0
         return internalView
     }()
-    
+
     private(set) var serviceType: ServiceType
     private(set) var state: ModuleStates = .idle {
         didSet {
@@ -77,17 +78,25 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
     private var array: [IService]?
-    
+
     internal weak var delegate: IServiceController?
-    
+
     init(with type: ServiceType) {
         serviceType = type
     }
-    
-    func configureViewText(with labelText: String) {
-        internalView.serviceNameLabel.text = labelText
+
+    func configure(appearance: [ModuleAppearances]) {
+        for appearance in appearance {
+            switch appearance {
+                case .title(let title):
+                    internalView.serviceNameLabel.text = title
+                case .placeholder(let placeholder):
+                    internalView.textField.placeholder = placeholder
+                default: return
+            }
+        }
     }
-    
+
     func start(with params: [URLQueryItem]) {
         state = .idle
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
@@ -103,8 +112,10 @@ class PickerModule: NSObject, IServiceModule {
             completion(for: response)
         }
     }
-    
-    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
+
+    func customStart<TResponse: IServiceResponse>(page: RequestPath,
+                                                  with params: [URLQueryItem],
+                                                  response type: TResponse.Type) {
         state = .idle
         internalView.textField.text = ""
         NetworkService.makePostRequest(page: page, params: params, completion: internalCompletion)
@@ -113,7 +124,7 @@ class PickerModule: NSObject, IServiceModule {
             completion(for: response)
         }
     }
-    
+
     private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
         switch response {
             case .failure(let error):
@@ -128,7 +139,7 @@ class PickerModule: NSObject, IServiceModule {
                 }
         }
     }
-    
+
     func buildQueryItems() -> [URLQueryItem] {
         switch state {
             case .didChose(let data): return [URLQueryItem(.services(.serviceId), data.id)]
@@ -140,7 +151,7 @@ class PickerModule: NSObject, IServiceModule {
 // MARK: - UIPickerViewDataSource
 extension PickerModule: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         array?.count ?? 0
     }
@@ -163,7 +174,7 @@ extension PickerModule: UIPickerViewDelegate {
         internalView.endEditing(true)
         state = .didChose(array[index])
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = UIFont.toyotaType(.light, of: 20)
@@ -171,7 +182,7 @@ extension PickerModule: UIPickerViewDelegate {
         pickerLabel.text = array?[row].name
         return pickerLabel
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         array?[row].name ?? "PickerModule.array is empty"
     }
