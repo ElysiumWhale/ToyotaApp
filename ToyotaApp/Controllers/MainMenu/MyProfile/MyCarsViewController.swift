@@ -20,7 +20,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
             }
         }
         
-        handler.onFailure = { [weak self] error in
+        handler.onFailure = { error in
             PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
         }
         

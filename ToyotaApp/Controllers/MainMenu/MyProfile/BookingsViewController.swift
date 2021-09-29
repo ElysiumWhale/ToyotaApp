@@ -10,8 +10,19 @@ class BookingsViewController: RefreshableController, BackgroundText {
 
     private lazy var handler: RequestHandler<BookingsResponse> = {
         var handler = RequestHandler<BookingsResponse>()
-        handler.onSuccess = handleSuccess
-        handler.onFailure = handleFailure
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(success: data)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.handle(failure: error)
+            }
+        }
+        
         return handler
     }()
     
@@ -33,29 +44,25 @@ class BookingsViewController: RefreshableController, BackgroundText {
                                    handler: handler)
     }
 
-    private func handleSuccess(response: BookingsResponse) {
-        let serverFormatter = DateFormatter.server
+    private func handle(success response: BookingsResponse) {
+        let formatter = DateFormatter.server
         bookings = response.booking
         #if DEBUG
         bookings.append(.mock)
         #endif
-        bookings.sort(by: { serverFormatter.date(from: $0.date) ?? Date() > serverFormatter.date(from: $1.date) ?? Date() })
-        DispatchQueue.main.async { [weak self] in
-            guard let controller = self else { return }
-            controller.endRefreshing()
-            controller.refreshableView.reloadData()
-            if controller.bookings.isEmpty {
-                controller.refreshableView.backgroundView = controller.createBackground(labelText: .background(.noBookings))
-            }
+        bookings.sort(by: { formatter.date(from: $0.date) ?? Date() > formatter.date(from: $1.date) ?? Date() })
+        
+        endRefreshing()
+        refreshableView.reloadData()
+        if bookings.isEmpty {
+            refreshableView.backgroundView = createBackground(labelText: .background(.noBookings))
         }
     }
     
-    private func handleFailure(response: ErrorResponse) {
+    private func handle(failure response: ErrorResponse) {
         PopUp.display(.error(description: response.message ?? .error(.requestError)))
-        DispatchQueue.main.async { [weak self] in
-            self?.endRefreshing()
-            self?.refreshableView.backgroundView = self?.createBackground(labelText: .background(.somethingWentWrong))
-        }
+        endRefreshing()
+        refreshableView.backgroundView = createBackground(labelText: .background(.somethingWentWrong))
     }
 }
 

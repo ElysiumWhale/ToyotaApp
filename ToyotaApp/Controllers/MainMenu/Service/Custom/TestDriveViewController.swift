@@ -70,17 +70,14 @@ class TestDriveViewController: BaseServiceController {
     }
 
     private func fadeOutAfter(module index: Int) {
-        DispatchQueue.main.async { [weak self] in
-            guard let controller = self else { return }
-            controller.startLoading()
-            
-            if index >= 2 { return }
-            
-            for index in index+2...3 {
-                controller.modules[index].view?.fadeOut()
-            }
-            controller.bookButton.fadeOut()
+        startLoading()
+        
+        if index >= 2 { return }
+        
+        for index in index+2...3 {
+            modules[index].view?.fadeOut()
         }
+        bookButton.fadeOut()
     }
 
     override func bookService() {
@@ -94,20 +91,12 @@ class TestDriveViewController: BaseServiceController {
         
         params.append(contentsOf: modules[3].buildQueryItems())
         
-        NetworkService.makePostRequest(page: .services(.bookService),
-                                       params: params, completion: completion)
-        
-        func completion(for response: Result<Response, ErrorResponse>) {
-            switch response {
-                case .success:
-                    PopUp.display(.success(description: .common(.bookingSuccess))) { [self] in
-                        navigationController?.popViewController(animated: true)
-                    }
-                case .failure(let error):
-                    PopUp.display(.error(description: error.message ?? .error(.servicesError)))
-            }
-        }
+        NetworkService.makeRequest(page: .services(.bookService),
+                                   params: params, handler: bookingRequestHandler)
+    }
+}
 
+// MARK: -
 extension TestDriveViewController {
     func configurationForModules() -> [[ModuleAppearances]] {
         return [[.title(.common(.chooseCity)), .placeholder(.common(.city))],

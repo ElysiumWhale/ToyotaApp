@@ -2,7 +2,7 @@ import UIKit
 import SwiftEntryKit
 
 class SettingsViewController: UIViewController {
-    @IBOutlet var phoneTextField: UITextField!
+    @IBOutlet private var phoneTextField: UITextField!
     
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
@@ -28,16 +28,6 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: WithUserInfo {
-    func subscribe(on proxy: UserProxy) {
-        proxy.getNotificator.add(observer: self)
-    }
-    
-    func unsubscribe(from proxy: UserProxy) {
-        proxy.getNotificator.remove(obsever: self)
-    }
-    
-    func userDidUpdate() { }
-    
     func setUser(info: UserProxy) {
         user = info
     }

@@ -41,7 +41,7 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
-    private lazy var bookingRequestHandler: RequestHandler<Response> = {
+    private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
         
         handler.onSuccess = { [weak self] _ in
@@ -145,7 +145,7 @@ class BaseServiceController: UIViewController, IServiceController {
         }
         bookButton.isEnabled = false
         
-        PopUp.display(.warning(description: message ?? AppErrors.requestError.rawValue))
+        PopUp.display(.warning(description: message ?? .error(.requestError)))
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
