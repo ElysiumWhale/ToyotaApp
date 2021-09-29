@@ -35,8 +35,16 @@ extension String {
         case no = "Нет"
         /// Выбрать
         case choose = "Выбрать"
+        /// Услуга
+        case service = "Услуга"
         /// Услуги
         case services = "Услуги"
+        /// Машина
+        case car = "Машина"
+        /// Салон
+        case showroom = "Салон"
+        /// Город
+        case city = "Город"
         /// Оставить заявку
         case book = "Оставить заявку"
         /// Подтверждение
@@ -47,6 +55,16 @@ extension String {
         case changeNumberQuestion = "Вы действительно хотите изменить номер телефона?"
         /// Выберите салон
         case chooseShowroom = "Выберите салон"
+        /// Выберите город
+        case chooseCity = "Выберите город"
+        /// Выберите машину
+        case chooseCar = "Выберите машину"
+        /// Выберите время
+        case chooseTime = "Выберите время"
+        /// Выберите услугу
+        case chooseService = "Выберите услугу"
+        /// Укажите местоположение
+        case enterLocation = "Укажите местоположение"
         /// Введите новый номер
         case enterNewNumber = "Введите новый номер"
         /// Потяните вниз для обновления
