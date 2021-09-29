@@ -3,8 +3,8 @@ import SwiftEntryKit
 
 private enum EditingStates {
     case none
-    case isEditing
-    case isLoading
+    case editing
+    case loading
 }
 
 class MyProfileViewController: UIViewController {
@@ -51,6 +51,25 @@ class MyProfileViewController: UIViewController {
         formatDateForClient(from: profile.birthday) != birthTextField.text
     }
 
+    private lazy var updateUserHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+        
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handle(success: data)
+            }
+        }
+        
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                PopUp.display(.error(description: error.message ?? .error(.savingError)))
+                self?.state = .editing
+            }
+        }
+        
+        return handler
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -74,9 +93,9 @@ class MyProfileViewController: UIViewController {
 
     @IBAction private func enterEditMode(sender: UIButton) {
         switch state {
-            case .none: state = .isEditing
-            case .isLoading: return
-            case .isEditing: updateUserInfo()
+            case .none: state = .editing
+            case .loading: return
+            case .editing: updateUserInfo()
         }
     }
 
@@ -95,15 +114,15 @@ class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func logout(sender: Any?) {
-        PopUp.displayChoice(with: "Подтверждние действия",
-                            description: "Вы действительно хотите выйти?",
+        PopUp.displayChoice(with: .common(.actionConfirmation),
+                            description: .common(.quitQuestion),
                             confirmText: .common(.yes), declineText: .common(.no)) {
             KeychainManager.clearAll()
             SwiftEntryKit.dismiss()
             NavigationService.loadAuth()
         }
     }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -123,7 +142,7 @@ class MyProfileViewController: UIViewController {
 // MARK: - UI
 extension MyProfileViewController {
     private func getConstraints(for state: EditingStates) -> (save: NSLayoutConstraint, cancel: NSLayoutConstraint) {
-        let isEditing = state == .isEditing
+        let isEditing = state == .editing
         let constant: CGFloat = isEditing ? 20 : view.bounds.width/2 - saveButton.bounds.width/2
         let saveConstraint = NSLayoutConstraint(item: saveButton as Any,
                                                 attribute: .leading, relatedBy: .equal,
@@ -136,9 +155,9 @@ extension MyProfileViewController {
                                                   constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
         return (saveConstraint, cancelConstraint)
     }
-    
+
     private func switchInterface(_ state: EditingStates) {
-        let isEditing = state == .isEditing
+        let isEditing = state == .editing
         for field in textFieldsWithError.keys {
             field.isEnabled = isEditing ? true : false
         }
@@ -153,7 +172,7 @@ extension MyProfileViewController {
             view.addConstraint(constraints.cancel)
             view.layoutIfNeeded()
             
-            if state != .isLoading {
+            if state != .loading {
                 saveButton.setTitle(isEditing ? .common(.save) : .common(.edit), for: .normal)
             }
             
@@ -161,7 +180,7 @@ extension MyProfileViewController {
             cancelButtonLeadingConstant = constraints.cancel
         })
         
-        if state != .isLoading {
+        if state != .loading {
             date = ""
         }
     }
@@ -170,21 +189,18 @@ extension MyProfileViewController {
         firstNameTextField.text = profile.firstName
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
+        emailTextField.text = profile.email
         birthTextField.text = formatDateForClient(from: profile.birthday)
         datePicker.date = dateFromServer(date: profile.birthday)
         date = ""
-        emailTextField.text = profile.email
         managerButton.isHidden = user.getCars.array.count < 1
     }
 
     @IBAction private func textDidChange(sender: UITextField) {
-        if let text = sender.text, !text.isEmpty, text.count < 25 {
-            sender.toggleErrorState(hasError: false)
-            textFieldsWithError[sender] = false
-        } else {
-            sender.toggleErrorState(hasError: true)
-            textFieldsWithError[sender] = true
-        }
+        let isValid = sender.text != nil && !sender.text!.isEmpty && sender.text!.count < 25
+        
+        sender.toggle(state: isValid ? .normal : .error)
+        textFieldsWithError[sender] = !isValid
     }
 }
 
@@ -201,40 +217,29 @@ extension MyProfileViewController {
             return
         }
         
-        state = .isLoading
-        NetworkService.makePostRequest(page: .profile(.editProfile),
-                                       params: buildRequestParams(),
-                                       completion: userDidUpdateCompletion)
+        state = .loading
+        NetworkService.makeRequest(page: .profile(.editProfile),
+                                   params: buildRequestParams(),
+                                   handler: updateUserHandler)
     }
 
     private func buildRequestParams() -> [URLQueryItem] {
-        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), user.getId)]
-        params.append(URLQueryItem(.personalInfo(.firstName), firstNameTextField.text))
-        params.append(URLQueryItem(.personalInfo(.secondName), secondNameTextField.text))
-        params.append(URLQueryItem(.personalInfo(.lastName), lastNameTextField.text))
-        params.append(URLQueryItem(.personalInfo(.email), emailTextField.text))
-        params.append(URLQueryItem(.personalInfo(.birthday), date))
-        return params
+        [.init(.auth(.userId), user.getId),
+         (.init(.personalInfo(.firstName), firstNameTextField.text)),
+         (.init(.personalInfo(.secondName), secondNameTextField.text)),
+         (.init(.personalInfo(.lastName), lastNameTextField.text)),
+         (.init(.personalInfo(.email), emailTextField.text)),
+         (.init(.personalInfo(.birthday), date))]
     }
 
-    private func userDidUpdateCompletion(for response: Result<Response, ErrorResponse>) {
-        switch response {
-            case .success:
-                DispatchQueue.main.async { [self] in
-                    user.update(Person(firstName: firstNameTextField.text!,
-                                       lastName: lastNameTextField.text!,
-                                       secondName: secondNameTextField.text!,
-                                       email: emailTextField.text!,
-                                       birthday: date))
-                    PopUp.display(.success(description: .common(.personalDataSaved)))
-                    state = .none
-                }
-            case .failure(let error):
-                DispatchQueue.main.async { [weak self] in
-                    PopUp.display(.error(description: error.message ?? .error(.savingError)))
-                    self?.state = .isEditing
-                }
-        }
+    private func handle(success response: Response) {
+        user.update(Person(firstName: firstNameTextField.text!,
+                           lastName: lastNameTextField.text!,
+                           secondName: secondNameTextField.text!,
+                           email: emailTextField.text!,
+                           birthday: date))
+        PopUp.display(.success(description: .common(.personalDataSaved)))
+        state = .none
     }
 }
 
@@ -250,7 +255,7 @@ extension MyProfileViewController: WithUserInfo {
 
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
-            view.layoutIfNeeded()
+            view.setNeedsLayout()
             updateFields()
         }
     }
