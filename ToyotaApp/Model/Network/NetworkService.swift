@@ -7,9 +7,9 @@ class NetworkService {
     private static let mainUrl = MainURL.build()
     
     class func makePostRequest<T: Codable>(page: RequestPath,
-                                           params: [URLQueryItem] = [],
+                                           params: RequestItems = .empty,
                                            completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) {
-        let request = buildPostRequest(for: page.rawValue, with: params)
+        let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
         
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
@@ -39,9 +39,10 @@ class NetworkService {
     }
     
     class func makeRequest<T: Codable>(page: RequestPath,
-                                           params: [URLQueryItem] = [],
-                                           handler: RequestHandler<T>) {
-        let request = buildPostRequest(for: page.rawValue, with: params)
+                                       params: RequestItems = .empty,
+                                       handler: RequestHandler<T>) {
+        let request = buildPostRequest(for: page.rawValue,
+                                       with: params.asQueryItems)
         
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {

@@ -221,17 +221,17 @@ extension MyProfileViewController {
         
         state = .loading
         NetworkService.makeRequest(page: .profile(.editProfile),
-                                   params: buildRequestParams(),
+                                   params: requestParams,
                                    handler: updateUserHandler)
     }
 
-    private func buildRequestParams() -> [URLQueryItem] {
-        [.init(.auth(.userId), user.getId),
-         (.init(.personalInfo(.firstName), firstNameTextField.text)),
-         (.init(.personalInfo(.secondName), secondNameTextField.text)),
-         (.init(.personalInfo(.lastName), lastNameTextField.text)),
-         (.init(.personalInfo(.email), emailTextField.text)),
-         (.init(.personalInfo(.birthday), date))]
+    private var requestParams: RequestItems {
+        [(.auth(.userId), user.getId),
+         (.personalInfo(.firstName), firstNameTextField.text),
+         (.personalInfo(.secondName), secondNameTextField.text),
+         (.personalInfo(.lastName), lastNameTextField.text),
+         (.personalInfo(.email), emailTextField.text),
+         (.personalInfo(.birthday), date)]
     }
 
     private func handle(success response: Response) {

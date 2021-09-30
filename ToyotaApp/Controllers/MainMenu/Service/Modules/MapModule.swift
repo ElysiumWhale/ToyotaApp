@@ -88,7 +88,7 @@ class MapModule: NSObject, IServiceModule {
         serviceType = type
     }
 
-    func start(with params: [URLQueryItem]) {
+    func start(with params: RequestItems) {
         if CLLocationManager.locationServicesEnabled() {
             let locManager = CLLocationManager()
             locManager.requestWhenInUseAuthorization()
@@ -117,14 +117,14 @@ class MapModule: NSObject, IServiceModule {
         }
     }
 
-    func buildQueryItems() -> [URLQueryItem] {
+    func buildQueryItems() -> RequestItems {
         guard let latitude = locationManager.location?.coordinate.latitude,
               let longitude = locationManager.location?.coordinate.longitude else {
             return []
         }
         
-        return [URLQueryItem(.services(.latitude), latitude.description),
-                URLQueryItem(.services(.longitude), longitude.description)]
+        return [(.services(.latitude), latitude.description),
+                (.services(.longitude), longitude.description)]
     }
 
     func configure(appearance: [ModuleAppearances]) {

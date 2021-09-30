@@ -98,15 +98,15 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
 
-    func start(with params: [URLQueryItem]) {
+    func start(with params: RequestItems) {
         state = .idle
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
         internalView.textField.text = ""
         NetworkService.makePostRequest(page: .services(.getServices),
-                                       params: [URLQueryItem(.carInfo(.showroomId), showroomId),
-                                                URLQueryItem(.services(.serviceTypeId), serviceType.id)],
+                                       params: [(.carInfo(.showroomId), showroomId),
+                                                (.services(.serviceTypeId), serviceType.id)],
                                        completion: internalCompletion)
         
         func internalCompletion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
@@ -115,7 +115,7 @@ class PickerModule: NSObject, IServiceModule {
     }
 
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: [URLQueryItem],
+                                                  with params: RequestItems,
                                                   response type: TResponse.Type) {
         state = .idle
         internalView.textField.text = ""
@@ -140,9 +140,9 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
 
-    func buildQueryItems() -> [URLQueryItem] {
+    func buildQueryItems() -> RequestItems {
         switch state {
-            case .didChose(let data): return [URLQueryItem(.services(.serviceId), data.id)]
+            case .didChose(let data): return [(.services(.serviceId), data.id)]
             default: return []
         }
     }

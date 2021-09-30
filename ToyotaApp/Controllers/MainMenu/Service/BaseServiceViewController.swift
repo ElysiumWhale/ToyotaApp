@@ -99,9 +99,9 @@ class BaseServiceController: UIViewController, IServiceController {
               let showroomId = user?.getSelectedShowroom?.id,
               let carId = user?.getCars.chosenCar?.id else { return }
         
-        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
-                                      URLQueryItem(.carInfo(.showroomId), showroomId),
-                                      URLQueryItem(.carInfo(.carId), carId)]
+        var params: RequestItems = [(.auth(.userId), userId),
+                                      (.carInfo(.showroomId), showroomId),
+                                      (.carInfo(.carId), carId)]
         
         for module in modules {
             let items = module.buildQueryItems()
@@ -110,12 +110,13 @@ class BaseServiceController: UIViewController, IServiceController {
         }
         
         // Note: - Redundant
-        if params.first(where: { $0.name == RequestKeys.Services.serviceId.rawValue }) == nil {
-            params.append(URLQueryItem(.services(.serviceId), serviceType!.id))
+        if params.first(where: { $0.key.rawValue == RequestKeys.Services.serviceId.rawValue }) == nil {
+            params.append((.services(.serviceId), serviceType!.id))
         }
         
         NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params, handler: bookingRequestHandler)
+                                   params: params,
+                                   handler: bookingRequestHandler)
     }
 
     // MARK: - Modules updates processing

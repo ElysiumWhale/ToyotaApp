@@ -82,10 +82,10 @@ extension CheckVinViewController {
         
         let userId = KeychainManager.get(UserId.self)!.id
         NetworkService.makeRequest(page: .registration(.checkVin),
-                                   params: [URLQueryItem(.carInfo(.skipStep), skip.rawValue),
-                                            URLQueryItem(.carInfo(.showroomId), showroom!.id),
-                                            URLQueryItem(.carInfo(.vinCode), vin),
-                                            URLQueryItem(.auth(.userId), userId)],
+                                   params: [(.carInfo(.skipStep), skip.rawValue),
+                                            (.carInfo(.showroomId), showroom!.id),
+                                            (.carInfo(.vinCode), vin),
+                                            (.auth(.userId), userId)],
                                    handler: requestHandler)
     }
 

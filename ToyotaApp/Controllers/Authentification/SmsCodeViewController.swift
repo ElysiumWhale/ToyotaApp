@@ -111,11 +111,11 @@ extension SmsCodeViewController {
         }
     }
 
-    private func buildRequestParams(authType: AuthType) -> [URLQueryItem] {
-        var params = [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber),
-                      URLQueryItem(.auth(.code), smsCodeTextField!.text)]
-        params.append(authType == .register ? URLQueryItem(.auth(.brandId), Brand.Toyota)
-                                            : URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)!.id))
+    private func buildRequestParams(authType: AuthType) -> RequestItems {
+        var params: RequestItems = [(.personalInfo(.phoneNumber), phoneNumber),
+                                    (.auth(.code), smsCodeTextField!.text)]
+        params.append(authType == .register ? (.auth(.brandId), Brand.Toyota)
+                                            : (.auth(.userId), KeychainManager.get(UserId.self)!.id))
         return params
     }
 

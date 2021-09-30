@@ -38,20 +38,20 @@ protocol IServiceModule: AnyObject {
     var serviceType: ServiceType { get }
     var state: ModuleStates { get }
     var delegate: IServiceController? { get set }
-    func start(with params: [URLQueryItem])
+    func start(with params: RequestItems)
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: [URLQueryItem],
+                                                  with params: RequestItems,
                                                   response type: TResponse.Type)
-    func buildQueryItems() -> [URLQueryItem]
+    func buildQueryItems() -> RequestItems
     func configure(appearance: [ModuleAppearances])
 }
 
 extension IServiceModule {
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: [URLQueryItem],
+                                                  with params: RequestItems,
                                                   response type: TResponse.Type) { }
 
-    func start(with params: [URLQueryItem] = []) {
+    func start(with params: RequestItems = []) {
         start(with: [])
     }
 

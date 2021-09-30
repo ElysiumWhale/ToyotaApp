@@ -35,7 +35,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
 
     @IBAction func addCar(sender: Any?) {
         NetworkService.makeRequest(page: .profile(.getCities),
-                                   params: [URLQueryItem(.auth(.brandId), Brand.Toyota)],
+                                   params: [(.auth(.brandId), Brand.Toyota)],
                                    handler: citiesRequestHandle)
     }
 

@@ -29,10 +29,10 @@ class MyManagerViewController: UIViewController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let params = [URLQueryItem(.auth(.userId), user.getId),
-                      URLQueryItem(.auth(.brandId), Brand.Toyota)]
         NetworkService.makeRequest(page: .profile(.getManagers),
-                                   params: params, handler: managersRequestHandler)
+                                   params: [(.auth(.userId), user.getId),
+                                            (.auth(.brandId), Brand.Toyota)],
+                                   handler: managersRequestHandler)
     }
 
     @IBAction func doneDidPress(_ sender: Any) {

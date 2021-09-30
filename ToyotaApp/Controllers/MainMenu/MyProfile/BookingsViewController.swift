@@ -40,7 +40,7 @@ class BookingsViewController: RefreshableController, BackgroundText {
     func startRefreshing() {
         refreshControl.beginRefreshing()
         NetworkService.makeRequest(page: .profile(.getBookings),
-                                   params: [URLQueryItem(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
+                                   params: [(.auth(.userId), KeychainManager.get(UserId.self)?.id)],
                                    handler: handler)
     }
 

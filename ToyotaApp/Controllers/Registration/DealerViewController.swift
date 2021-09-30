@@ -114,10 +114,9 @@ extension DealerViewController {
         cityTextField?.text = cities[row].name
         cityTextFieldIndicator.startAnimating()
         view.endEditing(true)
-        let params = [URLQueryItem(.auth(.brandId), Brand.Toyota),
-                      URLQueryItem(.carInfo(.cityId), selectedCity!.id)]
         NetworkService.makeRequest(page: .registration(.getShowrooms),
-                                   params: params,
+                                   params: [(.auth(.brandId), Brand.Toyota),
+                                            (.carInfo(.cityId), selectedCity!.id)],
                                    handler: showroomsHandler)
     }
 
@@ -149,9 +148,9 @@ extension DealerViewController {
         let userId = KeychainManager.get(UserId.self)!.id
         let page: RequestPath = type == .register ? .registration(.setShowroom)
                                                   : .profile(.addShowroom)
-        let params = [URLQueryItem(.auth(.userId), userId),
-                      URLQueryItem(.carInfo(.showroomId), showroom.id)]
-        NetworkService.makeRequest(page: page, params: params,
+        NetworkService.makeRequest(page: page,
+                                   params: [(.auth(.userId), userId),
+                                            (.carInfo(.showroomId), showroom.id)],
                                    handler: setInfoHandler)
     }
 

@@ -64,7 +64,7 @@ class AuthViewController: UIViewController {
             KeychainManager.set(Phone(phone))
         }
         NetworkService.makeRequest(page: .registration(.registerPhone),
-                                   params: [URLQueryItem(.personalInfo(.phoneNumber), phone)],
+                                   params: [(.personalInfo(.phoneNumber), phone)],
                                    handler: authRequestHandler)
     }
 

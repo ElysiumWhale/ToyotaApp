@@ -142,16 +142,13 @@ extension PersonalInfoViewController {
         }
     }
 
-    private func buildRequestParams(from profile: Profile, date: String) -> [URLQueryItem] {
-        var params = [URLQueryItem]()
-        let userId = KeychainManager.get(UserId.self)!.id
-        params.append(URLQueryItem(.auth(.brandId), Brand.Toyota))
-        params.append(URLQueryItem(.auth(.userId), userId))
-        params.append(URLQueryItem(.personalInfo(.firstName), profile.firstName))
-        params.append(URLQueryItem(.personalInfo(.secondName), profile.secondName))
-        params.append(URLQueryItem(.personalInfo(.lastName), profile.lastName))
-        params.append(URLQueryItem(.personalInfo(.email), profile.email))
-        params.append(URLQueryItem(.personalInfo(.birthday), date))
-        return params
+    private func buildRequestParams(from profile: Profile, date: String) -> RequestItems {
+        [((.auth(.brandId), Brand.Toyota)),
+         ((.auth(.userId), KeychainManager.get(UserId.self)!.id)),
+         ((.personalInfo(.firstName), profile.firstName)),
+         ((.personalInfo(.secondName), profile.secondName)),
+         ((.personalInfo(.lastName), profile.lastName)),
+         ((.personalInfo(.email), profile.email)),
+         ((.personalInfo(.birthday), date))]
     }
 }

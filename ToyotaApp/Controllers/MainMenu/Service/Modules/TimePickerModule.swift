@@ -112,25 +112,29 @@ class TimePickerModule: NSObject, IServiceModule {
         }
     }
 
-    func start(with params: [URLQueryItem]) {
+    func start(with params: RequestItems) {
         state = .idle
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
         
-        var queryParams = [URLQueryItem(.carInfo(.showroomId), showroomId)]
+        var queryParams: RequestItems = [(.carInfo(.showroomId), showroomId)]
         
         !params.isEmpty ? queryParams.append(contentsOf: params)
-            : queryParams.append(URLQueryItem(.services(.serviceId), serviceType.id))
+                        : queryParams.append((.services(.serviceId), serviceType.id))
         
         NetworkService.makePostRequest(page: .services(.getFreeTime),
-                                       params: queryParams, completion: completion)
+                                       params: queryParams,
+                                       completion: completion)
     }
 
-    func customStart<TResponse: IServiceResponse>(page: RequestPath, with params: [URLQueryItem], response type: TResponse.Type) {
+    func customStart<TResponse: IServiceResponse>(page: RequestPath,
+                                                  with params: RequestItems,
+                                                  response type: TResponse.Type) {
         state = .idle
         NetworkService.makePostRequest(page: .services(.getFreeTime),
-                                       params: params, completion: completion)
+                                       params: params,
+                                       completion: completion)
     }
 
     private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
@@ -149,12 +153,12 @@ class TimePickerModule: NSObject, IServiceModule {
         }
     }
 
-    func buildQueryItems() -> [URLQueryItem] {
+    func buildQueryItems() -> RequestItems {
         guard let (date, time) = selectedDate, let value = TimeMap.serverMap[time] else {
             return []
         }
-        return [URLQueryItem(.services(.dateBooking), date),
-                URLQueryItem(.services(.startBooking), "\(value)")]
+        return [(.services(.dateBooking), date),
+                (.services(.startBooking), "\(value)")]
     }
 
     private func prepareTime(from timeDict: [String: [Int]]?) {

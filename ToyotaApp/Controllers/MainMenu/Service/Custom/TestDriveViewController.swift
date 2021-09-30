@@ -12,7 +12,7 @@ class TestDriveViewController: BaseServiceController {
         view.addSubview(loadingView)
         loadingView.fadeIn()
         modules.first?.customStart(page: .profile(.getCities),
-                                   with: [URLQueryItem(.auth(.brandId), Brand.Toyota)],
+                                   with: [(.auth(.brandId), Brand.Toyota)],
                                    response: CitiesDidGetResponse.self)
     }
     
@@ -51,19 +51,19 @@ class TestDriveViewController: BaseServiceController {
         }
     }
     
-    private func buildParams(for index: Int, value: String) -> [URLQueryItem] {
+    private func buildParams(for index: Int, value: String) -> RequestItems {
         switch index {
             case 0:
-                return [URLQueryItem(.carInfo(.cityId), value),
-                        URLQueryItem(.auth(.brandId), Brand.Toyota)]
+                return [(.carInfo(.cityId), value),
+                        (.auth(.brandId), Brand.Toyota)]
             case 1:
-                return [URLQueryItem(.auth(.brandId), Brand.Toyota),
-                        URLQueryItem(.carInfo(.cityId),
+                return [(.auth(.brandId), Brand.Toyota),
+                        (.carInfo(.cityId),
                                      modules[0].state.getService()?.id),
-                        URLQueryItem(.services(.serviceId), value)]
+                        (.services(.serviceId), value)]
             case 2:
-                return [URLQueryItem(.carInfo(.showroomId), value),
-                        URLQueryItem(.services(.serviceId),
+                return [(.carInfo(.showroomId), value),
+                        (.services(.serviceId),
                                      modules[1].state.getService()?.id)]
             default: return []
         }
@@ -84,15 +84,15 @@ class TestDriveViewController: BaseServiceController {
         guard let userId = user?.getId,
               let showroomId = modules[2].state.getService()?.id,
               let carId = modules[1].state.getService()?.id else { return }
-        
-        var params: [URLQueryItem] = [URLQueryItem(.auth(.userId), userId),
-                                      URLQueryItem(.carInfo(.showroomId), showroomId),
-                                      URLQueryItem(.services(.serviceId), carId)]
-        
+
+        var params: RequestItems = [(.auth(.userId), userId),
+                                    (.carInfo(.showroomId), showroomId),
+                                    (.services(.serviceId), carId)]
         params.append(contentsOf: modules[3].buildQueryItems())
         
         NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params, handler: bookingRequestHandler)
+                                   params: params,
+                                   handler: bookingRequestHandler)
     }
 }
 

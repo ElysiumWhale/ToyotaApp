@@ -86,8 +86,8 @@ class ServicesViewController: RefreshableController, BackgroundText {
 
     private func makeRequest() {
         NetworkService.makeRequest(page: .services(.getServicesTypes),
-                                   params: [URLQueryItem(.carInfo(.showroomId),
-                                                         selectedCar!.showroomId)],
+                                   params: [(.carInfo(.showroomId),
+                                             selectedCar!.showroomId)],
                                    handler: servicesTypesRequestHandler)
     }
 }

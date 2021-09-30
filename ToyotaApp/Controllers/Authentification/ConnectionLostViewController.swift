@@ -59,9 +59,9 @@ class ConnectionLostController {
         }
         
         NetworkService.makeRequest(page: .start(.checkUser),
-                                   params: [URLQueryItem(.auth(.userId), userId),
-                                            URLQueryItem(.auth(.brandId), Brand.Toyota),
-                                            URLQueryItem(.auth(.secretKey), secretKey)],
+                                   params: [(.auth(.userId), userId),
+                                            (.auth(.brandId), Brand.Toyota),
+                                            (.auth(.secretKey), secretKey)],
                                    handler: requestHandler)
     }
 }
