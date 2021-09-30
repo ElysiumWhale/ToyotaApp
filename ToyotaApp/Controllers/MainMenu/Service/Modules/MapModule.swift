@@ -107,13 +107,13 @@ class MapModule: NSObject, IServiceModule {
                         DispatchQueue.main.async { [self] in
                             internalView.map.isUserInteractionEnabled = false
                         }
-                        state = .block("Для использования услуги необходимо предоставить доступ к геопозиции")
+                        state = .block(.error(.geoRestriction))
                 }
             }
             internalView.fadeIn()
         } else {
             internalView.map.isUserInteractionEnabled = false
-            state = .block("Для использования услуги необходимо включить сервисы геолокации на устройстве и предоставить доступ к геопозиции")
+            state = .block(.error(.geoRestriction))
         }
     }
 

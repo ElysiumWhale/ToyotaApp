@@ -18,7 +18,7 @@ class TimePickerView: UIView {
         label.font = UIFont.toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
-        label.text = "Выберите дату и время"
+        label.text = .common(.chooseDateTime)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

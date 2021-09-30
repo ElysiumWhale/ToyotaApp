@@ -63,6 +63,8 @@ extension String {
         case chooseTime = "Выберите время"
         /// Выберите услугу
         case chooseService = "Выберите услугу"
+        /// Выберите дату и время
+        case chooseDateTime = "Выберите дату и время"
         /// Укажите местоположение
         case enterLocation = "Укажите местоположение"
         /// Введите новый номер
