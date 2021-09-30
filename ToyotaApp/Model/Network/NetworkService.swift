@@ -89,3 +89,15 @@ class NetworkService {
         return query.url
     }
 }
+
+// MARK: - Request items
+typealias RequestItem = (key: RequestKeys, value: String?)
+typealias RequestItems = [RequestItem]
+
+extension Array where Element == RequestItem {
+    var asQueryItems: [URLQueryItem] {
+        map({ key, value in .init(name: key.rawValue, value: value) })
+    }
+    
+    static let empty: RequestItems = []
+}
