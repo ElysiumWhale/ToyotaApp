@@ -69,8 +69,8 @@ class NetworkService {
         }.resume()
     }
     
-    class func makeSimpleRequest(page: RequestPath, params: [URLQueryItem] = []) {
-        session.dataTask(with: buildPostRequest(for: page.rawValue, with: params)).resume()
+    class func makeRequest(page: RequestPath, params: RequestItems = .empty) {
+        session.dataTask(with: buildPostRequest(for: page.rawValue, with: params.asQueryItems)).resume()
     }
     
     class private func buildPostRequest(for page: String,

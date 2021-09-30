@@ -82,8 +82,8 @@ extension SmsCodeViewController {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
-            NetworkService.makeSimpleRequest(page: .registration(.deleteTemp),
-                                             params: [URLQueryItem(.personalInfo(.phoneNumber), phoneNumber)])
+            NetworkService.makeRequest(page: .registration(.deleteTemp),
+                                       params: [(.personalInfo(.phoneNumber), phoneNumber)])
         }
     }
 }
