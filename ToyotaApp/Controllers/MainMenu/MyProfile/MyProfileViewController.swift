@@ -72,6 +72,8 @@ class MyProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem?.tintColor = .appTint(.mainRed)
+        navigationItem.leftBarButtonItem?.tintColor = .appTint(.mainRed)
         hideKeyboardWhenTappedAround()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         updateFields()

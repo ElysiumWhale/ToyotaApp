@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W6T-DW-qjd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -21,11 +23,12 @@
         <scene sceneID="whr-c9-hfA">
             <objects>
                 <tabBarController storyboardIdentifier="MainMenuTabBarController" id="W6T-DW-qjd" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="3yy-wf-8cf">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3yy-wf-8cf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="MainTint"/>
                         <color key="selectedImageTintColor" name="MainTint"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="3kv-dm-Vwl" kind="relationship" relationship="viewControllers" id="uZK-ED-GPs"/>
@@ -43,8 +46,9 @@
                 <navigationController id="3kv-dm-Vwl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Акции" image="star.fill" catalog="system" id="0QZ-qX-QXd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oso-H2-Y3E">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="MainTint"/>
                     </navigationBar>
                     <connections>
                         <segue destination="qV5-Is-7iF" kind="relationship" relationship="rootViewController" id="tiu-LG-wU3"/>
@@ -59,11 +63,11 @@
             <objects>
                 <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ut1-el-nLF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sMe-5f-6CG">
-                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pxk-IH-yTi">
                                     <size key="itemSize" width="360" height="240"/>
@@ -73,7 +77,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCell" id="hbU-IC-fut" customClass="NewsCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="120" y="10" width="360" height="240"/>
+                                        <rect key="frame" x="27" y="10" width="360" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jjb-c4-r6n">
                                             <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
@@ -99,7 +103,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-Xs-lo2">
-                                                    <rect key="frame" x="20" y="52" width="215" height="19"/>
+                                                    <rect key="frame" x="20" y="52" width="215" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="215" id="yx0-3V-BvG"/>
                                                     </constraints>
@@ -162,7 +166,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NewsCVC" id="E4W-EP-uCc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="10"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -197,11 +201,11 @@
             <objects>
                 <viewController storyboardIdentifier="ServicesViewController" title="Услуги" id="KLr-04-N2s" customClass="ServicesViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mCd-HP-nmp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="61" width="531" height="45.5"/>
+                                <rect key="frame" x="35" y="98" width="345" height="45.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
                                 </constraints>
@@ -209,7 +213,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
-                                <rect key="frame" x="0.0" y="137" width="600" height="414"/>
+                                <rect key="frame" x="0.0" y="179" width="414" height="634"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
@@ -259,7 +263,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
-                                <rect key="frame" x="0.0" y="108" width="600" height="21"/>
+                                <rect key="frame" x="0.0" y="145" width="414" height="26"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -269,7 +273,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="InQ-8a-6i6" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="6Tw-ag-Xad"/>
-                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="17" id="7Qh-qj-Ysc"/>
+                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="10" id="7Qh-qj-Ysc"/>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="InQ-8a-6i6" secondAttribute="bottom" constant="8" id="Jdm-IJ-D3q"/>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="bottom" secondItem="afF-bh-RPv" secondAttribute="bottom" id="LMi-7d-yRX"/>
                             <constraint firstItem="InQ-8a-6i6" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="1.6666666666666572" id="Mhy-Zd-m4e"/>
@@ -283,7 +287,9 @@
                     <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" id="UKN-IC-MKf">
                         <color key="badgeColor" name="MainTint"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Услуги" largeTitleDisplayMode="always" id="9HU-D7-X9D"/>
+                    <navigationItem key="navigationItem" title="Услуги" id="9HU-D7-X9D">
+                        <barButtonItem key="backBarButtonItem" title="Услуги" id="jWX-MJ-O7z"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
                         <outlet property="refreshableView" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
@@ -300,8 +306,9 @@
                 <navigationController id="t2J-oM-keC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Услуги" image="bookmark.fill" catalog="system" selectedImage="bookmark.fill" id="7xw-yK-Xhz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSz-xi-BdF">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="MainTint"/>
                     </navigationBar>
                     <connections>
                         <segue destination="KLr-04-N2s" kind="relationship" relationship="rootViewController" id="alg-mV-BkK"/>
@@ -318,7 +325,7 @@
                     <tabBarItem key="tabBarItem" title="Профиль" image="person.fill" catalog="system" selectedImage="person.fill" id="yjf-Bn-rXF"/>
                     <navigationItem key="navigationItem" id="kAU-62-jV5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o8I-Za-UAS">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -340,12 +347,17 @@
             <point key="canvasLocation" x="2079" y="1300"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="r3W-A2-Oo1">
+            <size key="intrinsicContentSize" width="126" height="44"/>
+        </designable>
+    </designables>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="MainTint">
-            <color red="0.63" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

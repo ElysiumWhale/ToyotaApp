@@ -71,7 +71,6 @@ class BaseServiceController: UIViewController, IServiceController {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
-        navigationItem.backButtonTitle = .common(.services)
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)

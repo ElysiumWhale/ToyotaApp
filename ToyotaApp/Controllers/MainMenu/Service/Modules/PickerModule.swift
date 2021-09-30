@@ -77,9 +77,10 @@ class PickerModule: NSObject, IServiceModule {
             delegate?.moduleDidUpdate(self)
         }
     }
+
     private var array: [IService]?
 
-    internal weak var delegate: IServiceController?
+    weak var delegate: IServiceController?
 
     init(with type: ServiceType) {
         serviceType = type
@@ -132,10 +133,9 @@ class PickerModule: NSObject, IServiceModule {
             case .success(let data):
                 array = data.array.isEmpty ? [Service.empty] : data.array
                 DispatchQueue.main.async { [weak self] in
-                    guard let module = self else { return }
-                    module.internalView.fadeIn()
-                    module.internalView.servicePicker.reloadAllComponents()
-                    module.state = .didDownload
+                    self?.internalView.fadeIn()
+                    self?.internalView.servicePicker.reloadAllComponents()
+                    self?.state = .didDownload
                 }
         }
     }
