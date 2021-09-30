@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
+		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
+		141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */; };
+		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
 		141F06ED26DBC57400AC02EA /* BookButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F06EC26DBC57400AC02EA /* BookButton.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
@@ -89,6 +92,9 @@
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
+		141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModuleView.swift; sourceTree = "<group>"; };
+		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
 		141F06EC26DBC57400AC02EA /* BookButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookButton.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -211,8 +217,11 @@
 			isa = PBXGroup;
 			children = (
 				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
+				141A64A42706519E00EEFC6E /* PickerModuleView.swift */,
 				149CC28626765AB700B5172A /* TimePickerModule.swift */,
+				141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */,
 				14025193267AAB89006CF4E2 /* MapModule.swift */,
+				141A64A8270651BB00EEFC6E /* MapModuleView.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -567,6 +576,7 @@
 				1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */,
 				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
+				141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
@@ -606,10 +616,12 @@
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
+				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
+				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				141F06ED26DBC57400AC02EA /* BookButton.swift in Sources */,
