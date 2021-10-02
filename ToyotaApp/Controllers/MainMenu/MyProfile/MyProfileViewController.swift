@@ -21,9 +21,9 @@ class MyProfileViewController: UIViewController {
 
     private let datePicker: UIDatePicker = UIDatePicker()
 
-    private let myCarsSegueCode = SegueIdentifiers.MyProfileToCars
-    private let settingsSegueCode = SegueIdentifiers.MyProfileToSettings
-    private let myManagersSegueCode = SegueIdentifiers.MyManagersSegueCode
+    private let myCarsSegueCode = SegueIdentifiers.myProfileToCars
+    private let settingsSegueCode = SegueIdentifiers.myProfileToSettings
+    private let myManagersSegueCode = SegueIdentifiers.myManagersSegueCode
 
     // MARK: - Properties
     #warning("todo: make optional")
@@ -127,7 +127,7 @@ class MyProfileViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+        switch segue.code {
             case myCarsSegueCode, settingsSegueCode:
                 let navVC = segue.destination as? UINavigationController
                 navVC?.navigationBar.tintColor = UIColor.appTint(.mainRed)

@@ -10,7 +10,7 @@ class PersonalInfoViewController: KeyboardableController {
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
 
-    private let segueCode = SegueIdentifiers.PersonInfoToDealer
+    private let segueCode = SegueIdentifiers.personInfoToDealer
     private let datePicker: UIDatePicker = UIDatePicker()
 
     private var textFieldsWithError: [UITextField: Bool] = [:]
@@ -99,7 +99,7 @@ extension PersonalInfoViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+        switch segue.code {
             case segueCode:
                 let destinationVC = segue.destination as? DealerViewController
                 destinationVC?.configure(cityList: cities)
@@ -138,7 +138,7 @@ extension PersonalInfoViewController {
         activitySwitcher.stopAnimating()
         nextButton.fadeIn()
         if isSuccess {
-            performSegue(withIdentifier: segueCode, sender: self)
+            perform(segue: segueCode)
         }
     }
 

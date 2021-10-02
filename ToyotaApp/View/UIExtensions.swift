@@ -197,3 +197,14 @@ extension UICollectionView {
         }
     }
 }
+
+// MARK: -
+extension UIStoryboardSegue {
+    var code: SegueIdentifiers {
+        guard let id = identifier, let result = SegueIdentifiers(rawValue: id) else {
+            fatalError("Identifier \(identifier ?? "nil") was not mapped!")
+        }
+        
+        return result
+    }
+}

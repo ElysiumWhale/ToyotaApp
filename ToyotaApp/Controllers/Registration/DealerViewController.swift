@@ -13,7 +13,7 @@ class DealerViewController: UIViewController {
     private var showroomPicker: UIPickerView = UIPickerView()
 
     // MARK: - Data
-    private let segueCode = SegueIdentifiers.DealerToCheckVin
+    private let segueCode = SegueIdentifiers.dealerToCheckVin
 
     private var type: AddInfoType = .register
     private var cities: [City] = []
@@ -89,7 +89,7 @@ extension DealerViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+        switch segue.code {
             case segueCode:
                 let destinationVC = segue.destination as? CheckVinViewController
                 let showroom = Showroom(id: selectedShowroom!.id,
@@ -139,7 +139,7 @@ extension DealerViewController {
         
         if let showrooms = KeychainManager.get(Showrooms.self)?.value, !showrooms.isEmpty,
            showrooms.any({ $0.id == showroom.id }) {
-            performSegue(for: segueCode)
+            perform(segue: segueCode)
             return
         }
         
@@ -186,7 +186,7 @@ extension DealerViewController {
                 case .fail(let message):
                     PopUp.display(.error(description: message))
                 case .success:
-                    performSegue(withIdentifier: SegueIdentifiers.DealerToCheckVin, sender: self)
+                    perform(segue: .dealerToCheckVin)
             }
         }
     }

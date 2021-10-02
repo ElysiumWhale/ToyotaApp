@@ -7,7 +7,7 @@ class AuthViewController: UIViewController {
     @IBOutlet private var sendPhoneButton: KeyboardBindedButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
-    private let segueCode = SegueIdentifiers.NumberToCode
+    private let segueCode = SegueIdentifiers.numberToCode
 
     private var type: AuthType = .register
 
@@ -72,7 +72,7 @@ class AuthViewController: UIViewController {
         indicator.stopAnimating()
         sendPhoneButton.fadeIn()
         if isSuccess {
-            performSegue(withIdentifier: segueCode, sender: self)
+            perform(segue: segueCode)
         }
     }
 }
@@ -80,7 +80,7 @@ class AuthViewController: UIViewController {
 // MARK: - Navigation
 extension AuthViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+        switch segue.code {
             case segueCode:
                 let destinationVC = segue.destination as? SmsCodeViewController
                 destinationVC?.configure(with: type, and: phoneNumber.phone!)

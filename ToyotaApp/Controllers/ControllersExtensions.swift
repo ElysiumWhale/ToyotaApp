@@ -77,6 +77,10 @@ extension UIViewController {
 
 // MARK: - Navigation
 extension UIViewController {
+    func perform(segue: SegueIdentifiers) {
+        performSegue(withIdentifier: segue.rawValue, sender: self)
+    }
+    
     func performSegue(for identifier: String) {
         DispatchQueue.main.async { [weak self] in
             self?.performSegue(withIdentifier: identifier, sender: self)

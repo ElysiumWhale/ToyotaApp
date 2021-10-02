@@ -60,25 +60,25 @@ enum ViewControllers: String {
     case myCar = "MyCarViewController"
 }
 
-public struct SegueIdentifiers {
+public enum SegueIdentifiers: String {
     // Auth
-    static let NumberToCode = "NumberToCodeSegue"
+    case numberToCode = "NumberToCodeSegue"
     // Reg
-    static let PersonInfoToDealer = "PersonInfoToDealer"
-    static let DealerToCar = "DealerToCar"
-    static let DealerToCheckVin = "DealerToCheckVin"
-    static let CarToEndRegistration = "CarToEndRegistration"
-    static let CarToCheckVin = "CarToCheckVin"
+    case personInfoToDealer = "PersonInfoToDealer"
+    case dealerToCar = "DealerToCar"
+    case dealerToCheckVin = "DealerToCheckVin"
+    case carToEndRegistration = "CarToEndRegistration"
+    case carToCheckVin = "CarToCheckVin"
     // Services
-    static let ServiceNavToTech = "ServiceNavToTech"
-    static let ServiceNavToService = "ServiceNavToService"
-    static let ServiceNavToTest = "ServiceNavToTest"
-    static let ServiceNavToEmerg = "ServiceNavToEmerg"
-    static let ServiceNavToFeedback = "ServiceNavToFeedback"
+    case serviceNavToTech = "ServiceNavToTech"
+    case serviceNavToService = "ServiceNavToService"
+    case serviceNavToTest = "ServiceNavToTest"
+    case serviceNavToEmerg = "ServiceNavToEmerg"
+    case serviceNavToFeedback = "ServiceNavToFeedback"
     // MyProfile
-    static let MyProfileToCars = "MyProfileToCars"
-    static let MyProfileToSettings = "MyProfileToSettings"
-    static let MyManagersSegueCode = "MyProfileToManagers"
+    case myProfileToCars = "MyProfileToCars"
+    case myProfileToSettings = "MyProfileToSettings"
+    case myManagersSegueCode = "MyProfileToManagers"
 }
 
 public struct CellIdentifiers {

@@ -12,7 +12,7 @@ class CheckVinViewController: UIViewController {
     @IBOutlet private var indicator: UIActivityIndicatorView!
     @IBOutlet private var skipStepButton: UIButton!
 
-    private let segueCode = SegueIdentifiers.CarToEndRegistration
+    private let segueCode = SegueIdentifiers.carToEndRegistration
 
     private var showroom: Showroom?
     private var type: AddInfoType = .register
@@ -38,7 +38,7 @@ class CheckVinViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+        switch segue.code {
             case segueCode:
                 let destinationVC = segue.destination as? EndRegistrationViewController
             default: return
@@ -91,7 +91,7 @@ extension CheckVinViewController {
 
     private func handleSuccess(_ response: CarDidCheckResponse) {
         if isSkipped {
-            interfaceCompletion(true, segueCode)
+            interfaceCompletion(true)
             return
         }
         guard let car = response.car?.toDomain(with: vin, showroom: showroom!.id) else {
@@ -101,7 +101,7 @@ extension CheckVinViewController {
         switch type {
             case .register:
                 KeychainManager.set(Cars([car]))
-                performSegue(for: segueCode)
+                perform(segue: segueCode)
             case .update(let proxy):
                 proxy.update(car, showroom!)
                 PopUp.display(.success(description: .common(.autoLinked)))
@@ -109,12 +109,12 @@ extension CheckVinViewController {
         }
     }
 
-    private func interfaceCompletion(_ isSuccess: Bool, _ parameter: String) {
+    private func interfaceCompletion(_ isSuccess: Bool, _ parameter: String = "") {
         DispatchQueue.main.async { [self] in
             indicator.stopAnimating()
             checkVinButton.fadeIn()
             
-            isSuccess ? performSegue(withIdentifier: segueCode, sender: self)
+            isSuccess ? perform(segue: segueCode)
                       : PopUp.display(.error(description: parameter))
         }
     }
