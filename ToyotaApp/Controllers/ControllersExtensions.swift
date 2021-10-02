@@ -8,6 +8,7 @@ extension UIViewController {
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: self, action: action)
+        doneButton.tintColor = .appTint(.mainRed)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
@@ -118,19 +119,8 @@ extension BackgroundText {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
-        label.font = UIFont.toyotaType(.semibold, of: 25)
+        label.font = .toyotaType(.semibold, of: 25)
         label.sizeToFit()
         return label
-    }
-    
-    func createBackground(buttonText: String, action: @escaping () -> Void) -> UIButton {
-        let button = UIButton()
-        button.setTitle(buttonText, for: .normal)
-        button.addAction(action)
-        button.backgroundColor = .init(red: 171, green: 97, blue: 99, alpha: 1)
-        button.layer.cornerRadius = 20
-        button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 18)
-        button.sizeToFit()
-        return button
     }
 }

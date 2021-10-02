@@ -6,7 +6,7 @@ class PopUp {
     private init() { }
 
     private static let mainRedColor: EKColor = .init(red: 171, green: 97, blue: 99)
-    private static let font = UIFont.toyotaType(.semibold, of: 20)
+    private static let font: UIFont = .toyotaType(.semibold, of: 20)
 
     class func displayChoice(with title: String, description: String, confirmText: String, declineText: String, confirmCompletion: @escaping () -> Void) {
         DispatchQueue.main.async {

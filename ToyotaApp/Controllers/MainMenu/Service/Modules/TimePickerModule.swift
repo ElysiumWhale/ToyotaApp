@@ -150,7 +150,7 @@ extension TimePickerModule: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
-        pickerLabel.font = UIFont.toyotaType(.semibold, of: 20)
+        pickerLabel.font = .toyotaType(.semibold, of: 20)
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {

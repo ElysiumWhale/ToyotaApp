@@ -5,7 +5,7 @@ import MapKit
 class MapModuleView: UIView {
     private(set) lazy var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaType(.semibold, of: 20)
+        label.font = .toyotaType(.semibold, of: 20)
         label.textColor = .label
         label.textAlignment = .left
         label.text = .common(.enterLocation)

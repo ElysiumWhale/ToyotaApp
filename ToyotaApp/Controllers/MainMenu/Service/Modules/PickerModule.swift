@@ -118,7 +118,7 @@ extension PickerModule: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
-        pickerLabel.font = UIFont.toyotaType(.light, of: 20)
+        pickerLabel.font = .toyotaType(.light, of: 20)
         pickerLabel.textAlignment = .center
         pickerLabel.text = array?[row].name
         return pickerLabel

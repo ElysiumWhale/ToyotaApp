@@ -9,7 +9,7 @@ class TimePickerView: UIView {
 
     private(set) lazy var dateTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaType(.semibold, of: 20)
+        label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = .common(.chooseDateTime)

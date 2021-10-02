@@ -10,7 +10,7 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) lazy var bookButton: BookButton = {
         let button = BookButton()
         button.backgroundColor = UIColor.appTint(.mainRed)
-        button.titleLabel?.font = UIFont.toyotaType(.semibold, of: 20)
+        button.titleLabel?.font = .toyotaType(.semibold, of: 20)
         button.layer.cornerRadius = 20
         button.setTitle(.common(.book), for: .normal)
         button.addAction { [weak self] in

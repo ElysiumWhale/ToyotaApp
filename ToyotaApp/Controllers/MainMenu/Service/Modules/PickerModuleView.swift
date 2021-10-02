@@ -5,7 +5,7 @@ class PickerModuleView: UIView {
 
     private(set) lazy var serviceNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.toyotaType(.semibold, of: 20)
+        label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = .common(.chooseService)
@@ -16,7 +16,7 @@ class PickerModuleView: UIView {
     private(set) var textField: NoPasteTextField = {
         let field = NoPasteTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont.toyotaType(.light, of: 22)
+        field.font = .toyotaType(.light, of: 22)
         field.textColor = .label
         field.textAlignment = .center
         field.tintColor = .clear
