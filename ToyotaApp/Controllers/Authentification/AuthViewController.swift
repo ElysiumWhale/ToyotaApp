@@ -14,7 +14,7 @@ class AuthViewController: UIViewController {
     private lazy var authRequestHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
         
-        handler.onSuccess = { [weak self] data in
+        handler.onSuccess = { [weak self] _ in
             DispatchQueue.main.async {
                 self?.handle(isSuccess: true)
             }

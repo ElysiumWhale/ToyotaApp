@@ -48,7 +48,7 @@ extension SceneDelegate {
                         NavigationService.loadConnectionLost()
                     default:
                         KeychainManager.clear(SecretKey.self)
-                        NavigationService.loadAuth(with: error.message ?? "При входе произошла ошибка, войдите повторно")
+                        NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
                 }
         }
     }

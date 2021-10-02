@@ -114,7 +114,7 @@ enum RequestKeys {
     }
 }
 
-struct MainURL {
+enum MainURL {
     private static let http = "http"
     private static let https = "https"
     private static let host = "cv39623.tmweb.ru"

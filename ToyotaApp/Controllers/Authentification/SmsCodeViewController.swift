@@ -34,7 +34,7 @@ class SmsCodeViewController: UIViewController {
     private lazy var changeNumberHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
         
-        handler.onSuccess = { [weak self] data in
+        handler.onSuccess = { [weak self] _ in
             self?.handleSuccess()
         }
         
