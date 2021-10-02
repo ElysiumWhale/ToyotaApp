@@ -36,12 +36,12 @@ enum AddInfoType: Equatable {
 }
 
 // MARK: - Structs with view constants
-public struct AppStoryboards {
-    static let launchScreen = "LaunchScreen"
-    static let main = "Main"
-    static let auth = "Authentification"
-    static let register = "FirstLaunchRegistration"
-    static let mainMenu = "MainMenu"
+public enum AppStoryboards: String {
+    case launchScreen = "LaunchScreen"
+    case main = "Main"
+    case auth = "Authentification"
+    case register = "FirstLaunchRegistration"
+    case mainMenu = "MainMenu"
 }
 
 enum ViewControllers: String {

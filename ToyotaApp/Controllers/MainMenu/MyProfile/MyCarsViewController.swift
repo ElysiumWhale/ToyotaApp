@@ -44,10 +44,10 @@ class MyCarsViewController: UIViewController, BackgroundText {
     }
 
     private func handle(_ response: CitiesDidGetResponse) {
-        let register = UIStoryboard(name: AppStoryboards.register, bundle: nil)
-        let addShowroomVC = register.instantiateViewController(identifier: AppViewControllers.dealer) as? DealerViewController
-        addShowroomVC?.configure(cityList: response.cities, controllerType: .update(with: user))
-        navigationController?.pushViewController(addShowroomVC!, animated: true)
+        let register = UIStoryboard(.register)
+        let addShowroomVC: DealerViewController = register.instantiate(.dealer)
+        addShowroomVC.configure(cityList: response.cities, controllerType: .update(with: user))
+        navigationController?.pushViewController(addShowroomVC, animated: true)
     }
 }
 

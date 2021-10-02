@@ -52,10 +52,8 @@ class NavigationService {
         }
     }
 
-    private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: String) -> UINavigationController {
-        guard let controller = storyboard.instantiateViewController(identifier: identifier) as? UINavigationController else {
-            fatalError()
-        }
+    private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: ViewControllers) -> UINavigationController {
+        let controller: UINavigationController = storyboard.instantiate(identifier)
         controller.navigationBar.tintColor = UIColor.appTint(.mainRed)
         if let controllers = controllers, !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
@@ -64,10 +62,11 @@ class NavigationService {
     }
 }
 
+// MARK: - LoadConnectionLost
 extension NavigationService {
     class func loadConnectionLost() {
-        let storyboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
+            let storyboard = UIStoryboard(.main)
             let controller: ConnectionLostViewController = storyboard.instantiate(.connectionLost)
             switchRootView?(controller)
         }
@@ -77,9 +76,9 @@ extension NavigationService {
 // MARK: - LoadAuth
 extension NavigationService {
     class func loadAuth(with error: String? = nil) {
-        let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+        let authStoryboard = UIStoryboard(.auth)
         DispatchQueue.main.async {
-            let controller = configureNavigationStack(for: authStoryboard, identifier: AppViewControllers.authNavigation)
+            let controller = configureNavigationStack(for: authStoryboard, identifier: .authNavigation)
             switchRootView?(controller)
             if let error = error {
                 PopUp.display(.error(description: error))
@@ -88,7 +87,7 @@ extension NavigationService {
     }
 
     class func loadAuth(from navigationController: UINavigationController, with notificator: Notificator) {
-        let storyboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
+        let storyboard = UIStoryboard(.auth)
         let controller: AuthViewController = storyboard.instantiate(.auth)
         controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
@@ -98,9 +97,8 @@ extension NavigationService {
 // MARK: - LoadRegister overloads
 extension NavigationService {
     class func loadRegister(_ state: RegistrationStates) {
-        let regStoryboard = UIStoryboard(name: AppStoryboards.register, bundle: .main)
         DispatchQueue.main.async {
-            var controller: UINavigationController
+            let regStoryboard = UIStoryboard(.register)
             var controllers: [UIViewController]?
             switch state {
                 case .error(let message):
@@ -130,8 +128,8 @@ extension NavigationService {
                     
                     controllers = [pivc, dvc, cvvc]
             }
-            controller = configureNavigationStack(with: controllers, for: regStoryboard,
-                                                  identifier: AppViewControllers.registerNavigation)
+            let controller = configureNavigationStack(with: controllers, for: regStoryboard,
+                                                      identifier: .registerNavigation)
             switchRootView?(controller)
         }
     }
@@ -140,17 +138,16 @@ extension NavigationService {
 // MARK: - LoadMain overloads
 extension NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
-        let mainStoryboard = UIStoryboard(name: AppStoryboards.mainMenu, bundle: nil)
-        DispatchQueue.main.async {
-            let controller: UITabBarController = mainStoryboard.instantiate(.mainMenuTabBar)
-            
-            if let user = user {
-                KeychainManager.set(Person.toDomain(user.profile))
-                KeychainManager.set(Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
-                if let cars = user.car {
-                    KeychainManager.set(Cars(cars.map { $0.toDomain() }))
-                }
+        if let user = user {
+            KeychainManager.set(Person.toDomain(user.profile))
+            KeychainManager.set(Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
+            if let cars = user.car {
+                KeychainManager.set(Cars(cars.map { $0.toDomain() }))
             }
+        }
+        DispatchQueue.main.async {
+            let mainStoryboard = UIStoryboard(.mainMenu)
+            let controller: UITabBarController = mainStoryboard.instantiate(.mainMenuTabBar)
             
             switch UserInfo.build() {
                 case .failure:
