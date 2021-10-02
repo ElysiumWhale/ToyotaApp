@@ -7,6 +7,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if scene as? UIWindowScene == nil { return }
         
+        NavigationService.switchRootView = changeRootViewController
+        
         guard let userId = KeychainManager.get(UserId.self)?.id,
               let secretKey = KeychainManager.get(SecretKey.self)?.secret else {
             NavigationService.loadAuth()
@@ -22,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 // MARK: - Navigation
 extension SceneDelegate {
-    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+    func changeRootViewController(_ vc: UIViewController) {
         guard let window = window else { return }
         window.rootViewController = vc
         

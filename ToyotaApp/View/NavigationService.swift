@@ -34,6 +34,8 @@ enum RegistrationStates {
     case thirdPage(_ user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom])
 }
 class NavigationService {
+    static var switchRootView: ((UIViewController) -> Void)?
+    
     class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: () -> Void) {
         switch context.state {
             case .empty: fallbackCompletion()
@@ -60,22 +62,6 @@ class NavigationService {
         }
         return controller
     }
-
-    private class func switchRootView(controller: UIViewController) {
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
-    }
-}
-
-extension NavigationService {
-    class func loadStoryboard(with name: String, controller: String,
-                              configure: @escaping (UIViewController) -> Void = {_ in }) {
-        DispatchQueue.main.async {
-            let storyBoard: UIStoryboard = UIStoryboard(name: name, bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: controller)
-            configure(vc)
-            switchRootView(controller: vc)
-        }
-    }
 }
 
 extension NavigationService {
@@ -83,8 +69,7 @@ extension NavigationService {
         let storyboard = UIStoryboard(name: AppStoryboards.main, bundle: nil)
         DispatchQueue.main.async {
             let controller: ConnectionLostViewController = storyboard.instantiate(.connectionLost)
-            // controller.configure()
-            switchRootView(controller: controller)
+            switchRootView?(controller)
         }
     }
 }
@@ -95,7 +80,7 @@ extension NavigationService {
         let authStoryboard = UIStoryboard(name: AppStoryboards.auth, bundle: nil)
         DispatchQueue.main.async {
             let controller = configureNavigationStack(for: authStoryboard, identifier: AppViewControllers.authNavigation)
-            switchRootView(controller: controller)
+            switchRootView?(controller)
             if let error = error {
                 PopUp.display(.error(description: error))
             }
@@ -147,7 +132,7 @@ extension NavigationService {
             }
             controller = configureNavigationStack(with: controllers, for: regStoryboard,
                                                   identifier: AppViewControllers.registerNavigation)
-            switchRootView(controller: controller)
+            switchRootView?(controller)
         }
     }
 }
@@ -179,7 +164,7 @@ extension NavigationService {
                             top.setUser(info: user)
                         }
                     }
-                    switchRootView(controller: controller)
+                    switchRootView?(controller)
             }
         }
     }
