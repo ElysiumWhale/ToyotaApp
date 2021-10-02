@@ -37,47 +37,86 @@ enum AddInfoType: Equatable {
 
 // MARK: - Structs with view constants
 public enum AppStoryboards: String {
+    /// LaunchScreen
     case launchScreen = "LaunchScreen"
+    /// Main
     case main = "Main"
+    /// Authentification
     case auth = "Authentification"
+    /// FirstLaunchRegistration
     case register = "FirstLaunchRegistration"
+    /// MainMenu
     case mainMenu = "MainMenu"
 }
 
 enum ViewControllers: String {
+    /// MainMenuTabBarController
     case mainMenuTabBar = "MainMenuTabBarController"
+    /// AuthNavigationController
     case authNavigation = "AuthNavigationController"
+    /// RegisterNavigationController
     case registerNavigation = "RegisterNavigationController"
+    /// PersonalInfoViewController
     case personalInfo = "PersonalInfoViewController"
+    /// DealerViewController
     case dealer = "DealerViewController"
+    /// AddingCarViewController
     case addingCar = "AddingCarViewController"
+    /// CheckVinViewController
     case checkVin = "CheckVinViewController"
+    /// ConnectionLostViewController
     case connectionLost = "ConnectionLostViewController"
+    /// AuthViewController
     case auth = "AuthViewController"
+    /// MainMenuViewController
     case mainMenu = "MainMenuViewController"
+    /// OffersViewController
     case offers = "OffersViewController"
+    /// ServicesViewController
     case services = "ServicesViewController"
+    /// MyCarViewController
     case myCar = "MyCarViewController"
 }
 
 public enum SegueIdentifiers: String {
     // Auth
+    
+    /// NumberToCodeSegue
     case numberToCode = "NumberToCodeSegue"
+    
     // Reg
+    
+    /// PersonInfoToDealer
     case personInfoToDealer = "PersonInfoToDealer"
+    /// DealerToCar
     case dealerToCar = "DealerToCar"
+    /// DealerToCheckVin
     case dealerToCheckVin = "DealerToCheckVin"
+    /// CarToEndRegistration
     case carToEndRegistration = "CarToEndRegistration"
+    /// CarToCheckVin
     case carToCheckVin = "CarToCheckVin"
+    
     // Services
+    
+    /// ServiceNavToTech
     case serviceNavToTech = "ServiceNavToTech"
+    /// ServiceNavToService
     case serviceNavToService = "ServiceNavToService"
+    /// ServiceNavToTest
     case serviceNavToTest = "ServiceNavToTest"
+    /// ServiceNavToEmerg
     case serviceNavToEmerg = "ServiceNavToEmerg"
+    /// ServiceNavToFeedback
     case serviceNavToFeedback = "ServiceNavToFeedback"
+    
     // MyProfile
+    
+    /// MyProfileToCars
     case myProfileToCars = "MyProfileToCars"
+    /// MyProfileToSettings
     case myProfileToSettings = "MyProfileToSettings"
+    /// MyProfileToManagers
     case myManagersSegueCode = "MyProfileToManagers"
 }
 
