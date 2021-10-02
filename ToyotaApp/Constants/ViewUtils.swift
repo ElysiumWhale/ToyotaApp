@@ -60,25 +60,6 @@ enum ViewControllers: String {
     case myCar = "MyCarViewController"
 }
 
-#warning("Deprecated")
-public struct AppViewControllers {
-    static let mainMenuTabBar = "MainMenuTabBarController"
-    static let authNavigation = "AuthNavigationController"
-    static let registerNavigation = "RegisterNavigationController"
-
-    static let personalInfo = "PersonalInfoViewController"
-    static let dealer = "DealerViewController"
-    static let addingCar = "AddingCarViewController"
-    static let checkVin = "CheckVinViewController"
-
-    static let connectionLost = "ConnectionLostViewController"
-    static let auth = "AuthViewController"
-    static let mainMenu = "MainMenuViewController"
-    static let offers = "OffersViewController"
-    static let services = "ServicesViewController"
-    static let myCar = "MyCarViewController"
-}
-
 public struct SegueIdentifiers {
     // Auth
     static let NumberToCode = "NumberToCodeSegue"

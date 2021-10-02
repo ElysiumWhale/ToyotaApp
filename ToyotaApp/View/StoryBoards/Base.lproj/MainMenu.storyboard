@@ -28,7 +28,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="MainTint"/>
                         <color key="selectedImageTintColor" name="MainTint"/>
-                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="3kv-dm-Vwl" kind="relationship" relationship="viewControllers" id="uZK-ED-GPs"/>
@@ -321,8 +320,11 @@
         <!--Профиль-->
         <scene sceneID="IyJ-sk-tIT">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sH6-Pm-VJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Yh5-n3-Vaq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Профиль" image="person.fill" catalog="system" selectedImage="person.fill" id="yjf-Bn-rXF"/>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="person.fill" catalog="system" selectedImage="person.fill" id="yjf-Bn-rXF">
+                        <color key="badgeColor" name="MainTint"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="kAU-62-jV5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o8I-Za-UAS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -332,7 +334,6 @@
                         <segue destination="tra-mx-BEu" kind="relationship" relationship="rootViewController" id="PII-X9-mXe"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sH6-Pm-VJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2079" y="871"/>
         </scene>

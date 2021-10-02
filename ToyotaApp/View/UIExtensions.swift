@@ -144,8 +144,11 @@ extension UIColor {
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
 }
 
-// MARK: - Sugar instatiate
+// MARK: - Sugar init and instatiate
 extension UIStoryboard {
+    convenience init(_ identifier: AppStoryboards, bundle: Bundle = .main) {
+        self.init(name: identifier.rawValue, bundle: .main)
+    }
 
     /// Causes **fatalError()** when `ViewController` is not mapped to identifier
     func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
