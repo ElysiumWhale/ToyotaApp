@@ -198,11 +198,16 @@ extension UICollectionView {
     }
 }
 
-// MARK: -
+// MARK: - SegueCode enum property
 extension UIStoryboardSegue {
-    var code: SegueIdentifiers {
-        guard let id = identifier, let result = SegueIdentifiers(rawValue: id) else {
-            fatalError("Identifier \(identifier ?? "nil") was not mapped!")
+    var code: SegueIdentifiers? {
+        guard let id = identifier else {
+            print("\nWarning: Segue code is empty\n")
+            return nil
+        }
+        
+        guard let result = SegueIdentifiers(rawValue: id) else {
+            fatalError("Identifier \(id) is not mapped to storyboard segue!")
         }
         
         return result
