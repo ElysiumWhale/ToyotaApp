@@ -30,7 +30,7 @@ extension DateFormatter {
      */
     static var server: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = .yyyy_MM_dd
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }
@@ -61,7 +61,7 @@ extension DateFormatter {
      */
     static var common: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM.dd.yyyy"
+        formatter.dateFormat = .MMddyyyy
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }
@@ -76,7 +76,7 @@ extension DateFormatter {
      */
     static var display: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.dateFormat = .ddMMyyyy
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }

@@ -6,7 +6,7 @@ extension String {
         string.rawValue
     }
     
-    static func background(_ string: BackgroundString) -> String {
+    static func background(_ string: BackgroundStrings) -> String {
         string.rawValue
     }
     
@@ -85,7 +85,7 @@ extension String {
         case quitQuestion = "Вы действительно хотите выйти?"
     }
     
-    enum BackgroundString: String {
+    enum BackgroundStrings: String {
         /// На данный момент нет ни одного обращения.
         case noBookings = "На данный момент нет ни одного обращения."
         /// На данный момент к Вам не привязано ни одного менеджера.
@@ -101,29 +101,9 @@ extension String {
     }
 }
 
-#warning("Deprecated")
+// MARK: - DateFormatting
 extension String {
-    static let save = "Сохранить"
-    static let success = "Успех"
-    static let cancel = "Отмена"
-    static let ok = "Ок"
-    static let error = "Ошибка"
-    static let warning = "Предупреждение"
-    static let edit = "Редактировать"
-    static let yes = "Да"
-    static let no = "Нет"
-    static let choose = "Выбрать"
-    static let pullToRefresh = "Потяните вниз для обновления"
-    static let noServices = "Для данного автомобиля пока нет доступных сервисов. Не волнуйтесь, они скоро появятся."
-    static let networkError = "Ошибка сети, проверьте подключение"
-    static let retryRefresh = "потяните вниз для повторной загрузки."
-    static let servicesError = "Ошибка при загрузке услуг"
-    static let stillNoConnection = "Соединение с интернетом все еще отсутствует"
-    static let errorWhileAuth = "При входе произошла ошибка, войдите повторно"
-    static let noCarsBackground = "Здесь будут отображаться Ваши автомобили. Как только Вы их добавите."
-    static let blockFunctionsAlert = "Увы, на данный момент Вам недоступен полный функционал приложения. Для разблокировки добавьте автомобиль."
-    static let addAutoToUnlock = "Добавьте автомобиль для разблокировки функций"
-    static let profileLoadError = "При загрузке профиля возникла ошибка, повторите регистрацию для корректного внесения и сохранения данных"
-    static let managersLoadError = "Ошибка при загрузке списка менеджеров"
-    static let noManagersBackground = "На данный момент к Вам не привязано ни одного менеджера"
+    static let ddMMyyyy = "dd.MM.yyyy"
+    static let MMddyyyy = "MM.dd.yyyy"
+    static let yyyy_MM_dd = "yyyy-MM-dd"
 }
