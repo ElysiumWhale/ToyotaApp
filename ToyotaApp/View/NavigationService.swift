@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 // MARK: - Context for navigation
@@ -33,6 +32,7 @@ enum RegistrationStates {
     case secondPage(_ profile: Profile, _ cities: [City])
     case thirdPage(_ user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom])
 }
+
 class NavigationService {
     static var switchRootView: ((UIViewController) -> Void)?
     

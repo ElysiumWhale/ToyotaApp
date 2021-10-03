@@ -29,10 +29,10 @@ extension SceneDelegate {
         window.rootViewController = vc
         
         UIView.transition(with: window,
-        duration: 0.5,
-        options: [.transitionFlipFromLeft],
-        animations: nil,
-        completion: nil)
+                          duration: 0.5,
+                          options: [.transitionFlipFromLeft],
+                          animations: nil,
+                          completion: nil)
     }
     
     func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {

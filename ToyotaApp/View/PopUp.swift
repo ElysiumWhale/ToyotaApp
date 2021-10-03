@@ -1,4 +1,3 @@
-import Foundation
 import SwiftEntryKit
 import UIKit
 

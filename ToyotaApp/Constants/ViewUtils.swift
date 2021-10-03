@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 /// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.

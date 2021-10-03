@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 // MARK: - Formatting hours and minutes
 extension DateComponents {
@@ -9,10 +8,10 @@ extension DateComponents {
     func getHourAndMinute() -> String {
         var hourStr = "00"
         var minStr = "00"
-        if let hour = self.hour {
+        if let hour = hour {
             hourStr = "\(hour)"
         }
-        if let min = self.minute, min != 0 {
+        if let min = minute, min != 0 {
             minStr = "\(min)"
         }
         return "\(hourStr):\(minStr)"

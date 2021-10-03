@@ -1,16 +1,4 @@
-import Foundation
 import UIKit
-
-protocol SegueWithRequestController {
-    associatedtype TResponse: Codable
-    var segueCode: String { get }
-    func completionForSegue(for response: Result<TResponse, ErrorResponse>)
-    func nextButtonDidPressed(sender: Any?)
-}
-
-extension SegueWithRequestController {
-    func completionForSegue(for response: TResponse?) { }
-}
 
 /// Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
