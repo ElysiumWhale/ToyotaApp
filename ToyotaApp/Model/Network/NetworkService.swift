@@ -3,8 +3,7 @@ import Foundation
 class NetworkService {
     private static let session = URLSession(configuration: URLSessionConfiguration.default)
     
-    #warning("MAKE ME HTTPS!")
-    private static let mainUrl = MainURL.build()
+    private static let mainUrl = MainURL.build(isSecure: true)
     
     class func makePostRequest<T: Codable>(page: RequestPath,
                                            params: RequestItems = .empty,
