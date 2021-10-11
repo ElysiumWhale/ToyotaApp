@@ -30,7 +30,7 @@ extension DateFormatter {
      */
     static var server: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = .yyyy_MM_dd
+        formatter.dateFormat = .yyyyMMdd
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }

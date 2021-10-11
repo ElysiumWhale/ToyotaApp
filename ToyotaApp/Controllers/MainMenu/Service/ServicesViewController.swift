@@ -124,7 +124,7 @@ extension ServicesViewController {
         PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
-        showroomLabel.text = ""
+        showroomLabel.text = .empty
         refreshableView.backgroundView = createBackground(labelText: .background(.addAutoToUnlock))
     }
 

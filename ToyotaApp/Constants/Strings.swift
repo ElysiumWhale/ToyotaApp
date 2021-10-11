@@ -2,18 +2,20 @@ import Foundation
 
 #warning("todo: make .strings file")
 extension String {
+    static let empty = ""
+
     static func common(_ string: CommonStrings) -> String {
         string.rawValue
     }
-    
+
     static func background(_ string: BackgroundStrings) -> String {
         string.rawValue
     }
-    
+
     static func error(_ string: AppErrors) -> String {
         string.rawValue
     }
-    
+
     enum CommonStrings: String {
         /// Сохранить
         case save = "Сохранить"
@@ -84,7 +86,7 @@ extension String {
         /// Вы действительно хотите выйти?
         case quitQuestion = "Вы действительно хотите выйти?"
     }
-    
+
     enum BackgroundStrings: String {
         /// На данный момент нет ни одного обращения.
         case noBookings = "На данный момент нет ни одного обращения."
@@ -105,5 +107,5 @@ extension String {
 extension String {
     static let ddMMyyyy = "dd.MM.yyyy"
     static let MMddyyyy = "MM.dd.yyyy"
-    static let yyyy_MM_dd = "yyyy-MM-dd"
+    static let yyyyMMdd = "yyyy-MM-dd"
 }
