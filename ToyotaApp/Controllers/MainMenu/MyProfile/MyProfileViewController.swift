@@ -182,7 +182,7 @@ extension MyProfileViewController {
         })
         
         if state != .loading {
-            date = ""
+            date = .empty
         }
     }
 

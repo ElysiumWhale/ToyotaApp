@@ -87,3 +87,28 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 }
+
+// MARK: - Loadable
+
+/// Default loading view with indicator handling
+protocol Loadable: UIViewController {
+    var loadingView: LoadingView { get }
+    
+    func startLoading()
+    func stopLoading()
+}
+
+extension Loadable {
+    func startLoading() {
+        view.addSubview(loadingView)
+        loadingView.sizeToFit()
+        loadingView.startAnimating()
+        loadingView.fadeIn()
+    }
+
+    func stopLoading() {
+        loadingView.fadeOut()
+        loadingView.stopAnimating()
+        loadingView.removeFromSuperview()
+    }
+}

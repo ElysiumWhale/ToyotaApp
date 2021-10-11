@@ -1,8 +1,13 @@
 import UIKit
 
-class MyCarsViewController: UIViewController, BackgroundText {
+class MyCarsViewController: UIViewController, BackgroundText, Loadable {
+    
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
+
+    private(set) lazy var loadingView: LoadingView = {
+        LoadingView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+    }()
 
     private let cellIdentifier = CellIdentifiers.CarCell
     private var user: UserProxy! {
@@ -30,8 +35,10 @@ class MyCarsViewController: UIViewController, BackgroundText {
     private lazy var removeCarHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
 
-        handler.onFailure = { error in
-            // hide loading view
+        handler.onFailure = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.stopLoading()
+            }
             PopUp.display(.error(description: .error(.requestError)))
         }
 
@@ -64,6 +71,9 @@ class MyCarsViewController: UIViewController, BackgroundText {
     private func removeCar(with id: String) {
         removeCarHandler.onSuccess = { [weak self] _ in
             self?.user.remove(carId: id)
+            DispatchQueue.main.async {
+                self?.stopLoading()
+            }
         }
         
         PopUp.displayChoice(with: .common(.confirmation),
@@ -71,7 +81,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
                             confirmText: .common(.yes),
                             declineText: .common(.cancel),
                             confirmCompletion: { [self] in
-            // add loading view
+            startLoading()
             NetworkService.makeRequest(page: .profile(.removeCar),
                                        params: [(.auth(.userId), user.getId),
                                                 (.carInfo(.carId), id)],
