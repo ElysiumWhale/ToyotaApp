@@ -2,12 +2,7 @@ import Foundation
 
 /// Keys for information **pushing to** and **retrieving from**  `UserDefaults`
 enum DefaultKeys: String {
-    case phone
-    case userId
-    case secretKey
-    case person
-    case cars
-    case showrooms
+    case noCarsMessage
 }
 
 protocol WithDefaultKey: Codable {
@@ -22,6 +17,11 @@ public class DefaultsManager {
         return try? JSONDecoder().decode(T.self, from: data)
     }
     
+    class func getUserInfo<T: Codable>(for key: DefaultKeys) -> T? {
+        guard let data = defaults.data(forKey: key.rawValue) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+    
     class func pushUserInfo<T: WithDefaultKey>(info: T) {
         do {
             let data = try JSONEncoder().encode(info)
@@ -29,5 +29,20 @@ public class DefaultsManager {
         } catch let decodeError as NSError {
             fatalError("Decoder error: \(decodeError.localizedDescription)")
         }
+    }
+    
+    class func push<T: Codable>(info: T, for key: DefaultKeys) {
+        do {
+            let data = try JSONEncoder().encode(info)
+            defaults.set(data, forKey: key.rawValue)
+        } catch let decodeError as NSError {
+            fatalError("Decoder error: \(decodeError.localizedDescription)")
+        }
+    }
+}
+
+extension Bool {
+    static var noCarsMessageIsShown: Self {
+        DefaultsManager.getUserInfo(for: .noCarsMessage) ?? false
     }
 }

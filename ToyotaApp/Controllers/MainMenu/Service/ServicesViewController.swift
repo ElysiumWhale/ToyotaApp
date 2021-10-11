@@ -50,6 +50,15 @@ class ServicesViewController: RefreshableController, BackgroundText {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard cars.count > 0 && .noCarsMessageIsShown else {
+            PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
+            DefaultsManager.push(info: true, for: .noCarsMessage)
+            return
+        }
+    }
+
     func startRefreshing() {
         serviceTypes.removeAll()
         refreshableView.reloadData()
@@ -121,7 +130,6 @@ extension ServicesViewController: WithUserInfo {
 // MARK: - Configure UI for cars count
 extension ServicesViewController {
     private func layoutIfNoCars() {
-        PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         showroomLabel.text = .empty
