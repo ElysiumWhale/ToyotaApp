@@ -453,7 +453,7 @@
                                                                 <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
                                                             </state>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYx-M7-bue">
+                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYx-M7-bue">
                                                             <rect key="frame" x="65" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Bfd-xD-R2a"/>
@@ -462,7 +462,11 @@
                                                             <color key="tintColor" name="MainTint"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="removeCarTappedWithSender:" destination="cYR-AV-zYx" eventType="touchUpInside" id="yf2-Py-1jB"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>

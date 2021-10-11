@@ -58,6 +58,7 @@ enum RequestPath {
         case editProfile = "edit_profile.php"
         case getManagers = "get_managers.php"
         case getBookings = "get_users_booking.php"
+        case removeCar = "delete_user_car.php"
     }
     
     enum Settings: String {

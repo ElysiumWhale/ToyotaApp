@@ -27,6 +27,17 @@ class MyCarsViewController: UIViewController, BackgroundText {
         return handler
     }()
 
+    private lazy var removeCarHandler: RequestHandler<Response> = {
+        let handler = RequestHandler<Response>()
+
+        handler.onFailure = { error in
+            // hide loading view
+            PopUp.display(.error(description: .error(.requestError)))
+        }
+
+        return handler
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
@@ -49,6 +60,24 @@ class MyCarsViewController: UIViewController, BackgroundText {
         addShowroomVC.configure(cityList: response.cities, controllerType: .update(with: user))
         navigationController?.pushViewController(addShowroomVC, animated: true)
     }
+
+    private func removeCar(with id: String) {
+        removeCarHandler.onSuccess = { [weak self] _ in
+            self?.user.remove(carId: id)
+        }
+        
+        PopUp.displayChoice(with: .common(.confirmation),
+                            description: "Вы действительно хотите отвязать от аккаунта машину?",
+                            confirmText: .common(.yes),
+                            declineText: .common(.cancel),
+                            confirmCompletion: { [self] in
+            // add loading view
+            NetworkService.makeRequest(page: .profile(.removeCar),
+                                       params: [(.auth(.userId), user.getId),
+                                                (.carInfo(.carId), id)],
+                                       handler: removeCarHandler)
+        })
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -65,6 +94,9 @@ extension MyCarsViewController: UICollectionViewDataSource {
                        color: car.color, plate: car.plate,
                        colorDesription: car.colorDescription,
                        showroom: showroomName ?? "Салон")
+        cell.removeAction = { [weak self] in
+            self?.removeCar(with: car.id)
+        }
         return cell
     }
 }

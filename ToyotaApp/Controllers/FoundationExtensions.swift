@@ -1,5 +1,8 @@
 import Foundation
 
+typealias VoidParameterClosure<T> = (T) -> Void
+typealias VoidClosure = () -> Void
+
 // MARK: - Formatting hours and minutes
 extension DateComponents {
     /// Format components in format **"hh:mm"**

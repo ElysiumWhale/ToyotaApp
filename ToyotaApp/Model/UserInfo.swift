@@ -5,6 +5,7 @@ protocol UserProxy {
     func update(_ personData: Person)
     func update(_ add: Car, _ from: Showroom)
     func update(_ selected: Car)
+    func remove(carId: String)
     var getId: String { get }
     var getPhone: String { get }
     var getPerson: Person { get }
@@ -90,6 +91,16 @@ extension UserInfo: UserProxy {
     func update(_ selected: Car) {
         cars.chosenCar = selected
         KeychainManager.set(cars)
+        notificator.notificateObservers()
+    }
+
+    func remove(carId: String) {
+        let updatedCars = cars
+        updatedCars.array.removeAll(where: { $0.id == carId })
+        if cars.chosenCar?.id == carId {
+            updatedCars.chosenCar = updatedCars.array.first
+        }
+        KeychainManager.set(updatedCars)
         notificator.notificateObservers()
     }
 }

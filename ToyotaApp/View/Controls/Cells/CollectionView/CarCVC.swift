@@ -12,9 +12,16 @@ import UIKit
         didSet { layer.cornerRadius = cornerRadius }
     }
     
+    var removeAction: VoidClosure?
+    
     class var identifier: UICollectionView.CollectionCells { .car }
     
-    func configure(brand: String, model: String, color: String, plate: String, colorDesription: String, showroom: String) {
+    @IBAction func removeCarTapped(sender: Any?) {
+        removeAction?()
+    }
+    
+    func configure(brand: String, model: String, color: String,
+                   plate: String, colorDesription: String, showroom: String) {
         brandNameLabel.text = "\(brand) \(model)"
         colorNameLabel.text = "Цвет: \(color)"
         liscencePlateLabel.text = plate.uppercased()
