@@ -66,7 +66,10 @@ class PopUp {
         let confirmButton = EKProperty.ButtonContent(label: buttonContent,
                                                      backgroundColor: mainRedColor,
                                                      highlightedBackgroundColor: .clear,
-                                                     action: confirmCompletion)
+                                                     action: {
+            confirmCompletion()
+            SwiftEntryKit.dismiss()
+        })
         let labelContent = EKProperty.LabelContent(text: declineText, style: buttonFont)
         let declineButton = EKProperty.ButtonContent(label: labelContent,
                                                      backgroundColor: mainRedColor,

@@ -120,7 +120,6 @@ class MyProfileViewController: UIViewController {
                             description: .common(.quitQuestion),
                             confirmText: .common(.yes), declineText: .common(.no)) {
             KeychainManager.clearAll()
-            SwiftEntryKit.dismiss()
             NavigationService.loadAuth()
         }
     }
