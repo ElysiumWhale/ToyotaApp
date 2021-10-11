@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func changeNumber(sender: Any?) {
         PopUp.displayChoice(with: .common(.confirmation),
-                            description: .common(.changeNumberQuestion),
+                            description: .question(.changeNumber),
                             confirmText: .common(.yes), declineText: .common(.cancel)) { [self] in
             NavigationService.loadAuth(from: navigationController!, with: user.getNotificator)
         }

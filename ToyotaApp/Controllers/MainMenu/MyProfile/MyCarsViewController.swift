@@ -67,7 +67,7 @@ class MyCarsViewController: UIViewController, BackgroundText {
         }
         
         PopUp.displayChoice(with: .common(.confirmation),
-                            description: "Вы действительно хотите отвязать от аккаунта машину?",
+                            description: .question(.removeCar),
                             confirmText: .common(.yes),
                             declineText: .common(.cancel),
                             confirmCompletion: { [self] in
@@ -114,6 +114,8 @@ extension MyCarsViewController: WithUserInfo {
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
             carsCollection.reloadData()
+            carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
+                                                         : nil
         }
     }
 

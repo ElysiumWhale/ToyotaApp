@@ -8,6 +8,10 @@ extension String {
         string.rawValue
     }
 
+    static func question(_ string: QuestionStrings) -> String {
+        string.rawValue
+    }
+
     static func background(_ string: BackgroundStrings) -> String {
         string.rawValue
     }
@@ -53,8 +57,6 @@ extension String {
         case confirmation = "Подтверждение"
         /// Подтверждние действия
         case actionConfirmation = "Подтверждние действия"
-        /// Вы действительно хотите изменить номер телефона?
-        case changeNumberQuestion = "Вы действительно хотите изменить номер телефона?"
         /// Выберите салон
         case chooseShowroom = "Выберите салон"
         /// Выберите город
@@ -83,8 +85,16 @@ extension String {
         case autoLinked = "Автомобиль успешно привязан к профилю"
         /// Телефон упешно изменен
         case phoneChanged = "Телефон упешно изменен"
+        
+    }
+
+    enum QuestionStrings: String {
         /// Вы действительно хотите выйти?
-        case quitQuestion = "Вы действительно хотите выйти?"
+        case quit = "Вы действительно хотите выйти?"
+        /// Вы действительно хотите отвязать от аккаунта машину?
+        case removeCar = "Вы действительно хотите отвязать от аккаунта машину?"
+        /// Вы действительно хотите изменить номер телефона?
+        case changeNumber = "Вы действительно хотите изменить номер телефона?"
     }
 
     enum BackgroundStrings: String {

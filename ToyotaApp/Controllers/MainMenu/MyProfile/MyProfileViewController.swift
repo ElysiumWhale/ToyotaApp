@@ -117,7 +117,7 @@ class MyProfileViewController: UIViewController {
 
     @IBAction private func logout(sender: Any?) {
         PopUp.displayChoice(with: .common(.actionConfirmation),
-                            description: .common(.quitQuestion),
+                            description: .question(.quit),
                             confirmText: .common(.yes), declineText: .common(.no)) {
             KeychainManager.clearAll()
             NavigationService.loadAuth()
@@ -193,7 +193,7 @@ extension MyProfileViewController {
         emailTextField.text = profile.email
         birthTextField.text = formatDateForClient(from: profile.birthday)
         datePicker.date = dateFromServer(date: profile.birthday)
-        date = ""
+        date = .empty
         managerButton.isHidden = user.getCars.array.count < 1
     }
 
