@@ -85,6 +85,7 @@ extension PopUp {
         case error(description: String)
         case warning(description: String)
         case success(description: String)
+        case choise(description: String)
     }
     
     static func display(_ type: MessageTypes, completion: @escaping () -> Void = { }) {
@@ -101,6 +102,12 @@ extension PopUp {
                 displayMessage(with: .common(.success),
                                description: text,
                                dismissCompletion: completion)
+            case .choise(let text):
+                displayChoice(with: .common(.actionConfirmation),
+                              description: text,
+                              confirmText: .common(.yes),
+                              declineText: .common(.cancel),
+                              confirmCompletion: completion)
         }
     }
 }

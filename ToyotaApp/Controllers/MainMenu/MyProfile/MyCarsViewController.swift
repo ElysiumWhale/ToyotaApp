@@ -76,17 +76,13 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
             }
         }
         
-        PopUp.displayChoice(with: .common(.confirmation),
-                            description: .question(.removeCar),
-                            confirmText: .common(.yes),
-                            declineText: .common(.cancel),
-                            confirmCompletion: { [self] in
+        PopUp.display(.choise(description: .question(.removeCar))) { [self] in
             startLoading()
             NetworkService.makeRequest(page: .profile(.removeCar),
                                        params: [(.auth(.userId), user.getId),
                                                 (.carInfo(.carId), id)],
                                        handler: removeCarHandler)
-        })
+        }
     }
 }
 
