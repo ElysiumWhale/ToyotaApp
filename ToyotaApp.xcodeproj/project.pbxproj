@@ -44,6 +44,7 @@
 		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
 		14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */; };
 		14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF66A4267F6081000FCEAC /* ManagerCVC.swift */; };
+		14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CFEF0A2714E22C0034046C /* CustomizableButton.swift */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -127,6 +128,7 @@
 		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
 		14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagerViewController.swift; sourceTree = "<group>"; };
 		14CF66A4267F6081000FCEAC /* ManagerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCVC.swift; sourceTree = "<group>"; };
+		14CFEF0A2714E22C0034046C /* CustomizableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableButton.swift; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */,
 				141F06EC26DBC57400AC02EA /* BookButton.swift */,
 				14AB8D602714C81A004D225F /* LoadingView.swift */,
+				14CFEF0A2714E22C0034046C /* CustomizableButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
+				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				141F06ED26DBC57400AC02EA /* BookButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* NetworkingUtils.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
