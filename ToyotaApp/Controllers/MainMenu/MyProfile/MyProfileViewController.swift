@@ -26,7 +26,6 @@ class MyProfileViewController: UIViewController {
     private let myManagersSegueCode = SegueIdentifiers.myManagersSegueCode
 
     // MARK: - Properties
-    #warning("todo: make optional")
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
@@ -90,6 +89,7 @@ class MyProfileViewController: UIViewController {
                                lastNameTextField: false, emailTextField: false, birthTextField: false]
         for field in textFieldsWithError.keys {
             field.layer.cornerRadius = 5
+            field.isEnabled = false
         }
     }
 
@@ -120,6 +120,7 @@ class MyProfileViewController: UIViewController {
                             description: .question(.quit),
                             confirmText: .common(.yes), declineText: .common(.no)) {
             KeychainManager.clearAll()
+            DefaultsManager.clearAll()
             NavigationService.loadAuth()
         }
     }

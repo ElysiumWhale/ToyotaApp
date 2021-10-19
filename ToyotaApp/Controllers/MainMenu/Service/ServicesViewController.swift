@@ -52,10 +52,9 @@ class ServicesViewController: RefreshableController, BackgroundText {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard cars.count > 0 && .noCarsMessageIsShown else {
+        if cars.isEmpty && !.noCarsMessageIsShown {
             PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
             DefaultsManager.push(info: true, for: .noCarsMessage)
-            return
         }
     }
 
@@ -132,7 +131,11 @@ extension ServicesViewController {
     private func layoutIfNoCars() {
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
+        refreshControl.isEnabled = false
+        serviceTypes.removeAll()
+        refreshableView.reloadData()
         showroomLabel.text = .empty
+        carTextField.text = .empty
         refreshableView.backgroundView = createBackground(labelText: .background(.addAutoToUnlock))
     }
 

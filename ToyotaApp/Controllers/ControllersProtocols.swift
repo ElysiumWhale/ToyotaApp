@@ -31,6 +31,7 @@ protocol Refreshable: UIViewController {
 
 extension Refreshable {
     func configureRefresh() {
+        refreshControl.isEnabled = true
         refreshControl.attributedTitle = NSAttributedString(string: .common(.pullToRefresh))
         refreshControl.addAction(for: .valueChanged, startRefreshing)
         refreshControl.layer.zPosition = -1

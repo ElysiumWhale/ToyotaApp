@@ -39,6 +39,11 @@ public class DefaultsManager {
             fatalError("Decoder error: \(decodeError.localizedDescription)")
         }
     }
+
+    class func clearAll() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+    }
 }
 
 extension Bool {
