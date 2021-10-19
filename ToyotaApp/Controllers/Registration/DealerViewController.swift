@@ -137,7 +137,7 @@ extension DealerViewController {
             return
         }
         
-        if let showrooms = KeychainManager.get(Showrooms.self)?.value, !showrooms.isEmpty,
+        if let showrooms = KeychainManager<Showrooms>.get()?.value, !showrooms.isEmpty,
            showrooms.any({ $0.id == showroom.id }) {
             perform(segue: segueCode)
             return
@@ -145,7 +145,7 @@ extension DealerViewController {
         
         nextButton.fadeOut()
         nextButtonIndicator.startAnimating()
-        let userId = KeychainManager.get(UserId.self)!.id
+        let userId = KeychainManager<UserId>.get()!.id
         let page: RequestPath = type == .register ? .registration(.setShowroom)
                                                   : .profile(.addShowroom)
         NetworkService.makeRequest(page: page,
@@ -166,7 +166,7 @@ extension DealerViewController {
                   return
               }
         
-        KeychainManager.update(Showrooms.self) { showrooms in
+        KeychainManager<Showrooms>.update { showrooms in
             let showroom = Showroom(id: showroom.id, showroomName: showroom.showroomName, cityName: city.name)
             guard let showrooms = showrooms else { return Showrooms([showroom]) }
             

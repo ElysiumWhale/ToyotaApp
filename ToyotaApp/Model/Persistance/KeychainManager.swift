@@ -17,35 +17,36 @@ protocol Keychainable: Codable {
 }
 
 /// Utility class for managing data stored in `Keychain`
-public class KeychainManager {
-    private static let wrapper = KeychainWrapper.standard
-    
-    class func get<T: Keychainable>(_ type: T.Type) -> T? {
-        guard let data = wrapper.data(forKey: type.key.rawValue) else { return nil }
+class KeychainManager<T: Keychainable> {
+    class func get() -> T? {
+        guard let data = KeychainWrapper.standard.data(forKey: T.key.rawValue) else { return nil }
         return try? JSONDecoder().decode(T.self, from: data)
     }
-    
-    class func set<T: Keychainable>(_ info: T) {
+
+    class func set(_ info: T) {
         if let data = try? JSONEncoder().encode(info) {
-            wrapper.set(data, forKey: T.key.rawValue.rawValue)
+            KeychainWrapper.standard.set(data, forKey: T.key.rawValue.rawValue)
         }
     }
     
-    class func update<T: Keychainable>(_ type: T.Type, update: (T?) -> T) {
-        guard let data = wrapper.data(forKey: type.key.rawValue),
+    class func update(_ action: (T?) -> T) {
+        guard let data = KeychainWrapper.standard.data(forKey: T.key.rawValue),
               let value = try? JSONDecoder().decode(T.self, from: data) else {
-            set(update(nil))
+            set(action(nil))
             return
         }
         
-        set(update(value))
+        set(action(value))
     }
     
-    class func clear<T: Keychainable>(_ type: T.Type) {
-        wrapper.remove(forKey: type.key.rawValue)
+    class func clear() {
+        KeychainWrapper.standard.remove(forKey: T.key.rawValue)
     }
-    
-    class func clearAll() {
-        wrapper.removeAllKeys()
+}
+
+// MARK: - T == UserId for avoiding specifying type
+extension KeychainManager where T == UserId {
+    static func clearAll() {
+        KeychainWrapper.standard.removeAllKeys()
     }
 }

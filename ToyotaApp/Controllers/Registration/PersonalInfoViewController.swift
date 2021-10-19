@@ -144,7 +144,7 @@ extension PersonalInfoViewController {
 
     private func buildRequestParams(from profile: Profile, date: String) -> RequestItems {
         [((.auth(.brandId), Brand.Toyota)),
-         ((.auth(.userId), KeychainManager.get(UserId.self)!.id)),
+         ((.auth(.userId), KeychainManager<UserId>.get()!.id)),
          ((.personalInfo(.firstName), profile.firstName)),
          ((.personalInfo(.secondName), profile.secondName)),
          ((.personalInfo(.lastName), profile.lastName)),

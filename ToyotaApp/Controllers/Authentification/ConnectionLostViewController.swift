@@ -52,8 +52,8 @@ class ConnectionLostController {
     }
     
     func reconnect() {
-        guard let userId = KeychainManager.get(UserId.self)?.id,
-              let secretKey = KeychainManager.get(SecretKey.self)?.secret else {
+        guard let userId = KeychainManager<UserId>.get()?.id,
+              let secretKey = KeychainManager<SecretKey>.get()?.secret else {
             NavigationService.loadAuth()
             return
         }

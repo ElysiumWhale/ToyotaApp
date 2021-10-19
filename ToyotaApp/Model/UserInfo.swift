@@ -25,17 +25,15 @@ class UserInfo {
     private let notificator: Notificator
 
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
-        let userId = KeychainManager.get(UserId.self)
-        let userPhone = KeychainManager.get(Phone.self)
-        let personInfo = KeychainManager.get(Person.self)
-        let showroomsInfo = KeychainManager.get(Showrooms.self)
-        
-        guard let id = userId, let phone = userPhone, let person = personInfo, let showrooms = showroomsInfo else {
+        guard let userId = KeychainManager<UserId>.get(),
+              let phone = KeychainManager<Phone>.get(),
+              let person = KeychainManager<Person>.get(),
+              let showrooms = KeychainManager<Showrooms>.get() else {
             return Result.failure(.notFullProfile)
         }
-        let cars = KeychainManager.get(Cars.self) ?? Cars([])
+        let cars = KeychainManager<Cars>.get() ?? Cars([])
         
-        return Result.success(UserInfo(id, phone, person, showrooms, cars))
+        return Result.success(UserInfo(userId, phone, person, showrooms, cars))
     }
 
     private init(_ userId: UserId, _ userPhone: Phone, _ personInfo: Person,
