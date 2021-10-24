@@ -126,18 +126,30 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                                 <rect key="frame" x="64" y="481.5" width="246" height="43"/>
-                                                <color key="backgroundColor" name="MainTint"/>
+                                                <color key="backgroundColor" name="SecondaryGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                                 <state key="normal" title="Далее">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" name="SignatureGray"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                        <color key="value" name="SecondaryGray"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                        <color key="value" name="SecondarySignatureRed"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="SecondarySignatureRed"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="nextButtonDidPressedWithSender:" destination="292-f3-5Nu" eventType="touchUpInside" id="2eJ-rj-1Zf"/>
@@ -218,18 +230,30 @@
                                     <constraint firstAttribute="width" secondItem="77N-z1-1oO" secondAttribute="height" multiplier="1:1" id="CQV-hT-Sjf"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="84" y="784" width="246" height="43"/>
-                                <color key="backgroundColor" name="MainTint"/>
+                                <color key="backgroundColor" name="SecondaryGray"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="a3e-cV-SKQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextButtonDidPressedWithSender:" destination="Mey-k5-Vri" eventType="touchUpInside" id="0C5-Hh-GAc"/>
@@ -349,15 +373,27 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="87" y="808" width="239" height="44"/>
-                                <color key="backgroundColor" name="MainTint"/>
+                                <color key="backgroundColor" name="SecondaryGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Проверить">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="K4f-dO-g1M"/>
@@ -440,15 +476,27 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="92" y="783" width="231" height="44"/>
-                                <color key="backgroundColor" name="MainTint"/>
+                                <color key="backgroundColor" name="SecondaryGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loadMainMenuWithSender:" destination="Sky-Ph-Wl4" eventType="touchUpInside" id="pAC-CH-WQb"/>
@@ -492,6 +540,12 @@
         <designable name="91W-OT-t1s">
             <size key="intrinsicContentSize" width="242" height="37.5"/>
         </designable>
+        <designable name="IJ5-Dd-Ubi">
+            <size key="intrinsicContentSize" width="119" height="44"/>
+        </designable>
+        <designable name="JAZ-G9-1Io">
+            <size key="intrinsicContentSize" width="67" height="44"/>
+        </designable>
         <designable name="WLH-tK-IJr">
             <size key="intrinsicContentSize" width="105.5" height="46"/>
         </designable>
@@ -501,14 +555,26 @@
         <designable name="kqe-yN-RfG">
             <size key="intrinsicContentSize" width="120.5" height="37.5"/>
         </designable>
+        <designable name="lXN-nS-wi1">
+            <size key="intrinsicContentSize" width="67" height="44"/>
+        </designable>
+        <designable name="m8K-nk-2qV">
+            <size key="intrinsicContentSize" width="173" height="44"/>
+        </designable>
         <designable name="tMc-aT-iiY">
             <size key="intrinsicContentSize" width="56" height="37.5"/>
         </designable>
     </designables>
     <resources>
         <image name="ToyotaLogo" width="128" height="128"/>
-        <namedColor name="MainTint">
-            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="SecondaryGray">
+            <color red="0.80784313725490198" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondarySignatureRed">
+            <color red="0.85100001096725464" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SignatureGray">
+            <color red="0.15686274509803921" green="0.15686274509803921" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

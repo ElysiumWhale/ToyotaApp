@@ -86,7 +86,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" name="MainTint"/>
+                                        <color key="backgroundColor" name="SecondaryGray"/>
                                         <constraints>
                                             <constraint firstItem="9mM-Hi-KRT" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="115" id="2JV-ZX-UeA"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="PNg-KI-HWR" secondAttribute="bottom" constant="83" id="72s-9I-goh"/>
@@ -109,10 +109,10 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="infoLabel" destination="PNg-KI-HWR" id="aFk-Xy-Juu"/>
-                                            <outlet property="nameLabel" destination="34R-3D-ovy" id="pWx-l4-04D"/>
-                                            <outlet property="photo" destination="9mM-Hi-KRT" id="EGm-KJ-OLP"/>
-                                            <outlet property="showroomLabel" destination="00j-fv-htC" id="qzM-Hm-PQQ"/>
+                                            <outlet property="infoLabel" destination="PNg-KI-HWR" id="3fO-2B-OaB"/>
+                                            <outlet property="nameLabel" destination="34R-3D-ovy" id="r4S-1g-N7N"/>
+                                            <outlet property="photo" destination="9mM-Hi-KRT" id="mXi-JO-X2J"/>
+                                            <outlet property="showroomLabel" destination="00j-fv-htC" id="8vf-DT-6Mc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -126,7 +126,7 @@
                                 <items>
                                     <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="s7P-0B-VIf">
-                                            <color key="tintColor" name="MainTint"/>
+                                            <color key="tintColor" name="SecondarySignatureRed"/>
                                             <connections>
                                                 <action selector="doneDidPress:" destination="R2J-JN-bFz" id="Xt2-mC-Zfl"/>
                                             </connections>
@@ -155,6 +155,22 @@
             </objects>
             <point key="canvasLocation" x="1198.5507246376812" y="1595.7589285714284"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yrp-OG-PI9">
+            <objects>
+                <navigationController id="5B0-bV-n4z" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nee-ep-r1e">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hHJ-oo-scE" kind="relationship" relationship="rootViewController" id="dXW-NL-IYd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ewZ-BH-Bm6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="367"/>
+        </scene>
         <!--Мое авто-->
         <scene sceneID="ie7-fA-n9e">
             <objects>
@@ -163,49 +179,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-CD-hXD">
-                                <rect key="frame" x="126" y="345" width="161" height="43"/>
-                                <color key="backgroundColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-CD-hXD" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="127" y="389" width="160" height="43"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="cUR-eo-TT8"/>
+                                    <constraint firstAttribute="width" constant="160" id="cUR-eo-TT8"/>
                                     <constraint firstAttribute="height" constant="43" id="jTY-5S-ocd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Отменить">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Отмена">
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9Au-5O-NeZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ">
-                                <rect key="frame" x="126" y="345" width="161" height="43"/>
-                                <color key="backgroundColor" name="MainTint"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="127" y="389" width="160" height="43"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="5rX-2E-CHW"/>
+                                    <constraint firstAttribute="width" constant="160" id="5rX-2E-CHW"/>
                                     <constraint firstAttribute="height" constant="43" id="KyR-uI-AQE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Редактировать">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="enterEditModeWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="2ME-N3-GXH"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-o0-Pts">
-                                <rect key="frame" x="20" y="59" width="374" height="265"/>
+                                <rect key="frame" x="16" y="104" width="382" height="265"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-h9-1jb">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -213,7 +251,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXL-vB-E0w">
-                                        <rect key="frame" x="0.0" y="56" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="56" width="382" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -221,7 +259,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отчество" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cF0-c8-RVQ">
-                                        <rect key="frame" x="0.0" y="112" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="112" width="382" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -229,7 +267,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jf7-dL-lpo">
-                                        <rect key="frame" x="0.0" y="168" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="168" width="382" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -237,88 +275,149 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Дата рождения" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oif-rQ-akP">
-                                        <rect key="frame" x="0.0" y="224" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="224" width="382" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0o-cG-eci">
-                                <rect key="frame" x="89" y="738" width="236" height="43"/>
-                                <color key="backgroundColor" name="MainTint"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="236" id="GGa-6a-kAv"/>
-                                    <constraint firstAttribute="height" constant="43" id="raw-mI-LHz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Мой менеджер">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9PJ-xF-thN"/>
-                                    <segue destination="R2J-JN-bFz" kind="showDetail" identifier="MyProfileToManagers" id="vpb-JT-jOt"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nb6-4Z-4iK">
-                                <rect key="frame" x="0.0" y="801" width="414" height="61"/>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nb6-4Z-4iK" customClass="CustomizableStackView" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="800" width="382" height="61"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="205.5" height="61"/>
-                                        <color key="backgroundColor" name="MainTint"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="1DL-6J-cs6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Заявки" image="archivebox" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
+                                        <color key="tintColor" name="SignatureGray"/>
+                                        <state key="normal" title="  Заявки">
+                                            <color key="titleColor" name="SignatureGray"/>
+                                            <imageReference key="image" image="archivebox" catalog="system" symbolScale="medium"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                <color key="value" name="SecondaryGray"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                <color key="value" name="SecondarySignatureRed"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
+                                                <color key="value" name="SignatureGray"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
+                                                <color key="value" systemColor="systemBackgroundColor"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="Geg-Qm-TUc" kind="presentation" id="t4F-Vf-Eo1"/>
+                                            <segue destination="Geg-Qm-TUc" kind="presentation" identifier="MyProfileToBookings" id="t4F-Vf-Eo1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j">
-                                        <rect key="frame" x="208.5" y="0.0" width="205.5" height="61"/>
-                                        <color key="backgroundColor" name="MainTint"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="192.5" y="0.0" width="189.5" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="xWd-OG-T0h"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Мое авто" image="car" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
+                                        <color key="tintColor" name="SignatureGray"/>
+                                        <state key="normal" title="  Мои авто">
+                                            <color key="titleColor" name="SignatureGray"/>
+                                            <imageReference key="image" image="car" catalog="system" symbolScale="medium"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                <color key="value" name="SecondaryGray"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                <color key="value" name="SecondarySignatureRed"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
+                                                <color key="value" name="SignatureGray"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="q2j-LU-hLc" kind="presentation" identifier="MyProfileToCars" id="j5U-8y-gkd"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0o-cG-eci" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="127" y="452" width="160" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="GGa-6a-kAv"/>
+                                    <constraint firstAttribute="height" constant="43" id="raw-mI-LHz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <color key="tintColor" name="SecondarySignatureRed"/>
+                                <state key="normal" title="Мой менеджер">
+                                    <color key="titleColor" name="SignatureGray"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" name="SignatureGray"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" name="SignatureGray"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9PJ-xF-thN"/>
+                                    <segue destination="R2J-JN-bFz" kind="showDetail" identifier="MyProfileToManagers" id="vpb-JT-jOt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QEl-wK-Y1s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="YL3-o0-Pts" secondAttribute="trailing" constant="20" id="6Kg-tp-dZG"/>
-                            <constraint firstItem="Nb6-4Z-4iK" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" id="Iqy-yN-0Tm"/>
-                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="126" id="QLR-Ca-vzH"/>
-                            <constraint firstItem="Nb6-4Z-4iK" firstAttribute="top" secondItem="g0o-cG-eci" secondAttribute="bottom" constant="20" id="QP9-z7-yDv"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="Nb6-4Z-4iK" secondAttribute="bottom" id="SEf-Uq-hUa"/>
-                            <constraint firstItem="bXP-CD-hXD" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="126" id="Sfz-KN-3nq"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="Nb6-4Z-4iK" secondAttribute="trailing" id="XMi-vO-ABG"/>
-                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="top" secondItem="YL3-o0-Pts" secondAttribute="bottom" constant="21" id="akT-yC-x1g"/>
-                            <constraint firstItem="bXP-CD-hXD" firstAttribute="top" secondItem="YL3-o0-Pts" secondAttribute="bottom" constant="21" id="eRs-tb-tIh"/>
-                            <constraint firstItem="YL3-o0-Pts" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="20" id="tgA-bA-WRs"/>
-                            <constraint firstItem="YL3-o0-Pts" firstAttribute="top" secondItem="QEl-wK-Y1s" secondAttribute="top" constant="15" id="y01-yZ-FaR"/>
+                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="YL3-o0-Pts" secondAttribute="trailing" constant="16" id="6Kg-tp-dZG"/>
+                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="127" id="QLR-Ca-vzH"/>
+                            <constraint firstItem="bXP-CD-hXD" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="127" id="Sfz-KN-3nq"/>
+                            <constraint firstItem="Nb6-4Z-4iK" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="16" id="X54-Al-zEu"/>
+                            <constraint firstItem="CLN-ma-9CJ" firstAttribute="top" secondItem="YL3-o0-Pts" secondAttribute="bottom" constant="20" id="akT-yC-x1g"/>
+                            <constraint firstItem="bXP-CD-hXD" firstAttribute="top" secondItem="YL3-o0-Pts" secondAttribute="bottom" constant="20" id="eRs-tb-tIh"/>
+                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="Nb6-4Z-4iK" secondAttribute="trailing" constant="16" id="mpD-wA-vEx"/>
+                            <constraint firstItem="g0o-cG-eci" firstAttribute="top" secondItem="CLN-ma-9CJ" secondAttribute="bottom" constant="20" id="shW-sw-FLl"/>
+                            <constraint firstItem="YL3-o0-Pts" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="16" id="tgA-bA-WRs"/>
+                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="Nb6-4Z-4iK" secondAttribute="bottom" constant="1" id="vab-p3-IWf"/>
+                            <constraint firstItem="YL3-o0-Pts" firstAttribute="top" secondItem="QEl-wK-Y1s" secondAttribute="top" constant="16" id="y01-yZ-FaR"/>
                             <constraint firstItem="g0o-cG-eci" firstAttribute="centerX" secondItem="QEl-wK-Y1s" secondAttribute="centerX" id="zs3-CJ-e6N"/>
                         </constraints>
                     </view>
@@ -326,14 +425,14 @@
                         <color key="badgeColor" red="0.87601198189999996" green="0.25988744019999999" blue="0.29622745160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Профиль" largeTitleDisplayMode="always" id="3mF-ug-Dzt">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" id="Zx5-Uc-QMJ">
-                            <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="gearshape" catalog="system" id="Zx5-Uc-QMJ">
+                            <color key="tintColor" name="SignatureGray"/>
                             <connections>
                                 <segue destination="0ch-iO-Nei" kind="presentation" identifier="MyProfileToSettings" id="bEp-kO-p4C"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="rectangle.righthalf.inset.fill.arrow.right" catalog="system" id="aSz-zW-hOY">
-                            <color key="tintColor" red="0.74300843480000001" green="0.31261235479999999" blue="0.33819925789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="SignatureGray"/>
                             <connections>
                                 <action selector="logoutWithSender:" destination="hHJ-oo-scE" id="vfB-br-DNh"/>
                             </connections>
@@ -387,6 +486,7 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="8qK-Sq-gLZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="24"/>
+                                                    <color key="textColor" name="SignatureGray"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -400,6 +500,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Nt2-K0-hCW"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                            <color key="textColor" name="SignatureGray"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
@@ -409,6 +510,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="FRT-aa-ucQ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                            <color key="textColor" name="SignatureGray"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
@@ -418,23 +520,16 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="xPV-i2-1iw"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="20"/>
+                                                            <color key="textColor" name="SignatureGray"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZp-dz-K0M">
-                                                    <rect key="frame" x="75" y="388" width="200" height="193.5"/>
-                                                    <color key="tintColor" name="MainTint"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="mZp-dz-K0M" secondAttribute="height" multiplier="1:1" id="lAO-Cv-20I"/>
-                                                    </constraints>
-                                                    <imageReference key="image" image="car.fill" catalog="system" symbolScale="small"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="ultraLight"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLATE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
                                                     <rect key="frame" x="12" y="41" width="327" height="34.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="24"/>
+                                                    <color key="textColor" name="SignatureGray"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -442,40 +537,78 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gt2-JC-9YC">
                                                     <rect key="frame" x="123" y="234" width="105" height="40"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-GB-jiL">
+                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-GB-jiL" customClass="TintedImageButton" customModule="ToyotaApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Zv6-Li-VZg"/>
                                                                 <constraint firstAttribute="width" constant="40" id="aX4-pF-dBj"/>
                                                             </constraints>
-                                                            <color key="tintColor" name="MainTint"/>
+                                                            <color key="tintColor" name="SecondarySignatureRed"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                                    <color key="value" name="SignatureGray"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                                    <color key="value" name="SecondarySignatureRed"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
+                                                                    <color key="value" name="SecondarySignatureRed"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
+                                                                    <color key="value" name="SignatureGray"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYx-M7-bue">
+                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYx-M7-bue" customClass="TintedImageButton" customModule="ToyotaApp" customModuleProvider="target">
                                                             <rect key="frame" x="65" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Bfd-xD-R2a"/>
                                                                 <constraint firstAttribute="width" constant="40" id="wwS-iN-b9Q"/>
                                                             </constraints>
-                                                            <color key="tintColor" name="MainTint"/>
+                                                            <color key="tintColor" name="SecondarySignatureRed"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                                    <color key="value" name="SignatureGray"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                                    <color key="value" name="SecondarySignatureRed"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
+                                                                    <color key="value" name="SignatureGray"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
+                                                                    <color key="value" name="SecondarySignatureRed"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="removeCarTappedWithSender:" destination="cYR-AV-zYx" eventType="touchUpInside" id="yf2-Py-1jB"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZp-dz-K0M">
+                                                    <rect key="frame" x="91" y="410" width="168" height="168"/>
+                                                    <color key="tintColor" name="SignatureGray"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="mZp-dz-K0M" secondAttribute="height" multiplier="1:1" constant="-4" id="lAO-Cv-20I"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="car.fill" catalog="system" symbolScale="small"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" scale="default" weight="light"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
-                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="top" relation="lessThanOrEqual" secondItem="m8L-dx-doh" secondAttribute="bottom" constant="164" id="3Pa-tI-3t8"/>
-                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="75" id="45J-Yz-G2V"/>
+                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="top" relation="lessThanOrEqual" secondItem="m8L-dx-doh" secondAttribute="bottom" constant="212" id="3Pa-tI-3t8"/>
+                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="91" id="45J-Yz-G2V"/>
                                             <constraint firstItem="lVR-4S-0kc" firstAttribute="top" secondItem="1e4-r8-4PR" secondAttribute="bottom" constant="-1" id="8c0-gv-bDV"/>
                                             <constraint firstItem="1e4-r8-4PR" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="12" id="9cI-9A-JoF"/>
                                             <constraint firstItem="1e4-r8-4PR" firstAttribute="top" secondItem="cYR-AV-zYx" secondAttribute="top" constant="7" id="9mP-MQ-hjh"/>
@@ -485,8 +618,8 @@
                                             <constraint firstItem="lVR-4S-0kc" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="12" id="Ytn-5w-e9c"/>
                                             <constraint firstAttribute="trailing" secondItem="lVR-4S-0kc" secondAttribute="trailing" constant="11" id="biQ-L2-o3X"/>
                                             <constraint firstAttribute="trailing" secondItem="m8L-dx-doh" secondAttribute="trailing" constant="11" id="e4U-Iq-HxK"/>
-                                            <constraint firstAttribute="bottom" secondItem="mZp-dz-K0M" secondAttribute="bottom" constant="15.5" id="hj6-Sp-ca2"/>
-                                            <constraint firstAttribute="trailing" secondItem="mZp-dz-K0M" secondAttribute="trailing" constant="75" id="ipY-hY-sby"/>
+                                            <constraint firstAttribute="bottom" secondItem="mZp-dz-K0M" secondAttribute="bottom" constant="20" id="hj6-Sp-ca2"/>
+                                            <constraint firstAttribute="trailing" secondItem="mZp-dz-K0M" secondAttribute="trailing" constant="91" id="ipY-hY-sby"/>
                                             <constraint firstAttribute="trailing" secondItem="1e4-r8-4PR" secondAttribute="trailing" constant="11" id="mjE-Dc-lpM"/>
                                             <constraint firstItem="gt2-JC-9YC" firstAttribute="top" secondItem="Koh-OZ-cow" secondAttribute="bottom" constant="13.5" id="pTI-wt-e1Y"/>
                                             <constraint firstItem="m8L-dx-doh" firstAttribute="top" secondItem="lVR-4S-0kc" secondAttribute="bottom" constant="44" id="vYG-Oy-D9Y"/>
@@ -529,13 +662,13 @@
                     <navigationItem key="navigationItem" title="Мои автомобили" id="av4-jq-zxX">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="gTM-dL-QjO"/>
                         <barButtonItem key="leftBarButtonItem" title="Добавить" id="GlH-M8-5jO">
-                            <color key="tintColor" name="MainTint"/>
+                            <color key="tintColor" name="SecondarySignatureRed"/>
                             <connections>
                                 <action selector="addCarWithSender:" destination="8QR-Ub-LLe" id="mL1-FP-DfA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="T6o-T0-N0D">
-                            <color key="tintColor" name="MainTint"/>
+                            <color key="tintColor" name="SecondarySignatureRed"/>
                             <connections>
                                 <action selector="doneDidPress:" destination="8QR-Ub-LLe" id="3Hh-ta-QyG"/>
                             </connections>
@@ -698,7 +831,7 @@
                                 <items>
                                     <navigationItem title="История обращений" id="c52-5Q-1pi">
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="Eqd-3c-9Rz">
-                                            <color key="tintColor" name="MainTint"/>
+                                            <color key="tintColor" name="SecondarySignatureRed"/>
                                             <connections>
                                                 <action selector="doneDidPressed:" destination="Geg-Qm-TUc" id="jge-qY-Thg"/>
                                             </connections>
@@ -752,36 +885,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU">
-                                <rect key="frame" x="89" y="163" width="236" height="43"/>
-                                <color key="backgroundColor" name="MainTint"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="122" y="164.5" width="170" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="SignatureGray"/>
                                 <state key="normal" title="Изменить">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="pencil" catalog="system" symbolScale="medium"/>
+                                    <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="SecondaryGray"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="changeNumberWithSender:" destination="NZm-fi-Vyv" eventType="touchUpInside" id="cB1-xu-gW3"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-7u-yVL">
-                                <rect key="frame" x="20" y="76" width="374" height="75.5"/>
+                                <rect key="frame" x="20" y="76" width="374" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-c7-eXp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="24.5"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                        <color key="textColor" name="SignatureGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
-                                        <rect key="frame" x="0.0" y="34.5" width="374" height="41"/>
+                                        <rect key="frame" x="0.0" y="36" width="374" height="41"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -791,9 +934,9 @@
                         <viewLayoutGuide key="safeArea" id="V0c-At-xAO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="JBC-U9-UyU" secondAttribute="trailing" constant="89" id="1qz-iw-zGe"/>
+                            <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="JBC-U9-UyU" secondAttribute="trailing" constant="122" id="1qz-iw-zGe"/>
                             <constraint firstItem="xl0-7u-yVL" firstAttribute="top" secondItem="V0c-At-xAO" secondAttribute="top" constant="20" id="EqE-oN-neg"/>
-                            <constraint firstItem="JBC-U9-UyU" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="89" id="F9f-vY-nCz"/>
+                            <constraint firstItem="JBC-U9-UyU" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="122" id="F9f-vY-nCz"/>
                             <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="xl0-7u-yVL" secondAttribute="trailing" constant="20" id="dxN-hX-IfU"/>
                             <constraint firstItem="xl0-7u-yVL" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="20" id="eb5-sl-fSv"/>
                             <constraint firstItem="JBC-U9-UyU" firstAttribute="top" secondItem="xl0-7u-yVL" secondAttribute="bottom" constant="11.5" id="wbA-I5-dkz"/>
@@ -802,7 +945,7 @@
                     <navigationItem key="navigationItem" title="Настройки" id="Kmn-gh-v3J">
                         <barButtonItem key="backBarButtonItem" title="Настройки" id="Gbg-An-FzE"/>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="9Ew-GO-WDO">
-                            <color key="tintColor" name="MainTint"/>
+                            <color key="tintColor" name="SecondarySignatureRed"/>
                             <connections>
                                 <action selector="doneDidPress:" destination="NZm-fi-Vyv" id="UOe-lp-LzY"/>
                             </connections>
@@ -817,6 +960,26 @@
             <point key="canvasLocation" x="3658" y="863"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="BpN-XY-i4j">
+            <size key="intrinsicContentSize" width="115" height="26"/>
+        </designable>
+        <designable name="CLN-ma-9CJ">
+            <size key="intrinsicContentSize" width="131" height="38"/>
+        </designable>
+        <designable name="JBC-U9-UyU">
+            <size key="intrinsicContentSize" width="88" height="38"/>
+        </designable>
+        <designable name="bXP-CD-hXD">
+            <size key="intrinsicContentSize" width="69" height="38"/>
+        </designable>
+        <designable name="eyL-fs-0tQ">
+            <size key="intrinsicContentSize" width="92" height="26"/>
+        </designable>
+        <designable name="g0o-cG-eci">
+            <size key="intrinsicContentSize" width="134" height="38"/>
+        </designable>
+    </designables>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
@@ -824,12 +987,20 @@
         <image name="car.fill" catalog="system" width="128" height="93"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="MainTint">
             <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryGray">
+            <color red="0.80784313725490198" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondarySignatureRed">
+            <color red="0.85100001096725464" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SignatureGray">
+            <color red="0.15686274509803921" green="0.15686274509803921" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryTint">
             <color red="0.77600002288818359" green="0.77600002288818359" blue="0.78400003910064697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
