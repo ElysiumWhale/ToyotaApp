@@ -33,7 +33,9 @@ extension Refreshable {
     func configureRefresh() {
         refreshControl.isEnabled = true
         refreshControl.attributedTitle = NSAttributedString(string: .common(.pullToRefresh))
-        refreshControl.addAction(for: .valueChanged, startRefreshing)
+        refreshControl.addAction(for: .valueChanged) { [weak self] in
+            self?.startRefreshing()
+        }
         refreshControl.layer.zPosition = -1
         refreshableView.refreshControl = refreshControl
     }
