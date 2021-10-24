@@ -1,6 +1,6 @@
 import UIKit
 
-class KeyboardBindedButton: UIButton {
+class KeyboardBindedButton: CustomizableButton {
     @IBOutlet var keyboardConstraint: NSLayoutConstraint?
     
     func bindToKeyboard() {

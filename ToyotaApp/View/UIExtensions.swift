@@ -54,29 +54,13 @@ extension UITextField {
 
 // MARK: - Configuring shadow for cell
 extension UICollectionViewCell {
-    func configureShadow(with cornerRadius: CGFloat) {
+    func configureShadow(with cornerRadius: CGFloat, shadowRadius: CGFloat = 2.0) {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        layer.shadowRadius = 3.0
+        layer.shadowRadius = shadowRadius
         layer.shadowOpacity = 0.7
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-    }
-}
-
-// MARK: - IBInspectable Corners radius for button
-extension UIButton {
-    @IBInspectable var rounded: Bool {
-        get {
-            layer.cornerRadius == 0 ? true : false
-        }
-        set {
-            updateCornerRadius(isRounded: newValue)
-        }
-    }
-
-    func updateCornerRadius(isRounded: Bool) {
-        layer.cornerRadius = isRounded ? frame.size.height / 2 : 0
     }
 }
 

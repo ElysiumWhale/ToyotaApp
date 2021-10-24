@@ -71,8 +71,6 @@ class MyProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem?.tintColor = .appTint(.mainRed)
-        navigationItem.leftBarButtonItem?.tintColor = .appTint(.mainRed)
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.toyotaType(.semibold, of: 17)
         ]
