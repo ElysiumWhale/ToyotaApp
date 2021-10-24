@@ -47,6 +47,7 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        carsCollection.delaysContentTouches = false
         carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
                                                      : nil
     }

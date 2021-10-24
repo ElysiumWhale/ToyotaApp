@@ -3,7 +3,6 @@ import UIKit
 class BookingsViewController: RefreshableController, BackgroundText {
     @IBOutlet private(set) var refreshableView: UITableView!
 
-    private let cellIdentifier = CellIdentifiers.BookingCell
     private(set) var refreshControl = UIRefreshControl()
 
     private var bookings: [Booking] = []

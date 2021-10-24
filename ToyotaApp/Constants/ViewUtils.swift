@@ -117,6 +117,8 @@ public enum SegueIdentifiers: String {
     case myProfileToSettings = "MyProfileToSettings"
     /// MyProfileToManagers
     case myManagersSegueCode = "MyProfileToManagers"
+    /// MyProfileToBookings
+    case myProfileToBookings = "MyProfileToBookings"
 }
 
 public struct CellIdentifiers {

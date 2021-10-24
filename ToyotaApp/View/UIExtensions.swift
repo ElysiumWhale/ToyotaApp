@@ -56,8 +56,8 @@ extension UITextField {
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat) {
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.shadowRadius = 3.5
+        layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        layer.shadowRadius = 3.0
         layer.shadowOpacity = 0.7
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath

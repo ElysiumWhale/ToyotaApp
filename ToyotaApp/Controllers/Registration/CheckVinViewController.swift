@@ -34,7 +34,7 @@ class CheckVinViewController: UIViewController {
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.fadeOut(0.3)
         vinCodeTextField.toggleErrorState(hasError: false)
-        vin = vinCodeTextField.text ?? ""
+        vin = vinCodeTextField.text ?? .empty
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

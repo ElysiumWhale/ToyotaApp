@@ -127,6 +127,7 @@ class MyProfileViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        state = .none
         switch segue.code {
             case myCarsSegueCode, settingsSegueCode:
                 let navVC = segue.destination as? UINavigationController
@@ -138,6 +139,12 @@ class MyProfileViewController: UIViewController {
                 destinationVC?.setUser(info: user)
             default: return
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        state = .none
     }
 }
 
