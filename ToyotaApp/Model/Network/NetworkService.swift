@@ -40,30 +40,32 @@ class NetworkService {
     class func makeRequest<T: Codable>(page: RequestPath,
                                        params: RequestItems = .empty,
                                        handler: RequestHandler<T>) {
+
         let request = buildPostRequest(for: page.rawValue,
                                        with: params.asQueryItems)
-        
-        session.dataTask(with: request) { (data, response, error) in
+
+        let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
             guard error == nil else {
-                #warning("todo: switch by error code")
-                handler.onFailure?(.lostConnection)
+            #warning("todo: switch by error code")
+                handler?.onFailure?(.lostConnection)
                 return
             }
-            
+
             guard let data = data else {
-                handler.onFailure?(.corruptedData)
+                handler?.onFailure?(.corruptedData)
                 return
             }
-            
+
             let json = try? JSONSerialization.jsonObject(with: data)
             print(json ?? "Error while parsing json object")
-            
-            if let response = try? JSONDecoder().decode(T.self, from: data) {
-                handler.onSuccess?(response)
-            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                handler.onFailure?(errorResponse)
+
+            let decoder = JSONDecoder()
+            if let response = try? decoder.decode(T.self, from: data) {
+                handler?.onSuccess?(response)
+            } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
+                handler?.onFailure?(errorResponse)
             } else {
-                handler.onFailure?(.corruptedData)
+                handler?.onFailure?(.corruptedData)
             }
         }.resume()
     }
