@@ -67,7 +67,9 @@ class NetworkService {
             } else {
                 handler?.onFailure?(.corruptedData)
             }
-        }.resume()
+        }
+
+        handler.start(with: task)
     }
     
     class func makeRequest(page: RequestPath, params: RequestItems = .empty) {
