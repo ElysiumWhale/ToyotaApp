@@ -11,6 +11,9 @@ class NewsViewController: RefreshableController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.toyotaType(.semibold, of: 17)
+        ]
         configureRefresh()
         refreshableView.alwaysBounceVertical = true
         news = Test.createNews()

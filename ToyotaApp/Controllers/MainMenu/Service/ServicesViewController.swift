@@ -38,6 +38,9 @@ class ServicesViewController: RefreshableController, BackgroundText {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.toyotaType(.semibold, of: 17)
+        ]
         carTextField.tintColor = .clear
         refreshableView.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
