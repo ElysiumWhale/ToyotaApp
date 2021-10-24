@@ -132,7 +132,7 @@ class MyProfileViewController: UIViewController {
         switch segue.code {
             case myCarsSegueCode, settingsSegueCode:
                 let navVC = segue.destination as? UINavigationController
-                navVC?.navigationBar.tintColor = UIColor.appTint(.mainRed)
+                navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
                 let destinationVC = navVC?.topViewController as? WithUserInfo
                 destinationVC?.setUser(info: user)
             case myManagersSegueCode:

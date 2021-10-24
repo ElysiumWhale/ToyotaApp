@@ -27,5 +27,7 @@ import Kingfisher
         }
 
         configureShadow(with: cornerRadius)
+        layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
+        layer.borderWidth = 1
     }
 }

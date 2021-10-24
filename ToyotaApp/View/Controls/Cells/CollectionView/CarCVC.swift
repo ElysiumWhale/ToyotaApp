@@ -30,8 +30,11 @@ import UIKit
 
         configureShadow(with: cornerRadius)
         carImage.layer.borderWidth = 1
-        carImage.layer.borderColor = UIColor.appTint(.mainRed).cgColor
+        carImage.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
         carImage.layer.cornerRadius = carImage.frame.height/2
         carImage.clipsToBounds = true
+
+        layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
+        layer.borderWidth = 1
     }
 }

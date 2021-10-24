@@ -7,7 +7,7 @@ extension UIViewController {
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: self, action: action)
-        doneButton.tintColor = .appTint(.mainRed)
+        doneButton.tintColor = .appTint(.secondarySignatureRed)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }

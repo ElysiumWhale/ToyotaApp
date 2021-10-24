@@ -15,5 +15,8 @@ import UIKit
         serviceName.text = name
         controllerType = type
         configureShadow(with: cornerRadius)
+
+        layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
+        layer.borderWidth = 1
     }
 }
