@@ -12,6 +12,7 @@
 		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
 		141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */; };
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
+		141BACD527258D8C00704589 /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BACD427258D8C00704589 /* TintedImageButton.swift */; };
 		141F06ED26DBC57400AC02EA /* BookButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F06EC26DBC57400AC02EA /* BookButton.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
@@ -98,6 +99,7 @@
 		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
+		141BACD427258D8C00704589 /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		141F06EC26DBC57400AC02EA /* BookButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookButton.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				141F06EC26DBC57400AC02EA /* BookButton.swift */,
 				14AB8D602714C81A004D225F /* LoadingView.swift */,
 				14CFEF0A2714E22C0034046C /* CustomizableButton.swift */,
+				141BACD427258D8C00704589 /* TintedImageButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
+				141BACD527258D8C00704589 /* TintedImageButton.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Test.swift in Sources */,
 				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
