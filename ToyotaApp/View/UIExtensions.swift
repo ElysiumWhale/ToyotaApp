@@ -139,6 +139,9 @@ extension UIColor {
     enum AppTints: String {
         case mainRed = "MainTint"
         case loading = "Loading"
+        case signatureRed = "SignatureRed"
+        case secondarySignatureRed = "SecondarySignatureRed"
+        case signatureGray = "SignatureGray"
     }
     
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
