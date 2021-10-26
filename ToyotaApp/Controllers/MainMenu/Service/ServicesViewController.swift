@@ -135,6 +135,7 @@ extension ServicesViewController {
         carTextField.isEnabled = false
         refreshControl.endRefreshing()
         refreshControl.isEnabled = false
+        refreshableView.refreshControl = nil
         serviceTypes.removeAll()
         refreshableView.reloadData()
         showroomLabel.text = .empty
