@@ -15,9 +15,13 @@ class PopUp {
     private static let redColor = EKColor(.appTint(.secondarySignatureRed))
     private static let fontColor = EKColor(light: .appTint(.signatureGray), dark: .white)
 
-    private static let labelStyle = EKProperty.LabelStyle(font: font, color: fontColor, alignment: .center)
-
-    private static let font: UIFont = .toyotaType(.book, of: 20)
+    private static let titleLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.semibold, of: 19),
+                                                               color: fontColor,
+                                                               alignment: .center)
+    
+    private static let messageLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.book, of: 17),
+                                                                 color: fontColor,
+                                                                 alignment: .center)
 
     private static let configuration: EKAttributes = {
         var attr = EKAttributes.centerFloat
@@ -86,8 +90,8 @@ class PopUp {
                                                    confirmText: String,
                                                    declineText: String,
                                                    confirmCompletion: @escaping () -> Void) -> EKAlertMessage {
-        let titleLabel = LabelContent(text: title, style: labelStyle)
-        let descrLabel = LabelContent(text: description, style: labelStyle)
+        let titleLabel = LabelContent(text: title, style: titleLabelStyle)
+        let descrLabel = LabelContent(text: description, style: messageLabelStyle)
         let buttonBar = buildChoiceButtons(confirmText, declineText, confirmCompletion)
 
         return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
@@ -99,8 +103,8 @@ class PopUp {
                                          buttonText: String,
                                          _ dismissCompletion: @escaping () -> Void = { }) -> EKAlertMessage {
 
-        let titleLabel = LabelContent(text: title, style: labelStyle)
-        let descrLabel = LabelContent(text: description, style: labelStyle)
+        let titleLabel = LabelContent(text: title, style: titleLabelStyle)
+        let descrLabel = LabelContent(text: description, style: messageLabelStyle)
 
         let buttonBar = buildSingleButton(text: buttonText, dismissCompletion)
         
@@ -112,7 +116,7 @@ class PopUp {
 
     class private func buildSingleButton(text: String,
                                          _ dismissCompletion: @escaping () -> Void = { }) -> ButtonBarContent {
-        let buttonLabel = LabelContent(text: text, style: labelStyle)
+        let buttonLabel = LabelContent(text: text, style: titleLabelStyle)
 
         let button = ButtonContent(label: buttonLabel,
                                    backgroundColor: .clear,
@@ -130,7 +134,7 @@ class PopUp {
                                           _ declineText: String,
                                           _ confirmCompletion: @escaping () -> Void) -> ButtonBarContent {
 
-        let buttonContent = LabelContent(text: confirmText, style: labelStyle)
+        let buttonContent = LabelContent(text: confirmText, style: titleLabelStyle)
         let confirmButton = ButtonContent(label: buttonContent,
                                           backgroundColor: .clear,
                                           highlightedBackgroundColor: redColor) {
@@ -138,7 +142,7 @@ class PopUp {
             SwiftEntryKit.dismiss()
         }
 
-        let labelContent = LabelContent(text: declineText, style: labelStyle)
+        let labelContent = LabelContent(text: declineText, style: titleLabelStyle)
         let declineButton = ButtonContent(label: labelContent,
                                           backgroundColor: .clear,
                                           highlightedBackgroundColor: redColor) {

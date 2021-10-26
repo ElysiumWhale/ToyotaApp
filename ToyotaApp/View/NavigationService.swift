@@ -54,7 +54,7 @@ class NavigationService {
 
     private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: ViewControllers) -> UINavigationController {
         let controller: UINavigationController = storyboard.instantiate(identifier)
-        controller.navigationBar.tintColor = UIColor.appTint(.mainRed)
+        controller.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
         if let controllers = controllers, !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
