@@ -7,12 +7,18 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
 
-    private(set) lazy var bookButton: BookButton = {
-        let button = BookButton()
-        button.backgroundColor = UIColor.appTint(.mainRed)
-        button.titleLabel?.font = .toyotaType(.semibold, of: 20)
-        button.layer.cornerRadius = 20
+    private(set) lazy var bookButton: CustomizableButton = {
+        let button = CustomizableButton(type: .custom)
+        button.normalColor = .appTint(.secondaryGray)
+        button.highlightedColor = .appTint(.secondarySignatureRed)
+        button.borderWidth = 1
+        button.rounded = true
+        button.borderColor = .appTint(.secondarySignatureRed)
+
         button.setTitle(.common(.book), for: .normal)
+        button.setTitleColor(.appTint(.signatureGray), for: .normal)
+        button.titleLabel?.font = .toyotaType(.book, of: 20)
+
         button.addAction { [weak self] in
             self?.bookService()
         }
@@ -71,6 +77,7 @@ class BaseServiceController: UIViewController, IServiceController {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType?.serviceTypeName
+        navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)

@@ -44,7 +44,7 @@ class PickerModule: NSObject, IServiceModule {
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
-        internalView.textField.text = ""
+        internalView.textField.text = .empty
         NetworkService.makePostRequest(page: .services(.getServices),
                                        params: [(.carInfo(.showroomId), showroomId),
                                                 (.services(.serviceTypeId), serviceType.id)],

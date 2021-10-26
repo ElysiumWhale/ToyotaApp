@@ -88,6 +88,7 @@ extension UIToolbar {
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: delegate, action: nil)
         let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: delegate, action: action)
+        doneButton.tintColor = .appTint(.secondarySignatureRed)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
@@ -126,6 +127,7 @@ extension UIColor {
         case signatureRed = "SignatureRed"
         case secondarySignatureRed = "SecondarySignatureRed"
         case signatureGray = "SignatureGray"
+        case secondaryGray = "SecondaryGray"
     }
     
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
