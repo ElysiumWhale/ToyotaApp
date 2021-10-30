@@ -39,7 +39,7 @@ class ServicesViewController: RefreshableController, BackgroundText {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.toyotaType(.semibold, of: 17)
+            .font: UIFont.toyotaType(.regular, of: 17)
         ]
         carTextField.tintColor = .clear
         refreshableView.alwaysBounceVertical = true
@@ -148,6 +148,9 @@ extension ServicesViewController {
         if refreshableView.backgroundView != nil { refreshableView.backgroundView = nil }
         carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
         carTextField.isEnabled = cars.count > 1
+        carTextField.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
+        carTextField.layer.borderWidth = 1
+        carTextField.clipsToBounds = true
         showroomLabel.text = user.getSelectedShowroom!.showroomName
         refreshControl.beginRefreshing()
         makeRequest()

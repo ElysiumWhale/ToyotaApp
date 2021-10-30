@@ -72,7 +72,7 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.toyotaType(.semibold, of: 17)
+            .font: UIFont.toyotaType(.regular, of: 17)
         ]
         hideKeyboardWhenTappedAround()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)

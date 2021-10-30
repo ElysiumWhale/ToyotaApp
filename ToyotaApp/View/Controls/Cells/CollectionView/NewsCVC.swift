@@ -25,7 +25,5 @@ import Kingfisher
         newsImage.kf.setImage(with: ImageResource(downloadURL: news.imgUrl), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
 
         configureShadow(with: cornerRadius)
-        layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
-        layer.borderWidth = 1
     }
 }
