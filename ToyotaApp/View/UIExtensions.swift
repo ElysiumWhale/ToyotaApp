@@ -128,6 +128,8 @@ extension UIColor {
         case secondarySignatureRed = "SecondarySignatureRed"
         case signatureGray = "SignatureGray"
         case secondaryGray = "SecondaryGray"
+        case background = "Background"
+        case cell = "Cell"
     }
     
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
