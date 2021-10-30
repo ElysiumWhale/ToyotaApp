@@ -88,7 +88,7 @@ class NetworkService {
     }
     
     class func buildImageUrl(_ path: String) -> URL? {
-        var query = MainURL.buildImageUrl()
+        var query = MainURL.buildImageUrl(isSecure: true)
         query.path.append(path)
         return query.url
     }
