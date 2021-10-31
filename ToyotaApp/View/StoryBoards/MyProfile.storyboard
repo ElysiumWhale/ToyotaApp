@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hHJ-oo-scE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hHJ-oo-scE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -199,7 +199,7 @@
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="SecondaryGray"/>
+                                        <color key="value" name="Background"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                         <color key="value" name="SecondarySignatureRed"/>
@@ -229,7 +229,7 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="SecondaryGray"/>
+                                        <color key="value" name="Background"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                         <color key="value" name="SecondarySignatureRed"/>
@@ -392,7 +392,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="SecondaryGray"/>
+                                        <color key="value" name="Background"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                         <color key="value" name="SecondarySignatureRed"/>
@@ -885,8 +885,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-7u-yVL">
+                                <rect key="frame" x="20" y="76" width="374" height="77"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-c7-eXp">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                        <color key="textColor" name="SignatureGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
+                                        <rect key="frame" x="0.0" y="36" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="122" y="164.5" width="170" height="43"/>
+                                <rect key="frame" x="127" y="161" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
@@ -907,39 +923,23 @@
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="SecondaryGray"/>
+                                        <color key="value" name="Background"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="changeNumberWithSender:" destination="NZm-fi-Vyv" eventType="touchUpInside" id="cB1-xu-gW3"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-7u-yVL">
-                                <rect key="frame" x="20" y="76" width="374" height="77"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-c7-eXp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
-                                        <color key="textColor" name="SignatureGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
-                                        <rect key="frame" x="0.0" y="36" width="374" height="41"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="V0c-At-xAO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="JBC-U9-UyU" secondAttribute="trailing" constant="122" id="1qz-iw-zGe"/>
+                            <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="JBC-U9-UyU" secondAttribute="trailing" constant="127" id="1qz-iw-zGe"/>
                             <constraint firstItem="xl0-7u-yVL" firstAttribute="top" secondItem="V0c-At-xAO" secondAttribute="top" constant="20" id="EqE-oN-neg"/>
-                            <constraint firstItem="JBC-U9-UyU" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="122" id="F9f-vY-nCz"/>
+                            <constraint firstItem="JBC-U9-UyU" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="127" id="F9f-vY-nCz"/>
                             <constraint firstItem="V0c-At-xAO" firstAttribute="trailing" secondItem="xl0-7u-yVL" secondAttribute="trailing" constant="20" id="dxN-hX-IfU"/>
                             <constraint firstItem="xl0-7u-yVL" firstAttribute="leading" secondItem="V0c-At-xAO" secondAttribute="leading" constant="20" id="eb5-sl-fSv"/>
-                            <constraint firstItem="JBC-U9-UyU" firstAttribute="top" secondItem="xl0-7u-yVL" secondAttribute="bottom" constant="11.5" id="wbA-I5-dkz"/>
+                            <constraint firstItem="JBC-U9-UyU" firstAttribute="top" secondItem="xl0-7u-yVL" secondAttribute="bottom" constant="8" id="wbA-I5-dkz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="Kmn-gh-v3J">
@@ -990,6 +990,9 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <namedColor name="Background">
+            <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MainTint">
             <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
