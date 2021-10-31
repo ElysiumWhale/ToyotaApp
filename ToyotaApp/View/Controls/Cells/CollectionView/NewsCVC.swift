@@ -22,7 +22,12 @@ import Kingfisher
         // guard let imageUrl = news.imgUrl else { newsImage.image = nil; return }
         newsImage.kf.indicatorType = .activity
         newsImage.isOpaque = false
-        newsImage.kf.setImage(with: ImageResource(downloadURL: news.imgUrl), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+        if let url = news.imgUrl {
+            newsImage.kf.setImage(with: ImageResource(downloadURL: url),
+                                  placeholder: nil,
+                                  options: [.transition(.fade(0.7))],
+                                  progressBlock: nil)
+        }
 
         configureShadow(with: cornerRadius)
     }

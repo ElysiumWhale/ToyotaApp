@@ -294,5 +294,5 @@ public struct News: Codable {
     let date: Date
     let showroomId: String
     let showroomName: String
-    let imgUrl: URL
+    let imgUrl: URL?
 }
