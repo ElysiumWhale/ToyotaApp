@@ -1,6 +1,7 @@
 import UIKit
+import SafariServices
 
-class NewsViewController: RefreshableController {
+class NewsViewController: RefreshableController, BackgroundText {
     @IBOutlet private(set) var refreshableView: UICollectionView!
 
     private(set) var refreshControl = UIRefreshControl()
@@ -9,6 +10,8 @@ class NewsViewController: RefreshableController {
     private var user: UserProxy!
     private var news: [News] = []
 
+    private var parser: HtmlParser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [
@@ -16,14 +19,14 @@ class NewsViewController: RefreshableController {
         ]
         configureRefresh()
         refreshableView.alwaysBounceVertical = true
-        news = Test.createNews()
+        startRefreshing()
     }
 
     func startRefreshing() {
         refreshControl.beginRefreshing()
-        news = Test.createNews()
-        refreshableView.reloadData()
-        endRefreshing()
+        setTitle(with: .common(.loading))
+        parser = HtmlParser(delegate: self)
+        parser?.start()
     }
 }
 
@@ -42,12 +45,28 @@ extension NewsViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension NewsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.alpha = 0
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0.05 * Double(indexPath.row),
-            animations: { cell.alpha = 1 })
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let url = news[indexPath.row].url {
+            navigationController?.present(SFSafariViewController(url: url),
+                                          animated: true)
+        }
+    }
+}
+
+// MARK: - ParserDelegate
+extension NewsViewController: ParserDelegate {
+    func errorDidReceive(_ error: Error) {
+        news = []
+        refreshableView.reloadData()
+        endRefreshing()
+        refreshableView.backgroundView = createBackground(labelText: .error(.newsError))
+    }
+
+    func newsDidLoad(_ loadedNews: [News]) {
+        news = loadedNews
+        refreshableView.reloadData()
+        refreshableView.backgroundView = loadedNews.isEmpty ? nil : createBackground(labelText: .background(.noNews))
+        endRefreshing()
     }
 }
 
