@@ -30,6 +30,10 @@ protocol Refreshable: UIViewController {
 }
 
 extension Refreshable {
+    func setTitle(with string: String) {
+        refreshControl.attributedTitle = NSAttributedString(string: string)
+    }
+    
     func configureRefresh() {
         refreshControl.isEnabled = true
         refreshControl.attributedTitle = NSAttributedString(string: .common(.pullToRefresh))
@@ -42,7 +46,10 @@ extension Refreshable {
 
     func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak self] in self?.refreshControl.endRefreshing() })
+                                      execute: { [weak self] in
+            self?.refreshControl.endRefreshing()
+            self?.setTitle(with: .common(.pullToRefresh))
+        })
     }
 }
 
