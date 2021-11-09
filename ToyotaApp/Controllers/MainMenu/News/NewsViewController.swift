@@ -65,7 +65,7 @@ extension NewsViewController: ParserDelegate {
     func newsDidLoad(_ loadedNews: [News]) {
         news = loadedNews
         refreshableView.reloadData()
-        refreshableView.backgroundView = loadedNews.isEmpty ? nil : createBackground(labelText: .background(.noNews))
+        refreshableView.backgroundView = loadedNews.isEmpty ? createBackground(labelText: .background(.noNews)) : nil
         endRefreshing()
     }
 }
