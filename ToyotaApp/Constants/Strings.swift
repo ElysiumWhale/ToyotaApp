@@ -3,6 +3,7 @@ import Foundation
 #warning("todo: make .strings file")
 extension String {
     static let empty = ""
+    static let space = " "
 
     static func common(_ string: CommonStrings) -> String {
         string.rawValue
@@ -21,6 +22,8 @@ extension String {
     }
 
     enum CommonStrings: String {
+        /// Загрузка
+        case loading = "Загрузка"
         /// Сохранить
         case save = "Сохранить"
         /// Успех
@@ -110,6 +113,8 @@ extension String {
         case addAutoToUnlock = "Добавьте автомобиль для разблокировки функций."
         /// Что то пошло не так...
         case somethingWentWrong = "Что то пошло не так..."
+        /// На данный момент нет актуальных предложений.
+        case noNews = "На данный момент нет актуальных предложений."
     }
 }
 
@@ -118,4 +123,9 @@ extension String {
     static let ddMMyyyy = "dd.MM.yyyy"
     static let MMddyyyy = "MM.dd.yyyy"
     static let yyyyMMdd = "yyyy-MM-dd"
+}
+
+extension StringProtocol {
+    var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
