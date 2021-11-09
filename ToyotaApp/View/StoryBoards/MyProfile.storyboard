@@ -81,12 +81,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Салон" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00j-fv-htC">
                                                     <rect key="frame" x="8" y="6" width="335" height="26"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="SignatureGray"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" name="SecondaryGray"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstItem="9mM-Hi-KRT" firstAttribute="leading" secondItem="Nv3-UC-DbY" secondAttribute="leading" constant="115" id="2JV-ZX-UeA"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="PNg-KI-HWR" secondAttribute="bottom" constant="83" id="72s-9I-goh"/>
@@ -121,7 +121,7 @@
                                     <outlet property="delegate" destination="R2J-JN-bFz" id="zMT-pL-ef1"/>
                                 </connections>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWk-bw-380">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWk-bw-380">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
@@ -282,7 +282,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nb6-4Z-4iK" customClass="CustomizableStackView" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="16" y="800" width="382" height="61"/>
+                                <rect key="frame" x="16" y="792" width="382" height="61"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="189.5" height="61"/>
@@ -301,7 +301,7 @@
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                                <color key="value" name="SecondaryGray"/>
+                                                <color key="value" name="Background"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                                 <color key="value" name="SecondarySignatureRed"/>
@@ -334,7 +334,7 @@
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                                <color key="value" name="SecondaryGray"/>
+                                                <color key="value" name="Background"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                                 <color key="value" name="SecondarySignatureRed"/>
@@ -416,7 +416,7 @@
                             <constraint firstItem="QEl-wK-Y1s" firstAttribute="trailing" secondItem="Nb6-4Z-4iK" secondAttribute="trailing" constant="16" id="mpD-wA-vEx"/>
                             <constraint firstItem="g0o-cG-eci" firstAttribute="top" secondItem="CLN-ma-9CJ" secondAttribute="bottom" constant="20" id="shW-sw-FLl"/>
                             <constraint firstItem="YL3-o0-Pts" firstAttribute="leading" secondItem="QEl-wK-Y1s" secondAttribute="leading" constant="16" id="tgA-bA-WRs"/>
-                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="Nb6-4Z-4iK" secondAttribute="bottom" constant="1" id="vab-p3-IWf"/>
+                            <constraint firstItem="QEl-wK-Y1s" firstAttribute="bottom" secondItem="Nb6-4Z-4iK" secondAttribute="bottom" constant="9" id="vab-p3-IWf"/>
                             <constraint firstItem="YL3-o0-Pts" firstAttribute="top" secondItem="QEl-wK-Y1s" secondAttribute="top" constant="16" id="y01-yZ-FaR"/>
                             <constraint firstItem="g0o-cG-eci" firstAttribute="centerX" secondItem="QEl-wK-Y1s" secondAttribute="centerX" id="zs3-CJ-e6N"/>
                         </constraints>
@@ -605,7 +605,7 @@
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstItem="mZp-dz-K0M" firstAttribute="top" relation="lessThanOrEqual" secondItem="m8L-dx-doh" secondAttribute="bottom" constant="212" id="3Pa-tI-3t8"/>
                                             <constraint firstItem="mZp-dz-K0M" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="91" id="45J-Yz-G2V"/>
@@ -709,7 +709,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oHv-YW-SG0">
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
-                                <color key="separatorColor" name="MainTint"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookingCell" rowHeight="139" id="MeP-4c-svk" customClass="BookingCell" customModule="ToyotaApp" customModuleProvider="target">
@@ -826,7 +825,7 @@
                                     <outlet property="delegate" destination="Geg-Qm-TUc" id="K1h-TO-QkF"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBM-0T-Bie">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBM-0T-Bie">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="История обращений" id="c52-5Q-1pi">
@@ -901,7 +900,7 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="127" y="161" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
@@ -993,12 +992,6 @@
         <namedColor name="Background">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="MainTint">
-            <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SecondaryGray">
-            <color red="0.80784313725490198" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="SecondarySignatureRed">
             <color red="0.85100001096725464" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1008,9 +1001,6 @@
         <namedColor name="secondaryTint">
             <color red="0.77600002288818359" green="0.77600002288818359" blue="0.78400003910064697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
