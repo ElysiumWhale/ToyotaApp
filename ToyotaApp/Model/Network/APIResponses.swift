@@ -287,12 +287,13 @@ public struct Booking: Codable {
     }
 }
 
-// MARK: - MOCK
-public struct News: Codable {
+/// Temporary struct
+public struct News {
     let title: String
-    let content: String
-    let date: Date
-    let showroomId: String
-    let showroomName: String
+    let content: String = .empty
+    let date: Date = Date()
+    let showroomId: String = .empty
+    let showroomName: String = .empty
     let imgUrl: URL?
+    let url: URL?
 }

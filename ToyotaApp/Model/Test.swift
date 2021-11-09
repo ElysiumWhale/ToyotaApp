@@ -31,19 +31,15 @@ public class Test {
     
     class func createNews() -> [News] {
         let url = URL(string: "https://www.vhv.rs/dpng/d/522-5221969_toyota-logo-symbol-vector-vector-toyota-logo-png.png")!
-        return [News(title: "Функционал в разработке",
-                     content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!",
-                     date: Date(), showroomId: "-1", showroomName: "Тойота Самара Юг", imgUrl: url),
-                News(title: "Функционал в разработке",
-                     content: "Скоро здесь появятся различные новости от дилеров и специальные предложения!",
-                     date: Date(), showroomId: "-1", showroomName: "Тойота Самара Север", imgUrl: url)]
+        return [News(title: "Функционал в разработке", imgUrl: url, url: nil),
+                News(title: "Функционал в разработке", imgUrl: url, url: nil)]
     }
     
     class func createFreeTimeDict() -> [String: [Int]] {
         var result = [String: [Int]]()
         var date: Date = Calendar.current.date(byAdding: DateComponents(hour: 4, minute: 30), to: Date())!
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = .yyyyMMdd
         for var index in 0...5 {
             result[formatter.string(from: date)] = [1+index*2, 3+index*3, 4+index*3,
                                                     5+index*3-1, 6+index*3+1, 7+index*3+3]
