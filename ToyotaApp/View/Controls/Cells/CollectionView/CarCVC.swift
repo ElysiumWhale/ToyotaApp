@@ -28,7 +28,6 @@ import UIKit
         colorDesrLabel.text = "Описание: \(colorDesription)"
         showroomName.text =  "Салон: \(showroom)"
 
-        configureShadow(with: cornerRadius)
         carImage.layer.borderWidth = 1
         carImage.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
         carImage.layer.cornerRadius = carImage.frame.height/2
