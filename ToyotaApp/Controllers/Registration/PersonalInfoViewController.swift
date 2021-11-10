@@ -47,6 +47,9 @@ class PersonalInfoViewController: KeyboardableController {
         hideKeyboardWhenTappedAround()
         textFieldsWithError = [firstNameTextField: true, secondNameTextField: true,
                                lastNameTextField: true, emailTextField: true, birthTextField: true]
+        textFieldsWithError.keys.forEach {
+            $0.delegate = self
+        }
     }
 
     func configure(with profile: Profile) {
@@ -105,6 +108,26 @@ extension PersonalInfoViewController {
                 destinationVC?.configure(cityList: cities)
             default: return
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension PersonalInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+            case firstNameTextField:
+                lastNameTextField.becomeFirstResponder()
+            case lastNameTextField:
+                secondNameTextField.becomeFirstResponder()
+            case secondNameTextField:
+                birthTextField.becomeFirstResponder()
+            case birthTextField:
+                emailTextField.becomeFirstResponder()
+            default:
+                view.endEditing(false)
+        }
+
+        return false
     }
 }
 

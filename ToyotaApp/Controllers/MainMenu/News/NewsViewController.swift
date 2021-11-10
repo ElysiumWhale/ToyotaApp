@@ -5,7 +5,6 @@ class NewsViewController: RefreshableController, BackgroundText {
     @IBOutlet private(set) var refreshableView: UICollectionView!
 
     private(set) var refreshControl = UIRefreshControl()
-    let cellIdentifier = CellIdentifiers.NewsCell
 
     private var user: UserProxy!
     private var news: [News] = []

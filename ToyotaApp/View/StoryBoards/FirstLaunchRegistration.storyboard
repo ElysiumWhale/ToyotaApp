@@ -73,13 +73,13 @@
                                 <rect key="frame" x="20" y="216.5" width="374" height="645.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rs3-v6-7cF">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="635.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="638"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="d9o-Os-W9q">
-                                                <rect key="frame" x="0.0" y="15" width="374" height="325"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="d9o-Os-W9q">
+                                                <rect key="frame" x="0.0" y="15" width="374" height="327.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMc-aT-iiY" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                         <connections>
@@ -87,7 +87,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73P-tT-b5t" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="70" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="72.5" width="374" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
                                                         <connections>
@@ -95,10 +95,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-yN-RfG" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="140" width="374" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="28p-bM-bUe"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="145" width="374" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="additional-name"/>
                                                         <connections>
@@ -106,10 +103,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-0O-l0g" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="210" width="374" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="VUk-1x-WAR"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="217.5" width="374" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                         <connections>
@@ -117,7 +111,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91W-OT-t1s" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="280" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="290" width="374" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                         <connections>
@@ -127,7 +121,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="64" y="481.5" width="246" height="43"/>
+                                                <rect key="frame" x="64" y="484" width="246" height="43"/>
                                                 <color key="backgroundColor" name="SecondaryGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
@@ -156,7 +150,7 @@
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-0I-Own">
-                                                <rect key="frame" x="168.5" y="485" width="37" height="37"/>
+                                                <rect key="frame" x="168.5" y="487.5" width="37" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ehp-0I-Own" secondAttribute="height" multiplier="1:1" id="RCa-2u-Tj5"/>
                                                 </constraints>
