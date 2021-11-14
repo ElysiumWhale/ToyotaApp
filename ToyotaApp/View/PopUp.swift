@@ -10,7 +10,7 @@ class PopUp {
 
     // MARK: - Constants
 
-    private static let popupColor: EKColor = .init(light: .lightGray,
+    private static let popupColor: EKColor = .init(light: .appTint(.background),
                                                    dark: .darkGray)
     private static let redColor = EKColor(.appTint(.secondarySignatureRed))
     private static let fontColor = EKColor(light: .appTint(.signatureGray), dark: .white)
