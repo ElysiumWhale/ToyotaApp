@@ -21,8 +21,6 @@ import Kingfisher
 
         newsImage.kf.indicatorType = .activity
         newsImage.isOpaque = false
-        newsImage.layer.masksToBounds = true
-        newsImage.layer.cornerRadius = cornerRadius
         newsImage.kf.setImage(with: ImageResource(downloadURL: url),
                               placeholder: nil,
                               options: [.transition(.fade(0.7))],

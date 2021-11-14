@@ -94,6 +94,10 @@ extension UIViewController {
             }
         }
     }
+
+    @IBAction func customDismiss(sender: Any?) {
+        dismiss(animated: true)
+    }
 }
 
 extension UIViewController {

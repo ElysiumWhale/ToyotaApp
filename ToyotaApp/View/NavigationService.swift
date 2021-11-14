@@ -8,9 +8,9 @@ struct CheckUserContext {
         case register(_ page: Int, _ user: RegisteredUser)
         case main(_ user: RegisteredUser?)
     }
-    
+
     let response: CheckUserOrSmsCodeResponse
-    
+
     var state: States {
         if response.registerStatus == nil {
             if response.registerPage == nil || response.registerPage == 1 {
@@ -35,18 +35,21 @@ enum RegistrationStates {
 
 class NavigationService {
     static var switchRootView: ((UIViewController) -> Void)?
-    
+
     class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: () -> Void) {
         switch context.state {
-            case .empty: fallbackCompletion()
-            case .main(let user): NavigationService.loadMain(from: user)
-            case .startRegister: NavigationService.loadRegister(.firstPage)
+            case .empty:
+                fallbackCompletion()
+            case .main(let user):
+                loadMain(from: user)
+            case .startRegister:
+                loadRegister(.firstPage)
             case .register(let page, let user):
                 switch page {
                     case 2 where context.response.cities != nil:
-                        NavigationService.loadRegister(.secondPage(user.profile, context.response.cities!))
+                        loadRegister(.secondPage(user.profile, context.response.cities!))
                     case 3 where context.response.cities != nil && user.showroom != nil:
-                        NavigationService.loadRegister(.thirdPage(user, context.response.cities!, user.showroom!))
+                        loadRegister(.thirdPage(user, context.response.cities!, user.showroom!))
                     default: fallbackCompletion()
                 }
         }
