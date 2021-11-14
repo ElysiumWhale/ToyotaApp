@@ -6,6 +6,7 @@ class AuthViewController: UIViewController {
     @IBOutlet private var informationLabel: UILabel!
     @IBOutlet private var sendPhoneButton: KeyboardBindedButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
+    @IBOutlet private var agreementStack: UIStackView!
 
     private let segueCode = SegueIdentifiers.numberToCode
 
@@ -38,6 +39,7 @@ class AuthViewController: UIViewController {
         
         if case .changeNumber = type {
             informationLabel.text = .common(.enterNewNumber)
+            agreementStack.isHidden = true
         }
     }
 
@@ -50,7 +52,7 @@ class AuthViewController: UIViewController {
         phoneNumber.toggle(state: .normal)
     }
 
-    @IBAction func nextButtonDidPressed(sender: Any?) {
+    @IBAction func nextButtonDidPress(sender: Any?) {
         guard let phone = phoneNumber.validPhone else {
             phoneNumber.toggleErrorState(hasError: true)
             incorrectLabel.fadeIn(0.3)
@@ -66,6 +68,10 @@ class AuthViewController: UIViewController {
         NetworkService.makeRequest(page: .registration(.registerPhone),
                                    params: [(.personalInfo(.phoneNumber), phone)],
                                    handler: authRequestHandler)
+    }
+
+    @IBAction func agreementDidPress(sender: Any?) {
+        // todo: open link
     }
 
     private func handle(isSuccess: Bool) {

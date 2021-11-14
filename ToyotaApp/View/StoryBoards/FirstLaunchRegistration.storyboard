@@ -41,7 +41,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nID-2o-m8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="1105"/>
+            <point key="canvasLocation" x="-529" y="173"/>
         </scene>
         <!--Данные-->
         <scene sceneID="JZn-Z7-6Ed">
@@ -260,10 +260,10 @@
                                 </constraints>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-wp-mLq">
-                                <rect key="frame" x="20" y="185" width="374" height="202"/>
+                                <rect key="frame" x="20" y="185" width="374" height="204.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLs-bh-NNn">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="92"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="93"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
@@ -272,14 +272,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="46"/>
+                                                <rect key="frame" x="0.0" y="46" width="374" height="47"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="26"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wUJ-a2-MAD">
-                                        <rect key="frame" x="0.0" y="112" width="374" height="90"/>
+                                        <rect key="frame" x="0.0" y="113" width="374" height="91.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите салон" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICh-r4-niT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
@@ -288,7 +288,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5RZ-s5-2c2" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="44"/>
+                                                <rect key="frame" x="0.0" y="46" width="374" height="45.5"/>
                                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>

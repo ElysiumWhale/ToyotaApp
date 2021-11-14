@@ -15,6 +15,9 @@
         <array key="ToyotaType-Light.ttf">
             <string>ToyotaType-Light</string>
         </array>
+        <array key="ToyotaType-Regular.ttf">
+            <string>ToyotaType-Regular</string>
+        </array>
         <array key="ToyotaType-Semibold.ttf">
             <string>ToyotaType-Semibold</string>
         </array>
@@ -71,7 +74,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sMe-5f-6CG">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pxk-IH-yTi">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="17" minimumInteritemSpacing="10" id="pxk-IH-yTi">
                                     <size key="itemSize" width="360" height="240"/>
                                     <size key="estimatedItemSize" width="360" height="240"/>
                                     <size key="headerReferenceSize" width="0.0" height="10"/>
@@ -87,36 +90,39 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="60f-s9-7f6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="155"/>
+                                                    <rect key="frame" x="16" y="16" width="328" height="155"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                     </accessibility>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="360" id="OZK-N8-MIH"/>
-                                                        <constraint firstAttribute="height" constant="155" id="kyZ-MA-yst"/>
+                                                        <constraint firstAttribute="height" constant="155" id="eFx-SJ-Sqf"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asU-aA-mHd">
-                                                    <rect key="frame" x="20" y="162" width="320" height="26"/>
-                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="asU-aA-mHd">
+                                                    <rect key="frame" x="16" y="178" width="328" height="24.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="328" id="XzM-Y2-YJb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="60f-s9-7f6" secondAttribute="trailing" id="4EL-GI-hGl"/>
+                                                <constraint firstAttribute="trailing" secondItem="60f-s9-7f6" secondAttribute="trailing" constant="16" id="4EL-GI-hGl"/>
                                                 <constraint firstItem="asU-aA-mHd" firstAttribute="top" secondItem="60f-s9-7f6" secondAttribute="bottom" constant="7" id="90u-Zb-TNS"/>
-                                                <constraint firstItem="60f-s9-7f6" firstAttribute="top" secondItem="jjb-c4-r6n" secondAttribute="top" id="Svl-P6-33Z"/>
-                                                <constraint firstAttribute="trailing" secondItem="asU-aA-mHd" secondAttribute="trailing" constant="20" id="hGg-rS-x8M"/>
-                                                <constraint firstItem="asU-aA-mHd" firstAttribute="leading" secondItem="jjb-c4-r6n" secondAttribute="leading" constant="20" id="jvY-zV-Y3L"/>
-                                                <constraint firstItem="60f-s9-7f6" firstAttribute="leading" secondItem="jjb-c4-r6n" secondAttribute="leading" id="lmd-fI-qaU"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="asU-aA-mHd" secondAttribute="bottom" constant="73" id="uhC-zQ-EAn"/>
+                                                <constraint firstItem="60f-s9-7f6" firstAttribute="top" secondItem="jjb-c4-r6n" secondAttribute="top" constant="16" id="Svl-P6-33Z"/>
+                                                <constraint firstAttribute="trailing" secondItem="asU-aA-mHd" secondAttribute="trailing" constant="16" id="hGg-rS-x8M"/>
+                                                <constraint firstItem="asU-aA-mHd" firstAttribute="leading" secondItem="jjb-c4-r6n" secondAttribute="leading" constant="16" id="jvY-zV-Y3L"/>
+                                                <constraint firstItem="60f-s9-7f6" firstAttribute="leading" secondItem="jjb-c4-r6n" secondAttribute="leading" constant="16" id="lmd-fI-qaU"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="asU-aA-mHd" secondAttribute="bottom" constant="16" id="uhC-zQ-EAn"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="Background"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
