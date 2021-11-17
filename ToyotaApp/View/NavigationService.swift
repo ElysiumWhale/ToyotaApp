@@ -16,7 +16,9 @@ struct CheckUserContext {
             if response.registerPage == nil || response.registerPage == 1 {
                 return .startRegister
             } else if let page = response.registerPage {
-                return response.registeredUser != nil ? .register(page, response.registeredUser!) : .empty
+                return response.registeredUser != nil
+                    ? .register(page, response.registeredUser!)
+                    : .empty
             }
         }
         if response.registerStatus != nil, response.registerPage == nil {

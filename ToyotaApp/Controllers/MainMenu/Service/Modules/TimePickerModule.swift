@@ -8,6 +8,17 @@ private struct FreeTime {
 class TimePickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
 
+    weak var delegate: IServiceController?
+
+    private(set) var serviceType: ServiceType
+
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            delegate?.moduleDidUpdate(self)
+        }
+    }
+
+    // MARK: - Private properties
     private lazy var internalView: TimePickerView = {
         let view = TimePickerView()
         view.datePicker.delegate = self
@@ -18,28 +29,37 @@ class TimePickerModule: NSObject, IServiceModule {
 
     private var dates: [FreeTime] = []
 
-    private var rowInFirst: Int = 0
-    private var rowInSecond: Int = 0
-    private var selectedDate: (String, String)? {
-        if !dates.isEmpty {
-            let date = dates[rowInFirst]
-            return (DateFormatter.server.string(from: date.date), date.freeTime[rowInSecond].getHourAndMinute())
-        } else { return nil }
-    }
+    private var timeRows = (date: 0, time: 0)
 
-    private(set) var serviceType: ServiceType
-    private(set) var state: ModuleStates = .idle {
-        didSet {
-            delegate?.moduleDidUpdate(self)
+    private var selectedDate: (date: String, time: String)? {
+        guard !dates.isEmpty else {
+            return nil
         }
+
+        let freeTime = dates[timeRows.date]
+        return (date: .date(.server(freeTime.date)),
+                time: freeTime.freeTime[timeRows.time].hourAndMinute)
     }
 
-    weak var delegate: IServiceController?
+    private lazy var requestHandler: RequestHandler<FreeTimeDidGetResponse> = {
+        let handler = RequestHandler<FreeTimeDidGetResponse>()
+
+        handler.onSuccess = { [weak self] data in
+            self?.completion(for: data)
+        }
+
+        handler.onFailure = { [weak self] error in
+            self?.state = .error(.requestError(error.message))
+        }
+
+        return handler
+    }()
 
     init(with type: ServiceType) {
         serviceType = type
     }
 
+    // MARK: - Public methods
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
@@ -55,48 +75,49 @@ class TimePickerModule: NSObject, IServiceModule {
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
-        
+
         var queryParams: RequestItems = [(.carInfo(.showroomId), showroomId)]
-        
         !params.isEmpty ? queryParams.append(contentsOf: params)
                         : queryParams.append((.services(.serviceId), serviceType.id))
-        
-        NetworkService.makePostRequest(page: .services(.getFreeTime),
-                                       params: queryParams,
-                                       completion: completion)
+
+        NetworkService.makeRequest(page: .services(.getFreeTime),
+                                   params: queryParams,
+                                   handler: requestHandler)
     }
 
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
                                                   with params: RequestItems,
                                                   response type: TResponse.Type) {
         state = .idle
-        NetworkService.makePostRequest(page: .services(.getFreeTime),
-                                       params: params,
-                                       completion: completion)
-    }
-
-    private func completion(for response: Result<FreeTimeDidGetResponse, ErrorResponse>) {
-        switch response {
-            case .failure(let error):
-                state = .error(.requestError(error.message))
-            case .success(let data):
-                prepareTime(from: data.freeTimeDict)
-                internalView.dataDidDownload()
-                DispatchQueue.main.async { [weak self] in
-                    guard let module = self else { return }
-                    module.rowInFirst = module.internalView.datePicker.selectedRow(inComponent: 0)
-                    module.rowInSecond = module.internalView.datePicker.selectedRow(inComponent: 1)
-                    module.state = .didChose(Service.empty)
-                }
-        }
+        NetworkService.makeRequest(page: .services(.getFreeTime),
+                                   params: params,
+                                   handler: requestHandler)
     }
 
     func buildQueryItems() -> RequestItems {
         guard let (date, time) = selectedDate, let value = TimeMap.serverMap[time] else {
             return []
         }
+
         return [(.services(.dateBooking), date),
                 (.services(.startBooking), "\(value)")]
+    }
+
+    // MARK: - Private methods
+
+    private func rowIn(component: Int) -> Int {
+        internalView.datePicker.selectedRow(inComponent: component)
+    }
+
+    private func completion(for response: FreeTimeDidGetResponse) {
+        prepareTime(from: response.freeTimeDict)
+        internalView.dataDidDownload()
+        DispatchQueue.main.async { [weak self] in
+            guard let module = self else { return }
+            module.timeRows.date = module.rowIn(component: 0)
+            module.timeRows.time = module.rowIn(component: 1)
+            module.state = .didChose(Service.empty)
+        }
     }
 
     private func prepareTime(from timeDict: [String: [Int]]?) {
@@ -115,7 +136,7 @@ class TimePickerModule: NSObject, IServiceModule {
         
         for _ in 1...60 {
             times = TimeMap.getFullSchedule()
-            if !skipDictCheck, let dictTimes = timeDict?[DateFormatter.server.string(from: date)] {
+            if !skipDictCheck, let dictTimes = timeDict?[.date(.server(date))] {
                 times = dictTimes.compactMap { TimeMap.clientMap[$0] }
             }
             dates.append(FreeTime(date: date, freeTime: times))
@@ -132,7 +153,7 @@ extension TimePickerModule: UIPickerViewDataSource {
         switch component {
             case 0: return dates.count
             case 1: return dates.isEmpty ? 0 :
-                    dates[internalView.datePicker.selectedRow(inComponent: 0)].freeTime.count
+                    dates[rowIn(component: 0)].freeTime.count
             default: return 0
         }
     }
@@ -143,22 +164,22 @@ extension TimePickerModule: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             internalView.datePicker.reloadComponent(1)
-            rowInFirst = internalView.datePicker.selectedRow(inComponent: 0)
+            timeRows.date = rowIn(component: 0)
         }
-        rowInSecond = internalView.datePicker.selectedRow(inComponent: 1)
+        timeRows.time = rowIn(component: 1)
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
+                    forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.semibold, of: 20)
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {
-            case 0: pickerLabel.text = dates.isEmpty ? "Empty" :
-                    DateFormatter.display.string(from: dates[row].date)
-            case 1: pickerLabel.text = dates.isEmpty ? "Empty" :
-                    dates[internalView.datePicker.selectedRow(inComponent: 0)].freeTime[row].getHourAndMinute()
-            default: pickerLabel.text = "Empty"
+            case 0: pickerLabel.text = dates.isEmpty ? .empty : .date(.display(dates[row].date))
+            case 1: pickerLabel.text = dates.isEmpty ? .empty :
+                    dates[rowIn(component: 0)].freeTime[row].hourAndMinute
+            default: pickerLabel.text = .empty
         }
         return pickerLabel
     }

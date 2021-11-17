@@ -1,5 +1,7 @@
 import Foundation
 
+typealias NetworkResponse<T> = Result<T, ErrorResponse> where T: Codable
+
 class NetworkService {
     private static let session = URLSession(configuration: URLSessionConfiguration.default)
     
