@@ -44,14 +44,14 @@ class PickerModule: NSObject, IServiceModule {
         guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
             return
         }
+
         internalView.textField.text = .empty
+
+        let params: RequestItems = [(.carInfo(.showroomId), showroomId),
+                                    (.services(.serviceTypeId), serviceType.id)]
         NetworkService.makePostRequest(page: .services(.getServices),
-                                       params: [(.carInfo(.showroomId), showroomId),
-                                                (.services(.serviceTypeId), serviceType.id)],
-                                       completion: internalCompletion)
-        
-        func internalCompletion(for response: Result<ServicesDidGetResponse, ErrorResponse>) {
-            completion(for: response)
+                                       params: params) { [weak self] (response: NetworkResponse<ServicesDidGetResponse>) in
+            self?.completion(for: response)
         }
     }
 
@@ -59,11 +59,11 @@ class PickerModule: NSObject, IServiceModule {
                                                   with params: RequestItems,
                                                   response type: TResponse.Type) {
         state = .idle
-        internalView.textField.text = ""
-        NetworkService.makePostRequest(page: page, params: params, completion: internalCompletion)
-        
-        func internalCompletion(for response: Result<TResponse, ErrorResponse>) {
-            completion(for: response)
+        internalView.textField.text = .empty
+
+        NetworkService.makePostRequest(page: page,
+                                       params: params) { [weak self] (response: NetworkResponse<TResponse>) in
+            self?.completion(for: response)
         }
     }
 

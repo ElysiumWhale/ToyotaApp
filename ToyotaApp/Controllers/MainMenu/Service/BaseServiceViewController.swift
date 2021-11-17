@@ -9,7 +9,7 @@ class BaseServiceController: UIViewController, IServiceController {
 
     private(set) lazy var bookButton: CustomizableButton = {
         let button = CustomizableButton(type: .custom)
-        button.normalColor = .appTint(.secondaryGray)
+        button.normalColor = .appTint(.background)
         button.highlightedColor = .appTint(.secondarySignatureRed)
         button.borderWidth = 1
         button.rounded = true
@@ -49,18 +49,18 @@ class BaseServiceController: UIViewController, IServiceController {
 
     private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
-        
+
         handler.onSuccess = { [weak self] _ in
             PopUp.display(.success(description: .common(.bookingSuccess)))
             DispatchQueue.main.async {
                 self?.navigationController?.popViewController(animated: true)
             }
         }
-        
+
         handler.onFailure = { error in
             PopUp.display(.error(description: error.message ?? .error(.servicesError)))
         }
-        
+
         return handler
     }()
 
@@ -79,7 +79,7 @@ class BaseServiceController: UIViewController, IServiceController {
         navigationItem.title = serviceType?.serviceTypeName
         navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
         view.backgroundColor = .systemBackground
-        
+
         view.addSubview(scrollView)
         hideKeyboardWhenTappedAround()
         setupScrollViewLayout()
@@ -109,18 +109,18 @@ class BaseServiceController: UIViewController, IServiceController {
         var params: RequestItems = [(.auth(.userId), userId),
                                       (.carInfo(.showroomId), showroomId),
                                       (.carInfo(.carId), carId)]
-        
+
         for module in modules {
             let items = module.buildQueryItems()
             if items.count < 1 { return }
             params.append(contentsOf: items)
         }
-        
+
         // Note: - Redundant
         if params.first(where: { $0.key.rawValue == RequestKeys.Services.serviceId.rawValue }) == nil {
             params.append((.services(.serviceId), serviceType!.id))
         }
-        
+
         NetworkService.makeRequest(page: .services(.bookService),
                                    params: params,
                                    handler: bookingRequestHandler)
@@ -151,13 +151,13 @@ class BaseServiceController: UIViewController, IServiceController {
             bookButton.fadeIn()
         }
         bookButton.isEnabled = false
-        
+
         PopUp.display(.warning(description: message ?? .error(.requestError)))
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
         guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-        
+
         if index + 1 == modules.count {
             endLoading()
             if !stackView.arrangedSubviews.contains(bookButton) {
@@ -166,7 +166,7 @@ class BaseServiceController: UIViewController, IServiceController {
             bookButton.fadeIn()
             return
         }
-        
+
         startLoading()
         modules[index + 1].start(with: module.buildQueryItems())
         stackView.addArrangedSubview(modules[index+1].view ?? UIView())
@@ -179,7 +179,7 @@ extension BaseServiceController {
         view.addSubview(loadingView)
         loadingView.fadeIn()
     }
-    
+
     func endLoading() {
         loadingView.fadeOut { [self] in
             loadingView.removeFromSuperview()
