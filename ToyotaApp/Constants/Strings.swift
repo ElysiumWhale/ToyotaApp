@@ -21,6 +21,10 @@ extension String {
         string.rawValue
     }
 
+    static func date(_ type: DateFormatters) -> String {
+        type.string()
+    }
+
     enum CommonStrings: String {
         /// Загрузка
         case loading = "Загрузка"

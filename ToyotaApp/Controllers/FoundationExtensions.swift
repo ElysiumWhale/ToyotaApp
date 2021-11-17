@@ -8,7 +8,7 @@ extension DateComponents {
     /// Format components in format **"hh:mm"**
     ///
     /// Example: **18:01**
-    func getHourAndMinute() -> String {
+    var hourAndMinute: String {
         var hourStr = "00"
         var minStr = "00"
         if let hour = hour {
@@ -22,6 +22,26 @@ extension DateComponents {
 }
 
 // MARK: - Server & Client Formatters
+enum DateFormatters {
+    case server(_ date: Date)
+    case client(_ date: Date)
+    case common(_ date: Date)
+    case display(_ date: Date)
+    
+    func string() -> String {
+        switch self {
+            case .server(let date):
+                return DateFormatter.server.string(from: date)
+            case .client(let date):
+                return DateFormatter.client.string(from: date)
+            case .common(let date):
+                return DateFormatter.common.string(from: date)
+            case .display(let date):
+                return DateFormatter.display.string(from: date)
+        }
+    }
+}
+
 extension DateFormatter {
     /**
      Formats date in **yyyy-MM-dd**
