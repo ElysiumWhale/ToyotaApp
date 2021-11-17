@@ -144,9 +144,9 @@ public struct TimeMap {
     }
 
     static let clientMap: [Int: DateComponents] = [
-        14: .init(hour: 7, minute: 00), 15: .init(hour: 7, minute: 30),
-        16: .init(hour: 8, minute: 00), 17: .init(hour: 8, minute: 30),
-        18: .init(hour: 9, minute: 00), 19: .init(hour: 9, minute: 30),
+        14: .init(hour: 07, minute: 00), 15: .init(hour: 07, minute: 30),
+        16: .init(hour: 08, minute: 00), 17: .init(hour: 08, minute: 30),
+        18: .init(hour: 09, minute: 00), 19: .init(hour: 09, minute: 30),
         20: .init(hour: 10, minute: 00), 21: .init(hour: 10, minute: 30),
         22: .init(hour: 11, minute: 00), 23: .init(hour: 11, minute: 30),
         24: .init(hour: 12, minute: 00), 25: .init(hour: 12, minute: 30),
@@ -162,15 +162,15 @@ public struct TimeMap {
 
     static let serverMap: [String: Int] = [
         "00:00": 0, "00:30": 1,
-        "01:00": 2, "01:30": 3,
-        "02:00": 4, "02:30": 5,
-        "03:00": 6, "03:30": 7,
-        "04:00": 8, "04:30": 9,
-        "05:00": 10, "05:30": 11,
-        "06:00": 12, "06:30": 13,
-        "07:00": 14, "07:30": 15,
-        "08:00": 16, "08:30": 17,
-        "09:00": 18, "09:30": 19,
+        "1:00": 2, "1:30": 3,
+        "2:00": 4, "2:30": 5,
+        "3:00": 6, "3:30": 7,
+        "4:00": 8, "4:30": 9,
+        "5:00": 10, "5:30": 11,
+        "6:00": 12, "6:30": 13,
+        "7:00": 14, "7:30": 15,
+        "8:00": 16, "8:30": 17,
+        "9:00": 18, "9:30": 19,
         "10:00": 20, "10:30": 21,
         "11:00": 22, "11:30": 23,
         "12:00": 24, "12:30": 25,
