@@ -81,8 +81,8 @@ extension NavigationService {
 // MARK: - LoadAuth
 extension NavigationService {
     class func loadAuth(with error: String? = nil) {
-        let authStoryboard = UIStoryboard(.auth)
         DispatchQueue.main.async {
+            let authStoryboard = UIStoryboard(.auth)
             let controller = configureNavigationStack(for: authStoryboard, identifier: .authNavigation)
             switchRootView?(controller)
             if let error = error {

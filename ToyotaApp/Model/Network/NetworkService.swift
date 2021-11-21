@@ -7,22 +7,19 @@ class NetworkService {
     
     private static let mainUrl = MainURL.build(isSecure: true)
     
-    class func makePostRequest<T: Codable>(page: RequestPath,
+    class func makeRequest<T: Codable>(page: RequestPath,
                                            params: RequestItems = .empty,
-                                           completion: @escaping (Result<T, ErrorResponse>) -> Void = {_ in }) {
+                                           completion: @escaping (Result<T, ErrorResponse>) -> Void) {
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
         
-        session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
-                #warning("todo: switch by error code")
                 completion(Result.failure(.lostConnection))
                 return
             }
             
             guard let data = data else {
-                DispatchQueue.main.async {
-                    completion(Result.failure(.corruptedData))
-                }
+                completion(Result.failure(.corruptedData))
                 return
             }
             
@@ -36,7 +33,9 @@ class NetworkService {
             } else {
                 completion(Result.failure(.corruptedData))
             }
-        }.resume()
+        }
+
+        task.resume()
     }
     
     class func makeRequest<T: Codable>(page: RequestPath,
@@ -48,7 +47,6 @@ class NetworkService {
 
         let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
             guard error == nil else {
-            #warning("todo: switch by error code")
                 handler?.onFailure?(.lostConnection)
                 return
             }
@@ -102,7 +100,7 @@ typealias RequestItems = [RequestItem]
 
 extension Array where Element == RequestItem {
     var asQueryItems: [URLQueryItem] {
-        map({ key, value in .init(name: key.rawValue, value: value) })
+        map { key, value in .init(name: key.rawValue, value: value) }
     }
     
     static let empty: RequestItems = []

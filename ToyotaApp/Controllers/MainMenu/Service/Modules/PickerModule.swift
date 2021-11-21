@@ -49,8 +49,8 @@ class PickerModule: NSObject, IServiceModule {
 
         let params: RequestItems = [(.carInfo(.showroomId), showroomId),
                                     (.services(.serviceTypeId), serviceType.id)]
-        NetworkService.makePostRequest(page: .services(.getServices),
-                                       params: params) { [weak self] (response: NetworkResponse<ServicesDidGetResponse>) in
+        NetworkService.makeRequest(page: .services(.getServices),
+                                   params: params) { [weak self] (response: NetworkResponse<ServicesDidGetResponse>) in
             self?.completion(for: response)
         }
     }
@@ -61,8 +61,8 @@ class PickerModule: NSObject, IServiceModule {
         state = .idle
         internalView.textField.text = .empty
 
-        NetworkService.makePostRequest(page: page,
-                                       params: params) { [weak self] (response: NetworkResponse<TResponse>) in
+        NetworkService.makeRequest(page: page,
+                                   params: params) { [weak self] (response: NetworkResponse<TResponse>) in
             self?.completion(for: response)
         }
     }

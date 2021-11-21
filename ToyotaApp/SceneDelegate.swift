@@ -14,11 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             NavigationService.loadAuth()
             return
         }
-        NetworkService.makePostRequest(page: .start(.checkUser),
-                                       params: [(.auth(.userId), userId),
-                                                (.auth(.brandId), Brand.Toyota),
-                                                (.auth(.secretKey), secretKey)],
-                                       completion: resolveNavigation)
+        NetworkService.makeRequest(page: .start(.checkUser),
+                                   params: [(.auth(.userId), userId),
+                                            (.auth(.brandId), Brand.Toyota),
+                                            (.auth(.secretKey), secretKey)],
+                                   completion: resolveNavigation)
     }
 }
 
@@ -31,8 +31,7 @@ extension SceneDelegate {
         UIView.transition(with: window,
                           duration: 0.5,
                           options: [.transitionFlipFromLeft],
-                          animations: nil,
-                          completion: nil)
+                          animations: nil)
     }
     
     func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
