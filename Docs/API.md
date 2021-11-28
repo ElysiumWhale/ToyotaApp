@@ -124,6 +124,12 @@ Base **image** URL: <http://cv39623.tmweb.ru/avtosalon> (using for downloading a
 | 13  | ~~2 questions + timepick + map~~ |                        |                         |
 | 14  | ~~3 questions + timepick + map~~ |                        |                         |
 
+## Colors
+
+- #D90022
+- #F20022
+- See brandbook
+
 ## Testing
 
 SMS code for registration: **1234**
@@ -351,12 +357,66 @@ SMS code for registration: **1234**
 
 ##### **Variant 5:** Full profile
 
-**[Look there](#variant-4-fully-registered-and-authorized-on-device)**
-
-plus addiotional field:
-
-```json
-  "register_status":1
+```json=
+{
+  "result": "ok",
+  "secret_key": "7ab7e6dc2cf0b6daa789185d51c118a8",
+  "user_id": "365",
+  "registered_user": {
+    "profile": {
+      "first_name": "Валерий",
+      "second_name": "Абобович",
+      "last_name": "Жмышенко",
+      "phone": "79093624285",
+      "email": "aboba@aboba.com",
+      "birthday": "1990-10-30"
+    },
+    "showroom": [
+      {
+        "id": "1",
+        "showroom_name": "Тойота Центр Самара Юг",
+        "city_name": "Самара"
+      },
+      {
+        "id": "2",
+        "showroom_name": "Тойота Центр Самара Север",
+        "city_name": "Самара"
+      },
+      {
+        "id": "7",
+        "showroom_name": "Тойота Центр Самара Аврора",
+        "city_name": "Самара"
+      }
+    ],
+    "car": [
+      {
+        "car_brand_name": "Toyota",
+        "car_model_name": "RAV4",
+        "color_swatch": "#cc6633",
+        "car_color_name": "Абрикос",
+        "color_description": "Серебристо-светло оранжевый",
+        "color_metallic": "1",
+        "car_id": "1",
+        "showroom_id": "1",
+        "license_plate": "а001аа163rus",
+        "vin_code": "1234567890abcdefg"
+      },
+      {
+        "car_brand_name": "Toyota",
+        "car_model_name": "LC 200",
+        "color_swatch": "#ffff33",
+        "car_color_name": "Акапулько",
+        "color_description": "Ярко-жёлтый",
+        "color_metallic": "0",
+        "car_id": "4",
+        "showroom_id": "2",
+        "license_plate": "б001аа163rus",
+        "vin_code": "uMGT0r6tF6zWZmBzH"
+      }
+    ]
+  },
+  "register_status": 1
+}
 ```
 
 #### **Failure response**
