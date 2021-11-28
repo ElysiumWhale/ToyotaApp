@@ -1,5 +1,5 @@
 import UIKit
-import Kingfisher
+import Nuke
 
 @IBDesignable class ManagerCollectionViewCell: CollectionCell {
     @IBOutlet private var showroomLabel: UILabel!
@@ -24,10 +24,9 @@ import Kingfisher
                   return
               }
 
-        photo.kf.indicatorType = .activity
-        photo.isOpaque = false
-        photo.kf.setImage(with: ImageResource(downloadURL: url),
-                          placeholder: UIImage(named: "person.fill"),
-                          options: [.transition(.fade(0.7))], progressBlock: nil)
+        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.6),
+                                          failureImage: UIImage(named: "person.fill"),
+                                          failureImageTransition: .fadeIn(duration: 0.3))
+        Nuke.loadImage(with: url, options: options, into: photo)
     }
 }

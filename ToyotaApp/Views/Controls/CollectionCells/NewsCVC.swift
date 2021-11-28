@@ -1,5 +1,5 @@
 import UIKit
-//import Kingfisher
+import Nuke
 
 @IBDesignable class NewsCollectionViewCell: CollectionCell {
     @IBOutlet private var titleLabel: UILabel!
@@ -19,11 +19,9 @@ import UIKit
             return
         }
 
-        //newsImage.kf.indicatorType = .activity
-        //newsImage.isOpaque = false
-//        newsImage.kf.setImage(with: ImageResource(downloadURL: url),
-//                              placeholder: nil,
-//                              options: [.transition(.fade(0.7))],
-//                              progressBlock: nil)
+        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.6),
+                                          failureImage: nil,
+                                          failureImageTransition: .fadeIn(duration: 0.3))
+        Nuke.loadImage(with: url, options: options, into: newsImage)
     }
 }
