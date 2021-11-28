@@ -1,19 +1,20 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
+
     var window: UIWindow?
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if scene as? UIWindowScene == nil { return }
-        
+
         NavigationService.switchRootView = changeRootViewController
-        
+
         guard let userId = KeychainManager<UserId>.get()?.id,
               let secretKey = KeychainManager<SecretKey>.get()?.secret else {
             NavigationService.loadAuth()
             return
         }
+
         NetworkService.makeRequest(page: .start(.checkUser),
                                    params: [(.auth(.userId), userId),
                                             (.auth(.brandId), Brand.Toyota),
@@ -25,15 +26,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // MARK: - Navigation
 extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController) {
-        guard let window = window else { return }
+        guard let window = window else {
+            return
+        }
+
         window.rootViewController = vc
-        
+
         UIView.transition(with: window,
                           duration: 0.5,
                           options: [.transitionFlipFromLeft],
                           animations: nil)
     }
-    
+
     func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
         switch response {
             case .success(let data):

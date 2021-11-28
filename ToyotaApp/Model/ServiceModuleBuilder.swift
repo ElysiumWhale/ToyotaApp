@@ -34,7 +34,7 @@ class ServiceModuleBuilder {
         modules.forEach { $0.delegate = controller }
         return controller
     }
-    
+
     class func buildModules(with serviceType: ServiceType,
                             for controlType: ControllerServiceType) -> [IServiceModule] {
         var modules: [IServiceModule] = []
@@ -63,6 +63,7 @@ class ServiceModuleBuilder {
                 modules.append(TimePickerModule(with: serviceType))
             default: break
         }
+
         return modules
     }
 }

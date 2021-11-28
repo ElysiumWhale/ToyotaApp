@@ -10,9 +10,9 @@ enum CountryPrefix: String {
 @IBDesignable
 class PhoneTextField: UITextField {
     private var prefixLabel: UILabel!
-    
+
     var countryPrefix: CountryPrefix = .ru
-    
+
     var prefix: String? { prefixLabel.text?.filter({ $0.isMathSymbol || $0.isNumber}) }
     var phone: String? {
         if let prefix = prefix, let text = text {
@@ -52,7 +52,7 @@ class PhoneTextField: UITextField {
         delegate = self
         layer.cornerRadius = 10
         clipsToBounds = true
-        
+
         if let placeholder = placeholder {
             let place = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.placeholderText])
             attributedPlaceholder = place
@@ -64,6 +64,7 @@ class PhoneTextField: UITextField {
         guard let phone = phone, let prefixCount = prefix?.filter({$0.isNumber}).count else {
             return nil
         }
+
         var numberOfDigits = 0
         switch prefixCount {
             case 1: numberOfDigits = 10
@@ -71,6 +72,7 @@ class PhoneTextField: UITextField {
             case 3: numberOfDigits = 8
             default: numberOfDigits = 0
         }
+
         let regEx = "^\\+[0-9]{\(prefixCount)}[0-9]{\(numberOfDigits)}$"
         let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)
         return phoneCheck.evaluate(with: phone) ? phone : nil
@@ -83,6 +85,7 @@ extension PhoneTextField: UITextFieldDelegate {
         if range.location >= 10 {
             return false
         }
+
         return true
     }
 }

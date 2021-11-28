@@ -6,7 +6,7 @@ enum RequestPath {
     case services(_ page: Services)
     case profile(_ page: Profile)
     case setting(_ page: Settings)
-    
+
     var rawValue: String {
         switch self {
             case .start(let page): return page.rawValue
@@ -16,11 +16,11 @@ enum RequestPath {
             case .setting(let page): return page.rawValue
         }
     }
-    
+
     enum Start: String {
         case checkUser = "check_user.php"
     }
-    
+
     enum Registration: String {
         case registerPhone = "register_phone.php"
         case checkCode = "check_code.php"
@@ -32,7 +32,7 @@ enum RequestPath {
         case checkVin = "check_vin_code.php"
         case deleteTemp = "delete_tmp_record.php"
     }
-    
+
     enum Services: String {
         case getServicesTypes = "get_service_type.php"
         case getServices = "get_services.php"
@@ -42,7 +42,7 @@ enum RequestPath {
         case getTestDriveShowrooms = "get_showrooms_list_ftd.php"
         case getTestDriveServiceId = "get_service_id.php"
     }
-    
+
     enum Profile: String {
         case getCities = "get_cities.php"
         case addShowroom = "add_showroom.php"
@@ -51,7 +51,7 @@ enum RequestPath {
         case getBookings = "get_users_booking.php"
         case removeCar = "delete_user_car.php"
     }
-    
+
     enum Settings: String {
         case changePhone = "change_phone_number.php"
     }

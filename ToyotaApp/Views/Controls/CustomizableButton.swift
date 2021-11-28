@@ -50,7 +50,7 @@ class CustomizableButton: UIButton {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+
         setTitleColor(.white, for: .highlighted)
         layer.cornerRadius = rounded ? frame.size.height / 2 : 0
         layer.borderWidth = borderWidth

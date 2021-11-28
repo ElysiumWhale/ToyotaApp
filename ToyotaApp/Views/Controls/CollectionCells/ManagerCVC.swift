@@ -6,13 +6,13 @@ import Kingfisher
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var infoLabel: UILabel!
     @IBOutlet private var photo: UIImageView!
-    
+
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
     }
-    
+
     class var identifier: UICollectionView.CollectionCells { .manager }
-    
+
     func configure(from manager: Manager) {
         showroomLabel.text = manager.showroomName
         nameLabel.text = "\(manager.firstName) \(manager.lastName)"
@@ -23,7 +23,7 @@ import Kingfisher
               let url = NetworkService.buildImageUrl(manager.imageUrl) else {
                   return
               }
-        
+
         photo.kf.indicatorType = .activity
         photo.isOpaque = false
         photo.kf.setImage(with: ImageResource(downloadURL: url),

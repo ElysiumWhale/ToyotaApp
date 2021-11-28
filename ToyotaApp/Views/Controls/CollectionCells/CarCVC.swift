@@ -7,19 +7,19 @@ import UIKit
     @IBOutlet private var colorDesrLabel: UILabel!
     @IBOutlet private var showroomName: UILabel!
     @IBOutlet private var carImage: UIImageView!
-    
+
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
     }
-    
+
     var removeAction: VoidClosure?
-    
+
     class var identifier: UICollectionView.CollectionCells { .car }
-    
+
     @IBAction func removeCarTapped(sender: Any?) {
         removeAction?()
     }
-    
+
     func configure(brand: String, model: String, color: String,
                    plate: String, colorDesription: String, showroom: String) {
         brandNameLabel.text = "\(brand) \(model)"

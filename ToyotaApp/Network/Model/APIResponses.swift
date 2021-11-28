@@ -274,7 +274,7 @@ public struct Booking: Codable {
     let showroomName: String
     let serviceName: String
     let postName: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case latitude, longitude, status
         case date = "date_booking"
