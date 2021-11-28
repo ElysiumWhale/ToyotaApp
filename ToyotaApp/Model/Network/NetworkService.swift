@@ -8,8 +8,8 @@ class NetworkService {
     private static let mainUrl = MainURL.build(isSecure: true)
     
     class func makeRequest<T: Codable>(page: RequestPath,
-                                           params: RequestItems = .empty,
-                                           completion: @escaping (Result<T, ErrorResponse>) -> Void) {
+                                       params: RequestItems = .empty,
+                                       completion: @escaping (Result<T, ErrorResponse>) -> Void) {
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
         
         let task = session.dataTask(with: request) { (data, response, error) in

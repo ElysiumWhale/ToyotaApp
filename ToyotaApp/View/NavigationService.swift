@@ -57,10 +57,12 @@ class NavigationService {
         }
     }
 
-    private class func configureNavigationStack(with controllers: [UIViewController]? = nil, for storyboard: UIStoryboard, identifier: ViewControllers) -> UINavigationController {
+    private class func configureNavigationStack(with controllers: [UIViewController] = [],
+                                                for storyboard: UIStoryboard,
+                                                identifier: ViewControllers) -> UINavigationController {
         let controller: UINavigationController = storyboard.instantiate(identifier)
         controller.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-        if let controllers = controllers, !controllers.isEmpty {
+        if !controllers.isEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
         return controller
@@ -104,7 +106,7 @@ extension NavigationService {
     class func loadRegister(_ state: RegistrationStates) {
         DispatchQueue.main.async {
             let regStoryboard = UIStoryboard(.register)
-            var controllers: [UIViewController]?
+            var controllers: [UIViewController] = []
             switch state {
                 case .error(let message):
                     PopUp.display(.error(description: message))
@@ -151,8 +153,7 @@ extension NavigationService {
             }
         }
         DispatchQueue.main.async {
-            let mainStoryboard = UIStoryboard(.mainMenu)
-            let controller: UITabBarController = mainStoryboard.instantiate(.mainMenuTabBar)
+            let controller: UITabBarController = UIStoryboard(.mainMenu).instantiate(.mainMenuTabBar)
             
             switch UserInfo.build() {
                 case .failure:
