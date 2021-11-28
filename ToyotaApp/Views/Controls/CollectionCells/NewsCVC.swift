@@ -1,5 +1,5 @@
 import UIKit
-import Kingfisher
+//import Kingfisher
 
 @IBDesignable class NewsCollectionViewCell: CollectionCell {
     @IBOutlet private var titleLabel: UILabel!
@@ -19,11 +19,11 @@ import Kingfisher
             return
         }
 
-        newsImage.kf.indicatorType = .activity
-        newsImage.isOpaque = false
-        newsImage.kf.setImage(with: ImageResource(downloadURL: url),
-                              placeholder: nil,
-                              options: [.transition(.fade(0.7))],
-                              progressBlock: nil)
+        //newsImage.kf.indicatorType = .activity
+        //newsImage.isOpaque = false
+//        newsImage.kf.setImage(with: ImageResource(downloadURL: url),
+//                              placeholder: nil,
+//                              options: [.transition(.fade(0.7))],
+//                              progressBlock: nil)
     }
 }

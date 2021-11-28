@@ -2,12 +2,13 @@
   "object": {
     "pins": [
       {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "d06df9adf50ed8cde5786d935836a5f445f780ba",
-          "version": "6.3.1"
+          "revision": "7f73ceaeacd5df75a7994cd82e165ad9ff1815db",
+          "version": "9.6.1"
+        }
         }
       },
       {

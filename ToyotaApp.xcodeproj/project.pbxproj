@@ -31,7 +31,6 @@
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCVC.swift */; };
-		1495724625BA04F20031A5AA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1495724525BA04F20031A5AA /* Kingfisher */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
@@ -46,6 +45,7 @@
 		14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CFEF0A2714E22C0034046C /* CustomizableButton.swift */; };
 		14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FF92753AC0C00546587 /* RequestPath.swift */; };
 		14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FFB2753AC1700546587 /* RequestKey.swift */; };
+		14D560002753D1FA00546587 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 14D55FFF2753D1FA00546587 /* Nuke */; };
 		14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 14DF1E43272D8F3C00B4556E /* SwiftSoup */; };
 		14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF1E45272D8F6A00B4556E /* HtmlParser.swift */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
@@ -189,8 +189,8 @@
 			files = (
 				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
 				14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */,
-				1495724625BA04F20031A5AA /* Kingfisher in Frameworks */,
 				1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */,
+				14D560002753D1FA00546587 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,9 +506,9 @@
 			name = ToyotaApp;
 			packageProductDependencies = (
 				A7A085FC255C869C00807225 /* SwiftEntryKit */,
-				1495724525BA04F20031A5AA /* Kingfisher */,
 				1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */,
 				14DF1E43272D8F3C00B4556E /* SwiftSoup */,
+				14D55FFF2753D1FA00546587 /* Nuke */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -540,9 +540,9 @@
 			mainGroup = A759467F2523E32F00312EBE;
 			packageReferences = (
 				A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
-				1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -881,12 +881,12 @@
 				minimumVersion = 4.0.1;
 			};
 		};
-		1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			repositoryURL = "https://github.com/kean/Nuke";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.1;
+				minimumVersion = 9.0.0;
 			};
 		};
 		14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
@@ -913,10 +913,10 @@
 			package = 1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
 		};
-		1495724525BA04F20031A5AA /* Kingfisher */ = {
+		14D55FFF2753D1FA00546587 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1495724425BA04F20031A5AA /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = 14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 		14DF1E43272D8F3C00B4556E /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
