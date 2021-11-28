@@ -334,7 +334,8 @@
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
 				A7777519259BFA00006D30EA /* Controllers */,
-				A791FDE225266F2700A595BB /* View */,
+				14E5A9CA26345B290057BEF3 /* StoryBoards */,
+				A791FDE225266F2700A595BB /* Views */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
 				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
@@ -430,17 +431,16 @@
 			path = News;
 			sourceTree = "<group>";
 		};
-		A791FDE225266F2700A595BB /* View */ = {
+		A791FDE225266F2700A595BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */,
 				1467F78825D339DF00E318D3 /* UIExtensions.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
-				14E5A9CA26345B290057BEF3 /* StoryBoards */,
 				A791FDE8252672FA00A595BB /* Controls */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A791FDE8252672FA00A595BB /* Controls */ = {
