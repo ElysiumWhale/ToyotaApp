@@ -1,6 +1,6 @@
 import Foundation
 
-public class Test {
+public class Mocks {
     class func addCarToUser(completion: @escaping (Car, Showroom) -> Void) {
         let car = Car(id: "-1", showroomId: "-1", brand: "ToyotaToyota",
                       model: "OutlanderOutlander OutlanderOutlander",
