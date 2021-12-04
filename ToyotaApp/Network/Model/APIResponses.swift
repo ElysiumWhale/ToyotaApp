@@ -62,7 +62,9 @@ public struct CitiesDidGetResponse: IServiceResponse {
     var array: [IService] { cities }
 }
 
-public struct City: IService {
+public struct City: IService, WithDefaultKey {
+    static var key: DefaultKeys = .selectedCity
+
     let id: String
     let name: String
 

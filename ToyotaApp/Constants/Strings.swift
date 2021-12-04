@@ -92,7 +92,6 @@ extension String {
         case autoLinked = "Автомобиль успешно привязан к профилю"
         /// Телефон упешно изменен
         case phoneChanged = "Телефон упешно изменен"
-        
     }
 
     enum QuestionStrings: String {
@@ -119,6 +118,8 @@ extension String {
         case somethingWentWrong = "Что то пошло не так..."
         /// На данный момент нет актуальных предложений.
         case noNews = "На данный момент нет актуальных предложений."
+        /// Нет доступных городов.
+        case noCities = "Нет доступных городов."
     }
 }
 

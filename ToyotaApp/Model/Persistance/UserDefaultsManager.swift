@@ -3,6 +3,7 @@ import Foundation
 /// Keys for information **pushing to** and **retrieving from**  `UserDefaults`
 enum DefaultKeys: String {
     case noCarsMessage
+    case selectedCity
 }
 
 protocol WithDefaultKey: Codable {
