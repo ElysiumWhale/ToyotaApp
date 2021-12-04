@@ -37,6 +37,7 @@
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
+		14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B2A7E5275C0249002A6ADF /* Redundant.storyboard */; };
 		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
@@ -126,6 +127,7 @@
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
+		14B2A7E5275C0249002A6ADF /* Redundant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Redundant.storyboard; sourceTree = "<group>"; };
 		14BDFF5C270892E200C90882 /* EntryPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
 				A75946912523E32F00312EBE /* MainMenu.storyboard */,
 				14A8D8972617C5C40086BC12 /* MyProfile.storyboard */,
+				14B2A7E5275C0249002A6ADF /* Redundant.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
 				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
+				14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
 				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
