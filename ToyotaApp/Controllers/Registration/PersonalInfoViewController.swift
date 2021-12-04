@@ -16,7 +16,7 @@ class PersonalInfoViewController: KeyboardableController {
     private var textFieldsWithError: [UITextField: Bool] = [:]
 
     private var cities: [City] = []
-    private var date: String = ""
+    private var date: String = .empty
 
     private var isConfigured: Bool = false
     private var configuredProfile: Profile?
@@ -78,7 +78,7 @@ class PersonalInfoViewController: KeyboardableController {
 extension PersonalInfoViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupKeyboard(isSubcribing: true)
-        
+
         if isConfigured, let profile = configuredProfile {
             firstNameTextField.text = profile.firstName
             secondNameTextField.text = profile.secondName
@@ -90,7 +90,7 @@ extension PersonalInfoViewController {
                 textFieldsWithError[$0.key] = false
             }
         }
-        
+
         if activitySwitcher.isAnimating {
             activitySwitcher.stopAnimating()
             nextButton.fadeIn()
