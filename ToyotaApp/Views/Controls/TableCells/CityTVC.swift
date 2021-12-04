@@ -1,6 +1,6 @@
 import UIKit
 
-class CityTVC: TableCell {
+class CityCell: TableCell {
     @IBOutlet private var cityNameLabel: UILabel!
 
     class var identifier: UITableView.TableCells { .cityCell }
