@@ -3,25 +3,25 @@ import UIKit
 class BookingsViewController: RefreshableController, BackgroundText {
     @IBOutlet private(set) var refreshableView: UITableView!
 
-    private(set) var refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
 
     private var bookings: [Booking] = []
 
     private lazy var handler: RequestHandler<BookingsResponse> = {
         var handler = RequestHandler<BookingsResponse>()
-        
+
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
                 self?.handle(success: data)
             }
         }
-        
+
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
                 self?.handle(failure: error)
             }
         }
-        
+
         return handler
     }()
     
@@ -49,8 +49,10 @@ class BookingsViewController: RefreshableController, BackgroundText {
         #if DEBUG
         bookings.append(.mock)
         #endif
-        bookings.sort(by: { formatter.date(from: $0.date) ?? Date() > formatter.date(from: $1.date) ?? Date() })
-        
+        bookings.sort(by: {
+            formatter.date(from: $0.date) ?? Date() > formatter.date(from: $1.date) ?? Date()
+        })
+
         endRefreshing()
         refreshableView.reloadData()
         if bookings.isEmpty {

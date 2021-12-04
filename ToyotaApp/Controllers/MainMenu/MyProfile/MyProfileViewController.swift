@@ -36,7 +36,7 @@ class MyProfileViewController: UIViewController {
         didSet { switchInterface(state) }
     }
 
-    private var date: String = "" {
+    private var date: String = .empty {
         didSet { view.endEditing(true) }
     }
 
@@ -52,20 +52,20 @@ class MyProfileViewController: UIViewController {
 
     private lazy var updateUserHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
-        
+
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
                 self?.handle(success: data)
             }
         }
-        
+
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
                 PopUp.display(.error(description: error.message ?? .error(.savingError)))
                 self?.state = .editing
             }
         }
-        
+
         return handler
     }()
 
@@ -77,7 +77,7 @@ class MyProfileViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         updateFields()
-        
+
         let constraints = getConstraints(for: state)
         view.removeConstraint(saveButtonLeadingConstraint)
         view.addConstraint(constraints.save)
@@ -85,7 +85,7 @@ class MyProfileViewController: UIViewController {
         view.removeConstraint(cancelButtonLeadingConstant)
         view.addConstraint(constraints.cancel)
         cancelButtonLeadingConstant = constraints.cancel
-        
+
         textFieldsWithError = [firstNameTextField: false, secondNameTextField: false,
                                lastNameTextField: false, emailTextField: false, birthTextField: false]
         for field in textFieldsWithError.keys {
@@ -171,9 +171,9 @@ extension MyProfileViewController {
         for field in textFieldsWithError.keys {
             field.isEnabled = isEditing ? true : false
         }
-        
+
         let constraints = getConstraints(for: state)
-        
+
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
             cancelButton.isEnabled = isEditing
             view.removeConstraint(saveButtonLeadingConstraint)
@@ -181,15 +181,15 @@ extension MyProfileViewController {
             view.removeConstraint(cancelButtonLeadingConstant)
             view.addConstraint(constraints.cancel)
             view.layoutIfNeeded()
-            
+
             if state != .loading {
                 saveButton.setTitle(isEditing ? .common(.save) : .common(.edit), for: .normal)
             }
-            
+
             saveButtonLeadingConstraint = constraints.save
             cancelButtonLeadingConstant = constraints.cancel
         })
-        
+
         if state != .loading {
             date = .empty
         }
@@ -208,7 +208,7 @@ extension MyProfileViewController {
 
     @IBAction private func textDidChange(sender: UITextField) {
         let isValid = sender.text != nil && !sender.text!.isEmpty && sender.text!.count < 25
-        
+
         sender.toggle(state: isValid ? .normal : .error)
         textFieldsWithError[sender] = !isValid
     }
@@ -221,12 +221,12 @@ extension MyProfileViewController {
             state = .none
             return
         }
-        
+
         guard textFieldsWithError.allSatisfy({ !$0.value }) else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }
-        
+
         state = .loading
         NetworkService.makeRequest(page: .profile(.editProfile),
                                    params: requestParams,
