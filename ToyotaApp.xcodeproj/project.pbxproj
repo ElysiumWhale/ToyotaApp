@@ -36,6 +36,7 @@
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
+		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
 		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
@@ -124,6 +125,7 @@
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
 		14BDFF5C270892E200C90882 /* EntryPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
+				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */,
 				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
+				14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,

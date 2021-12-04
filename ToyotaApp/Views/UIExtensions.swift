@@ -155,6 +155,8 @@ extension UITableView {
     enum TableCells: String {
         /// BookingCell
         case bookingCell = "BookingCell"
+        /// CityCell
+        case cityCell = "CityCell"
     }
     
     func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
