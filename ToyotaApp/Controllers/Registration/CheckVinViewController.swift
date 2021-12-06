@@ -18,7 +18,7 @@ class CheckVinViewController: UIViewController {
     private var type: AddInfoType = .register
 
     private var isSkipped: Bool = false
-    private var vin: String = ""
+    private var vin: String = .empty
 
     private lazy var requestHandler: RequestHandler<CarDidCheckResponse> = {
         let handler = RequestHandler<CarDidCheckResponse>()
@@ -78,7 +78,7 @@ extension CheckVinViewController {
         makeRequest(skip: .yes)
     }
 
-    private func makeRequest(skip: SkipCheckVin, vin: String? = "") {
+    private func makeRequest(skip: SkipCheckVin, vin: String = .empty) {
         checkVinButton.fadeOut()
         indicator.startAnimating()
         
@@ -111,7 +111,7 @@ extension CheckVinViewController {
         }
     }
 
-    private func interfaceCompletion(_ isSuccess: Bool, _ parameter: String = "") {
+    private func interfaceCompletion(_ isSuccess: Bool, _ parameter: String = .empty) {
         DispatchQueue.main.async { [self] in
             indicator.stopAnimating()
             checkVinButton.fadeIn()

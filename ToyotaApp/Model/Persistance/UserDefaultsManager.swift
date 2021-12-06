@@ -4,6 +4,7 @@ import Foundation
 enum DefaultKeys: String {
     case noCarsMessage
     case selectedCity
+    case selectedShowroom
 }
 
 protocol WithDefaultKey: Codable {

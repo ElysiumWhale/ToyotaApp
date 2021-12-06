@@ -26,16 +26,34 @@ enum MainURL {
     static func build(isSecure: Bool = false) -> URLComponents {
         var res = URLComponents()
         res.scheme = isSecure ? https : http
-        res.host = host
-        res.path = path
+        #if DEBUG
+            res.host = debugHost
+        #else
+            res.host = host
+        #endif
+
+        #if DEBUG
+            res.path = debugPath
+        #else
+            res.path = path
+        #endif
         return res
     }
 
     static func buildImageUrl(isSecure: Bool = false) -> URLComponents {
         var res = URLComponents()
         res.scheme = isSecure ? https : http
-        res.host = host
-        res.path = imgPath
+        #if DEBUG
+            res.host = debugHost
+        #else
+            res.host = host
+        #endif
+
+        #if DEBUG
+            res.path = debugImgPath
+        #else
+            res.path = imgPath
+        #endif
         return res
     }
 }

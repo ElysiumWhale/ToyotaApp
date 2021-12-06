@@ -82,7 +82,9 @@ class Cars: Keychainable {
 }
 
 // MARK: - Helper Structs
-struct Showroom: Codable {
+struct Showroom: Codable, WithDefaultKey {
+    static var key: DefaultKeys { .selectedShowroom }
+
     let id: String
     let showroomName: String
     let cityName: String
