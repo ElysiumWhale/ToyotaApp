@@ -77,6 +77,8 @@ enum ViewControllers: String {
     case myCar = "MyCarViewController"
     /// AgreementViewController
     case agreement = "AgreementViewController"
+    /// CityPickerViewController
+    case cityPick = "CityPickerViewController"
 }
 
 public enum SegueIdentifiers: String {
@@ -89,6 +91,8 @@ public enum SegueIdentifiers: String {
     
     /// PersonInfoToDealer
     case personInfoToDealer = "PersonInfoToDealer"
+    /// PersonInfoToCity
+    case personInfoToCity = "PersonInfoToCity"
     /// DealerToCar
     case dealerToCar = "DealerToCar"
     /// DealerToCheckVin
