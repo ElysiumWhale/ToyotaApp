@@ -206,3 +206,16 @@ extension UIStoryboardSegue {
         return result
     }
 }
+
+// MARK: - City picking cell coniguration
+extension UIContentConfiguration where Self == UIListContentConfiguration {
+    static func cellConfiguration(with text: String, isSelected: Bool) -> Self {
+        var result = UIListContentConfiguration.cell()
+        result.text = text
+        result.textProperties.color = isSelected
+            ? .white
+            : .appTint(.signatureGray)
+
+        return result
+    }
+}
