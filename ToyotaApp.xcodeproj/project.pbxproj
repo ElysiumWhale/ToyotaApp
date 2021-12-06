@@ -839,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Alyans-PRO.ToyotaDealerServices";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alyans-pro.ToyotaMobileServices";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
