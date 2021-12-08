@@ -66,13 +66,13 @@ extension UserInfo: UserProxy {
 
     var getPerson: Person { person }
 
+    var getCars: Cars { cars }
 
     var getShowrooms: Showrooms { showrooms }
     var getSelectedShowroom: Showroom? {
         DefaultsManager.getUserInfo(Showroom.self)
     }
 
-    var getCars: Cars { cars }
     var selectedCity: City? {
         DefaultsManager.getUserInfo(City.self)
     }
