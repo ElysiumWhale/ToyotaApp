@@ -8,10 +8,12 @@ protocol UserProxy {
     var getPerson: Person { get }
     var getShowrooms: Showrooms { get }
     var getSelectedShowroom: Showroom? { get }
+    var selectedCity: City? { get }
     var getCars: Cars { get }
     var getNotificator: Notificator { get }
 
     func updatePerson(from person: Person)
+    func updateSelected(city: City)
     func removeCar(with id: String)
 
     static func build() -> Result<UserProxy, AppErrors>
@@ -68,6 +70,9 @@ extension UserInfo: UserProxy {
     var getShowrooms: Showrooms { showrooms }
 
     var getCars: Cars { cars }
+    var selectedCity: City? {
+        DefaultsManager.getUserInfo(City.self)
+    }
 
     func updatePerson(from person: Person) {
         self.person = person
@@ -92,6 +97,10 @@ extension UserInfo: UserProxy {
         cars.chosenCar = selected
         KeychainManager.set(cars)
         notificator.notificateObservers()
+    }
+
+    func updateSelected(city: City) {
+        DefaultsManager.pushUserInfo(info: city)
     }
 
     func removeCar(with id: String) {
