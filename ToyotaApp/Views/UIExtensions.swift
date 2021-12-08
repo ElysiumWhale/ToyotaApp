@@ -22,12 +22,13 @@ extension UIView {
 // MARK: - Dismiss keyboard on swipe down
 extension UIView {
     func hideKeyboardWhenSwipedDown() {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        let swipe = UISwipeGestureRecognizer(target: self,
+                                             action: #selector(UIViewController.dismissKeyboard))
         swipe.cancelsTouchesInView = false
         swipe.direction = [.down]
         self.addGestureRecognizer(swipe)
     }
-    
+
     @objc func dismissKeyboard() {
         self.endEditing(true)
     }
@@ -61,14 +62,16 @@ extension UICollectionViewCell {
 
 // MARK: - Normal action adding to button
 extension UIControl {
-    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping() -> Void) {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
         addAction(UIAction { _ in closure() }, for: controlEvents)
     }
 }
 
 // MARK: - UIPicker
 extension UIPickerView {
-    func configurePicker<T>(with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+    func configurePicker<T>(with action: Selector,
+                            for textField: UITextField,
+                            delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
         self.dataSource = delegate
         self.delegate = delegate
         textField.inputAccessoryView = UIToolbar.buildToolBar(for: delegate, with: action)
@@ -98,7 +101,7 @@ extension UIFont {
         case book = "Book"
         case bold = "Bold"
         case black = "Black"
-        
+
         case lightItalic = "LightIt"
         case bookItalic = "BookIt"
         case regularItalic = "RegularIt"
@@ -126,7 +129,7 @@ extension UIColor {
         case background = "Background"
         case cell = "Cell"
     }
-    
+
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
 }
 
@@ -153,7 +156,7 @@ extension UITableView {
         /// CityCell
         case cityCell = "CityCell"
     }
-    
+
     func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
         let cell = dequeueReusableCell(withIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
         if let result = cell {
@@ -175,7 +178,7 @@ extension UICollectionView {
         /// ManagerCell
         case manager = "ManagerCell"
     }
-    
+
     func dequeue<TCell: IdentifiableCollectionCell>(for indexPath: IndexPath) -> TCell {
         let cell = dequeueReusableCell(withReuseIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
         if let result = cell {
@@ -193,11 +196,11 @@ extension UIStoryboardSegue {
             print("\nWarning: Segue code is empty\n")
             return nil
         }
-        
+
         guard let result = SegueIdentifiers(rawValue: id) else {
             fatalError("Identifier \(id) is not mapped to storyboard segue!")
         }
-        
+
         return result
     }
 }
