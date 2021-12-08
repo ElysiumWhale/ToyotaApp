@@ -1,7 +1,6 @@
 import Foundation
 
 protocol UserProxy {
-    func update(_ add: Car, _ from: Showroom)
     var getId: String { get }
     var getPhone: String { get }
     var getPerson: Person { get }
@@ -15,6 +14,7 @@ protocol UserProxy {
     func updateSelected(car: Car)
     func updateSelected(showroom: Showroom)
     func updateSelected(city: City)
+    func addNew(car: Car)
     func removeCar(with id: String)
 
     static func build() -> Result<UserProxy, AppErrors>
@@ -83,14 +83,10 @@ extension UserInfo: UserProxy {
         notificator.notificateObservers()
     }
 
-    func update(_ add: Car, _ from: Showroom) {
-        if showrooms.value.first(where: {$0.id == from.id}) == nil {
-            showrooms.value.append(from)
-            KeychainManager.set(showrooms)
-        }
-        cars.array.append(add)
+    func addNew(car: Car) {
+        cars.array.append(car)
         if cars.chosenCar == nil {
-            cars.chosenCar = add
+            cars.chosenCar = car
         }
         KeychainManager.set(cars)
         notificator.notificateObservers()
