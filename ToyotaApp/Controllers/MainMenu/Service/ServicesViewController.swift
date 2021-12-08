@@ -12,19 +12,19 @@ class ServicesViewController: RefreshableController, BackgroundText {
 
     private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesDidGetResponse> = {
         let handler = RequestHandler<ServicesTypesDidGetResponse>()
-        
+
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
                 self?.handle(success: data)
             }
         }
-        
+
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
                 self?.handle(failure: error)
             }
         }
-        
+
         return handler
     }()
 
