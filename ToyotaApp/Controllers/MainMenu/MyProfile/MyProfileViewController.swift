@@ -243,11 +243,11 @@ extension MyProfileViewController {
     }
 
     private func handle(success response: Response) {
-        user.update(Person(firstName: firstNameTextField.text!,
-                           lastName: lastNameTextField.text!,
-                           secondName: secondNameTextField.text!,
-                           email: emailTextField.text!,
-                           birthday: date))
+        user.updatePerson(from: Person(firstName: firstNameTextField.text!,
+                                       lastName: lastNameTextField.text!,
+                                       secondName: secondNameTextField.text!,
+                                       email: emailTextField.text!,
+                                       birthday: date))
         PopUp.display(.success(description: .common(.personalDataSaved)))
         state = .none
     }

@@ -1,8 +1,6 @@
 import Foundation
 
 protocol UserProxy {
-    static func build() -> Result<UserProxy, AppErrors>
-    func update(_ personData: Person)
     func update(_ add: Car, _ from: Showroom)
     func update(_ selected: Car)
     func remove(carId: String)
@@ -13,6 +11,10 @@ protocol UserProxy {
     var getSelectedShowroom: Showroom? { get }
     var getCars: Cars { get }
     var getNotificator: Notificator { get }
+
+    func updatePerson(from person: Person)
+
+    static func build() -> Result<UserProxy, AppErrors>
 }
 
 class UserInfo {
@@ -67,8 +69,8 @@ extension UserInfo: UserProxy {
 
     var getCars: Cars { cars }
 
-    func update(_ personData: Person) {
-        person = personData
+    func updatePerson(from person: Person) {
+        self.person = person
         KeychainManager.set(person)
         notificator.notificateObservers()
     }
