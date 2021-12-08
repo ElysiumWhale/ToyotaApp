@@ -71,7 +71,7 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
 
     private func removeCar(with id: String) {
         removeCarHandler.onSuccess = { [weak self] _ in
-            self?.user.remove(carId: id)
+            self?.user.removeCar(with: id)
             DispatchQueue.main.async {
                 self?.stopLoading()
             }
