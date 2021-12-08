@@ -73,9 +73,9 @@ class ServicesViewController: RefreshableController, BackgroundText {
         let row = carForServePicker.selectedRow(inComponent: 0)
         if let car = selectedCar, car.id != cars[row].id,
            let showroomName = user.getSelectedShowroom?.showroomName {
-            user.update(cars[row])
             carTextField.text = "\(car.brand) \(car.model)"
             showroomLabel.text = showroomName
+            user.updateSelected(car: cars[row])
             KeychainManager.set(Cars(cars))
             startRefreshing()
         }

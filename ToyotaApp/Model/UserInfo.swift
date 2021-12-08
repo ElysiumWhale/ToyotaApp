@@ -13,6 +13,8 @@ protocol UserProxy {
     var getNotificator: Notificator { get }
 
     func updatePerson(from person: Person)
+    func updateSelected(car: Car)
+    func updateSelected(showroom: Showroom)
     func updateSelected(city: City)
     func removeCar(with id: String)
 
@@ -93,14 +95,18 @@ extension UserInfo: UserProxy {
         notificator.notificateObservers()
     }
 
-    func update(_ selected: Car) {
-        cars.chosenCar = selected
+    func updateSelected(car: Car) {
+        cars.chosenCar = car
         KeychainManager.set(cars)
         notificator.notificateObservers()
     }
 
     func updateSelected(city: City) {
         DefaultsManager.pushUserInfo(info: city)
+    }
+
+    func updateSelected(showroom: Showroom) {
+        DefaultsManager.pushUserInfo(info: showroom)
     }
 
     func removeCar(with id: String) {

@@ -105,7 +105,7 @@ extension CheckVinViewController {
                 KeychainManager.set(Cars([car]))
                 perform(segue: segueCode)
             case .update(let proxy):
-                proxy.update(car, showroom!)
+                proxy.updateSelected(car: car)
                 PopUp.display(.success(description: .common(.autoLinked)))
                 popToRootWithDispatch(animated: true)
         }
