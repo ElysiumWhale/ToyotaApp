@@ -2,7 +2,6 @@ import Foundation
 
 protocol UserProxy {
     func update(_ add: Car, _ from: Showroom)
-    func update(_ selected: Car)
     var getId: String { get }
     var getPhone: String { get }
     var getPerson: Person { get }
@@ -67,9 +66,11 @@ extension UserInfo: UserProxy {
 
     var getPerson: Person { person }
 
-    var getSelectedShowroom: Showroom? { showrooms.value.first(where: {$0.id == cars.chosenCar?.showroomId}) }
 
     var getShowrooms: Showrooms { showrooms }
+    var getSelectedShowroom: Showroom? {
+        DefaultsManager.getUserInfo(Showroom.self)
+    }
 
     var getCars: Cars { cars }
     var selectedCity: City? {
