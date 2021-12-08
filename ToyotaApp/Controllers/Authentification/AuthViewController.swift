@@ -54,7 +54,7 @@ class AuthViewController: UIViewController {
 
     @IBAction func nextButtonDidPress(sender: Any?) {
         guard let phone = phoneNumber.validPhone else {
-            phoneNumber.toggleErrorState(hasError: true)
+            phoneNumber.toggle(state: .error)
             incorrectLabel.fadeIn(0.3)
             return
         }

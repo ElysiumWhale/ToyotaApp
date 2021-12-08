@@ -35,7 +35,7 @@ class CheckVinViewController: UIViewController {
 
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.fadeOut(0.3)
-        vinCodeTextField.toggleErrorState(hasError: false)
+        vinCodeTextField.toggle(state: .normal)
         vin = vinCodeTextField.text ?? .empty
     }
 
@@ -65,7 +65,7 @@ class CheckVinViewController: UIViewController {
 extension CheckVinViewController {
     @IBAction func nextButtonDidPressed(sender: Any?) {
         guard vin.count == 17 else {
-            vinCodeTextField.toggleErrorState(hasError: true)
+            vinCodeTextField.toggle(state: .error)
             errorLabel.fadeIn(0.3)
             return
         }

@@ -63,7 +63,7 @@ class PersonalInfoViewController: KeyboardableController {
 
     @IBAction private func textDidChange(sender: UITextField) {
         let isNormal = sender.text != nil && !sender.text!.isEmpty && sender.text!.count < 25
-        sender.toggleErrorState(hasError: !isNormal)
+        sender.toggle(state: isNormal ? .normal : .error)
         textFieldsWithError[sender] = !isNormal
     }
 
