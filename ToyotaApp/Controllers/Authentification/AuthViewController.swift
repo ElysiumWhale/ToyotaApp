@@ -14,20 +14,20 @@ class AuthViewController: UIViewController {
 
     private lazy var authRequestHandler: RequestHandler<Response> = {
         let handler = RequestHandler<Response>()
-        
+
         handler.onSuccess = { [weak self] _ in
             DispatchQueue.main.async {
                 self?.handle(isSuccess: true)
             }
         }
-        
+
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
                 self?.handle(isSuccess: false)
                 PopUp.display(.error(description: error.message ?? .error(.unknownError)))
             }
         }
-        
+
         return handler
     }()
 
@@ -36,7 +36,7 @@ class AuthViewController: UIViewController {
         incorrectLabel.alpha = 0
         view.hideKeyboardWhenSwipedDown()
         sendPhoneButton.bindToKeyboard()
-        
+
         if case .changeNumber = type {
             informationLabel.text = .common(.enterNewNumber)
             agreementStack.isHidden = true
@@ -58,7 +58,7 @@ class AuthViewController: UIViewController {
             incorrectLabel.fadeIn(0.3)
             return
         }
-        
+
         sendPhoneButton.fadeOut()
         indicator.startAnimating()
         view.endEditing(true)
@@ -68,10 +68,6 @@ class AuthViewController: UIViewController {
         NetworkService.makeRequest(page: .registration(.registerPhone),
                                    params: [(.personalInfo(.phoneNumber), phone)],
                                    handler: authRequestHandler)
-    }
-
-    @IBAction func agreementDidPress(sender: Any?) {
-        // todo: open link
     }
 
     private func handle(isSuccess: Bool) {

@@ -4,7 +4,6 @@ protocol UserProxy {
     var getId: String { get }
     var getPhone: String { get }
     var getPerson: Person { get }
-    var getShowrooms: Showrooms { get }
     var getSelectedShowroom: Showroom? { get }
     var selectedCity: City? { get }
     var getCars: Cars { get }
@@ -24,7 +23,6 @@ class UserInfo {
     let id: UserId
     private var phone: Phone
     private var person: Person
-    private var showrooms: Showrooms
     private var cars: Cars
 
     private let notificator: Notificator
@@ -32,21 +30,20 @@ class UserInfo {
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         guard let userId = KeychainManager<UserId>.get(),
               let phone = KeychainManager<Phone>.get(),
-              let person = KeychainManager<Person>.get(),
-              let showrooms = KeychainManager<Showrooms>.get() else {
+              let person = KeychainManager<Person>.get() else {
             return Result.failure(.notFullProfile)
         }
+
         let cars = KeychainManager<Cars>.get() ?? Cars([])
-        
-        return Result.success(UserInfo(userId, phone, person, showrooms, cars))
+
+        return Result.success(UserInfo(userId, phone, person, cars))
     }
 
-    private init(_ userId: UserId, _ userPhone: Phone, _ personInfo: Person,
-                 _ showroomsInfo: Showrooms, _ carsInfo: Cars) {
+    private init(_ userId: UserId, _ userPhone: Phone,
+                 _ personInfo: Person, _ carsInfo: Cars) {
         id = userId
         phone = userPhone
         person = personInfo
-        showrooms = showroomsInfo
         cars = carsInfo
         notificator = NotificationCentre()
     }
@@ -68,7 +65,6 @@ extension UserInfo: UserProxy {
 
     var getCars: Cars { cars }
 
-    var getShowrooms: Showrooms { showrooms }
     var getSelectedShowroom: Showroom? {
         DefaultsManager.getUserInfo(Showroom.self)
     }
