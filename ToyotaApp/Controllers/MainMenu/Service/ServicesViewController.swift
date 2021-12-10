@@ -1,8 +1,8 @@
 import UIKit
 
-class ServicesViewController: RefreshableController, BackgroundText {
     @IBOutlet private var carTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomLabel: UILabel!
+class ServicesViewController: RefreshableController, PickerController, BackgroundText {
     @IBOutlet private(set) var refreshableView: UICollectionView!
 
     private(set) var refreshControl = UIRefreshControl()
@@ -44,8 +44,8 @@ class ServicesViewController: RefreshableController, BackgroundText {
         carTextField.tintColor = .clear
         refreshableView.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
-        configurePicker(carForServePicker, with: #selector(carDidSelect), for: carTextField, delegate: self)
-        
+        configurePicker(showroomPicker, with: showroomDidSelect, for: showroomField)
+
         switch cars.count {
             case 1: layoutIfOneCar()
             case 2...: layoutIfManyCars()
@@ -68,7 +68,7 @@ class ServicesViewController: RefreshableController, BackgroundText {
         makeRequest()
     }
 
-    @IBAction private func carDidSelect(sender: Any?) {
+    private func showroomDidSelect() {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
         if let car = selectedCar, car.id != cars[row].id,

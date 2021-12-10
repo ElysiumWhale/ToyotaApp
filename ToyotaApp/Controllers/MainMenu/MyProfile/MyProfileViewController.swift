@@ -75,7 +75,7 @@ class MyProfileViewController: UIViewController {
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
         hideKeyboardWhenTappedAround()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        configureDatePicker(datePicker, with: dateDidSelect, for: birthTextField)
         updateFields()
 
         let constraints = getConstraints(for: state)
@@ -112,7 +112,7 @@ class MyProfileViewController: UIViewController {
         state = .none
     }
 
-    @IBAction private func dateDidSelect(sender: Any?) {
+    private func dateDidSelect() {
         date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
     }
 

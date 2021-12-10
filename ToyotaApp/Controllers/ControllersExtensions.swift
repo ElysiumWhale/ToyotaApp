@@ -2,22 +2,31 @@ import UIKit
 
 // MARK: - Toolbar for controls
 extension UIViewController {
-    func buildToolbar(with action: Selector) -> UIToolbar {
+    func buildToolbar(with action: @escaping VoidClosure) -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: self, action: action)
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem()
+        doneButton.primaryAction = UIAction { _ in
+            action()
+        }
+        doneButton.title = .common(.choose)
         doneButton.tintColor = .appTint(.secondarySignatureRed)
+        doneButton.style = .done
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
 }
 
 // MARK: - UIPicker
-extension UIViewController {
-    func configurePicker<T>(_ picker: UIPickerView, with action: Selector, for textField: UITextField, delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
-        picker.dataSource = delegate
-        picker.delegate = delegate
+protocol PickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    func configurePicker(_ picker: UIPickerView, with action: @escaping VoidClosure, for textField: UITextField)
+}
+
+extension PickerController {
+    func configurePicker(_ picker: UIPickerView, with action: @escaping VoidClosure, for textField: UITextField) {
+        picker.dataSource = self
+        picker.delegate = self
         textField.inputAccessoryView = buildToolbar(with: action)
         textField.inputView = picker
     }
@@ -25,7 +34,7 @@ extension UIViewController {
 
 // MARK: - UIDatePicker & Date Formatting
 extension UIViewController {
-    func configureDatePicker(_ datePicker: UIDatePicker, with action: Selector, for textField: UITextField) {
+    func configureDatePicker(_ datePicker: UIDatePicker, with action: @escaping VoidClosure, for textField: UITextField) {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru")
         datePicker.datePickerMode = .date

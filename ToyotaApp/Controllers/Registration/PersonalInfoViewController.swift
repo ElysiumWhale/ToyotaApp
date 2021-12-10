@@ -43,7 +43,7 @@ class PersonalInfoViewController: KeyboardableController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        configureDatePicker(datePicker, with: dateDidSelect, for: birthTextField)
         hideKeyboardWhenTappedAround()
         textFieldsWithError = [firstNameTextField: true, secondNameTextField: true,
                                lastNameTextField: true, emailTextField: true, birthTextField: true]
@@ -67,7 +67,7 @@ class PersonalInfoViewController: KeyboardableController {
         textFieldsWithError[sender] = !isNormal
     }
 
-    @IBAction private func dateDidSelect(sender: Any?) {
+    private func dateDidSelect() {
         date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
         textFieldsWithError[birthTextField] = false
         view.endEditing(true)

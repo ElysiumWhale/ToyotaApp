@@ -1,6 +1,6 @@
 import UIKit
 
-class DealerViewController: UIViewController {
+class DealerViewController: UIViewController, PickerController {
     // MARK: - UI
     @IBOutlet private var cityTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomTextField: NoCopyPasteTexField!
@@ -58,8 +58,8 @@ class DealerViewController: UIViewController {
         nextButton.alpha = 0
         showroomStackView.alpha = 0
         hideKeyboardWhenTappedAround()
-        configurePicker(cityPicker, with: #selector(cityDidSelect), for: cityTextField, delegate: self)
-        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField, delegate: self)
+        configurePicker(cityPicker, with: cityDidSelect, for: cityTextField)
+        configurePicker(showroomPicker, with: showroomDidSelect, for: showroomTextField)
     }
 
     func configure(cityList: [City], showroomList: [DTOShowroom]? = nil,
@@ -103,7 +103,7 @@ extension DealerViewController {
 
 // MARK: - Pickers actions
 extension DealerViewController {
-    @IBAction private func cityDidSelect(sender: Any?) {
+    private func cityDidSelect() {
         nextButton.fadeOut()
         selectedShowroom = nil
         showroomTextField.text = ""
@@ -120,7 +120,7 @@ extension DealerViewController {
                                    handler: showroomsHandler)
     }
 
-    @IBAction private func showroomDidSelect(sender: Any?) {
+    private func showroomDidSelect() {
         let row = showroomPicker.selectedRow(inComponent: 0)
         selectedShowroom = showrooms[row]
         showroomTextField?.text = showrooms[row].showroomName
