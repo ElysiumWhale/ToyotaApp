@@ -154,7 +154,7 @@ extension NavigationService {
         }
         DispatchQueue.main.async {
             let controller: UITabBarController = UIStoryboard(.mainMenu).instantiate(.mainMenuTabBar)
-            
+
             switch UserInfo.build() {
                 case .failure:
                     loadRegister(.error(message: .error(.profileLoadError)))

@@ -50,8 +50,8 @@ public class DefaultsManager {
     }
 
     class func clearAll() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
+        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        defaults.synchronize()
     }
 }
 

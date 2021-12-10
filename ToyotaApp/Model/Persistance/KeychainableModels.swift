@@ -44,8 +44,6 @@ class Person: Keychainable {
     var secondName: String
     var email: String
     var birthday: String
-    
-    private static let empty = "Empty"
 
     init(firstName: String, lastName: String, secondName: String, email: String, birthday: String) {
         self.firstName = firstName
@@ -56,11 +54,11 @@ class Person: Keychainable {
     }
 
     class func toDomain(_ profile: Profile) -> Person {
-        Person(firstName: profile.firstName ?? empty,
-                          lastName: profile.lastName ?? empty,
-                          secondName: profile.secondName ?? empty,
-                          email: profile.email ?? empty,
-                          birthday: profile.birthday ?? empty)
+        Person(firstName: profile.firstName ?? .empty,
+               lastName: profile.lastName ?? .empty,
+               secondName: profile.secondName ?? .empty,
+               email: profile.email ?? .empty,
+               birthday: profile.birthday ?? .empty)
     }
 }
 
