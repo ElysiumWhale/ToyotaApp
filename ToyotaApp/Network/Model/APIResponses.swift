@@ -19,11 +19,12 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     let registerStatus: Int?
 
     let cities: [City]?
-    let showrooms: [DTOShowroom]?
+    // let showrooms: [Showroom]?
     let cars: [DTOCar]?
 
     private enum CodingKeys: String, CodingKey {
-        case result, cities, showrooms, cars
+        case result, cities, cars
+        // case showrooms
         case secretKey = "secret_key"
         case userId = "user_id"
         case registerPage = "register_page"
@@ -34,7 +35,7 @@ public struct CheckUserOrSmsCodeResponse: Codable {
 
 public struct RegisteredUser: Codable {
     let profile: Profile
-    let showroom: [DTOShowroom]?
+    // let showroom: [Showroom]?
     let car: [DTOCar]?
 }
 
@@ -58,6 +59,8 @@ public struct Profile: Codable {
 public struct CitiesDidGetResponse: IServiceResponse {
     let result: String
     let cities: [City]
+    let models: [Model]?
+    let colors: [Color]?
 
     var array: [IService] { cities }
 }
@@ -74,32 +77,58 @@ public struct City: IService, WithDefaultKey {
     }
 }
 
-// MARK: - ShoroomsDidGetResponce
-public struct ShoroomsDidGetResponce: IServiceResponse {
-    let result: String
-    let showrooms: [DTOShowroom]
-
-    var array: [IService] { showrooms }
-}
-
-public struct DTOShowroom: IService {
-    var name: String { showroomName }
-
+public struct Model: Codable {
     let id: String
-    let showroomName: String
-    let cityName: String?
+    let name: String
+    let brandId: String
 
     private enum CodingKeys: String, CodingKey {
         case id
-        case showroomName = "showroom_name"
-        case cityName = "city_name"
+        case name = "car_model_name"
+        case brandId = "car_brand_id"
     }
 }
 
-extension DTOShowroom {
-    func toDomain() -> Showroom {
-        Showroom(id: id, showroomName: showroomName, cityName: cityName ?? "Empty")
+public struct Color: Codable {
+    let id: String
+    let name: String
+    let code: String
+    let colorDesription: String
+    let isMetallic: String
+    let hex: String
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name = "car_color_name"
+        case code = "color_code"
+        case colorDesription = "color_description"
+        case isMetallic = "color_metallic"
+        case hex = "color_swatch"
     }
+}
+
+public struct ModelsAndColorsDidGet: Codable {
+    let result: String
+    let models: [Model]
+    let colors: [Color]
+}
+
+public struct CarDidSetResponse: Codable {
+    let result: String
+    let carId: String
+
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case carId = "car_id"
+    }
+}
+
+// MARK: - ShoroomsDidGetResponce
+public struct ShoroomsDidGetResponce: IServiceResponse {
+    let result: String
+    let showrooms: [Showroom]
+
+    var array: [IService] { showrooms }
 }
 
 // MARK: - ShowroomDidSelectResponse

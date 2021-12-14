@@ -80,12 +80,19 @@ class Cars: Keychainable {
 }
 
 // MARK: - Helper Structs
-struct Showroom: Codable, WithDefaultKey {
+struct Showroom: WithDefaultKey, IService {
     static var key: DefaultKeys { .selectedShowroom }
+    var name: String { showroomName }
 
     let id: String
     let showroomName: String
-    let cityName: String
+    let cityName: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case showroomName = "showroom_name"
+        case cityName = "city_name"
+    }
 }
 
 struct Car: Codable {

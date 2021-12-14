@@ -18,8 +18,8 @@ class DealerViewController: UIViewController, PickerController {
     private var type: AddInfoType = .register
     private var cities: [City] = []
     private var selectedCity: City?
-    private var showrooms: [DTOShowroom] = []
-    private var selectedShowroom: DTOShowroom?
+    private var showrooms: [Showroom] = []
+    private var selectedShowroom: Showroom?
 
     // MARK: - Request handlers
     private lazy var showroomsHandler: RequestHandler<ShoroomsDidGetResponce> = {
@@ -62,8 +62,8 @@ class DealerViewController: UIViewController, PickerController {
         configurePicker(showroomPicker, with: showroomDidSelect, for: showroomTextField)
     }
 
-    func configure(cityList: [City], showroomList: [DTOShowroom]? = nil,
-                   city: City? = nil, showroom: DTOShowroom? = nil,
+    func configure(cityList: [City], showroomList: [Showroom]? = nil,
+                   city: City? = nil, showroom: Showroom? = nil,
                    controllerType: AddInfoType = .register) {
         cities = cityList
         if let list = showroomList, let city = city, let showroom = showroom {
