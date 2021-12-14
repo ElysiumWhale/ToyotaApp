@@ -39,7 +39,7 @@
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
 		14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B2A7E5275C0249002A6ADF /* Redundant.storyboard */; };
-		14B2A7E8275C0996002A6ADF /* CityPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerViewModel.swift */; };
+		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
 		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
@@ -131,7 +131,7 @@
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
 		14B2A7E5275C0249002A6ADF /* Redundant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Redundant.storyboard; sourceTree = "<group>"; };
-		14B2A7E7275C0996002A6ADF /* CityPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewModel.swift; sourceTree = "<group>"; };
+		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
 		14BDFF5C270892E200C90882 /* EntryPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 			children = (
 				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
 				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
-				14B2A7E7275C0996002A6ADF /* CityPickerViewModel.swift */,
+				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
 				A7D12066253E713A005F85B0 /* DealerViewController.swift */,
 				A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */,
 				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
@@ -636,7 +636,7 @@
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
-				14B2A7E8275C0996002A6ADF /* CityPickerViewModel.swift in Sources */,
+				14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */,
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
 				1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */,
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,

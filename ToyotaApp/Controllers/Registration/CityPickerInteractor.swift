@@ -5,7 +5,7 @@ protocol CityPickerView: AnyObject {
     func handleFailure()
 }
 
-class CityPickerViewModel {
+class CityPickerInteractor {
     weak var view: CityPickerView?
 
     private(set) var cities: [City] = [] {

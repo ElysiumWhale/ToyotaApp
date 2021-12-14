@@ -6,22 +6,26 @@ class CityPickerViewController: RefreshableController, CityPickerView, Backgroun
 
     let refreshControl = UIRefreshControl()
 
-    private let viewModel = CityPickerViewModel()
+    private let interactor = CityPickerInteractor()
+
+    private var configureAddCar: ParameterClosure<AddCarViewController?>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.view = self
+        interactor.view = self
 
         nextButton.alpha = 0
         refreshableView.delegate = self
         refreshableView.dataSource = self
         configureRefresh()
-        viewModel.cities.isEmpty ? startRefreshing() : refreshableView.reloadData()
+        interactor.cities.isEmpty ? startRefreshing() : refreshableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.code {
-            // todo: switch for different types
+            case .cityToAddCar:
+                let destination = segue.destination as? AddCarViewController
+                configureAddCar?(destination)
             default:
                 return
         }
@@ -29,11 +33,14 @@ class CityPickerViewController: RefreshableController, CityPickerView, Backgroun
 
     func startRefreshing() {
         refreshControl.beginRefreshing()
-        viewModel.loadCities()
+        interactor.loadCities()
     }
 
-    func configure(with cities: [City]) {
-        viewModel.configure(with: cities)
+    func configure(with cities: [City], models: [Model] = [], colors: [Color] = []) {
+        interactor.configure(with: cities)
+        configureAddCar = { vc in
+            vc?.configure(models: models, colors: colors)
+        }
     }
 
     func handleSuccess() {
@@ -50,23 +57,23 @@ class CityPickerViewController: RefreshableController, CityPickerView, Backgroun
     }
 
     @IBAction private func nextButtonDidPress(sender: UIButton?) {
-        guard viewModel.saveCity() else {
+        guard interactor.saveCity() else {
             return
         }
 
-        // todo: perform(segue: )
+        perform(segue: .cityToAddCar)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.cities.count
+        interactor.cities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CityCell = tableView.dequeue(for: indexPath)
-        cell.contentConfiguration = .cellConfiguration(with: viewModel.cities[indexPath.row].name,
+        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
                                                        isSelected: false)
         return cell
     }
@@ -76,7 +83,7 @@ extension CityPickerViewController: UITableViewDataSource {
 extension CityPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if setCell(from: tableView, for: indexPath, isSelected: true) {
-            viewModel.selectCity(for: indexPath.row)
+            interactor.selectCity(for: indexPath.row)
             nextButton.fadeIn()
         }
     }
@@ -94,7 +101,7 @@ extension CityPickerViewController: UITableViewDelegate {
         cell.backgroundColor = isSelected
             ? .appTint(.secondarySignatureRed)
             : .appTint(.background)
-        cell.contentConfiguration = .cellConfiguration(with: viewModel.cities[indexPath.row].name,
+        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
                                                        isSelected: isSelected)
         return true
     }
