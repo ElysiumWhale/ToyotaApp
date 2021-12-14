@@ -84,9 +84,15 @@ extension Keyboardable {
     }
 
     func keyboardWillShow(notification: Notification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let userInfo = notification.userInfo,
+              let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                  return
+              }
 
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        // Workaround of the situation when height is less than 300 inset does not change
+        let heightInset = keyboardSize.cgRectValue.height < 300 ? 300 : keyboardSize.cgRectValue.height
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
+                                         bottom: heightInset, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
       }
