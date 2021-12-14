@@ -118,3 +118,16 @@ extension Collection {
         first(where: condition) != nil
     }
 }
+
+// MARK: - Years strings
+extension Array where Element == String {
+    static func yearsFrom(year: Int = 1950) -> Self {
+        var result: [String] = []
+        var currentYear = Calendar.current.component(.year, from: Date())
+        while currentYear >= year {
+            result.append("\(currentYear)")
+            currentYear -= 1
+        }
+        return result
+    }
+}

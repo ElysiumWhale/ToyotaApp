@@ -37,6 +37,10 @@ enum RequestKeys {
         case carId = "car_id"
         case skipStep = "skip_step"
         case vinCode = "vin_code"
+        case modelId = "car_model_id"
+        case colorId = "color_id"
+        case licensePlate = "license_plate"
+        case releaseYear = "year_of_release"
     }
 
     enum Services: String {

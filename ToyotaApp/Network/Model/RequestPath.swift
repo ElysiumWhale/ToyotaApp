@@ -31,6 +31,7 @@ enum RequestPath {
         case checkCar = "check_car.php"
         case checkVin = "check_vin_code.php"
         case deleteTemp = "delete_tmp_record.php"
+        case getModelsAndColors = "get_models_and_colors.php"
     }
 
     enum Services: String {

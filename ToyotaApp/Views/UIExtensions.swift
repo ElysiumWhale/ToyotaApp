@@ -43,8 +43,11 @@ extension UITextField {
 
     func toggle(state: FieldState) {
         let hasError = state == .error
-        layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
-        layer.borderWidth = hasError ? 1 : 0
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0,
+                                                       options: [.curveEaseOut], animations: {
+            self.layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
+            self.layer.borderWidth = hasError ? 1 : 0
+        })
     }
 }
 

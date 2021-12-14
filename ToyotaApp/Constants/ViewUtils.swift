@@ -93,6 +93,10 @@ public enum SegueIdentifiers: String {
     case personInfoToDealer = "PersonInfoToDealer"
     /// PersonInfoToCity
     case personInfoToCity = "PersonInfoToCity"
+    /// CityToAddCar
+    case cityToAddCar = "CityToAddCar"
+    /// AddCarToEndRegistration
+    case addCarToEndRegistration = "AddCarToEndRegistration"
     /// DealerToCar
     case dealerToCar = "DealerToCar"
     /// DealerToCheckVin
