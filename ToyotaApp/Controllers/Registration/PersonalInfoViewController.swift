@@ -10,15 +10,14 @@ class PersonalInfoViewController: KeyboardableController {
     @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
     @IBOutlet private var nextButton: UIButton!
 
-    private let segueCode = SegueIdentifiers.personInfoToDealer
     private let datePicker: UIDatePicker = UIDatePicker()
 
     private var textFieldsWithError: [UITextField: Bool] = [:]
 
-    private var cities: [City] = []
     private var date: String = .empty
     private var isConfigured: Bool = false
     private var configuredProfile: Profile?
+    private var configureSelectCity: ParameterClosure<CityPickerViewController?>?
 
     private lazy var requestHandler: RequestHandler<CitiesDidGetResponse> = {
         let handler = RequestHandler<CitiesDidGetResponse>()
@@ -104,9 +103,9 @@ extension PersonalInfoViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.code {
-            case segueCode:
-                let destinationVC = segue.destination as? DealerViewController
-                destinationVC?.configure(cityList: cities)
+            case .personInfoToCity:
+                let destinationVC = segue.destination as? CityPickerViewController
+                configureSelectCity?(destinationVC)
             default: return
         }
     }
@@ -154,7 +153,11 @@ extension PersonalInfoViewController {
     }
 
     private func handle(_ response: CitiesDidGetResponse) {
-        cities = response.cities.map { City(id: $0.id, name: $0.name) }
+        configureSelectCity = { vc in
+            vc?.configure(with: response.cities.map { City(id: $0.id, name: $0.name) },
+                          models: response.models ?? [],
+                          colors: response.colors ?? [])
+        }
         KeychainManager.set(Person.toDomain(configuredProfile!))
     }
 
@@ -162,7 +165,7 @@ extension PersonalInfoViewController {
         activitySwitcher.stopAnimating()
         nextButton.fadeIn()
         if isSuccess {
-            perform(segue: segueCode)
+            perform(segue: .personInfoToCity)
         }
     }
 
