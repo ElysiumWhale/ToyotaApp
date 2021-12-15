@@ -61,7 +61,7 @@ class AddCarInteractor {
     }()
 
     var loadNeeded: Bool {
-        !models.isEmpty && !colors.isEmpty
+        models.isEmpty && colors.isEmpty
     }
 
     func configure(type: AddInfoType, models: [Model], colors: [Color]) {

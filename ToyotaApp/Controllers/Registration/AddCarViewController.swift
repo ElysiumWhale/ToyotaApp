@@ -6,12 +6,14 @@ class AddCarViewController: UIViewController, PickerController {
     @IBOutlet private var modelTextField: InputTextField!
     @IBOutlet private var yearTextField: InputTextField!
     @IBOutlet private var colorTextField: InputTextField!
-    @IBOutlet private var nextButton: KeyboardBindedButton!
+    @IBOutlet private var nextButton: CustomizableButton!
     @IBOutlet private var skipButton: UIButton!
+    @IBOutlet private var indicator: UIActivityIndicatorView!
 
     private var modelPicker = UIPickerView()
     private var yearPicker = UIPickerView()
     private var colorPicker = UIPickerView()
+    private let loadingView = LoadingView()
 
     private let interactor = AddCarInteractor()
 
@@ -27,7 +29,7 @@ class AddCarViewController: UIViewController, PickerController {
         configurePicker(colorPicker, with:  #selector(colorDidPick), for: colorTextField)
 
         if interactor.loadNeeded {
-            interactor.loadModelsAndColors()
+            loadModelsAndColors()
         }
     }
 
@@ -79,6 +81,13 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     // MARK: - Private methods
+    private func loadModelsAndColors() {
+        view.addSubview(loadingView)
+        loadingView.frame = view.bounds
+        loadingView.startAnimating()
+        interactor.loadModelsAndColors()
+    }
+
     @objc private func modelDidPick() {
         view.endEditing(true)
         let index = modelPicker.selectedRow(inComponent: 0)
@@ -111,6 +120,10 @@ extension AddCarViewController: AddCarViewInput {
     }
 
     func handleModelsLoaded() {
+        loadingView.fadeOut { [weak self] in
+            self?.loadingView.stopAnimating()
+            self?.loadingView.removeFromSuperview()
+        }
         modelPicker.reloadComponent(0)
         colorPicker.reloadComponent(0)
     }
