@@ -44,7 +44,7 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
         carTextField.tintColor = .clear
         refreshableView.alwaysBounceVertical = true
         hideKeyboardWhenTappedAround()
-        configurePicker(showroomPicker, with: showroomDidSelect, for: showroomField)
+        configurePicker(showroomPicker, with:  #selector(showroomDidSelect), for: showroomField)
 
         switch cars.count {
             case 1: layoutIfOneCar()
@@ -68,7 +68,7 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
         makeRequest()
     }
 
-    private func showroomDidSelect() {
+    @objc private func showroomDidSelect() {
         view.endEditing(true)
         let row = carForServePicker.selectedRow(inComponent: 0)
         if let car = selectedCar, car.id != cars[row].id,

@@ -22,9 +22,9 @@ class AddCarViewController: UIViewController, PickerController {
 
         view.hideKeyboardWhenSwipedDown()
 
-        configurePicker(modelPicker, with: modelDidPick, for: modelTextField)
-        configurePicker(yearPicker, with: yearDidPick, for: yearTextField)
-        configurePicker(colorPicker, with: colorDidPick, for: colorTextField)
+        configurePicker(modelPicker, with:  #selector(modelDidPick), for: modelTextField)
+        configurePicker(yearPicker, with:  #selector(yearDidPick), for: yearTextField)
+        configurePicker(colorPicker, with:  #selector(colorDidPick), for: colorTextField)
 
         if interactor.loadNeeded {
             interactor.loadModelsAndColors()
@@ -78,19 +78,19 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     // MARK: - Private methods
-    private func modelDidPick() {
+    @objc private func modelDidPick() {
         view.endEditing(true)
         let index = modelPicker.selectedRow(inComponent: 0)
         modelTextField.text = interactor.setSelectedModel(for: index)
     }
 
-    private func yearDidPick() {
+    @objc private func yearDidPick() {
         view.endEditing(true)
         let index = yearPicker.selectedRow(inComponent: 0)
         yearTextField.text = interactor.setSelectedYear(for: index)
     }
 
-    private func colorDidPick() {
+    @objc private func colorDidPick() {
         view.endEditing(true)
         let index = colorPicker.selectedRow(inComponent: 0)
         colorTextField.text = interactor.setSelectedColor(for: index)

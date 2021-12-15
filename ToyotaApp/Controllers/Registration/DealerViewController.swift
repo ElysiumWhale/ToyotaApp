@@ -58,8 +58,8 @@ class DealerViewController: UIViewController, PickerController {
         nextButton.alpha = 0
         showroomStackView.alpha = 0
         hideKeyboardWhenTappedAround()
-        configurePicker(cityPicker, with: cityDidSelect, for: cityTextField)
-        configurePicker(showroomPicker, with: showroomDidSelect, for: showroomTextField)
+        configurePicker(cityPicker, with: #selector(cityDidSelect), for: cityTextField)
+        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomTextField)
     }
 
     func configure(cityList: [City], showroomList: [Showroom]? = nil,
@@ -103,7 +103,7 @@ extension DealerViewController {
 
 // MARK: - Pickers actions
 extension DealerViewController {
-    private func cityDidSelect() {
+    @objc private func cityDidSelect() {
         nextButton.fadeOut()
         selectedShowroom = nil
         showroomTextField.text = ""
@@ -120,7 +120,7 @@ extension DealerViewController {
                                    handler: showroomsHandler)
     }
 
-    private func showroomDidSelect() {
+    @objc private func showroomDidSelect() {
         let row = showroomPicker.selectedRow(inComponent: 0)
         selectedShowroom = showrooms[row]
         showroomTextField?.text = showrooms[row].showroomName

@@ -2,17 +2,12 @@ import UIKit
 
 // MARK: - Toolbar for controls
 extension UIViewController {
-    func buildToolbar(with action: @escaping VoidClosure) -> UIToolbar {
+    func buildToolbar(with action: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem()
-        doneButton.primaryAction = UIAction { _ in
-            action()
-        }
-        doneButton.title = .common(.choose)
+        let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: nil, action: action)
         doneButton.tintColor = .appTint(.secondarySignatureRed)
-        doneButton.style = .done
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
     }
@@ -20,11 +15,11 @@ extension UIViewController {
 
 // MARK: - UIPicker
 protocol PickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    func configurePicker(_ picker: UIPickerView, with action: @escaping VoidClosure, for textField: UITextField)
+    func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField)
 }
 
 extension PickerController {
-    func configurePicker(_ picker: UIPickerView, with action: @escaping VoidClosure, for textField: UITextField) {
+    func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField) {
         picker.dataSource = self
         picker.delegate = self
         textField.inputAccessoryView = buildToolbar(with: action)
@@ -34,7 +29,7 @@ extension PickerController {
 
 // MARK: - UIDatePicker & Date Formatting
 extension UIViewController {
-    func configureDatePicker(_ datePicker: UIDatePicker, with action: @escaping VoidClosure, for textField: UITextField) {
+    func configureDatePicker(_ datePicker: UIDatePicker, with action: Selector, for textField: UITextField) {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru")
         datePicker.datePickerMode = .date
