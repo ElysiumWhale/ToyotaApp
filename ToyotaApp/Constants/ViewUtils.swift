@@ -60,7 +60,7 @@ enum ViewControllers: String {
     /// DealerViewController
     case dealer = "DealerViewController"
     /// AddingCarViewController
-    case addingCar = "AddingCarViewController"
+    case addCar = "AddCarViewController"
     /// CheckVinViewController
     case checkVin = "CheckVinViewController"
     /// ConnectionLostViewController

@@ -49,12 +49,13 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     @IBAction private func nextButtonDidPressed(sender: Any?) {
-        let validated = [modelTextField, colorTextField,
-                         yearTextField, vinCodeTextField].reduce(true, { hasError, field in
+        var validated = false
+        [modelTextField, colorTextField,
+         yearTextField, vinCodeTextField].forEach { field in
             let fieldHasError = field?.text == nil || field?.text?.isEmpty ?? true
+            validated = validated || fieldHasError
             field?.toggle(state: fieldHasError ? .error : .normal)
-            return hasError && fieldHasError
-        })
+        }
 
         guard interactor.vin.count == 17 else {
             vinCodeTextField.toggle(state: .error)

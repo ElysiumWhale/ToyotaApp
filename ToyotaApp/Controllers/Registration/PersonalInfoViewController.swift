@@ -17,27 +17,26 @@ class PersonalInfoViewController: KeyboardableController {
 
     private var cities: [City] = []
     private var date: String = .empty
-
     private var isConfigured: Bool = false
     private var configuredProfile: Profile?
 
     private lazy var requestHandler: RequestHandler<CitiesDidGetResponse> = {
         let handler = RequestHandler<CitiesDidGetResponse>()
-        
+
         handler.onSuccess = { [weak self] data in
             self?.handle(data)
             DispatchQueue.main.async {
                 self?.handleUI(isSuccess: true)
             }
         }
-        
+
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
                 self?.handleUI(isSuccess: false)
                 PopUp.display(.error(description: error.message ?? .error(.requestError)))
             }
         }
-        
+
         return handler
     }()
 
@@ -45,8 +44,10 @@ class PersonalInfoViewController: KeyboardableController {
         super.viewDidLoad()
         configureDatePicker(datePicker, with:  #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
-        textFieldsWithError = [firstNameTextField: true, secondNameTextField: true,
-                               lastNameTextField: true, emailTextField: true, birthTextField: true]
+        textFieldsWithError = [
+            firstNameTextField: true, secondNameTextField: true,
+            lastNameTextField: true, emailTextField: true, birthTextField: true
+        ]
         textFieldsWithError.keys.forEach {
             $0.delegate = self
         }
@@ -58,7 +59,7 @@ class PersonalInfoViewController: KeyboardableController {
     }
 
     private var hasErrors: Bool {
-        return !textFieldsWithError.values.allSatisfy({ !$0 })
+        return !textFieldsWithError.values.allSatisfy { !$0 }
     }
 
     @IBAction private func textDidChange(sender: UITextField) {
@@ -120,9 +121,9 @@ extension PersonalInfoViewController: UITextFieldDelegate {
             case lastNameTextField:
                 secondNameTextField.becomeFirstResponder()
             case secondNameTextField:
-                birthTextField.becomeFirstResponder()
-            case birthTextField:
                 emailTextField.becomeFirstResponder()
+            case emailTextField:
+                birthTextField.becomeFirstResponder()
             default:
                 view.endEditing(false)
         }
@@ -141,7 +142,7 @@ extension PersonalInfoViewController {
                   PopUp.display(.error(description: .error(.checkInput)))
                   return
         }
-        
+
         nextButton.fadeOut()
         activitySwitcher.startAnimating()
         configuredProfile = Profile(phone: nil, firstName: firstName,
