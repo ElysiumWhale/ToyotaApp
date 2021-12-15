@@ -68,7 +68,7 @@ class PersonalInfoViewController: KeyboardableController {
     }
 
     @objc private func dateDidSelect() {
-        date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
+        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
         textFieldsWithError[birthTextField] = false
         view.endEditing(true)
     }
@@ -84,7 +84,7 @@ extension PersonalInfoViewController {
             secondNameTextField.text = profile.secondName
             lastNameTextField.text = profile.lastName
             emailTextField.text = profile.email
-            birthTextField.text = formatDateForClient(from: profile.birthday!)
+            birthTextField.text = .formatDateForClient(from: profile.birthday!)
             date = profile.birthday!
             textFieldsWithError.forEach {
                 textFieldsWithError[$0.key] = false

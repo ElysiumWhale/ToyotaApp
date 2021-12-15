@@ -37,27 +37,31 @@ extension UIViewController {
         textField.inputAccessoryView = buildToolbar(with: action)
         textField.inputView = datePicker
     }
-    
-    func formatDate(from date: Date, withAssignTo textField: UITextField? = nil) -> String {
+}
+
+extension String {
+    static func formatDate(from date: Date, withAssignTo textField: UITextField? = nil) -> String {
         if let textField = textField {
             textField.text = DateFormatter.client.string(from: date)
         }
         return DateFormatter.server.string(from: date)
     }
-    
-    func formatDateForServer(from date: Date) -> String {
+
+    static func formatDateForServer(from date: Date) -> String {
         DateFormatter.server.string(from: date)
     }
-    
-    func formatDateForClient(from string: String) -> String {
+
+    static func formatDateForClient(from string: String) -> String {
         DateFormatter.client.string(from: DateFormatter.server.date(from: string) ?? Date())
     }
-    
-    func dateFromClient(date string: String) -> Date {
+}
+
+extension Date {
+    static func dateFromClient(date string: String) -> Date {
         DateFormatter.client.date(from: string) ?? Date()
     }
-    
-    func dateFromServer(date string: String) -> Date {
+
+    static func dateFromServer(date string: String) -> Date {
         DateFormatter.server.date(from: string) ?? Date()
     }
 }

@@ -47,7 +47,7 @@ class MyProfileViewController: UIViewController {
         profile.secondName != secondNameTextField.text ||
         profile.lastName != lastNameTextField.text ||
         profile.email != emailTextField.text ||
-        formatDateForClient(from: profile.birthday) != birthTextField.text
+        .formatDateForClient(from: profile.birthday) != birthTextField.text
     }
 
     private lazy var updateUserHandler: RequestHandler<Response> = {
@@ -113,7 +113,7 @@ class MyProfileViewController: UIViewController {
     }
 
     @objc private func dateDidSelect() {
-        date = formatDate(from: datePicker.date, withAssignTo: birthTextField)
+        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
     }
 
     @IBAction private func logout(sender: Any?) {
@@ -200,8 +200,8 @@ extension MyProfileViewController {
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
         emailTextField.text = profile.email
-        birthTextField.text = formatDateForClient(from: profile.birthday)
-        datePicker.date = dateFromServer(date: profile.birthday)
+        birthTextField.text = .formatDateForClient(from: profile.birthday)
+        datePicker.date = .dateFromServer(date: profile.birthday)
         date = .empty
         managerButton.isHidden = user.getCars.array.count < 1
     }
