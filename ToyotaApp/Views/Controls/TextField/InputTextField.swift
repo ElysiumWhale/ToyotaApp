@@ -2,6 +2,23 @@ import UIKit
 
 @IBDesignable
 class InputTextField: UITextField {
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+
+    @IBInspectable
+    var leftPadding: CGFloat = 5 {
+        didSet {
+            // todo
+        }
+    }
+
     override func prepareForInterfaceBuilder() {
         customizeView()
     }
@@ -12,14 +29,14 @@ class InputTextField: UITextField {
     }
 
     func customizeView() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = cornerRadius
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        super.textRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
+        super.textRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: 0))
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        super.editingRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
+        super.editingRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: 0))
     }
 }
