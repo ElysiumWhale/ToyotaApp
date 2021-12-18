@@ -135,57 +135,6 @@ public struct ShoroomsResponce: IServiceResponse {
     var array: [IService] { showrooms }
 }
 
-// MARK: - ShowroomDidSelectResponse
-public struct DTOCar: IService {
-    var name: String { "\(brandName) \(modelName)" }
-
-    let id: String
-    let brandName: String
-    let modelName: String
-    let colorName: String?
-    let colorSwatch: String?
-    let colorDescription: String?
-    let isMetallic: String?
-    let licensePlate: String?
-    let vin: String?
-    let showroomId: String?
-
-    private enum CodingKeys: String, CodingKey {
-        case id = "car_id"
-        case brandName = "car_brand_name"
-        case modelName = "car_model_name"
-        case colorName = "car_color_name"
-        case colorSwatch = "color_swatch"
-        case colorDescription = "color_description"
-        case isMetallic = "color_metallic"
-        case licensePlate = "license_plate"
-        case vin = "vin_code"
-        case showroomId = "showroom_id"
-    }
-}
-
-extension DTOCar {
-    func toDomain(with vin: String, showroom: String) -> Car {
-        return Car(id: id, showroomId: showroom,
-                   brand: brandName, model: modelName,
-                   color: colorName ?? "Empty",
-                   colorSwatch: colorSwatch ?? "Empty",
-                   colorDescription: colorDescription ?? "Empty",
-                   isMetallic: isMetallic ?? "0",
-                   plate: licensePlate ?? "Empty", vin: vin)
-    }
-
-    func toDomain() -> Car {
-        return Car(id: id, showroomId: showroomId ?? "-1",
-                   brand: brandName, model: modelName,
-                   color: colorName ?? "Empty",
-                   colorSwatch: colorSwatch ?? "Empty",
-                   colorDescription: colorDescription ?? "Empty",
-                   isMetallic: isMetallic ?? "-1",
-                   plate: licensePlate ?? "Empty", vin: vin ?? "Empty")
-    }
-}
-
 // MARK: - CarDidCheck
 public struct CarCheckResponse: IResponse {
     let result: String
