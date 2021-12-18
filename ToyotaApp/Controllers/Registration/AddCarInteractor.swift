@@ -128,7 +128,8 @@ class AddCarInteractor {
         }
 
         let car = Car(id: id, brand: Brand.Toyota, model: selectedModel,
-                      color: selectedColor, plate: plate, vin: vin, isChecked: false)
+                      color: selectedColor, year: selectedYear, plate: plate,
+                      vin: vin, isChecked: false)
 
         switch type {
             case .register:

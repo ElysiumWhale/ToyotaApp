@@ -23,13 +23,9 @@ public struct CheckUserOrSmsCodeResponse: IResponse {
     let registerStatus: Int?
 
     let cities: [City]?
-    // let showrooms: [Showroom]?
-    // let cars: [Car]?
 
     private enum CodingKeys: String, CodingKey {
         case result, cities
-        // case cars
-        // case showrooms
         case secretKey = "secret_key"
         case userId = "user_id"
         case registerPage = "register_page"
@@ -40,8 +36,7 @@ public struct CheckUserOrSmsCodeResponse: IResponse {
 
 public struct RegisteredUser: IResponse {
     let profile: Profile
-    // let showroom: [Showroom]?
-    // let car: [OldCar]?
+    let cars: [Car]?
 }
 
 public struct Profile: IResponse {

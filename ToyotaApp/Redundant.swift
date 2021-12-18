@@ -32,7 +32,7 @@ extension OldCar {
         Car(id: id, brand: brandName, model: Model(id: .empty, name: modelName, brandId: .empty),
             color: Color(id: .empty, name: colorName ?? .empty,
                          code: .empty, colorDescription: colorDescription ?? .empty,
-                         isMetallic: isMetallic ?? .empty, hex: colorSwatch ?? .empty),
+                         isMetallic: isMetallic ?? .empty, hex: colorSwatch ?? .empty), year: "1960",
             plate: licensePlate ?? .empty, vin: self.vin ?? vin, isChecked: false)
     }
 }

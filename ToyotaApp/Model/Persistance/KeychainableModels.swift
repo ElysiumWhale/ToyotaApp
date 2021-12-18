@@ -100,6 +100,7 @@ struct Car: IService {
     let brand: String
     let model: Model
     let color: Color
+    let year: String
     let plate: String
     let vin: String
     let isChecked: Bool
