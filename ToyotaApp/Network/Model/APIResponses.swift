@@ -98,7 +98,7 @@ public struct Color: Codable {
     let id: String
     let name: String
     let code: String
-    let colorDesription: String
+    let colorDescription: String
     let isMetallic: String
     let hex: String
 
@@ -106,7 +106,7 @@ public struct Color: Codable {
         case id
         case name = "car_color_name"
         case code = "color_code"
-        case colorDesription = "color_description"
+        case colorDescription = "color_description"
         case isMetallic = "color_metallic"
         case hex = "color_swatch"
     }
