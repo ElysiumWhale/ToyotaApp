@@ -3,6 +3,10 @@ import Foundation
 typealias VoidParameterClosure<T> = (T) -> Void
 typealias VoidClosure = () -> Void
 
+extension Int {
+    static let vinLength = 17
+}
+
 // MARK: - Formatting hours and minutes
 extension DateComponents {
     /// Format components in format **"hh:mm"**

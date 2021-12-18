@@ -33,7 +33,7 @@ class AddCarViewController: UIViewController, PickerController {
         }
     }
 
-    func configure(models: [Model], colors: [Color], controllerType: AddInfoType = .register) {
+    func configure(models: [Model] = [], colors: [Color] = [], controllerType: AddInfoType = .register) {
         interactor.configure(type: controllerType, models: models, colors: colors)
     }
 
@@ -59,7 +59,7 @@ class AddCarViewController: UIViewController, PickerController {
             field?.toggle(state: fieldHasError ? .error : .normal)
         }
 
-        guard interactor.vin.count == 17 else {
+        guard interactor.vin.count == .vinLength else {
             vinCodeTextField.toggle(state: .error)
             return
         }
@@ -89,21 +89,21 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     @objc private func modelDidPick() {
-        view.endEditing(true)
-        let index = modelPicker.selectedRow(inComponent: 0)
-        modelTextField.text = interactor.setSelectedModel(for: index)
+        pick(from: modelPicker, to: modelTextField, setProperty: interactor.setSelectedModel)
     }
 
     @objc private func yearDidPick() {
-        view.endEditing(true)
-        let index = yearPicker.selectedRow(inComponent: 0)
-        yearTextField.text = interactor.setSelectedYear(for: index)
+        pick(from: yearPicker, to: yearTextField, setProperty: interactor.setSelectedYear)
     }
 
     @objc private func colorDidPick() {
+        pick(from: colorPicker, to: colorTextField, setProperty: interactor.setSelectedColor)
+    }
+
+    private func pick(from picker: UIPickerView, to textField: UITextField, setProperty: (Int) -> String?) {
         view.endEditing(true)
-        let index = colorPicker.selectedRow(inComponent: 0)
-        colorTextField.text = interactor.setSelectedColor(for: index)
+        let index = picker.selectedRow(inComponent: 0)
+        textField.text = setProperty(index)
     }
 }
 
