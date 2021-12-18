@@ -47,7 +47,7 @@ public struct ErrorResponse: Codable, Error {
     let message: String?
 
     var errorCode: NetworkErrors {
-        return .init(rawValue: code) ?? .request
+        .init(rawValue: code) ?? .request
     }
     
     init(code: String, message: String?) {

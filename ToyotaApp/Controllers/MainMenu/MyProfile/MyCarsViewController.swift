@@ -1,7 +1,7 @@
 import UIKit
 
 class MyCarsViewController: UIViewController, BackgroundText, Loadable {
-    
+
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
 
@@ -18,17 +18,17 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
 
     private lazy var citiesRequestHandle: RequestHandler<CitiesResponse> = {
         let handler = RequestHandler<CitiesResponse>()
-        
+
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
                 self?.handle(data)
             }
         }
-        
+
         handler.onFailure = { error in
             PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
         }
-        
+
         return handler
     }()
 
@@ -48,8 +48,9 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
     override func viewDidLoad() {
         super.viewDidLoad()
         carsCollection.delaysContentTouches = false
-        carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
-                                                     : nil
+        carsCollection.backgroundView = cars.isEmpty
+            ? createBackground(labelText: .background(.noCars))
+            : nil
     }
 
     @IBAction func addCar(sender: Any?) {
@@ -76,7 +77,7 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
                 self?.stopLoading()
             }
         }
-        
+
         PopUp.display(.choise(description: .question(.removeCar))) { [self] in
             startLoading()
             NetworkService.makeRequest(page: .profile(.removeCar),
@@ -93,7 +94,8 @@ extension MyCarsViewController: UICollectionViewDataSource {
         cars.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CarCollectionViewCell = collectionView.dequeue(for: indexPath)
         let car = cars[indexPath.row]
         cell.configure(brand: car.brand, model: car.model,

@@ -41,7 +41,7 @@ class PersonalInfoViewController: KeyboardableController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDatePicker(datePicker, with:  #selector(dateDidSelect), for: birthTextField)
+        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
         textFieldsWithError = [
             firstNameTextField: true, secondNameTextField: true,
