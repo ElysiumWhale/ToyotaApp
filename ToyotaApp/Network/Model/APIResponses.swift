@@ -1,7 +1,11 @@
 import Foundation
 
+protocol IResponse: Codable {
+    
+}
+
 // MARK: - Default simple response
-public struct Response: Codable {
+public struct Response: IResponse {
     let result: String
 
     private enum CodingKeys: String, CodingKey {
@@ -10,7 +14,7 @@ public struct Response: Codable {
 }
 
 // MARK: - CheckUserResponce & SmsCodeDidSendResponse
-public struct CheckUserOrSmsCodeResponse: Codable {
+public struct CheckUserOrSmsCodeResponse: IResponse {
     let result: String
     let secretKey: String
     let userId: String?
@@ -33,13 +37,13 @@ public struct CheckUserOrSmsCodeResponse: Codable {
     }
 }
 
-public struct RegisteredUser: Codable {
+public struct RegisteredUser: IResponse {
     let profile: Profile
     // let showroom: [Showroom]?
     let car: [DTOCar]?
 }
 
-public struct Profile: Codable {
+public struct Profile: IResponse {
     let phone: String?
     let firstName: String?
     let lastName: String?
@@ -107,13 +111,13 @@ public struct Color: Codable {
     }
 }
 
-public struct ModelsAndColorsDidGet: Codable {
+public struct ModelsAndColorsDidGet: IResponse {
     let result: String
     let models: [Model]
     let colors: [Color]
 }
 
-public struct CarDidSetResponse: Codable {
+public struct CarDidSetResponse: IResponse {
     let result: String
     let carId: String
 
@@ -183,14 +187,14 @@ extension DTOCar {
 }
 
 // MARK: - CarDidCheck
-public struct CarDidCheckResponse: Codable {
+public struct CarDidCheckResponse: IResponse {
     let result: String
     let message: String // todo: delete message
     let car: DTOCar?
 }
 
 // MARK: - GetServicesTypes
-public struct ServicesTypesDidGetResponse: Codable {
+public struct ServicesTypesDidGetResponse: IResponse {
     let result: String
     let serviceType: [ServiceType]
 
@@ -237,7 +241,7 @@ extension Service {
 }
 
 // MARK: - GetFreeTime for Service
-public struct FreeTimeDidGetResponse: Codable {
+public struct FreeTimeDidGetResponse: IResponse {
     let result: String
     let startDate: String?
     let endDate: String?
@@ -252,7 +256,7 @@ public struct FreeTimeDidGetResponse: Codable {
 }
 
 // MARK: - GetManagers for users showrooms
-public struct ManagersDidGetResponse: Codable {
+public struct ManagersDidGetResponse: IResponse {
     let result: String
     let managers: [Manager]
 }
@@ -288,7 +292,7 @@ public struct CarsDidGetResponse: IServiceResponse {
 }
 
 // MARK: - BookingsDidGetResponse
-public struct BookingsResponse: Codable {
+public struct BookingsResponse: IResponse {
     let result: String
     let booking: [Booking]
     let count: Int

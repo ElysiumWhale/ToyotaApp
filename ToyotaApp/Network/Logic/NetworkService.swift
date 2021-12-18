@@ -1,32 +1,33 @@
 import Foundation
 
-typealias NetworkResponse<T> = Result<T, ErrorResponse> where T: Codable
+typealias NetworkResponse<TResponse> = Result<TResponse, ErrorResponse> where TResponse: IResponse
+typealias ResponseCompletion<TResponse> = (NetworkResponse<TResponse>) -> Void where TResponse: IResponse
 
 class NetworkService {
     private static let session = URLSession(configuration: URLSessionConfiguration.default)
-    
+
     private static let mainUrl = MainURL.build(isSecure: true)
-    
-    class func makeRequest<T: Codable>(page: RequestPath,
-                                       params: RequestItems = .empty,
-                                       completion: @escaping (Result<T, ErrorResponse>) -> Void) {
+
+    class func makeRequest<TResponse>(page: RequestPath,
+                                      params: RequestItems = .empty,
+                                      completion: @escaping ResponseCompletion<TResponse>) where TResponse: IResponse {
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
-        
+
         let task = session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 completion(Result.failure(.lostConnection))
                 return
             }
-            
+
             guard let data = data else {
                 completion(Result.failure(.corruptedData))
                 return
             }
-            
+
             let json = try? JSONSerialization.jsonObject(with: data)
             print(json ?? "Error while parsing json object")
-            
-            if let response = try? JSONDecoder().decode(T.self, from: data) {
+
+            if let response = try? JSONDecoder().decode(TResponse.self, from: data) {
                 completion(Result.success(response))
             } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 completion(Result.failure(errorResponse))
@@ -38,9 +39,9 @@ class NetworkService {
         task.resume()
     }
     
-    class func makeRequest<T: Codable>(page: RequestPath,
-                                       params: RequestItems = .empty,
-                                       handler: RequestHandler<T>) {
+    class func makeRequest<TResponse>(page: RequestPath,
+                                      params: RequestItems = .empty,
+                                      handler: RequestHandler<TResponse>) where TResponse: IResponse {
 
         let request = buildPostRequest(for: page.rawValue,
                                        with: params.asQueryItems)
@@ -60,7 +61,7 @@ class NetworkService {
             print(json ?? "Error while parsing json object")
 
             let decoder = JSONDecoder()
-            if let response = try? decoder.decode(T.self, from: data) {
+            if let response = try? decoder.decode(TResponse.self, from: data) {
                 handler?.onSuccess?(response)
             } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
                 handler?.onFailure?(errorResponse)
@@ -75,7 +76,7 @@ class NetworkService {
     class func makeRequest(page: RequestPath, params: RequestItems = .empty) {
         session.dataTask(with: buildPostRequest(for: page.rawValue, with: params.asQueryItems)).resume()
     }
-    
+
     class private func buildPostRequest(for page: String,
                                         with params: [URLQueryItem] = []) -> URLRequest {
         var mainURL = mainUrl
@@ -86,7 +87,7 @@ class NetworkService {
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request
     }
-    
+
     class func buildImageUrl(_ path: String) -> URL? {
         var query = MainURL.buildImageUrl(isSecure: true)
         query.path.append(path)
