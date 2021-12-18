@@ -20,8 +20,8 @@ class CheckVinViewController: UIViewController {
     private var isSkipped: Bool = false
     private var vin: String = .empty
 
-    private lazy var requestHandler: RequestHandler<CarDidCheckResponse> = {
-        let handler = RequestHandler<CarDidCheckResponse>()
+    private lazy var requestHandler: RequestHandler<CarCheckResponse> = {
+        let handler = RequestHandler<CarCheckResponse>()
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
                 self?.handleSuccess(data)
@@ -91,7 +91,7 @@ extension CheckVinViewController {
                                    handler: requestHandler)
     }
 
-    private func handleSuccess(_ response: CarDidCheckResponse) {
+    private func handleSuccess(_ response: CarCheckResponse) {
         if isSkipped {
             interfaceCompletion(true)
             return

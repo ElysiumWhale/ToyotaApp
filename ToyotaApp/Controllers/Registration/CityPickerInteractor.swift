@@ -15,8 +15,8 @@ class CityPickerInteractor {
     }
     private var selectedCity: City?
 
-    private lazy var cityRequestHandler: RequestHandler<CitiesDidGetResponse> = {
-        let handler = RequestHandler<CitiesDidGetResponse>()
+    private lazy var cityRequestHandler: RequestHandler<CitiesResponse> = {
+        let handler = RequestHandler<CitiesResponse>()
 
         handler.onSuccess = { [weak self] data in
             self?.cities = data.cities

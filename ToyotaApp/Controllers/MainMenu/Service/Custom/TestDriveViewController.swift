@@ -13,7 +13,7 @@ class TestDriveViewController: BaseServiceController {
         loadingView.fadeIn()
         modules.first?.customStart(page: .profile(.getCities),
                                    with: [(.auth(.brandId), Brand.Toyota)],
-                                   response: CitiesDidGetResponse.self)
+                                   response: CitiesResponse.self)
     }
     
     override func moduleDidUpdate(_ module: IServiceModule) {
@@ -40,7 +40,7 @@ class TestDriveViewController: BaseServiceController {
             case 1:
                 modules[2].customStart(page: .services(.getTestDriveShowrooms),
                                        with: params,
-                                       response: ShoroomsDidGetResponce.self)
+                                       response: ShoroomsResponce.self)
             case 2:
                 modules[3].customStart(page: .services(.getFreeTime),
                                        with: params,

@@ -60,7 +60,7 @@ public struct Profile: IResponse {
 }
 
 // MARK: - CitiesDidGetResponse
-public struct CitiesDidGetResponse: IServiceResponse {
+public struct CitiesResponse: IServiceResponse {
     let result: String
     let cities: [City]
     let models: [Model]?
@@ -111,13 +111,13 @@ public struct Color: Codable {
     }
 }
 
-public struct ModelsAndColorsDidGet: IResponse {
+public struct ModelsAndColorsResponse: IResponse {
     let result: String
     let models: [Model]
     let colors: [Color]
 }
 
-public struct CarDidSetResponse: IResponse {
+public struct CarSetResponse: IResponse {
     let result: String
     let carId: String
 
@@ -128,7 +128,7 @@ public struct CarDidSetResponse: IResponse {
 }
 
 // MARK: - ShoroomsDidGetResponce
-public struct ShoroomsDidGetResponce: IServiceResponse {
+public struct ShoroomsResponce: IServiceResponse {
     let result: String
     let showrooms: [Showroom]
 
@@ -187,14 +187,14 @@ extension DTOCar {
 }
 
 // MARK: - CarDidCheck
-public struct CarDidCheckResponse: IResponse {
+public struct CarCheckResponse: IResponse {
     let result: String
     let message: String // todo: delete message
     let car: DTOCar?
 }
 
 // MARK: - GetServicesTypes
-public struct ServicesTypesDidGetResponse: IResponse {
+public struct ServicesTypesResponse: IResponse {
     let result: String
     let serviceType: [ServiceType]
 
@@ -219,7 +219,7 @@ public struct ServiceType: Codable {
 }
 
 // MARK: - GetServices
-public struct ServicesDidGetResponse: IServiceResponse {
+public struct ServicesResponse: IServiceResponse {
     let result: String
     let services: [Service]
 
@@ -241,7 +241,7 @@ extension Service {
 }
 
 // MARK: - GetFreeTime for Service
-public struct FreeTimeDidGetResponse: IResponse {
+public struct FreeTimeResponse: IResponse {
     let result: String
     let startDate: String?
     let endDate: String?
@@ -256,7 +256,7 @@ public struct FreeTimeDidGetResponse: IResponse {
 }
 
 // MARK: - GetManagers for users showrooms
-public struct ManagersDidGetResponse: IResponse {
+public struct ManagersResponse: IResponse {
     let result: String
     let managers: [Manager]
 }

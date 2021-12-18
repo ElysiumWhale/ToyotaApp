@@ -21,8 +21,8 @@ class AddCarInteractor {
     private var selectedColor: Color?
     private var selectedYear: String = .empty
 
-    private lazy var setCarHandler: RequestHandler<CarDidSetResponse> = {
-        let handler = RequestHandler<CarDidSetResponse>()
+    private lazy var setCarHandler: RequestHandler<CarSetResponse> = {
+        let handler = RequestHandler<CarSetResponse>()
 
         handler.onSuccess = { [weak self] data in
             self?.saveCar(with: data.carId)
@@ -40,8 +40,8 @@ class AddCarInteractor {
         return handler
     }()
 
-    private lazy var loadModelsHandler: RequestHandler<ModelsAndColorsDidGet> = {
-        let handler = RequestHandler<ModelsAndColorsDidGet>()
+    private lazy var loadModelsHandler: RequestHandler<ModelsAndColorsResponse> = {
+        let handler = RequestHandler<ModelsAndColorsResponse>()
 
         handler.onSuccess = { [weak self] data in
             self?.models = data.models

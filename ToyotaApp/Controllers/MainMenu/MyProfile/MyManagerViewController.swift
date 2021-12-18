@@ -8,8 +8,8 @@ class MyManagerViewController: UIViewController, BackgroundText {
     private var user: UserProxy!
     private var managers: [Manager] = []
 
-    private lazy var managersRequestHandler: RequestHandler<ManagersDidGetResponse> = {
-        let handler = RequestHandler<ManagersDidGetResponse>()
+    private lazy var managersRequestHandler: RequestHandler<ManagersResponse> = {
+        let handler = RequestHandler<ManagersResponse>()
         
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
@@ -39,7 +39,7 @@ class MyManagerViewController: UIViewController, BackgroundText {
         dismiss(animated: true)
     }
     
-    private func handle(_ response: ManagersDidGetResponse) {
+    private func handle(_ response: ManagersResponse) {
         managers = response.managers
         managersCollection.reloadData()
         if response.managers.isEmpty {

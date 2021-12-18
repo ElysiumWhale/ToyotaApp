@@ -41,8 +41,8 @@ class TimePickerModule: NSObject, IServiceModule {
                 time: freeTime.freeTime[timeRows.time].hourAndMinute)
     }
 
-    private lazy var requestHandler: RequestHandler<FreeTimeDidGetResponse> = {
-        let handler = RequestHandler<FreeTimeDidGetResponse>()
+    private lazy var requestHandler: RequestHandler<FreeTimeResponse> = {
+        let handler = RequestHandler<FreeTimeResponse>()
 
         handler.onSuccess = { [weak self] data in
             self?.completion(for: data)
@@ -109,7 +109,7 @@ class TimePickerModule: NSObject, IServiceModule {
         internalView.datePicker.selectedRow(inComponent: component)
     }
 
-    private func completion(for response: FreeTimeDidGetResponse) {
+    private func completion(for response: FreeTimeResponse) {
         prepareTime(from: response.freeTimeDict)
         internalView.dataDidDownload()
         DispatchQueue.main.async { [weak self] in

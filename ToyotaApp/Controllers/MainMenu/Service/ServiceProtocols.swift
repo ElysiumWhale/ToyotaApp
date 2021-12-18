@@ -71,7 +71,7 @@ protocol IService: Codable {
     var name: String { get }
 }
 
-protocol IServiceResponse: Codable {
+protocol IServiceResponse: IResponse {
     var result: String { get }
     var array: [IService] { get }
 }

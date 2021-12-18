@@ -50,7 +50,7 @@ class PickerModule: NSObject, IServiceModule {
         let params: RequestItems = [(.carInfo(.showroomId), showroomId),
                                     (.services(.serviceTypeId), serviceType.id)]
         NetworkService.makeRequest(page: .services(.getServices),
-                                   params: params) { [weak self] (response: NetworkResponse<ServicesDidGetResponse>) in
+                                   params: params) { [weak self] (response: NetworkResponse<ServicesResponse>) in
             self?.completion(for: response)
         }
     }

@@ -22,8 +22,8 @@ class DealerViewController: UIViewController, PickerController {
     private var selectedShowroom: Showroom?
 
     // MARK: - Request handlers
-    private lazy var showroomsHandler: RequestHandler<ShoroomsDidGetResponce> = {
-        let handler = RequestHandler<ShoroomsDidGetResponce>()
+    private lazy var showroomsHandler: RequestHandler<ShoroomsResponce> = {
+        let handler = RequestHandler<ShoroomsResponce>()
         handler.onSuccess = { [weak self] data in
             self?.showrooms = data.showrooms
             DispatchQueue.main.async {

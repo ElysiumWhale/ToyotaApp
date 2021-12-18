@@ -24,9 +24,9 @@ class AddCarViewController: UIViewController, PickerController {
 
         view.hideKeyboardWhenSwipedDown()
 
-        configurePicker(modelPicker, with:  #selector(modelDidPick), for: modelTextField)
-        configurePicker(yearPicker, with:  #selector(yearDidPick), for: yearTextField)
-        configurePicker(colorPicker, with:  #selector(colorDidPick), for: colorTextField)
+        configurePicker(modelPicker, with: #selector(modelDidPick), for: modelTextField)
+        configurePicker(yearPicker, with: #selector(yearDidPick), for: yearTextField)
+        configurePicker(colorPicker, with: #selector(colorDidPick), for: colorTextField)
 
         if interactor.loadNeeded {
             loadModelsAndColors()

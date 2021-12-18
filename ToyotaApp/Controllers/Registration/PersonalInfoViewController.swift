@@ -19,8 +19,8 @@ class PersonalInfoViewController: KeyboardableController {
     private var configuredProfile: Profile?
     private var configureSelectCity: ParameterClosure<CityPickerViewController?>?
 
-    private lazy var requestHandler: RequestHandler<CitiesDidGetResponse> = {
-        let handler = RequestHandler<CitiesDidGetResponse>()
+    private lazy var requestHandler: RequestHandler<CitiesResponse> = {
+        let handler = RequestHandler<CitiesResponse>()
 
         handler.onSuccess = { [weak self] data in
             self?.handle(data)
@@ -152,7 +152,7 @@ extension PersonalInfoViewController {
                                    handler: requestHandler)
     }
 
-    private func handle(_ response: CitiesDidGetResponse) {
+    private func handle(_ response: CitiesResponse) {
         configureSelectCity = { vc in
             vc?.configure(with: response.cities.map { City(id: $0.id, name: $0.name) },
                           models: response.models ?? [],
