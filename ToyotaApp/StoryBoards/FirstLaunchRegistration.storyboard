@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ToyotaType-Bold.ttf">
-            <string>ToyotaType-Bold</string>
-        </array>
         <array key="ToyotaType-Book.ttf">
             <string>ToyotaType-Book</string>
         </array>
@@ -46,17 +43,17 @@
         <!--Данные-->
         <scene sceneID="JZn-Z7-6Ed">
             <objects>
-                <viewController storyboardIdentifier="PersonalInfoViewController" id="292-f3-5Nu" customClass="PersonalInfoViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalInfoViewController" automaticallyAdjustsScrollViewInsets="NO" id="292-f3-5Nu" customClass="PersonalInfoViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="il0-32-ooG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dU0-EG-MvM">
-                                <rect key="frame" x="20" y="140" width="398.5" height="71.5"/>
+                                <rect key="frame" x="20" y="140" width="398.5" height="33"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию о себе" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OL-jK-DSA">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="71.5"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -69,109 +66,117 @@
                                     <constraint firstAttribute="trailing" secondItem="3OL-jK-DSA" secondAttribute="trailing" constant="24.666666666666686" id="yw5-lY-kFb"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="WxI-l6-sI0">
-                                <rect key="frame" x="20" y="216.5" width="374" height="645.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="WxI-l6-sI0">
+                                <rect key="frame" x="20" y="178" width="374" height="684"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rs3-v6-7cF">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="638"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="689"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="d9o-Os-W9q">
-                                                <rect key="frame" x="0.0" y="15" width="374" height="327.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d9o-Os-W9q">
+                                                <rect key="frame" x="0.0" y="15" width="374" height="355"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMc-aT-iiY" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="37.5"/>
-                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETG-dc-1E2" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                                        <color key="backgroundColor" name="Background"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="55" id="bGT-tR-pc1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="23"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="HPQ-S4-ELy"/>
+                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Bqb-Ah-EFu"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73P-tT-b5t" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="72.5" width="374" height="37.5"/>
-                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                                        <rect key="frame" x="0.0" y="75" width="374" height="55"/>
+                                                        <color key="backgroundColor" name="Background"/>
+                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="23"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Gbg-uK-T3y"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-yN-RfG" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="145" width="374" height="37.5"/>
-                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                                        <rect key="frame" x="0.0" y="150" width="374" height="55"/>
+                                                        <color key="backgroundColor" name="Background"/>
+                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="23"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="additional-name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Tnj-d1-RV1"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-0O-l0g" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="217.5" width="374" height="37.5"/>
-                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="RlQ-p9-69x"/>
-                                                        </connections>
-                                                    </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91W-OT-t1s" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="290" width="374" height="37.5"/>
-                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
+                                                        <rect key="frame" x="0.0" y="225" width="374" height="55"/>
+                                                        <color key="backgroundColor" name="Background"/>
+                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="23"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="8HU-mo-RXd"/>
                                                         </connections>
                                                     </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-0O-l0g" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="300" width="374" height="55"/>
+                                                        <color key="backgroundColor" name="Background"/>
+                                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="23"/>
+                                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="RlQ-p9-69x"/>
+                                                        </connections>
+                                                    </textField>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="64" y="484" width="246" height="43"/>
-                                                <color key="backgroundColor" name="SecondaryGray"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
-                                                <state key="normal" title="Далее">
-                                                    <color key="titleColor" name="SignatureGray"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                                        <color key="value" name="Background"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                                        <color key="value" name="SecondarySignatureRed"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="SecondarySignatureRed"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="nextButtonDidPressedWithSender:" destination="292-f3-5Nu" eventType="touchUpInside" id="2eJ-rj-1Zf"/>
-                                                </connections>
-                                            </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-0I-Own">
-                                                <rect key="frame" x="168.5" y="487.5" width="37" height="37"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="ehp-0I-Own" secondAttribute="height" multiplier="1:1" id="RCa-2u-Tj5"/>
-                                                </constraints>
-                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="d9o-Os-W9q" secondAttribute="trailing" id="07q-ju-0aK"/>
-                                            <constraint firstItem="lXN-nS-wi1" firstAttribute="leading" secondItem="rs3-v6-7cF" secondAttribute="leading" constant="64" id="AZF-NN-uiN"/>
-                                            <constraint firstAttribute="trailing" secondItem="lXN-nS-wi1" secondAttribute="trailing" constant="64" id="PkW-AN-Y3N"/>
-                                            <constraint firstItem="ehp-0I-Own" firstAttribute="centerX" secondItem="rs3-v6-7cF" secondAttribute="centerX" id="ez9-NB-VCv"/>
-                                            <constraint firstItem="ehp-0I-Own" firstAttribute="top" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="-39.5" id="inc-9s-7gT"/>
-                                            <constraint firstItem="lXN-nS-wi1" firstAttribute="top" secondItem="d9o-Os-W9q" secondAttribute="bottom" constant="141.5" id="lR2-xn-jq9"/>
+                                            <constraint firstAttribute="bottom" secondItem="d9o-Os-W9q" secondAttribute="bottom" constant="319" id="8Nf-Ak-gEd"/>
                                             <constraint firstItem="d9o-Os-W9q" firstAttribute="top" secondItem="rs3-v6-7cF" secondAttribute="top" constant="15" id="n8a-O6-tRf"/>
                                             <constraint firstItem="d9o-Os-W9q" firstAttribute="leading" secondItem="rs3-v6-7cF" secondAttribute="leading" id="qwx-Fi-XW0"/>
-                                            <constraint firstAttribute="bottom" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="111" id="rsg-GC-M3d"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rs3-v6-7cF" firstAttribute="bottom" secondItem="4j8-ey-G94" secondAttribute="bottom" constant="635.5" id="00S-R9-4yb"/>
+                                    <constraint firstItem="rs3-v6-7cF" firstAttribute="bottom" secondItem="4j8-ey-G94" secondAttribute="bottom" constant="659" id="00S-R9-4yb"/>
                                     <constraint firstItem="rs3-v6-7cF" firstAttribute="top" secondItem="4j8-ey-G94" secondAttribute="top" id="7Qd-L1-Yed"/>
                                     <constraint firstItem="rs3-v6-7cF" firstAttribute="leading" secondItem="4j8-ey-G94" secondAttribute="leading" id="MX5-rO-XAf"/>
                                     <constraint firstItem="rs3-v6-7cF" firstAttribute="trailing" secondItem="4j8-ey-G94" secondAttribute="trailing" id="XbM-13-3eQ"/>
@@ -180,55 +185,11 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="4j8-ey-G94"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="meh-4o-MZX"/>
                             </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vtv-w5-w4j"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="WxI-l6-sI0" secondAttribute="trailing" constant="20" id="2rA-Ir-CtH"/>
-                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="WxI-l6-sI0" secondAttribute="bottom" id="99E-Ji-h8A"/>
-                            <constraint firstItem="dU0-EG-MvM" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="BIT-Eh-iYG"/>
-                            <constraint firstItem="WxI-l6-sI0" firstAttribute="top" secondItem="3OL-jK-DSA" secondAttribute="bottom" constant="5" id="ByH-yw-rtH"/>
-                            <constraint firstItem="3OL-jK-DSA" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" id="KCS-4o-xof"/>
-                            <constraint firstItem="WxI-l6-sI0" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="X6h-v0-nhr"/>
-                            <constraint firstItem="dU0-EG-MvM" firstAttribute="trailing" secondItem="vtv-w5-w4j" secondAttribute="trailing" constant="4.6666666666666856" id="XnM-iX-eBy"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Данные" largeTitleDisplayMode="always" id="ZEk-mt-0o7"/>
-                    <connections>
-                        <outlet property="activitySwitcher" destination="ehp-0I-Own" id="MlB-sf-IyQ"/>
-                        <outlet property="birthTextField" destination="27y-0O-l0g" id="n4V-77-eNV"/>
-                        <outlet property="emailTextField" destination="91W-OT-t1s" id="9BG-1D-fx6"/>
-                        <outlet property="firstNameTextField" destination="tMc-aT-iiY" id="tVK-h8-IIf"/>
-                        <outlet property="lastNameTextField" destination="73P-tT-b5t" id="iSa-Ol-siS"/>
-                        <outlet property="nextButton" destination="lXN-nS-wi1" id="6iJ-bC-eyl"/>
-                        <outlet property="scrollView" destination="WxI-l6-sI0" id="2iQ-jh-XqE"/>
-                        <outlet property="secondNameTextField" destination="kqe-yN-RfG" id="TNy-w5-pSh"/>
-                        <segue destination="Mey-k5-Vri" kind="show" identifier="PersonInfoToDealer" id="rrG-Pq-rAG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iSc-F9-SRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="244.92753623188409" y="172.76785714285714"/>
-        </scene>
-        <!--Дилер-->
-        <scene sceneID="UHO-9H-bXv">
-            <objects>
-                <viewController storyboardIdentifier="DealerViewController" id="Mey-k5-Vri" customClass="DealerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cwL-yz-kCL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="77N-z1-1oO">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="77N-z1-1oO" secondAttribute="height" multiplier="1:1" id="CQV-hT-Sjf"/>
-                                </constraints>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAZ-G9-1Io" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="84" y="784" width="246" height="43"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="84" y="789" width="246" height="43"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="a3e-cV-SKQ"/>
+                                    <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
@@ -242,136 +203,272 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextButtonDidPressedWithSender:" destination="292-f3-5Nu" eventType="touchUpInside" id="2eJ-rj-1Zf"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-0I-Own">
+                                <rect key="frame" x="188.5" y="792" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ehp-0I-Own" secondAttribute="height" multiplier="1:1" id="RCa-2u-Tj5"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vtv-w5-w4j"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="WxI-l6-sI0" secondAttribute="trailing" constant="20" id="2rA-Ir-CtH"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="WxI-l6-sI0" secondAttribute="bottom" id="99E-Ji-h8A"/>
+                            <constraint firstItem="dU0-EG-MvM" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="BIT-Eh-iYG"/>
+                            <constraint firstItem="WxI-l6-sI0" firstAttribute="top" secondItem="3OL-jK-DSA" secondAttribute="bottom" constant="5" id="ByH-yw-rtH"/>
+                            <constraint firstItem="lXN-nS-wi1" firstAttribute="centerX" secondItem="il0-32-ooG" secondAttribute="centerX" id="Hyh-3c-OOf"/>
+                            <constraint firstItem="ehp-0I-Own" firstAttribute="top" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="-40" id="Jrs-KU-ETg"/>
+                            <constraint firstItem="3OL-jK-DSA" firstAttribute="top" secondItem="vtv-w5-w4j" secondAttribute="top" id="KCS-4o-xof"/>
+                            <constraint firstItem="lXN-nS-wi1" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="84" id="Rfh-a6-TqG"/>
+                            <constraint firstItem="WxI-l6-sI0" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="X6h-v0-nhr"/>
+                            <constraint firstItem="dU0-EG-MvM" firstAttribute="trailing" secondItem="vtv-w5-w4j" secondAttribute="trailing" constant="4.6666666666666856" id="XnM-iX-eBy"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="30" id="aMf-WZ-jBC"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="lXN-nS-wi1" secondAttribute="trailing" constant="84" id="ds2-G4-kP7"/>
+                            <constraint firstItem="ehp-0I-Own" firstAttribute="centerX" secondItem="il0-32-ooG" secondAttribute="centerX" id="tAt-fm-ZP2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Данные" largeTitleDisplayMode="always" id="ZEk-mt-0o7"/>
+                    <connections>
+                        <outlet property="activitySwitcher" destination="ehp-0I-Own" id="MlB-sf-IyQ"/>
+                        <outlet property="birthTextField" destination="27y-0O-l0g" id="n4V-77-eNV"/>
+                        <outlet property="emailTextField" destination="91W-OT-t1s" id="9BG-1D-fx6"/>
+                        <outlet property="firstNameTextField" destination="ETG-dc-1E2" id="eVL-46-Cuv"/>
+                        <outlet property="lastNameTextField" destination="73P-tT-b5t" id="iSa-Ol-siS"/>
+                        <outlet property="nextButton" destination="lXN-nS-wi1" id="6iJ-bC-eyl"/>
+                        <outlet property="scrollView" destination="WxI-l6-sI0" id="2iQ-jh-XqE"/>
+                        <outlet property="secondNameTextField" destination="kqe-yN-RfG" id="TNy-w5-pSh"/>
+                        <segue destination="2DY-Pc-gZ9" kind="show" identifier="PersonInfoToCity" id="AuZ-0R-rZV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iSc-F9-SRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.92753623188409" y="172.76785714285714"/>
+        </scene>
+        <!--Город-->
+        <scene sceneID="Mds-D5-9UG">
+            <objects>
+                <viewController storyboardIdentifier="CityPickerViewController" id="2DY-Pc-gZ9" customClass="CityPickerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mtn-rw-XfM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город обслуживания" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-aC-Do8">
+                                <rect key="frame" x="20" y="139" width="374" height="33"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" estimatedSectionHeaderHeight="-1" sectionFooterHeight="5" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xhj-rd-zgW">
+                                <rect key="frame" x="0.0" y="172" width="414" height="690"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" name="SecondarySignatureRed"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CityCell" id="fH7-Wh-nbQ" customClass="CityCell" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fH7-Wh-nbQ" id="v8l-GM-oL0">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Самара" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EL-fc-GvS">
+                                                    <rect key="frame" x="20" y="11" width="334" height="26.5"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
+                                                    <color key="textColor" name="SignatureGray"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2EL-fc-GvS" secondAttribute="bottom" id="3hE-Vk-RgH"/>
+                                                <constraint firstItem="2EL-fc-GvS" firstAttribute="leading" secondItem="v8l-GM-oL0" secondAttribute="leadingMargin" id="CQu-qI-sOz"/>
+                                                <constraint firstItem="2EL-fc-GvS" firstAttribute="trailing" secondItem="v8l-GM-oL0" secondAttribute="trailingMargin" id="JXE-ho-sEv"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2EL-fc-GvS" secondAttribute="bottom" id="kd2-WH-Nck"/>
+                                                <constraint firstItem="2EL-fc-GvS" firstAttribute="top" secondItem="v8l-GM-oL0" secondAttribute="topMargin" id="mtM-4v-6PB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <connections>
+                                            <outlet property="cityNameLabel" destination="2EL-fc-GvS" id="m72-Cl-vw3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mtn-rw-XfM" id="r41-OQ-kD5"/>
+                                    <outlet property="delegate" destination="mtn-rw-XfM" id="0dI-iX-uBZ"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1YG-oq-9Zc" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="84" y="795" width="246" height="43"/>
+                                <color key="backgroundColor" name="SecondaryGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="1SY-0w-fYl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <state key="normal" title="Далее">
+                                    <color key="titleColor" name="SignatureGray"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" name="Background"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="nextButtonDidPressedWithSender:" destination="Mey-k5-Vri" eventType="touchUpInside" id="0C5-Hh-GAc"/>
+                                    <action selector="nextButtonDidPressWithSender:" destination="2DY-Pc-gZ9" eventType="touchUpInside" id="zT2-3Z-1gO"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="hrn-D5-1Xb">
-                                <rect key="frame" x="188.5" y="787" width="37" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="hrn-D5-1Xb" secondAttribute="height" multiplier="1:1" id="KJx-2V-T5t"/>
-                                </constraints>
-                            </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-wp-mLq">
-                                <rect key="frame" x="20" y="185" width="374" height="202"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLs-bh-NNn">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="92"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите город" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-rD-2TU">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
-                                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLH-tK-IJr" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="46"/>
-                                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="26"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wUJ-a2-MAD">
-                                        <rect key="frame" x="0.0" y="112" width="374" height="90"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите салон" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICh-r4-niT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
-                                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5RZ-s5-2c2" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="44"/>
-                                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="hon-gj-5GF"/>
+                        <viewLayoutGuide key="safeArea" id="34t-5i-094"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="bottom" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="35" id="3Bk-9o-Bzs"/>
-                            <constraint firstItem="hrn-D5-1Xb" firstAttribute="top" secondItem="JAZ-G9-1Io" secondAttribute="bottom" constant="-40" id="B7J-gb-EJg"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="JAZ-G9-1Io" secondAttribute="trailing" constant="84" id="Gsm-qv-8PO"/>
-                            <constraint firstItem="hrn-D5-1Xb" firstAttribute="centerX" secondItem="cwL-yz-kCL" secondAttribute="centerX" id="JOp-eC-aRK"/>
-                            <constraint firstItem="ZDO-wp-mLq" firstAttribute="top" secondItem="hon-gj-5GF" secondAttribute="top" constant="45" id="NvX-3D-21C"/>
-                            <constraint firstItem="hon-gj-5GF" firstAttribute="trailing" secondItem="ZDO-wp-mLq" secondAttribute="trailing" constant="20" id="Q4t-Er-3KZ"/>
-                            <constraint firstItem="77N-z1-1oO" firstAttribute="centerX" secondItem="cwL-yz-kCL" secondAttribute="centerX" id="d6F-D4-Who"/>
-                            <constraint firstItem="77N-z1-1oO" firstAttribute="centerY" secondItem="cwL-yz-kCL" secondAttribute="centerY" id="mWH-Ju-gEO"/>
-                            <constraint firstItem="JAZ-G9-1Io" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="84" id="niW-go-3hx"/>
-                            <constraint firstItem="ZDO-wp-mLq" firstAttribute="leading" secondItem="hon-gj-5GF" secondAttribute="leading" constant="20" id="nks-2w-Aow"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="trailing" secondItem="xhj-rd-zgW" secondAttribute="trailing" id="9NU-yw-wzC"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="top" secondItem="U5B-aC-Do8" secondAttribute="top" constant="1" id="Bld-ld-eUg"/>
+                            <constraint firstItem="U5B-aC-Do8" firstAttribute="leading" secondItem="34t-5i-094" secondAttribute="leading" constant="20" id="CMC-FO-DqD"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="trailing" secondItem="1YG-oq-9Zc" secondAttribute="trailing" constant="84" id="ILi-ec-gnH"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="bottom" secondItem="1YG-oq-9Zc" secondAttribute="bottom" constant="24" id="JPV-b6-Bhj"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="trailing" secondItem="U5B-aC-Do8" secondAttribute="trailing" constant="20" id="KFb-cL-rbB"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="bottom" secondItem="xhj-rd-zgW" secondAttribute="bottom" id="LzC-pS-82z"/>
+                            <constraint firstItem="xhj-rd-zgW" firstAttribute="leading" secondItem="34t-5i-094" secondAttribute="leading" id="PhR-sF-Qdp"/>
+                            <constraint firstItem="xhj-rd-zgW" firstAttribute="top" secondItem="U5B-aC-Do8" secondAttribute="bottom" id="cZg-vB-BiW"/>
+                            <constraint firstItem="1YG-oq-9Zc" firstAttribute="leading" secondItem="34t-5i-094" secondAttribute="leading" constant="84" id="tgX-Z1-pzz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Дилер" id="5ue-dg-1Tp"/>
+                    <navigationItem key="navigationItem" title="Город" id="uUt-vI-AOc"/>
                     <connections>
-                        <outlet property="cityTextField" destination="WLH-tK-IJr" id="F8Q-Ox-Y2l"/>
-                        <outlet property="cityTextFieldIndicator" destination="77N-z1-1oO" id="Elb-6j-ePp"/>
-                        <outlet property="nextButton" destination="JAZ-G9-1Io" id="VTy-QX-BD9"/>
-                        <outlet property="nextButtonIndicator" destination="hrn-D5-1Xb" id="keQ-Kb-L61"/>
-                        <outlet property="showroomStackView" destination="wUJ-a2-MAD" id="rhC-Ye-EKE"/>
-                        <outlet property="showroomTextField" destination="5RZ-s5-2c2" id="p3c-q7-6OJ"/>
-                        <segue destination="3my-7G-TR7" kind="show" identifier="DealerToCheckVin" id="ra1-wl-V7k"/>
+                        <outlet property="nextButton" destination="1YG-oq-9Zc" id="JZX-Kh-5c0"/>
+                        <outlet property="refreshableView" destination="xhj-rd-zgW" id="nf3-kN-7wY"/>
+                        <segue destination="3my-7G-TR7" kind="show" identifier="CityToAddCar" id="alj-9p-pvt"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hJs-dc-euv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QlL-XB-adP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000.0000000000001" y="172.76785714285714"/>
+            <point key="canvasLocation" x="1034.7826086956522" y="172.76785714285714"/>
         </scene>
         <!--Проверка машины по VIN-->
         <scene sceneID="Ge2-NQ-PAM">
             <objects>
-                <viewController storyboardIdentifier="CheckVinViewController" title="Проверка машины по VIN" id="3my-7G-TR7" customClass="CheckVinViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCarViewController" title="Проверка машины по VIN" id="3my-7G-TR7" customClass="AddCarViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FVG-Ex-bir">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sqW-gg-58W">
-                                <rect key="frame" x="20" y="200" width="374" height="178"/>
+                                <rect key="frame" x="20" y="242" width="374" height="282"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите VIN-код Вашего автомобиля для регистрации в системе:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSf-4E-D5C">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="86"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="86" id="tJp-gY-M1u"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VIN" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dp7-UB-djO" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="94" width="374" height="50"/>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="PYm-JP-g9j"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="vinValueDidChangeWith:" destination="3my-7G-TR7" eventType="editingChanged" id="F8f-us-wvZ"/>
+                                            <action selector="textDidChangeWithSender:" destination="3my-7G-TR7" eventType="editingChanged" id="5xz-Iw-OF9"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен некорректный VIN-код!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-sU-Ndd">
-                                        <rect key="frame" x="0.0" y="152" width="374" height="26"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Номер (необязательно)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMz-DW-yWH" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="58" width="374" height="50"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Y2J-Yn-kEj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textDidChangeWithSender:" destination="3my-7G-TR7" eventType="editingChanged" id="Yh5-Jz-eh8"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Модель" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m8c-5j-cic" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="374" height="50"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="oHa-DQ-EOu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textDidChangeWithSender:" destination="3my-7G-TR7" eventType="editingChanged" id="oYl-9t-sAp"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Год" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-SV-DI3" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="174" width="374" height="50"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="bn1-hm-qBj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textDidChangeWithSender:" destination="3my-7G-TR7" eventType="editingChanged" id="t2H-YV-SeD"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Цвет" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oa-Ly-vi5" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="232" width="374" height="50"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NzX-Nf-YIg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textDidChangeWithSender:" destination="3my-7G-TR7" eventType="editingChanged" id="7fZ-o1-z3K"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="87" y="808" width="239" height="44"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
-                                <state key="normal" title="Проверить">
+                                <state key="normal" title="Далее">
                                     <color key="titleColor" name="SignatureGray"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -390,8 +487,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="nextButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="K4f-dO-g1M"/>
-                                    <outlet property="keyboardConstraint" destination="RC7-eI-paa" id="dED-lL-3KU"/>
+                                    <action selector="nextButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="Lhr-JJ-XTs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Dr-7q-bsh">
@@ -400,26 +496,38 @@
                                 <state key="normal" title="Пропустить этот шаг">
                                     <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" name="SecondarySignatureRed"/>
+                                </state>
                                 <connections>
-                                    <action selector="skipButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="jma-g9-aom"/>
+                                    <action selector="skipButtonDidPressedWithSender:" destination="3my-7G-TR7" eventType="touchUpInside" id="H8J-gU-7JE"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="U0j-hc-Xop">
                                 <rect key="frame" x="188" y="811.5" width="37" height="37"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните информацию об автомобиле" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoF-KU-Q5u">
+                                <rect key="frame" x="19" y="140" width="374" height="66"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8kL-Vl-afN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="U0j-hc-Xop" firstAttribute="centerX" secondItem="IJ5-Dd-Ubi" secondAttribute="centerX" id="20L-4r-K4a"/>
                             <constraint firstItem="U0j-hc-Xop" firstAttribute="centerY" secondItem="IJ5-Dd-Ubi" secondAttribute="centerY" id="25x-EA-QdW"/>
-                            <constraint firstItem="sqW-gg-58W" firstAttribute="top" secondItem="8kL-Vl-afN" secondAttribute="top" constant="60" id="29C-1g-fcT"/>
+                            <constraint firstItem="sqW-gg-58W" firstAttribute="top" secondItem="8kL-Vl-afN" secondAttribute="top" constant="102" id="29C-1g-fcT"/>
+                            <constraint firstItem="LoF-KU-Q5u" firstAttribute="leading" secondItem="8kL-Vl-afN" secondAttribute="leading" constant="19" id="44i-Qz-N0E"/>
                             <constraint firstAttribute="trailing" secondItem="4Dr-7q-bsh" secondAttribute="trailing" constant="96" id="9c9-d8-I8u"/>
                             <constraint firstItem="4Dr-7q-bsh" firstAttribute="leading" secondItem="FVG-Ex-bir" secondAttribute="leading" constant="96" id="BLK-8j-dYV"/>
                             <constraint firstItem="8kL-Vl-afN" firstAttribute="bottom" secondItem="4Dr-7q-bsh" secondAttribute="bottom" constant="63" id="Evy-p8-ucy"/>
+                            <constraint firstItem="LoF-KU-Q5u" firstAttribute="top" secondItem="8kL-Vl-afN" secondAttribute="top" id="Jdv-8R-DqF"/>
                             <constraint firstItem="8kL-Vl-afN" firstAttribute="trailing" secondItem="IJ5-Dd-Ubi" secondAttribute="trailing" constant="88" id="KPm-9E-bTJ"/>
                             <constraint firstItem="sqW-gg-58W" firstAttribute="leading" secondItem="FVG-Ex-bir" secondAttribute="leading" constant="20" id="MpG-a9-UB6"/>
                             <constraint firstItem="8kL-Vl-afN" firstAttribute="bottom" secondItem="IJ5-Dd-Ubi" secondAttribute="bottom" constant="10" id="RC7-eI-paa"/>
+                            <constraint firstItem="8kL-Vl-afN" firstAttribute="trailing" secondItem="LoF-KU-Q5u" secondAttribute="trailing" constant="21" id="Sh8-ov-9wf"/>
                             <constraint firstAttribute="trailing" secondItem="sqW-gg-58W" secondAttribute="trailing" constant="20" id="aHT-3n-WzG"/>
                             <constraint firstItem="IJ5-Dd-Ubi" firstAttribute="leading" secondItem="8kL-Vl-afN" secondAttribute="leading" constant="87" id="mnz-e8-hcn"/>
                             <constraint firstItem="sqW-gg-58W" firstAttribute="centerX" secondItem="FVG-Ex-bir" secondAttribute="centerX" id="pln-Hv-Ixp"/>
@@ -427,12 +535,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Автомобиль" id="Mbl-KA-VDk"/>
                     <connections>
-                        <outlet property="checkVinButton" destination="IJ5-Dd-Ubi" id="Fv3-Cd-jlJ"/>
-                        <outlet property="errorLabel" destination="q0j-sU-Ndd" id="ltq-gl-1aM"/>
-                        <outlet property="indicator" destination="U0j-hc-Xop" id="ONr-LS-lpx"/>
-                        <outlet property="skipStepButton" destination="4Dr-7q-bsh" id="b89-eV-rgA"/>
-                        <outlet property="vinCodeTextField" destination="dp7-UB-djO" id="dd8-xW-ZBW"/>
-                        <segue destination="Sky-Ph-Wl4" kind="presentation" identifier="CarToEndRegistration" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="8Fc-gq-rUM"/>
+                        <outlet property="colorTextField" destination="2oa-Ly-vi5" id="zqj-r8-skd"/>
+                        <outlet property="indicator" destination="U0j-hc-Xop" id="p2S-lk-E07"/>
+                        <outlet property="modelTextField" destination="m8c-5j-cic" id="Blx-FN-mwT"/>
+                        <outlet property="nextButton" destination="IJ5-Dd-Ubi" id="lep-x5-IgI"/>
+                        <outlet property="plateTextField" destination="MMz-DW-yWH" id="lS1-Du-1V8"/>
+                        <outlet property="skipButton" destination="4Dr-7q-bsh" id="Gpe-mf-zZJ"/>
+                        <outlet property="vinCodeTextField" destination="dp7-UB-djO" id="V0P-J3-aVL"/>
+                        <outlet property="yearTextField" destination="fOd-SV-DI3" id="fCK-mk-3iV"/>
+                        <segue destination="Sky-Ph-Wl4" kind="presentation" identifier="AddCarToEndRegistration" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="8Fc-gq-rUM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lq-92-b4P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -522,32 +633,38 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="27y-0O-l0g">
-            <size key="intrinsicContentSize" width="190" height="37.5"/>
-        </designable>
-        <designable name="5RZ-s5-2c2">
-            <size key="intrinsicContentSize" width="111.5" height="44"/>
-        </designable>
-        <designable name="73P-tT-b5t">
-            <size key="intrinsicContentSize" width="119.5" height="37.5"/>
-        </designable>
-        <designable name="91W-OT-t1s">
-            <size key="intrinsicContentSize" width="242" height="37.5"/>
-        </designable>
-        <designable name="IJ5-Dd-Ubi">
-            <size key="intrinsicContentSize" width="119" height="44"/>
-        </designable>
-        <designable name="JAZ-G9-1Io">
+        <designable name="1YG-oq-9Zc">
             <size key="intrinsicContentSize" width="67" height="44"/>
         </designable>
-        <designable name="WLH-tK-IJr">
-            <size key="intrinsicContentSize" width="105.5" height="46"/>
+        <designable name="27y-0O-l0g">
+            <size key="intrinsicContentSize" width="185.5" height="34.5"/>
+        </designable>
+        <designable name="2oa-Ly-vi5">
+            <size key="intrinsicContentSize" width="46" height="27.5"/>
+        </designable>
+        <designable name="73P-tT-b5t">
+            <size key="intrinsicContentSize" width="120" height="34.5"/>
+        </designable>
+        <designable name="91W-OT-t1s">
+            <size key="intrinsicContentSize" width="233" height="34.5"/>
+        </designable>
+        <designable name="ETG-dc-1E2">
+            <size key="intrinsicContentSize" width="62" height="34.5"/>
+        </designable>
+        <designable name="IJ5-Dd-Ubi">
+            <size key="intrinsicContentSize" width="67" height="44"/>
+        </designable>
+        <designable name="MMz-DW-yWH">
+            <size key="intrinsicContentSize" width="214.5" height="27.5"/>
         </designable>
         <designable name="dp7-UB-djO">
             <size key="intrinsicContentSize" width="35" height="27.5"/>
         </designable>
+        <designable name="fOd-SV-DI3">
+            <size key="intrinsicContentSize" width="32.5" height="27.5"/>
+        </designable>
         <designable name="kqe-yN-RfG">
-            <size key="intrinsicContentSize" width="120.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="121" height="34.5"/>
         </designable>
         <designable name="lXN-nS-wi1">
             <size key="intrinsicContentSize" width="67" height="44"/>
@@ -555,8 +672,8 @@
         <designable name="m8K-nk-2qV">
             <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
-        <designable name="tMc-aT-iiY">
-            <size key="intrinsicContentSize" width="56" height="37.5"/>
+        <designable name="m8c-5j-cic">
+            <size key="intrinsicContentSize" width="72" height="27.5"/>
         </designable>
     </designables>
     <resources>
@@ -573,17 +690,11 @@
         <namedColor name="SignatureGray">
             <color red="0.15686274509803921" green="0.15686274509803921" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

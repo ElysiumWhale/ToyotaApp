@@ -73,7 +73,7 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     @IBAction private func skipButtonDidPressed(sender: Any?) {
-        guard interactor.type != .register else {
+        guard interactor.type == .register else {
             return
         }
 
