@@ -190,6 +190,7 @@ extension ServicesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ServiceCollectionViewCell = collectionView.dequeue(for: indexPath)
         let serviceType = serviceTypes[indexPath.row]
         cell.configure(name: serviceType.serviceTypeName,
@@ -217,5 +218,23 @@ extension ServicesViewController: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.5,
                        delay: 0.05 * Double(indexPath.row),
                        animations: { cell.alpha = 1 })
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        animateCellBackground(collectionView, indexPath, color: .appTint(.secondarySignatureRed))
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        animateCellBackground(collectionView, indexPath, color: .appTint(.cell))
+    }
+
+    private func animateCellBackground(_ collectionView: UICollectionView, _ indexPath: IndexPath, color: UIColor) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else {
+            return
+        }
+
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: [.curveEaseOut]) {
+            cell.backgroundColor = color
+        }
     }
 }
