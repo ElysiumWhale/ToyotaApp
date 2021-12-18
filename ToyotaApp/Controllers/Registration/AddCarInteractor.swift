@@ -121,6 +121,20 @@ class AddCarInteractor {
     }
 
     private func saveCar(with id: String) {
-        // KeychainManager.set(<#T##info: _##_#>)
+        guard let selectedModel = selectedModel,
+              let selectedColor = selectedColor,
+              !selectedYear.isEmpty, !vin.isEmpty else {
+            return
+        }
+
+        let car = Car(id: id, brand: Brand.Toyota, model: selectedModel,
+                      color: selectedColor, plate: plate, vin: vin, isChecked: false)
+
+        switch type {
+            case .register:
+                KeychainManager.set(Cars([car]))
+            case .update(let userProxy):
+                userProxy.addNew(car: car)
+        }
     }
 }
