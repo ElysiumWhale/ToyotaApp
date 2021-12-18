@@ -178,7 +178,7 @@ extension ServicesViewController: UIPickerViewDataSource {
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        cars[row].model
+        cars[row].model.name
     }
 }
 

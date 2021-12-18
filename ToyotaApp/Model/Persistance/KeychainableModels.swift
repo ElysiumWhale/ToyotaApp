@@ -95,15 +95,16 @@ struct Showroom: WithDefaultKey, IService {
     }
 }
 
-struct Car: Codable {
+struct Car: IService {
     let id: String
-    let showroomId: String
     let brand: String
-    let model: String
-    let color: String
-    let colorSwatch: String
-    let colorDescription: String
-    let isMetallic: String
+    let model: Model
+    let color: Color
     let plate: String
     let vin: String
+    let isChecked: Bool
+
+    var name: String {
+        "\(brand) \(model.name)"
+    }
 }
