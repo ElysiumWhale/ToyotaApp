@@ -10,8 +10,8 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
 
     private let cellIdentrifier = CellIdentifiers.ServiceCell
 
-    private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesDidGetResponse> = {
-        let handler = RequestHandler<ServicesTypesDidGetResponse>()
+    private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesResponse> = {
+        let handler = RequestHandler<ServicesTypesResponse>()
 
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {

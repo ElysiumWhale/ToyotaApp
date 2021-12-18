@@ -16,8 +16,8 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
 
     private var cars: [Car] { user.getCars.array }
 
-    private lazy var citiesRequestHandle: RequestHandler<CitiesDidGetResponse> = {
-        let handler = RequestHandler<CitiesDidGetResponse>()
+    private lazy var citiesRequestHandle: RequestHandler<CitiesResponse> = {
+        let handler = RequestHandler<CitiesResponse>()
         
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
@@ -62,7 +62,7 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
         dismiss(animated: true)
     }
 
-    private func handle(_ response: CitiesDidGetResponse) {
+    private func handle(_ response: CitiesResponse) {
         let register = UIStoryboard(.register)
         let addShowroomVC: DealerViewController = register.instantiate(.dealer)
         addShowroomVC.configure(cityList: response.cities, controllerType: .update(with: user))
