@@ -360,6 +360,11 @@ b). сторонним поставщикам услуг и партнерам,
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="editingChanged" id="6pF-tK-yND"/>
                                         </connections>
@@ -424,7 +429,7 @@ b). сторонним поставщикам услуг и партнерам,
     </scenes>
     <designables>
         <designable name="1t0-20-RV7">
-            <size key="intrinsicContentSize" width="198" height="33"/>
+            <size key="intrinsicContentSize" width="253" height="33"/>
         </designable>
         <designable name="YeZ-bJ-pbq">
             <size key="intrinsicContentSize" width="67" height="44"/>
