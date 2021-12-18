@@ -65,17 +65,17 @@ class Person: Keychainable {
 class Cars: Keychainable {
     static var key: KeychainKeys = .cars
 
-    var chosenCar: Car?
+    var defaultCar: Car?
     var array: [Car]
 
     init(_ cars: [Car]) {
         array = cars
-        chosenCar = array.first
+        defaultCar = array.first
     }
 
     init(_ cars: [Car], chosen car: Car) {
         array = cars
-        chosenCar = car
+        defaultCar = car
     }
 }
 

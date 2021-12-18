@@ -81,15 +81,15 @@ extension UserInfo: UserProxy {
 
     func addNew(car: Car) {
         cars.array.append(car)
-        if cars.chosenCar == nil {
-            cars.chosenCar = car
+        if cars.defaultCar == nil {
+            cars.defaultCar = car
         }
         KeychainManager.set(cars)
         notificator.notificateObservers()
     }
 
     func updateSelected(car: Car) {
-        cars.chosenCar = car
+        cars.defaultCar = car
         KeychainManager.set(cars)
         notificator.notificateObservers()
     }
@@ -105,8 +105,8 @@ extension UserInfo: UserProxy {
     func removeCar(with id: String) {
         let updatedCars = cars
         updatedCars.array.removeAll(where: { $0.id == id })
-        if cars.chosenCar?.id == id {
-            updatedCars.chosenCar = updatedCars.array.first
+        if cars.defaultCar?.id == id {
+            updatedCars.defaultCar = updatedCars.array.first
         }
         KeychainManager.set(updatedCars)
         notificator.notificateObservers()

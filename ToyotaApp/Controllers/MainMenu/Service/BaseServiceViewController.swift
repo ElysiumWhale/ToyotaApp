@@ -104,7 +104,7 @@ class BaseServiceController: UIViewController, IServiceController {
     func bookService() {
         guard let userId = user?.getId,
               let showroomId = user?.getSelectedShowroom?.id,
-              let carId = user?.getCars.chosenCar?.id else { return }
+              let carId = user?.getCars.defaultCar?.id else { return }
         
         var params: RequestItems = [(.auth(.userId), userId),
                                       (.carInfo(.showroomId), showroomId),

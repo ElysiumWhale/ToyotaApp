@@ -33,7 +33,7 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
     }
 
     private var cars: [Car] { user.getCars.array }
-    private var selectedCar: Car? { user.getCars.chosenCar }
+    private var selectedCar: Car? { user.getCars.defaultCar }
     private var serviceTypes: [ServiceType] = []
 
     override func viewDidLoad() {
@@ -85,7 +85,9 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
         serviceTypes = response.serviceType
         refreshableView.reloadData()
         endRefreshing()
-        refreshableView.backgroundView = serviceTypes.count < 1 ? createBackground(labelText: .background(.noServices)) : nil
+        refreshableView.backgroundView = serviceTypes.count < 1
+            ? createBackground(labelText: .background(.noServices))
+            : nil
     }
 
     private func handle(failure error: ErrorResponse) {
