@@ -51,11 +51,11 @@ class AddCarViewController: UIViewController, PickerController {
     }
 
     @IBAction private func nextButtonDidPressed(sender: Any?) {
-        var validated = false
+        var validated = true
         [modelTextField, colorTextField,
          yearTextField, vinCodeTextField].forEach { field in
             let fieldHasError = field?.text == nil || field?.text?.isEmpty ?? true
-            validated = validated || fieldHasError
+            validated = validated && !fieldHasError
             field?.toggle(state: fieldHasError ? .error : .normal)
         }
 
@@ -104,6 +104,9 @@ class AddCarViewController: UIViewController, PickerController {
         view.endEditing(true)
         let index = picker.selectedRow(inComponent: 0)
         textField.text = setProperty(index)
+        if textField.text != nil || !textField.text!.isEmpty {
+            textField.toggle(state: .normal)
+        }
     }
 }
 
