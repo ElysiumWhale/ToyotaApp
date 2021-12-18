@@ -64,10 +64,8 @@ class NavigationService {
         }
         return controller
     }
-}
 
-// MARK: - LoadConnectionLost
-extension NavigationService {
+    // MARK: - LoadConnectionLost
     class func loadConnectionLost() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(.main)
@@ -75,10 +73,8 @@ extension NavigationService {
             switchRootView?(controller)
         }
     }
-}
 
-// MARK: - LoadAuth
-extension NavigationService {
+    // MARK: - LoadAuth
     class func loadAuth(with error: String? = nil) {
         DispatchQueue.main.async {
             let authStoryboard = UIStoryboard(.auth)
@@ -96,10 +92,8 @@ extension NavigationService {
         controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
     }
-}
 
-// MARK: - LoadRegister overloads
-extension NavigationService {
+    // MARK: - LoadRegister overloads
     class func loadRegister(_ state: RegistrationStates) {
         DispatchQueue.main.async {
             let regStoryboard = UIStoryboard(.register)
@@ -130,10 +124,8 @@ extension NavigationService {
             switchRootView?(controller)
         }
     }
-}
 
-// MARK: - LoadMain overloads
-extension NavigationService {
+    // MARK: - LoadMain overloads
     class func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
             KeychainManager.set(Person.toDomain(user.profile))
