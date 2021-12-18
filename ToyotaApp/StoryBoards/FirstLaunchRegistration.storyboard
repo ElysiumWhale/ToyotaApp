@@ -277,10 +277,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CityCell" id="fH7-Wh-nbQ" customClass="CityCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="48.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fH7-Wh-nbQ" id="v8l-GM-oL0">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="48.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Самара" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EL-fc-GvS">
@@ -559,7 +559,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RxF-zI-Ctg">
-                                <rect key="frame" x="20" y="220" width="374" height="315.5"/>
+                                <rect key="frame" x="20" y="220" width="374" height="284"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Благодарим за регистрацию!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPd-Dg-SNB">
                                         <rect key="frame" x="49.5" y="0.0" width="275.5" height="103"/>
@@ -567,22 +567,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете добавить автомибили и также воспользоваться различными услугами по их обслуживанию и не только." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ge-wf-V2H">
-                                        <rect key="frame" x="7" y="115" width="360.5" height="157"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В главном меню Вы сможете  воспользоваться различными услугами по обслуживанию автомобилей и не только." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ge-wf-V2H">
+                                        <rect key="frame" x="20" y="115" width="334" height="125.5"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного использования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFS-HL-DLP">
-                                        <rect key="frame" x="39" y="284" width="296" height="31.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приятного пользования!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFS-HL-DLP">
+                                        <rect key="frame" x="52" y="252.5" width="270.5" height="31.5"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8Uq-Es-cZe">
+                                <rect key="frame" x="143" y="88" width="128" height="128"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="92" y="783" width="231" height="44"/>
+                                <rect key="frame" x="92" y="807" width="231" height="44"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
@@ -607,9 +610,6 @@
                                     <action selector="loadMainMenuWithSender:" destination="Sky-Ph-Wl4" eventType="touchUpInside" id="pAC-CH-WQb"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToyotaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8Uq-Es-cZe">
-                                <rect key="frame" x="143" y="88" width="128" height="128"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mM9-4h-7ch"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -617,9 +617,9 @@
                             <constraint firstAttribute="trailing" secondItem="RxF-zI-Ctg" secondAttribute="trailing" constant="20" id="2Q7-AD-3Rc"/>
                             <constraint firstItem="RxF-zI-Ctg" firstAttribute="top" secondItem="8Uq-Es-cZe" secondAttribute="bottom" constant="4" id="6iG-nw-N7v"/>
                             <constraint firstItem="mM9-4h-7ch" firstAttribute="trailing" secondItem="m8K-nk-2qV" secondAttribute="trailing" constant="91" id="Mbh-AJ-aUL"/>
-                            <constraint firstItem="m8K-nk-2qV" firstAttribute="top" relation="lessThanOrEqual" secondItem="RxF-zI-Ctg" secondAttribute="bottom" constant="251.5" id="NTR-Rp-Kts"/>
+                            <constraint firstItem="m8K-nk-2qV" firstAttribute="top" relation="lessThanOrEqual" secondItem="RxF-zI-Ctg" secondAttribute="bottom" constant="303" id="NTR-Rp-Kts"/>
                             <constraint firstItem="m8K-nk-2qV" firstAttribute="leading" secondItem="mM9-4h-7ch" secondAttribute="leading" constant="92" id="aWZ-zT-Iml"/>
-                            <constraint firstItem="mM9-4h-7ch" firstAttribute="bottom" secondItem="m8K-nk-2qV" secondAttribute="bottom" constant="35" id="cEj-de-HKe"/>
+                            <constraint firstItem="mM9-4h-7ch" firstAttribute="bottom" secondItem="m8K-nk-2qV" secondAttribute="bottom" constant="11" id="cEj-de-HKe"/>
                             <constraint firstItem="RxF-zI-Ctg" firstAttribute="leading" secondItem="mM9-4h-7ch" secondAttribute="leading" constant="20" id="dRK-ti-UDo"/>
                             <constraint firstItem="8Uq-Es-cZe" firstAttribute="centerX" secondItem="dkO-Kh-oXf" secondAttribute="centerX" id="eqS-ch-nIi"/>
                             <constraint firstItem="8Uq-Es-cZe" firstAttribute="top" secondItem="mM9-4h-7ch" secondAttribute="top" constant="44" id="xKc-Hg-9JL"/>
@@ -629,7 +629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rne-ym-drh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="173"/>
+            <point key="canvasLocation" x="2627.536231884058" y="172.76785714285714"/>
         </scene>
     </scenes>
     <designables>
