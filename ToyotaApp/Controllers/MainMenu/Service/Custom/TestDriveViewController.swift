@@ -36,7 +36,7 @@ class TestDriveViewController: BaseServiceController {
             case 0:
                 modules[1].customStart(page: .services(.getTestDriveCars),
                                        with: params,
-                                       response: CarsDidGetResponse.self)
+                                       response: CarsResponse.self)
             case 1:
                 modules[2].customStart(page: .services(.getTestDriveShowrooms),
                                        with: params,
@@ -44,7 +44,7 @@ class TestDriveViewController: BaseServiceController {
             case 2:
                 modules[3].customStart(page: .services(.getFreeTime),
                                        with: params,
-                                       response: CarsDidGetResponse.self)
+                                       response: CarsResponse.self)
             case 3:
                 bookButton.fadeIn()
             default: return

@@ -4,7 +4,7 @@ protocol IResponse: Codable {
     
 }
 
-// MARK: - Default simple response
+// MARK: - Default response
 public struct Response: IResponse {
     let result: String
 
@@ -13,7 +13,7 @@ public struct Response: IResponse {
     }
 }
 
-// MARK: - CheckUserResponce & SmsCodeDidSendResponse
+// MARK: - CheckUserOrSmsCodeResponse
 public struct CheckUserOrSmsCodeResponse: IResponse {
     let result: String
     let secretKey: String
@@ -60,7 +60,7 @@ public struct Profile: IResponse {
     }
 }
 
-// MARK: - CitiesDidGetResponse
+// MARK: - CitiesResponse
 public struct CitiesResponse: IServiceResponse {
     let result: String
     let cities: [City]
@@ -112,12 +112,14 @@ public struct Color: Codable {
     }
 }
 
+// MARK: - ModelsAndColorsResponse
 public struct ModelsAndColorsResponse: IResponse {
     let result: String
     let models: [Model]
     let colors: [Color]
 }
 
+// MARK: - CarSetResponse
 public struct CarSetResponse: IResponse {
     let result: String
     let carId: String
@@ -128,7 +130,7 @@ public struct CarSetResponse: IResponse {
     }
 }
 
-// MARK: - ShoroomsDidGetResponce
+// MARK: - ShoroomsResponce
 public struct ShoroomsResponce: IServiceResponse {
     let result: String
     let showrooms: [Showroom]
@@ -136,14 +138,14 @@ public struct ShoroomsResponce: IServiceResponse {
     var array: [IService] { showrooms }
 }
 
-// MARK: - CarDidCheck
+// MARK: - CarCheckResponse
 public struct CarCheckResponse: IResponse {
     let result: String
     let message: String // todo: delete message
     // let car: OldCar?
 }
 
-// MARK: - GetServicesTypes
+// MARK: - ServicesTypesResponse
 public struct ServicesTypesResponse: IResponse {
     let result: String
     let serviceType: [ServiceType]
@@ -168,7 +170,7 @@ public struct ServiceType: Codable {
     }
 }
 
-// MARK: - GetServices
+// MARK: - ServicesResponse
 public struct ServicesResponse: IServiceResponse {
     let result: String
     let services: [Service]
@@ -190,7 +192,7 @@ extension Service {
     static let empty = Service(id: "-1", name: "Нет доступных сервисов")
 }
 
-// MARK: - GetFreeTime for Service
+// MARK: - FreeTimeResponse
 public struct FreeTimeResponse: IResponse {
     let result: String
     let startDate: String?
@@ -205,7 +207,7 @@ public struct FreeTimeResponse: IResponse {
     }
 }
 
-// MARK: - GetManagers for users showrooms
+// MARK: - ManagersResponse
 public struct ManagersResponse: IResponse {
     let result: String
     let managers: [Manager]
@@ -233,15 +235,15 @@ public struct Manager: Codable {
     }
 }
 
-// MARK: - CarsDidGetResponse
-public struct CarsDidGetResponse: IServiceResponse {
+// MARK: - CarsResponse
+public struct CarsResponse: IServiceResponse {
     var array: [IService] { cars }
 
     let result: String
     let cars: [Service]
 }
 
-// MARK: - BookingsDidGetResponse
+// MARK: - BookingsResponse
 public struct BookingsResponse: IResponse {
     let result: String
     let booking: [Booking]
