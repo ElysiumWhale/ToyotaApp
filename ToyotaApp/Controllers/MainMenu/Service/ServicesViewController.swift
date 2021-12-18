@@ -98,6 +98,7 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
     }
 
     private func makeRequest() {
+        // selectedCar.showroomId -> selectedShowroom
         NetworkService.makeRequest(page: .services(.getServicesTypes),
                                    params: [(.carInfo(.showroomId),
                                              selectedCar!.showroomId)],
@@ -188,10 +189,11 @@ extension ServicesViewController: UICollectionViewDataSource {
         serviceTypes.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
         let cell: ServiceCollectionViewCell = collectionView.dequeue(for: indexPath)
         let serviceType = serviceTypes[indexPath.row]
-        cell.configure(name: serviceType.serviceTypeName, type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
+        cell.configure(name: serviceType.serviceTypeName,
+                       type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
         return cell
     }
 }
@@ -209,7 +211,8 @@ extension ServicesViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 0.5,
                        delay: 0.05 * Double(indexPath.row),
