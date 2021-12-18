@@ -129,11 +129,11 @@ class NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
             KeychainManager.set(Person.toDomain(user.profile))
-            KeychainManager.set(Showrooms(user.showroom!.map { Showroom(id: $0.id, showroomName: $0.showroomName, cityName: $0.cityName!) }))
-            if let cars = user.car {
-                KeychainManager.set(Cars(cars.map { $0.toDomain() }))
-            }
+//            if let cars = user.car {
+//                KeychainManager.set(Cars(cars.map { $0.toDomain() }))
+//            }
         }
+
         DispatchQueue.main.async {
             let controller: UITabBarController = UIStoryboard(.mainMenu).instantiate(.mainMenuTabBar)
 

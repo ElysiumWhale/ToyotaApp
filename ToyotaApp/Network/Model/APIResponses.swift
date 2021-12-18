@@ -24,10 +24,11 @@ public struct CheckUserOrSmsCodeResponse: IResponse {
 
     let cities: [City]?
     // let showrooms: [Showroom]?
-    let cars: [DTOCar]?
+    // let cars: [Car]?
 
     private enum CodingKeys: String, CodingKey {
-        case result, cities, cars
+        case result, cities
+        // case cars
         // case showrooms
         case secretKey = "secret_key"
         case userId = "user_id"
@@ -40,7 +41,7 @@ public struct CheckUserOrSmsCodeResponse: IResponse {
 public struct RegisteredUser: IResponse {
     let profile: Profile
     // let showroom: [Showroom]?
-    let car: [DTOCar]?
+    // let car: [OldCar]?
 }
 
 public struct Profile: IResponse {
@@ -139,7 +140,7 @@ public struct ShoroomsResponce: IServiceResponse {
 public struct CarCheckResponse: IResponse {
     let result: String
     let message: String // todo: delete message
-    let car: DTOCar?
+    // let car: OldCar?
 }
 
 // MARK: - GetServicesTypes

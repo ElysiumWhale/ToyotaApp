@@ -96,16 +96,16 @@ extension CheckVinViewController {
             interfaceCompletion(true)
             return
         }
-        guard let car = response.car?.toDomain(with: vin, showroom: showroom!.id) else {
-            interfaceCompletion(false, .error(.serverBadResponse))
-            return
-        }
+//        guard let car = response.car?.toDomain(with: vin) else {
+//            interfaceCompletion(false, .error(.serverBadResponse))
+//            return
+//        }
         switch type {
             case .register:
-                KeychainManager.set(Cars([car]))
+//                KeychainManager.set(Cars([car]))
                 perform(segue: segueCode)
             case .update(let proxy):
-                proxy.updateSelected(car: car)
+//                proxy.updateSelected(car: car)
                 PopUp.display(.success(description: .common(.autoLinked)))
                 popToRootWithDispatch(animated: true)
         }
