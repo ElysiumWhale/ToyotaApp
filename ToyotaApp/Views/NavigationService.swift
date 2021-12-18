@@ -31,8 +31,7 @@ struct CheckUserContext {
 enum RegistrationStates {
     case error(message: String)
     case firstPage
-    case secondPage(_ profile: Profile, _ cities: [City])
-    case thirdPage(_ user: RegisteredUser, _ cities: [City], _ showrooms: [DTOShowroom])
+    case secondPage(_ profile: Profile, _ cities: [City]?)
 }
 
 class NavigationService {
@@ -48,10 +47,8 @@ class NavigationService {
                 loadRegister(.firstPage)
             case .register(let page, let user):
                 switch page {
-                    case 2 where context.response.cities != nil:
-                        loadRegister(.secondPage(user.profile, context.response.cities!))
-                    case 3 where context.response.cities != nil && user.showroom != nil:
-                        loadRegister(.thirdPage(user, context.response.cities!, user.showroom!))
+                    case 2:
+                        loadRegister(.secondPage(user.profile, context.response.cities))
                     default: fallbackCompletion()
                 }
         }
@@ -114,26 +111,19 @@ extension NavigationService {
                 case .secondPage(let profile, let cities):
                     let pivc: PersonalInfoViewController = regStoryboard.instantiate(.personalInfo)
                     pivc.configure(with: profile)
-                    
-                    let dvc: DealerViewController = regStoryboard.instantiate(.dealer)
-                    dvc.configure(cityList: cities)
-                    
-                    controllers = [pivc, dvc]
-                case .thirdPage(let user, let cities, let showrooms):
-                    let pivc: PersonalInfoViewController = regStoryboard.instantiate(.personalInfo)
-                    pivc.configure(with: user.profile)
-                    
-                    let dvc: DealerViewController = regStoryboard.instantiate(.dealer)
-                    let firstShowroom = user.showroom!.first!
-                    let cityName = firstShowroom.cityName
-                    let index = cities.firstIndex(where: { $0.name == cityName })!
-                    dvc.configure(cityList: cities, showroomList: showrooms,
-                                   city: cities[index], showroom: firstShowroom)
-                    
-                    let cvvc: CheckVinViewController = regStoryboard.instantiate(.checkVin)
-                    cvvc.configure(with: firstShowroom.toDomain())
-                    
-                    controllers = [pivc, dvc, cvvc]
+
+                    let cpvc: CityPickerViewController = regStoryboard.instantiate(.cityPick)
+                    if let cities = cities {
+                        cpvc.configure(with: cities)
+                    }
+
+                    if let selectedCity: City = DefaultsManager.getUserInfo(for: .selectedCity) {
+                        let acvc: AddCarViewController = regStoryboard.instantiate(.addCar)
+                        // acvc.configure(models: [], colors: [], controllerType: .register)
+                        controllers = [pivc, cpvc, acvc]
+                    } else {
+                        controllers = [pivc, cpvc]
+                    }
             }
             let controller = configureNavigationStack(with: controllers, for: regStoryboard,
                                                       identifier: .registerNavigation)
