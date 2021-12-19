@@ -1,5 +1,20 @@
 import UIKit
 
+extension UIView {
+    func createBackground(labelText: String?) -> UILabel? {
+        guard let text = labelText else { return nil }
+        let label = UILabel()
+        label.text = text
+        label.textColor = .systemGray
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
+        label.font = .toyotaType(.semibold, of: 25)
+        label.sizeToFit()
+        return label
+    }
+}
+
 // MARK: - FadeIn/Out UIView Animation
 extension UIView {
     func fadeIn(_ duration: TimeInterval = 0.5) {
@@ -31,6 +46,20 @@ extension UIView {
 
     @objc func dismissKeyboard() {
         self.endEditing(true)
+    }
+}
+
+// MARK: - UICollectionView set background text
+extension UICollectionView {
+    func setBackground(text: String?) {
+        backgroundView = createBackground(labelText: text)
+    }
+}
+
+// MARK: - UITableView set background text
+extension UITableView {
+    func setBackground(text: String?) {
+        backgroundView = createBackground(labelText: text)
     }
 }
 

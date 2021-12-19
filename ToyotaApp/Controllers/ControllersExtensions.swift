@@ -116,22 +116,3 @@ extension UIViewController {
         }
     }
 }
-
-protocol BackgroundText {
-    func createBackground(labelText: String?) -> UILabel?
-}
-
-extension BackgroundText {
-    func createBackground(labelText: String?) -> UILabel? {
-        guard let text = labelText else { return nil }
-        let label = UILabel()
-        label.text = text
-        label.textColor = .systemGray
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center
-        label.font = .toyotaType(.semibold, of: 25)
-        label.sizeToFit()
-        return label
-    }
-}

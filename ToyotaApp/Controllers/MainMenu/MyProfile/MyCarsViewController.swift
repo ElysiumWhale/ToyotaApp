@@ -1,6 +1,6 @@
 import UIKit
 
-class MyCarsViewController: UIViewController, BackgroundText, Loadable {
+class MyCarsViewController: UIViewController, Loadable {
 
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
@@ -48,9 +48,7 @@ class MyCarsViewController: UIViewController, BackgroundText, Loadable {
     override func viewDidLoad() {
         super.viewDidLoad()
         carsCollection.delaysContentTouches = false
-        carsCollection.backgroundView = cars.isEmpty
-            ? createBackground(labelText: .background(.noCars))
-            : nil
+        carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
     }
 
     @IBAction func addCar(sender: Any?) {
@@ -122,8 +120,7 @@ extension MyCarsViewController: WithUserInfo {
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
             carsCollection.reloadData()
-            carsCollection.backgroundView = cars.isEmpty ? createBackground(labelText: .background(.noCars))
-                                                         : nil
+            carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
         }
     }
 

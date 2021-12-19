@@ -2,7 +2,7 @@ import UIKit
 
     @IBOutlet private var carTextField: NoCopyPasteTexField!
     @IBOutlet private var showroomLabel: UILabel!
-class ServicesViewController: RefreshableController, PickerController, BackgroundText {
+class ServicesViewController: RefreshableController, PickerController {
     @IBOutlet private(set) var refreshableView: UICollectionView!
 
     private(set) var refreshControl = UIRefreshControl()
@@ -85,16 +85,15 @@ class ServicesViewController: RefreshableController, PickerController, Backgroun
         serviceTypes = response.serviceType
         refreshableView.reloadData()
         endRefreshing()
-        refreshableView.backgroundView = serviceTypes.count < 1
-            ? createBackground(labelText: .background(.noServices))
-            : nil
+        let text: String? = serviceTypes.isEmpty ? .background(.noServices) : nil
+        refreshableView.setBackground(text: text)
     }
 
     private func handle(failure error: ErrorResponse) {
         let labelMessage = error.errorCode == .lostConnection ? .error(.networkError) + " и "
                                                               : .error(.servicesError) + ", "
         endRefreshing()
-        refreshableView.backgroundView = createBackground(labelText: labelMessage + .common(.retryRefresh))
+        refreshableView.setBackground(text: labelMessage + .common(.retryRefresh))
     }
 
     private func makeRequest() {
@@ -143,12 +142,10 @@ extension ServicesViewController {
         refreshableView.reloadData()
         showroomLabel.text = .empty
         carTextField.text = .empty
-        refreshableView.backgroundView = createBackground(labelText: .background(.addAutoToUnlock))
     }
 
     private func layoutIfOneCar() {
         configureRefresh()
-        if refreshableView.backgroundView != nil { refreshableView.backgroundView = nil }
         carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
         carTextField.isEnabled = cars.count > 1
         carTextField.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor

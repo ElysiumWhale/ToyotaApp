@@ -52,7 +52,7 @@ class CityPickerViewController: RefreshableController, CityPickerView, Backgroun
 
     func handleFailure() {
         refreshableView.reloadData()
-        refreshableView.backgroundView = createBackground(labelText: .background(.noCities))
+        refreshableView.setBackground(text: .background(.noCities))
         endRefreshing()
     }
 

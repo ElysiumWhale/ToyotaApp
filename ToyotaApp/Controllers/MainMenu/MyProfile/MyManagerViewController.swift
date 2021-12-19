@@ -1,6 +1,6 @@
 import UIKit
 
-class MyManagerViewController: UIViewController, BackgroundText {
+class MyManagerViewController: UIViewController {
     @IBOutlet private var managersCollection: UICollectionView!
 
     private let cellIdentifier = CellIdentifiers.ManagerCell
@@ -19,7 +19,7 @@ class MyManagerViewController: UIViewController, BackgroundText {
         
         handler.onFailure = { [weak self] error in
             DispatchQueue.main.async {
-                self?.managersCollection.backgroundView = self?.createBackground(labelText: error.message ?? .error(.managersLoadError))
+                self?.managersCollection.setBackground(text: error.message ?? .error(.managersLoadError))
             }
         }
         
@@ -43,7 +43,7 @@ class MyManagerViewController: UIViewController, BackgroundText {
         managers = response.managers
         managersCollection.reloadData()
         if response.managers.isEmpty {
-            managersCollection.backgroundView = createBackground(labelText: .background(.noManagers))
+            managersCollection.setBackground(text: .background(.noManagers))
         }
     }
 }

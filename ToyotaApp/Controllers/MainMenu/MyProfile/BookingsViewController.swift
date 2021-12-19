@@ -1,6 +1,6 @@
 import UIKit
 
-class BookingsViewController: RefreshableController, BackgroundText {
+class BookingsViewController: RefreshableController {
     @IBOutlet private(set) var refreshableView: UITableView!
 
     let refreshControl = UIRefreshControl()
@@ -56,14 +56,14 @@ class BookingsViewController: RefreshableController, BackgroundText {
         endRefreshing()
         refreshableView.reloadData()
         if bookings.isEmpty {
-            refreshableView.backgroundView = createBackground(labelText: .background(.noBookings))
+            refreshableView.setBackground(text: .background(.noBookings))
         }
     }
     
     private func handle(failure response: ErrorResponse) {
         PopUp.display(.error(description: response.message ?? .error(.requestError)))
         endRefreshing()
-        refreshableView.backgroundView = createBackground(labelText: .background(.somethingWentWrong))
+        refreshableView.setBackground(text: .background(.somethingWentWrong))
     }
 }
 

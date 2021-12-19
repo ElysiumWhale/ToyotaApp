@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: RefreshableController, BackgroundText {
+class NewsViewController: RefreshableController {
     @IBOutlet private(set) var refreshableView: UICollectionView!
 
     private(set) var refreshControl = UIRefreshControl()
@@ -58,13 +58,14 @@ extension NewsViewController: ParserDelegate {
         news = []
         refreshableView.reloadData()
         endRefreshing()
-        refreshableView.backgroundView = createBackground(labelText: .error(.newsError))
+        refreshableView.setBackground(text: .error(.newsError))
     }
 
     func newsDidLoad(_ loadedNews: [News]) {
         news = loadedNews
         refreshableView.reloadData()
-        refreshableView.backgroundView = loadedNews.isEmpty ? createBackground(labelText: .background(.noNews)) : nil
+        let text: String? = loadedNews.isEmpty ? .background(.noNews) : nil
+        refreshableView.setBackground(text: text)
         endRefreshing()
     }
 }
