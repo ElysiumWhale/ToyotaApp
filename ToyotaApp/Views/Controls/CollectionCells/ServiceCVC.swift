@@ -1,7 +1,7 @@
 import UIKit
 
 @IBDesignable class ServiceCollectionViewCell: CollectionCell {
-    @IBOutlet private var serviceName: UILabel!
+    @IBOutlet private(set) var serviceName: UILabel!
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }

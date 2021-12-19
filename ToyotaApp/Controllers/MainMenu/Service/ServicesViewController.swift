@@ -180,20 +180,26 @@ extension ServicesViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        animateCellBackground(collectionView, indexPath, color: .appTint(.secondarySignatureRed))
+        animateCellBackground(collectionView, indexPath, backgroundColor: .appTint(.secondarySignatureRed),
+                              textColor: .white)
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        animateCellBackground(collectionView, indexPath, color: .appTint(.cell))
+        animateCellBackground(collectionView, indexPath, backgroundColor: .appTint(.cell),
+                              textColor: .appTint(.signatureGray))
     }
 
-    private func animateCellBackground(_ collectionView: UICollectionView, _ indexPath: IndexPath, color: UIColor) {
-        guard let cell = collectionView.cellForItem(at: indexPath) else {
+    private func animateCellBackground(_ collectionView: UICollectionView,
+                                       _ indexPath: IndexPath,
+                                       backgroundColor: UIColor,
+                                       textColor: UIColor) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell else {
             return
         }
 
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: [.curveEaseOut]) {
-            cell.backgroundColor = color
+            cell.backgroundColor = backgroundColor
+            cell.serviceName.textColor = textColor
         }
     }
 }
