@@ -357,7 +357,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Город" id="uUt-vI-AOc"/>
                     <connections>
-                        <outlet property="nextButton" destination="1YG-oq-9Zc" id="JZX-Kh-5c0"/>
+                        <outlet property="nextButton" destination="1YG-oq-9Zc" id="SfU-oU-7Pj"/>
                         <outlet property="refreshableView" destination="xhj-rd-zgW" id="nf3-kN-7wY"/>
                         <segue destination="3my-7G-TR7" kind="show" identifier="CityToAddCar" id="alj-9p-pvt"/>
                     </connections>
@@ -536,11 +536,11 @@
                     <navigationItem key="navigationItem" title="Автомобиль" id="Mbl-KA-VDk"/>
                     <connections>
                         <outlet property="colorTextField" destination="2oa-Ly-vi5" id="zqj-r8-skd"/>
-                        <outlet property="indicator" destination="U0j-hc-Xop" id="p2S-lk-E07"/>
+                        <outlet property="indicator" destination="U0j-hc-Xop" id="mBH-Mz-uWE"/>
                         <outlet property="modelTextField" destination="m8c-5j-cic" id="Blx-FN-mwT"/>
-                        <outlet property="nextButton" destination="IJ5-Dd-Ubi" id="lep-x5-IgI"/>
+                        <outlet property="nextButton" destination="IJ5-Dd-Ubi" id="gaZ-gm-sDP"/>
                         <outlet property="plateTextField" destination="MMz-DW-yWH" id="lS1-Du-1V8"/>
-                        <outlet property="skipButton" destination="4Dr-7q-bsh" id="Gpe-mf-zZJ"/>
+                        <outlet property="skipButton" destination="4Dr-7q-bsh" id="MMA-ZO-FbB"/>
                         <outlet property="vinCodeTextField" destination="dp7-UB-djO" id="V0P-J3-aVL"/>
                         <outlet property="yearTextField" destination="fOd-SV-DI3" id="fCK-mk-3iV"/>
                         <segue destination="Sky-Ph-Wl4" kind="presentation" identifier="AddCarToEndRegistration" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="8Fc-gq-rUM"/>
