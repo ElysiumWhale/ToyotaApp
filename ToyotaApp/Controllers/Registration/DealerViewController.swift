@@ -109,7 +109,7 @@ extension DealerViewController {
         showroomTextField.text = ""
         showrooms.removeAll()
         showroomPicker.reloadComponent(0)
-        let row = cityPicker.selectedRow(inComponent: 0)
+        let row = cityPicker.selectedRow
         selectedCity = cities[row]
         cityTextField?.text = cities[row].name
         cityTextFieldIndicator.startAnimating()
@@ -121,7 +121,7 @@ extension DealerViewController {
     }
 
     @objc private func showroomDidSelect() {
-        let row = showroomPicker.selectedRow(inComponent: 0)
+        let row = showroomPicker.selectedRow
         selectedShowroom = showrooms[row]
         showroomTextField?.text = showrooms[row].showroomName
         view.endEditing(true)

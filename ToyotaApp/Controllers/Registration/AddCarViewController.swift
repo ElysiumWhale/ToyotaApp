@@ -102,7 +102,7 @@ class AddCarViewController: UIViewController, PickerController {
 
     private func pick(from picker: UIPickerView, to textField: UITextField, setProperty: (Int) -> String?) {
         view.endEditing(true)
-        let index = picker.selectedRow(inComponent: 0)
+        let index = picker.selectedRow
         textField.text = setProperty(index)
         if textField.text != nil || !textField.text!.isEmpty {
             textField.toggle(state: .normal)

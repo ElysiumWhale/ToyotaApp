@@ -109,6 +109,10 @@ extension UIPickerView {
         textField.inputAccessoryView = UIToolbar.buildToolBar(for: delegate, with: action)
         textField.inputView = self
     }
+
+    var selectedRow: Int {
+        selectedRow(inComponent: 0)
+    }
 }
 
 // MARK: - UIToolBar

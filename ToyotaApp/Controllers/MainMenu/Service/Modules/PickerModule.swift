@@ -105,7 +105,7 @@ extension PickerModule: UIPickerViewDelegate {
             view?.endEditing(true)
             return
         }
-        let index = internalView.servicePicker.selectedRow(inComponent: 0)
+        let index = internalView.servicePicker.selectedRow
         if array[index].id == "-1" {
             view?.endEditing(true)
             return
