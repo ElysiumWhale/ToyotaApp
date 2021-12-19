@@ -6,6 +6,10 @@ class CityPickerViewController: RefreshableController, CityPickerView {
 
     let refreshControl = UIRefreshControl()
 
+    var onSuccessfulPick: ParameterClosure<CityPickerViewController>? = { controller in
+        controller.perform(segue: .cityToAddCar)
+    }
+
     private let interactor = CityPickerInteractor()
 
     private var configureAddCar: ParameterClosure<AddCarViewController?>?
@@ -15,6 +19,7 @@ class CityPickerViewController: RefreshableController, CityPickerView {
         interactor.view = self
 
         nextButton.alpha = 0
+        nextButton.setTitle(interactor.cityPickerDelegate?.cityPickButtonText ?? .common(.next), for: .normal)
         refreshableView.delegate = self
         refreshableView.dataSource = self
         configureRefresh()
@@ -43,6 +48,15 @@ class CityPickerViewController: RefreshableController, CityPickerView {
         }
     }
 
+    func setDelegate(_ delegate: CityPickerDelegate) {
+        interactor.cityPickerDelegate = delegate
+        if delegate.dismissAfterPick {
+            onSuccessfulPick = { controller in
+                controller.dismiss(animated: true)
+            }
+        }
+    }
+
     func handleSuccess() {
         nextButton.fadeOut()
         refreshableView.backgroundView = nil
@@ -61,7 +75,7 @@ class CityPickerViewController: RefreshableController, CityPickerView {
             return
         }
 
-        perform(segue: .cityToAddCar)
+        onSuccessfulPick?(self)
     }
 }
 

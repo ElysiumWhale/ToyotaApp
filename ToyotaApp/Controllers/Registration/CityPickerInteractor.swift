@@ -5,8 +5,15 @@ protocol CityPickerView: AnyObject {
     func handleFailure()
 }
 
+protocol CityPickerDelegate: AnyObject {
+    func cityDidSelect(_ city: City)
+    var cityPickButtonText: String { get }
+    var dismissAfterPick: Bool { get }
+}
+
 class CityPickerInteractor {
     weak var view: CityPickerView?
+    weak var cityPickerDelegate: CityPickerDelegate?
 
     private(set) var cities: [City] = [] {
         didSet {
@@ -57,6 +64,11 @@ class CityPickerInteractor {
     }
 
     func saveCity() -> Bool {
-        DefaultsManager.pushUserInfo(info: selectedCity)
+        guard let selectedCity = selectedCity else {
+            return false
+        }
+
+        cityPickerDelegate?.cityDidSelect(selectedCity)
+        return DefaultsManager.pushUserInfo(info: selectedCity)
     }
 }
