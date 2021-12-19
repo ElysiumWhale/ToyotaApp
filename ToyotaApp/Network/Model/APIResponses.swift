@@ -107,6 +107,12 @@ public struct Color: Codable {
     }
 }
 
+// MARK: - ShowroomsResponse
+public struct ShowroomsResponse: IResponse {
+    let result: String
+    let showrooms: [Showroom]
+}
+
 // MARK: - ModelsAndColorsResponse
 public struct ModelsAndColorsResponse: IResponse {
     let result: String
