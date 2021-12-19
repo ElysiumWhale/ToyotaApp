@@ -64,7 +64,7 @@ class ServicesViewController: RefreshableController, PickerController {
     func startRefreshing() {
         serviceTypes.removeAll()
         refreshableView.reloadData()
-        refreshControl.beginRefreshing()
+        refreshControl.startRefreshing()
         makeRequest()
     }
 

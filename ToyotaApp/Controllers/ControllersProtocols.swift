@@ -36,7 +36,6 @@ extension Refreshable {
 
     func configureRefresh() {
         refreshControl.isEnabled = true
-        refreshControl.attributedTitle = NSAttributedString(string: .common(.pullToRefresh))
         refreshControl.addAction(for: .valueChanged) { [weak self] in
             self?.startRefreshing()
         }
@@ -47,8 +46,7 @@ extension Refreshable {
     func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
                                       execute: { [weak self] in
-            self?.refreshControl.endRefreshing()
-            self?.setTitle(with: .common(.pullToRefresh))
+            self?.refreshControl.stopRefreshing()
         })
     }
 }

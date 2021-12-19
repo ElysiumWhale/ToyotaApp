@@ -22,8 +22,7 @@ class NewsViewController: RefreshableController {
     }
 
     func startRefreshing() {
-        refreshControl.beginRefreshing()
-        setTitle(with: .common(.loading))
+        refreshControl.startRefreshing()
         parser = HtmlParser(delegate: self)
         parser?.start()
     }

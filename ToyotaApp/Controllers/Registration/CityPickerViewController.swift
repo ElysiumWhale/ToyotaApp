@@ -32,7 +32,7 @@ class CityPickerViewController: RefreshableController, CityPickerView, Backgroun
     }
 
     func startRefreshing() {
-        refreshControl.beginRefreshing()
+        refreshControl.startRefreshing()
         interactor.loadCities()
     }
 

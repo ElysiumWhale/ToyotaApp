@@ -99,6 +99,19 @@ extension UIControl {
     }
 }
 
+// MARK: - Start and stop refreshing
+extension UIRefreshControl {
+    func startRefreshing(title: String = .common(.loading)) {
+        attributedTitle = NSAttributedString(string: title)
+        beginRefreshing()
+    }
+
+    func stopRefreshing(title: String = .common(.pullToRefresh)) {
+        endRefreshing()
+        attributedTitle = NSAttributedString(string: title)
+    }
+}
+
 // MARK: - UIPicker
 extension UIPickerView {
     func configurePicker<T>(with action: Selector,
