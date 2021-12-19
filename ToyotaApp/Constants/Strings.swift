@@ -28,6 +28,8 @@ extension String {
     enum CommonStrings: String {
         /// Загрузка
         case loading = "Загрузка"
+        /// Далее
+        case next = "Далее"
         /// Сохранить
         case save = "Сохранить"
         /// Успех
@@ -92,6 +94,8 @@ extension String {
         case autoLinked = "Автомобиль успешно привязан к профилю"
         /// Телефон упешно изменен
         case phoneChanged = "Телефон упешно изменен"
+        /// Загрузка салонов
+        case showroomsLoading = "Загрузка салонов"
     }
 
     enum QuestionStrings: String {
@@ -120,6 +124,8 @@ extension String {
         case noNews = "На данный момент нет актуальных предложений."
         /// Нет доступных городов.
         case noCities = "Нет доступных городов."
+        /// Необходимо выбрать город и салон для обслуживания
+        case noCityAndShowroom = "Необходимо выбрать город и салон для обслуживания."
     }
 }
 
