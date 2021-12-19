@@ -122,45 +122,7 @@ extension ServicesViewController: WithUserInfo {
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
             view.setNeedsLayout()
-            switch cars.count {
-                case 1: layoutIfOneCar()
-                case 2...: layoutIfManyCars()
-                default: layoutIfNoCars()
-            }
         }
-    }
-}
-
-// MARK: - Configure UI for cars count
-extension ServicesViewController {
-    private func layoutIfNoCars() {
-        carTextField.isEnabled = false
-        refreshControl.endRefreshing()
-        refreshControl.isEnabled = false
-        refreshableView.refreshControl = nil
-        serviceTypes.removeAll()
-        refreshableView.reloadData()
-        showroomLabel.text = .empty
-        carTextField.text = .empty
-    }
-
-    private func layoutIfOneCar() {
-        configureRefresh()
-        carTextField.text = "\(selectedCar!.brand) \(selectedCar!.model)"
-        carTextField.isEnabled = cars.count > 1
-        carTextField.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
-        carTextField.layer.borderWidth = 1
-        carTextField.clipsToBounds = true
-        showroomLabel.text = user.getSelectedShowroom!.showroomName
-        refreshControl.beginRefreshing()
-        makeRequest()
-    }
-
-    private func layoutIfManyCars() {
-        carForServePicker.reloadAllComponents()
-        carForServePicker.selectRow(cars.firstIndex(where: {$0.id == selectedCar?.id }) ?? 0,
-                                    inComponent: 0, animated: false)
-        layoutIfOneCar()
     }
 }
 

@@ -11,6 +11,7 @@ class NetworkService {
     class func makeRequest<TResponse>(page: RequestPath,
                                       params: RequestItems = .empty,
                                       completion: @escaping ResponseCompletion<TResponse>) where TResponse: IResponse {
+
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
 
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -24,8 +25,10 @@ class NetworkService {
                 return
             }
 
+            #if DEBUG
             let json = try? JSONSerialization.jsonObject(with: data)
             print(json ?? "Error while parsing json object")
+            #endif
 
             if let response = try? JSONDecoder().decode(TResponse.self, from: data) {
                 completion(Result.success(response))
@@ -38,13 +41,12 @@ class NetworkService {
 
         task.resume()
     }
-    
+
     class func makeRequest<TResponse>(page: RequestPath,
                                       params: RequestItems = .empty,
                                       handler: RequestHandler<TResponse>) where TResponse: IResponse {
 
-        let request = buildPostRequest(for: page.rawValue,
-                                       with: params.asQueryItems)
+        let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
 
         let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
             guard error == nil else {
@@ -57,8 +59,10 @@ class NetworkService {
                 return
             }
 
+            #if DEBUG
             let json = try? JSONSerialization.jsonObject(with: data)
             print(json ?? "Error while parsing json object")
+            #endif
 
             let decoder = JSONDecoder()
             if let response = try? decoder.decode(TResponse.self, from: data) {
@@ -103,6 +107,6 @@ extension Array where Element == RequestItem {
     var asQueryItems: [URLQueryItem] {
         map { key, value in .init(name: key.rawValue, value: value) }
     }
-    
+
     static let empty: RequestItems = []
 }

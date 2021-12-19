@@ -64,6 +64,7 @@ class AddCarInteractor {
         models.isEmpty && colors.isEmpty
     }
 
+    // MARK: - Public methods
     func configure(type: AddInfoType, models: [Model], colors: [Color]) {
         self.type = type
         self.models = models
@@ -120,6 +121,7 @@ class AddCarInteractor {
                                    handler: loadModelsHandler)
     }
 
+    // MARK: - Private methods
     private func saveCar(with id: String) {
         guard let selectedModel = selectedModel,
               let selectedColor = selectedColor,

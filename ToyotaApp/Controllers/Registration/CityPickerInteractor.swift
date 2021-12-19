@@ -13,6 +13,7 @@ class CityPickerInteractor {
             selectedCity = nil
         }
     }
+
     private var selectedCity: City?
 
     private lazy var cityRequestHandler: RequestHandler<CitiesResponse> = {

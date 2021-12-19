@@ -1,6 +1,6 @@
 import UIKit
 
-class CityPickerViewController: RefreshableController, CityPickerView, BackgroundText {
+class CityPickerViewController: RefreshableController, CityPickerView {
     @IBOutlet private(set) var refreshableView: UITableView!
     @IBOutlet private var nextButton: CustomizableButton!
 

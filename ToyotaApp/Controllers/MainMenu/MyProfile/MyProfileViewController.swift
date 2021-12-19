@@ -13,9 +13,9 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var lastNameTextField: UITextField!
     @IBOutlet private var birthTextField: UITextField!
     @IBOutlet private var emailTextField: UITextField!
-    @IBOutlet private var managerButton: UIButton!
-    @IBOutlet private var cancelButton: UIButton!
-    @IBOutlet private var saveButton: UIButton!
+    @IBOutlet private var managerButton: CustomizableButton!
+    @IBOutlet private var cancelButton: CustomizableButton!
+    @IBOutlet private var saveButton: CustomizableButton!
     @IBOutlet private var saveButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private var cancelButtonLeadingConstant: NSLayoutConstraint!
 
