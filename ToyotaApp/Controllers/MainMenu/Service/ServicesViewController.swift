@@ -78,8 +78,19 @@ class ServicesViewController: RefreshableController, PickerController {
 
     @objc private func showroomDidSelect() {
         view.endEditing(true)
+        if showrooms[showroomPicker.selectedRow].id == selectedShowroom?.id {
+            return
         }
+
+        selectedShowroom = showrooms[showroomPicker.selectedRow]
+    }
+
     @IBAction func chooseCityDidTap() {
+        let board = UIStoryboard(.register)
+        let vc: CityPickerViewController = board.instantiate(.cityPick)
+        vc.setDelegate(self)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func handle(success response: ServicesTypesResponse) {
@@ -105,9 +116,26 @@ class ServicesViewController: RefreshableController, PickerController {
     }
 
     private func loadShowrooms() {
+        showrooms = []
+        NetworkService.makeRequest(page: .registration(.getShowrooms),
+                                   params: [(.auth(.brandId), Brand.Toyota),
+                                            (.carInfo(.cityId), selectedCity?.id)],
+                                   handler: showroomsHandler)
     }
 
     private func showroomDidSet() {
+        guard let showroom = selectedShowroom else {
+            return
+        }
+
+        DefaultsManager.push(info: showroom, for: .selectedShowroom)
+        DispatchQueue.main.async { [weak self] in
+            self?.showroomField.text = showroom.name
+            if let index = self?.showrooms.firstIndex(where: { $0.id == showroom.id }) {
+                self?.showroomPicker.selectRow(index, inComponent: 0, animated: false)
+            }
+            self?.startRefreshing()
+        }
     }
 
     private lazy var showroomsHandler: RequestHandler<ShowroomsResponse> = {
@@ -127,6 +155,37 @@ class ServicesViewController: RefreshableController, PickerController {
     }()
 
     private func handleShowrooms(response: ShowroomsResponse) {
+        showrooms = response.showrooms
+        showroomField.placeholder = .common(.showroom)
+        showroomPicker.reloadComponent(0)
+        showroomIndicator.stopAnimating()
+        guard !showrooms.contains(where: { $0.id == selectedShowroom?.id }) else {
+            return
+        }
+
+        selectedShowroom = showrooms.first
+    }
+}
+
+extension ServicesViewController: CityPickerDelegate {
+    func cityDidSelect(_ city: City) {
+        guard city.id != selectedCity?.id else {
+            return
+        }
+
+        selectedCity = city
+        showroomField.text = .empty
+        showroomField.placeholder = .common(.showroomsLoading)
+        showroomIndicator.startAnimating()
+        loadShowrooms()
+    }
+
+    var cityPickButtonText: String {
+        .common(.choose)
+    }
+
+    var dismissAfterPick: Bool {
+        true
     }
 }
 
