@@ -1,14 +1,12 @@
 import UIKit
 
-    @IBOutlet private var carTextField: NoCopyPasteTexField!
-    @IBOutlet private var showroomLabel: UILabel!
 class ServicesViewController: RefreshableController, PickerController {
     @IBOutlet private(set) var refreshableView: UICollectionView!
+    @IBOutlet private var showroomField: NoCopyPasteTexField!
+    @IBOutlet private var showroomIndicator: UIActivityIndicatorView!
 
     private(set) var refreshControl = UIRefreshControl()
-    private var carForServePicker: UIPickerView = UIPickerView()
-
-    private let cellIdentrifier = CellIdentifiers.ServiceCell
+    private var showroomPicker: UIPickerView = UIPickerView()
 
     private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesResponse> = {
         let handler = RequestHandler<ServicesTypesResponse>()
@@ -32,8 +30,14 @@ class ServicesViewController: RefreshableController, PickerController {
         didSet { subscribe(on: user) }
     }
 
-    private var cars: [Car] { user.getCars.array }
-    private var selectedCar: Car? { user.getCars.defaultCar }
+    private var carsCount: Int { user.getCars.array.count }
+    private var showrooms: [Showroom] = []
+    private var selectedShowroom: Showroom? = DefaultsManager.getUserInfo(for: .selectedShowroom) {
+        didSet {
+            showroomDidSet()
+        }
+    }
+    private var selectedCity: City?
     private var serviceTypes: [ServiceType] = []
 
     override func viewDidLoad() {
@@ -41,21 +45,25 @@ class ServicesViewController: RefreshableController, PickerController {
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
-        carTextField.tintColor = .clear
+        showroomField.tintColor = .clear
         refreshableView.alwaysBounceVertical = true
+        configureRefresh()
         hideKeyboardWhenTappedAround()
-        configurePicker(showroomPicker, with:  #selector(showroomDidSelect), for: showroomField)
+        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
 
-        switch cars.count {
-            case 1: layoutIfOneCar()
-            case 2...: layoutIfManyCars()
-            default: layoutIfNoCars()
+        selectedCity = user.selectedCity
+        if selectedCity != nil {
+            showroomField.text = selectedShowroom?.name
+            startRefreshing()
+            loadShowrooms()
+        } else {
+            refreshableView.setBackground(text: .background(.noCityAndShowroom))
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if cars.isEmpty && !.noCarsMessageIsShown {
+        if user.getCars.array.isEmpty && !.noCarsMessageIsShown {
             PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
             DefaultsManager.push(info: true, for: .noCarsMessage)
         }
@@ -70,18 +78,11 @@ class ServicesViewController: RefreshableController, PickerController {
 
     @objc private func showroomDidSelect() {
         view.endEditing(true)
-        let row = carForServePicker.selectedRow(inComponent: 0)
-        if let car = selectedCar, car.id != cars[row].id,
-           let showroomName = user.getSelectedShowroom?.showroomName {
-            carTextField.text = "\(car.brand) \(car.model)"
-            showroomLabel.text = showroomName
-            user.updateSelected(car: cars[row])
-            KeychainManager.set(Cars(cars))
-            startRefreshing()
         }
+    @IBAction func chooseCityDidTap() {
     }
 
-    private func handle(success response: ServicesTypesDidGetResponse) {
+    private func handle(success response: ServicesTypesResponse) {
         serviceTypes = response.serviceType
         refreshableView.reloadData()
         endRefreshing()
@@ -97,11 +98,35 @@ class ServicesViewController: RefreshableController, PickerController {
     }
 
     private func makeRequest() {
-        // selectedCar.showroomId -> selectedShowroom
         NetworkService.makeRequest(page: .services(.getServicesTypes),
                                    params: [(.carInfo(.showroomId),
-                                             selectedCar!.showroomId)],
+                                             selectedShowroom?.id)],
                                    handler: servicesTypesRequestHandler)
+    }
+
+    private func loadShowrooms() {
+    }
+
+    private func showroomDidSet() {
+    }
+
+    private lazy var showroomsHandler: RequestHandler<ShowroomsResponse> = {
+        let handler = RequestHandler<ShowroomsResponse>()
+
+        handler.onSuccess = { [weak self] data in
+            DispatchQueue.main.async {
+                self?.handleShowrooms(response: data)
+            }
+        }
+
+        handler.onFailure = { [weak self] error in
+            // todo
+        }
+
+        return handler
+    }()
+
+    private func handleShowrooms(response: ShowroomsResponse) {
     }
 }
 
@@ -128,17 +153,20 @@ extension ServicesViewController: WithUserInfo {
 
 // MARK: - UIPickerViewDataSource
 extension ServicesViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        cars.count
+        showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        cars[row].model.name
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        showrooms[row].name
     }
 }
 
