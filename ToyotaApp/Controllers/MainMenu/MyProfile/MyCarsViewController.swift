@@ -16,8 +16,8 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private var cars: [Car] { user.getCars.array }
 
-    private lazy var citiesRequestHandle: RequestHandler<CitiesResponse> = {
-        let handler = RequestHandler<CitiesResponse>()
+    private lazy var citiesRequestHandle: RequestHandler<ModelsAndColorsResponse> = {
+        let handler = RequestHandler<ModelsAndColorsResponse>()
 
         handler.onSuccess = { [weak self] data in
             DispatchQueue.main.async {
@@ -52,7 +52,7 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     @IBAction func addCar(sender: Any?) {
-        NetworkService.makeRequest(page: .profile(.getCities),
+        NetworkService.makeRequest(page: .registration(.getModelsAndColors),
                                    params: [(.auth(.brandId), Brand.Toyota)],
                                    handler: citiesRequestHandle)
     }
@@ -61,11 +61,12 @@ class MyCarsViewController: UIViewController, Loadable {
         dismiss(animated: true)
     }
 
-    private func handle(_ response: CitiesResponse) {
+    private func handle(_ response: ModelsAndColorsResponse) {
         let register = UIStoryboard(.register)
-        let addShowroomVC: DealerViewController = register.instantiate(.dealer)
-        addShowroomVC.configure(cityList: response.cities, controllerType: .update(with: user))
-        navigationController?.pushViewController(addShowroomVC, animated: true)
+        let addCarVC: AddCarViewController = register.instantiate(.addCar)
+        addCarVC.configure(models: response.models, colors: response.colors,
+                           controllerType: .update(with: user))
+        navigationController?.pushViewController(addCarVC, animated: true)
     }
 
     private func removeCar(with id: String) {

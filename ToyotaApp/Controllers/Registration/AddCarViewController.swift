@@ -31,6 +31,13 @@ class AddCarViewController: UIViewController, PickerController {
         if interactor.loadNeeded {
             loadModelsAndColors()
         }
+
+        if case .update = interactor.type {
+            let item = UIBarButtonItem(title: .common(.done), style: .plain,
+                                       target: self, action: #selector(customDismiss))
+            item.tintColor = .appTint(.secondarySignatureRed)
+            navigationItem.rightBarButtonItem = item
+        }
     }
 
     func configure(models: [Model] = [], colors: [Color] = [], controllerType: AddInfoType = .register) {
@@ -114,7 +121,12 @@ class AddCarViewController: UIViewController, PickerController {
 extension AddCarViewController: AddCarViewInput {
     func handleCarAdded() {
         nextButton.fadeIn()
-        perform(segue: .addCarToEndRegistration)
+        switch interactor.type {
+            case .register:
+                perform(segue: .addCarToEndRegistration)
+            case .update:
+                popToRootWithDispatch(animated: true)
+        }
     }
 
     func handleFailure(with message: String) {

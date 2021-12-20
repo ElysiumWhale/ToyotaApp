@@ -36,6 +36,8 @@ extension String {
         case success = "Успех"
         /// Отмена
         case cancel = "Отмена"
+        /// Готово
+        case done = "Готово"
         /// Ок
         case ok = "Ок"
         /// Ошибка
