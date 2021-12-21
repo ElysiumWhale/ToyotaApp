@@ -86,6 +86,7 @@ class ServicesViewController: RefreshableController, PickerController {
     }
 
     @IBAction func chooseCityDidTap() {
+        view.endEditing(true)
         let board = UIStoryboard(.register)
         let vc: CityPickerViewController = board.instantiate(.cityPick)
         vc.setDelegate(self)

@@ -52,7 +52,7 @@ class CityPickerViewController: RefreshableController, CityPickerView {
         interactor.cityPickerDelegate = delegate
         if delegate.dismissAfterPick {
             onSuccessfulPick = { controller in
-                controller.dismiss(animated: true)
+                controller.navigationController?.popViewController(animated: true)
             }
         }
     }
