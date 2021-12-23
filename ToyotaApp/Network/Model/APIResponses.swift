@@ -55,6 +55,31 @@ public struct Profile: IResponse {
     }
 }
 
+struct Car: IService {
+    let id: String
+    let brand: String
+    let model: Model
+    let color: Color
+    let year: String
+    let plate: String
+    let vin: String
+    let isChecked: Bool?
+
+    var name: String {
+        "\(brand) \(model.name)"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case model, color
+        case id = "car_id"
+        case brand = "car_brand_name"
+        case year = "car_year"
+        case plate = "license_plate"
+        case vin = "vin_code"
+        case isChecked
+    }
+}
+
 // MARK: - CitiesResponse
 public struct CitiesResponse: IServiceResponse {
     let result: String

@@ -94,18 +94,3 @@ struct Showroom: WithDefaultKey, IService {
         case cityName = "city_name"
     }
 }
-
-struct Car: IService {
-    let id: String
-    let brand: String
-    let model: Model
-    let color: Color
-    let year: String
-    let plate: String
-    let vin: String
-    let isChecked: Bool
-
-    var name: String {
-        "\(brand) \(model.name)"
-    }
-}
