@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
+		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
 		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
 		141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */; };
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
@@ -105,6 +106,7 @@
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
+		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				A77B9311253B035F0011282E /* APIResponses.swift */,
+				1419D0C727752F6500D95B7F /* Models.swift */,
 				14D55FF92753AC0C00546587 /* RequestPath.swift */,
 				14D55FFB2753AC1700546587 /* RequestKey.swift */,
 			);
@@ -689,6 +692,7 @@
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
+				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
