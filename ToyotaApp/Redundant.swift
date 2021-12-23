@@ -36,3 +36,10 @@ extension OldCar {
             plate: licensePlate ?? .empty, vin: self.vin ?? vin, isChecked: false)
     }
 }
+
+// MARK: - CarCheckResponse
+public struct CarCheckResponse: IResponse {
+    let result: String
+    let message: String // todo: delete message
+    // let car: OldCar?
+}
