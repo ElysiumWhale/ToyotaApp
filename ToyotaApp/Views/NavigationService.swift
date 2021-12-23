@@ -21,9 +21,11 @@ struct CheckUserContext {
                     : .empty
             }
         }
-        if response.registerStatus != nil, response.registerPage == nil {
+
+        if response.registerStatus == 1, response.registerPage == nil {
             return .main(response.registeredUser)
         }
+
         return .empty
     }
 }
@@ -77,8 +79,7 @@ class NavigationService {
     // MARK: - LoadAuth
     class func loadAuth(with error: String? = nil) {
         DispatchQueue.main.async {
-            let authStoryboard = UIStoryboard(.auth)
-            let controller = configureNavigationStack(for: authStoryboard, identifier: .authNavigation)
+            let controller = configureNavigationStack(for: UIStoryboard(.auth), identifier: .authNavigation)
             switchRootView?(controller)
             if let error = error {
                 PopUp.display(.error(description: error))
@@ -87,8 +88,7 @@ class NavigationService {
     }
 
     class func loadAuth(from navigationController: UINavigationController, with notificator: Notificator) {
-        let storyboard = UIStoryboard(.auth)
-        let controller: AuthViewController = storyboard.instantiate(.auth)
+        let controller: AuthViewController = instantinate(from: .auth, id: .auth)
         controller.configure(with: .changeNumber(with: notificator))
         navigationController.pushViewController(controller, animated: true)
     }
@@ -96,30 +96,29 @@ class NavigationService {
     // MARK: - LoadRegister overloads
     class func loadRegister(_ state: RegistrationStates) {
         DispatchQueue.main.async {
-            let regStoryboard = UIStoryboard(.register)
+            let storyboard = UIStoryboard(.register)
             var controllers: [UIViewController] = []
             switch state {
                 case .error(let message):
                     PopUp.display(.error(description: message))
                 case .firstPage: break
                 case .secondPage(let profile, let cities):
-                    let pivc: PersonalInfoViewController = regStoryboard.instantiate(.personalInfo)
+                    let pivc: PersonalInfoViewController = storyboard.instantiate(.personalInfo)
                     pivc.configure(with: profile)
 
-                    let cpvc: CityPickerViewController = regStoryboard.instantiate(.cityPick)
+                    let cpvc: CityPickerViewController = storyboard.instantiate(.cityPick)
                     if let cities = cities {
                         cpvc.configure(with: cities)
                     }
 
                     if let selectedCity: City = DefaultsManager.getUserInfo(for: .selectedCity) {
-                        let acvc: AddCarViewController = regStoryboard.instantiate(.addCar)
-                        // acvc.configure(models: [], colors: [], controllerType: .register)
+                        let acvc: AddCarViewController = storyboard.instantiate(.addCar)
                         controllers = [pivc, cpvc, acvc]
                     } else {
                         controllers = [pivc, cpvc]
                     }
             }
-            let controller = configureNavigationStack(with: controllers, for: regStoryboard,
+            let controller = configureNavigationStack(with: controllers, for: storyboard,
                                                       identifier: .registerNavigation)
             switchRootView?(controller)
         }
@@ -129,27 +128,49 @@ class NavigationService {
     class func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
             KeychainManager.set(Person.toDomain(user.profile))
-//            if let cars = user.car {
-//                KeychainManager.set(Cars(cars.map { $0.toDomain() }))
-//            }
+            if let cars = user.cars {
+                KeychainManager.set(Cars(cars))
+            }
         }
 
-        DispatchQueue.main.async {
-            let controller: UITabBarController = UIStoryboard(.mainMenu).instantiate(.mainMenuTabBar)
-
-            switch UserInfo.build() {
-                case .failure:
-                    loadRegister(.error(message: .error(.profileLoadError)))
-                case .success(let user):
-                    for child in controller.viewControllers! {
-                        if let top = child as? WithUserInfo {
-                            top.setUser(info: user)
-                        } else if let nav = child as? UINavigationController,
-                                  let top = nav.topViewController as? WithUserInfo {
-                            top.setUser(info: user)
-                        }
-                    }
+        switch UserInfo.build() {
+            case .failure:
+                loadRegister(.error(message: .error(.profileLoadError)))
+            case .success(let user):
+                DispatchQueue.main.async {
+                    let controller: UITabBarController = instantinate(from: .mainMenu, id: .mainMenuTabBar)
+                    controller.setUserForChildren(user)
                     switchRootView?(controller)
+                }
+        }
+    }
+}
+
+// MARK: - Instantinate
+private extension NavigationService {
+    static func instantinate<TController: UIViewController>(from storyboard: AppStoryboards,
+                                                            id: ViewControllers) -> TController {
+        UIStoryboard(storyboard).instantiate(id)
+    }
+}
+
+// MARK: - setUserForChildren
+private extension UITabBarController {
+    func setUserForChildren(_ user: UserProxy) {
+        viewControllers?.forEach { controller in
+            if let navigationController = controller as? UINavigationController {
+                navigationController.setUserForChildren(user)
+            }
+        }
+    }
+}
+
+// MARK: - setUserForChildren
+private extension UINavigationController {
+    func setUserForChildren(_ user: UserProxy) {
+        viewControllers.forEach { controller in
+            if let controllerWithUser = controller as? WithUserInfo {
+                controllerWithUser.setUser(info: user)
             }
         }
     }
