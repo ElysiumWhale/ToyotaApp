@@ -11,12 +11,12 @@ class RequestHandler<T: Codable> {
 
     var onSuccess: ParameterClosure<T>?
     var onFailure: ParameterClosure<ErrorResponse>?
-    
+
     func start(with task: URLSessionDataTask) {
         currentTask = task
         currentTask?.resume()
     }
-    
+
     func didRecieve(response: Result<T, ErrorResponse>) {
         switch response {
             case .success(let data): onSuccess?(data)
@@ -24,8 +24,18 @@ class RequestHandler<T: Codable> {
         }
         currentTask = nil
     }
-    
+
     deinit {
         currentTask?.cancel()
+    }
+}
+
+extension RequestHandler {
+    @discardableResult
+    func bind(onSuccess: ParameterClosure<T>? = nil,
+              onFailure: ParameterClosure<ErrorResponse>? = nil) -> Self {
+        self.onSuccess = onSuccess
+        self.onFailure = onFailure
+        return self
     }
 }
