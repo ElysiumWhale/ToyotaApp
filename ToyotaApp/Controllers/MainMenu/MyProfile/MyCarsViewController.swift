@@ -16,7 +16,7 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private var cars: [Car] { user.getCars.array }
 
-    private lazy var citiesRequestHandle: RequestHandler<ModelsAndColorsResponse> = {
+    private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
         RequestHandler<ModelsAndColorsResponse>()
             .bind { [weak self] data in
                 DispatchQueue.main.async {
@@ -28,16 +28,12 @@ class MyCarsViewController: UIViewController, Loadable {
     }()
 
     private lazy var removeCarHandler: RequestHandler<Response> = {
-        let handler = RequestHandler<Response>()
-
-        handler.onFailure = { [weak self] error in
+        RequestHandler<Response>() .bind(onFailure: { [weak self] error in
             DispatchQueue.main.async {
                 self?.stopLoading()
             }
             PopUp.display(.error(description: .error(.requestError)))
-        }
-
-        return handler
+        })
     }()
 
     override func viewDidLoad() {
@@ -49,7 +45,7 @@ class MyCarsViewController: UIViewController, Loadable {
     @IBAction func addCar(sender: Any?) {
         NetworkService.makeRequest(page: .registration(.getModelsAndColors),
                                    params: [(.auth(.brandId), Brand.Toyota)],
-                                   handler: citiesRequestHandle)
+                                   handler: citiesRequestHandler)
     }
 
     @IBAction func doneDidPress(_ sender: Any) {

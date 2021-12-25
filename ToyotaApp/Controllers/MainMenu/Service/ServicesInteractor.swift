@@ -85,7 +85,7 @@ class ServicesInteractor {
             } onFailure: { [weak self] error in
                 let errorMessage = error.errorCode == .lostConnection
                     ? .error(.networkError) + " и "
-                    : .error(.servicesError) + ", "
+                    : .error(.servicesError) + ". "
                 DispatchQueue.main.async {
                     self?.serviceTypes = []
                     self?.view?.didFailServiceTypes(with: errorMessage)
@@ -100,7 +100,7 @@ class ServicesInteractor {
             } onFailure: { [weak self] error in
                 let errorMessage = error.errorCode == .lostConnection
                     ? .error(.networkError) + " и "
-                    : .error(.showroomsError) + ", "
+                    : .error(.showroomsError) + ". "
                 DispatchQueue.main.async {
                     self?.showrooms = []
                     self?.selectedShowroom = nil
