@@ -34,6 +34,15 @@ class BaseServiceController: UIViewController, IServiceController {
         return view
     }()
 
+    private lazy var carPickView: PickerModuleView = {
+        let internalView = PickerModuleView()
+        internalView.servicePicker.configurePicker(with: #selector(carDidSelect),
+                                                   for: internalView.textField, delegate: self)
+        internalView.textField.placeholder = .common(.auto)
+        internalView.serviceNameLabel.text = .common(.auto)
+        return internalView
+    }()
+
     // MARK: - Models
     let serviceType: ServiceType
     private(set) var user: UserProxy?
@@ -41,6 +50,14 @@ class BaseServiceController: UIViewController, IServiceController {
 
     var hasCarSelection: Bool {
         true
+    }
+
+    private var selectedCar: Car? {
+        didSet {
+            guard let car = selectedCar else { return }
+            user?.updateSelected(car: car)
+            carPickView.textField.text = car.name
+        }
     }
 
     private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
@@ -76,9 +93,23 @@ class BaseServiceController: UIViewController, IServiceController {
         setupScrollViewLayout()
         scrollView.addSubview(stackView)
         setupStackViewLayout()
-        view.addSubview(loadingView)
-        loadingView.fadeIn()
+
+        if hasCarSelection {
+            stackView.addArrangedSubview(carPickView)
+            if user?.getCars.array.isEmpty ?? false {
+                PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
+                return
+            }
+            selectedCar = user?.getCars.defaultCar
+        }
+
+        startLoading()
         start()
+    }
+
+    @objc private func carDidSelect(sender: Any?) {
+        view.endEditing(true)
+        selectedCar = user?.getCars.array[carPickView.servicePicker.selectedRow]
     }
 
     func start() {
@@ -154,6 +185,22 @@ class BaseServiceController: UIViewController, IServiceController {
         startLoading()
         modules[index + 1].start(with: module.buildQueryItems())
         stackView.addArrangedSubview(modules[index+1].view ?? UIView())
+    }
+}
+
+// MARK: - UIPickerViewDataSource & Delegate 
+extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        user?.getCars.array.count ?? 0
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        user?.getCars.array[row].name
     }
 }
 
