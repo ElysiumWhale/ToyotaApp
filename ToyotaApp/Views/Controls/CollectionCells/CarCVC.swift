@@ -5,8 +5,8 @@ import UIKit
     @IBOutlet private var colorNameLabel: UILabel!
     @IBOutlet private var liscencePlateLabel: UILabel!
     @IBOutlet private var colorDesrLabel: UILabel!
-    @IBOutlet private var showroomName: UILabel!
-    @IBOutlet private var carImage: UIImageView!
+    @IBOutlet private var yearLabel: UILabel!
+    @IBOutlet private var checkStatusLabel: UILabel!
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { layer.cornerRadius = cornerRadius }
@@ -20,18 +20,18 @@ import UIKit
         removeAction?()
     }
 
-    func configure(brand: String, model: String, color: String,
-                   plate: String, colorDesription: String, showroom: String) {
-        brandNameLabel.text = "\(brand) \(model)"
-        colorNameLabel.text = "Цвет: \(color)"
-        liscencePlateLabel.text = plate.uppercased()
-        colorDesrLabel.text = "Описание: \(colorDesription)"
-        showroomName.text =  "Салон: \(showroom)"
-
-        carImage.layer.borderWidth = 1
-        carImage.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
-        carImage.layer.cornerRadius = carImage.frame.height/2
-        carImage.clipsToBounds = true
+    func configure(with car: Car) {
+        brandNameLabel.text = car.name
+        liscencePlateLabel.text = car.plate.uppercased()
+        colorNameLabel.text = "Цвет: \(car.color.name)"
+        colorDesrLabel.text = "Описание цвета: \(car.color.colorDescription)"
+        yearLabel.text = "Год выпуска: \(car.year)"
+        checkStatusLabel.text = car.isChecked ?? false
+            ? "Подтверждена"
+            : "Не подтверждена"
+        checkStatusLabel.textColor = car.isChecked ?? false
+            ? .systemGreen
+            : .systemRed
 
         layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
         layer.borderWidth = 1

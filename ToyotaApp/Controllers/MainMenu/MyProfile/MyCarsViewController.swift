@@ -88,10 +88,7 @@ extension MyCarsViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CarCollectionViewCell = collectionView.dequeue(for: indexPath)
         let car = cars[indexPath.row]
-        cell.configure(brand: car.brand, model: car.model.name,
-                       color: car.color.name, plate: car.plate,
-                       colorDesription: car.color.colorDescription,
-                       showroom: "Салон")
+        cell.configure(with: car)
         cell.removeAction = { [weak self] in
             self?.removeCar(with: car.id)
         }
