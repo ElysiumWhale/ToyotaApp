@@ -78,6 +78,20 @@ extension UITextField {
             self.layer.borderWidth = hasError ? 1 : 0
         })
     }
+
+    func setRightView(from view: UIView, width: Double, height: Double) {
+        NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
+        rightView = nil
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        view.frame = rect
+        let resultView = UIView(frame: rect)
+        resultView.addSubview(view)
+        NSLayoutConstraint.activate([
+            view.centerYAnchor.constraint(equalTo: resultView.centerYAnchor),
+            view.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -10)
+        ])
+        rightView = resultView
+    }
 }
 
 // MARK: - Configuring shadow for cell
