@@ -170,16 +170,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Модель" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="98" width="345" height="45.5"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="98" width="374" height="45.5"/>
+                                <color key="backgroundColor" name="Background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
                                 </constraints>
+                                <color key="textColor" name="SignatureGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
-                                <rect key="frame" x="0.0" y="179" width="414" height="634"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="662"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
@@ -228,43 +235,33 @@
                                     <outlet property="delegate" destination="KLr-04-N2s" id="I8F-dA-yj9"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обслуживается в" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-8a-6i6">
-                                <rect key="frame" x="0.0" y="145" width="414" height="26"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="afF-bh-RPv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="InQ-8a-6i6" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="6Tw-ag-Xad"/>
+                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="8.5" id="2Ur-JH-Ygn"/>
                             <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="10" id="7Qh-qj-Ysc"/>
-                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="InQ-8a-6i6" secondAttribute="bottom" constant="8" id="Jdm-IJ-D3q"/>
-                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="bottom" secondItem="afF-bh-RPv" secondAttribute="bottom" id="LMi-7d-yRX"/>
-                            <constraint firstItem="InQ-8a-6i6" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="1.6666666666666572" id="Mhy-Zd-m4e"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="34" id="Qgv-mL-5MZ"/>
+                            <constraint firstItem="hFj-Ca-ATU" firstAttribute="bottom" secondItem="afF-bh-RPv" secondAttribute="bottom" constant="1" id="LMi-7d-yRX"/>
+                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="20" id="Qgv-mL-5MZ"/>
                             <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="hFj-Ca-ATU" secondAttribute="trailing" id="dMr-mg-zcd"/>
-                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="35" id="mgy-Bp-8Ld"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="InQ-8a-6i6" secondAttribute="trailing" id="nB0-0V-wBb"/>
+                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="20" id="mgy-Bp-8Ld"/>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" id="ssl-hu-gq3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Услуги" id="UKN-IC-MKf">
                         <imageReference key="image" image="bookmark" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Услуги" id="9HU-D7-X9D">
+                    <navigationItem key="navigationItem" title="Город" id="9HU-D7-X9D">
                         <barButtonItem key="backBarButtonItem" title="Услуги" id="jWX-MJ-O7z"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="carTextField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
                         <outlet property="refreshableView" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
-                        <outlet property="showroomLabel" destination="InQ-8a-6i6" id="G0I-8w-kbs"/>
+                        <outlet property="showroomField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYw-e7-RDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153.7383177570093" y="1615.9827213822896"/>
+            <point key="canvasLocation" x="1153.6231884057972" y="1615.8482142857142"/>
         </scene>
         <!--Услуги-->
         <scene sceneID="xWu-aZ-S5c">
@@ -321,7 +318,7 @@
     </scenes>
     <designables>
         <designable name="r3W-A2-Oo1">
-            <size key="intrinsicContentSize" width="126" height="44"/>
+            <size key="intrinsicContentSize" width="111.5" height="44"/>
         </designable>
     </designables>
     <resources>
