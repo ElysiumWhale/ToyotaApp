@@ -58,6 +58,7 @@
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
+		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
@@ -153,6 +154,7 @@
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
+		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
@@ -311,7 +313,7 @@
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
-		14E5A9CB26345B640057BEF3 /* CollectionCells */ = {
+		14E5A9CB26345B640057BEF3 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
 				1495723E25B9FEE40031A5AA /* NewsCVC.swift */,
@@ -319,16 +321,26 @@
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
 				14CF66A4267F6081000FCEAC /* ManagerCVC.swift */,
 			);
-			path = CollectionCells;
+			path = CollectionCell;
 			sourceTree = "<group>";
 		};
-		14E5A9CC26345B720057BEF3 /* TableCells */ = {
+		14E5A9CC26345B720057BEF3 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
 				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
 				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
-			path = TableCells;
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		14F519932777E3AD00FF695D /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				14CFEF0A2714E22C0034046C /* CustomizableButton.swift */,
+				14F519912777E39900FF695D /* TintedImageButton.swift */,
+				144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		A759467F2523E32F00312EBE = {
@@ -469,12 +481,11 @@
 		A791FDE8252672FA00A595BB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				14F519932777E3AD00FF695D /* Button */,
 				14D55FFD2753B0B300546587 /* TextField */,
-				14E5A9CB26345B640057BEF3 /* CollectionCells */,
-				14E5A9CC26345B720057BEF3 /* TableCells */,
+				14E5A9CB26345B640057BEF3 /* CollectionCell */,
+				14E5A9CC26345B720057BEF3 /* TableCell */,
 				141BACD62725AEF400704589 /* CustomizableStackView.swift */,
-				14CFEF0A2714E22C0034046C /* CustomizableButton.swift */,
-				144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */,
 				14AB8D602714C81A004D225F /* LoadingView.swift */,
 			);
 			path = Controls;
@@ -684,6 +695,7 @@
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */,
+				14F519922777E39900FF695D /* TintedImageButton.swift in Sources */,
 				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */,
