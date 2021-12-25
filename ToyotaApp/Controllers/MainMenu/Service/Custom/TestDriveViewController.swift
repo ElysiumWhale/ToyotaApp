@@ -3,7 +3,7 @@ import UIKit
 class TestDriveViewController: BaseServiceController {
     override func start() {
         let configs = configurationForModules()
-        
+
         for (module, config) in zip(modules, configs) {
             stackView.addArrangedSubview(module.view ?? UIView())
             module.configure(appearance: config)
@@ -15,7 +15,7 @@ class TestDriveViewController: BaseServiceController {
                                    with: [(.auth(.brandId), Brand.Toyota)],
                                    response: CitiesResponse.self)
     }
-    
+
     override func moduleDidUpdate(_ module: IServiceModule) {
         DispatchQueue.main.async { [weak self] in
             switch module.state {
@@ -27,7 +27,7 @@ class TestDriveViewController: BaseServiceController {
             }
         }
     }
-    
+
     override func didChose(_ service: IService, in module: IServiceModule) {
         guard let index = modules.firstIndex(where: { $0 === module }) else { return }
         index < 3 ? fadeOutAfter(module: index) : endLoading()
@@ -50,7 +50,7 @@ class TestDriveViewController: BaseServiceController {
             default: return
         }
     }
-    
+
     private func buildParams(for index: Int, value: String) -> RequestItems {
         switch index {
             case 0:
@@ -71,9 +71,9 @@ class TestDriveViewController: BaseServiceController {
 
     private func fadeOutAfter(module index: Int) {
         startLoading()
-        
+
         if index >= 2 { return }
-        
+
         for index in index+2...3 {
             modules[index].view?.fadeOut()
         }
@@ -89,7 +89,7 @@ class TestDriveViewController: BaseServiceController {
                                     (.carInfo(.showroomId), showroomId),
                                     (.services(.serviceId), carId)]
         params.append(contentsOf: modules[3].buildQueryItems())
-        
+
         NetworkService.makeRequest(page: .services(.bookService),
                                    params: params,
                                    handler: bookingRequestHandler)

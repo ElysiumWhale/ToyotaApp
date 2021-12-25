@@ -105,18 +105,20 @@ extension PickerModule: UIPickerViewDelegate {
             view?.endEditing(true)
             return
         }
+
         let index = internalView.servicePicker.selectedRow
         if array[index].id == "-1" {
             view?.endEditing(true)
             return
         }
-        
+
         internalView.textField.text = array[index].name
         internalView.endEditing(true)
         state = .didChose(array[index])
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
+                    forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.light, of: 20)
         pickerLabel.textAlignment = .center
@@ -124,7 +126,8 @@ extension PickerModule: UIPickerViewDelegate {
         return pickerLabel
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         array?[row].name ?? "PickerModule.array is empty"
     }
 }

@@ -58,6 +58,8 @@ extension String {
         case services = "Услуги"
         /// Машина
         case car = "Машина"
+        /// Автомобиль
+        case auto = "Автомобиль"
         /// Салон
         case showroom = "Салон"
         /// Город

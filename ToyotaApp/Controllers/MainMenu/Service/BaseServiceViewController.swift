@@ -157,11 +157,13 @@ class BaseServiceController: UIViewController, IServiceController {
 extension BaseServiceController {
     func startLoading() {
         view.addSubview(loadingView)
+        loadingView.startAnimating()
         loadingView.fadeIn()
     }
 
     func endLoading() {
         loadingView.fadeOut { [self] in
+            loadingView.stopAnimating()
             loadingView.removeFromSuperview()
         }
     }

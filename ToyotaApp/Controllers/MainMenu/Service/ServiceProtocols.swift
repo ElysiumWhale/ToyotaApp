@@ -1,6 +1,7 @@
 import UIKit
 
 enum ModuleAppearances {
+    case none
     case title(_ string: String)
     case placeholder(_ string: String)
 }
