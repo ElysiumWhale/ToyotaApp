@@ -11,40 +11,30 @@ class SmsCodeViewController: UIViewController {
     private var type: AuthType = .register
 
     private lazy var registerHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
-        let handler = RequestHandler<CheckUserOrSmsCodeResponse>()
-        
-        handler.onSuccess = { [weak self] data in
-            KeychainManager.set(UserId(data.userId!))
-            KeychainManager.set(SecretKey(data.secretKey))
-            if self == nil { return }
-            NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+        RequestHandler<CheckUserOrSmsCodeResponse>()
+            .bind { [weak self] data in
+                KeychainManager.set(UserId(data.userId!))
+                KeychainManager.set(SecretKey(data.secretKey))
+                if self == nil { return }
+                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
+                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.handle(error)
+                }
             }
-        }
-        
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.handle(error)
-            }
-        }
-        
-        return handler
     }()
 
     private lazy var changeNumberHandler: RequestHandler<Response> = {
-        let handler = RequestHandler<Response>()
-        
-        handler.onSuccess = { [weak self] _ in
-            self?.handleSuccess()
-        }
-        
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.handle(error)
+        RequestHandler<Response>()
+            .bind { [weak self] _ in
+                self?.handleSuccess()
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.handle(error)
+                }
             }
-        }
-        
-        return handler
     }()
 
     override func viewDidLoad() {

@@ -14,7 +14,7 @@ class ConnectionLostViewController: UIViewController {
         indicator.startAnimating()
         controller.reconnect()
     }
-    
+
     func displayError() {
         DispatchQueue.main.async { [weak self] in
             self?.indicator.stopAnimating()
@@ -27,37 +27,34 @@ class ConnectionLostViewController: UIViewController {
 // MARK: - Controller
 class ConnectionLostController {
     private(set) weak var view: ConnectionLostViewController?
-    
+
     private lazy var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
-        let handler = RequestHandler<CheckUserOrSmsCodeResponse>()
-        handler.onSuccess = { [weak self] data in
-            KeychainManager.set(SecretKey(data.secretKey))
-            if self == nil { return }
-            NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                NavigationService.loadAuth()
+        RequestHandler<CheckUserOrSmsCodeResponse>()
+            .bind { [weak self] data in
+                KeychainManager.set(SecretKey(data.secretKey))
+                if self == nil { return }
+                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
+                    NavigationService.loadAuth()
+                }
+            } onFailure: { [weak self] error in
+                switch error.errorCode {
+                    case .lostConnection: self?.view?.displayError()
+                    default: NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
+                }
             }
-        }
-        
-        handler.onFailure = { [weak self] error in
-            switch error.errorCode {
-                case .lostConnection: self?.view?.displayError()
-                default: NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
-            }
-        }
-        return handler
     }()
-    
+
     init(view: ConnectionLostViewController) {
         self.view = view
     }
-    
+
     func reconnect() {
         guard let userId = KeychainManager<UserId>.get()?.id,
               let secretKey = KeychainManager<SecretKey>.get()?.secret else {
             NavigationService.loadAuth()
             return
         }
-        
+
         NetworkService.makeRequest(page: .start(.checkUser),
                                    params: [(.auth(.userId), userId),
                                             (.auth(.brandId), Brand.Toyota),
