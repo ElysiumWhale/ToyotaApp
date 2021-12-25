@@ -35,6 +35,7 @@ extension Refreshable {
     }
 
     func configureRefresh() {
+        refreshableView.alwaysBounceVertical = true
         refreshControl.isEnabled = true
         refreshControl.addAction(for: .valueChanged) { [weak self] in
             self?.startRefreshing()
@@ -115,7 +116,7 @@ protocol Loadable: UIViewController {
 extension Loadable {
     func startLoading() {
         view.addSubview(loadingView)
-        loadingView.sizeToFit()
+        loadingView.frame = view.frame
         loadingView.startAnimating()
         loadingView.fadeIn()
     }
