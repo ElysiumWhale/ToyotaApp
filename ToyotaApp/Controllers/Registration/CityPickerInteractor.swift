@@ -69,6 +69,6 @@ class CityPickerInteractor {
         }
 
         cityPickerDelegate?.cityDidSelect(selectedCity)
-        return DefaultsManager.pushUserInfo(info: selectedCity)
+        return DefaultsManager.push(info: selectedCity, for: .selectedCity)
     }
 }
