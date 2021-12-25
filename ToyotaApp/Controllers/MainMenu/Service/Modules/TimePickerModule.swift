@@ -42,17 +42,12 @@ class TimePickerModule: NSObject, IServiceModule {
     }
 
     private lazy var requestHandler: RequestHandler<FreeTimeResponse> = {
-        let handler = RequestHandler<FreeTimeResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            self?.completion(for: data)
-        }
-
-        handler.onFailure = { [weak self] error in
-            self?.state = .error(.requestError(error.message))
-        }
-
-        return handler
+        RequestHandler<FreeTimeResponse>()
+            .bind { [weak self] data in
+                self?.completion(for: data)
+            } onFailure: { [weak self] error in
+                self?.state = .error(.requestError(error.message))
+            }
     }()
 
     init(with type: ServiceType) {

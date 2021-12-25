@@ -3,7 +3,7 @@ import UIKit
 class PickerModule: NSObject, IServiceModule {
     var view: UIView? { internalView }
 
-    private(set) lazy var internalView: PickerModuleView = {
+    private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
         internalView.servicePicker.configurePicker(with: #selector(serviceDidSelect),
                                                    for: internalView.textField, delegate: self)
