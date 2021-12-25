@@ -295,3 +295,22 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
         return result
     }
 }
+
+extension UIButton {
+    static func titleButton(with text: String, action: @escaping VoidClosure) -> UIButton {
+        let button =  UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        button.backgroundColor = .clear
+        button.setTitleColor(.appTint(.signatureGray), for: .normal)
+        button.setTitleColor(.appTint(.secondarySignatureRed), for: .highlighted)
+        button.titleLabel?.font = .toyotaType(.regular, of: 17)
+        button.setTitle(text, for: .normal)
+        button.addAction(action)
+        return button
+    }
+
+    static func forCity(title: String? = nil, action: @escaping VoidClosure) -> UIButton {
+        let str = title ?? .common(.chooseCity)
+        return titleButton(with: str + " ▸", action: action)
+    }
+}
