@@ -35,7 +35,6 @@ enum ModuleStates {
 /// Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
 protocol IServiceModule: AnyObject {
     var view: UIView? { get }
-    var serviceType: ServiceType { get }
     var state: ModuleStates { get }
     var delegate: IServiceController? { get set }
     func start(with params: RequestItems)
@@ -62,6 +61,7 @@ extension IServiceModule {
 /// Configured by `ServiceModuleBuilder`
 protocol IServiceController: UIViewController {
     var modules: [IServiceModule] { get }
+    var serviceType: ServiceType { get }
     var user: UserProxy? { get }
     func moduleDidUpdate(_ module: IServiceModule)
 }

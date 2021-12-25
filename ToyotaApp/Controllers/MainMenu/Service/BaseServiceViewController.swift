@@ -43,7 +43,7 @@ class BaseServiceController: UIViewController, IServiceController {
     }()
 
     // MARK: - Models
-    private(set) var serviceType: ServiceType?
+    let serviceType: ServiceType
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
@@ -65,10 +65,10 @@ class BaseServiceController: UIViewController, IServiceController {
     }()
 
     init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
-        super.init(nibName: nil, bundle: .main)
         self.modules = modules
         self.user = user
         self.serviceType = service
+        super.init(nibName: nil, bundle: .main)
     }
 
     required init?(coder: NSCoder) {
@@ -76,7 +76,7 @@ class BaseServiceController: UIViewController, IServiceController {
     }
 
     override func viewDidLoad() {
-        navigationItem.title = serviceType?.serviceTypeName
+        navigationItem.title = serviceType.serviceTypeName
         navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
         view.backgroundColor = .systemBackground
 
@@ -98,7 +98,6 @@ class BaseServiceController: UIViewController, IServiceController {
     func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy) {
         self.modules = modules
         self.user = user
-        self.serviceType = service
     }
 
     func bookService() {
@@ -118,7 +117,7 @@ class BaseServiceController: UIViewController, IServiceController {
 
         // Note: - Redundant
         if params.first(where: { $0.key.rawValue == RequestKeys.Services.serviceId.rawValue }) == nil {
-            params.append((.services(.serviceId), serviceType!.id))
+            params.append((.services(.serviceId), serviceType.id))
         }
 
         NetworkService.makeRequest(page: .services(.bookService),

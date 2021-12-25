@@ -23,8 +23,9 @@ enum ControllerServiceType: String {
 }
 
 class ServiceModuleBuilder {
-    class func buildController(serviceType: ServiceType,
-                               for controlType: ControllerServiceType, user: UserProxy) -> IServiceController {
+    class func buildModule(serviceType: ServiceType,
+                               for controlType: ControllerServiceType,
+                               user: UserProxy) -> IServiceController {
         var controller: IServiceController!
         let modules = buildModules(with: serviceType, for: controlType)
         switch serviceType.id {
