@@ -40,12 +40,15 @@ public class DefaultsManager {
         }
     }
 
-    class func push<T: Codable>(info: T, for key: DefaultKeys) {
+    @discardableResult
+    class func push<T: Codable>(info: T, for key: DefaultKeys) -> Bool {
         do {
             let data = try JSONEncoder().encode(info)
             defaults.set(data, forKey: key.rawValue)
+            return true
         } catch let decodeError as NSError {
             assertionFailure("Decoder error: \(decodeError.localizedDescription)")
+            return false
         }
     }
 
