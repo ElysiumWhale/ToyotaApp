@@ -1,6 +1,10 @@
 import UIKit
 
 class TestDriveViewController: BaseServiceController {
+    override var hasCarSelection: Bool {
+        false
+    }
+
     override func start() {
         let configs = configurationForModules()
 

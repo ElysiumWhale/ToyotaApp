@@ -39,6 +39,10 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
+    var hasCarSelection: Bool {
+        true
+    }
+
     private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
             .bind { [weak self] _ in
