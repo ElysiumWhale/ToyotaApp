@@ -105,7 +105,7 @@ class ServicesViewController: RefreshableController, PickerController {
 // MARK: - CityPickerDelegate
 extension ServicesViewController: CityPickerDelegate {
     func cityDidSelect(_ city: City) {
-        guard city.id != interactor.selectedCity?.id, !interactor.showrooms.isEmpty else {
+        if let selectedCity = interactor.selectedCity, city.id == selectedCity.id {
             return
         }
 
