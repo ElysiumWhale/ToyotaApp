@@ -50,15 +50,28 @@ struct Car: IService {
 }
 
 // MARK: - City
-struct City: IService, WithDefaultKey {
-    static var key: DefaultKeys = .selectedCity
-
+struct City: IService {
     let id: String
     let name: String
 
     private enum CodingKeys: String, CodingKey {
         case id
         case name = "city_name"
+    }
+}
+
+// MARK: - Showroom
+struct Showroom: IService {
+    var name: String { showroomName }
+
+    let id: String
+    let showroomName: String
+    let cityName: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case showroomName = "showroom_name"
+        case cityName = "city_name"
     }
 }
 

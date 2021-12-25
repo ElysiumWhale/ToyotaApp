@@ -66,11 +66,11 @@ extension UserInfo: UserProxy {
     var getCars: Cars { cars }
 
     var getSelectedShowroom: Showroom? {
-        DefaultsManager.getUserInfo(Showroom.self)
+        DefaultsManager.getUserInfo(for: .selectedShowroom)
     }
 
     var selectedCity: City? {
-        DefaultsManager.getUserInfo(City.self)
+        DefaultsManager.getUserInfo(for: .selectedCity)
     }
 
     func updatePerson(from person: Person) {
@@ -95,11 +95,11 @@ extension UserInfo: UserProxy {
     }
 
     func updateSelected(city: City) {
-        DefaultsManager.pushUserInfo(info: city)
+        DefaultsManager.push(info: city, for: .selectedCity)
     }
 
     func updateSelected(showroom: Showroom) {
-        DefaultsManager.pushUserInfo(info: showroom)
+        DefaultsManager.push(info: showroom, for: .selectedShowroom)
     }
 
     func removeCar(with id: String) {
