@@ -238,6 +238,21 @@ extension UICollectionView {
     }
 }
 
+// MARK: - Changing cell with animation
+extension UICollectionView {
+    func change<TCell: UICollectionViewCell>(_ cellType: TCell.Type,
+                                             at indexPath: IndexPath,
+                                             _ changeAction: @escaping ParameterClosure<TCell>) {
+        guard let cell = cellForItem(at: indexPath) as? TCell else {
+            return
+        }
+
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: [.curveEaseOut]) {
+            changeAction(cell)
+        }
+    }
+}
+
 // MARK: - SegueCode enum property
 extension UIStoryboardSegue {
     var code: SegueIdentifiers? {
