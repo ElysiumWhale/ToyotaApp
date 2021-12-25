@@ -20,23 +20,18 @@ class PersonalInfoViewController: KeyboardableController {
     private var configureSelectCity: ParameterClosure<CityPickerViewController?>?
 
     private lazy var requestHandler: RequestHandler<CitiesResponse> = {
-        let handler = RequestHandler<CitiesResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            self?.handle(data)
-            DispatchQueue.main.async {
-                self?.handleUI(isSuccess: true)
+        RequestHandler<CitiesResponse>()
+            .bind { [weak self] data in
+                self?.handle(data)
+                DispatchQueue.main.async {
+                    self?.handleUI(isSuccess: true)
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.handleUI(isSuccess: false)
+                    PopUp.display(.error(description: error.message ?? .error(.requestError)))
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.handleUI(isSuccess: false)
-                PopUp.display(.error(description: error.message ?? .error(.requestError)))
-            }
-        }
-
-        return handler
     }()
 
     override func viewDidLoad() {

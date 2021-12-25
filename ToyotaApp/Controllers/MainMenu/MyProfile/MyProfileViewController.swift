@@ -51,22 +51,17 @@ class MyProfileViewController: UIViewController {
     }
 
     private lazy var updateUserHandler: RequestHandler<Response> = {
-        let handler = RequestHandler<Response>()
-
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handle(success: data)
+        RequestHandler<Response>()
+            .bind { [weak self] data in
+                DispatchQueue.main.async {
+                    self?.handle(success: data)
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    PopUp.display(.error(description: error.message ?? .error(.savingError)))
+                    self?.state = .editing
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                PopUp.display(.error(description: error.message ?? .error(.savingError)))
-                self?.state = .editing
-            }
-        }
-
-        return handler
     }()
 
     override func viewDidLoad() {

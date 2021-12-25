@@ -9,21 +9,16 @@ class MyManagerViewController: UIViewController {
     private var managers: [Manager] = []
 
     private lazy var managersRequestHandler: RequestHandler<ManagersResponse> = {
-        let handler = RequestHandler<ManagersResponse>()
-        
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handle(data)
+        RequestHandler<ManagersResponse>()
+            .bind { [weak self] data in
+                DispatchQueue.main.async {
+                    self?.handle(data)
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.managersCollection.setBackground(text: error.message ?? .error(.managersLoadError))
+                }
             }
-        }
-        
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.managersCollection.setBackground(text: error.message ?? .error(.managersLoadError))
-            }
-        }
-        
-        return handler
     }()
 
     override func viewDidLoad() {

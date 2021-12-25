@@ -48,20 +48,15 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) var modules: [IServiceModule] = []
 
     private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
-        let handler = RequestHandler<Response>()
-
-        handler.onSuccess = { [weak self] _ in
-            PopUp.display(.success(description: .common(.bookingSuccess)))
-            DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
+        RequestHandler<Response>()
+            .bind { [weak self] _ in
+                PopUp.display(.success(description: .common(.bookingSuccess)))
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            } onFailure: { error in
+                PopUp.display(.error(description: error.message ?? .error(.servicesError)))
             }
-        }
-
-        handler.onFailure = { error in
-            PopUp.display(.error(description: error.message ?? .error(.servicesError)))
-        }
-
-        return handler
     }()
 
     init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {

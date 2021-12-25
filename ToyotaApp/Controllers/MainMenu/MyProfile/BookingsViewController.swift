@@ -8,23 +8,18 @@ class BookingsViewController: RefreshableController {
     private var bookings: [Booking] = []
 
     private lazy var handler: RequestHandler<BookingsResponse> = {
-        var handler = RequestHandler<BookingsResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handle(success: data)
+        RequestHandler<BookingsResponse>()
+            .bind { [weak self] data in
+                DispatchQueue.main.async {
+                    self?.handle(success: data)
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.handle(failure: error)
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.handle(failure: error)
-            }
-        }
-
-        return handler
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRefresh()

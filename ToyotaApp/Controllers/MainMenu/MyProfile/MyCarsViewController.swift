@@ -17,19 +17,14 @@ class MyCarsViewController: UIViewController, Loadable {
     private var cars: [Car] { user.getCars.array }
 
     private lazy var citiesRequestHandle: RequestHandler<ModelsAndColorsResponse> = {
-        let handler = RequestHandler<ModelsAndColorsResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handle(data)
+        RequestHandler<ModelsAndColorsResponse>()
+            .bind { [weak self] data in
+                DispatchQueue.main.async {
+                    self?.handle(data)
+                }
+            } onFailure: { error in
+                PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
             }
-        }
-
-        handler.onFailure = { error in
-            PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
-        }
-
-        return handler
     }()
 
     private lazy var removeCarHandler: RequestHandler<Response> = {
