@@ -505,24 +505,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-dW-dKH">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-dW-dKH">
                                 <rect key="frame" x="0.0" y="56" width="414" height="820"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="obj-av-q5T">
-                                    <size key="itemSize" width="350" height="600"/>
+                                    <size key="itemSize" width="350" height="340"/>
                                     <size key="headerReferenceSize" width="0.0" height="20"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="CarCell" id="cYR-AV-zYx" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="20" width="350" height="600"/>
+                                        <rect key="frame" x="32" y="20" width="350" height="340"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="600"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="340"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand Model" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e4-r8-4PR">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toyota Land Cruiser 300" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e4-r8-4PR">
                                                     <rect key="frame" x="12" y="7" width="327" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="8qK-Sq-gLZ"/>
@@ -533,10 +533,10 @@
                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="m8L-dx-doh">
-                                                    <rect key="frame" x="11" y="119.5" width="328" height="101"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="m8L-dx-doh">
+                                                    <rect key="frame" x="11" y="105.5" width="328" height="115"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-1S-5pY">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цвет: Слоновая кость" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-1S-5pY">
                                                             <rect key="frame" x="0.0" y="0.0" width="328" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Nt2-K0-hCW"/>
@@ -546,8 +546,8 @@
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-gk-ehc">
-                                                            <rect key="frame" x="0.0" y="36" width="328" height="29"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание цвета: Бежевый" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-gk-ehc">
+                                                            <rect key="frame" x="0.0" y="43" width="328" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="FRT-aa-ucQ"/>
                                                             </constraints>
@@ -556,8 +556,8 @@
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showroom" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-OZ-cow">
-                                                            <rect key="frame" x="0.0" y="72" width="328" height="29"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Год выпуска: 2021" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-OZ-cow">
+                                                            <rect key="frame" x="0.0" y="86" width="328" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="xPV-i2-1iw"/>
                                                             </constraints>
@@ -568,7 +568,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLATE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А163АА163RUS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
                                                     <rect key="frame" x="12" y="41" width="327" height="34.5"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="24"/>
                                                     <color key="textColor" name="SignatureGray"/>
@@ -577,57 +577,24 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gt2-JC-9YC">
-                                                    <rect key="frame" x="123" y="234" width="105" height="40"/>
+                                                    <rect key="frame" x="310" y="284" width="24" height="40"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-GB-jiL" customClass="TintedImageButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="Zv6-Li-VZg"/>
-                                                                <constraint firstAttribute="width" constant="40" id="aX4-pF-dBj"/>
-                                                            </constraints>
-                                                            <color key="tintColor" name="SecondarySignatureRed"/>
-                                                            <state key="normal">
-                                                                <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                                                    <color key="value" name="SignatureGray"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                                                    <color key="value" name="SecondarySignatureRed"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
-                                                                    <color key="value" name="SecondarySignatureRed"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                                                    <color key="value" name="SignatureGray"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </button>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYx-M7-bue" customClass="TintedImageButton" customModule="ToyotaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="65" y="0.0" width="40" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Bfd-xD-R2a"/>
-                                                                <constraint firstAttribute="width" constant="40" id="wwS-iN-b9Q"/>
                                                             </constraints>
-                                                            <color key="tintColor" name="SecondarySignatureRed"/>
+                                                            <color key="tintColor" name="SignatureGray"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                                                    <color key="value" name="SignatureGray"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
                                                                     <color key="value" name="SecondarySignatureRed"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
                                                                     <color key="value" name="SignatureGray"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="highlightedTintColor">
-                                                                    <color key="value" name="SecondarySignatureRed"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
@@ -636,37 +603,33 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZp-dz-K0M">
-                                                    <rect key="frame" x="91" y="410" width="168" height="168"/>
-                                                    <color key="tintColor" name="SignatureGray"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="mZp-dz-K0M" secondAttribute="height" multiplier="1:1" constant="-4" id="lAO-Cv-20I"/>
-                                                    </constraints>
-                                                    <imageReference key="image" image="car.fill" catalog="system" symbolScale="small"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" scale="default" weight="light"/>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не подтверждена" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRH-ht-V1G">
+                                                    <rect key="frame" x="12" y="293" width="142.5" height="23"/>
+                                                    <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="16"/>
+                                                    <color key="textColor" name="SignatureRed"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" name="Background"/>
                                         <constraints>
-                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="top" relation="lessThanOrEqual" secondItem="m8L-dx-doh" secondAttribute="bottom" constant="212" id="3Pa-tI-3t8"/>
-                                            <constraint firstItem="mZp-dz-K0M" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="91" id="45J-Yz-G2V"/>
                                             <constraint firstItem="lVR-4S-0kc" firstAttribute="top" secondItem="1e4-r8-4PR" secondAttribute="bottom" constant="-1" id="8c0-gv-bDV"/>
                                             <constraint firstItem="1e4-r8-4PR" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="12" id="9cI-9A-JoF"/>
                                             <constraint firstItem="1e4-r8-4PR" firstAttribute="top" secondItem="cYR-AV-zYx" secondAttribute="top" constant="7" id="9mP-MQ-hjh"/>
-                                            <constraint firstItem="gt2-JC-9YC" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="123" id="Pfh-rs-svx"/>
+                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="m8L-dx-doh" secondAttribute="bottom" constant="119.5" id="DHx-Ti-3YU"/>
                                             <constraint firstItem="m8L-dx-doh" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="11" id="Q1g-uS-v2K"/>
-                                            <constraint firstAttribute="trailing" secondItem="gt2-JC-9YC" secondAttribute="trailing" constant="122" id="RHL-el-9tt"/>
+                                            <constraint firstAttribute="bottom" secondItem="gt2-JC-9YC" secondAttribute="bottom" constant="16" id="W3b-Xp-vYf"/>
+                                            <constraint firstItem="eRH-ht-V1G" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="12" id="XN2-bk-T9B"/>
                                             <constraint firstItem="lVR-4S-0kc" firstAttribute="leading" secondItem="cYR-AV-zYx" secondAttribute="leading" constant="12" id="Ytn-5w-e9c"/>
                                             <constraint firstAttribute="trailing" secondItem="lVR-4S-0kc" secondAttribute="trailing" constant="11" id="biQ-L2-o3X"/>
                                             <constraint firstAttribute="trailing" secondItem="m8L-dx-doh" secondAttribute="trailing" constant="11" id="e4U-Iq-HxK"/>
-                                            <constraint firstAttribute="bottom" secondItem="mZp-dz-K0M" secondAttribute="bottom" constant="20" id="hj6-Sp-ca2"/>
-                                            <constraint firstAttribute="trailing" secondItem="mZp-dz-K0M" secondAttribute="trailing" constant="91" id="ipY-hY-sby"/>
+                                            <constraint firstAttribute="bottom" secondItem="eRH-ht-V1G" secondAttribute="bottom" constant="24" id="eab-J8-RWw"/>
                                             <constraint firstAttribute="trailing" secondItem="1e4-r8-4PR" secondAttribute="trailing" constant="11" id="mjE-Dc-lpM"/>
-                                            <constraint firstItem="gt2-JC-9YC" firstAttribute="top" secondItem="Koh-OZ-cow" secondAttribute="bottom" constant="13.5" id="pTI-wt-e1Y"/>
-                                            <constraint firstItem="m8L-dx-doh" firstAttribute="top" secondItem="lVR-4S-0kc" secondAttribute="bottom" constant="44" id="vYG-Oy-D9Y"/>
+                                            <constraint firstItem="m8L-dx-doh" firstAttribute="top" secondItem="lVR-4S-0kc" secondAttribute="bottom" constant="30" id="vYG-Oy-D9Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="gt2-JC-9YC" secondAttribute="trailing" constant="16" id="yHa-U4-zYd"/>
                                         </constraints>
-                                        <size key="customSize" width="350" height="600"/>
+                                        <size key="customSize" width="350" height="340"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -674,11 +637,11 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="brandNameLabel" destination="1e4-r8-4PR" id="9d1-Hq-S0P"/>
-                                            <outlet property="carImage" destination="mZp-dz-K0M" id="M5m-kE-Frq"/>
+                                            <outlet property="checkStatusLabel" destination="eRH-ht-V1G" id="e1L-UC-sFb"/>
                                             <outlet property="colorDesrLabel" destination="crZ-gk-ehc" id="rEb-F6-W8A"/>
                                             <outlet property="colorNameLabel" destination="TFr-1S-5pY" id="TpN-SV-oCN"/>
                                             <outlet property="liscencePlateLabel" destination="lVR-4S-0kc" id="vi5-ph-oeX"/>
-                                            <outlet property="showroomName" destination="Koh-OZ-cow" id="d1X-q3-uGo"/>
+                                            <outlet property="yearLabel" destination="Koh-OZ-cow" id="d1X-q3-uGo"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1055,15 +1018,16 @@
         <designable name="g0o-cG-eci">
             <size key="intrinsicContentSize" width="134" height="38"/>
         </designable>
+        <designable name="uYx-M7-bue">
+            <size key="intrinsicContentSize" width="24" height="25.5"/>
+        </designable>
         <designable name="xc7-Xb-BOD">
             <size key="intrinsicContentSize" width="155" height="34"/>
         </designable>
     </designables>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
-        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="car" catalog="system" width="128" height="93"/>
-        <image name="car.fill" catalog="system" width="128" height="93"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
@@ -1080,6 +1044,9 @@
         </namedColor>
         <namedColor name="SignatureGray">
             <color red="0.15686274509803921" green="0.15686274509803921" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SignatureRed">
+            <color red="1" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryTint">
             <color red="0.77600002288818359" green="0.77600002288818359" blue="0.78400003910064697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
