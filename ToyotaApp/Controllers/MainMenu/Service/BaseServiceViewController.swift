@@ -26,18 +26,10 @@ class BaseServiceController: UIViewController, IServiceController {
         return button
     }()
 
-    private(set) lazy var loadingView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        indicator.color = .white
-        view.addSubview(indicator)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        indicator.startAnimating()
-        view.backgroundColor = UIColor.appTint(.loading)
+    private(set) lazy var loadingView: LoadingView = {
+        let view = LoadingView(frame: .init(x: 0, y: 0, width: view.bounds.width,
+                                            height: view.bounds.height))
+        view.startAnimating()
         view.alpha = 0
         return view
     }()
@@ -94,7 +86,7 @@ class BaseServiceController: UIViewController, IServiceController {
         guard let userId = user?.getId,
               let showroomId = user?.getSelectedShowroom?.id,
               let carId = user?.getCars.defaultCar?.id else { return }
-        
+
         var params: RequestItems = [(.auth(.userId), userId),
                                     (.carInfo(.showroomId), showroomId),
                                     (.carInfo(.carId), carId)]
