@@ -24,23 +24,18 @@ class CityPickerInteractor {
     private var selectedCity: City?
 
     private lazy var cityRequestHandler: RequestHandler<CitiesResponse> = {
-        let handler = RequestHandler<CitiesResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            self?.cities = data.cities
-            DispatchQueue.main.async {
-                self?.view?.handleSuccess()
+        RequestHandler<CitiesResponse>()
+            .bind { [weak self] data in
+                self?.cities = data.cities
+                DispatchQueue.main.async {
+                    self?.view?.handleSuccess()
+                }
+            } onFailure: { [weak self] _ in
+                self?.cities = []
+                DispatchQueue.main.async {
+                    self?.view?.handleFailure()
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] _ in
-            self?.cities = []
-            DispatchQueue.main.async {
-                self?.view?.handleFailure()
-            }
-        }
-
-        return handler
     }()
 
     func configure(with cities: [City]) {

@@ -22,42 +22,32 @@ class AddCarInteractor {
     private var selectedYear: String = .empty
 
     private lazy var setCarHandler: RequestHandler<CarSetResponse> = {
-        let handler = RequestHandler<CarSetResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            self?.saveCar(with: data.carId)
-            DispatchQueue.main.async {
-                self?.view?.handleCarAdded()
+        RequestHandler<CarSetResponse>()
+            .bind { [weak self] data in
+                self?.saveCar(with: data.carId)
+                DispatchQueue.main.async {
+                    self?.view?.handleCarAdded()
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
-            }
-        }
-
-        return handler
     }()
 
     private lazy var loadModelsHandler: RequestHandler<ModelsAndColorsResponse> = {
-        let handler = RequestHandler<ModelsAndColorsResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            self?.models = data.models
-            self?.colors = data.colors
-            DispatchQueue.main.async {
-                self?.view?.handleModelsLoaded()
+        RequestHandler<ModelsAndColorsResponse>()
+            .bind { [weak self] data in
+                self?.models = data.models
+                self?.colors = data.colors
+                DispatchQueue.main.async {
+                    self?.view?.handleModelsLoaded()
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+                }
             }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
-            }
-        }
-
-        return handler
     }()
 
     var loadNeeded: Bool {

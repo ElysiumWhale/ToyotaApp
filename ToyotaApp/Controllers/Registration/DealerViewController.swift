@@ -23,33 +23,28 @@ class DealerViewController: UIViewController, PickerController {
 
     // MARK: - Request handlers
     private lazy var showroomsHandler: RequestHandler<ShoroomsResponce> = {
-        let handler = RequestHandler<ShoroomsResponce>()
-        handler.onSuccess = { [weak self] data in
-            self?.showrooms = data.showrooms
-            DispatchQueue.main.async {
-                self?.cityTextFieldIndicator.stopAnimating()
-                self?.showroomStackView.fadeIn()
+        RequestHandler<ShoroomsResponce>()
+            .bind { [weak self] data in
+                self?.showrooms = data.showrooms
+                DispatchQueue.main.async {
+                    self?.cityTextFieldIndicator.stopAnimating()
+                    self?.showroomStackView.fadeIn()
+                }
+            } onFailure: { [weak self] error in
+                PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
+                DispatchQueue.main.async {
+                    self?.cityTextFieldIndicator.stopAnimating()
+                }
             }
-        }
-        
-        handler.onFailure = { [weak self] error in
-            PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
-            DispatchQueue.main.async {
-                self?.cityTextFieldIndicator.stopAnimating()
-            }
-        }
-        return handler
     }()
-    
+
     private lazy var setInfoHandler: RequestHandler<Response> = {
-        let handler = RequestHandler<Response>()
-        handler.onSuccess = { [weak self] data in
-            self?.handleSuccess(response: data)
-        }
-        handler.onFailure = { [weak self] error in
-            self?.interfaceCompletion(for: .fail(message: error.message ?? .error(.unknownError)))
-        }
-        return handler
+        RequestHandler<Response>()
+            .bind { [weak self] data in
+                self?.handleSuccess(response: data)
+            } onFailure: { [weak self] error in
+                self?.interfaceCompletion(for: .fail(message: error.message ?? .error(.unknownError)))
+            }
     }()
     
     // MARK: - Public methods
