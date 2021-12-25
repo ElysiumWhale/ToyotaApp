@@ -8,11 +8,11 @@ private enum EditingStates {
 }
 
 class MyProfileViewController: UIViewController {
-    @IBOutlet private var firstNameTextField: UITextField!
-    @IBOutlet private var secondNameTextField: UITextField!
-    @IBOutlet private var lastNameTextField: UITextField!
-    @IBOutlet private var birthTextField: UITextField!
-    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var firstNameTextField: InputTextField!
+    @IBOutlet private var secondNameTextField: InputTextField!
+    @IBOutlet private var lastNameTextField: InputTextField!
+    @IBOutlet private var birthTextField: InputTextField!
+    @IBOutlet private var emailTextField: InputTextField!
     @IBOutlet private var managerButton: CustomizableButton!
     @IBOutlet private var cancelButton: CustomizableButton!
     @IBOutlet private var saveButton: CustomizableButton!
