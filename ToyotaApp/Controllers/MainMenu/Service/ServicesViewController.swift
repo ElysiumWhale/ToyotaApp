@@ -240,8 +240,7 @@ extension ServicesViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ServiceCollectionViewCell = collectionView.dequeue(for: indexPath)
         let serviceType = serviceTypes[indexPath.row]
-        cell.configure(name: serviceType.serviceTypeName,
-                       type: ControllerServiceType(rawValue: serviceType.controlTypeId) ?? .notDefined)
+        cell.configure(name: serviceType.serviceTypeName)
         return cell
     }
 }

@@ -7,13 +7,10 @@ import UIKit
         didSet { layer.cornerRadius = cornerRadius }
     }
 
-    private(set) var controllerType: ControllerServiceType!
-
     class var identifier: UICollectionView.CollectionCells { .service }
 
-    func configure(name: String, type: ControllerServiceType) {
+    func configure(name: String) {
         serviceName.text = name
-        controllerType = type
         configureShadow(with: cornerRadius)
     }
 }
