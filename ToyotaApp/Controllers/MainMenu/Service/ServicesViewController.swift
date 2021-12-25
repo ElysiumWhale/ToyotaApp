@@ -3,59 +3,40 @@ import UIKit
 class ServicesViewController: RefreshableController, PickerController {
     @IBOutlet private(set) var refreshableView: UICollectionView!
     @IBOutlet private var showroomField: NoCopyPasteTexField!
-    @IBOutlet private var showroomIndicator: UIActivityIndicatorView!
 
     private(set) var refreshControl = UIRefreshControl()
-    private var showroomPicker: UIPickerView = UIPickerView()
+    private let showroomIndicator = UIActivityIndicatorView(style: .medium)
+    private let showroomPicker = UIPickerView()
 
-    private lazy var servicesTypesRequestHandler: RequestHandler<ServicesTypesResponse> = {
-        let handler = RequestHandler<ServicesTypesResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handle(success: data)
-            }
-        }
-
-        handler.onFailure = { [weak self] error in
-            DispatchQueue.main.async {
-                self?.handle(failure: error)
-            }
-        }
-
-        return handler
-    }()
+    private let interactor = ServicesInteractor()
 
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
 
     private var carsCount: Int { user.getCars.array.count }
-    private var showrooms: [Showroom] = []
-    private var selectedShowroom: Showroom? = DefaultsManager.getUserInfo(for: .selectedShowroom) {
-        didSet {
-            showroomDidSet()
-        }
+
+    private var fieldHeight: CGFloat {
+        showroomField.frame.height
     }
-    private var selectedCity: City?
-    private var serviceTypes: [ServiceType] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor.view = self
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
-        showroomField.tintColor = .clear
-        refreshableView.alwaysBounceVertical = true
+
+        configureShowroomField()
         configureRefresh()
         hideKeyboardWhenTappedAround()
-        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
 
-        selectedCity = user.selectedCity
-        if selectedCity != nil {
-            showroomField.text = selectedShowroom?.name
+        navigationItem.titleView = UIButton.forCity(title: interactor.selectedCity?.name,
+                                                    action: chooseCityDidTap)
+        if interactor.selectedCity != nil {
+            showroomField.text = interactor.selectedShowroom?.name
             startRefreshing()
-            loadShowrooms()
+            interactor.loadShowrooms()
         } else {
             refreshableView.setBackground(text: .background(.noCityAndShowroom))
         }
@@ -70,115 +51,73 @@ class ServicesViewController: RefreshableController, PickerController {
     }
 
     func startRefreshing() {
-        serviceTypes.removeAll()
-        refreshableView.reloadData()
+        view.endEditing(true)
         refreshControl.startRefreshing()
-        makeRequest()
+        if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
+            showroomIndicator.startAnimating()
+            showroomField.setRightView(from: showroomIndicator, width: 30,
+                                       height: fieldHeight)
+            interactor.loadShowrooms()
+        } else {
+            interactor.loadServiceTypes()
+        }
     }
 
     @objc private func showroomDidSelect() {
         view.endEditing(true)
-        if showrooms[showroomPicker.selectedRow].id == selectedShowroom?.id {
+
+        let newShowroom = interactor.showrooms[showroomPicker.selectedRow]
+        if newShowroom.id == interactor.selectedShowroom?.id {
             return
         }
-
-        selectedShowroom = showrooms[showroomPicker.selectedRow]
+        interactor.selectedShowroom = newShowroom
     }
 
-    @IBAction func chooseCityDidTap() {
+    @IBAction private func chooseCityDidTap() {
         view.endEditing(true)
-        let board = UIStoryboard(.register)
-        let vc: CityPickerViewController = board.instantiate(.cityPick)
+        let vc: CityPickerViewController = UIStoryboard(.register).instantiate(.cityPick)
         vc.setDelegate(self)
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    private func handle(success response: ServicesTypesResponse) {
-        serviceTypes = response.serviceType
-        refreshableView.reloadData()
-        endRefreshing()
-        let text: String? = serviceTypes.isEmpty ? .background(.noServices) : nil
-        refreshableView.setBackground(text: text)
+    private func configureShowroomField() {
+        showroomField.tintColor = .clear
+        showroomField.rightViewMode = .always
+        showroomField.setRightView(from: button, width: 30,
+                                   height: fieldHeight)
+        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
     }
 
-    private func handle(failure error: ErrorResponse) {
-        let labelMessage = error.errorCode == .lostConnection ? .error(.networkError) + " и "
-                                                              : .error(.servicesError) + ", "
-        endRefreshing()
-        refreshableView.setBackground(text: labelMessage + .common(.retryRefresh))
-    }
-
-    private func makeRequest() {
-        NetworkService.makeRequest(page: .services(.getServicesTypes),
-                                   params: [(.carInfo(.showroomId),
-                                             selectedShowroom?.id)],
-                                   handler: servicesTypesRequestHandler)
-    }
-
-    private func loadShowrooms() {
-        showrooms = []
-        NetworkService.makeRequest(page: .registration(.getShowrooms),
-                                   params: [(.auth(.brandId), Brand.Toyota),
-                                            (.carInfo(.cityId), selectedCity?.id)],
-                                   handler: showroomsHandler)
-    }
-
-    private func showroomDidSet() {
-        guard let showroom = selectedShowroom else {
-            return
+    private lazy var button: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.down")
+        button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),
+                        for: .normal)
+        button.imageView?.tintColor = .appTint(.secondarySignatureRed)
+        button.addAction { [weak self] in
+            self?.showroomField.becomeFirstResponder()
         }
-
-        DefaultsManager.push(info: showroom, for: .selectedShowroom)
-        DispatchQueue.main.async { [weak self] in
-            self?.showroomField.text = showroom.name
-            if let index = self?.showrooms.firstIndex(where: { $0.id == showroom.id }) {
-                self?.showroomPicker.selectRow(index, inComponent: 0, animated: false)
-            }
-            self?.startRefreshing()
-        }
-    }
-
-    private lazy var showroomsHandler: RequestHandler<ShowroomsResponse> = {
-        let handler = RequestHandler<ShowroomsResponse>()
-
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handleShowrooms(response: data)
-            }
-        }
-
-        handler.onFailure = { [weak self] error in
-            // todo
-        }
-
-        return handler
+        return button
     }()
-
-    private func handleShowrooms(response: ShowroomsResponse) {
-        showrooms = response.showrooms
-        showroomField.placeholder = .common(.showroom)
-        showroomPicker.reloadComponent(0)
-        showroomIndicator.stopAnimating()
-        guard !showrooms.contains(where: { $0.id == selectedShowroom?.id }) else {
-            return
-        }
-
-        selectedShowroom = showrooms.first
-    }
 }
 
+// MARK: - CityPickerDelegate
 extension ServicesViewController: CityPickerDelegate {
     func cityDidSelect(_ city: City) {
-        guard city.id != selectedCity?.id else {
+        guard city.id != interactor.selectedCity?.id, !interactor.showrooms.isEmpty else {
             return
         }
 
-        selectedCity = city
+        (navigationItem.titleView as? UIButton)?.setTitle(city.name + " ▸", for: .normal)
+        interactor.selectedCity = city
+        interactor.selectedShowroom = nil
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
-        loadShowrooms()
+        showroomField.setRightView(from: showroomIndicator, width: 30,
+                                   height: fieldHeight)
+        interactor.loadShowrooms()
     }
 
     var cityPickButtonText: String {
@@ -187,6 +126,57 @@ extension ServicesViewController: CityPickerDelegate {
 
     var dismissAfterPick: Bool {
         true
+    }
+}
+
+// MARK: - ServicesView
+extension ServicesViewController: ServicesView {
+    func didSelect(showroom: Showroom, with index: Int?) {
+        self.showroomField.text = showroom.name
+        if let index = index {
+            showroomPicker.selectRow(index, inComponent: 0, animated: false)
+        }
+        startRefreshing()
+    }
+
+    // MARK: - Success loading
+    func didLoadShowrooms() {
+        view.endEditing(true)
+        showroomField.placeholder = .common(.showroom)
+        showroomPicker.reloadComponent(0)
+        showroomPicker.selectRow(interactor.selectedShowroomIndex ?? 0,
+                                 inComponent: 0,
+                                 animated: false)
+        if showroomIndicator.isAnimating {
+            showroomIndicator.stopAnimating()
+        }
+        showroomField.setRightView(from: button, width: 30,
+                                   height: fieldHeight)
+    }
+
+    func didLoadServiceTypes() {
+        refreshableView.reloadData()
+        endRefreshing()
+        let background: String? = interactor.serviceTypes.isEmpty ? .background(.noServices) : nil
+        refreshableView.setBackground(text: background)
+    }
+
+    // MARK: - Failure loading
+    func didFailShowrooms(with error: String) {
+        if showroomIndicator.isAnimating {
+            showroomIndicator.stopAnimating()
+        }
+        showroomField.rightView = nil
+        endRefreshing()
+        showroomPicker.reloadComponent(0)
+        showroomField.text = .empty
+        showroomField.placeholder = "Ошибка"
+        refreshableView.setBackground(text: error + .common(.pullToRefresh))
+    }
+
+    func didFailServiceTypes(with error: String) {
+        endRefreshing()
+        refreshableView.setBackground(text: error)
     }
 }
 
@@ -203,12 +193,6 @@ extension ServicesViewController: WithUserInfo {
     func unsubscribe(from proxy: UserProxy) {
         proxy.getNotificator.remove(obsever: self)
     }
-
-    func userDidUpdate() {
-        DispatchQueue.main.async { [self] in
-            view.setNeedsLayout()
-        }
-    }
 }
 
 // MARK: - UIPickerViewDataSource
@@ -218,7 +202,7 @@ extension ServicesViewController: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        showrooms.count
+        interactor.showrooms.count
     }
 }
 
@@ -226,20 +210,20 @@ extension ServicesViewController: UIPickerViewDataSource {
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        showrooms[row].name
+        interactor.showrooms[row].name
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension ServicesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        serviceTypes.count
+        interactor.serviceTypes.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ServiceCollectionViewCell = collectionView.dequeue(for: indexPath)
-        let serviceType = serviceTypes[indexPath.row]
+        let serviceType = interactor.serviceTypes[indexPath.row]
         cell.configure(name: serviceType.serviceTypeName)
         return cell
     }
@@ -248,13 +232,14 @@ extension ServicesViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard collectionView.cellForItem(at: indexPath) as? ServiceCollectionViewCell != nil,
-              let serviceType = ControllerServiceType(rawValue: serviceTypes[indexPath.row].controlTypeId) else {
-                  return
-              }
+        let service = interactor.serviceTypes[indexPath.row]
+        guard let controllerType = ControllerServiceType(rawValue: service.controlTypeId) else {
+            return
+        }
 
-        let controller = ServiceModuleBuilder.buildController(serviceType: serviceTypes[indexPath.row],
-                                                              for: serviceType, user: user)
+        let controller = ServiceModuleBuilder.buildModule(serviceType: service,
+                                                          for: controllerType,
+                                                          user: user)
         navigationController?.pushViewController(controller, animated: true)
     }
 
