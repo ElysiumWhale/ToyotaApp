@@ -13,7 +13,7 @@ class PickerModuleView: UIView {
         return label
     }()
 
-    private(set) var textField: NoPasteTextField = {
+    private(set) lazy var textField: NoPasteTextField = {
         let field = NoPasteTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .toyotaType(.light, of: 22)

@@ -90,28 +90,22 @@ class BaseServiceController: UIViewController, IServiceController {
         modules.first?.start()
     }
 
-    func configure(with service: ServiceType, modules: [IServiceModule], user: UserProxy) {
-        self.modules = modules
-        self.user = user
-    }
-
     func bookService() {
         guard let userId = user?.getId,
               let showroomId = user?.getSelectedShowroom?.id,
               let carId = user?.getCars.defaultCar?.id else { return }
         
         var params: RequestItems = [(.auth(.userId), userId),
-                                      (.carInfo(.showroomId), showroomId),
-                                      (.carInfo(.carId), carId)]
+                                    (.carInfo(.showroomId), showroomId),
+                                    (.carInfo(.carId), carId)]
 
         for module in modules {
             let items = module.buildQueryItems()
-            if items.count < 1 { return }
+            if items.isEmpty { return }
             params.append(contentsOf: items)
         }
 
-        // Note: - Redundant
-        if params.first(where: { $0.key.rawValue == RequestKeys.Services.serviceId.rawValue }) == nil {
+        if !params.contains(where: { $0.key.rawValue == RequestKeys.Services.serviceId.rawValue }) {
             params.append((.services(.serviceId), serviceType.id))
         }
 
@@ -190,7 +184,7 @@ extension BaseServiceController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
@@ -199,7 +193,6 @@ extension BaseServiceController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 20
-        stackView.distribution = .fillProportionally
         NSLayoutConstraint.activate([
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
