@@ -56,6 +56,7 @@
 		14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF1E45272D8F6A00B4556E /* HtmlParser.swift */; };
 		14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFB9242763F5BA00465736 /* AddCarInteractor.swift */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
+		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -150,6 +151,7 @@
 		14DF1E45272D8F6A00B4556E /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		14DFB9242763F5BA00465736 /* AddCarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarInteractor.swift; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -434,8 +436,9 @@
 		A791FDDA2524E19300A595BB /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
+				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
+				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
 				1419C7362683E0D7001F7EF3 /* Custom */,
 				146590F926EAB5CD0056E37D /* Modules */,
@@ -659,6 +662,7 @@
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */,
+				14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */,
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */,
