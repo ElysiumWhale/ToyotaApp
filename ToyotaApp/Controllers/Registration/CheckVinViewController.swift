@@ -21,30 +21,20 @@ class CheckVinViewController: UIViewController {
     private var vin: String = .empty
 
     private lazy var requestHandler: RequestHandler<CarCheckResponse> = {
-        let handler = RequestHandler<CarCheckResponse>()
-        handler.onSuccess = { [weak self] data in
-            DispatchQueue.main.async {
-                self?.handleSuccess(data)
+        RequestHandler<CarCheckResponse>()
+            .bind { [weak self] response in
+                DispatchQueue.main.async {
+                    self?.handleSuccess(response)
+                }
+            } onFailure: { [weak self] error in
+                self?.interfaceCompletion(false, error.message ?? .error(.vinCodeError))
             }
-        }
-        handler.onFailure = { [weak self] error in
-            self?.interfaceCompletion(false, error.message ?? .error(.vinCodeError))
-        }
-        return handler
     }()
 
     @IBAction func vinValueDidChange(with sender: UITextField) {
         errorLabel.fadeOut(0.3)
         vinCodeTextField.toggle(state: .normal)
         vin = vinCodeTextField.text ?? .empty
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.code {
-            case segueCode:
-                let destinationVC = segue.destination as? EndRegistrationViewController
-            default: return
-        }
     }
 
     override func viewDidLoad() {
@@ -81,7 +71,7 @@ extension CheckVinViewController {
     private func makeRequest(skip: SkipCheckVin, vin: String = .empty) {
         checkVinButton.fadeOut()
         indicator.startAnimating()
-        
+
         let userId = KeychainManager<UserId>.get()!.id
         NetworkService.makeRequest(page: .registration(.checkVin),
                                    params: [(.carInfo(.skipStep), skip.rawValue),
@@ -104,7 +94,7 @@ extension CheckVinViewController {
             case .register:
 //                KeychainManager.set(Cars([car]))
                 perform(segue: segueCode)
-            case .update(let proxy):
+            case .update: // (let proxy):
 //                proxy.updateSelected(car: car)
                 PopUp.display(.success(description: .common(.autoLinked)))
                 popToRootWithDispatch(animated: true)
@@ -115,7 +105,7 @@ extension CheckVinViewController {
         DispatchQueue.main.async { [self] in
             indicator.stopAnimating()
             checkVinButton.fadeIn()
-            
+
             isSuccess ? perform(segue: segueCode)
                       : PopUp.display(.error(description: parameter))
         }
