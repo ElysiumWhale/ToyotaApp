@@ -15,6 +15,7 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     private var cars: [Car] { user.getCars.array }
+    private var deleteCarClosure: VoidClosure?
 
     private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
         RequestHandler<ModelsAndColorsResponse>()
@@ -28,12 +29,18 @@ class MyCarsViewController: UIViewController, Loadable {
     }()
 
     private lazy var removeCarHandler: RequestHandler<Response> = {
-        RequestHandler<Response>() .bind(onFailure: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.stopLoading()
+        RequestHandler<Response>()
+            .bind { [weak self] _ in
+                self?.deleteCarClosure?()
+                DispatchQueue.main.async {
+                    self?.stopLoading()
+                }
+            } onFailure: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.stopLoading()
+                }
+                PopUp.display(.error(description: .error(.requestError)))
             }
-            PopUp.display(.error(description: .error(.requestError)))
-        })
     }()
 
     override func viewDidLoad() {
@@ -61,11 +68,9 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     private func removeCar(with id: String) {
-        removeCarHandler.onSuccess = { [weak self] _ in
-            self?.user.removeCar(with: id)
-            DispatchQueue.main.async {
-                self?.stopLoading()
-            }
+        deleteCarClosure = { [self] in
+            user.removeCar(with: id)
+            deleteCarClosure = nil
         }
 
         PopUp.display(.choise(description: .question(.removeCar))) { [self] in
@@ -80,7 +85,8 @@ class MyCarsViewController: UIViewController, Loadable {
 
 // MARK: - UICollectionViewDataSource
 extension MyCarsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         cars.count
     }
 

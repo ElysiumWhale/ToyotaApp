@@ -9,8 +9,8 @@ class RequestHandler<T: Codable> {
         }
     }
 
-    var onSuccess: ParameterClosure<T>?
-    var onFailure: ParameterClosure<ErrorResponse>?
+    private(set) var onSuccess: ParameterClosure<T>?
+    private(set) var onFailure: ParameterClosure<ErrorResponse>?
 
     func start(with task: URLSessionDataTask) {
         currentTask = task
