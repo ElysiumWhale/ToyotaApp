@@ -2,7 +2,7 @@ import UIKit
 import SwiftEntryKit
 
 class SettingsViewController: UIViewController {
-    @IBOutlet private var phoneTextField: UITextField!
+    @IBOutlet private var phoneTextField: InputTextField!
     @IBOutlet private var agreementButton: CustomizableButton!
 
     private var user: UserProxy! {

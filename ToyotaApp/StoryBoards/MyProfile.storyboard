@@ -128,6 +128,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
+                                        <barButtonItem key="leftBarButtonItem" title="Добавить" id="3vI-lp-nsC">
+                                            <color key="tintColor" name="SecondarySignatureRed"/>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="s7P-0B-VIf">
                                             <color key="tintColor" name="SecondarySignatureRed"/>
                                             <connections>
@@ -724,16 +727,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dnz-LW-lUV">
-                                                    <rect key="frame" x="15" y="11" width="344" height="24.5"/>
+                                                    <rect key="frame" x="15" y="11" width="344" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вызов эвакуатора" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-uE-sHF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="24.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="20"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
-                                                            <rect key="frame" x="229" y="0.0" width="115" height="24.5"/>
+                                                            <rect key="frame" x="229" y="0.0" width="115" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="115" id="r42-es-Hol"/>
                                                             </constraints>
@@ -744,22 +747,22 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Успешный вызов эвакуатора" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-0h-NzZ">
-                                                    <rect key="frame" x="15" y="42" width="216" height="48.5"/>
+                                                    <rect key="frame" x="15" y="37.5" width="216" height="40"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-2e-xUR">
-                                                    <rect key="frame" x="239" y="43" width="120" height="45"/>
+                                                    <rect key="frame" x="239" y="38.5" width="120" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-mU-hXC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А344РС163RUS" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
-                                                            <rect key="frame" x="0.0" y="25" width="120" height="20"/>
+                                                            <rect key="frame" x="0.0" y="21.5" width="120" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -770,7 +773,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-Nv-uWA">
-                                                    <rect key="frame" x="15" y="108" width="99.5" height="20"/>
+                                                    <rect key="frame" x="15" y="108" width="96.5" height="20"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-gK-ccD">
                                                             <rect key="frame" x="5" y="2" width="13.5" height="16"/>
@@ -779,7 +782,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small" weight="regular"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Предстоит" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12e-FG-6DS">
-                                                            <rect key="frame" x="21" y="0.0" width="73.5" height="18"/>
+                                                            <rect key="frame" x="21" y="0.0" width="70.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -890,23 +893,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-7u-yVL">
-                                <rect key="frame" x="20" y="76" width="374" height="77"/>
+                                <rect key="frame" x="20" y="76" width="374" height="85"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-c7-eXp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                         <color key="textColor" name="SignatureGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN">
-                                        <rect key="frame" x="0.0" y="36" width="374" height="41"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="42" width="374" height="43"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="JnC-Xv-CPL"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="127" y="161" width="160" height="43"/>
+                                <rect key="frame" x="127" y="169" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
@@ -1009,14 +1021,29 @@
         <designable name="JBC-U9-UyU">
             <size key="intrinsicContentSize" width="88" height="38"/>
         </designable>
+        <designable name="Jf7-dL-lpo">
+            <size key="intrinsicContentSize" width="69.5" height="33"/>
+        </designable>
+        <designable name="bQ3-h9-1jb">
+            <size key="intrinsicContentSize" width="105.5" height="33"/>
+        </designable>
         <designable name="bXP-CD-hXD">
             <size key="intrinsicContentSize" width="69" height="38"/>
+        </designable>
+        <designable name="cF0-c8-RVQ">
+            <size key="intrinsicContentSize" width="106.5" height="33"/>
         </designable>
         <designable name="eyL-fs-0tQ">
             <size key="intrinsicContentSize" width="92" height="26"/>
         </designable>
         <designable name="g0o-cG-eci">
             <size key="intrinsicContentSize" width="134" height="38"/>
+        </designable>
+        <designable name="jXL-vB-E0w">
+            <size key="intrinsicContentSize" width="50" height="33"/>
+        </designable>
+        <designable name="oif-rQ-akP">
+            <size key="intrinsicContentSize" width="168" height="33"/>
         </designable>
         <designable name="uYx-M7-bue">
             <size key="intrinsicContentSize" width="24" height="25.5"/>
