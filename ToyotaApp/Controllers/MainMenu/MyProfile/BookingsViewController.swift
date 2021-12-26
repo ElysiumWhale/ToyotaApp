@@ -9,14 +9,11 @@ class BookingsViewController: RefreshableController {
 
     private lazy var handler: RequestHandler<BookingsResponse> = {
         RequestHandler<BookingsResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
-                DispatchQueue.main.async {
-                    self?.handle(success: data)
-                }
+                self?.handle(success: data)
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.handle(failure: error)
-                }
+                self?.handle(failure: error)
             }
     }()
 

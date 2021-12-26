@@ -19,10 +19,9 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
         RequestHandler<ModelsAndColorsResponse>()
-            .bind { [weak self] data in
-                DispatchQueue.main.async {
-                    self?.handle(data)
-                }
+            .observe(on: .main, mode: .onSuccess)
+            .bind { [weak self] response in
+                self?.handle(response)
             } onFailure: { error in
                 PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
             }
@@ -30,16 +29,13 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private lazy var removeCarHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
+            .observe(on: .main)
             .bind { [weak self] _ in
                 self?.deleteCarClosure?()
-                DispatchQueue.main.async {
-                    self?.stopLoading()
-                }
+                self?.stopLoading()
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.stopLoading()
-                }
-                PopUp.display(.error(description: .error(.requestError)))
+                self?.stopLoading()
+                PopUp.display(.error(description: error.message ?? .error(.requestError)))
             }
     }()
 

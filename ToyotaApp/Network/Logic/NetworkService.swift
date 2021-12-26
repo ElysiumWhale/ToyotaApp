@@ -50,12 +50,12 @@ class NetworkService {
 
         let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
             guard error == nil else {
-                handler?.onFailure?(.lostConnection)
+                handler?.invokeFailure(.lostConnection)
                 return
             }
 
             guard let data = data else {
-                handler?.onFailure?(.corruptedData)
+                handler?.invokeFailure(.corruptedData)
                 return
             }
 
@@ -66,11 +66,11 @@ class NetworkService {
 
             let decoder = JSONDecoder()
             if let response = try? decoder.decode(TResponse.self, from: data) {
-                handler?.onSuccess?(response)
+                handler?.invokeSuccess(response)
             } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-                handler?.onFailure?(errorResponse)
+                handler?.invokeFailure(errorResponse)
             } else {
-                handler?.onFailure?(.corruptedData)
+                handler?.invokeFailure(.corruptedData)
             }
         }
 
