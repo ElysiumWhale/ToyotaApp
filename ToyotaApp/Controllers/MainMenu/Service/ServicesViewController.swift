@@ -43,14 +43,6 @@ class ServicesViewController: RefreshableController, PickerController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if user.getCars.array.isEmpty && !.noCarsMessageIsShown {
-            PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
-            DefaultsManager.push(info: true, for: .noCarsMessage)
-        }
-    }
-
     func startRefreshing() {
         view.endEditing(true)
         refreshControl.startRefreshing()

@@ -63,9 +63,9 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
                    replacementString string: String) -> Bool {
         switch textField {
             case vinCodeTextField:
-                return vinCodeTextField.text != nil && vinCodeTextField.text!.count < 17
+                return (textField.text! + string).count <= 17 && range.location < 17
             case plateTextField:
-                return plateTextField.text != nil && plateTextField.text!.count < 12
+                return (textField.text! + string).count <= 12 && range.location < 12
             default:
                 return true
         }
