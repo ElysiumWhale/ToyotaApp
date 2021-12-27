@@ -80,6 +80,8 @@ extension String {
         case chooseTime = "Выберите время"
         /// Выберите услугу
         case chooseService = "Выберите услугу"
+        /// Нет автомобилей
+        case noCars = "Нет автомобилей"
         /// Выберите дату и время
         case chooseDateTime = "Выберите дату и время"
         /// Укажите местоположение
