@@ -31,7 +31,7 @@
 		149092622696502100390D04 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149092612696502100390D04 /* PhoneTextField.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
-		1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCVC.swift */; };
+		1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTVC.swift */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4DA3E27581989009D66EA /* CityPickerViewController.swift */; };
@@ -129,7 +129,7 @@
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		1495723E25B9FEE40031A5AA /* NewsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCVC.swift; sourceTree = "<group>"; };
+		1495723E25B9FEE40031A5AA /* NewsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVC.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
 		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		14A4DA3E27581989009D66EA /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
@@ -316,7 +316,6 @@
 		14E5A9CB26345B640057BEF3 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				1495723E25B9FEE40031A5AA /* NewsCVC.swift */,
 				A7AABF7F25A9EACB00C72F65 /* ServiceCVC.swift */,
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
 				14CF66A4267F6081000FCEAC /* ManagerCVC.swift */,
@@ -328,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
+				1495723E25B9FEE40031A5AA /* NewsTVC.swift */,
 				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
 			path = TableCell;
@@ -665,7 +665,7 @@
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
 				14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */,
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
-				1495723F25B9FEE40031A5AA /* NewsCVC.swift in Sources */,
+				1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */,
 				A77B9312253B035F0011282E /* APIResponses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */,
