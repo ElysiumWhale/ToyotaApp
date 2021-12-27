@@ -74,7 +74,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" estimatedSectionHeaderHeight="-1" sectionFooterHeight="5" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RWX-lz-chi">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" name="SecondarySignatureRed"/>
+                                <color key="separatorColor" name="Gray"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsCell" rowHeight="228" id="Lu3-ei-cph" customClass="NewsTableViewCell" customModule="ToyotaApp" customModuleProvider="target">
@@ -163,7 +163,7 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="98" width="374" height="45.5"/>
-                                <color key="backgroundColor" name="Background"/>
+                                <color key="backgroundColor" name="Cell"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
                                 </constraints>
@@ -178,7 +178,7 @@
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Ca-ATU">
                                 <rect key="frame" x="0.0" y="152" width="414" height="662"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="MainBackground"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="Bjh-A9-XM8">
                                     <size key="itemSize" width="170" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -209,7 +209,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="aYF-uZ-XUo" secondAttribute="bottom" constant="11" id="weW-z6-HGe"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" name="Background"/>
+                                        <color key="backgroundColor" name="Cell"/>
                                         <size key="customSize" width="130" height="100"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -228,7 +228,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="afF-bh-RPv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
                             <constraint firstItem="hFj-Ca-ATU" firstAttribute="top" secondItem="r3W-A2-Oo1" secondAttribute="bottom" constant="8.5" id="2Ur-JH-Ygn"/>
                             <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="10" id="7Qh-qj-Ysc"/>
@@ -319,7 +319,13 @@
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <namedColor name="Background">
+        <namedColor name="Cell">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray">
+            <color red="0.67843137254901964" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainBackground">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainTint">

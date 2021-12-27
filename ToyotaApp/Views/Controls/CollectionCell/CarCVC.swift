@@ -33,7 +33,7 @@ import UIKit
             ? .systemGreen
             : .systemRed
 
-        layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
+        layer.borderColor = UIColor.appTint(.signatureGray).cgColor
         layer.borderWidth = 1
     }
 }
