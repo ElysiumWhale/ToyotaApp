@@ -81,6 +81,13 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
             field?.toggle(state: fieldHasError ? .error : .normal)
         }
 
+        if let plate = plateTextField.text, !plate.isEmpty {
+            if plate.count != 12 {
+                plateTextField.toggle(state: .error)
+                validated = false
+            }
+        }
+
         guard interactor.vin.count == .vinLength else {
             vinCodeTextField.toggle(state: .error)
             return
