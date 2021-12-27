@@ -39,6 +39,8 @@ class BaseServiceController: UIViewController, IServiceController {
         internalView.servicePicker.configurePicker(with: #selector(carDidSelect),
                                                    for: internalView.textField, delegate: self)
         internalView.textField.placeholder = .common(.auto)
+        internalView.textField.layer.cornerRadius = 10
+        internalView.textField.clipsToBounds = true
         internalView.serviceNameLabel.text = .common(.auto)
         return internalView
     }()
@@ -63,8 +65,7 @@ class BaseServiceController: UIViewController, IServiceController {
     private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
             .bind { [weak self] _ in
-                PopUp.display(.success(description: .common(.bookingSuccess)))
-                DispatchQueue.main.async {
+                PopUp.display(.success(description: .common(.bookingSuccess))) {
                     self?.navigationController?.popViewController(animated: true)
                 }
             } onFailure: { error in
@@ -98,6 +99,9 @@ class BaseServiceController: UIViewController, IServiceController {
             stackView.addArrangedSubview(carPickView)
             if user?.getCars.array.isEmpty ?? false {
                 PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
+                carPickView.textField.placeholder = .common(.noCars)
+                carPickView.textField.isEnabled = false
+                carPickView.textField.toggle(state: .error)
                 return
             }
             selectedCar = user?.getCars.defaultCar
@@ -109,7 +113,11 @@ class BaseServiceController: UIViewController, IServiceController {
 
     @objc private func carDidSelect(sender: Any?) {
         view.endEditing(true)
-        selectedCar = user?.getCars.array[carPickView.servicePicker.selectedRow]
+        guard let cars = user?.getCars.array, !cars.isEmpty else {
+            return
+        }
+
+        selectedCar = cars[carPickView.servicePicker.selectedRow]
     }
 
     func start() {
