@@ -18,7 +18,7 @@ class PopUp {
     private static let titleLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.semibold, of: 19),
                                                                color: fontColor,
                                                                alignment: .center)
-    
+
     private static let messageLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.book, of: 17),
                                                                  color: fontColor,
                                                                  alignment: .center)
@@ -28,7 +28,8 @@ class PopUp {
         attr.displayDuration = .infinity
         attr.entryBackground = .color(color: popupColor)
         attr.screenBackground = .visualEffect(style: .standard)
-        attr.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8))
+        attr.hapticFeedbackType = .warning
+        attr.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 5))
         attr.screenInteraction = .absorbTouches
         attr.entryInteraction = .absorbTouches
         attr.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
@@ -37,7 +38,7 @@ class PopUp {
         attr.exitAnimation = .init(translate: .init(duration: 0.2))
         attr.popBehavior = .animated(animation: .init(translate: .init(duration: 0.1)))
         attr.positionConstraints.verticalOffset = 50
-        attr.statusBar = .dark
+        attr.statusBar = .inferred
         return attr
     }()
 
