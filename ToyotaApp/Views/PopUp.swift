@@ -46,10 +46,7 @@ class PopUp {
 
     class private func display(alert: EKAlertMessage) {
         let view = EKAlertMessageView(with: alert)
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.appTint(.secondarySignatureRed).cgColor
         view.layer.cornerRadius = 8
-        view.clipsToBounds = true
         SwiftEntryKit.display(entry: view, using: configuration)
     }
 
@@ -151,7 +148,7 @@ class PopUp {
         }
 
         return ButtonBarContent(with: confirmButton, declineButton,
-                                separatorColor: .clear,
+                                separatorColor: EKColor(.opaqueSeparator),
                                 expandAnimatedly: false)
     }
 }
