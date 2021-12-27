@@ -132,7 +132,7 @@ class AddCarInteractor {
             return
         }
 
-        let car = Car(id: id, brand: Brand.Toyota, model: selectedModel,
+        let car = Car(id: id, brand: Brand.ToyotaName, model: selectedModel,
                       color: selectedColor, year: selectedYear, plate: plate,
                       vin: vin, isChecked: false)
 

@@ -3,6 +3,7 @@ import Foundation
 /// Dealer brands identificators for network requests
 struct Brand {
     static let Toyota = "1"
+    static let ToyotaName = "Toyota"
 }
 
 enum RequestType: String {

@@ -7,7 +7,6 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private(set) lazy var loadingView = LoadingView()
 
-    private let cellIdentifier = CellIdentifiers.CarCell
     private var user: UserProxy! {
         didSet { subscribe(on: user) }
     }
