@@ -5,9 +5,7 @@ class MyCarsViewController: UIViewController, Loadable {
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
 
-    private(set) lazy var loadingView: LoadingView = {
-        LoadingView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-    }()
+    private(set) lazy var loadingView = LoadingView()
 
     private let cellIdentifier = CellIdentifiers.CarCell
     private var user: UserProxy! {
@@ -46,6 +44,7 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     @IBAction func addCar(sender: Any?) {
+        startLoading()
         NetworkService.makeRequest(page: .registration(.getModelsAndColors),
                                    params: [(.auth(.brandId), Brand.Toyota)],
                                    handler: citiesRequestHandler)
@@ -56,9 +55,10 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     private func handle(_ response: ModelsAndColorsResponse) {
-        let register = UIStoryboard(.register)
-        let addCarVC: AddCarViewController = register.instantiate(.addCar)
-        addCarVC.configure(models: response.models, colors: response.colors,
+        stopLoading()
+        let addCarVC: AddCarViewController = UIStoryboard(.register).instantiate(.addCar)
+        addCarVC.configure(models: response.models,
+                           colors: response.colors,
                            controllerType: .update(with: user))
         navigationController?.pushViewController(addCarVC, animated: true)
     }
