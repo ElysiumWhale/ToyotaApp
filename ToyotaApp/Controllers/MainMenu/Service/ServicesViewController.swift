@@ -32,8 +32,8 @@ class ServicesViewController: RefreshableController, PickerController {
         configureRefresh()
         hideKeyboardWhenTappedAround()
 
-        navigationItem.titleView = UIButton.forCity(title: interactor.selectedCity?.name,
-                                                    action: chooseCityDidTap)
+        navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
+                                                 action: chooseCityDidTap)
         if interactor.selectedCity != nil {
             showroomField.text = interactor.selectedShowroom?.name
             startRefreshing()
@@ -102,7 +102,7 @@ extension ServicesViewController: CityPickerDelegate {
             return
         }
 
-        (navigationItem.titleView as? UIButton)?.setTitle(city.name + " ▸", for: .normal)
+        navigationItem.titleView?.setTitleIfButtonFirst(city.name)
         interactor.selectedCity = city
         interactor.selectedShowroom = nil
         showroomField.text = .empty

@@ -296,6 +296,7 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
     }
 }
 
+// MARK: - TitleButton
 extension UIButton {
     static func titleButton(with text: String, action: @escaping VoidClosure) -> UIButton {
         let button =  UIButton(type: .custom)
@@ -308,9 +309,29 @@ extension UIButton {
         button.addAction(action)
         return button
     }
+}
 
-    static func forCity(title: String? = nil, action: @escaping VoidClosure) -> UIButton {
-        let str = title ?? .common(.chooseCity)
-        return titleButton(with: str + " ▸", action: action)
+// MARK: - TitleView
+extension UIView {
+    static func titleViewFor(city: String? = nil, action: @escaping VoidClosure) -> UIStackView {
+        let str = city ?? .common(.chooseCity)
+        let button = UIButton.titleButton(with: str, action: action)
+        let rightButton = UIButton(frame: .init(x: 0, y: 0, width: 20, height: 20))
+        rightButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        rightButton.tintColor = .appTint(.secondarySignatureRed)
+        rightButton.addAction(action)
+        let stack = UIStackView(arrangedSubviews: [button, rightButton])
+        stack.axis = .horizontal
+        return stack
+    }
+}
+
+// MARK: - SetTitleIfButtonFirst
+extension UIView {
+    func setTitleIfButtonFirst(_ title: String) {
+        if let stack = self as? UIStackView,
+           let button = stack.arrangedSubviews.first as? UIButton {
+            button.setTitle(title, for: .normal)
+        }
     }
 }
