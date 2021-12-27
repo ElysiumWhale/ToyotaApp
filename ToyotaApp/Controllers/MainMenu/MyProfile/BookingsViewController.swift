@@ -38,9 +38,6 @@ class BookingsViewController: RefreshableController {
     private func handle(success response: BookingsResponse) {
         let formatter = DateFormatter.server
         bookings = response.booking
-        #if DEBUG
-        bookings.append(.mock)
-        #endif
         bookings.sort(by: {
             formatter.date(from: $0.date) ?? Date() > formatter.date(from: $1.date) ?? Date()
         })
