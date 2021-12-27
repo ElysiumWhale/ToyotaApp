@@ -2,7 +2,7 @@ import UIKit
 
 // MARK: - View
 class ConnectionLostViewController: UIViewController {
-    @IBOutlet private var retryButton: UIButton!
+    @IBOutlet private var retryButton: CustomizableButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
     private lazy var controller: ConnectionLostController = {

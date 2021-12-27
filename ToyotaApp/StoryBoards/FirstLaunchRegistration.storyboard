@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ToyotaType-Book.ttf">
-            <string>ToyotaType-Book</string>
-        </array>
         <array key="ToyotaType-Light.ttf">
             <string>ToyotaType-Light</string>
         </array>
@@ -191,23 +188,23 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -316,23 +313,23 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="1SY-0w-fYl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -467,9 +464,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-Dd-Ubi" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="87" y="808" width="239" height="44"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="Далее">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
@@ -477,10 +474,10 @@
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
@@ -587,9 +584,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="92" y="807" width="231" height="44"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
@@ -597,13 +594,13 @@
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="DimmedSignatureRed"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -634,7 +631,7 @@
     </scenes>
     <designables>
         <designable name="1YG-oq-9Zc">
-            <size key="intrinsicContentSize" width="67" height="44"/>
+            <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="27y-0O-l0g">
             <size key="intrinsicContentSize" width="185.5" height="34.5"/>
@@ -652,7 +649,7 @@
             <size key="intrinsicContentSize" width="62" height="34.5"/>
         </designable>
         <designable name="IJ5-Dd-Ubi">
-            <size key="intrinsicContentSize" width="67" height="44"/>
+            <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="MMz-DW-yWH">
             <size key="intrinsicContentSize" width="214.5" height="27.5"/>
@@ -667,7 +664,7 @@
             <size key="intrinsicContentSize" width="121" height="34.5"/>
         </designable>
         <designable name="lXN-nS-wi1">
-            <size key="intrinsicContentSize" width="67" height="44"/>
+            <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="m8K-nk-2qV">
             <size key="intrinsicContentSize" width="173" height="44"/>
@@ -680,6 +677,9 @@
         <image name="ToyotaLogo" width="128" height="128"/>
         <namedColor name="Background">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DimmedSignatureRed">
+            <color red="0.6470588235294118" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SecondaryGray">
             <color red="0.80784313725490198" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

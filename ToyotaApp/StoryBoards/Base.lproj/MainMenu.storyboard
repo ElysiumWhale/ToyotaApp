@@ -218,7 +218,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="aYF-uZ-XUo" secondAttribute="bottom" constant="11" id="weW-z6-HGe"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" name="Cell"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <size key="customSize" width="130" height="100"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -318,7 +318,7 @@
     </scenes>
     <designables>
         <designable name="r3W-A2-Oo1">
-            <size key="intrinsicContentSize" width="107" height="38"/>
+            <size key="intrinsicContentSize" width="111.5" height="44"/>
         </designable>
     </designables>
     <resources>
@@ -330,9 +330,6 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="Background">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Cell">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainTint">
             <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

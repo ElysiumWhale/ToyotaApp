@@ -191,24 +191,24 @@
                                     <constraint firstAttribute="width" constant="160" id="cUR-eo-TT8"/>
                                     <constraint firstAttribute="height" constant="43" id="jTY-5S-ocd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Отмена">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -221,24 +221,24 @@
                                     <constraint firstAttribute="width" constant="160" id="5rX-2E-CHW"/>
                                     <constraint firstAttribute="height" constant="43" id="KyR-uI-AQE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Редактировать">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -402,10 +402,10 @@
                                     <constraint firstAttribute="width" constant="160" id="GGa-6a-kAv"/>
                                     <constraint firstAttribute="height" constant="43" id="raw-mI-LHz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" name="SecondarySignatureRed"/>
                                 <state key="normal" title="Мой менеджер">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="selected">
                                     <color key="titleColor" name="SignatureGray"/>
@@ -419,13 +419,13 @@
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -907,10 +907,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
                                 <color key="tintColor" name="SignatureGray"/>
                                 <state key="normal" title="Изменить">
-                                    <color key="titleColor" name="SignatureGray"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="disabled">
                                     <color key="titleColor" systemColor="systemGray2Color"/>
@@ -918,16 +918,16 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
+                                        <color key="value" name="DimmedSignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="Background"/>
+                                        <color key="value" name="SecondarySignatureRed"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -988,7 +988,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="agreementButton" destination="xc7-Xb-BOD" id="i4z-xk-WRz"/>
-                        <outlet property="phoneTextField" destination="ljs-M8-xSN" id="z5S-Ta-b1c"/>
+                        <outlet property="phoneTextField" destination="ljs-M8-xSN" id="0Dv-Ez-ywE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCx-fj-JwB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1001,10 +1001,10 @@
             <size key="intrinsicContentSize" width="115" height="26"/>
         </designable>
         <designable name="CLN-ma-9CJ">
-            <size key="intrinsicContentSize" width="131" height="38"/>
+            <size key="intrinsicContentSize" width="133" height="38"/>
         </designable>
         <designable name="JBC-U9-UyU">
-            <size key="intrinsicContentSize" width="88" height="38"/>
+            <size key="intrinsicContentSize" width="89" height="38"/>
         </designable>
         <designable name="Jf7-dL-lpo">
             <size key="intrinsicContentSize" width="69.5" height="33"/>
@@ -1013,7 +1013,7 @@
             <size key="intrinsicContentSize" width="105.5" height="33"/>
         </designable>
         <designable name="bXP-CD-hXD">
-            <size key="intrinsicContentSize" width="69" height="38"/>
+            <size key="intrinsicContentSize" width="70" height="38"/>
         </designable>
         <designable name="cF0-c8-RVQ">
             <size key="intrinsicContentSize" width="106.5" height="33"/>
@@ -1022,10 +1022,13 @@
             <size key="intrinsicContentSize" width="92" height="26"/>
         </designable>
         <designable name="g0o-cG-eci">
-            <size key="intrinsicContentSize" width="134" height="38"/>
+            <size key="intrinsicContentSize" width="136" height="38"/>
         </designable>
         <designable name="jXL-vB-E0w">
             <size key="intrinsicContentSize" width="50" height="33"/>
+        </designable>
+        <designable name="ljs-M8-xSN">
+            <size key="intrinsicContentSize" width="193" height="33"/>
         </designable>
         <designable name="oif-rQ-akP">
             <size key="intrinsicContentSize" width="168" height="33"/>
@@ -1047,6 +1050,9 @@
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="Background">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DimmedSignatureRed">
+            <color red="0.6470588235294118" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray">
             <color red="0.67843137254901964" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
