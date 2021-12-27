@@ -23,29 +23,24 @@ class AddCarInteractor {
 
     private lazy var setCarHandler: RequestHandler<CarSetResponse> = {
         RequestHandler<CarSetResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.saveCar(with: data.carId)
-                DispatchQueue.main.async {
-                    self?.view?.handleCarAdded()
-                }
+                self?.view?.handleCarAdded()
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
-                }
+                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
             }
     }()
 
     private lazy var loadModelsHandler: RequestHandler<ModelsAndColorsResponse> = {
         RequestHandler<ModelsAndColorsResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.models = data.models
                 self?.colors = data.colors
-                DispatchQueue.main.async {
-                    self?.view?.handleModelsLoaded()
-                }
+                self?.view?.handleModelsLoaded()
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
                 }
             }
     }()
