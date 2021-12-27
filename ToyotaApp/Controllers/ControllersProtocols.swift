@@ -122,8 +122,9 @@ extension Loadable {
     }
 
     func stopLoading() {
-        loadingView.fadeOut()
-        loadingView.stopAnimating()
-        loadingView.removeFromSuperview()
+        loadingView.fadeOut { [weak self] in
+            self?.loadingView.stopAnimating()
+            self?.loadingView.removeFromSuperview()
+        }
     }
 }

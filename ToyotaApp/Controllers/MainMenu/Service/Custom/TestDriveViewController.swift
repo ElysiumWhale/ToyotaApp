@@ -24,7 +24,7 @@ class TestDriveViewController: BaseServiceController {
         DispatchQueue.main.async { [weak self] in
             switch module.state {
                 case .idle: return
-                case .didDownload: self?.endLoading()
+                case .didDownload: self?.stopLoading()
                 case .error(let error): self?.didRaiseError(module, error)
                 case .block: break
                 case .didChose(let service): self?.didChose(service, in: module)
@@ -34,7 +34,7 @@ class TestDriveViewController: BaseServiceController {
 
     override func didChose(_ service: IService, in module: IServiceModule) {
         guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-        index < 3 ? fadeOutAfter(module: index) : endLoading()
+        index < 3 ? fadeOutAfter(module: index) : stopLoading()
         let params = buildParams(for: index, value: service.id)
         switch index {
             case 0:

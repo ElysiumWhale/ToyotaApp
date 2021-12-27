@@ -1,9 +1,10 @@
 import UIKit
 
 // MARK: Controller
-class BaseServiceController: UIViewController, IServiceController {
+class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     // MARK: - View
+    let loadingView = LoadingView()
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
 
@@ -24,14 +25,6 @@ class BaseServiceController: UIViewController, IServiceController {
         }
         button.alpha = 0
         return button
-    }()
-
-    private(set) lazy var loadingView: LoadingView = {
-        let view = LoadingView(frame: .init(x: 0, y: 0, width: view.bounds.width,
-                                            height: view.bounds.height))
-        view.startAnimating()
-        view.alpha = 0
-        return view
     }()
 
     private lazy var carPickView: PickerModuleView = {
@@ -154,7 +147,7 @@ class BaseServiceController: UIViewController, IServiceController {
         DispatchQueue.main.async { [weak self] in
             switch module.state {
                 case .idle: return
-                case .didDownload: self?.endLoading()
+                case .didDownload: self?.stopLoading()
                 case .error(let error): self?.didRaiseError(module, error)
                 case .block(let message): self?.didBlock(module, message)
                 case .didChose(let service): self?.didChose(service, in: module)
@@ -164,12 +157,12 @@ class BaseServiceController: UIViewController, IServiceController {
 
     func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
         PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
-        endLoading()
+        stopLoading()
         navigationController?.popViewController(animated: true)
     }
 
     func didBlock(_ module: IServiceModule, _ message: String?) {
-        endLoading()
+        stopLoading()
         if modules.last === module {
             bookButton.fadeIn()
         }
@@ -182,7 +175,7 @@ class BaseServiceController: UIViewController, IServiceController {
         guard let index = modules.firstIndex(where: { $0 === module }) else { return }
 
         if index + 1 == modules.count {
-            endLoading()
+            stopLoading()
             if !stackView.arrangedSubviews.contains(bookButton) {
                 stackView.addArrangedSubview(bookButton)
             }
@@ -209,22 +202,6 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                     forComponent component: Int) -> String? {
         user?.getCars.array[row].name
-    }
-}
-
-// MARK: - Loading view utils
-extension BaseServiceController {
-    func startLoading() {
-        view.addSubview(loadingView)
-        loadingView.startAnimating()
-        loadingView.fadeIn()
-    }
-
-    func endLoading() {
-        loadingView.fadeOut { [self] in
-            loadingView.stopAnimating()
-            loadingView.removeFromSuperview()
-        }
     }
 }
 
