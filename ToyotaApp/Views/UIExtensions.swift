@@ -218,6 +218,8 @@ extension UITableView {
         case bookingCell = "BookingCell"
         /// CityCell
         case cityCell = "CityCell"
+        /// NewsCell
+        case newsCell = "NewsCell"
     }
 
     func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
@@ -234,8 +236,6 @@ extension UICollectionView {
     enum CollectionCells: String {
         /// CarCell
         case car = "CarCell"
-        /// NewsCell
-        case news = "NewsCell"
         /// ServiceCell
         case service = "ServiceCell"
         /// ManagerCell

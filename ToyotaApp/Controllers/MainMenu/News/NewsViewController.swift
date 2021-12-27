@@ -2,15 +2,16 @@ import UIKit
 import SafariServices
 
 class NewsViewController: RefreshableController {
-    @IBOutlet private(set) var refreshableView: UICollectionView!
+    @IBOutlet private(set) var refreshableView: UITableView!
 
     private(set) var refreshControl = UIRefreshControl()
 
     private var user: UserProxy!
     private var news: [News] = []
+    private var selectedRow: IndexPath?
 
     private var parser: HtmlParser?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [
@@ -26,28 +27,41 @@ class NewsViewController: RefreshableController {
         parser = HtmlParser(delegate: self)
         parser?.start()
     }
-}
 
-// MARK: - UICollectionViewDataSource
-extension NewsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        news.count
-    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: NewsCollectionViewCell = collectionView.dequeue(for: indexPath)
-        cell.configure(with: news[indexPath.item])
-        return cell
+        if let selectedRow = selectedRow {
+            refreshableView.deselectRow(at: selectedRow, animated: true)
+        }
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension NewsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+// MARK: - UITableViewDelegate
+extension NewsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let url = news[indexPath.row].url {
+            selectedRow = indexPath
             navigationController?.present(SFSafariViewController(url: url),
                                           animated: true)
         }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension NewsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        news.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NewsTableViewCell = tableView.dequeue(for: indexPath)
+        cell.configure(with: news[indexPath.item])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        nil
     }
 }
 

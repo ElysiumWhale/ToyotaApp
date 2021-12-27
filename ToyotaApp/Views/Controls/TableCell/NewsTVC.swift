@@ -1,7 +1,7 @@
 import UIKit
 import Nuke
 
-@IBDesignable class NewsCollectionViewCell: CollectionCell {
+@IBDesignable class NewsTableViewCell: TableCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var newsImage: UIImageView!
 
@@ -9,11 +9,10 @@ import Nuke
         didSet { layer.cornerRadius = cornerRadius }
     }
 
-    class var identifier: UICollectionView.CollectionCells { .news }
+    class var identifier: UITableView.TableCells { .newsCell }
 
     func configure(with news: News) {
         titleLabel.text = news.title
-        configureShadow(with: cornerRadius)
 
         guard let url = news.imgUrl else {
             return
