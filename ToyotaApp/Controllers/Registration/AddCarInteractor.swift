@@ -41,7 +41,18 @@ class AddCarInteractor {
                 self?.view?.handleModelsLoaded()
             } onFailure: { [weak self] error in
                 self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+            }
+    }()
+
+    private lazy var skipAddCarHandler: RequestHandler<Response> = {
+        RequestHandler<Response>()
+            .observe(on: .main)
+            .bind { [weak self] _ in
+                if case .register = self?.type {
+                    self?.view?.handleCarAdded()
                 }
+            } onFailure: { [weak self] error in
+                self?.view?.handleFailure(with: error.message ?? .error(.requestError))
             }
     }()
 
@@ -100,6 +111,13 @@ class AddCarInteractor {
                                    handler: setCarHandler)
     }
 
+    func skipRegister() {
+        NetworkService.makeRequest(page: .registration(.checkVin),
+                                   params: [(.auth(.userId), KeychainManager<UserId>.get()?.id),
+                                            (.carInfo(.skipStep), .skipValue)],
+                                   handler: skipAddCarHandler)
+    }
+
     func loadModelsAndColors() {
         NetworkService.makeRequest(page: .registration(.getModelsAndColors),
                                    params: [(.auth(.brandId), Brand.Toyota)],
@@ -125,4 +143,9 @@ class AddCarInteractor {
                 userProxy.addNew(car: car)
         }
     }
+}
+
+// MARK: - Constants
+private extension String {
+    static let skipValue = "1"
 }

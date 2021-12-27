@@ -85,10 +85,10 @@ class AddCarViewController: UIViewController, PickerController, Loadable {
             return
         }
 
-        handleCarAdded()
         skipButton.fadeOut()
         nextButton.fadeOut()
         indicator.startAnimating()
+        interactor.skipRegister()
     }
 
     // MARK: - Private methods
