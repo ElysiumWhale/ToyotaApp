@@ -1,6 +1,6 @@
 import UIKit
 
-class AddCarViewController: UIViewController, PickerController {
+class AddCarViewController: UIViewController, PickerController, Loadable {
     @IBOutlet private var vinCodeTextField: InputTextField!
     @IBOutlet private var plateTextField: InputTextField!
     @IBOutlet private var modelTextField: InputTextField!
@@ -13,7 +13,7 @@ class AddCarViewController: UIViewController, PickerController {
     private var modelPicker = UIPickerView()
     private var yearPicker = UIPickerView()
     private var colorPicker = UIPickerView()
-    private let loadingView = LoadingView()
+    let loadingView = LoadingView()
 
     private let interactor = AddCarInteractor()
 
@@ -76,6 +76,7 @@ class AddCarViewController: UIViewController, PickerController {
         }
 
         nextButton.fadeOut()
+        indicator.startAnimating()
         interactor.setCar()
     }
 
@@ -85,13 +86,14 @@ class AddCarViewController: UIViewController, PickerController {
         }
 
         handleCarAdded()
+        skipButton.fadeOut()
+        nextButton.fadeOut()
+        indicator.startAnimating()
     }
 
     // MARK: - Private methods
     private func loadModelsAndColors() {
-        view.addSubview(loadingView)
-        loadingView.frame = view.bounds
-        loadingView.startAnimating()
+        startLoading()
         interactor.loadModelsAndColors()
     }
 
@@ -120,6 +122,7 @@ class AddCarViewController: UIViewController, PickerController {
 // MARK: - AddCarViewInput
 extension AddCarViewController: AddCarViewInput {
     func handleCarAdded() {
+        indicator.stopAnimating()
         nextButton.fadeIn()
         switch interactor.type {
             case .register:
@@ -131,14 +134,12 @@ extension AddCarViewController: AddCarViewInput {
 
     func handleFailure(with message: String) {
         PopUp.display(.error(description: message))
+        indicator.stopAnimating()
         nextButton.fadeIn()
     }
 
     func handleModelsLoaded() {
-        loadingView.fadeOut { [weak self] in
-            self?.loadingView.stopAnimating()
-            self?.loadingView.removeFromSuperview()
-        }
+        stopLoading()
         modelPicker.reloadComponent(0)
         colorPicker.reloadComponent(0)
     }
