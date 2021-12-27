@@ -1,6 +1,6 @@
 import UIKit
 
-class AddCarViewController: UIViewController, PickerController, Loadable {
+class AddCarViewController: UIViewController, PickerController, Loadable, UITextFieldDelegate {
     @IBOutlet private var vinCodeTextField: InputTextField!
     @IBOutlet private var plateTextField: InputTextField!
     @IBOutlet private var modelTextField: InputTextField!
@@ -21,6 +21,8 @@ class AddCarViewController: UIViewController, PickerController, Loadable {
         super.viewDidLoad()
         interactor.view = self
         skipButton.isHidden = interactor.type != .register
+        vinCodeTextField.delegate = self
+        plateTextField.delegate = self
 
         view.hideKeyboardWhenSwipedDown()
 
@@ -44,7 +46,7 @@ class AddCarViewController: UIViewController, PickerController, Loadable {
         interactor.configure(type: controllerType, models: models, colors: colors)
     }
 
-    // MARK: - IBActions
+    // MARK: - Text Handling
     @IBAction private func textDidChange(sender: UITextField) {
         switch sender {
             case vinCodeTextField:
@@ -57,6 +59,19 @@ class AddCarViewController: UIViewController, PickerController, Loadable {
         sender.toggle(state: .normal)
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        switch textField {
+            case vinCodeTextField:
+                return vinCodeTextField.text != nil && vinCodeTextField.text!.count < 17
+            case plateTextField:
+                return plateTextField.text != nil && plateTextField.text!.count < 12
+            default:
+                return true
+        }
+    }
+
+    // MARK: - Button handlers
     @IBAction private func nextButtonDidPressed(sender: Any?) {
         var validated = true
         [modelTextField, colorTextField,

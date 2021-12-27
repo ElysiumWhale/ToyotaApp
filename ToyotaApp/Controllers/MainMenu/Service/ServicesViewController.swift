@@ -23,6 +23,7 @@ class ServicesViewController: RefreshableController, PickerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.view = self
+        navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
