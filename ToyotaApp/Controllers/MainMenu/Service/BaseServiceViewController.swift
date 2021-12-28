@@ -10,15 +10,12 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     private(set) lazy var bookButton: CustomizableButton = {
         let button = CustomizableButton(type: .custom)
-        button.normalColor = .appTint(.background)
-        button.highlightedColor = .appTint(.secondarySignatureRed)
-        button.borderWidth = 1
+        button.normalColor = .appTint(.secondarySignatureRed)
+        button.highlightedColor = .appTint(.dimmedSignatureRed)
         button.rounded = true
-        button.borderColor = .appTint(.secondarySignatureRed)
-
         button.setTitle(.common(.book), for: .normal)
-        button.setTitleColor(.appTint(.signatureGray), for: .normal)
-        button.titleLabel?.font = .toyotaType(.book, of: 20)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .toyotaType(.regular, of: 20)
 
         button.addAction { [weak self] in
             self?.bookService()

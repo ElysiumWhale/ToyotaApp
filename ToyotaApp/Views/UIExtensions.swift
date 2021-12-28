@@ -191,6 +191,7 @@ extension UIColor {
         case secondaryGray = "SecondaryGray"
         case background = "Background"
         case cell = "Cell"
+        case dimmedSignatureRed = "DimmedSignatureRed"
     }
 
     static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
