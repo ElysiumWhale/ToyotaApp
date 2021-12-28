@@ -58,12 +58,7 @@ class ServicesViewController: RefreshableController, PickerController {
 
     @objc private func showroomDidSelect() {
         view.endEditing(true)
-
-        let newShowroom = interactor.showrooms[showroomPicker.selectedRow]
-        if newShowroom.id == interactor.selectedShowroom?.id {
-            return
-        }
-        interactor.selectedShowroom = newShowroom
+        interactor.selectShowroom(for: showroomPicker.selectedRow)
     }
 
     @IBAction private func chooseCityDidTap() {

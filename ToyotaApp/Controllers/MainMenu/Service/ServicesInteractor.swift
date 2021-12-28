@@ -50,6 +50,15 @@ class ServicesInteractor {
         bindHandlers()
     }
 
+    func selectShowroom(for row: Int) {
+        guard !showrooms.isEmpty, showrooms.indices.contains(row),
+              showrooms[row].id != selectedShowroom?.id else {
+            return
+        }
+
+        selectedShowroom = showrooms[row]
+    }
+
     func loadServiceTypes() {
         NetworkService.makeRequest(page: .services(.getServicesTypes),
                                    params: [(.carInfo(.showroomId),
