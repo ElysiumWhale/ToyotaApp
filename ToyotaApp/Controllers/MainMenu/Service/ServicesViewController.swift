@@ -46,7 +46,10 @@ class ServicesViewController: RefreshableController, PickerController {
     func startRefreshing() {
         view.endEditing(true)
         refreshControl.startRefreshing()
-        if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
+        if interactor.selectedCity == nil {
+            refreshableView.setBackground(text: .background(.noCityAndShowroom))
+            endRefreshing()
+        } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
             showroomField.setRightView(from: showroomIndicator, width: 30,
                                        height: fieldHeight)
@@ -190,7 +193,7 @@ extension ServicesViewController: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        interactor.showrooms.count
+        interactor.showrooms.isEmpty ? 1 : interactor.showrooms.count
     }
 }
 
@@ -198,7 +201,9 @@ extension ServicesViewController: UIPickerViewDataSource {
 extension ServicesViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        interactor.showrooms[row].name
+        interactor.showrooms.isEmpty
+            ? .common(.noShoworooms)
+            : interactor.showrooms[row].name
     }
 }
 
