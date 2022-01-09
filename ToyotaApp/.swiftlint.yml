@@ -11,7 +11,7 @@ excluded:
 - SwiftLint/Common/3rdPartyLib
 
 trailing_whitespace:
-    ignores_empty_lines: true
+    ignores_empty_lines: false
 
 line_length:
     warning: 150
