@@ -20,7 +20,7 @@ class MyManagerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NetworkService.makeRequest(page: .profile(.getManagers),
                                    params: [(.auth(.userId), user.getId),
                                             (.auth(.brandId), Brand.Toyota)],
@@ -30,7 +30,7 @@ class MyManagerViewController: UIViewController {
     @IBAction func doneDidPress(_ sender: Any) {
         dismiss(animated: true)
     }
-    
+
     private func handle(_ response: ManagersResponse) {
         managers = response.managers
         managersCollection.reloadData()

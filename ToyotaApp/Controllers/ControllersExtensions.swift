@@ -77,7 +77,7 @@ extension UIViewController {
         swipe.direction = [.up, .down, .left, .right]
         view.addGestureRecognizer(swipe)
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

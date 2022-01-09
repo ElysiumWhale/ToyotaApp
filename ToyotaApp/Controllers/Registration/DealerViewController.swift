@@ -158,15 +158,15 @@ extension DealerViewController {
                   interfaceCompletion(for: .fail(message: .error(.unknownError)))
                   return
               }
-        
+
         KeychainManager<Showrooms>.update { showrooms in
             let showroom = Showroom(id: showroom.id, showroomName: showroom.showroomName, cityName: city.name)
             guard let showrooms = showrooms else { return Showrooms([showroom]) }
-            
+
             showrooms.value.append(showroom)
             return showrooms
         }
-        
+
         interfaceCompletion(for: .success)
     }
 
