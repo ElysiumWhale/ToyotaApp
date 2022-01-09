@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
+		14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14188032278B3498000B82DD /* UIView+Extensions.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
 		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
+		14188032278B3498000B82DD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			children = (
 				143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */,
 				1467F78825D339DF00E318D3 /* UIExtensions.swift */,
+				14188032278B3498000B82DD /* UIView+Extensions.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
 				A791FDE8252672FA00A595BB /* Controls */,
@@ -677,6 +680,7 @@
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
 				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
 				14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */,
+				14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */,
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,
 				14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */,
