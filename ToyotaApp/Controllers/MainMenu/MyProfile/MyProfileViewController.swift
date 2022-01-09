@@ -150,14 +150,14 @@ extension MyProfileViewController {
 
     private func switchInterface(_ state: EditingStates) {
         let isEditing = state == .editing
-        for field in textFieldsWithError.keys {
-            field.isEnabled = isEditing ? true : false
-        }
-
         cancelButton.isEnabled = isEditing
         let constraints = getConstraints(for: state)
 
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
+            for field in textFieldsWithError.keys {
+                field.isEnabled = isEditing
+                field.backgroundColor = isEditing ? .appTint(.secondaryGray) : .appTint(.background)
+            }
             saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
             cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
             view.layoutIfNeeded()
