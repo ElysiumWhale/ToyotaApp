@@ -1,5 +1,4 @@
 import UIKit
-import SwiftEntryKit
 
 private enum EditingStates {
     case none
@@ -20,10 +19,6 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var cancelButtonLeadingConstant: NSLayoutConstraint!
 
     private let datePicker: UIDatePicker = UIDatePicker()
-
-    private let myCarsSegueCode = SegueIdentifiers.myProfileToCars
-    private let settingsSegueCode = SegueIdentifiers.myProfileToSettings
-    private let myManagersSegueCode = SegueIdentifiers.myManagersSegueCode
 
     // MARK: - Properties
     private var user: UserProxy! {
@@ -68,7 +63,7 @@ class MyProfileViewController: UIViewController {
         ]
         hideKeyboardWhenTappedAround()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
-        updateFields()
+        refreshFields()
 
         let constraints = getConstraints(for: state)
         view.removeConstraint(saveButtonLeadingConstraint)
@@ -96,7 +91,7 @@ class MyProfileViewController: UIViewController {
 
     @IBAction private func cancelEdit(sender: UIButton) {
         if hasChanges {
-            updateFields()
+            refreshFields()
             for textField in textFieldsWithError.keys {
                 textDidChange(sender: textField)
             }
@@ -122,12 +117,12 @@ class MyProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         state = .none
         switch segue.code {
-            case myCarsSegueCode, settingsSegueCode:
+            case .myProfileToCars, .myProfileToSettings:
                 let navVC = segue.destination as? UINavigationController
                 navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
                 let destinationVC = navVC?.topViewController as? WithUserInfo
                 destinationVC?.setUser(info: user)
-            case myManagersSegueCode:
+            case .myManagersSegueCode:
                 let destinationVC = segue.destination as? WithUserInfo
                 destinationVC?.setUser(info: user)
             default: return
@@ -187,7 +182,7 @@ extension MyProfileViewController {
         }
     }
 
-    private func updateFields() {
+    private func refreshFields() {
         firstNameTextField.text = profile.firstName
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
@@ -214,7 +209,7 @@ extension MyProfileViewController {
             return
         }
 
-        guard textFieldsWithError.allSatisfy({ !$0.value }) else {
+        guard textFieldsWithError.any({ $0.value }) else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }
@@ -258,7 +253,7 @@ extension MyProfileViewController: WithUserInfo {
     func userDidUpdate() {
         DispatchQueue.main.async { [self] in
             view.setNeedsLayout()
-            updateFields()
+            refreshFields()
         }
     }
 
