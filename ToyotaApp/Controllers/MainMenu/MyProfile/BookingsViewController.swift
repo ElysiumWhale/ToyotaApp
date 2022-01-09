@@ -48,7 +48,7 @@ class BookingsViewController: RefreshableController {
             refreshableView.setBackground(text: .background(.noBookings))
         }
     }
-    
+
     private func handle(failure response: ErrorResponse) {
         PopUp.display(.error(description: response.message ?? .error(.requestError)))
         endRefreshing()

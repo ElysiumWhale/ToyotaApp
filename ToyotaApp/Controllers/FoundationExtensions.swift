@@ -31,7 +31,7 @@ enum DateFormatters {
     case client(_ date: Date)
     case common(_ date: Date)
     case display(_ date: Date)
-    
+
     func string() -> String {
         switch self {
             case .server(let date):
@@ -47,29 +47,27 @@ enum DateFormatters {
 }
 
 extension DateFormatter {
-    /**
-     Formats date in **yyyy-MM-dd**
-     
-     Example:
-     ```
-     "2020-12-25"
-     ```
-     */
+
+    /// Formats date in **yyyy-MM-dd**
+    ///
+    /// Example:
+    /// ```
+    /// "2020-12-25"
+    /// ```
     static var server: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = .yyyyMMdd
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }
-    
-    /**
-     Formats date in **ru**  medium date style
-     
-     Example:
-     ```
-     "26 янв. 2077"
-     ```
-     */
+
+    /// Formats date in **ru**  medium date style
+    ///
+    /// Example:
+    /// ```
+    /// "26 янв. 2077"
+    /// ```
+    ///
     static var client: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru")
@@ -77,30 +75,26 @@ extension DateFormatter {
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }
-    
-    /**
-     Formats date in **MM.dd.yyyy**
-     
-     Example:
-     ```
-     "12.25.2020"
-     ```
-     */
+
+    /// Formats date in **MM.dd.yyyy**
+    ///
+    /// Example:
+    /// ```
+    /// "12.25.2020"
+    /// ```
     static var common: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = .MMddyyyy
         formatter.timeZone = .autoupdatingCurrent
         return formatter
     }
-    
-    /**
-     Formats date in **dd.MM.yyyy**
-     
-     Example:
-     ```
-     "25.12.2020"
-     ```
-     */
+
+    /// Formats date in **dd.MM.yyyy**
+    ///
+    /// Example:
+    /// ```
+    /// "25.12.2020"
+    /// ```
     static var display: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = .ddMMyyyy

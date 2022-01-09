@@ -28,17 +28,17 @@ class KeychainManager<T: Keychainable> {
             KeychainWrapper.standard.set(data, forKey: T.key.rawValue.rawValue)
         }
     }
-    
+
     class func update(_ action: (T?) -> T) {
         guard let data = KeychainWrapper.standard.data(forKey: T.key.rawValue),
               let value = try? JSONDecoder().decode(T.self, from: data) else {
             set(action(nil))
             return
         }
-        
+
         set(action(value))
     }
-    
+
     class func clear() {
         KeychainWrapper.standard.remove(forKey: T.key.rawValue)
     }

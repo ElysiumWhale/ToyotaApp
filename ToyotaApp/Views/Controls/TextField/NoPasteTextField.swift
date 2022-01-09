@@ -15,7 +15,7 @@ class NoCopyPasteTexField: InputTextField {
     override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] { [] }
 
     override func caretRect(for position: UITextPosition) -> CGRect { .zero }
-    
+
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.numberOfTouches == 1 {
             return true

@@ -22,7 +22,7 @@ extension Storyboarded where Self: UIViewController {
         guard let result = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier) as? Self else { fatalError() }
         return result
     }
-    
+
     static func instantinate(from storyboard: Storyboards) { }
 }
 

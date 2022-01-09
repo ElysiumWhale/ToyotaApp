@@ -1,8 +1,6 @@
 import Foundation
 
-protocol IResponse: Codable {
-    
-}
+protocol IResponse: Codable { }
 
 // MARK: - Default response
 struct Response: IResponse {

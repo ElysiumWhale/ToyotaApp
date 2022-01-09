@@ -11,21 +11,21 @@ protocol ParserDelegate: AnyObject {
 class HtmlParser: NSObject, WKNavigationDelegate {
     let url = "https://cars.toyota-aurora.ru/special-offers-list"
     let baseUrl = "https://cars.toyota-aurora.ru"
-    
+
     weak var parserDelegate: ParserDelegate?
     var webView: WKWebView?
-    
+
     init(delegate: ParserDelegate) {
         parserDelegate = delegate
         webView = WKWebView()
     }
-    
+
     func start() {
         let url = URL(string: url)!
         webView?.navigationDelegate = self
         webView?.load(URLRequest(url: url))
     }
-    
+
     func parseNews(from html: String) {
         var result: [News] = []
         do {
@@ -37,7 +37,7 @@ class HtmlParser: NSObject, WKNavigationDelegate {
                 self?.parserDelegate?.errorDidReceive(error)
             }
         }
-        
+
         DispatchQueue.main.async { [weak self] in
             self?.parserDelegate?.newsDidLoad(result)
         }
@@ -51,7 +51,7 @@ class HtmlParser: NSObject, WKNavigationDelegate {
             let imgTitle: String = try img.attr(.title)
             let truncatedTitle = imgTitle.replacingOccurrences(of: String.unicodeSpace,
                                                                with: String.space)
-            
+
             return News(title: truncatedTitle.firstUppercased,
                         imgUrl: URL(string: imgLink),
                         url: URL(string: baseUrl + link))

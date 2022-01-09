@@ -44,7 +44,7 @@ class DealerViewController: UIViewController, PickerController {
                 self?.interfaceCompletion(for: .fail(message: error.message ?? .error(.unknownError)))
             }
     }()
-    
+
     // MARK: - Public methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,13 +129,13 @@ extension DealerViewController {
             PopUp.display(.error(description: .common(.chooseShowroom)))
             return
         }
-        
+
         if let showrooms = KeychainManager<Showrooms>.get()?.value, !showrooms.isEmpty,
            showrooms.any({ $0.id == showroom.id }) {
             perform(segue: segueCode)
             return
         }
-        
+
         nextButton.fadeOut()
         nextButtonIndicator.startAnimating()
         let userId = KeychainManager<UserId>.get()!.id

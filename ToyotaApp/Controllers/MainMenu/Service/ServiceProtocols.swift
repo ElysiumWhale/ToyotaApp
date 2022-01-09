@@ -65,7 +65,7 @@ protocol IServiceController: UIViewController {
     var serviceType: ServiceType { get }
     var user: UserProxy? { get }
     var hasCarSelection: Bool { get }
-    
+
     func moduleDidUpdate(_ module: IServiceModule)
 }
 

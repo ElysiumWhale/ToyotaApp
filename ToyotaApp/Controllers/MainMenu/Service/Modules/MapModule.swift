@@ -62,7 +62,7 @@ class MapModule: NSObject, IServiceModule {
               let longitude = locationManager.location?.coordinate.longitude else {
             return []
         }
-        
+
         return [(.services(.latitude), latitude.description),
                 (.services(.longitude), longitude.description)]
     }

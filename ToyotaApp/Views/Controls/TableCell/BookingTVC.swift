@@ -25,7 +25,7 @@ class BookingCell: TableCell {
     @IBOutlet private var statusLabel: UILabel!
 
     class var identifier: UITableView.TableCells { .bookingCell }
-    
+
     func configure(with booking: Booking) {
         titleLabel.text = booking.showroomName
         contentLabel.text = booking.serviceName

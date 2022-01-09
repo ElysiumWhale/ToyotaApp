@@ -70,7 +70,7 @@ public struct ErrorResponse: Codable, Error {
     var errorCode: NetworkErrors {
         .init(rawValue: code) ?? .request
     }
-    
+
     init(code: String, message: String?) {
         self.code = code
         self.message = message

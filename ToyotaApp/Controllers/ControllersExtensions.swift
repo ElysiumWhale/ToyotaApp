@@ -88,13 +88,13 @@ extension UIViewController {
     func perform(segue: SegueIdentifiers) {
         performSegue(withIdentifier: segue.rawValue, sender: self)
     }
-    
+
     func performSegue(for identifier: String) {
         DispatchQueue.main.async { [weak self] in
             self?.performSegue(withIdentifier: identifier, sender: self)
         }
     }
-    
+
     func dismissNavigationWithDispatch(animated: Bool, completion: @escaping () -> Void = { }) {
         DispatchQueue.main.async { [self] in
             if let navigation = navigationController {

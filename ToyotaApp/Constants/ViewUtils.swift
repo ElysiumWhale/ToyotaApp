@@ -82,13 +82,13 @@ enum ViewControllers: String {
 }
 
 public enum SegueIdentifiers: String {
-    // Auth
-    
+    // MARK: - Auth
+
     /// NumberToCodeSegue
     case numberToCode = "NumberToCodeSegue"
-    
-    // Reg
-    
+
+    // MARK: - Reg
+
     /// PersonInfoToDealer
     case personInfoToDealer = "PersonInfoToDealer"
     /// PersonInfoToCity
@@ -105,9 +105,9 @@ public enum SegueIdentifiers: String {
     case carToEndRegistration = "CarToEndRegistration"
     /// CarToCheckVin
     case carToCheckVin = "CarToCheckVin"
-    
-    // Services
-    
+
+    // MARK: - Services
+
     /// ServiceNavToTech
     case serviceNavToTech = "ServiceNavToTech"
     /// ServiceNavToService
@@ -118,9 +118,9 @@ public enum SegueIdentifiers: String {
     case serviceNavToEmerg = "ServiceNavToEmerg"
     /// ServiceNavToFeedback
     case serviceNavToFeedback = "ServiceNavToFeedback"
-    
-    // MyProfile
-    
+
+    // MARK: - MyProfile
+
     /// MyProfileToCars
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings

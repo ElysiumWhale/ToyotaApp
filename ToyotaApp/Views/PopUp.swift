@@ -95,7 +95,7 @@ class PopUp {
         return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
                               buttonBarContent: buttonBar)
     }
-    
+
     class private func buildAlertMessage(title: String,
                                          description: String,
                                          buttonText: String,
@@ -105,7 +105,7 @@ class PopUp {
         let descrLabel = LabelContent(text: description, style: messageLabelStyle)
 
         let buttonBar = buildSingleButton(text: buttonText, dismissCompletion)
-        
+
         return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
                               buttonBarContent: buttonBar)
     }

@@ -120,7 +120,7 @@ class TimePickerModule: NSObject, IServiceModule {
         let hour = Calendar.current.component(.hour, from: Date())
         var times = [DateComponents]()
         var date = Date()
-        
+
         if hour < 20 {
             times = TimeMap.getFullSchedule(after: hour)
             if !times.isEmpty {
@@ -128,7 +128,7 @@ class TimePickerModule: NSObject, IServiceModule {
             }
         }
         date = Calendar.current.date(byAdding: DateComponents(day: 1), to: date)!
-        
+
         for _ in 1...60 {
             times = TimeMap.getFullSchedule()
             if !skipDictCheck, let dictTimes = timeDict?[.date(.server(date))] {

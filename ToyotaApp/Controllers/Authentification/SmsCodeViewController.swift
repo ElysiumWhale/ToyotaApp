@@ -86,7 +86,7 @@ extension SmsCodeViewController {
         sendSmsCodeButton.fadeOut()
         activitySwitcher.startAnimating()
         view.endEditing(true)
-        
+
         switch type {
             case .register:
                 NetworkService.makeRequest(page: .registration(.checkCode),
