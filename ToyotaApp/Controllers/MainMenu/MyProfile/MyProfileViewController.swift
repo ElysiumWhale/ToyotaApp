@@ -62,6 +62,7 @@ class MyProfileViewController: UIViewController {
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
         hideKeyboardWhenTappedAround()
+        view.hideKeyboardWhenSwipedDown()
         configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
         refreshFields()
 
@@ -72,7 +73,6 @@ class MyProfileViewController: UIViewController {
         textFieldsWithError = [firstNameTextField: false, secondNameTextField: false,
                                lastNameTextField: false, emailTextField: false, birthTextField: false]
         for field in textFieldsWithError.keys {
-            field.layer.cornerRadius = 5
             field.isEnabled = false
         }
     }
@@ -116,8 +116,7 @@ class MyProfileViewController: UIViewController {
             case .myProfileToCars, .myProfileToSettings:
                 let navVC = segue.destination as? UINavigationController
                 navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-                let destinationVC = navVC?.topViewController as? WithUserInfo
-                destinationVC?.setUser(info: user)
+                navVC?.setUserForChildren(user)
             case .myManagersSegueCode:
                 let destinationVC = segue.destination as? WithUserInfo
                 destinationVC?.setUser(info: user)
@@ -155,10 +154,10 @@ extension MyProfileViewController {
             field.isEnabled = isEditing ? true : false
         }
 
+        cancelButton.isEnabled = isEditing
         let constraints = getConstraints(for: state)
 
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
-            cancelButton.isEnabled = isEditing
             saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
             cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
             view.layoutIfNeeded()
