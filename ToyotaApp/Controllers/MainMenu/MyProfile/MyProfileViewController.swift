@@ -15,8 +15,8 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var managerButton: CustomizableButton!
     @IBOutlet private var cancelButton: CustomizableButton!
     @IBOutlet private var saveButton: CustomizableButton!
-    @IBOutlet private var saveButtonLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet private var cancelButtonLeadingConstant: NSLayoutConstraint!
+    @IBOutlet private var saveLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private var cancelLeadingConstraint: NSLayoutConstraint!
 
     private let datePicker: UIDatePicker = UIDatePicker()
 
@@ -66,12 +66,8 @@ class MyProfileViewController: UIViewController {
         refreshFields()
 
         let constraints = getConstraints(for: state)
-        view.removeConstraint(saveButtonLeadingConstraint)
-        view.addConstraint(constraints.save)
-        saveButtonLeadingConstraint = constraints.save
-        view.removeConstraint(cancelButtonLeadingConstant)
-        view.addConstraint(constraints.cancel)
-        cancelButtonLeadingConstant = constraints.cancel
+        saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
+        cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
 
         textFieldsWithError = [firstNameTextField: false, secondNameTextField: false,
                                lastNameTextField: false, emailTextField: false, birthTextField: false]
@@ -163,18 +159,13 @@ extension MyProfileViewController {
 
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
             cancelButton.isEnabled = isEditing
-            view.removeConstraint(saveButtonLeadingConstraint)
-            view.addConstraint(constraints.save)
-            view.removeConstraint(cancelButtonLeadingConstant)
-            view.addConstraint(constraints.cancel)
+            saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
+            cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
             view.layoutIfNeeded()
 
             if state != .loading {
                 saveButton.setTitle(isEditing ? .common(.save) : .common(.edit), for: .normal)
             }
-
-            saveButtonLeadingConstraint = constraints.save
-            cancelButtonLeadingConstant = constraints.cancel
         })
 
         if state != .loading {

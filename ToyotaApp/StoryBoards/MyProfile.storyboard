@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hHJ-oo-scE">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -34,11 +32,11 @@
             <objects>
                 <viewController id="R2J-JN-bFz" customClass="MyManagerViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DLq-jf-eXd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-zI-X4o">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <rect key="frame" x="0.0" y="56" width="600" height="558"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PNS-mc-pOJ">
                                     <size key="itemSize" width="350" height="350"/>
@@ -48,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ManagerCell" id="Nv3-UC-DbY" customClass="ManagerCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="5" width="350" height="350"/>
+                                        <rect key="frame" x="125" y="5" width="350" height="350"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
@@ -82,7 +80,7 @@
                                                     <imageReference key="image" image="person.fill" catalog="system" symbolScale="medium"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Салон" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00j-fv-htC">
-                                                    <rect key="frame" x="8" y="6" width="335" height="26"/>
+                                                    <rect key="frame" x="8" y="6" width="335" height="21"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="18"/>
                                                     <color key="textColor" name="SignatureGray"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,7 +123,7 @@
                                 </connections>
                             </collectionView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWk-bw-380">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                 <items>
                                     <navigationItem title="Список менеджеров" id="EAu-oL-3P9">
                                         <barButtonItem key="leftBarButtonItem" enabled="NO" title="Добавить" id="3vI-lp-nsC">
@@ -182,11 +180,11 @@
             <objects>
                 <viewController storyboardIdentifier="MyCarViewController" title="Мое авто" id="hHJ-oo-scE" customClass="MyProfileViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uLl-zH-IdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-CD-hXD" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="127" y="402" width="160" height="43"/>
+                                <rect key="frame" x="127" y="358" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="cUR-eo-TT8"/>
                                     <constraint firstAttribute="height" constant="43" id="jTY-5S-ocd"/>
@@ -216,7 +214,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="127" y="402" width="160" height="43"/>
+                                <rect key="frame" x="127" y="358" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="5rX-2E-CHW"/>
                                     <constraint firstAttribute="height" constant="43" id="KyR-uI-AQE"/>
@@ -246,10 +244,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-o0-Pts">
-                                <rect key="frame" x="16" y="104" width="382" height="280"/>
+                                <rect key="frame" x="16" y="60" width="568" height="280"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-h9-1jb" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -263,7 +261,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXL-vB-E0w" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="59" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="59" width="568" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -277,7 +275,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cF0-c8-RVQ" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="118" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="118" width="568" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rK5-Bk-Vf1"/>
@@ -294,7 +292,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Почта" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jf7-dL-lpo" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="177" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="177" width="568" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -308,7 +306,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oif-rQ-akP" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="236" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="236" width="568" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -327,10 +325,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nb6-4Z-4iK" customClass="CustomizableStackView" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="16" y="785" width="382" height="61"/>
+                                <rect key="frame" x="16" y="523" width="568" height="61"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-fs-0tQ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="61"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="282.5" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="1DL-6J-cs6"/>
                                         </constraints>
@@ -357,7 +355,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="192.5" y="0.0" width="189.5" height="61"/>
+                                        <rect key="frame" x="285.5" y="0.0" width="282.5" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="xWd-OG-T0h"/>
                                         </constraints>
@@ -397,7 +395,7 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0o-cG-eci" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="127" y="463" width="160" height="43"/>
+                                <rect key="frame" x="220" y="419" width="160" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="GGa-6a-kAv"/>
                                     <constraint firstAttribute="height" constant="43" id="raw-mI-LHz"/>
@@ -471,13 +469,13 @@
                     <connections>
                         <outlet property="birthTextField" destination="oif-rQ-akP" id="jBh-oo-baA"/>
                         <outlet property="cancelButton" destination="bXP-CD-hXD" id="ifT-d8-Lrl"/>
-                        <outlet property="cancelButtonLeadingConstant" destination="Sfz-KN-3nq" id="XSp-Mc-ZCQ"/>
+                        <outlet property="cancelLeadingConstraint" destination="Sfz-KN-3nq" id="XSp-Mc-ZCQ"/>
                         <outlet property="emailTextField" destination="Jf7-dL-lpo" id="47E-IO-CDS"/>
                         <outlet property="firstNameTextField" destination="jXL-vB-E0w" id="dl8-uN-hc2"/>
                         <outlet property="lastNameTextField" destination="bQ3-h9-1jb" id="mgg-c6-45R"/>
                         <outlet property="managerButton" destination="g0o-cG-eci" id="YkG-8B-wI7"/>
                         <outlet property="saveButton" destination="CLN-ma-9CJ" id="KgI-XP-ysM"/>
-                        <outlet property="saveButtonLeadingConstraint" destination="QLR-Ca-vzH" id="mjp-z8-2VI"/>
+                        <outlet property="saveLeadingConstraint" destination="QLR-Ca-vzH" id="mjp-z8-2VI"/>
                         <outlet property="secondNameTextField" destination="cF0-c8-RVQ" id="W5c-kP-GAJ"/>
                     </connections>
                 </viewController>
@@ -490,11 +488,11 @@
             <objects>
                 <viewController id="8QR-Ub-LLe" customClass="MyCarsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="clc-k9-V2r">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-dW-dKH">
-                                <rect key="frame" x="0.0" y="56" width="414" height="820"/>
+                                <rect key="frame" x="0.0" y="56" width="600" height="558"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="obj-av-q5T">
                                     <size key="itemSize" width="350" height="340"/>
@@ -504,7 +502,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="CarCell" id="cYR-AV-zYx" customClass="CarCollectionViewCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="20" width="350" height="340"/>
+                                        <rect key="frame" x="125" y="20" width="350" height="340"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="340"/>
@@ -522,10 +520,10 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="m8L-dx-doh">
-                                                    <rect key="frame" x="11" y="105.5" width="328" height="115"/>
+                                                    <rect key="frame" x="11" y="99" width="328" height="121.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цвет: Слоновая кость" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-1S-5pY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="29"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Nt2-K0-hCW"/>
                                                             </constraints>
@@ -535,7 +533,7 @@
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание цвета: Бежевый" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-gk-ehc">
-                                                            <rect key="frame" x="0.0" y="43" width="328" height="29"/>
+                                                            <rect key="frame" x="0.0" y="46" width="328" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="FRT-aa-ucQ"/>
                                                             </constraints>
@@ -545,7 +543,7 @@
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Год выпуска: 2021" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-OZ-cow">
-                                                            <rect key="frame" x="0.0" y="86" width="328" height="29"/>
+                                                            <rect key="frame" x="0.0" y="92.5" width="328" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="xPV-i2-1iw"/>
                                                             </constraints>
@@ -557,7 +555,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А163АА163RUS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-4S-0kc">
-                                                    <rect key="frame" x="12" y="41" width="327" height="34.5"/>
+                                                    <rect key="frame" x="12" y="41" width="327" height="28"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Bold" family="Toyota Type" pointSize="24"/>
                                                     <color key="textColor" name="SignatureGray"/>
                                                     <nil key="highlightedColor"/>
@@ -592,7 +590,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не подтверждена" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRH-ht-V1G">
-                                                    <rect key="frame" x="12" y="293" width="142.5" height="23"/>
+                                                    <rect key="frame" x="12" y="297" width="134.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="16"/>
                                                     <color key="textColor" name="SignatureRed"/>
                                                     <nil key="highlightedColor"/>
@@ -634,7 +632,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CarCollectionHeader" id="Zy1-0u-9KF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -697,31 +695,31 @@
             <objects>
                 <viewController title="История обращений" id="Geg-Qm-TUc" customClass="BookingsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xEv-oI-OfE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oHv-YW-SG0">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <rect key="frame" x="0.0" y="56" width="600" height="558"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookingCell" rowHeight="139" id="MeP-4c-svk" customClass="BookingCell" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="49.5" width="374" height="139"/>
+                                        <rect key="frame" x="16" y="49.5" width="568" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MeP-4c-svk" id="w4Y-CV-ZJz">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dnz-LW-lUV">
-                                                    <rect key="frame" x="15" y="11" width="344" height="24.5"/>
+                                                    <rect key="frame" x="15" y="11" width="538" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вызов эвакуатора" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-uE-sHF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="24.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="415" height="20"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.05.1998" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ4-5H-1JU">
-                                                            <rect key="frame" x="229" y="0.0" width="115" height="24.5"/>
+                                                            <rect key="frame" x="423" y="0.0" width="115" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="115" id="r42-es-Hol"/>
                                                             </constraints>
@@ -732,22 +730,22 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Успешный вызов эвакуатора" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-0h-NzZ">
-                                                    <rect key="frame" x="15" y="42" width="216" height="48.5"/>
+                                                    <rect key="frame" x="15" y="37.5" width="410" height="20"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-2e-xUR">
-                                                    <rect key="frame" x="239" y="43" width="120" height="45"/>
+                                                    <rect key="frame" x="433" y="38.5" width="120" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAV4" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-mU-hXC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А344РС163RUS" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buJ-4j-bpP">
-                                                            <rect key="frame" x="0.0" y="25" width="120" height="20"/>
+                                                            <rect key="frame" x="0.0" y="21.5" width="120" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -758,7 +756,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-Nv-uWA">
-                                                    <rect key="frame" x="15" y="108" width="99.5" height="20"/>
+                                                    <rect key="frame" x="15" y="108" width="96.5" height="20"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-gK-ccD">
                                                             <rect key="frame" x="5" y="2" width="13.5" height="16"/>
@@ -767,7 +765,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small" weight="regular"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Предстоит" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12e-FG-6DS">
-                                                            <rect key="frame" x="21" y="0.0" width="73.5" height="18"/>
+                                                            <rect key="frame" x="21" y="0.0" width="70.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -819,7 +817,7 @@
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBM-0T-Bie">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                 <items>
                                     <navigationItem title="История обращений" id="c52-5Q-1pi">
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="Eqd-3c-9Rz">
@@ -874,20 +872,20 @@
             <objects>
                 <viewController id="NZm-fi-Vyv" customClass="SettingsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fo1-rz-uIs" customClass="Sett">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-7u-yVL">
-                                <rect key="frame" x="20" y="76" width="374" height="85"/>
+                                <rect key="frame" x="20" y="76" width="560" height="82.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-c7-eXp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="29.5"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="18"/>
                                         <color key="textColor" name="SignatureGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Номер телефона" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljs-M8-xSN" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="42" width="374" height="43"/>
+                                        <rect key="frame" x="0.0" y="39.5" width="560" height="43"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="JnC-Xv-CPL"/>
@@ -903,7 +901,7 @@
                                 </subviews>
                             </stackView>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-U9-UyU" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="127" y="169" width="160" height="43"/>
+                                <rect key="frame" x="127" y="166.5" width="346" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hqz-n5-fqt"/>
                                 </constraints>
@@ -935,10 +933,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ndx-Z9-GZ4">
-                                <rect key="frame" x="20" y="727" width="374" height="87.5"/>
+                                <rect key="frame" x="20" y="479" width="560" height="73.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xc7-Xb-BOD" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="109.5" y="0.0" width="155" height="34"/>
+                                        <rect key="frame" x="206" y="0.0" width="148" height="30"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="15"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Условия соглашения">
@@ -949,13 +947,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALYANS PRO, OOO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2e-VC-rdy">
-                                        <rect key="frame" x="95.5" y="34" width="183" height="29"/>
+                                        <rect key="frame" x="191" y="30" width="178" height="23.5"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="20"/>
                                         <color key="textColor" name="SignatureGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Версия 0.1 alpha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkD-FM-Ssl">
-                                        <rect key="frame" x="118.5" y="63" width="137.5" height="24.5"/>
+                                        <rect key="frame" x="213.5" y="53.5" width="133.5" height="20"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="17"/>
                                         <color key="textColor" name="Gray"/>
                                         <nil key="highlightedColor"/>
@@ -996,50 +994,6 @@
             <point key="canvasLocation" x="3657.971014492754" y="862.5"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="BpN-XY-i4j">
-            <size key="intrinsicContentSize" width="115" height="26"/>
-        </designable>
-        <designable name="CLN-ma-9CJ">
-            <size key="intrinsicContentSize" width="133" height="38"/>
-        </designable>
-        <designable name="JBC-U9-UyU">
-            <size key="intrinsicContentSize" width="89" height="38"/>
-        </designable>
-        <designable name="Jf7-dL-lpo">
-            <size key="intrinsicContentSize" width="69.5" height="33"/>
-        </designable>
-        <designable name="bQ3-h9-1jb">
-            <size key="intrinsicContentSize" width="105.5" height="33"/>
-        </designable>
-        <designable name="bXP-CD-hXD">
-            <size key="intrinsicContentSize" width="70" height="38"/>
-        </designable>
-        <designable name="cF0-c8-RVQ">
-            <size key="intrinsicContentSize" width="106.5" height="33"/>
-        </designable>
-        <designable name="eyL-fs-0tQ">
-            <size key="intrinsicContentSize" width="92" height="26"/>
-        </designable>
-        <designable name="g0o-cG-eci">
-            <size key="intrinsicContentSize" width="136" height="38"/>
-        </designable>
-        <designable name="jXL-vB-E0w">
-            <size key="intrinsicContentSize" width="50" height="33"/>
-        </designable>
-        <designable name="ljs-M8-xSN">
-            <size key="intrinsicContentSize" width="193" height="33"/>
-        </designable>
-        <designable name="oif-rQ-akP">
-            <size key="intrinsicContentSize" width="168" height="33"/>
-        </designable>
-        <designable name="uYx-M7-bue">
-            <size key="intrinsicContentSize" width="24" height="25.5"/>
-        </designable>
-        <designable name="xc7-Xb-BOD">
-            <size key="intrinsicContentSize" width="155" height="34"/>
-        </designable>
-    </designables>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="car" catalog="system" width="128" height="93"/>
