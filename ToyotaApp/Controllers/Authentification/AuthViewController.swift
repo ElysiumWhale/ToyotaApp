@@ -14,15 +14,12 @@ class AuthViewController: UIViewController {
 
     private lazy var authRequestHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
+            .observe(on: .main)
             .bind { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.handle(isSuccess: true)
-                }
+                self?.handle(isSuccess: true)
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.handle(isSuccess: false)
-                    PopUp.display(.error(description: error.message ?? .error(.unknownError)))
-                }
+                self?.handle(isSuccess: false)
+                PopUp.display(.error(description: error.message ?? .error(.unknownError)))
             }
     }()
 

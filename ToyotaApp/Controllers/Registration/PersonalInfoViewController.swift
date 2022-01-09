@@ -21,16 +21,13 @@ class PersonalInfoViewController: KeyboardableController {
 
     private lazy var requestHandler: RequestHandler<CitiesResponse> = {
         RequestHandler<CitiesResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.handle(data)
-                DispatchQueue.main.async {
-                    self?.handleUI(isSuccess: true)
-                }
+                self?.handleUI(isSuccess: true)
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.handleUI(isSuccess: false)
-                    PopUp.display(.error(description: error.message ?? .error(.requestError)))
-                }
+                self?.handleUI(isSuccess: false)
+                PopUp.display(.error(description: error.message ?? .error(.requestError)))
             }
     }()
 

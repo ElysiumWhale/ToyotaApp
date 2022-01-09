@@ -10,14 +10,11 @@ class MyManagerViewController: UIViewController {
 
     private lazy var managersRequestHandler: RequestHandler<ManagersResponse> = {
         RequestHandler<ManagersResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
-                DispatchQueue.main.async {
-                    self?.handle(data)
-                }
+                self?.handle(data)
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.managersCollection.setBackground(text: error.message ?? .error(.managersLoadError))
-                }
+                self?.managersCollection.setBackground(text: error.message ?? .error(.managersLoadError))
             }
     }()
 

@@ -24,22 +24,20 @@ class DealerViewController: UIViewController, PickerController {
     // MARK: - Request handlers
     private lazy var showroomsHandler: RequestHandler<ShoroomsResponce> = {
         RequestHandler<ShoroomsResponce>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.showrooms = data.showrooms
-                DispatchQueue.main.async {
-                    self?.cityTextFieldIndicator.stopAnimating()
-                    self?.showroomStackView.fadeIn()
-                }
+                self?.cityTextFieldIndicator.stopAnimating()
+                self?.showroomStackView.fadeIn()
             } onFailure: { [weak self] error in
                 PopUp.display(.error(description: error.message ?? "Попробуйте выбрать город еще раз"))
-                DispatchQueue.main.async {
-                    self?.cityTextFieldIndicator.stopAnimating()
-                }
+                self?.cityTextFieldIndicator.stopAnimating()
             }
     }()
 
     private lazy var setInfoHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.handleSuccess(response: data)
             } onFailure: { [weak self] error in
@@ -173,16 +171,13 @@ extension DealerViewController {
     }
 
     private func interfaceCompletion(for result: UIResult) {
-        DispatchQueue.main.async { [self] in
-            nextButtonIndicator.stopAnimating()
-            nextButton.fadeIn()
-            
-            switch result {
-                case .fail(let message):
-                    PopUp.display(.error(description: message))
-                case .success:
-                    perform(segue: .dealerToCheckVin)
-            }
+        nextButtonIndicator.stopAnimating()
+        nextButton.fadeIn()
+        switch result {
+            case .fail(let message):
+                PopUp.display(.error(description: message))
+            case .success:
+                perform(segue: .dealerToCheckVin)
         }
     }
 }

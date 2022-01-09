@@ -22,10 +22,9 @@ class CheckVinViewController: UIViewController {
 
     private lazy var requestHandler: RequestHandler<CarCheckResponse> = {
         RequestHandler<CarCheckResponse>()
+            .observe(on: .main)
             .bind { [weak self] response in
-                DispatchQueue.main.async {
-                    self?.handleSuccess(response)
-                }
+                self?.handleSuccess(response)
             } onFailure: { [weak self] error in
                 self?.interfaceCompletion(false, error.message ?? .error(.vinCodeError))
             }

@@ -52,15 +52,12 @@ class MyProfileViewController: UIViewController {
 
     private lazy var updateUserHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
-            .bind { [weak self] data in
-                DispatchQueue.main.async {
-                    self?.handle(success: data)
-                }
+            .observe(on: .main)
+            .bind { [weak self] response in
+                self?.handle(success: response)
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    PopUp.display(.error(description: error.message ?? .error(.savingError)))
-                    self?.state = .editing
-                }
+                PopUp.display(.error(description: error.message ?? .error(.savingError)))
+                self?.state = .editing
             }
     }()
 

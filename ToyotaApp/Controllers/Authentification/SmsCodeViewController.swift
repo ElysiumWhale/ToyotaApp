@@ -12,6 +12,7 @@ class SmsCodeViewController: UIViewController {
 
     private lazy var registerHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
         RequestHandler<CheckUserOrSmsCodeResponse>()
+            .observe(on: .main, mode: .onFailure)
             .bind { [weak self] data in
                 KeychainManager.set(UserId(data.userId!))
                 KeychainManager.set(SecretKey(data.secretKey))
@@ -20,20 +21,17 @@ class SmsCodeViewController: UIViewController {
                     NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
                 }
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.handle(error)
-                }
+                self?.handle(error)
             }
     }()
 
     private lazy var changeNumberHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
+            .observe(on: .main, mode: .onFailure)
             .bind { [weak self] _ in
                 self?.handleSuccess()
             } onFailure: { [weak self] error in
-                DispatchQueue.main.async {
-                    self?.handle(error)
-                }
+                self?.handle(error)
             }
     }()
 

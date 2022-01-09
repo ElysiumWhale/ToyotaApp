@@ -25,16 +25,13 @@ class CityPickerInteractor {
 
     private lazy var cityRequestHandler: RequestHandler<CitiesResponse> = {
         RequestHandler<CitiesResponse>()
+            .observe(on: .main)
             .bind { [weak self] data in
                 self?.cities = data.cities
-                DispatchQueue.main.async {
-                    self?.view?.handleSuccess()
-                }
+                self?.view?.handleSuccess()
             } onFailure: { [weak self] _ in
                 self?.cities = []
-                DispatchQueue.main.async {
-                    self?.view?.handleFailure()
-                }
+                self?.view?.handleFailure()
             }
     }()
 
