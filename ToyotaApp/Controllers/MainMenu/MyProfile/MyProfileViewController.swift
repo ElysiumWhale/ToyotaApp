@@ -140,11 +140,12 @@ extension MyProfileViewController {
                                                 attribute: .leading, relatedBy: .equal,
                                                 toItem: view, attribute: .leading,
                                                 multiplier: 1.0, constant: constant)
+        let cancelConstant = isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant
         let cancelConstraint = NSLayoutConstraint(item: cancelButton as Any,
                                                   attribute: .leading, relatedBy: .equal,
                                                   toItem: view, attribute: .leading,
                                                   multiplier: 1.0,
-                                                  constant: isEditing ? view.bounds.width - 20 - cancelButton.bounds.width : constant)
+                                                  constant: cancelConstant)
         return (saveConstraint, cancelConstraint)
     }
 
@@ -177,9 +178,8 @@ extension MyProfileViewController {
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
         emailTextField.text = profile.email
-        birthTextField.text = .formatDateForClient(from: profile.birthday)
         datePicker.date = .dateFromServer(date: profile.birthday)
-        date = .empty
+        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
         managerButton.isHidden = user.getCars.array.count < 1
     }
 
