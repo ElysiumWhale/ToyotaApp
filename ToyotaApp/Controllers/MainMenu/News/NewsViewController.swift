@@ -9,8 +9,16 @@ class NewsViewController: RefreshableController {
     private var user: UserProxy!
     private var news: [News] = []
     private var selectedRow: IndexPath?
+    private var selectedShowroom: Showroom? = DefaultsManager.getUserInfo(for: .selectedShowroom)
+    private var url: ShowroomsUrl {
+        guard let selectedShowroom = selectedShowroom else {
+            return ShowroomsUrl.samaraAurora
+        }
 
-    private var parser: HtmlParser?
+        return ShowroomsUrl(rawValue: selectedShowroom.id) ?? .samaraAurora
+    }
+
+    private lazy var parser = HtmlParser(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +32,7 @@ class NewsViewController: RefreshableController {
 
     func startRefreshing() {
         refreshControl.startRefreshing()
-        parser = HtmlParser(delegate: self)
-        parser?.start()
+        parser.start(with: url)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +40,14 @@ class NewsViewController: RefreshableController {
 
         if let selectedRow = selectedRow {
             refreshableView.deselectRow(at: selectedRow, animated: true)
+        }
+
+        if let newShowroom: Showroom = DefaultsManager.getUserInfo(for: .selectedShowroom),
+           newShowroom.id != selectedShowroom?.id {
+            news = []
+            refreshableView.reloadData()
+            selectedShowroom = newShowroom
+            startRefreshing()
         }
     }
 }

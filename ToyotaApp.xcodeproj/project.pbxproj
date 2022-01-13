@@ -58,6 +58,7 @@
 		14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFB9242763F5BA00465736 /* AddCarInteractor.swift */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
+		14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
@@ -155,6 +156,7 @@
 		14DFB9242763F5BA00465736 /* AddCarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarInteractor.swift; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
+		14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsUrl.swift; sourceTree = "<group>"; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				1419D0C727752F6500D95B7F /* Models.swift */,
 				14D55FF92753AC0C00546587 /* RequestPath.swift */,
 				14D55FFB2753AC1700546587 /* RequestKey.swift */,
+				14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
+				14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */,
 				14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */,
 				14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */,
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,

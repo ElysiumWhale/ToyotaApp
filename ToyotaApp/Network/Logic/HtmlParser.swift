@@ -7,23 +7,22 @@ protocol ParserDelegate: AnyObject {
     func errorDidReceive(_ error: Error)
 }
 
-/// Temporary class for parsing news from https://cars.toyota-aurora.ru
+/// Temporary class for parsing news from toyota showrooms
 class HtmlParser: NSObject, WKNavigationDelegate {
-    let url = "https://cars.toyota-aurora.ru/special-offers-list"
-    let baseUrl = "https://cars.toyota-aurora.ru"
+    private let webView = WKWebView()
+
+    private var url: ShowroomsUrl = .samaraAurora
 
     weak var parserDelegate: ParserDelegate?
-    var webView: WKWebView?
 
     init(delegate: ParserDelegate) {
         parserDelegate = delegate
-        webView = WKWebView()
     }
 
-    func start() {
-        let url = URL(string: url)!
-        webView?.navigationDelegate = self
-        webView?.load(URLRequest(url: url))
+    func start(with showroomUrl: ShowroomsUrl) {
+        url = showroomUrl
+        webView.navigationDelegate = self
+        webView.load(URLRequest(url: URL(string: showroomUrl.url)!))
     }
 
     func parseNews(from html: String) {
@@ -54,7 +53,7 @@ class HtmlParser: NSObject, WKNavigationDelegate {
 
             return News(title: truncatedTitle.firstUppercased,
                         imgUrl: URL(string: imgLink),
-                        url: URL(string: baseUrl + link))
+                        url: URL(string: url.baseUrl + link))
         } catch {
             return nil
         }
