@@ -305,8 +305,8 @@
                                             <action selector="textDidChangeWithSender:" destination="hHJ-oo-scE" eventType="editingChanged" id="EgE-Aw-aBJ"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oif-rQ-akP" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="236" width="568" height="44"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oif-rQ-akP" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="236" width="382" height="44"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>

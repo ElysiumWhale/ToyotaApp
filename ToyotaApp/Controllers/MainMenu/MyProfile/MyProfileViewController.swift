@@ -10,7 +10,7 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var firstNameTextField: InputTextField!
     @IBOutlet private var secondNameTextField: InputTextField!
     @IBOutlet private var lastNameTextField: InputTextField!
-    @IBOutlet private var birthTextField: InputTextField!
+    @IBOutlet private var birthTextField: NoPasteTextField!
     @IBOutlet private var emailTextField: InputTextField!
     @IBOutlet private var managerButton: CustomizableButton!
     @IBOutlet private var cancelButton: CustomizableButton!
