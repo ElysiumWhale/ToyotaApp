@@ -199,7 +199,7 @@ extension MyProfileViewController {
             return
         }
 
-        guard textFieldsWithError.any({ $0.value }) else {
+        guard !textFieldsWithError.any({ $0.value }) else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }
