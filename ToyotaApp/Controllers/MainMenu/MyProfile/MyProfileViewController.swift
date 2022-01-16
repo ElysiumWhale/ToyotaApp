@@ -7,6 +7,7 @@ private enum EditingStates {
 }
 
 class MyProfileViewController: UIViewController {
+    // MARK: - UI properties
     @IBOutlet private var firstNameTextField: InputTextField!
     @IBOutlet private var secondNameTextField: InputTextField!
     @IBOutlet private var lastNameTextField: InputTextField!
@@ -19,6 +20,11 @@ class MyProfileViewController: UIViewController {
     @IBOutlet private var cancelLeadingConstraint: NSLayoutConstraint!
 
     private let datePicker: UIDatePicker = UIDatePicker()
+
+    private lazy var fields = [firstNameTextField,
+                               secondNameTextField,
+                               lastNameTextField,
+                               emailTextField].compactMap({ $0 })
 
     // MARK: - Properties
     private var user: UserProxy! {
@@ -35,16 +41,6 @@ class MyProfileViewController: UIViewController {
         didSet { view.endEditing(true) }
     }
 
-    private var textFieldsWithError: [UITextField: Bool] = [:]
-
-    private var hasChanges: Bool {
-        profile.firstName != firstNameTextField.text ||
-        profile.secondName != secondNameTextField.text ||
-        profile.lastName != lastNameTextField.text ||
-        profile.email != emailTextField.text ||
-        .formatDateForClient(from: profile.birthday) != birthTextField.text
-    }
-
     private lazy var updateUserHandler: RequestHandler<Response> = {
         RequestHandler<Response>()
             .observe(on: .main)
@@ -56,6 +52,7 @@ class MyProfileViewController: UIViewController {
             }
     }()
 
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [
@@ -70,10 +67,8 @@ class MyProfileViewController: UIViewController {
         saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
         cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
 
-        textFieldsWithError = [firstNameTextField: false, secondNameTextField: false,
-                               lastNameTextField: false, emailTextField: false, birthTextField: false]
-        for field in textFieldsWithError.keys {
-            field.isEnabled = false
+        for field in fields {
+            field.rule = .personalInfo
         }
     }
 
@@ -86,17 +81,8 @@ class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func cancelEdit(sender: UIButton) {
-        if hasChanges {
-            refreshFields()
-            for textField in textFieldsWithError.keys {
-                textDidChange(sender: textField)
-            }
-        }
+        refreshFields()
         state = .none
-    }
-
-    @objc private func dateDidSelect() {
-        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
     }
 
     @IBAction private func logout(sender: Any?) {
@@ -107,6 +93,10 @@ class MyProfileViewController: UIViewController {
             DefaultsManager.clearAll()
             NavigationService.loadAuth()
         }
+    }
+
+    @objc private func dateDidSelect() {
+        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
     }
 
     // MARK: - Navigation
@@ -131,7 +121,7 @@ class MyProfileViewController: UIViewController {
     }
 }
 
-// MARK: - UI
+// MARK: - Layout
 extension MyProfileViewController {
     private func getConstraints(for state: EditingStates) -> (save: NSLayoutConstraint, cancel: NSLayoutConstraint) {
         let isEditing = state == .editing
@@ -155,7 +145,7 @@ extension MyProfileViewController {
         let constraints = getConstraints(for: state)
 
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
-            for field in textFieldsWithError.keys {
+            for field in fields {
                 field.isEnabled = isEditing
                 field.backgroundColor = isEditing ? .appTint(.secondaryGray) : .appTint(.background)
             }
@@ -182,24 +172,34 @@ extension MyProfileViewController {
         date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
         managerButton.isHidden = user.getCars.array.count < 1
     }
-
-    @IBAction private func textDidChange(sender: UITextField) {
-        let isValid = sender.text != nil && !sender.text!.isEmpty && sender.text!.count < 25
-
-        sender.toggle(state: isValid ? .normal : .error)
-        textFieldsWithError[sender] = !isValid
-    }
 }
 
-// MARK: - Update user information logic
+// MARK: - Update user
 extension MyProfileViewController {
+    private var hasChanges: Bool {
+        profile.firstName != firstNameTextField.inputText ||
+        profile.secondName != secondNameTextField.inputText ||
+        profile.lastName != lastNameTextField.inputText ||
+        profile.email != emailTextField.inputText ||
+        .formatDateForClient(from: profile.birthday) != birthTextField.inputText
+    }
+
+    private var requestParams: RequestItems {
+        [(.auth(.userId), user.getId),
+         (.personalInfo(.firstName), firstNameTextField.inputText),
+         (.personalInfo(.secondName), secondNameTextField.inputText),
+         (.personalInfo(.lastName), lastNameTextField.inputText),
+         (.personalInfo(.email), emailTextField.inputText),
+         (.personalInfo(.birthday), date)]
+    }
+
     private func updateUserInfo() {
         guard hasChanges else {
             state = .none
             return
         }
 
-        guard !textFieldsWithError.any({ $0.value }) else {
+        guard !fields.any({ !$0.isValid }) else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }
@@ -210,20 +210,11 @@ extension MyProfileViewController {
                                    handler: updateUserHandler)
     }
 
-    private var requestParams: RequestItems {
-        [(.auth(.userId), user.getId),
-         (.personalInfo(.firstName), firstNameTextField.text),
-         (.personalInfo(.secondName), secondNameTextField.text),
-         (.personalInfo(.lastName), lastNameTextField.text),
-         (.personalInfo(.email), emailTextField.text),
-         (.personalInfo(.birthday), date)]
-    }
-
     private func handle(success response: Response) {
-        user.updatePerson(from: Person(firstName: firstNameTextField.text!,
-                                       lastName: lastNameTextField.text!,
-                                       secondName: secondNameTextField.text!,
-                                       email: emailTextField.text!,
+        user.updatePerson(from: Person(firstName: firstNameTextField.inputText,
+                                       lastName: lastNameTextField.inputText,
+                                       secondName: secondNameTextField.inputText,
+                                       email: emailTextField.inputText,
                                        birthday: date))
         PopUp.display(.success(description: .common(.personalDataSaved)))
         state = .none
