@@ -8,6 +8,10 @@ class ServicesViewController: RefreshableController, PickerController {
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
 
+    private lazy var chevronButton: UIButton = .imageButton{ [weak self] in
+        self?.showroomField.becomeFirstResponder()
+    }
+
     private let interactor = ServicesInteractor()
 
     private var user: UserProxy! {
@@ -75,22 +79,10 @@ class ServicesViewController: RefreshableController, PickerController {
     private func configureShowroomField() {
         showroomField.tintColor = .clear
         showroomField.rightViewMode = .always
-        showroomField.setRightView(from: button, width: 30,
+        showroomField.setRightView(from: chevronButton, width: 30,
                                    height: fieldHeight)
         configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
     }
-
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "chevron.down")
-        button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),
-                        for: .normal)
-        button.imageView?.tintColor = .appTint(.secondarySignatureRed)
-        button.addAction { [weak self] in
-            self?.showroomField.becomeFirstResponder()
-        }
-        return button
-    }()
 }
 
 // MARK: - CityPickerDelegate
@@ -141,7 +133,7 @@ extension ServicesViewController: ServicesView {
         if showroomIndicator.isAnimating {
             showroomIndicator.stopAnimating()
         }
-        showroomField.setRightView(from: button, width: 30,
+        showroomField.setRightView(from: chevronButton, width: 30,
                                    height: fieldHeight)
     }
 
