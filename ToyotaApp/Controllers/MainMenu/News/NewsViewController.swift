@@ -1,10 +1,12 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: RefreshableController {
+class NewsViewController: RefreshableController, PickerController {
     @IBOutlet private(set) var refreshableView: UITableView!
+    @IBOutlet private var showroomField: NoCopyPasteTexField!
 
     private(set) var refreshControl = UIRefreshControl()
+    private let showroomPicker = UIPickerView()
 
     private var user: UserProxy!
     private var news: [News] = []
@@ -26,11 +28,20 @@ class NewsViewController: RefreshableController {
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
         configureRefresh()
+        showroomField.text = selectedShowroom?.showroomName
+        configureShowroomField()
+        if let index = showrooms.firstIndex(where: { $0.id == selectedShowroom?.id}) {
+            showroomPicker.selectRow(index, inComponent: 0, animated: false)
+        }
         refreshableView.alwaysBounceVertical = true
         startRefreshing()
     }
 
     func startRefreshing() {
+        if !news.isEmpty {
+            news = []
+            refreshableView.reloadData()
+        }
         refreshControl.startRefreshing()
         parser.start(with: url)
     }
@@ -41,14 +52,27 @@ class NewsViewController: RefreshableController {
         if let selectedRow = selectedRow {
             refreshableView.deselectRow(at: selectedRow, animated: true)
         }
+    }
 
-        if let newShowroom: Showroom = DefaultsManager.getUserInfo(for: .selectedShowroom),
-           newShowroom.id != selectedShowroom?.id {
-            news = []
-            refreshableView.reloadData()
+    @objc func showroomDidSelect() {
+        let newShowroom = showrooms[showroomPicker.selectedRow]
+        if newShowroom.id != selectedShowroom?.id {
             selectedShowroom = newShowroom
             startRefreshing()
+            showroomField.text = newShowroom.showroomName
         }
+        view.endEditing(true)
+    }
+
+    private func configureShowroomField() {
+        showroomField.tintColor = .clear
+        showroomField.rightViewMode = .always
+        let button: UIButton = .imageButton { [weak self] in
+            self?.showroomField.becomeFirstResponder()
+        }
+        showroomField.setRightView(from: button, width: 30,
+                                   height: showroomField.frame.height)
+        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
     }
 }
 
@@ -102,5 +126,29 @@ extension NewsViewController: ParserDelegate {
 extension NewsViewController: WithUserInfo {
     func setUser(info: UserProxy) {
         user = info
+    }
+}
+
+// MARK: - UIPickerViewDataSource
+extension NewsViewController: UIPickerViewDataSource {
+    private var showrooms: [Showroom] {
+        [
+            .init(id: "7", showroomName: "Тойота Самара Аврора", cityName: "Самара"),
+            .init(id: "2", showroomName: "Тойота Самара Север", cityName: "Самара"),
+            .init(id: "1", showroomName: "Тойота Самара Юг", cityName: "Самара")
+        ]
+    }
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        showrooms.count
+    }
+}
+
+// MARK: - UIPickerViewDelegate
+extension NewsViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        showrooms[row].showroomName
     }
 }
