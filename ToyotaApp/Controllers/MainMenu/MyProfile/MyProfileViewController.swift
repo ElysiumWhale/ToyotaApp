@@ -70,6 +70,7 @@ class MyProfileViewController: UIViewController {
         for field in fields {
             field.rule = .personalInfo
         }
+        fields.append(birthTextField)
     }
 
     @IBAction private func enterEditMode(sender: UIButton) {
