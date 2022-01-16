@@ -261,4 +261,15 @@ extension UIButton {
         button.addAction(action)
         return button
     }
+
+    static func imageButton(imageName: String = "chevron.down",
+                            action: @escaping VoidClosure) -> UIButton {
+        let button = UIButton()
+        let image = UIImage(systemName: imageName)
+        button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),
+                        for: .normal)
+        button.imageView?.tintColor = .appTint(.secondarySignatureRed)
+        button.addAction(action)
+        return button
+    }
 }
