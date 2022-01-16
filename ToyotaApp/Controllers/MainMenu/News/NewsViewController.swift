@@ -8,6 +8,8 @@ class NewsViewController: RefreshableController, PickerController {
     private(set) var refreshControl = UIRefreshControl()
     private let showroomPicker = UIPickerView()
 
+    private let showrooms: [Showroom] = [.aurora, .north, .south]
+
     private var user: UserProxy!
     private var news: [News] = []
     private var selectedRow: IndexPath?
@@ -131,14 +133,6 @@ extension NewsViewController: WithUserInfo {
 
 // MARK: - UIPickerViewDataSource
 extension NewsViewController: UIPickerViewDataSource {
-    private var showrooms: [Showroom] {
-        [
-            .init(id: "7", showroomName: "Тойота Самара Аврора", cityName: "Самара"),
-            .init(id: "2", showroomName: "Тойота Самара Север", cityName: "Самара"),
-            .init(id: "1", showroomName: "Тойота Самара Юг", cityName: "Самара")
-        ]
-    }
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
