@@ -185,8 +185,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "secret_key":"generated secret key",
+  "result": "ok",
+  "secret_key": "generated secret key",
   "register_page":1
 }
 ```
@@ -195,29 +195,29 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "secret_key":"generated secret key",
+  "result": "ok",
+  "secret_key": "generated secret key",
   "register_page":2,
   "registered_user":
     {
       "profile":
         {
-          "first_name":"Иван",
-          "second_name":"Иваныч",
-          "last_name":"Иванов",
-          "phone":"8 909 111-11-11",
-          "email":"email@email.com",
-          "birthday":"2020-08-01"
+          "first_name": "Иван",
+          "second_name": "Иваныч",
+          "last_name": "Иванов",
+          "phone": "8 909 111-11-11",
+          "email": "email@email.com",
+          "birthday": "2020-08-01"
         }
     },
   "cities": [
     {
-      "id":"1",
-      "city_name":"Самара"
+      "id": "1",
+      "city_name": "Самара"
     },
     {
-      "id":"2",
-      "city_name":"Тольятти"
+      "id": "2",
+      "city_name": "Тольятти"
     }
   ]
 }
@@ -266,9 +266,9 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "secret_key":"generated secret key",
-  "register_status":1
+  "result": "ok",
+  "secret_key": "generated secret key",
+  "register_status": 1
 }
 ```
 
@@ -276,8 +276,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "error_message":"Пользователь отсутствует в базе"
+  "error_code": "101",
+  "error_message": "Пользователь отсутствует в базе"
 }
 ```
 
@@ -297,7 +297,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
@@ -305,8 +305,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"",
-  "error_message":""
+  "error_code": "",
+  "error_message": ""
 }
 ```
 
@@ -330,9 +330,9 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "user_id":"generated_id",
-  "secret_key":"generated_secret_key"
+  "result": "ok",
+  "user_id": "generated_id",
+  "secret_key": "generated_secret_key"
 }
 ```
 
@@ -340,10 +340,10 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "secret_key":"generated secret key",
-  "user_id":"user id",
-  "register_page":1
+  "result": "ok",
+  "secret_key": "generated secret key",
+  "user_id": "user id",
+  "register_page": 1
 }
 ```
 
@@ -423,8 +423,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"102",
-  "error_message":"Присланный Вами код не совпадает"
+  "error_code": "102",
+  "error_message": "Присланный Вами код не совпадает"
 }
 ```
 
@@ -468,8 +468,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"103",
-  "error_message":"Ошибка сервера."
+  "error_code": "103",
+  "error_message": "Ошибка сервера."
 }
 ```
 
@@ -519,8 +519,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "error_message":"Не найдено ни одного салона"
+  "error_code": "",
+  "error_message": ""
 }
 ```
 
@@ -541,8 +541,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "message":"Запись уже была создана ранее."
+  "result": "ok",
+  "car_id": "11"
 }
 ```
 
@@ -556,8 +556,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"121",
-  "message":"Ошибка сервера."
+  "error_code": "",
+  "error_message": ""
 }
 ```
 
@@ -621,8 +621,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"107",
-  "message":"Ошибка"
+  "error_code": "101",
+  "error_message": "Не найдено ни одного салона"
 }
 ```
 
@@ -650,7 +650,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
@@ -658,8 +658,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"108",
-  "message":"Ошибка сервера. Не удалось удалить временную запись."
+  "error_code": "108",
+  "message": "Ошибка сервера. Не удалось удалить временную запись."
 }
 ```
 
@@ -679,21 +679,21 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
+  "result": "ok",
   "service_type": [
     {
-      "id":"1",
-      "service_type_name":"Сервисное обслуживание",
-      "control_type_id":"0",
-      "control_type_name":"Тип № 0",
-      "control_type_desc":"Тип контроллера не выбран"
+      "id": "1",
+      "service_type_name": "Сервисное обслуживание",
+      "control_type_id": "0",
+      "control_type_name": "Тип № 0",
+      "control_type_desc": "Тип контроллера не выбран"
     },
     {
-      "id":"2",
-      "service_type_name":"Услуги сервиса",
-      "control_type_id":"0",
-      "control_type_name":"Тип № 0",
-      "control_type_desc":"Тип контроллера не выбран"
+      "id": "2",
+      "service_type_name": "Услуги сервиса",
+      "control_type_id": "0",
+      "control_type_name": "Тип № 0",
+      "control_type_desc": "Тип контроллера не выбран"
     }
   ]
 }
@@ -703,8 +703,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "message":"Ошибка сервера. Не удалось получить список категорий услуг."
+  "error_code": "101",
+  "message": "Ошибка сервера. Не удалось получить список категорий услуг."
 }
 ```
 
@@ -725,15 +725,15 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
+  "result": "ok",
   "services": [
     {
-      "id":"1",
-      "service_name":"Плановое ТО №1"
+      "id": "1",
+      "service_name": "Плановое ТО №1"
     },
     {
-      "id":"2",
-      "service_name":"Плановое ТО №2"
+      "id": "2",
+      "service_name": "Плановое ТО №2"
     }
   ]
 }
@@ -743,8 +743,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "message":"Ошибка сервера. Не удалось получить список услуг."
+  "error_code": "101",
+  "message": "Ошибка сервера. Не удалось получить список услуг."
 }
 ```
 
@@ -767,8 +767,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "message":"Время бронирования свободно на любую дату"
+  "result": "ok",
+  "message": "Время бронирования свободно на любую дату"
 }
 ```
 
@@ -776,9 +776,9 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "start_date":"2020-12-22",
-  "end_date":"2020-12-23",
+  "result": "ok",
+  "start_date": "2020-12-22",
+  "end_date": "2020-12-23",
   "free_times": [
     {
       "2020-12-22":[18,20,21,22,34,35,36,37]
@@ -794,8 +794,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"104",
-  "message":"Ошибка сервера"
+  "error_code": "104",
+  "message": "Ошибка сервера"
 }
 ```
 
@@ -843,8 +843,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "error_message":"Ошибка сервера. Не удалось получить список городов."
+  "error_code": "101",
+  "error_message": "Ошибка сервера. Не удалось получить список городов."
 }
 ```
 
@@ -865,8 +865,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
-  "message":"Данный салон теперь появится в списке Ваших салонов."
+  "result": "ok",
+  "message": "Данный салон теперь появится в списке Ваших салонов."
 }
 ```
 
@@ -874,8 +874,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "error_message":"Ошибка сервера."
+  "error_code": "101",
+  "error_message": "Ошибка сервера."
 }
 ```
 
@@ -905,7 +905,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
@@ -913,8 +913,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"101",
-  "error_message":"Ошибка сервера. Не удалось обновить профиль пользователя."
+  "error_code": "101",
+  "error_message": "Ошибка сервера. Не удалось обновить профиль пользователя."
 }
 ```
 
@@ -936,7 +936,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
@@ -944,8 +944,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"104",
-  "error_message":"Ошибка сервера. Не удалось обновить номер телефона."
+  "error_code": "104",
+  "error_message": "Ошибка сервера. Не удалось обновить номер телефона."
 }
 ```
 
@@ -966,15 +966,15 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
+  "result": "ok",
   "cars": [
     {
-      "id":"9",
-      "service_name":"Тойота LC 200"
+      "id": "9",
+      "service_name": "Тойота LC 200"
     },
     {
-      "id":"10",
-      "service_name":"Тойота Camry"
+      "id": "10",
+      "service_name": "Тойота Camry"
     }
   ]
 }
@@ -984,8 +984,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"104",
-  "error_message":"Ошибка сервера. Не удалось получить список автомобилей для тест драйва."
+  "error_code": "104",
+  "error_message": "Ошибка сервера. Не удалось получить список автомобилей для тест драйва."
 }
 ```
 
@@ -1007,15 +1007,15 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
+  "result": "ok",
   "showrooms": [
     {
-      "id":"1",
-      "showroom_name":"Тойота Центр Самара Юг"
+      "id": "1",
+      "showroom_name": "Тойота Центр Самара Юг"
     },
     {
-      "id":"2",
-      "showroom_name":"Тойота Центр Самара Север"
+      "id": "2",
+      "showroom_name": "Тойота Центр Самара Север"
     }
   ]
 }
@@ -1025,8 +1025,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"104",
-  "error_message":"Ошибка сервера. Не удалось получить список автосалонов с выбранным для тест драйва автомобилем."
+  "error_code": "104",
+  "error_message": "Ошибка сервера. Не удалось получить список автосалонов с выбранным для тест драйва автомобилем."
 }
 ```
 
@@ -1052,7 +1052,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
@@ -1060,8 +1060,8 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"104",
-  "error_message":"different options"
+  "error_code": "104",
+  "error_message": "different options"
 }
 ```
 
@@ -1084,7 +1084,7 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "result":"ok",
+  "result": "ok",
   "managers": [
     {
       id: "1",
@@ -1165,14 +1165,14 @@ SMS code for registration: **1234**
 
 ```json
 {
-  "error_code":"100",
-  "error_message":"Message"
+  "error_code": "100",
+  "error_message": "Message"
 }
 ```
 
 ```json
 {
-  "result":"ok"
+  "result": "ok"
 }
 ```
 
