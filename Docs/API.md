@@ -5,6 +5,7 @@
 - [Toyota API](#toyota-api)
   - [General](#general)
     - [Services controllers types](#services-controllers-types)
+  - [Colors](#colors)
   - [Testing](#testing)
     - [Cars VINs](#cars-vins)
   - [Flows](#flows)
@@ -15,9 +16,8 @@
     - [Сheck user registration at application launch](#сheck-user-registration-at-application-launch)
       - [**Success response**](#success-response)
         - [**Variant 1:** Only phone number checking](#variant-1-only-phone-number-checking)
-        - [**Variant 2:** Only profile is selected](#variant-2-only-profile-is-selected)
-        - [**Variant 3:** Profile and showroom are selected](#variant-3-profile-and-showroom-are-selected)
-        - [**Variant 4:** Fully registered and authorized on device](#variant-4-fully-registered-and-authorized-on-device)
+        - [**Variant 2:** Profile is full](#variant-2-profile-is-full)
+        - [**Variant 3:** Fully registered and authorized on device](#variant-3-fully-registered-and-authorized-on-device)
       - [**Failure response**](#failure-response)
     - [Phone number registration](#phone-number-registration)
       - [**Success response**](#success-response-1)
@@ -26,19 +26,20 @@
       - [**Success response**](#success-response-2)
         - [**Variant 1:** New account](#variant-1-new-account)
         - [**Variant 2:** Empty account](#variant-2-empty-account)
-        - [**Variant 3:** Only profile](#variant-3-only-profile)
-        - [**Variant 4:** Profile and showroom](#variant-4-profile-and-showroom)
-        - [**Variant 5:** Full profile](#variant-5-full-profile)
+        - [**Variant 3:** Profile is full](#variant-3-profile-is-full)
+        - [**Variant 4:** Full profile](#variant-4-full-profile)
       - [**Failure response**](#failure-response-2)
     - [Set pofile data](#set-pofile-data)
       - [**Success response**](#success-response-3)
       - [**Failure response**](#failure-response-3)
         - [**List of errors**](#list-of-errors)
-    - [Get showrooms (for brand & city)](#get-showrooms-for-brand--city)
+    - [Get models and colors](#get-models-and-colors)
       - [**Success response**](#success-response-4)
       - [**Failure response**](#failure-response-4)
+    - [Set car](#set-car)
       - [**Success response**](#success-response-5)
       - [**Failure response**](#failure-response-5)
+    - [Get showrooms](#get-showrooms)
       - [**Success response**](#success-response-6)
       - [**Failure response**](#failure-response-6)
     - [Delete temp phone](#delete-temp-phone)
@@ -181,7 +182,7 @@ SMS code for registration: **1234**
 }
 ```
 
-##### **Variant 2:** Only profile is selected
+##### **Variant 2:** Profile is full
 
 ```json
 {
@@ -213,46 +214,9 @@ SMS code for registration: **1234**
 }
 ```
 
-##### **Variant 3:** Profile and showroom are selected
+> **Including [Get Models and Colors response](#get-models-and-colors)**
 
-```json
-{
-  "result":"ok",
-  "secret_key":"generated secret key",
-  "register_page":3,
-  "registered_user":
-    {
-      "profile":
-        {
-          "first_name":"Иван",
-          "second_name":"Иваныч",
-          "last_name":"Иванов",
-          "phone":"8 909 111-11-11",
-          "email":"email@email.com",
-          "birthday":"2020-08-01"
-        },
-      "showroom": [
-        {
-          "id":"1",
-          "showroom_name":"Тойота Центр Самара Юг",
-          "city_name":"Самара"
-        }
-      ]
-    },
-  "cities": [
-    {
-      "id":"1",
-      "city_name":"Самара"
-    },
-    {
-      "id":"2",
-      "city_name":"Тольятти"
-    }
-  ]
-}
-```
-
-##### **Variant 4:** Fully registered and authorized on device
+##### **Variant 3:** Fully registered and authorized on device
 
 ```json
 {
@@ -337,75 +301,50 @@ SMS code for registration: **1234**
 }
 ```
 
-##### **Variant 3:** Only profile
+##### **Variant 3:** Profile is full
 
-**[Look there](#variant-2-only-profile-is-selected)**
+**[Look there](#variant-2-profile-is-full)**
 
-##### **Variant 4:** Profile and showroom
+##### **Variant 4:** Full profile
 
-**[Look there](#variant-3-profile-and-showroom-are-selected)**
-
-##### **Variant 5:** Full profile
-
-```json=
+```json
 {
   "result": "ok",
   "secret_key": "7ab7e6dc2cf0b6daa789185d51c118a8",
-  "user_id": "365",
+  "user_id": "user id",
+  "register_status": 1,
   "registered_user": {
     "profile": {
-      "first_name": "Валерий",
-      "second_name": "Абобович",
-      "last_name": "Жмышенко",
-      "phone": "79093624285",
+      "first_name": "Name",
+      "second_name": "Name",
+      "last_name": "Name",
+      "phone": "79083324135",
       "email": "aboba@aboba.com",
       "birthday": "1990-10-30"
     },
-    "showroom": [
-      {
-        "id": "1",
-        "showroom_name": "Тойота Центр Самара Юг",
-        "city_name": "Самара"
-      },
-      {
-        "id": "2",
-        "showroom_name": "Тойота Центр Самара Север",
-        "city_name": "Самара"
-      },
-      {
-        "id": "7",
-        "showroom_name": "Тойота Центр Самара Аврора",
-        "city_name": "Самара"
-      }
-    ],
-    "car": [
+    "cars": [
       {
         "car_brand_name": "Toyota",
-        "car_model_name": "RAV4",
-        "color_swatch": "#cc6633",
-        "car_color_name": "Абрикос",
-        "color_description": "Серебристо-светло оранжевый",
-        "color_metallic": "1",
         "car_id": "1",
-        "showroom_id": "1",
+        "car_year": "2020",
         "license_plate": "а001аа163rus",
-        "vin_code": "1234567890abcdefg"
-      },
-      {
-        "car_brand_name": "Toyota",
-        "car_model_name": "LC 200",
-        "color_swatch": "#ffff33",
-        "car_color_name": "Акапулько",
-        "color_description": "Ярко-жёлтый",
-        "color_metallic": "0",
-        "car_id": "4",
-        "showroom_id": "2",
-        "license_plate": "б001аа163rus",
-        "vin_code": "uMGT0r6tF6zWZmBzH"
+        "vin_code": "1234567890abcdefg",
+        "model": {
+          "id": "1",
+          "car_model_name": "LC 200",
+          "car_brand_id": "1"
+        },
+        "color": {
+          "id": "1",
+          "color_code": "123",
+          "car_color_name": "Абрикос",
+          "color_swatch": "#cc6633",
+          "color_description": "Светло оранжевый",
+          "color_metallic": "1"
+        }
       }
     ]
-  },
-  "register_status": 1
+  }
 }
 ```
 
@@ -454,6 +393,8 @@ SMS code for registration: **1234**
 }
 ```
 
+> **Including [Get Models and Colors response](#get-models-and-colors)**
+
 #### **Failure response**
 
 ```json
@@ -474,35 +415,50 @@ SMS code for registration: **1234**
 
 ---
 
-### Get showrooms (for brand & city)
+### Get models and colors
 
-**Path:** `get_showrooms.php`
+**Path:** `get_models_and_colors.php`
 
 **Params:**
 
 - `brand_id` - application const
-- `city_id`  - selected by user
 
 #### **Success response**
 
 ```json
 {
   "result":"ok",
-  "showrooms": [
+  "models": [
     {
       "id":"1",
-      "showroom_name":"Тойота Центр Самара Юг"
+      "car_brand_id":"1",
+      "car_model_name":"RAV4"
     },
     {
       "id":"2",
-      "showroom_name":"Тойота Центр Самара Север"
+      "car_brand_id":"1",
+      "car_model_name":"Avensis"
+    }
+  ],
+  "colors": [
+    {
+      "id":"1",
+      "color_code":"102",
+      "color_swatch":"#cc6633",
+      "car_color_name":"Абрикос",
+      "color_description":"Серебристо-светло оранжевый",
+      "color_metallic":"1"
     },
     {
-      "id":"7",
-      "showroom_name":"Тойота Центр Самара Аврора"
+      "id":"2",
+      "color_code":"602",
+      "color_swatch":"#00111b",
+      "car_color_name":"Авантюрин",
+      "color_description":"Серебристо-чёрный",
+      "color_metallic":"0"
     }
   ]
-} 
+}
 ```
 
 #### **Failure response**
@@ -518,10 +474,19 @@ SMS code for registration: **1234**
 
 ---
 
+### Set car
 
+**Path:** `get_showrooms.php`
 
 **Params:**
 
+- `brand_id` - application const
+- `user_id`  - from memory
+- `car_model_id`  - selected by user
+- `color_id`  - selected by user
+- `license_plate`  - written by user (optional)
+- `vin_code`  - written by user
+- `year_of_release` - selected by user
 
 #### **Success response**
 
@@ -545,17 +510,35 @@ SMS code for registration: **1234**
 
 ---
 
+### Get showrooms
 
+**Path:** `get_showrooms.php`
 
 **Params:**
 
+- `brand_id` - application const
+- `city_id`  - selected by user
 
 #### **Success response**
 
 ```json
 {
+  "result": "ok",
+  "showrooms": [
     {
+      "id": "1",
+      "showroom_name": "Тойота Центр Самара Юг"
     },
+    {
+      "id": "2",
+      "showroom_name": "Тойота Центр Самара Север"
+    },
+    {
+      "id": "7",
+      "showroom_name": "Тойота Центр Самара Аврора"
+    }
+  ]
+} 
 ```
 
 #### **Failure response**
@@ -1038,6 +1021,8 @@ SMS code for registration: **1234**
 
 ```json
 {
+  "error_code": "101",
+  "message": "Ошибка сервера."
 }
 ```
 
