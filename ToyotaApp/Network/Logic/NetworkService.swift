@@ -88,6 +88,7 @@ class NetworkService {
         mainURL.queryItems = params
         var request = URLRequest(url: mainURL.url!)
         request.httpMethod = RequestType.POST.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request
     }
