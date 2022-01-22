@@ -429,13 +429,13 @@ b). сторонним поставщикам услуг и партнерам,
     </scenes>
     <designables>
         <designable name="1t0-20-RV7">
-            <size key="intrinsicContentSize" width="253" height="33"/>
+            <size key="intrinsicContentSize" width="188" height="33"/>
         </designable>
         <designable name="YeZ-bJ-pbq">
             <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="bwn-0n-Fd3">
-            <size key="intrinsicContentSize" width="121" height="33"/>
+            <size key="intrinsicContentSize" width="116" height="33"/>
         </designable>
         <designable name="fF1-EO-lCx">
             <size key="intrinsicContentSize" width="68" height="44"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yjk-xh-GOo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -183,7 +183,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="meh-4o-MZX"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-nS-wi1" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="84" y="789" width="246" height="43"/>
+                                <rect key="frame" x="84" y="809" width="246" height="43"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="0gR-1Z-gT9"/>
@@ -212,7 +212,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-0I-Own">
-                                <rect key="frame" x="188.5" y="792" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="812" width="37" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ehp-0I-Own" secondAttribute="height" multiplier="1:1" id="RCa-2u-Tj5"/>
                                 </constraints>
@@ -231,7 +231,7 @@
                             <constraint firstItem="lXN-nS-wi1" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="84" id="Rfh-a6-TqG"/>
                             <constraint firstItem="WxI-l6-sI0" firstAttribute="leading" secondItem="vtv-w5-w4j" secondAttribute="leading" constant="20" id="X6h-v0-nhr"/>
                             <constraint firstItem="dU0-EG-MvM" firstAttribute="trailing" secondItem="vtv-w5-w4j" secondAttribute="trailing" constant="4.6666666666666856" id="XnM-iX-eBy"/>
-                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="30" id="aMf-WZ-jBC"/>
+                            <constraint firstItem="vtv-w5-w4j" firstAttribute="bottom" secondItem="lXN-nS-wi1" secondAttribute="bottom" constant="10" id="aMf-WZ-jBC"/>
                             <constraint firstItem="vtv-w5-w4j" firstAttribute="trailing" secondItem="lXN-nS-wi1" secondAttribute="trailing" constant="84" id="ds2-G4-kP7"/>
                             <constraint firstItem="ehp-0I-Own" firstAttribute="centerX" secondItem="il0-32-ooG" secondAttribute="centerX" id="tAt-fm-ZP2"/>
                         </constraints>
@@ -308,7 +308,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1YG-oq-9Zc" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="84" y="795" width="246" height="43"/>
+                                <rect key="frame" x="84" y="809" width="246" height="43"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="1SY-0w-fYl"/>
@@ -344,7 +344,7 @@
                             <constraint firstItem="34t-5i-094" firstAttribute="top" secondItem="U5B-aC-Do8" secondAttribute="top" constant="1" id="Bld-ld-eUg"/>
                             <constraint firstItem="U5B-aC-Do8" firstAttribute="leading" secondItem="34t-5i-094" secondAttribute="leading" constant="20" id="CMC-FO-DqD"/>
                             <constraint firstItem="34t-5i-094" firstAttribute="trailing" secondItem="1YG-oq-9Zc" secondAttribute="trailing" constant="84" id="ILi-ec-gnH"/>
-                            <constraint firstItem="34t-5i-094" firstAttribute="bottom" secondItem="1YG-oq-9Zc" secondAttribute="bottom" constant="24" id="JPV-b6-Bhj"/>
+                            <constraint firstItem="34t-5i-094" firstAttribute="bottom" secondItem="1YG-oq-9Zc" secondAttribute="bottom" constant="10" id="JPV-b6-Bhj"/>
                             <constraint firstItem="34t-5i-094" firstAttribute="trailing" secondItem="U5B-aC-Do8" secondAttribute="trailing" constant="20" id="KFb-cL-rbB"/>
                             <constraint firstItem="34t-5i-094" firstAttribute="bottom" secondItem="xhj-rd-zgW" secondAttribute="bottom" id="LzC-pS-82z"/>
                             <constraint firstItem="xhj-rd-zgW" firstAttribute="leading" secondItem="34t-5i-094" secondAttribute="leading" id="PhR-sF-Qdp"/>
@@ -582,7 +582,7 @@
                                 <rect key="frame" x="143" y="88" width="128" height="128"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-nk-2qV" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="92" y="807" width="231" height="44"/>
+                                <rect key="frame" x="92" y="807" width="230" height="45"/>
                                 <color key="backgroundColor" name="SecondaryGray"/>
                                 <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
                                 <state key="normal" title="В главное меню">
@@ -613,10 +613,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="RxF-zI-Ctg" secondAttribute="trailing" constant="20" id="2Q7-AD-3Rc"/>
                             <constraint firstItem="RxF-zI-Ctg" firstAttribute="top" secondItem="8Uq-Es-cZe" secondAttribute="bottom" constant="4" id="6iG-nw-N7v"/>
-                            <constraint firstItem="mM9-4h-7ch" firstAttribute="trailing" secondItem="m8K-nk-2qV" secondAttribute="trailing" constant="91" id="Mbh-AJ-aUL"/>
+                            <constraint firstItem="mM9-4h-7ch" firstAttribute="trailing" secondItem="m8K-nk-2qV" secondAttribute="trailing" constant="92" id="Mbh-AJ-aUL"/>
                             <constraint firstItem="m8K-nk-2qV" firstAttribute="top" relation="lessThanOrEqual" secondItem="RxF-zI-Ctg" secondAttribute="bottom" constant="303" id="NTR-Rp-Kts"/>
                             <constraint firstItem="m8K-nk-2qV" firstAttribute="leading" secondItem="mM9-4h-7ch" secondAttribute="leading" constant="92" id="aWZ-zT-Iml"/>
-                            <constraint firstItem="mM9-4h-7ch" firstAttribute="bottom" secondItem="m8K-nk-2qV" secondAttribute="bottom" constant="11" id="cEj-de-HKe"/>
+                            <constraint firstItem="mM9-4h-7ch" firstAttribute="bottom" secondItem="m8K-nk-2qV" secondAttribute="bottom" constant="10" id="cEj-de-HKe"/>
                             <constraint firstItem="RxF-zI-Ctg" firstAttribute="leading" secondItem="mM9-4h-7ch" secondAttribute="leading" constant="20" id="dRK-ti-UDo"/>
                             <constraint firstItem="8Uq-Es-cZe" firstAttribute="centerX" secondItem="dkO-Kh-oXf" secondAttribute="centerX" id="eqS-ch-nIi"/>
                             <constraint firstItem="8Uq-Es-cZe" firstAttribute="top" secondItem="mM9-4h-7ch" secondAttribute="top" constant="44" id="xKc-Hg-9JL"/>
@@ -634,34 +634,34 @@
             <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="27y-0O-l0g">
-            <size key="intrinsicContentSize" width="185.5" height="34.5"/>
+            <size key="intrinsicContentSize" width="170.5" height="34.5"/>
         </designable>
         <designable name="2oa-Ly-vi5">
-            <size key="intrinsicContentSize" width="46" height="27.5"/>
+            <size key="intrinsicContentSize" width="41" height="27.5"/>
         </designable>
         <designable name="73P-tT-b5t">
-            <size key="intrinsicContentSize" width="120" height="34.5"/>
+            <size key="intrinsicContentSize" width="105" height="34.5"/>
         </designable>
         <designable name="91W-OT-t1s">
-            <size key="intrinsicContentSize" width="233" height="34.5"/>
+            <size key="intrinsicContentSize" width="218" height="34.5"/>
         </designable>
         <designable name="ETG-dc-1E2">
-            <size key="intrinsicContentSize" width="62" height="34.5"/>
+            <size key="intrinsicContentSize" width="47" height="34.5"/>
         </designable>
         <designable name="IJ5-Dd-Ubi">
             <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
         <designable name="MMz-DW-yWH">
-            <size key="intrinsicContentSize" width="214.5" height="27.5"/>
+            <size key="intrinsicContentSize" width="209.5" height="27.5"/>
         </designable>
         <designable name="dp7-UB-djO">
-            <size key="intrinsicContentSize" width="35" height="27.5"/>
+            <size key="intrinsicContentSize" width="30" height="27.5"/>
         </designable>
         <designable name="fOd-SV-DI3">
-            <size key="intrinsicContentSize" width="32.5" height="27.5"/>
+            <size key="intrinsicContentSize" width="27.5" height="27.5"/>
         </designable>
         <designable name="kqe-yN-RfG">
-            <size key="intrinsicContentSize" width="121" height="34.5"/>
+            <size key="intrinsicContentSize" width="106" height="34.5"/>
         </designable>
         <designable name="lXN-nS-wi1">
             <size key="intrinsicContentSize" width="68" height="44"/>
@@ -670,7 +670,7 @@
             <size key="intrinsicContentSize" width="173" height="44"/>
         </designable>
         <designable name="m8c-5j-cic">
-            <size key="intrinsicContentSize" width="72" height="27.5"/>
+            <size key="intrinsicContentSize" width="67" height="27.5"/>
         </designable>
     </designables>
     <resources>
@@ -679,7 +679,7 @@
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DimmedSignatureRed">
-            <color red="0.6470588235294118" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.6470588235294118" green="0.0" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray">
             <color red="0.67843137254901964" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
