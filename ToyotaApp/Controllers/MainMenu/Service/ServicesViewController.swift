@@ -7,8 +7,9 @@ class ServicesViewController: RefreshableController, PickerController {
     private(set) var refreshControl = UIRefreshControl()
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
+    private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-    private lazy var chevronButton: UIButton = .imageButton{ [weak self] in
+    private lazy var chevronButton: UIButton = .imageButton { [weak self] in
         self?.showroomField.becomeFirstResponder()
     }
 
@@ -248,5 +249,34 @@ extension ServicesViewController: UICollectionViewDelegate {
             cell.backgroundColor = .appTint(.cell)
             cell.serviceName.textColor = .appTint(.signatureGray)
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ServicesViewController: UICollectionViewDelegateFlowLayout {
+    var itemsPerRow: CGFloat {
+        2
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: 110)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        sectionInsets.left
     }
 }
