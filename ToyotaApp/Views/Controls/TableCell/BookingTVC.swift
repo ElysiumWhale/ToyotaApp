@@ -15,22 +15,25 @@ class BookingCell: TableCell {
     func configure(with booking: Booking) {
         titleLabel.text = booking.showroomName
         contentLabel.text = booking.serviceName
-        carLabel.text = booking.carName.isEmptyOrWithoutAuto ? "" : booking.carName
+        carLabel.text = booking.carName.isEmptyOrWithoutAuto ? .empty : booking.carName
         licenseLabel.text = booking.licensePlate.uppercased()
-        dateLabel.text = DateFormatter.display.string(from: DateFormatter.server.date(from: booking.date) ?? Date())
+        dateLabel.text = DateFormatter.display.string(from: booking.date)
         configureStatusView(with: booking)
     }
 
     private func configureStatusView(with booking: Booking) {
         statusView.layer.cornerRadius = 5
-        let status = booking.status
-        let bookingDate = DateFormatter.server.date(from: booking.date) ?? Calendar.current.startOfDay(for: Date())
-        let key = Int(booking.startTime) ?? 14
-        var date = bookingDate
-        if key > 14 && key < 41 {
-            date = Calendar.current.date(byAdding: TimeMap.clientMap[key]!, to: bookingDate)!
+        var bookingDate = booking.bookingDate
+        let creationDate = booking.creationDate ?? Date()
+
+        if let date = bookingDate {
+            let key = Int(booking.startTime) ?? 14
+            if key > 14 && key < 41 {
+                bookingDate = Calendar.current.date(byAdding: TimeMap.clientMap[key]!, to: date)!
+            }
         }
-        let (color, text) = status.getAppearance(for: date)
+
+        let (color, text) = booking.status.getAppearance(for: bookingDate ?? creationDate)
         statusLabel.text = text
         statusImage.tintColor = color
     }

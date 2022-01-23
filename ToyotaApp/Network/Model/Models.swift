@@ -166,7 +166,8 @@ struct Manager: Codable {
 
 // MARK: - Booking
 struct Booking: Codable {
-    let date: String
+    let bDate: String
+    let cDate: String
     let startTime: String
     let latitude: String
     let longitude: String
@@ -179,13 +180,28 @@ struct Booking: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case latitude, longitude, status
-        case date = "date_booking"
+        case bDate = "date_booking"
+        case cDate = "create_date"
         case startTime = "booking_start_time"
         case carName = "car_model_name"
         case licensePlate = "license_plate"
         case showroomName = "showroom_name"
         case serviceName = "service_name"
         case postName = "post_name"
+    }
+}
+
+extension Booking {
+    var bookingDate: Date? {
+        DateFormatter.server.date(from: bDate)
+    }
+
+    var creationDate: Date? {
+        DateFormatter.serverWithTime.date(from: cDate)
+    }
+
+    var date: Date {
+        bookingDate ?? creationDate ?? Date()
     }
 }
 

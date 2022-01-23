@@ -36,12 +36,7 @@ class BookingsViewController: RefreshableController {
     }
 
     private func handle(success response: BookingsResponse) {
-        let formatter = DateFormatter.server
-        bookings = response.booking
-        bookings.sort(by: {
-            formatter.date(from: $0.date) ?? Date() > formatter.date(from: $1.date) ?? Date()
-        })
-
+        bookings = response.booking.sorted(by: { $0.date > $1.date })
         endRefreshing()
         refreshableView.reloadData()
         if bookings.isEmpty {

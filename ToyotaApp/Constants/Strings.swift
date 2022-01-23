@@ -148,6 +148,7 @@ extension String {
     static let ddMMyyyy = "dd.MM.yyyy"
     static let MMddyyyy = "MM.dd.yyyy"
     static let yyyyMMdd = "yyyy-MM-dd"
+    static let yyyyMMddTime = "yyyy-MM-dd HH:mm:ss"
 }
 
 extension StringProtocol {

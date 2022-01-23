@@ -61,13 +61,25 @@ extension DateFormatter {
         return formatter
     }
 
+    /// Formats date in **yyyy-MM-dd HH:mm:ss**
+    ///
+    /// Example:
+    /// ```
+    /// "2020-12-25 23:04:45"
+    /// ```
+    static var serverWithTime: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = .yyyyMMddTime
+        formatter.timeZone = .autoupdatingCurrent
+        return formatter
+    }
+
     /// Formats date in **ru**  medium date style
     ///
     /// Example:
     /// ```
     /// "26 янв. 2077"
     /// ```
-    ///
     static var client: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru")
