@@ -1,19 +1,5 @@
 import UIKit
 
-enum BookingStatus: String, Codable {
-    case future = "0"
-    case cancelled = "1"
-    case done = "2"
-
-    func getAppearance(for date: Date) -> (UIColor, String) {
-        switch self {
-            case .future: return date < Date() ? (.systemRed, "Не исполнено") : (.systemYellow, "Предстоит")
-            case .cancelled: return (.systemRed, "Не исполнено")
-            case .done: return (.systemGreen, "Исполнено")
-        }
-    }
-}
-
 class BookingCell: TableCell {
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var contentLabel: UILabel!

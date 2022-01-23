@@ -104,6 +104,12 @@ extension String {
         case showroomsLoading = "Загрузка салонов"
         /// Нет доступных салонов
         case noShoworooms = "Нет доступных салонов"
+        /// Не исполнено
+        case bookingCancelled = "Не исполнено"
+        /// Предстоит
+        case bookingInFuture = "Предстоит"
+        /// Исполнено
+        case bookingComplete = "Исполнено"
     }
 
     enum QuestionStrings: String {

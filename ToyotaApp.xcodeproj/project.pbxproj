@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
+		141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141875CB279DE1D900FFEA99 /* BookingStatus.swift */; };
 		14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14188032278B3498000B82DD /* UIView+Extensions.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
@@ -110,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
+		141875CB279DE1D900FFEA99 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
 		14188032278B3498000B82DD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				1443FDAD260BEEEE007CEBB1 /* Notificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
+				141875CB279DE1D900FFEA99 /* BookingStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
+				141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */,
 				14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
