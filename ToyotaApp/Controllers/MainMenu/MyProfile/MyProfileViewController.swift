@@ -97,7 +97,8 @@ class MyProfileViewController: UIViewController {
     }
 
     @objc private func dateDidSelect() {
-        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
+        date = datePicker.date.asString(.server)
+        birthTextField.text = datePicker.date.asString(.client)
     }
 
     // MARK: - Navigation
@@ -169,8 +170,8 @@ extension MyProfileViewController {
         secondNameTextField.text = profile.secondName
         lastNameTextField.text = profile.lastName
         emailTextField.text = profile.email
-        datePicker.date = .dateFromServer(date: profile.birthday)
-        date = .formatDate(from: datePicker.date, withAssignTo: birthTextField)
+        datePicker.date = profile.birthday.asDate(with: .server) ?? Date()
+        dateDidSelect()
         managerButton.isHidden = user.getCars.array.count < 1
     }
 }
@@ -182,7 +183,7 @@ extension MyProfileViewController {
         profile.secondName != secondNameTextField.inputText ||
         profile.lastName != lastNameTextField.inputText ||
         profile.email != emailTextField.inputText ||
-        .formatDateForClient(from: profile.birthday) != birthTextField.inputText
+        profile.birthday.asDate(with: .server)?.asString(.client) != birthTextField.inputText
     }
 
     private var requestParams: RequestItems {

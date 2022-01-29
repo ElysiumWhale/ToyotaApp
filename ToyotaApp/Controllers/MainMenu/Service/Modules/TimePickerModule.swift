@@ -37,7 +37,7 @@ class TimePickerModule: NSObject, IServiceModule {
         }
 
         let freeTime = dates[timeRows.date]
-        return (date: .date(.server(freeTime.date)),
+        return (date: freeTime.date.asString(.server),
                 time: freeTime.freeTime[timeRows.time].hourAndMinute)
     }
 
@@ -131,7 +131,7 @@ class TimePickerModule: NSObject, IServiceModule {
 
         for _ in 1...60 {
             times = TimeMap.getFullSchedule()
-            if !skipDictCheck, let dictTimes = timeDict?[.date(.server(date))] {
+            if !skipDictCheck, let dictTimes = timeDict?[date.asString(.server)] {
                 times = dictTimes.compactMap { TimeMap.clientMap[$0] }
             }
             dates.append(FreeTime(date: date, freeTime: times))
@@ -171,9 +171,9 @@ extension TimePickerModule: UIPickerViewDelegate {
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {
-            case 0: pickerLabel.text = dates.isEmpty ? .empty : .date(.display(dates[row].date))
             case 1: pickerLabel.text = dates.isEmpty ? .empty :
                     dates[rowIn(component: 0)].freeTime[row].hourAndMinute
+            case 0: pickerLabel.text = dates.isEmpty ? .empty : dates[row].date.asString(.display)
             default: pickerLabel.text = .empty
         }
         return pickerLabel

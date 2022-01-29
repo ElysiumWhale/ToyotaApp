@@ -21,6 +21,10 @@ struct Profile: Codable {
         case lastName = "last_name"
         case secondName = "second_name"
     }
+
+    var birthdayDate: Date? {
+        birthday?.asDate(with: .server)
+    }
 }
 
 // MARK: - Car
@@ -193,11 +197,11 @@ struct Booking: Codable {
 
 extension Booking {
     var bookingDate: Date? {
-        DateFormatter.server.date(from: bDate)
+        bDate.asDate(with: .server)
     }
 
     var creationDate: Date? {
-        DateFormatter.serverWithTime.date(from: cDate)
+        cDate.asDate(with: .serverWithTime)
     }
 
     var date: Date {

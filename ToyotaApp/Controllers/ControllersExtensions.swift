@@ -39,33 +39,6 @@ extension UIViewController {
     }
 }
 
-extension String {
-    static func formatDate(from date: Date, withAssignTo textField: UITextField? = nil) -> String {
-        if let textField = textField {
-            textField.text = DateFormatter.client.string(from: date)
-        }
-        return DateFormatter.server.string(from: date)
-    }
-
-    static func formatDateForServer(from date: Date) -> String {
-        DateFormatter.server.string(from: date)
-    }
-
-    static func formatDateForClient(from string: String) -> String {
-        DateFormatter.client.string(from: DateFormatter.server.date(from: string) ?? Date())
-    }
-}
-
-extension Date {
-    static func dateFromClient(date string: String) -> Date {
-        DateFormatter.client.date(from: string) ?? Date()
-    }
-
-    static func dateFromServer(date string: String) -> Date {
-        DateFormatter.server.date(from: string) ?? Date()
-    }
-}
-
 // MARK: - Dismissing controls
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
