@@ -4,6 +4,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private lazy var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>? = {
+        RequestHandler<CheckUserOrSmsCodeResponse>()
+            .observe(on: .main)
+            .bind { [weak self] response in
+                self?.handle(success: response)
+            } onFailure: { [weak self] error in
+                self?.handle(error: error)
+            }
+    }()
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if scene as? UIWindowScene == nil { return }
 
@@ -15,11 +25,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
+        guard let requestHandler = requestHandler else {
+            return
+        }
+
         NetworkService.makeRequest(page: .start(.checkUser),
                                    params: [(.auth(.userId), userId),
                                             (.auth(.brandId), Brand.Toyota),
                                             (.auth(.secretKey), secretKey)],
-                                   completion: resolveNavigation)
+                                   handler: requestHandler)
+    }
+
+    private func handle(success response: CheckUserOrSmsCodeResponse) {
+        requestHandler = nil
+        KeychainManager.set(SecretKey(response.secretKey))
+        NavigationService.resolveNavigation(with: CheckUserContext(response: response)) {
+            NavigationService.loadAuth()
+        }
+    }
+
+    private func handle(error response: ErrorResponse) {
+        requestHandler = nil
+        switch response.errorCode {
+            case .lostConnection:
+                NavigationService.loadConnectionLost()
+            default:
+                KeychainManager<SecretKey>.clear()
+                NavigationService.loadAuth(with: response.message ?? .error(.errorWhileAuth))
+        }
     }
 }
 
@@ -36,24 +69,6 @@ extension SceneDelegate {
                           duration: 0.5,
                           options: [.transitionFlipFromLeft],
                           animations: nil)
-    }
-
-    func resolveNavigation(for response: Result<CheckUserOrSmsCodeResponse, ErrorResponse>) {
-        switch response {
-            case .success(let data):
-                KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                    NavigationService.loadAuth()
-                }
-            case .failure(let error):
-                switch error.errorCode {
-                    case .lostConnection:
-                        NavigationService.loadConnectionLost()
-                    default:
-                        KeychainManager<SecretKey>.clear()
-                        NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
-                }
-        }
     }
 }
 
