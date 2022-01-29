@@ -54,7 +54,7 @@ class PopUp {
                              description: String,
                              confirmText: String,
                              declineText: String,
-                             confirmCompletion: @escaping () -> Void) {
+                             confirmCompletion: @escaping Closure) {
 
         DispatchQueue.main.async {
             let message = buildAlertWithChoiceMessage(with: title,
@@ -69,7 +69,7 @@ class PopUp {
     class func displayMessage(with title: String,
                               description: String,
                               buttonText: String = .common(.ok),
-                              dismissCompletion: @escaping () -> Void = { }) {
+                              dismissCompletion: @escaping Closure = { }) {
 
         DispatchQueue.main.async {
             let message = buildAlertMessage(title: title,
@@ -87,7 +87,7 @@ class PopUp {
                                                    description: String,
                                                    confirmText: String,
                                                    declineText: String,
-                                                   confirmCompletion: @escaping () -> Void) -> EKAlertMessage {
+                                                   confirmCompletion: @escaping Closure) -> EKAlertMessage {
         let titleLabel = LabelContent(text: title, style: titleLabelStyle)
         let descrLabel = LabelContent(text: description, style: messageLabelStyle)
         let buttonBar = buildChoiceButtons(confirmText, declineText, confirmCompletion)
@@ -99,7 +99,7 @@ class PopUp {
     class private func buildAlertMessage(title: String,
                                          description: String,
                                          buttonText: String,
-                                         _ dismissCompletion: @escaping () -> Void = { }) -> EKAlertMessage {
+                                         _ dismissCompletion: @escaping Closure = { }) -> EKAlertMessage {
 
         let titleLabel = LabelContent(text: title, style: titleLabelStyle)
         let descrLabel = LabelContent(text: description, style: messageLabelStyle)
@@ -113,7 +113,7 @@ class PopUp {
     // MARK: - Buttons building
 
     class private func buildSingleButton(text: String,
-                                         _ dismissCompletion: @escaping () -> Void = { }) -> ButtonBarContent {
+                                         _ dismissCompletion: @escaping Closure = { }) -> ButtonBarContent {
         let buttonLabel = LabelContent(text: text, style: titleLabelStyle)
 
         let button = ButtonContent(label: buttonLabel,
@@ -130,7 +130,7 @@ class PopUp {
 
     class private func buildChoiceButtons(_ confirmText: String,
                                           _ declineText: String,
-                                          _ confirmCompletion: @escaping () -> Void) -> ButtonBarContent {
+                                          _ confirmCompletion: @escaping Closure) -> ButtonBarContent {
 
         let buttonContent = LabelContent(text: confirmText, style: titleLabelStyle)
         let confirmButton = ButtonContent(label: buttonContent,
@@ -162,7 +162,7 @@ extension PopUp {
         case choise(description: String)
     }
 
-    static func display(_ type: MessageTypes, completion: @escaping () -> Void = { }) {
+    static func display(_ type: MessageTypes, completion: @escaping Closure = { }) {
         switch type {
             case .error(let text):
                 displayMessage(with: .common(.error),

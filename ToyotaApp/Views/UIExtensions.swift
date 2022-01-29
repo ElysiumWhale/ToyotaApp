@@ -59,7 +59,7 @@ extension UICollectionViewCell {
 
 // MARK: - Normal action adding to button
 extension UIControl {
-    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping Closure) {
         addAction(UIAction { _ in closure() }, for: controlEvents)
     }
 }
@@ -250,7 +250,7 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
 
 // MARK: - TitleButton
 extension UIButton {
-    static func titleButton(with text: String, action: @escaping VoidClosure) -> UIButton {
+    static func titleButton(with text: String, action: @escaping Closure) -> UIButton {
         let button =  UIButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         button.backgroundColor = .clear
@@ -263,7 +263,7 @@ extension UIButton {
     }
 
     static func imageButton(imageName: String = "chevron.down",
-                            action: @escaping VoidClosure) -> UIButton {
+                            action: @escaping Closure) -> UIButton {
         let button = UIButton()
         let image = UIImage(systemName: imageName)
         button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),

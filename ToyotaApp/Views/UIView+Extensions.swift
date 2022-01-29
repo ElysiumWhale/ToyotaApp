@@ -33,7 +33,7 @@ extension UIView {
     }
 
     // MARK: - FadeOut UIView Animation
-    func fadeOut(_ duration: TimeInterval = 0.5, completion: @escaping () -> Void = { }) {
+    func fadeOut(_ duration: TimeInterval = 0.5, completion: @escaping Closure = { }) {
         if alpha == 1 {
             UIView.animate(withDuration: duration,
                            animations: { [weak self] in self?.alpha = 0 },
@@ -56,7 +56,7 @@ extension UIView {
     }
 
     // MARK: - TitleView
-    static func titleViewFor(city: String? = nil, action: @escaping VoidClosure) -> UIStackView {
+    static func titleViewFor(city: String? = nil, action: @escaping Closure) -> UIStackView {
         let str = city ?? .common(.chooseCity)
         let button = UIButton.titleButton(with: str, action: action)
         let rightButton = UIButton(frame: .init(x: 0, y: 0, width: 20, height: 20))

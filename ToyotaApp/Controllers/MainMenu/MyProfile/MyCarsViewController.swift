@@ -12,7 +12,7 @@ class MyCarsViewController: UIViewController, Loadable {
     }
 
     private var cars: [Car] { user.getCars.array }
-    private var deleteCarClosure: VoidClosure?
+    private var deleteCarClosure: Closure?
 
     private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
         RequestHandler<ModelsAndColorsResponse>()

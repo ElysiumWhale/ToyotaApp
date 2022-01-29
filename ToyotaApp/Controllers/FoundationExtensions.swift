@@ -1,7 +1,7 @@
 import Foundation
 
-typealias VoidParameterClosure<T> = (T) -> Void
-typealias VoidClosure = () -> Void
+typealias ParameterClosure<T> = (T) -> Void
+typealias Closure = () -> Void
 
 extension Int {
     static let vinLength = 17

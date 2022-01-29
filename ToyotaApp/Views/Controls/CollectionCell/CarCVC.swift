@@ -12,7 +12,7 @@ import UIKit
         didSet { layer.cornerRadius = cornerRadius }
     }
 
-    var removeAction: VoidClosure?
+    var removeAction: Closure?
 
     class var identifier: UICollectionView.CollectionCells { .car }
 

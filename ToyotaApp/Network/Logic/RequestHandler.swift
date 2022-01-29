@@ -1,7 +1,5 @@
 import Foundation
 
-typealias ParameterClosure<T> = ((T) -> Void)
-
 enum ObservationMode {
     case both
     case onSuccess

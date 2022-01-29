@@ -39,7 +39,7 @@ enum RegistrationStates {
 class NavigationService {
     static var switchRootView: ((UIViewController) -> Void)?
 
-    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: () -> Void) {
+    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
         switch context.state {
             case .empty:
                 fallbackCompletion()
