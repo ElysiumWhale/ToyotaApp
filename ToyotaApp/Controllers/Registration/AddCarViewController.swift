@@ -81,7 +81,7 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
             field?.toggle(state: fieldHasError ? .error : .normal)
         }
 
-        if let plate = plateTextField.text, !plate.isEmpty {
+        if let plate = plateTextField.text, plate.isNotEmpty {
             if plate.count != 12 {
                 plateTextField.toggle(state: .error)
                 validated = false
@@ -135,7 +135,7 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
         view.endEditing(true)
         let index = picker.selectedRow
         textField.text = setProperty(index)
-        if textField.text != nil || !textField.text!.isEmpty {
+        if textField.text != nil || textField.text!.isNotEmpty {
             textField.toggle(state: .normal)
         }
     }

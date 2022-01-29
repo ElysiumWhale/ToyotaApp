@@ -21,6 +21,6 @@ class ValidationRule {
 
 extension ValidationRule {
     static let personalInfo = ValidationRule { text in
-        text != nil && !text!.isEmpty && text!.count < 25
+        text != nil && text!.isNotEmpty && text!.count < 25
     }
 }

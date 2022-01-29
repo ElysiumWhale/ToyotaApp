@@ -19,6 +19,10 @@ extension Collection {
     func any(_ condition: (Self.Element) -> Bool) -> Bool {
         first(where: condition) != nil
     }
+
+    var isNotEmpty: Bool {
+        !isEmpty
+    }
 }
 
 // MARK: - Years strings

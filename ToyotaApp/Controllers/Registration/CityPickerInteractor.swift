@@ -36,7 +36,7 @@ class CityPickerInteractor {
     }()
 
     func configure(with cities: [City]) {
-        if !cities.isEmpty {
+        if cities.isNotEmpty {
             self.cities = cities
         }
     }

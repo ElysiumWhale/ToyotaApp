@@ -103,7 +103,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     @objc private func carDidSelect(sender: Any?) {
         view.endEditing(true)
-        guard let cars = user?.getCars.array, !cars.isEmpty else {
+        guard let cars = user?.getCars.array, cars.isNotEmpty else {
             return
         }
 

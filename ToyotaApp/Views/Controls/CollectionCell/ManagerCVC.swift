@@ -19,7 +19,7 @@ import Nuke
         infoLabel.text = "\(manager.phone) \(manager.email)"
         configureShadow(with: cornerRadius)
 
-        guard !manager.imageUrl.isEmpty,
+        guard manager.imageUrl.isNotEmpty,
               let url = NetworkService.buildImageUrl(manager.imageUrl) else {
                   return
               }

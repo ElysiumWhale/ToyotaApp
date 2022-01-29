@@ -128,7 +128,7 @@ class AddCarInteractor {
     private func saveCar(with id: String) {
         guard let selectedModel = selectedModel,
               let selectedColor = selectedColor,
-              !selectedYear.isEmpty, !vin.isEmpty else {
+              selectedYear.isNotEmpty, vin.isNotEmpty else {
             return
         }
 

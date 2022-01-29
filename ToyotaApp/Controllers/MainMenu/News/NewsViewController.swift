@@ -40,7 +40,7 @@ class NewsViewController: RefreshableController, PickerController {
     }
 
     func startRefreshing() {
-        if !news.isEmpty {
+        if news.isNotEmpty {
             news = []
             refreshableView.reloadData()
         }

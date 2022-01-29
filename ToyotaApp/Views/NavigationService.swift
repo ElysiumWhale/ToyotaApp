@@ -61,7 +61,7 @@ class NavigationService {
                                                 identifier: ViewControllers) -> UINavigationController {
         let controller: UINavigationController = storyboard.instantiate(identifier)
         controller.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-        if !controllers.isEmpty {
+        if controllers.isNotEmpty {
             controller.setViewControllers(controllers, animated: false)
         }
         return controller

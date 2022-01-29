@@ -130,7 +130,7 @@ extension DealerViewController {
             return
         }
 
-        if let showrooms = KeychainManager<Showrooms>.get()?.value, !showrooms.isEmpty,
+        if let showrooms = KeychainManager<Showrooms>.get()?.value, showrooms.isNotEmpty,
            showrooms.any({ $0.id == showroom.id }) {
             perform(segue: segueCode)
             return

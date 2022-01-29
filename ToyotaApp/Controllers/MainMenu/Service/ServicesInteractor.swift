@@ -39,7 +39,7 @@ class ServicesInteractor {
 
     var selectedShowroomIndex: Int? {
         guard let showroom = selectedShowroom,
-              !showrooms.isEmpty else {
+              showrooms.isNotEmpty else {
             return nil
         }
 
@@ -51,7 +51,7 @@ class ServicesInteractor {
     }
 
     func selectShowroom(for row: Int) {
-        guard !showrooms.isEmpty, showrooms.indices.contains(row),
+        guard showrooms.isNotEmpty, showrooms.indices.contains(row),
               showrooms[row].id != selectedShowroom?.id else {
             return
         }

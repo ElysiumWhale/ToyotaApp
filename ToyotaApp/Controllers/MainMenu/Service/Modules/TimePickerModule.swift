@@ -32,7 +32,7 @@ class TimePickerModule: NSObject, IServiceModule {
     private var timeRows = (date: 0, time: 0)
 
     private var selectedDate: (date: String, time: String)? {
-        guard !dates.isEmpty else {
+        guard dates.isNotEmpty else {
             return nil
         }
 
@@ -72,8 +72,9 @@ class TimePickerModule: NSObject, IServiceModule {
         }
 
         var queryParams: RequestItems = [(.carInfo(.showroomId), showroomId)]
-        !params.isEmpty ? queryParams.append(contentsOf: params)
-                        : queryParams.append((.services(.serviceId), serviceType.id))
+        params.isNotEmpty
+            ? queryParams.append(contentsOf: params)
+            : queryParams.append((.services(.serviceId), serviceType.id))
 
         NetworkService.makeRequest(page: .services(.getFreeTime),
                                    params: queryParams,
@@ -123,7 +124,7 @@ class TimePickerModule: NSObject, IServiceModule {
 
         if hour < 20 {
             times = TimeMap.getFullSchedule(after: hour)
-            if !times.isEmpty {
+            if times.isNotEmpty {
                 dates.append(FreeTime(date: date, freeTime: times))
             }
         }
@@ -147,8 +148,7 @@ extension TimePickerModule: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
             case 0: return dates.count
-            case 1: return dates.isEmpty ? 0 :
-                    dates[rowIn(component: 0)].freeTime.count
+            case 1: return dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime.count : 0
             default: return 0
         }
     }
@@ -171,9 +171,8 @@ extension TimePickerModule: UIPickerViewDelegate {
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
         switch component {
-            case 1: pickerLabel.text = dates.isEmpty ? .empty :
-                    dates[rowIn(component: 0)].freeTime[row].hourAndMinute
-            case 0: pickerLabel.text = dates.isEmpty ? .empty : dates[row].date.asString(.display)
+            case 0: pickerLabel.text = dates.isNotEmpty ? dates[row].date.asString(.display) : .empty
+            case 1: pickerLabel.text = dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime[row].hourAndMinute : .empty
             default: pickerLabel.text = .empty
         }
         return pickerLabel
