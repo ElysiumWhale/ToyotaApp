@@ -134,7 +134,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="s7P-0B-VIf">
                                             <color key="tintColor" name="SecondarySignatureRed"/>
                                             <connections>
-                                                <action selector="doneDidPress:" destination="R2J-JN-bFz" id="Xt2-mC-Zfl"/>
+                                                <action selector="customDismissWithSender:" destination="R2J-JN-bFz" id="Noc-d7-zbM"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -579,7 +579,7 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не подтверждена" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRH-ht-V1G">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не подтверждена" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRH-ht-V1G">
                                                     <rect key="frame" x="12" y="293" width="142.5" height="23"/>
                                                     <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="16"/>
                                                     <color key="textColor" name="SignatureRed"/>
@@ -813,7 +813,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Готово" id="Eqd-3c-9Rz">
                                             <color key="tintColor" name="SecondarySignatureRed"/>
                                             <connections>
-                                                <action selector="doneDidPressed:" destination="Geg-Qm-TUc" id="jge-qY-Thg"/>
+                                                <action selector="doneDidPressed:" destination="Geg-Qm-TUc" id="Azx-zS-HKT"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
