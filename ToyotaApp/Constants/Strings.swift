@@ -139,14 +139,6 @@ extension String {
     }
 }
 
-// MARK: - DateFormatting
-extension String {
-    static let ddMMyyyy = "dd.MM.yyyy"
-    static let MMddyyyy = "MM.dd.yyyy"
-    static let yyyyMMdd = "yyyy-MM-dd"
-    static let yyyyMMddTime = "yyyy-MM-dd HH:mm:ss"
-}
-
 extension StringProtocol {
     var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
