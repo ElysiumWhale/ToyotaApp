@@ -1,14 +1,14 @@
 import UIKit
 
+// MARK: - BookingCell
 class BookingCell: TableCell {
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var contentLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var carLabel: UILabel!
     @IBOutlet private var licenseLabel: UILabel!
-    @IBOutlet private var statusView: UIView!
-    @IBOutlet private var statusImage: UIImageView!
-    @IBOutlet private var statusLabel: UILabel!
+    @IBOutlet private var statusView: StatusView!
+    @IBOutlet private var timeView: TimeView!
 
     class var identifier: UITableView.TableCells { .bookingCell }
 
@@ -17,12 +17,19 @@ class BookingCell: TableCell {
         contentLabel.text = booking.serviceName
         carLabel.text = booking.carName.isEmptyOrWithoutAuto ? .empty : booking.carName
         licenseLabel.text = booking.licensePlate.uppercased()
-        dateLabel.text = DateFormatter.display.string(from: booking.date)
-        configureStatusView(with: booking)
+        dateLabel.text = booking.date.asString(.display)
+        statusView.configure(with: booking)
+        timeView.configure(with: booking)
     }
+}
 
-    private func configureStatusView(with booking: Booking) {
-        statusView.layer.cornerRadius = 5
+// MARK: - StatusView
+class StatusView: UIView {
+    @IBOutlet private var statusLabel: UILabel!
+    @IBOutlet private var statusImage: UIImageView!
+
+    func configure(with booking: Booking) {
+        layer.cornerRadius = 5
         var bookingDate = booking.bookingDate
         let creationDate = booking.creationDate ?? Date()
 
@@ -33,14 +40,64 @@ class BookingCell: TableCell {
             }
         }
 
-        let (color, text) = booking.status.getAppearance(for: bookingDate ?? creationDate)
+        let (color, text) = statusAppearance(for: booking.status,
+                                            date: bookingDate ?? creationDate)
         statusLabel.text = text
         statusImage.tintColor = color
+    }
+
+    private func statusAppearance(for status: BookingStatus, date: Date) -> (UIColor, String) {
+        switch status {
+            case .future: return status.inFuture(date: date)
+                            ? (.systemYellow, .common(.bookingInFuture))
+                            : (.systemRed, .common(.bookingCancelled))
+            case .cancelled: return (.systemRed, .common(.bookingCancelled))
+            case .done: return (.systemGreen, .common(.bookingComplete))
+        }
+    }
+}
+
+// MARK: - TimeView
+class TimeView: UIView {
+    @IBOutlet private(set) var timeLabel: UILabel!
+    @IBOutlet private(set) var timeImage: UIImageView!
+
+    func configure(with booking: Booking) {
+        layer.cornerRadius = 5
+        if let text = booking.bookingTime {
+            timeLabel.text = text
+            let (image, color) = timeAppearance(for: booking)
+            timeImage.image = image
+            timeImage.tintColor = color
+        } else {
+            isHidden = true
+        }
+    }
+
+    private func timeAppearance(for booking: Booking) -> (UIImage, UIColor) {
+        switch booking.status {
+            case .future:
+                return booking.status.inFuture(date: booking.date)
+                    ? (.timeAlert, .systemRed)
+                    : (.timeDone, .systemGray)
+            case .cancelled: return (.timeDone, .systemGray)
+            case .done: return (.timeDone, .systemGreen)
+        }
     }
 }
 
 private extension String {
     var isEmptyOrWithoutAuto: Bool {
         self.isEmpty || self == "Без авто"
+    }
+}
+
+private extension UIImage {
+    static var timeDone: UIImage {
+        UIImage(systemName: "clock.badge.checkmark.fill")!
+    }
+
+    static var timeAlert: UIImage {
+        UIImage(systemName: "clock.badge.exclamationmark.fill")!
     }
 }
