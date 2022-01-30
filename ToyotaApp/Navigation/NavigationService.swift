@@ -1,35 +1,5 @@
 import UIKit
 
-// MARK: - Context for navigation
-struct CheckUserContext {
-    enum States {
-        case empty
-        case startRegister
-        case register(_ page: Int, _ user: RegisteredUser)
-        case main(_ user: RegisteredUser?)
-    }
-
-    let response: CheckUserOrSmsCodeResponse
-
-    var state: States {
-        if response.registerStatus == nil {
-            if response.registerPage == nil || response.registerPage == 1 {
-                return .startRegister
-            } else if let page = response.registerPage {
-                return response.registeredUser != nil
-                    ? .register(page, response.registeredUser!)
-                    : .empty
-            }
-        }
-
-        if response.registerStatus == 1, response.registerPage == nil {
-            return .main(response.registeredUser)
-        }
-
-        return .empty
-    }
-}
-
 enum RegistrationStates {
     case error(message: String)
     case firstPage
@@ -47,10 +17,10 @@ class NavigationService {
                 loadMain(from: user)
             case .startRegister:
                 loadRegister(.firstPage)
-            case .register(let page, let user):
+            case .register(let page, let user, let cities):
                 switch page {
                     case 2:
-                        loadRegister(.secondPage(user.profile, context.response.cities))
+                        loadRegister(.secondPage(user.profile, cities))
                     default: fallbackCompletion()
                 }
         }
