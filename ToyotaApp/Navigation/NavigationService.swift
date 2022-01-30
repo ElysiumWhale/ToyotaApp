@@ -125,7 +125,7 @@ private extension NavigationService {
 }
 
 // MARK: - setUserForChildren
-private extension UITabBarController {
+extension UITabBarController {
     func setUserForChildren(_ user: UserProxy) {
         viewControllers?.forEach { controller in
             if let navigationController = controller as? UINavigationController {
