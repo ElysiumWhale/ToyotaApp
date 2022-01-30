@@ -68,9 +68,8 @@ extension BookingsViewController: UITableViewDataSource {
 extension BookingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
-        UIView.animate(
-            withDuration: 0.1,
-            delay: 0.05,
-            animations: { cell.alpha = 1 })
+        UIView.animate(withDuration: 0.1,
+                       delay: 0.05,
+                       animations: { cell.alpha = 1 })
     }
 }

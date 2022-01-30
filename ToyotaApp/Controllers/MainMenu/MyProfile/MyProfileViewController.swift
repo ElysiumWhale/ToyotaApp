@@ -24,7 +24,7 @@ class MyProfileViewController: UIViewController {
     private lazy var fields = [firstNameTextField,
                                secondNameTextField,
                                lastNameTextField,
-                               emailTextField].compactMap({ $0 })
+                               emailTextField].compactMap { $0 }
 
     // MARK: - Properties
     private var user: UserProxy! {

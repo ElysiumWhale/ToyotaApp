@@ -70,9 +70,7 @@ extension UIViewController {
 
     func dismissNavigationWithDispatch(animated: Bool, completion: @escaping Closure = { }) {
         DispatchQueue.main.async { [self] in
-            if let navigation = navigationController {
-                navigation.dismiss(animated: animated, completion: completion)
-            }
+            navigationController?.dismiss(animated: animated, completion: completion)
         }
     }
 

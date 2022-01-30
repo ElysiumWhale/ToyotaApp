@@ -25,6 +25,14 @@ struct Profile: Codable {
     var birthdayDate: Date? {
         birthday?.asDate(with: .server)
     }
+
+    func toDomain() -> Person {
+        Person(firstName: firstName,
+               lastName: lastName,
+               secondName: secondName,
+               email: email,
+               birthday: birthday)
+    }
 }
 
 // MARK: - Car

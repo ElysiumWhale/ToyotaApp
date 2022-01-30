@@ -45,20 +45,12 @@ class Person: Keychainable {
     var email: String
     var birthday: String
 
-    init(firstName: String, lastName: String, secondName: String, email: String, birthday: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.secondName = secondName
-        self.email = email
-        self.birthday = birthday
-    }
-
-    class func toDomain(_ profile: Profile) -> Person {
-        Person(firstName: profile.firstName ?? .empty,
-               lastName: profile.lastName ?? .empty,
-               secondName: profile.secondName ?? .empty,
-               email: profile.email ?? .empty,
-               birthday: profile.birthday ?? .empty)
+    init(firstName: String?, lastName: String?, secondName: String?, email: String?, birthday: String?) {
+        self.firstName = firstName ?? .empty
+        self.lastName = lastName ?? .empty
+        self.secondName = secondName ?? .empty
+        self.email = email ?? .empty
+        self.birthday = birthday ?? .empty
     }
 }
 
