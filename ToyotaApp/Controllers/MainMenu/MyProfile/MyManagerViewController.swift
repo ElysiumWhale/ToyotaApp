@@ -27,12 +27,13 @@ class MyManagerViewController: UIViewController {
                                    handler: managersRequestHandler)
     }
 
-    @IBAction func doneDidPress(_ sender: Any) {
-        dismiss(animated: true)
-    }
-
     private func handle(_ response: ManagersResponse) {
         managers = response.managers
+        #if DEBUG
+        if response.managers.isEmpty {
+            managers = Mocks.createManagers()
+        }
+        #endif
         managersCollection.reloadData()
         if response.managers.isEmpty {
             managersCollection.setBackground(text: .background(.noManagers))
