@@ -18,7 +18,8 @@ class SettingsViewController: UIViewController {
         PopUp.displayChoice(with: .common(.confirmation),
                             description: .question(.changeNumber),
                             confirmText: .common(.yes), declineText: .common(.cancel)) { [self] in
-            NavigationService.loadAuth(from: navigationController!, with: user.getNotificator)
+            let module = AuthFlow.authModule(authType: .changeNumber(with: user.getNotificator))
+            navigationController?.pushViewController(module, animated: true)
         }
     }
 
