@@ -54,14 +54,14 @@ class PopUp {
                              description: String,
                              confirmText: String,
                              declineText: String,
-                             confirmCompletion: @escaping Closure) {
+                             onConfirm: @escaping Closure) {
 
         DispatchQueue.main.async {
             let message = buildAlertWithChoiceMessage(with: title,
                                                       description: description,
                                                       confirmText: confirmText,
                                                       declineText: declineText,
-                                                      confirmCompletion: confirmCompletion)
+                                                      onConfirm: onConfirm)
             display(alert: message)
         }
     }
@@ -69,13 +69,13 @@ class PopUp {
     class func displayMessage(with title: String,
                               description: String,
                               buttonText: String = .common(.ok),
-                              dismissCompletion: @escaping Closure = { }) {
+                              onDismiss: @escaping Closure = { }) {
 
         DispatchQueue.main.async {
             let message = buildAlertMessage(title: title,
                                             description: description,
                                             buttonText: buttonText,
-                                            dismissCompletion)
+                                            onDismiss)
 
             display(alert: message)
         }
@@ -87,10 +87,10 @@ class PopUp {
                                                    description: String,
                                                    confirmText: String,
                                                    declineText: String,
-                                                   confirmCompletion: @escaping Closure) -> EKAlertMessage {
+                                                   onConfirm: @escaping Closure) -> EKAlertMessage {
         let titleLabel = LabelContent(text: title, style: titleLabelStyle)
         let descrLabel = LabelContent(text: description, style: messageLabelStyle)
-        let buttonBar = buildChoiceButtons(confirmText, declineText, confirmCompletion)
+        let buttonBar = buildChoiceButtons(confirmText, declineText, onConfirm)
 
         return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
                               buttonBarContent: buttonBar)
@@ -99,12 +99,12 @@ class PopUp {
     class private func buildAlertMessage(title: String,
                                          description: String,
                                          buttonText: String,
-                                         _ dismissCompletion: @escaping Closure = { }) -> EKAlertMessage {
+                                         _ onDismiss: @escaping Closure = { }) -> EKAlertMessage {
 
         let titleLabel = LabelContent(text: title, style: titleLabelStyle)
         let descrLabel = LabelContent(text: description, style: messageLabelStyle)
 
-        let buttonBar = buildSingleButton(text: buttonText, dismissCompletion)
+        let buttonBar = buildSingleButton(text: buttonText, onDismiss)
 
         return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
                               buttonBarContent: buttonBar)
@@ -113,13 +113,13 @@ class PopUp {
     // MARK: - Buttons building
 
     class private func buildSingleButton(text: String,
-                                         _ dismissCompletion: @escaping Closure = { }) -> ButtonBarContent {
+                                         _ onDismiss: @escaping Closure = { }) -> ButtonBarContent {
         let buttonLabel = LabelContent(text: text, style: titleLabelStyle)
 
         let button = ButtonContent(label: buttonLabel,
                                    backgroundColor: .clear,
                                    highlightedBackgroundColor: redColor) {
-            dismissCompletion()
+            onDismiss()
             SwiftEntryKit.dismiss()
         }
 
@@ -130,13 +130,13 @@ class PopUp {
 
     class private func buildChoiceButtons(_ confirmText: String,
                                           _ declineText: String,
-                                          _ confirmCompletion: @escaping Closure) -> ButtonBarContent {
+                                          _ onConfirm: @escaping Closure) -> ButtonBarContent {
 
         let buttonContent = LabelContent(text: confirmText, style: titleLabelStyle)
         let confirmButton = ButtonContent(label: buttonContent,
                                           backgroundColor: .clear,
                                           highlightedBackgroundColor: redColor) {
-            confirmCompletion()
+            onConfirm()
             SwiftEntryKit.dismiss()
         }
 
@@ -167,21 +167,21 @@ extension PopUp {
             case .error(let text):
                 displayMessage(with: .common(.error),
                                description: text,
-                               dismissCompletion: completion)
+                               onDismiss: completion)
             case .warning(let text):
                 displayMessage(with: .common(.warning),
                                description: text,
-                               dismissCompletion: completion)
+                               onDismiss: completion)
             case .success(let text):
                 displayMessage(with: .common(.success),
                                description: text,
-                               dismissCompletion: completion)
+                               onDismiss: completion)
             case .choise(let text):
                 displayChoice(with: .common(.actionConfirmation),
                               description: text,
                               confirmText: .common(.yes),
                               declineText: .common(.cancel),
-                              confirmCompletion: completion)
+                              onConfirm: completion)
         }
     }
 }
