@@ -151,7 +151,7 @@ extension PersonalInfoViewController {
                           models: response.models ?? [],
                           colors: response.colors ?? [])
         }
-        KeychainManager.set(Person.toDomain(configuredProfile!))
+        KeychainManager.set(configuredProfile!.toDomain())
     }
 
     private func handleUI(isSuccess: Bool) {
