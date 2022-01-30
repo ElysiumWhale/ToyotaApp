@@ -156,10 +156,13 @@ extension UIStoryboard {
 
     /// Causes **fatalError()** when `ViewController` is not mapped to identifier
     func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
-        guard let result = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController else {
-            fatalError("Identifier \(viewController) is not mapped to type \(ViewController.Type.self)")
+        let controller = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController
+        if let result = controller {
+            return result
         }
-        return result
+
+        assertionFailure("Identifier \(viewController) is not mapped to type \(ViewController.Type.self)")
+        return ViewController()
     }
 }
 
@@ -178,9 +181,10 @@ extension UITableView {
         let cell = dequeueReusableCell(withIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
         if let result = cell {
             return result
-        } else {
-            fatalError("Can't dequeue cell.")
         }
+
+        assertionFailure("Can't dequeue cell.")
+        return TCell()
     }
 }
 
@@ -198,9 +202,10 @@ extension UICollectionView {
         let cell = dequeueReusableCell(withReuseIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
         if let result = cell {
             return result
-        } else {
-            fatalError("Can't dequeue cell.")
         }
+
+        assertionFailure("Can't dequeue cell.")
+        return TCell()
     }
 }
 
@@ -213,7 +218,9 @@ extension UICollectionView {
             return
         }
 
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: [.curveEaseOut]) {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2,
+                                                       delay: 0,
+                                                       options: [.curveEaseOut]) {
             changeAction(cell)
         }
     }
@@ -223,12 +230,13 @@ extension UICollectionView {
 extension UIStoryboardSegue {
     var code: SegueIdentifiers? {
         guard let id = identifier else {
-            print("\nWarning: Segue code is empty\n")
+            assertionFailure("\nWarning: Segue code is empty\n")
             return nil
         }
 
         guard let result = SegueIdentifiers(rawValue: id) else {
-            fatalError("Identifier \(id) is not mapped to storyboard segue!")
+            assertionFailure("Identifier \(id) is not mapped to storyboard segue!")
+            return nil
         }
 
         return result
