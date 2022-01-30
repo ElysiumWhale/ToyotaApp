@@ -62,4 +62,9 @@ extension Bool {
     static var noCarsMessageIsShown: Self {
         DefaultsManager.getUserInfo(for: .noCarsMessage) ?? false
     }
+
+    static var cityIsSelected: Self {
+        let city: City? = DefaultsManager.getUserInfo(for: .selectedCity)
+        return city != nil
+    }
 }

@@ -67,6 +67,8 @@ enum ViewControllers: String {
     case connectionLost = "ConnectionLostViewController"
     /// AuthViewController
     case auth = "AuthViewController"
+    /// SmsCodeViewController
+    case code = "SmsCodeViewController"
     /// MainMenuViewController
     case mainMenu = "MainMenuViewController"
     /// OffersViewController
