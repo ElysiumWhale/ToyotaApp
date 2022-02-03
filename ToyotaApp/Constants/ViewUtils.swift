@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 /// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
 /// In **rest** cases it will return `true`.
@@ -154,6 +154,7 @@ public struct TimeMap {
     }
 
     static let clientMap: [Int: DateComponents] = [
+        -1: .init(hour: 00, minute: 01),
         14: .init(hour: 07, minute: 00), 15: .init(hour: 07, minute: 30),
         16: .init(hour: 08, minute: 00), 17: .init(hour: 08, minute: 30),
         18: .init(hour: 09, minute: 00), 19: .init(hour: 09, minute: 30),

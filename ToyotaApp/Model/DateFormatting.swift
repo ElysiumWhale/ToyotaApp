@@ -8,11 +8,11 @@ extension DateComponents {
     var hourAndMinute: String {
         var hourStr = "00"
         var minStr = "00"
-        if let hour = hour {
-            hourStr = "\(hour)"
+        if let hour = hour, hour != 0 {
+            hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
         }
         if let min = minute, min != 0 {
-            minStr = "\(min)"
+            minStr = min > 9 ? "\(min)" : "0\(min)"
         }
         return "\(hourStr):\(minStr)"
     }
@@ -36,6 +36,18 @@ extension String {
 extension Date {
     func asString(_ formatter: DateFormatters) -> String {
         formatter.string(from: self)
+    }
+
+    var day: Int {
+        Calendar.current.component(.day, from: self)
+    }
+
+    var hour: Int {
+        Calendar.current.component(.hour, from: self)
+    }
+
+    var minute: Int {
+        Calendar.current.component(.minute, from: self)
     }
 }
 
