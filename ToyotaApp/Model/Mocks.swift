@@ -34,8 +34,10 @@ public class Mocks {
 }
 
 extension Booking {
-    static let mock = Booking(bDate: "2021.09.11", cDate: "2021.09.11", startTime: "21",
-                              latitude: "89.12", longitude: "-35.54", status: .done, carName: "Toyota RAV4",
-                              licensePlate: "А344РС163RUS", showroomName: "Тойота Центр Самара Юг",
-                              serviceName: "Плановый технический осмотр", postName: "Samara Gorod")
+    static var todayNotInFuture: Booking {
+        .init(bDate: Date().asString(.server), cDate: .empty, startTime: "-1",
+              latitude: .empty, longitude: .empty, status: .future,
+              carName: "Toyota RAV4", licensePlate: "А344РС163RUS", showroomName: "Mock Центр Самара Юг",
+              serviceName: "Mock Mock Mock", postName: .empty)
+    }
 }
