@@ -216,12 +216,12 @@ extension Booking {
         bookingDate ?? creationDate ?? Date()
     }
 
-    var bookingTime: String? {
+    var bookingTime: DateComponents? {
         guard let key = Int(startTime) else {
             return nil
         }
 
-        return TimeMap.clientMap[key]?.hourAndMinute
+        return TimeMap.clientMap[key]
     }
 }
 

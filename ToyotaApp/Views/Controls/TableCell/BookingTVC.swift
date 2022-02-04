@@ -40,17 +40,17 @@ class StatusView: UIView {
             }
         }
 
-        let (color, text) = statusAppearance(for: booking.status,
-                                            date: bookingDate ?? creationDate)
+        let (color, text) = statusAppearance(for: booking, date: bookingDate ?? creationDate)
         statusLabel.text = text
         statusImage.tintColor = color
     }
 
-    private func statusAppearance(for status: BookingStatus, date: Date) -> (UIColor, String) {
-        switch status {
-            case .future: return status.inFuture(date: date)
-                            ? (.systemYellow, .common(.bookingInFuture))
-                            : (.systemRed, .common(.bookingCancelled))
+    private func statusAppearance(for booking: Booking, date: Date) -> (UIColor, String) {
+        switch booking.status {
+            case .future:
+                return booking.date.inFuture(concreteTime: booking.bookingTime)
+                    ? (.systemYellow, .common(.bookingInFuture))
+                    : (.systemRed, .common(.bookingCancelled))
             case .cancelled: return (.systemRed, .common(.bookingCancelled))
             case .done: return (.systemGreen, .common(.bookingComplete))
         }
@@ -64,7 +64,7 @@ class TimeView: UIView {
 
     func configure(with booking: Booking) {
         layer.cornerRadius = 5
-        if let text = booking.bookingTime {
+        if let text = booking.bookingTime?.hourAndMinute {
             timeLabel.text = text
             let (image, color) = timeAppearance(for: booking)
             timeImage.image = image
@@ -77,7 +77,7 @@ class TimeView: UIView {
     private func timeAppearance(for booking: Booking) -> (UIImage, UIColor) {
         switch booking.status {
             case .future:
-                return booking.status.inFuture(date: booking.date)
+                return booking.date.inFuture(concreteTime: booking.bookingTime)
                     ? (.timeAlert, .systemRed)
                     : (.timeDone, .systemGray)
             case .cancelled: return (.timeDone, .systemGray)
