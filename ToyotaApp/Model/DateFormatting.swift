@@ -39,15 +39,33 @@ extension Date {
     }
 
     var day: Int {
-        Calendar.current.component(.day, from: self)
+        calendar.component(.day, from: self)
     }
 
     var hour: Int {
-        Calendar.current.component(.hour, from: self)
+        calendar.component(.hour, from: self)
     }
 
     var minute: Int {
-        Calendar.current.component(.minute, from: self)
+        calendar.component(.minute, from: self)
+    }
+
+    func inFuture(concreteTime: DateComponents? = nil) -> Bool {
+        let now = Date()
+        guard self < now else {
+            return true
+        }
+
+        let hour: Int = concreteTime?.hour ?? self.hour
+        let minute: Int = concreteTime?.minute ?? self.minute
+
+        return calendar.isDateInToday(self)
+                && now.hour < hour
+                && now.minute < minute
+    }
+
+    var calendar: Calendar {
+        Calendar.current
     }
 }
 
@@ -133,10 +151,14 @@ extension DateFormatter {
     }
 }
 
-// MARK: - Date formats
+// MARK: - Date formatting masks
 extension String {
+    /// *dd.MM.yyyy*
     static let ddMMyyyy = "dd.MM.yyyy"
+    /// *MM.dd.yyyy*
     static let MMddyyyy = "MM.dd.yyyy"
+    /// *yyyy-MM-dd*
     static let yyyyMMdd = "yyyy-MM-dd"
+    /// *yyyy-MM-dd HH:mm:ss*
     static let yyyyMMddTime = "yyyy-MM-dd HH:mm:ss"
 }
