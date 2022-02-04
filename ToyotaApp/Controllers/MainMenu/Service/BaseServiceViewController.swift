@@ -40,6 +40,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
+    var loadingStopped: Bool = false
     var hasCarSelection: Bool {
         true
     }

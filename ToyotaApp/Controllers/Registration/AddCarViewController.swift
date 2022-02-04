@@ -17,6 +17,8 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
 
     private let interactor = AddCarInteractor()
 
+    var loadingStopped: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.view = self

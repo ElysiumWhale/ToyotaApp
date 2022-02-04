@@ -36,6 +36,8 @@ class MyCarsViewController: UIViewController, Loadable {
             }
     }()
 
+    var loadingStopped: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         carsCollection.delaysContentTouches = false

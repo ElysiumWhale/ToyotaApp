@@ -111,18 +111,27 @@ protocol Loadable: UIViewController {
 
     func startLoading()
     func stopLoading()
+    var loadingStopped: Bool { get set }
 }
 
 extension Loadable {
     func startLoading() {
-        view.addSubview(loadingView)
-        loadingView.frame = view.frame
-        loadingView.startAnimating()
-        loadingView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let ref = self, !ref.loadingStopped else {
+                self?.loadingStopped = false
+                return
+            }
+
+            ref.view.addSubview(ref.loadingView)
+            ref.loadingView.frame = ref.view.frame
+            ref.loadingView.startAnimating()
+            ref.loadingView.fadeIn()
+        }
     }
 
     func stopLoading() {
-        loadingView.fadeOut { [weak self] in
+        loadingStopped = true
+        loadingView.fadeOut(1) { [weak self] in
             self?.loadingView.stopAnimating()
             self?.loadingView.removeFromSuperview()
         }
