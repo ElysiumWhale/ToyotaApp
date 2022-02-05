@@ -25,6 +25,16 @@ class TimePickerView: UIView {
         setupLayout()
     }
 
+    func configure(appearance: [ModuleAppearances]) {
+        for appearance in appearance {
+            switch appearance {
+                case .title(let title):
+                    dateTimeLabel.text = title
+                default: return
+            }
+        }
+    }
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             dateTimeLabel.topAnchor.constraint(equalTo: topAnchor),

@@ -56,13 +56,7 @@ class TimePickerModule: NSObject, IServiceModule {
 
     // MARK: - Public methods
     func configure(appearance: [ModuleAppearances]) {
-        for appearance in appearance {
-            switch appearance {
-                case .title(let title):
-                    internalView.dateTimeLabel.text = title
-                default: return
-            }
-        }
+        internalView.configure(appearance: appearance)
     }
 
     func start(with params: RequestItems) {

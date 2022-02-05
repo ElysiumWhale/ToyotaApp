@@ -32,6 +32,18 @@ class PickerModuleView: UIView {
         setupLayout()
     }
 
+    func configure(appearance: [ModuleAppearances]) {
+        for appearance in appearance {
+            switch appearance {
+                case .title(let title):
+                    serviceNameLabel.text = title
+                case .placeholder(let placeholder):
+                    textField.placeholder = placeholder
+                default: return
+            }
+        }
+    }
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             serviceNameLabel.topAnchor.constraint(equalTo: topAnchor),

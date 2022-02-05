@@ -28,15 +28,7 @@ class PickerModule: NSObject, IServiceModule {
     }
 
     func configure(appearance: [ModuleAppearances]) {
-        for appearance in appearance {
-            switch appearance {
-                case .title(let title):
-                    internalView.serviceNameLabel.text = title
-                case .placeholder(let placeholder):
-                    internalView.textField.placeholder = placeholder
-                default: return
-            }
-        }
+        internalView.configure(appearance: appearance)
     }
 
     func start(with params: RequestItems) {
