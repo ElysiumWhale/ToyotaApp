@@ -1,7 +1,7 @@
 import UIKit
 
 class PickerModuleView: UIView {
-    private(set) var servicePicker: UIPickerView = UIPickerView()
+    let servicePicker: UIPickerView = UIPickerView()
 
     private(set) lazy var serviceNameLabel: UILabel = {
         let label = UILabel()
@@ -24,17 +24,9 @@ class PickerModuleView: UIView {
         return field
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureSubviews()
-    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureSubviews()
-    }
-
-    private func configureSubviews() {
         addSubview(serviceNameLabel)
         addSubview(textField)
         setupLayout()
@@ -44,11 +36,10 @@ class PickerModuleView: UIView {
         NSLayoutConstraint.activate([
             serviceNameLabel.topAnchor.constraint(equalTo: topAnchor),
             serviceNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            serviceNameLabel.leadingAnchor.constraint(equalTo: trailingAnchor),
+            serviceNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textField.leadingAnchor.constraint(equalTo: trailingAnchor),
-            textField.widthAnchor.constraint(equalTo: widthAnchor),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
             textField.heightAnchor.constraint(equalToConstant: 45),
             serviceNameLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10)
         ])

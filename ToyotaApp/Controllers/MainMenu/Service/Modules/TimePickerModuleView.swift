@@ -17,17 +17,9 @@ class TimePickerView: UIView {
         return label
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureSubviews()
-    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureSubviews()
-    }
-
-    private func configureSubviews() {
         addSubview(dateTimeLabel)
         addSubview(datePicker)
         setupLayout()
@@ -37,11 +29,10 @@ class TimePickerView: UIView {
         NSLayoutConstraint.activate([
             dateTimeLabel.topAnchor.constraint(equalTo: topAnchor),
             dateTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dateTimeLabel.leadingAnchor.constraint(equalTo: trailingAnchor),
+            dateTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
             datePicker.leadingAnchor.constraint(equalTo: leadingAnchor),
-            datePicker.leadingAnchor.constraint(equalTo: trailingAnchor),
-            datePicker.widthAnchor.constraint(equalTo: widthAnchor, constant: 0),
+            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor),
             datePicker.heightAnchor.constraint(equalToConstant: 150),
             dateTimeLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -5)
         ])

@@ -26,17 +26,9 @@ class MapModuleView: UIView {
         return map
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureSubviews()
-    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureSubviews()
-    }
-
-    private func configureSubviews() {
         addSubview(label)
         addSubview(map)
         setupLayout()
