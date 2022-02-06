@@ -22,6 +22,7 @@ class MapModule: NSObject, IServiceModule {
         }
     }
 
+    weak var nextModule: IServiceModule?
     weak var delegate: ModuleDelegate?
 
     init(with type: ServiceType) {

@@ -38,6 +38,7 @@ protocol IServiceModule: AnyObject {
     var view: UIView { get }
     var state: ModuleStates { get }
     var delegate: ModuleDelegate? { get set }
+    var nextModule: IServiceModule? { get set}
 
     func start(with params: RequestItems)
     func customStart<TResponse: IServiceResponse>(page: RequestPath,

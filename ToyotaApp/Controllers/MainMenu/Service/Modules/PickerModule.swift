@@ -19,6 +19,7 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
 
+    weak var nextModule: IServiceModule?
     weak var delegate: ModuleDelegate?
 
     private var array: [IService]?

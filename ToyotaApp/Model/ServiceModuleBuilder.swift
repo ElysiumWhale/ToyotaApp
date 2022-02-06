@@ -65,6 +65,20 @@ class ServiceModuleBuilder {
             default: break
         }
 
-        return modules
+        return modules.chained()
+    }
+}
+
+private extension Array where Element == IServiceModule {
+    func chained() -> Self {
+        guard isNotEmpty else {
+            return self
+        }
+
+        for i in 0...count - 1 {
+            self[i].nextModule = i + 1 <= count - 1 ? self[i + 1] : nil
+        }
+
+        return self
     }
 }

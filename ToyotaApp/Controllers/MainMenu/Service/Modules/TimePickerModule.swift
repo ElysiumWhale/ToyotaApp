@@ -9,6 +9,7 @@ class TimePickerModule: NSObject, IServiceModule {
     var view: UIView { internalView }
 
     weak var delegate: ModuleDelegate?
+    weak var nextModule: IServiceModule?
 
     private(set) var serviceType: ServiceType
 
