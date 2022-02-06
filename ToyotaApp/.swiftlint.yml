@@ -52,6 +52,7 @@ identifier_name:
     min_length: # only min_length
         error: 2 # only error
     excluded: # excluded via string array
+        - i
         - id
         - ok
         - no

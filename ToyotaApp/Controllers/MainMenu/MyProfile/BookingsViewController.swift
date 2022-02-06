@@ -36,6 +36,11 @@ class BookingsViewController: RefreshableController {
     }
 
     private func handle(success response: BookingsResponse) {
+        #if DEBUG
+        var list = response.booking
+        list.append(.todayNotInFuture)
+        let response = BookingsResponse(result: .common(.ok).lowercased(), booking: list, count: list.count)
+        #endif
         bookings = response.booking.sorted(by: { $0.date > $1.date })
         endRefreshing()
         refreshableView.reloadData()
