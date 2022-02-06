@@ -37,7 +37,8 @@ enum ModuleStates {
 protocol IServiceModule: AnyObject {
     var view: UIView { get }
     var state: ModuleStates { get }
-    var delegate: IServiceController? { get set }
+    var delegate: ModuleDelegate? { get set }
+
     func start(with params: RequestItems)
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
                                                   with params: RequestItems,
@@ -60,12 +61,14 @@ extension IServiceModule {
 
 /// Controller which manages `IServiceModule`s.
 /// Configured by `ServiceModuleBuilder`
-protocol IServiceController: UIViewController {
+protocol IServiceController: UIViewController, ModuleDelegate {
     var modules: [IServiceModule] { get }
     var serviceType: ServiceType { get }
     var user: UserProxy? { get }
     var hasCarSelection: Bool { get }
+}
 
+protocol ModuleDelegate: AnyObject {
     func moduleDidUpdate(_ module: IServiceModule)
 }
 

@@ -8,7 +8,7 @@ private struct FreeTime {
 class TimePickerModule: NSObject, IServiceModule {
     var view: UIView { internalView }
 
-    weak var delegate: IServiceController?
+    weak var delegate: ModuleDelegate?
 
     private(set) var serviceType: ServiceType
 

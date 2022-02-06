@@ -19,9 +19,9 @@ class PickerModule: NSObject, IServiceModule {
         }
     }
 
-    private var array: [IService]?
+    weak var delegate: ModuleDelegate?
 
-    weak var delegate: IServiceController?
+    private var array: [IService]?
 
     init(with type: ServiceType) {
         serviceType = type
