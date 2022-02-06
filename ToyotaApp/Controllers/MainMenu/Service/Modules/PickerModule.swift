@@ -39,7 +39,7 @@ class PickerModule: NSObject, IServiceModule {
         var queryParams = params
         queryParams.append((.services(.serviceTypeId), serviceType.id))
         NetworkService.makeRequest(page: .services(.getServices),
-                                   params: queryParams) { [weak self] (response: NetworkResponse<ServicesResponse>) in
+                                   params: queryParams) { [weak self] (response: Response<ServicesResponse>) in
             self?.completion(for: response)
         }
     }
@@ -51,7 +51,7 @@ class PickerModule: NSObject, IServiceModule {
         internalView.textField.text = .empty
 
         NetworkService.makeRequest(page: page,
-                                   params: params) { [weak self] (response: NetworkResponse<TResponse>) in
+                                   params: params) { [weak self] (response: Response<TResponse>) in
             self?.completion(for: response)
         }
     }

@@ -12,8 +12,8 @@ class AuthViewController: UIViewController {
 
     private var type: AuthType = .register
 
-    private lazy var authRequestHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var authRequestHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main)
             .bind { [weak self] _ in
                 self?.handle(isSuccess: true)

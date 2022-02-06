@@ -3,7 +3,7 @@ import Foundation
 protocol IResponse: Codable { }
 
 // MARK: - Default response
-struct Response: IResponse {
+struct SimpleResponse: IResponse {
     let result: String
 
     private enum CodingKeys: String, CodingKey {

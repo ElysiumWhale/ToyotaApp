@@ -41,8 +41,8 @@ class MyProfileViewController: UIViewController {
         didSet { view.endEditing(true) }
     }
 
-    private lazy var updateUserHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var updateUserHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main)
             .bind { [weak self] response in
                 self?.handle(success: response)
@@ -212,7 +212,7 @@ extension MyProfileViewController {
                                    handler: updateUserHandler)
     }
 
-    private func handle(success response: Response) {
+    private func handle(success response: SimpleResponse) {
         user.updatePerson(from: Person(firstName: firstNameTextField.inputText,
                                        lastName: lastNameTextField.inputText,
                                        secondName: secondNameTextField.inputText,

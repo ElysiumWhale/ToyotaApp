@@ -44,8 +44,8 @@ class AddCarInteractor {
             }
     }()
 
-    private lazy var skipAddCarHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var skipAddCarHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main)
             .bind { [weak self] _ in
                 if case .register = self?.type {

@@ -35,8 +35,8 @@ class DealerViewController: UIViewController, PickerController {
             }
     }()
 
-    private lazy var setInfoHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var setInfoHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main)
             .bind { [weak self] data in
                 self?.handleSuccess(response: data)
@@ -152,7 +152,7 @@ extension DealerViewController {
         case success
     }
 
-    private func handleSuccess(response: Response) {
+    private func handleSuccess(response: SimpleResponse) {
         guard let showroom = selectedShowroom,
               let city = selectedCity else {
                   interfaceCompletion(for: .fail(message: .error(.unknownError)))

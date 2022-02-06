@@ -1,7 +1,7 @@
 import Foundation
 
-typealias NetworkResponse<TResponse> = Result<TResponse, ErrorResponse> where TResponse: IResponse
-typealias ResponseCompletion<TResponse> = (NetworkResponse<TResponse>) -> Void where TResponse: IResponse
+typealias Response<TResponse: IResponse> = Result<TResponse, ErrorResponse>
+typealias ResponseHandler<TResponse: IResponse> = (Response<TResponse>) -> Void
 
 class NetworkService {
     private static let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -10,7 +10,7 @@ class NetworkService {
 
     class func makeRequest<TResponse>(page: RequestPath,
                                       params: RequestItems = .empty,
-                                      completion: @escaping ResponseCompletion<TResponse>) where TResponse: IResponse {
+                                      completion: @escaping ResponseHandler<TResponse>) where TResponse: IResponse {
 
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
 

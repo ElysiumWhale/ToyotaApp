@@ -24,8 +24,8 @@ class MyCarsViewController: UIViewController, Loadable {
             }
     }()
 
-    private lazy var removeCarHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var removeCarHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main)
             .bind { [weak self] _ in
                 self?.deleteCarClosure?()

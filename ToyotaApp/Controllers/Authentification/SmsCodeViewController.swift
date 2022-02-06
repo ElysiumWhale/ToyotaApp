@@ -25,8 +25,8 @@ class SmsCodeViewController: UIViewController {
             }
     }()
 
-    private lazy var changeNumberHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private lazy var changeNumberHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .observe(on: .main, mode: .onFailure)
             .bind { [weak self] _ in
                 self?.handleSuccess()

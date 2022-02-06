@@ -52,8 +52,8 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
         }
     }
 
-    private(set) lazy var bookingRequestHandler: RequestHandler<Response> = {
-        RequestHandler<Response>()
+    private(set) lazy var bookingRequestHandler: RequestHandler<SimpleResponse> = {
+        RequestHandler<SimpleResponse>()
             .bind { [weak self] _ in
                 PopUp.display(.success(description: .common(.bookingSuccess))) {
                     self?.navigationController?.popViewController(animated: true)
