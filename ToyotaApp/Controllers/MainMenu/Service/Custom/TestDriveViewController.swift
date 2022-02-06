@@ -63,12 +63,12 @@ class TestDriveViewController: BaseServiceController {
             case 1:
                 return [(.auth(.brandId), Brand.Toyota),
                         (.carInfo(.cityId),
-                                     modules[0].state.getService()?.id),
+                        modules[0].state.getService()?.id),
                         (.services(.serviceId), value)]
             case 2:
                 return [(.carInfo(.showroomId), value),
                         (.services(.serviceId),
-                                     modules[1].state.getService()?.id)]
+                        modules[1].state.getService()?.id)]
             default: return []
         }
     }
@@ -100,7 +100,7 @@ class TestDriveViewController: BaseServiceController {
     }
 }
 
-// MARK: -
+// MARK: - Modules configurations
 extension TestDriveViewController {
     func configurationForModules() -> [[ModuleAppearances]] {
         return [[.title(.common(.chooseCity)), .placeholder(.common(.city))],
