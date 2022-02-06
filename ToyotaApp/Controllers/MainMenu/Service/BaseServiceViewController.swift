@@ -183,7 +183,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
         startLoading()
         modules[index + 1].start(with: module.buildQueryItems())
-        stackView.addArrangedSubview(modules[index+1].view ?? UIView())
+        stackView.addArrangedSubview(modules[index+1].view.view)
     }
 }
 

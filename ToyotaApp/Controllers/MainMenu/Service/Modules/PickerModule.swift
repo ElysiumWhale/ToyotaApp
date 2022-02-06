@@ -1,7 +1,7 @@
 import UIKit
 
 class PickerModule: NSObject, IServiceModule {
-    var view: UIView? { internalView }
+    var view: UIView { internalView }
 
     private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
@@ -94,13 +94,13 @@ extension PickerModule: UIPickerViewDataSource {
 extension PickerModule: UIPickerViewDelegate {
     @IBAction func serviceDidSelect(sender: Any?) {
         guard let array = array, array.isNotEmpty else {
-            view?.endEditing(true)
+            view.endEditing(true)
             return
         }
 
         let index = internalView.servicePicker.selectedRow
         if array[index].id == "-1" {
-            view?.endEditing(true)
+            view.endEditing(true)
             return
         }
 

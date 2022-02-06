@@ -9,7 +9,7 @@ class TestDriveViewController: BaseServiceController {
         let configs = configurationForModules()
 
         for (module, config) in zip(modules, configs) {
-            stackView.addArrangedSubview(module.view ?? UIView())
+            stackView.addArrangedSubview(module.view)
             module.configure(appearance: config)
         }
         stackView.addArrangedSubview(bookButton)
@@ -79,7 +79,7 @@ class TestDriveViewController: BaseServiceController {
         if index >= 2 { return }
 
         for index in index+2...3 {
-            modules[index].view?.fadeOut()
+            modules[index].view.fadeOut()
         }
         bookButton.fadeOut()
     }

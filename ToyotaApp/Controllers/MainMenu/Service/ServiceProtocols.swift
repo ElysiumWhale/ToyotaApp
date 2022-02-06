@@ -35,7 +35,7 @@ enum ModuleStates {
 /// Unit for particular control logic realization.
 /// Used by `IServiceController` for auto building logic and UI with help of `ServiceModuleBuilder`
 protocol IServiceModule: AnyObject {
-    var view: UIView? { get }
+    var view: UIView { get }
     var state: ModuleStates { get }
     var delegate: IServiceController? { get set }
     func start(with params: RequestItems)

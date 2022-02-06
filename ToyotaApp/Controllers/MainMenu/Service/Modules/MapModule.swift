@@ -2,7 +2,7 @@ import UIKit
 import MapKit
 
 class MapModule: NSObject, IServiceModule {
-    var view: UIView? { internalView }
+    var view: UIView { internalView }
 
     private lazy var internalView: MapModuleView = {
         let map = MapModuleView()
