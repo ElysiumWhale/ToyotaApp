@@ -29,7 +29,6 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
         internalView.servicePicker.configurePicker(with: #selector(carDidSelect),
                                                    for: internalView.textField, delegate: self)
         internalView.textField.placeholder = .common(.auto)
-        internalView.textField.layer.cornerRadius = 10
         internalView.textField.clipsToBounds = true
         internalView.serviceNameLabel.text = .common(.auto)
         return internalView
