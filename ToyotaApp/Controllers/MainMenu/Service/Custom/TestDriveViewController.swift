@@ -38,17 +38,17 @@ class TestDriveViewController: BaseServiceController {
         let params = buildParams(for: index, value: service.id)
         switch index {
             case 0:
-                modules[1].customStart(page: .services(.getTestDriveCars),
-                                       with: params,
-                                       response: CarsResponse.self)
+                module.nextModule?.customStart(page: .services(.getTestDriveCars),
+                                               with: params,
+                                               response: CarsResponse.self)
             case 1:
-                modules[2].customStart(page: .services(.getTestDriveShowrooms),
-                                       with: params,
-                                       response: ShoroomsResponce.self)
+                module.nextModule?.customStart(page: .services(.getTestDriveShowrooms),
+                                               with: params,
+                                               response: ShoroomsResponce.self)
             case 2:
-                modules[3].customStart(page: .services(.getFreeTime),
-                                       with: params,
-                                       response: CarsResponse.self)
+                module.nextModule?.customStart(page: .services(.getFreeTime),
+                                               with: params,
+                                               response: CarsResponse.self)
             case 3:
                 bookButton.fadeIn()
             default: return

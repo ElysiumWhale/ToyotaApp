@@ -174,9 +174,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
-        guard let index = modules.firstIndex(where: { $0 === module }) else { return }
-
-        if index + 1 == modules.count {
+        guard let nextModule = module.nextModule else {
             stopLoading()
             if !stackView.arrangedSubviews.contains(bookButton) {
                 stackView.addArrangedSubview(bookButton)
@@ -188,8 +186,8 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
         var params = module.buildQueryItems()
         params.append(showroomItem)
         startLoading()
-        stackView.addArrangedSubview(modules[index+1].view.view)
-        modules[index+1].start(with: params)
+        nextModule.start(with: params)
+        stackView.addArrangedSubview(nextModule.view)
     }
 }
 
