@@ -8,7 +8,7 @@ This is box solution prototype for car dealers which want present their services
 
 ## Overview
 
-### Testing devices:
+### Testing devices
 
 | Device | iOS |
 |-|-|
@@ -17,7 +17,7 @@ This is box solution prototype for car dealers which want present their services
 
 SMS-code for testing: **1234** (works with any phone number)
 
-### Ready parts
+## Ready parts
 
 - Registration:
   - full register with car or without
@@ -37,6 +37,7 @@ SMS-code for testing: **1234** (works with any phone number)
 
 ## Future release
 
+- Add managers by special code
 - News from server created by admin of client module
 - UI adaptation for 4.7' iPhone generation
 - Push notifications
