@@ -61,14 +61,10 @@ class TimePickerModule: NSObject, IServiceModule {
 
     func start(with params: RequestItems) {
         state = .idle
-        guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
-            return
+        var queryParams = params
+        if params.isEmpty {
+            queryParams.append((.services(.serviceId), serviceType.id))
         }
-
-        var queryParams: RequestItems = [(.carInfo(.showroomId), showroomId)]
-        params.isNotEmpty
-            ? queryParams.append(contentsOf: params)
-            : queryParams.append((.services(.serviceId), serviceType.id))
 
         NetworkService.makeRequest(page: .services(.getFreeTime),
                                    params: queryParams,

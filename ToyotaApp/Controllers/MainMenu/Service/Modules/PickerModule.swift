@@ -33,16 +33,12 @@ class PickerModule: NSObject, IServiceModule {
 
     func start(with params: RequestItems) {
         state = .idle
-        guard let showroomId = delegate?.user?.getSelectedShowroom?.id else {
-            return
-        }
-
         internalView.textField.text = .empty
 
-        let params: RequestItems = [(.carInfo(.showroomId), showroomId),
-                                    (.services(.serviceTypeId), serviceType.id)]
+        var queryParams = params
+        queryParams.append((.services(.serviceTypeId), serviceType.id))
         NetworkService.makeRequest(page: .services(.getServices),
-                                   params: params) { [weak self] (response: NetworkResponse<ServicesResponse>) in
+                                   params: queryParams) { [weak self] (response: NetworkResponse<ServicesResponse>) in
             self?.completion(for: response)
         }
     }

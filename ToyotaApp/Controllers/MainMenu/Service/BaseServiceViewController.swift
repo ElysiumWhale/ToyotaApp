@@ -63,6 +63,11 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
             }
     }()
 
+    private var showroomItem: RequestItem {
+        let showroomId = user?.getSelectedShowroom?.id
+        return (.carInfo(.showroomId), showroomId)
+    }
+
     init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
         self.modules = modules
         self.user = user
@@ -112,7 +117,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     func start() {
         stackView.addArrangedSubview(modules.first?.view ?? UIView())
-        modules.first?.start()
+        modules.first?.start(with: [showroomItem])
     }
 
     func bookService() {
@@ -180,9 +185,11 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
             return
         }
 
+        var params = module.buildQueryItems()
+        params.append(showroomItem)
         startLoading()
-        modules[index + 1].start(with: module.buildQueryItems())
         stackView.addArrangedSubview(modules[index+1].view.view)
+        modules[index+1].start(with: params)
     }
 }
 
