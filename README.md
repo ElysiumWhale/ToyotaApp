@@ -8,46 +8,35 @@ This is box solution prototype for car dealers which want present their services
 
 ## Overview
 
-Main testing device: **iPhone XS iOS 14.5.1**
+### Testing devices:
 
-Secondary testing device: **iPhone 7 14.5.1**
+| Device | iOS |
+|-|-|
+| iPhone XS | 15.3 |
+| iPhone 7 | 15.3 |
 
-SMS-code for testing: **1234** (will be generated and sent during pre-release testing)
-
-For testing HTTPS **is off** (will be turned on during pre-release testing)
-
-VIN codes for cars in [API.md](Docs/API.md) (Testing section)
+SMS-code for testing: **1234** (works with any phone number)
 
 ### Ready parts
 
 - Registration:
   - full register with car or without
   - auth from new device with downloading all userdata
-  - continue from particular registration step (from personal data, dealer picking or car checking)
+  - continue from particular registration step (personal data, city picking, car checking)
   - logout
-- Editing user info:
-  - cnahge personal info
-  - change phone number from settings
-  - adding new cars
+- User info:
+  - change personal info
+  - change phone number
+  - add/delete cars
+  - list of bookings
 - Services:
-  - choosing car for downloading actual services (if user has more than 1 car)
-  - booking in ServicesMaintananceVC (***Сервисное обслуживание***) (picking service and time then booking)
-  - working with apple maps in HelpOnRoadVC (***Помощь на дороге***)
-  - choosing service and date with time in ServiceMaintenanceViewController (***Сервисное обслуживание***)
-
-### Mocks
-
-List of mocks:
-
-- NewsViewController (represents possible view of news cells)
+  - choose city and showroom for downloading actual services
+  - book services with different data colletion (picker, map, time)
+- News:
+  - news list for 3 showrooms (Html parser)
 
 ## Future release
 
-- ~~Dynamic adding of servcies categories created by admin of client module (several types of VC with inheritance for code reusabitiy (types: 1,2,3 choices, map, map with time)~~
-- ~~Booking history~~
 - News from server created by admin of client module
-- Some UI adaptation for 4.7' iPhone generation
-- Delete cars
-- FontAwesome for services icons cells
-- Working with secret auth key through keychain
+- UI adaptation for 4.7' iPhone generation
 - Push notifications
