@@ -78,8 +78,10 @@ class NavigationService {
             case .failure:
                 loadRegister(.error(message: .error(.profileLoadError)))
             case .success(let user):
-                DispatchQueue.main.async {
-                    switchRootView?(MainMenuFlow.entryPoint(with: user))
+                configureChat(with: user) {
+                    DispatchQueue.main.async {
+                        switchRootView?(MainMenuFlow.entryPoint(with: user))
+                    }
                 }
         }
     }
