@@ -261,6 +261,13 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Город" id="9HU-D7-X9D">
                         <barButtonItem key="backBarButtonItem" title="Услуги" id="jWX-MJ-O7z"/>
+                        <barButtonItem key="rightBarButtonItem" id="3kW-Zi-DC7">
+                            <imageReference key="image" image="bubble.left.and.exclamationmark.bubble.right.fill" catalog="system" symbolScale="medium"/>
+                            <color key="tintColor" name="SecondarySignatureRed"/>
+                            <connections>
+                                <action selector="startChatDidTap" destination="KLr-04-N2s" id="2bR-Al-5H3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="refreshableView" destination="hFj-Ca-ATU" id="ujb-tw-kDm"/>
@@ -335,6 +342,7 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+        <image name="bubble.left.and.exclamationmark.bubble.right.fill" catalog="system" width="128" height="97"/>
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>
         <image name="person" catalog="system" width="128" height="117"/>

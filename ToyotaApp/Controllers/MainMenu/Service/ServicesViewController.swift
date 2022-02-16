@@ -77,6 +77,11 @@ class ServicesViewController: RefreshableController, PickerController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    @IBAction private func startChatDidTap() {
+        view.endEditing(true)
+        ChatFlow.startChat(from: self)
+    }
+
     private func configureShowroomField() {
         showroomField.tintColor = .clear
         showroomField.rightViewMode = .always
