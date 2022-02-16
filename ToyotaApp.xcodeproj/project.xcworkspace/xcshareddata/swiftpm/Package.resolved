@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "HelpCrunchSDK",
+        "repositoryURL": "https://github.com/helpcrunch/helpcrunchsdk-ios",
+        "state": {
+          "branch": null,
+          "revision": "c1dba42c845aad443b5b575d34afa24eff069b2b",
+          "version": "4.1.4"
+        }
+      },
+      {
         "package": "Nuke",
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {

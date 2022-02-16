@@ -22,6 +22,7 @@
 		141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BACD62725AEF400704589 /* CustomizableStackView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
+		1432203227BC51E000817859 /* HelpCrunchSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1432203127BC51E000817859 /* HelpCrunchSDK */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
@@ -229,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
+				1432203227BC51E000817859 /* HelpCrunchSDK in Frameworks */,
 				14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */,
 				1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */,
 				14D560002753D1FA00546587 /* Nuke in Frameworks */,
@@ -594,6 +596,7 @@
 				1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */,
 				14DF1E43272D8F3C00B4556E /* SwiftSoup */,
 				14D55FFF2753D1FA00546587 /* Nuke */,
+				1432203127BC51E000817859 /* HelpCrunchSDK */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -629,6 +632,7 @@
 				1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */,
+				1432203027BC51E000817859 /* XCRemoteSwiftPackageReference "helpcrunchsdk-ios" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -994,6 +998,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1432203027BC51E000817859 /* XCRemoteSwiftPackageReference "helpcrunchsdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/helpcrunch/helpcrunchsdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
@@ -1029,6 +1041,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1432203127BC51E000817859 /* HelpCrunchSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1432203027BC51E000817859 /* XCRemoteSwiftPackageReference "helpcrunchsdk-ios" */;
+			productName = HelpCrunchSDK;
+		};
 		1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
