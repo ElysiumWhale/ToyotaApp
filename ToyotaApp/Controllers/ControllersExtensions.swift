@@ -90,3 +90,9 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    var interfaceStyle: UIUserInterfaceStyle {
+        traitCollection.userInterfaceStyle
+    }
+}

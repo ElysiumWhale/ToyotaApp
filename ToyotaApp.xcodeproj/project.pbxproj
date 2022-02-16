@@ -20,9 +20,11 @@
 		141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */; };
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
 		141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BACD62725AEF400704589 /* CustomizableStackView.swift */; };
+		1423E21727BDA349004E5106 /* ChatFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423E21627BDA349004E5106 /* ChatFlow.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
 		1432203227BC51E000817859 /* HelpCrunchSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1432203127BC51E000817859 /* HelpCrunchSDK */; };
+		1432203427BC5A1B00817859 /* HelpCrunchChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432203327BC5A1B00817859 /* HelpCrunchChat.swift */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
@@ -131,8 +133,10 @@
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
 		141BACD62725AEF400704589 /* CustomizableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableStackView.swift; sourceTree = "<group>"; };
 		1423E21527BD9FF2004E5106 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1423E21627BDA349004E5106 /* ChatFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlow.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		1432203327BC5A1B00817859 /* HelpCrunchChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCrunchChat.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				140BA59527A6C310002A7423 /* AuthFlow.swift */,
 				140BA59327A6C2A1002A7423 /* RegisterFlow.swift */,
 				140BA59727A6CB67002A7423 /* MainMenuFlow.swift */,
+				1423E21627BDA349004E5106 /* ChatFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
 				141875CB279DE1D900FFEA99 /* BookingStatus.swift */,
 				14920D6127A5DAB400B28D51 /* DateFormatting.swift */,
+				1432203327BC5A1B00817859 /* HelpCrunchChat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 				A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
+				1432203427BC5A1B00817859 /* HelpCrunchChat.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */,
 				14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */,
@@ -777,6 +784,7 @@
 				14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
+				1423E21727BDA349004E5106 /* ChatFlow.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,
 				A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
