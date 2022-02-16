@@ -30,6 +30,7 @@
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */; };
+		14677AC927BC6112001EB737 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14677ACB27BC6112001EB737 /* Localizable.strings */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
@@ -128,6 +129,7 @@
 		141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
 		141BACD62725AEF400704589 /* CustomizableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableStackView.swift; sourceTree = "<group>"; };
+		1423E21527BD9FF2004E5106 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedButton.swift; sourceTree = "<group>"; };
+		14677ACA27BC6112001EB737 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 				A75946992523E33400312EBE /* Info.plist */,
 				A7924CF1254B70B4001B67C1 /* Fonts */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
+				14677ACB27BC6112001EB737 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -617,6 +621,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A759467F2523E32F00312EBE;
 			packageReferences = (
@@ -652,6 +657,7 @@
 				A7924D1B254B743F001B67C1 /* ToyotaType-Black.ttf in Resources */,
 				A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
+				14677AC927BC6112001EB737 /* Localizable.strings in Resources */,
 				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
 				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
 				14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */,
@@ -776,6 +782,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		14677ACB27BC6112001EB737 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14677ACA27BC6112001EB737 /* en */,
+				1423E21527BD9FF2004E5106 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		A75946912523E32F00312EBE /* MainMenu.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -799,6 +814,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -860,6 +876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

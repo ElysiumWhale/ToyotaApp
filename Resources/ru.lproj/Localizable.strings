@@ -1,0 +1,58 @@
+"helpcrunch.navigation.button.close" = "Закрыть";
+
+"helpcrunch.attachment.photo" = "Сделать фото";
+"helpcrunch.attachment.library" = "Выбрать из библиотеки";
+"helpcrunch.attachment.file" = "Выбрать файл";
+
+"helpcrunch.agent.agents" = "Операторы";
+"helpcrunch.agent.is-typing" = "%@ набирает сообщение...";
+"helpcrunch.agent.are-typing" = "%@ набирают сообщение...";
+"helpcrunch.agent.and-more" = " и %i более";
+
+"helpcrunch.chat.file.uploaded" = "выгружен";
+"helpcrunch.chat.file.downloaded" = "загружен";
+
+"helpcrunch.chat.alert.deleted" = "Данный чат был удален. Вы будете перенаправлены к списку чатов.";
+"helpcrunch.chat.alert.filesize-exceeded" = "Максимальный размер файла - %.0f МБ.";
+
+"helpcrunch.alert.button.ok" = "Ок";
+
+"helpcrunch.connection.unknown-error" = "Упс, что-то пошло не так";
+"helpcrunch.connection.offline" = "Нет соединения с интернетом";
+
+"helpcrunch.prechatForm.name" = "Имя";
+"helpcrunch.prechatForm.email" = "Email";
+"helpcrunch.prechatForm.company" = "Компания";
+"helpcrunch.prechatForm.phone" = "Номер телефона";
+"helpcrunch.prechatForm.department" = "Выберите подразделение";
+"helpcrunch.prechatForm.continue" = "Продолжить";
+"helpcrunch.prechatForm.acceptance-title" = "Я прочитал(а) и принимаю";
+"helpcrunch.prechatForm.acceptance-name" = "Политика Конфиденциальности";
+"helpcrunch.prechatForm.top-message" = "Мы отвечаем в течение 2х минут в большинстве случаев. В противном случае мы пришел письмо на email.";
+
+"helpcrunch.chat.tab" = "Спросить";
+
+"helpcrunch.chat.waiting-message" = "Пиоск свободного оператора. Пожалуйста, подождите.";
+"helpcrunch.chat.offline-message" = "Sorry, we are not available now. We've got your message though and we'll reply to you as soon as we can.";
+"helpcrunch.chat.message-chat-closed" = "Этот чат закрыт";
+"helpcrunch.chat.message-placeholder" = "Наберите сообщение";
+"helpcrunch.chat.status.closed" = "ЗАКРЫТО";
+
+"helpcrunch.chat.rating.poor" = "Плохо";
+"helpcrunch.chat.rating.avarage" = "Средне";
+"helpcrunch.chat.rating.great" = "Прекрасно";
+"helpcrunch.chat.rating.title" = "Как Вы оцените сервис?";
+
+"helpcrunch.chat.message.tech.status" = "Чат помечен как %@ пользователем %@";
+"helpcrunch.chat.message.tech.status-without-agent" = "Чат помечен как %@";
+"helpcrunch.chat.message.tech.rated" = "Чат оценен %@";
+"helpcrunch.chat.message.tech.request-rating" = "Оцените этот чат, пожалуйста";
+
+"helpcrunch.chats.date.now" = "Сейчас";
+"helpcrunch.chats.date.hours" = "ч";
+"helpcrunch.chats.date.minutes" = "м";
+"helpcrunch.chats.start" = "Задать новый вопрос";
+
+"helpcrunch.chat.more.end-chat" = "Закончить этот чат";
+
+"helpcrunch.cancel" = "Отмена";

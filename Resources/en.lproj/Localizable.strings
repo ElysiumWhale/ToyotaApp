@@ -1,0 +1,71 @@
+"helpcrunch.navigation.button.close" = "Close";
+
+"helpcrunch.attachment.photo" = "Take a Photo";
+"helpcrunch.attachment.library" = "Select from a Library";
+"helpcrunch.attachment.file" = "Select file";
+
+"helpcrunch.agent.agents" = "Agents";
+"helpcrunch.agent.is-typing" = "%@ is typing...";
+"helpcrunch.agent.are-typing" = "%@ are typing...";
+"helpcrunch.agent.and-more" = " and %i more";
+
+"helpcrunch.chat.file.uploaded" = "uploaded";
+"helpcrunch.chat.file.downloaded" = "downloaded";
+
+"helpcrunch.chat.alert.deleted" = "This chat was removed. You’ll be redirected to the chat list.";
+"helpcrunch.chat.alert.filesize-exceeded" = "The maximum supported file size is %.0f MB.";
+
+"helpcrunch.alert.button.ok" = "OK";
+
+"helpcrunch.connection.unknown-error" = "Oops, something went wrong";
+"helpcrunch.connection.offline" = "No internet connection";
+
+"helpcrunch.prechatForm.name" = "Name";
+"helpcrunch.prechatForm.email" = "Email";
+"helpcrunch.prechatForm.company" = "Company";
+"helpcrunch.prechatForm.phone" = "Phone number";
+"helpcrunch.prechatForm.department" = "Choose a department";
+"helpcrunch.prechatForm.continue" = "Continue";
+"helpcrunch.prechatForm.acceptance-title" = "I have read and accept the";
+"helpcrunch.prechatForm.acceptance-name" = "Privacy Policy";
+"helpcrunch.prechatForm.top-message" = "We respond within 2 minutes most of the time. Otherwise, we'll drop you an email.";
+
+"helpcrunch.kb.title" = "Hello 👋 How can we help?";
+"helpcrunch.kb.search-result" = "Search result: %@";
+"helpcrunch.kb.search-result.none.title" = "There are no articles";
+"helpcrunch.kb.search-result.none.description" = "We’re working on adding our help articles.\nYou’ll find them here very soon.";
+"helpcrunch.kb.search-articles" = "Search articles";
+"helpcrunch.kb.rate.title" = "DID THIS ANSWER YOUR\nQUESTION?";
+"helpcrunch.kb.tab" = "Search";
+"helpcrunch.kb.section.show-articles" = "SHOW ALL";
+"helpcrunch.kb.section.hide-articles" = "HIDE ARTICLES";
+"helpcrunch.kb.article.author" = "Written by %@";
+"helpcrunch.kb.article.updated" = "Updated %@";
+
+"helpcrunch.chat.tab" = "Ask";
+
+"helpcrunch.chat.waiting-message" = "Searching for a free agent. Please hold on.";
+"helpcrunch.chat.offline-message" = "Sorry, we are not available now. We've got your message though and we'll reply to you as soon as we can.";
+"helpcrunch.chat.message-chat-closed" = "This chat is closed";
+"helpcrunch.chat.message-placeholder" = "Type message";
+"helpcrunch.chat.status.closed" = "CLOSED";
+
+"helpcrunch.chat.rating.poor" = "Poor";
+"helpcrunch.chat.rating.avarage" = "Avarage";
+"helpcrunch.chat.rating.great" = "Great";
+"helpcrunch.chat.rating.title" = "How do you rate your customer\nservice experience?";
+
+"helpcrunch.chat.message.tech.status" = "Chat marked as %@ by %@";
+"helpcrunch.chat.message.tech.status-without-agent" = "Chat marked as %@";
+"helpcrunch.chat.message.tech.rated" = "Chat rated %@";
+"helpcrunch.chat.message.tech.request-rating" = "Please rate this chat";
+
+"helpcrunch.chats.date.now" = "Now";
+"helpcrunch.chats.date.hours" = "h";
+"helpcrunch.chats.date.minutes" = "m";
+"helpcrunch.chats.start" = "Start new conversation";
+
+"helpcrunch.chat.more.end-chat" = "End this chat";
+
+"helpcrunch.cancel" = "Cancel";
+
