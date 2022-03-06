@@ -26,7 +26,7 @@ class SmsCodeViewController: UIViewController {
 
     private lazy var changeNumberHandler: RequestHandler<SimpleResponse> = {
         RequestHandler<SimpleResponse>()
-            .observe(on: .main, mode: .onFailure)
+            .observe(on: .main)
             .bind { [weak self] _ in
                 self?.handleSuccess()
             } onFailure: { [weak self] error in
@@ -102,7 +102,7 @@ extension SmsCodeViewController {
         var params: RequestItems = [(.personalInfo(.phoneNumber), phoneNumber),
                                     (.auth(.code), smsCodeTextField!.text)]
         params.append(authType == .register ? (.auth(.brandId), Brand.Toyota)
-                                            : (.auth(.userId), KeychainManager<UserId>.get()!.id))
+                                            : (.auth(.userId), KeychainManager<UserId>.get()?.id))
         return params
     }
 
@@ -116,7 +116,7 @@ extension SmsCodeViewController {
         if case .changeNumber(let notificator) = type {
             notificator.notificateObservers()
             PopUp.display(.success(description: .common(.phoneChanged)))
-            dismissNavigationWithDispatch(animated: true)
+            navigationController?.dismiss(animated: true)
         }
     }
 }

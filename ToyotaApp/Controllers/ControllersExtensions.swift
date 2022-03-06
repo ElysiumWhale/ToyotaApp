@@ -62,18 +62,6 @@ extension UIViewController {
         performSegue(withIdentifier: segue.rawValue, sender: self)
     }
 
-    func performSegue(for identifier: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.performSegue(withIdentifier: identifier, sender: self)
-        }
-    }
-
-    func dismissNavigationWithDispatch(animated: Bool, completion: @escaping Closure = { }) {
-        DispatchQueue.main.async { [self] in
-            navigationController?.dismiss(animated: animated, completion: completion)
-        }
-    }
-
     @IBAction func customDismiss(sender: Any?) {
         dismiss(animated: true)
     }
