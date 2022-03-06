@@ -11,9 +11,8 @@ enum RequestType: String {
     case GET
 }
 
-enum MainURL {
-    private static let http = "http"
-    private static let https = "https"
+enum UrlFactory {
+    fileprivate static let https = "https"
 
     private static let host = "auto.apmobile.ru"
     private static let debugHost = "cv39623.tmweb.ru"
@@ -24,37 +23,29 @@ enum MainURL {
     private static let imgPath = "/"
     private static let debugImgPath = "/avtosalon/"
 
-    static func build(isSecure: Bool = false) -> URLComponents {
-        var res = URLComponents()
-        res.scheme = isSecure ? https : http
+    static var mainUrl: URLComponents {
         #if DEBUG
-            res.host = debugHost
+        URLComponents(host: debugHost, path: debugPath)
         #else
-            res.host = host
+        URLComponents(host: host, path: path)
         #endif
-
-        #if DEBUG
-            res.path = debugPath
-        #else
-            res.path = path
-        #endif
-        return res
     }
 
-    static func buildImageUrl(isSecure: Bool = false) -> URLComponents {
-        var res = URLComponents()
-        res.scheme = isSecure ? https : http
+    static var imageUrl: URLComponents {
         #if DEBUG
-            res.host = debugHost
+        URLComponents(host: debugHost, path: debugImgPath)
         #else
-            res.host = host
+        URLComponents(host: host, path: imgPath)
         #endif
+    }
+}
 
-        #if DEBUG
-            res.path = debugImgPath
-        #else
-            res.path = imgPath
-        #endif
-        return res
+private extension URLComponents {
+    init(scheme: String = UrlFactory.https, host: String, path: String) {
+        self.init()
+
+        self.scheme = scheme
+        self.host = host
+        self.path = path
     }
 }

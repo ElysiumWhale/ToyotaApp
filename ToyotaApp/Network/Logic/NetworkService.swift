@@ -4,9 +4,14 @@ typealias Response<TResponse: IResponse> = Result<TResponse, ErrorResponse>
 typealias ResponseHandler<TResponse: IResponse> = (Response<TResponse>) -> Void
 
 class NetworkService {
-    private static let session = URLSession(configuration: URLSessionConfiguration.default)
-
-    private static let mainUrl = MainURL.build(isSecure: true)
+    private static let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 20
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.httpCookieStorage?.cookieAcceptPolicy = .never
+        let session = URLSession(configuration: config)
+        return session
+    }()
 
     class func makeRequest<TResponse>(page: RequestPath,
                                       params: RequestItems = .empty,
@@ -83,7 +88,7 @@ class NetworkService {
 
     class private func buildPostRequest(for page: String,
                                         with params: [URLQueryItem] = []) -> URLRequest {
-        var mainURL = mainUrl
+        var mainURL = UrlFactory.mainUrl
         mainURL.path.append(page)
         mainURL.queryItems = params
         var request = URLRequest(url: mainURL.url!)
@@ -100,7 +105,7 @@ class NetworkService {
     }
 
     class func buildImageUrl(_ path: String) -> URL? {
-        var query = MainURL.buildImageUrl(isSecure: true)
+        var query = UrlFactory.imageUrl
         query.path.append(path)
         return query.url
     }
