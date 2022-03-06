@@ -62,8 +62,8 @@ class RequestHandler<T: Codable> {
 extension RequestHandler {
     convenience init(queue: DispatchQueue = .main,
                      mode: ObservationMode = .both,
-                     onSuccess: ParameterClosure<T>? = nil,
-                     onFailure: ParameterClosure<ErrorResponse>? = nil) {
+                     onSuccess: ParameterClosure<T>?,
+                     onFailure: ParameterClosure<ErrorResponse>?) {
         self.init()
 
         self.queue = queue

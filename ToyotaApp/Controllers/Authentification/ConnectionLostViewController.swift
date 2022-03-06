@@ -5,44 +5,39 @@ class ConnectionLostViewController: UIViewController {
     @IBOutlet private var retryButton: CustomizableButton!
     @IBOutlet private var indicator: UIActivityIndicatorView!
 
-    private lazy var controller: ConnectionLostController = {
-        ConnectionLostController(view: self)
+    private lazy var interactor: ConnectionLostInteractor = {
+        ConnectionLostInteractor(view: self)
     }()
 
     @IBAction func reconnect(sender: UIButton) {
         retryButton.isHidden = true
         indicator.startAnimating()
-        controller.reconnect()
+        interactor.reconnect()
     }
 
     func displayError() {
-        DispatchQueue.main.async { [weak self] in
-            self?.indicator.stopAnimating()
-            self?.retryButton.isHidden = false
-            PopUp.display(.error(description: .error(.stillNoConnection)))
-        }
+        indicator.stopAnimating()
+        retryButton.isHidden = false
+        PopUp.display(.error(description: .error(.stillNoConnection)))
     }
 }
 
-// MARK: - Controller
-class ConnectionLostController {
-    private(set) weak var view: ConnectionLostViewController?
+// MARK: - Interactor
+class ConnectionLostInteractor {
+    weak var view: ConnectionLostViewController?
 
-    private lazy var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
-        RequestHandler<CheckUserOrSmsCodeResponse>()
-            .bind { [weak self] data in
-                KeychainManager.set(SecretKey(data.secretKey))
-                if self == nil { return }
-                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                    NavigationService.loadAuth()
-                }
-            } onFailure: { [weak self] error in
-                switch error.errorCode {
-                    case .lostConnection: self?.view?.displayError()
-                    default: NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
-                }
+    private lazy var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse> =
+        .init { response in
+            KeychainManager.set(SecretKey(response.secretKey))
+            NavigationService.resolveNavigation(with: CheckUserContext(response: response)) {
+                NavigationService.loadAuth()
             }
-    }()
+        } onFailure: { [weak self] error in
+            switch error.errorCode {
+                case .lostConnection: self?.view?.displayError()
+                default: NavigationService.loadAuth(with: error.message ?? .error(.errorWhileAuth))
+            }
+        }
 
     init(view: ConnectionLostViewController) {
         self.view = view
