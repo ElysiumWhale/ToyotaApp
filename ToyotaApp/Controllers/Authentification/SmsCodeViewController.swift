@@ -12,11 +12,10 @@ class SmsCodeViewController: UIViewController {
 
     private lazy var registerHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
         RequestHandler<CheckUserOrSmsCodeResponse>()
-            .observe(on: .main, mode: .onFailure)
-            .bind { [weak self] data in
+            .observe(on: .main)
+            .bind { data in
                 KeychainManager.set(UserId(data.userId!))
                 KeychainManager.set(SecretKey(data.secretKey))
-                if self == nil { return }
                 NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
                     NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
                 }

@@ -6,7 +6,7 @@ enum RegistrationStates {
     case secondPage(_ profile: Profile, _ cities: [City]?)
 }
 
-class NavigationService {
+class NavigationService: MainQueueRunnable {
     static var switchRootView: ((UIViewController) -> Void)?
 
     class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
@@ -28,11 +28,7 @@ class NavigationService {
 
     // MARK: - LoadConnectionLost
     class func loadConnectionLost() {
-        DispatchQueue.main.async {
-            let storyboard = UIStoryboard(.main)
-            let controller: ConnectionLostViewController = storyboard.instantiate(.connectionLost)
-            switchRootView?(controller)
-        }
+        switchRootView?(UtilsFlow.connectionLostModule())
     }
 
     // MARK: - LoadAuth
@@ -41,28 +37,24 @@ class NavigationService {
             PopUp.display(.error(description: error))
         }
 
-        DispatchQueue.main.async {
-            switchRootView?(AuthFlow.entryPoint())
-        }
+        switchRootView?(AuthFlow.entryPoint())
     }
 
     // MARK: - LoadRegister overloads
     class func loadRegister(_ state: RegistrationStates) {
-        DispatchQueue.main.async {
-            var controllers: [UIViewController] = []
-            switch state {
-                case .error(let message):
-                    PopUp.display(.error(description: message))
-                case .firstPage: break
-                case .secondPage(let profile, let cities):
-                    let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
-                    controllers = [RegisterFlow.personalInfoModule(profile),
-                                   RegisterFlow.cityModule(cities),
-                                   carModule].compactMap { $0 }
-            }
-
-            switchRootView?(RegisterFlow.entryPoint(with: controllers))
+        var controllers: [UIViewController] = []
+        switch state {
+            case .error(let message):
+                PopUp.display(.error(description: message))
+            case .firstPage: break
+            case .secondPage(let profile, let cities):
+                let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
+                controllers = [RegisterFlow.personalInfoModule(profile),
+                               RegisterFlow.cityModule(cities),
+                               carModule].compactMap { $0 }
         }
+
+        switchRootView?(RegisterFlow.entryPoint(with: controllers))
     }
 
     // MARK: - LoadMain overloads
@@ -78,18 +70,8 @@ class NavigationService {
             case .failure:
                 loadRegister(.error(message: .error(.profileLoadError)))
             case .success(let user):
-                DispatchQueue.main.async {
-                    switchRootView?(MainMenuFlow.entryPoint(with: user))
-                }
+                switchRootView?(MainMenuFlow.entryPoint(with: user))
         }
-    }
-}
-
-// MARK: - Instantinate
-private extension NavigationService {
-    static func instantinate<TController: UIViewController>(from storyboard: AppStoryboards,
-                                                            id: ViewControllers) -> TController {
-        UIStoryboard(storyboard).instantiate(id)
     }
 }
 
@@ -99,6 +81,8 @@ extension UITabBarController {
         viewControllers?.forEach { controller in
             if let navigationController = controller as? UINavigationController {
                 navigationController.setUserForChildren(user)
+            } else if let withUser = controller as? WithUserInfo {
+                withUser.setUser(info: user)
             }
         }
     }
