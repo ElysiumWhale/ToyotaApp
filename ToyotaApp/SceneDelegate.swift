@@ -4,15 +4,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    private lazy var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>? = {
-        RequestHandler<CheckUserOrSmsCodeResponse>()
-            .observe(on: .main)
-            .bind { [weak self] response in
-                self?.handle(success: response)
-            } onFailure: { [weak self] error in
-                self?.handle(error: error)
-            }
-    }()
+    private var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if scene as? UIWindowScene == nil { return }
@@ -25,15 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        guard let requestHandler = requestHandler else {
-            return
+        requestHandler = .init { [weak self] response in
+            self?.handle(success: response)
+        } onFailure: { [weak self] error in
+            self?.handle(error: error)
         }
 
         NetworkService.makeRequest(page: .start(.checkUser),
                                    params: [(.auth(.userId), userId),
                                             (.auth(.brandId), Brand.Toyota),
                                             (.auth(.secretKey), secretKey)],
-                                   handler: requestHandler)
+                                   handler: requestHandler!)
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
