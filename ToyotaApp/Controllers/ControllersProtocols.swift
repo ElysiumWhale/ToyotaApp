@@ -61,28 +61,27 @@ protocol Keyboardable: UIViewController {
     var scrollView: ScrollableView! { get }
 
     func setupKeyboard(isSubcribing: Bool)
-    func keyboardWillShow(notification: Notification)
-    func keyboardWillHide(notification: Notification)
 }
 
 extension Keyboardable {
     func setupKeyboard(isSubcribing: Bool) {
-        if isSubcribing {
-            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                                   object: nil, queue: .main) { [weak self] notification in
-                self?.keyboardWillShow(notification: notification)
-            }
-
-            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                                   object: nil, queue: .main) { [weak self] notification in
-                self?.keyboardWillHide(notification: notification)
-            }
-        } else {
+        guard isSubcribing else {
             NotificationCenter.default.removeObserver(self)
+            return
+        }
+
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                               object: nil, queue: .main) { [weak self] notification in
+            self?.keyboardWillShow(notification: notification)
+        }
+
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                               object: nil, queue: .main) { [weak self] notification in
+            self?.keyboardWillHide(notification: notification)
         }
     }
 
-    func keyboardWillShow(notification: Notification) {
+    private func keyboardWillShow(notification: Notification) {
         guard let userInfo = notification.userInfo,
               let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
                   return
@@ -96,7 +95,7 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
       }
 
-    func keyboardWillHide(notification: Notification) {
+    private func keyboardWillHide(notification: Notification) {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
@@ -137,3 +136,21 @@ extension Loadable {
         }
     }
 }
+
+protocol MainQueueRunnable { }
+
+extension MainQueueRunnable {
+    func dispatch(action: Closure?) {
+        DispatchQueue.main.async {
+            action?()
+        }
+    }
+
+    static func dispatch(action: Closure?) {
+        DispatchQueue.main.async {
+            action?()
+        }
+    }
+}
+
+extension UIViewController: MainQueueRunnable { }
