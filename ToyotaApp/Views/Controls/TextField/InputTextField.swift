@@ -29,7 +29,7 @@ class InputTextField: UITextField, Validatable {
 
     override var text: String? {
         didSet {
-            inputDidChanged(sender: self)
+            inputDidChange(sender: self)
         }
     }
 
@@ -51,7 +51,7 @@ class InputTextField: UITextField, Validatable {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        addTarget(self, action: #selector(inputDidChanged), for: .editingChanged)
+        addTarget(self, action: #selector(inputDidChange), for: .editingChanged)
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -68,7 +68,7 @@ extension InputTextField {
         UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: 0)
     }
 
-    @objc private func inputDidChanged(sender: UITextField?) {
+    @objc private func inputDidChange(sender: UITextField?) {
         guard self === sender else {
             return
         }
