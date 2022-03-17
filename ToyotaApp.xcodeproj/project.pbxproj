@@ -14,6 +14,8 @@
 		140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59927A6CD73002A7423 /* CheckUserContext.swift */; };
 		141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141875CB279DE1D900FFEA99 /* BookingStatus.swift */; };
 		14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14188032278B3498000B82DD /* UIView+Extensions.swift */; };
+		1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */; };
+		1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834327E28663004573A1 /* PersonalInfoPresenter.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
 		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
@@ -66,6 +68,8 @@
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
 		14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */; };
+		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
+		14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
@@ -122,6 +126,8 @@
 		140BA59927A6CD73002A7423 /* CheckUserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserContext.swift; sourceTree = "<group>"; };
 		141875CB279DE1D900FFEA99 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
 		14188032278B3498000B82DD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
+		1419834327E28663004573A1 /* PersonalInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoPresenter.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
 		14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsUrl.swift; sourceTree = "<group>"; };
+		14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
+		14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRouter.swift; sourceTree = "<group>"; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -252,6 +260,18 @@
 				140BA59727A6CB67002A7423 /* MainMenuFlow.swift */,
 			);
 			path = Flows;
+			sourceTree = "<group>";
+		};
+		1419834027E28572004573A1 /* PersonalInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
+				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
+				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
+				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
+				14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */,
+			);
+			path = PersonalInfoModule;
 			sourceTree = "<group>";
 		};
 		1419C7362683E0D7001F7EF3 /* Custom */ = {
@@ -556,7 +576,7 @@
 		A7D1205D253E6A7F005F85B0 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
+				1419834027E28572004573A1 /* PersonalInfoModule */,
 				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
 				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
 				A7D12066253E713A005F85B0 /* DealerViewController.swift */,
@@ -731,6 +751,8 @@
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
+				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
+				1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
@@ -755,9 +777,11 @@
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
+				14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
+				14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */,
 				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,

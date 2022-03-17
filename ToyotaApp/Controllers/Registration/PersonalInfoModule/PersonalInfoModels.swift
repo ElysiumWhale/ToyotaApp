@@ -1,0 +1,21 @@
+import Foundation
+
+enum PersonalInfoModels {
+    struct SetPersonRequest {
+        let firstName: String
+        let secondName: String
+        let lastName: String
+        let email: String
+        let date: String
+    }
+
+    enum SetPersonResponse {
+        case success(response: CitiesResponse)
+        case failure(response: ErrorResponse)
+    }
+
+    enum SetPersonViewModel {
+        case success(cities: [City], models: [Model], colors: [Color])
+        case failure(message: String)
+    }
+}

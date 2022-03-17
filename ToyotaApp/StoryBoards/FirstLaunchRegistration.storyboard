@@ -88,9 +88,6 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Bqb-Ah-EFu"/>
-                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73P-tT-b5t" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="75" width="374" height="55"/>
@@ -105,9 +102,6 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Gbg-uK-T3y"/>
-                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Отчество" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-yN-RfG" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="150" width="374" height="55"/>
@@ -122,9 +116,6 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="Tnj-d1-RV1"/>
-                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91W-OT-t1s" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="225" width="374" height="55"/>
@@ -139,9 +130,6 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="8HU-mo-RXd"/>
-                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Дата рождения" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-0O-l0g" customClass="NoPasteTextField" customModule="ToyotaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="300" width="374" height="55"/>
@@ -156,9 +144,6 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="textDidChangeWithSender:" destination="292-f3-5Nu" eventType="editingChanged" id="RlQ-p9-69x"/>
-                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -633,20 +618,17 @@
         <designable name="1YG-oq-9Zc">
             <size key="intrinsicContentSize" width="68" height="44"/>
         </designable>
-        <designable name="27y-0O-l0g">
-            <size key="intrinsicContentSize" width="170.5" height="34.5"/>
-        </designable>
         <designable name="2oa-Ly-vi5">
             <size key="intrinsicContentSize" width="41" height="27.5"/>
         </designable>
         <designable name="73P-tT-b5t">
-            <size key="intrinsicContentSize" width="105" height="34.5"/>
+            <size key="intrinsicContentSize" width="120" height="34.5"/>
         </designable>
         <designable name="91W-OT-t1s">
-            <size key="intrinsicContentSize" width="218" height="34.5"/>
+            <size key="intrinsicContentSize" width="233" height="34.5"/>
         </designable>
         <designable name="ETG-dc-1E2">
-            <size key="intrinsicContentSize" width="47" height="34.5"/>
+            <size key="intrinsicContentSize" width="62" height="34.5"/>
         </designable>
         <designable name="IJ5-Dd-Ubi">
             <size key="intrinsicContentSize" width="68" height="44"/>
@@ -661,7 +643,7 @@
             <size key="intrinsicContentSize" width="27.5" height="27.5"/>
         </designable>
         <designable name="kqe-yN-RfG">
-            <size key="intrinsicContentSize" width="106" height="34.5"/>
+            <size key="intrinsicContentSize" width="121" height="34.5"/>
         </designable>
         <designable name="lXN-nS-wi1">
             <size key="intrinsicContentSize" width="68" height="44"/>
