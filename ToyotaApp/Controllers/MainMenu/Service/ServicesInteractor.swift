@@ -17,15 +17,12 @@ class ServicesInteractor {
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
 
-    var selectedCity: City? = DefaultsManager.getUserInfo(for: .selectedCity) {
-        didSet {
-            DefaultsManager.push(info: selectedCity, for: .selectedCity)
-        }
-    }
+    @DefaultsBacked<City>(key: .selectedCity)
+    var selectedCity
 
-    var selectedShowroom: Showroom? = DefaultsManager.getUserInfo(for: .selectedShowroom) {
+    @DefaultsBacked<Showroom>(key: .selectedShowroom)
+    var selectedShowroom {
         didSet {
-            DefaultsManager.push(info: selectedShowroom, for: .selectedShowroom)
             guard let showroom = selectedShowroom else {
                 return
             }
