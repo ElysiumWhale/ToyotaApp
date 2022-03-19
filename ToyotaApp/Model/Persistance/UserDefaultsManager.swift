@@ -43,3 +43,13 @@ extension Bool {
         return city != nil
     }
 }
+
+// MARK: - DefaultsBacked
+@propertyWrapper struct DefaultsBacked<T: Codable> {
+    let key: DefaultKeys
+
+    var wrappedValue: T? {
+        get { DefaultsManager.getUserInfo(for: key) }
+        set { DefaultsManager.push(info: newValue, for: key) }
+    }
+}
