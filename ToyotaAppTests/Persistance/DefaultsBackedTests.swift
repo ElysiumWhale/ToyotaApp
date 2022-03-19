@@ -19,20 +19,6 @@ class DefaultsBackedTest: XCTestCase {
         UserDefaults.standard.removeSuite(named: "DefaultsBackedTest")
     }
 
-    func testExample() throws {
-        XCTAssertNil(city)
-        city = comparingCity
-        XCTAssertNotNil(city)
-        XCTAssertEqual(city?.id, comparingCity.id)
-        XCTAssertEqual(city?.name, comparingCity.name)
-
-        let anotherContainerCity: City? = DefaultsManager.retrieve(for: .testSelectedCity)
-        XCTAssertNil(anotherContainerCity)
-
-        city = nil
-        XCTAssertNil(city)
-    }
-
     func testWrapperGetSet() throws {
         XCTAssertNil(city)
         city = comparingCity
