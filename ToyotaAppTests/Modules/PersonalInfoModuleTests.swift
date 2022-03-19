@@ -5,15 +5,12 @@ class PersonalInfoVCTest: XCTestCase {
     var controller: PersonalInfoViewController!
 
     override func setUpWithError() throws {
-        try super.setUpWithError()
-
         let navVC = RegisterFlow.entryPoint() as? UINavigationController
         controller = navVC?.topViewController as? PersonalInfoViewController
     }
 
     override func tearDownWithError() throws {
         controller = nil
-        try super.tearDownWithError()
     }
 
     func testExample() throws {
@@ -38,8 +35,6 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
     var configuredController: PersonalInfoViewController!
 
     override func setUpWithError() throws {
-        try super.setUpWithError()
-
         let profile = Profile(phone: .empty,
                               firstName: firstName,
                               lastName: lastName,
@@ -52,7 +47,6 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
 
     override func tearDownWithError() throws {
         configuredController = nil
-        try super.tearDownWithError()
     }
 
     func testExample() throws {

@@ -36,6 +36,8 @@
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
+		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
+		147D4A2F27E6170600010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsManagerTests.swift */; };
 		149092622696502100390D04 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149092612696502100390D04 /* PhoneTextField.swift */; };
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
@@ -118,6 +120,16 @@
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		14F0920827E3EB7600B03130 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A75946802523E32F00312EBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A75946872523E32F00312EBE;
+			remoteInfo = ToyotaApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		14025193267AAB89006CF4E2 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
 		140BA59327A6C2A1002A7423 /* RegisterFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFlow.swift; sourceTree = "<group>"; };
@@ -148,6 +160,8 @@
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
+		147D4A2E27E6170600010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -179,6 +193,7 @@
 		14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsUrl.swift; sourceTree = "<group>"; };
 		14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
 		14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRouter.swift; sourceTree = "<group>"; };
+		14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyotaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -229,6 +244,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		14F0920127E3EB7500B03130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A75946852523E32F00312EBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,6 +323,22 @@
 				141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */,
 				14025193267AAB89006CF4E2 /* MapModule.swift */,
 				141A64A8270651BB00EEFC6E /* MapModuleView.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		147D4A2A27E614CA00010E63 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				147D4A2E27E6170600010E63 /* DefaultsManagerTests.swift */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		147D4A2B27E614E400010E63 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -392,6 +430,15 @@
 			path = TableCell;
 			sourceTree = "<group>";
 		};
+		14F0920527E3EB7600B03130 /* ToyotaAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				147D4A2B27E614E400010E63 /* Modules */,
+				147D4A2A27E614CA00010E63 /* Persistance */,
+			);
+			path = ToyotaAppTests;
+			sourceTree = "<group>";
+		};
 		14F519932777E3AD00FF695D /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +454,7 @@
 			children = (
 				A759468A2523E32F00312EBE /* ToyotaApp */,
 				14C6F5E826C305F500661FF1 /* Resources */,
+				14F0920527E3EB7600B03130 /* ToyotaAppTests */,
 				A75946892523E32F00312EBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -415,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				A75946882523E32F00312EBE /* ToyotaApp.app */,
+				14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -591,6 +640,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		14F0920327E3EB7500B03130 /* ToyotaAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14F0920A27E3EB7600B03130 /* Build configuration list for PBXNativeTarget "ToyotaAppTests" */;
+			buildPhases = (
+				14F0920027E3EB7500B03130 /* Sources */,
+				14F0920127E3EB7500B03130 /* Frameworks */,
+				14F0920227E3EB7500B03130 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14F0920927E3EB7600B03130 /* PBXTargetDependency */,
+			);
+			name = ToyotaAppTests;
+			productName = ToyotaAppTests;
+			productReference = 14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A75946872523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A759469C2523E33400312EBE /* Build configuration list for PBXNativeTarget "ToyotaApp" */;
@@ -621,10 +688,14 @@
 		A75946802523E32F00312EBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1170;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Алексей Гурин";
 				TargetAttributes = {
+					14F0920327E3EB7500B03130 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = A75946872523E32F00312EBE;
+					};
 					A75946872523E32F00312EBE = {
 						CreatedOnToolsVersion = 11.7;
 					};
@@ -650,11 +721,19 @@
 			projectRoot = "";
 			targets = (
 				A75946872523E32F00312EBE /* ToyotaApp */,
+				14F0920327E3EB7500B03130 /* ToyotaAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		14F0920227E3EB7500B03130 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A75946862523E32F00312EBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -706,6 +785,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		14F0920027E3EB7500B03130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
+				147D4A2F27E6170600010E63 /* DefaultsManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A75946842523E32F00312EBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -799,6 +887,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		14F0920927E3EB7600B03130 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A75946872523E32F00312EBE /* ToyotaApp */;
+			targetProxy = 14F0920827E3EB7600B03130 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		A75946912523E32F00312EBE /* MainMenu.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -819,6 +915,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		14F0920B27E3EB7600B03130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = elysium.ToyotaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToyotaApp.app/ToyotaApp";
+			};
+			name = Debug;
+		};
+		14F0920C27E3EB7600B03130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = elysium.ToyotaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToyotaApp.app/ToyotaApp";
+			};
+			name = Release;
+		};
 		A759469A2523E33400312EBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -980,6 +1116,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		14F0920A27E3EB7600B03130 /* Build configuration list for PBXNativeTarget "ToyotaAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14F0920B27E3EB7600B03130 /* Debug */,
+				14F0920C27E3EB7600B03130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A75946832523E32F00312EBE /* Build configuration list for PBXProject "ToyotaApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

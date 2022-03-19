@@ -18,8 +18,8 @@ class PersonalInfoViewController: KeyboardableController, PersonalInfoPresenterO
                                emailTextField,
                                birthTextField].compactMap { $0 }
 
-    private var interactor: PersonalInfoControllerOutput?
-    private var router: PersonalInfoRouter?
+    private(set) var interactor: PersonalInfoControllerOutput?
+    private(set) var router: PersonalInfoRouter?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

@@ -5,6 +5,9 @@ enum DefaultKeys: String {
     case noCarsMessage
     case selectedCity
     case selectedShowroom
+
+    /// **Warning!** Used only for tests
+    case testSelectedCity
 }
 
 public class DefaultsManager {
