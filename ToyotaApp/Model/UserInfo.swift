@@ -43,7 +43,7 @@ class UserInfo {
         phone = userPhone
         person = personInfo
         cars = carsInfo
-        notificator = NotificationCentre()
+        notificator = BaseNotificator()
     }
 }
 
