@@ -64,11 +64,11 @@ extension UserInfo: UserProxy {
     var getCars: Cars { cars }
 
     var selectedShowroom: Showroom? {
-        DefaultsManager.getUserInfo(for: .selectedShowroom)
+        DefaultsManager.retrieve(for: .selectedShowroom)
     }
 
     var selectedCity: City? {
-        DefaultsManager.getUserInfo(for: .selectedCity)
+        DefaultsManager.retrieve(for: .selectedCity)
     }
 
     func updatePerson(from person: Person) {

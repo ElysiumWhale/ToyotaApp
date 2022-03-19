@@ -64,7 +64,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     }()
 
     private var showroomItem: RequestItem {
-        let showroomId = user?.getSelectedShowroom?.id
+        let showroomId = user?.selectedShowroom?.id
         return (.carInfo(.showroomId), showroomId)
     }
 
@@ -122,7 +122,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     func bookService() {
         guard let userId = user?.getId,
-              let showroomId = user?.getSelectedShowroom?.id,
+              let showroomId = user?.selectedShowroom?.id,
               let carId = user?.getCars.defaultCar?.id else { return }
 
         var params: RequestItems = [(.auth(.userId), userId),

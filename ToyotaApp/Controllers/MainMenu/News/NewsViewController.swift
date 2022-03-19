@@ -13,7 +13,7 @@ class NewsViewController: RefreshableController, PickerController {
     private var user: UserProxy!
     private var news: [News] = []
     private var selectedRow: IndexPath?
-    private var selectedShowroom: Showroom? = DefaultsManager.getUserInfo(for: .selectedShowroom) ?? .aurora
+    private var selectedShowroom: Showroom? = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
     private var url: ShowroomsUrl {
         guard let selectedShowroom = selectedShowroom else {
             return ShowroomsUrl.samaraAurora

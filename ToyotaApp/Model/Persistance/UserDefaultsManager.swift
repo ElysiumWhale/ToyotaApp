@@ -8,8 +8,8 @@ enum DefaultKeys: String {
 }
 
 public class DefaultsManager {
-    class func getUserInfo<T: Codable>(for key: DefaultKeys,
-                                       container: UserDefaults = .standard) -> T? {
+    class func retrieve<T: Codable>(for key: DefaultKeys,
+                                    container: UserDefaults = .standard) -> T? {
         guard let data = container.data(forKey: key.rawValue) else {
             return nil
         }
@@ -39,11 +39,11 @@ public class DefaultsManager {
 
 extension Bool {
     static var noCarsMessageIsShown: Self {
-        DefaultsManager.getUserInfo(for: .noCarsMessage) ?? false
+        DefaultsManager.retrieve(for: .noCarsMessage) ?? false
     }
 
     static var cityIsSelected: Self {
-        let city: City? = DefaultsManager.getUserInfo(for: .selectedCity)
+        let city: City? = DefaultsManager.retrieve(for: .selectedCity)
         return city != nil
     }
 }
@@ -54,7 +54,7 @@ extension Bool {
     let container: UserDefaults
 
     var wrappedValue: T? {
-        get { DefaultsManager.getUserInfo(for: key, container: container) }
+        get { DefaultsManager.retrieve(for: key, container: container) }
         set { DefaultsManager.push(info: newValue, for: key, container: container) }
     }
 
