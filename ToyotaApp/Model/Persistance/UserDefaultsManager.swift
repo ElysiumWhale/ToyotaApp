@@ -7,37 +7,12 @@ enum DefaultKeys: String {
     case selectedShowroom
 }
 
-protocol WithDefaultKey: Codable {
-    static var key: DefaultKeys { get }
-}
-
 public class DefaultsManager {
     private static let defaults = UserDefaults.standard
-
-    class func getUserInfo<T: WithDefaultKey>(_ type: T.Type) -> T? {
-        guard let data = defaults.data(forKey: T.key.rawValue) else { return nil }
-        return try? JSONDecoder().decode(T.self, from: data)
-    }
 
     class func getUserInfo<T: Codable>(for key: DefaultKeys) -> T? {
         guard let data = defaults.data(forKey: key.rawValue) else { return nil }
         return try? JSONDecoder().decode(T.self, from: data)
-    }
-
-    @discardableResult
-    class func pushUserInfo<T: WithDefaultKey>(info: T?) -> Bool {
-        guard let information = info else {
-            return false
-        }
-
-        do {
-            let data = try JSONEncoder().encode(information)
-            defaults.set(data, forKey: T.key.rawValue)
-            return true
-        } catch let decodeError as NSError {
-            assertionFailure("Decoder error: \(decodeError.localizedDescription)")
-            return false
-        }
     }
 
     @discardableResult
@@ -47,7 +22,7 @@ public class DefaultsManager {
             defaults.set(data, forKey: key.rawValue)
             return true
         } catch let decodeError as NSError {
-            assertionFailure("Decoder error: \(decodeError.localizedDescription)")
+            assertionFailure("Encoder error: \(decodeError.localizedDescription)")
             return false
         }
     }
