@@ -12,7 +12,7 @@ enum DefaultKeys: String {
 
 public class DefaultsManager {
     class func retrieve<T: Codable>(for key: DefaultKeys,
-                                    container: UserDefaults = .standard) -> T? {
+                                    from container: UserDefaults = .standard) -> T? {
         guard let data = container.data(forKey: key.rawValue) else {
             return nil
         }
@@ -23,7 +23,7 @@ public class DefaultsManager {
     @discardableResult
     class func push<T: Codable>(info: T,
                                 for key: DefaultKeys,
-                                container: UserDefaults = .standard) -> Bool {
+                                to container: UserDefaults = .standard) -> Bool {
         do {
             let data = try JSONEncoder().encode(info)
             container.set(data, forKey: key.rawValue)
@@ -32,6 +32,11 @@ public class DefaultsManager {
             assertionFailure("Encoder error: \(decodeError.localizedDescription)")
             return false
         }
+    }
+
+    class func removeData(for key: DefaultKeys,
+                          from container: UserDefaults = .standard) {
+        container.removeObject(forKey: key.rawValue)
     }
 
     class func clearAll(in container: UserDefaults = .standard) {
@@ -57,8 +62,8 @@ extension Bool {
     let container: UserDefaults
 
     var wrappedValue: T? {
-        get { DefaultsManager.retrieve(for: key, container: container) }
-        set { DefaultsManager.push(info: newValue, for: key, container: container) }
+        get { DefaultsManager.retrieve(for: key, from: container) }
+        set { DefaultsManager.push(info: newValue, for: key, to: container) }
     }
 
     init(key: DefaultKeys, container: UserDefaults = .standard) {
