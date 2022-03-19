@@ -4,15 +4,13 @@ protocol UserProxy {
     var getId: String { get }
     var getPhone: String { get }
     var getPerson: Person { get }
-    var getSelectedShowroom: Showroom? { get }
+    var selectedShowroom: Showroom? { get }
     var selectedCity: City? { get }
     var getCars: Cars { get }
     var getNotificator: Notificator { get }
 
     func updatePerson(from person: Person)
     func updateSelected(car: Car)
-    func updateSelected(showroom: Showroom)
-    func updateSelected(city: City)
     func addNew(car: Car)
     func removeCar(with id: String)
 
@@ -65,7 +63,7 @@ extension UserInfo: UserProxy {
 
     var getCars: Cars { cars }
 
-    var getSelectedShowroom: Showroom? {
+    var selectedShowroom: Showroom? {
         DefaultsManager.getUserInfo(for: .selectedShowroom)
     }
 
@@ -92,14 +90,6 @@ extension UserInfo: UserProxy {
         cars.defaultCar = car
         KeychainManager.set(cars)
         notificator.notificateObservers()
-    }
-
-    func updateSelected(city: City) {
-        DefaultsManager.push(info: city, for: .selectedCity)
-    }
-
-    func updateSelected(showroom: Showroom) {
-        DefaultsManager.push(info: showroom, for: .selectedShowroom)
     }
 
     func removeCar(with id: String) {
