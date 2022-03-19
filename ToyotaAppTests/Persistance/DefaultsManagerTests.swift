@@ -27,6 +27,10 @@ class DefaultsManagerTests: XCTestCase {
                                              from: container)
         XCTAssertNotNil(retrieved)
 
+        let car: Car? = DefaultsManager.retrieve(for: .testSelectedCity,
+                                                 from: container)
+        XCTAssertNil(car)
+
         try testDataSafety(for: retrieved!)
     }
 

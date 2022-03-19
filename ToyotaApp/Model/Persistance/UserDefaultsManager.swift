@@ -28,8 +28,8 @@ public class DefaultsManager {
             let data = try JSONEncoder().encode(info)
             container.set(data, forKey: key.rawValue)
             return true
-        } catch let decodeError as NSError {
-            assertionFailure("Encoder error: \(decodeError.localizedDescription)")
+        } catch let encodeError as NSError {
+            assertionFailure("Encoder error: \(encodeError.localizedDescription)")
             return false
         }
     }
