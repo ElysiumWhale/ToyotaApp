@@ -31,7 +31,7 @@ class BookingsViewController: RefreshableController {
     func startRefreshing() {
         refreshControl.startRefreshing()
         NetworkService.makeRequest(page: .profile(.getBookings),
-                                   params: [(.auth(.userId), KeychainManager<UserId>.get()?.id)],
+                                   params: .userId,
                                    handler: handler)
     }
 

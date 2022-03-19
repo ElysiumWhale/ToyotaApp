@@ -11,7 +11,7 @@ class MyCarsViewController: UIViewController, Loadable {
         didSet { subscribe(on: user) }
     }
 
-    private var cars: [Car] { user.getCars.array }
+    private var cars: [Car] { user.cars.value }
     private var deleteCarClosure: Closure?
 
     private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
@@ -73,7 +73,7 @@ class MyCarsViewController: UIViewController, Loadable {
         PopUp.display(.choise(description: .question(.removeCar))) { [self] in
             startLoading()
             NetworkService.makeRequest(page: .profile(.removeCar),
-                                       params: [(.auth(.userId), user.getId),
+                                       params: [(.auth(.userId), user.id),
                                                 (.carInfo(.carId), id)],
                                        handler: removeCarHandler)
         }
@@ -102,11 +102,11 @@ extension MyCarsViewController: UICollectionViewDataSource {
 // MARK: - WithUserInfo
 extension MyCarsViewController: WithUserInfo {
     func subscribe(on proxy: UserProxy) {
-        proxy.getNotificator.add(observer: self)
+        proxy.notificator.add(observer: self)
     }
 
     func unsubscribe(from proxy: UserProxy) {
-        proxy.getNotificator.remove(obsever: self)
+        proxy.notificator.remove(obsever: self)
     }
 
     func userDidUpdate() {

@@ -44,8 +44,8 @@ class ConnectionLostInteractor {
     }
 
     func reconnect() {
-        guard let userId = KeychainManager<UserId>.get()?.id,
-              let secretKey = KeychainManager<SecretKey>.get()?.secret else {
+        guard let userId = KeychainManager<UserId>.get()?.value,
+              let secretKey = KeychainManager<SecretKey>.get()?.value else {
             NavigationService.loadAuth()
             return
         }

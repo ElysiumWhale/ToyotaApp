@@ -85,7 +85,7 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let userId = user?.getId,
+        guard let userId = user?.id,
               let showroomId = modules[2].state.getService()?.id,
               let carId = modules[1].state.getService()?.id else { return }
 

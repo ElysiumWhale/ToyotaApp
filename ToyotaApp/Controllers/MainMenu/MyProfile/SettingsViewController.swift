@@ -11,14 +11,14 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        phoneTextField.text = user.getPhone
+        phoneTextField.text = user.phone
     }
 
     @IBAction func changeNumber(sender: Any?) {
         PopUp.displayChoice(with: .common(.confirmation),
                             description: .question(.changeNumber),
                             confirmText: .common(.yes), declineText: .common(.cancel)) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber(with: user.getNotificator))
+            let module = AuthFlow.authModule(authType: .changeNumber(with: user.notificator))
             navigationController?.pushViewController(module, animated: true)
         }
     }

@@ -22,7 +22,7 @@ class MyManagerViewController: UIViewController {
         super.viewDidLoad()
 
         NetworkService.makeRequest(page: .profile(.getManagers),
-                                   params: [(.auth(.userId), user.getId),
+                                   params: [(.auth(.userId), user.id),
                                             (.auth(.brandId), Brand.Toyota)],
                                    handler: managersRequestHandler)
     }

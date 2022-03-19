@@ -2,28 +2,28 @@ import Foundation
 
 class UserId: Keychainable {
     static var key: KeychainKeys = .userId
-    let id: String
+    let value: String
 
     init(_ value: String) {
-        id = value
+        self.value = value
     }
 }
 
 class SecretKey: Keychainable {
     static var key: KeychainKeys = .secretKey
-    let secret: String
+    let value: String
 
     init(_ key: String) {
-        secret = key
+        value = key
     }
 }
 
 class Phone: Keychainable {
     static var key: KeychainKeys = .phone
-    var phone: String
+    var value: String
 
     init(_ number: String) {
-        phone = number
+        value = number
     }
 }
 
@@ -58,15 +58,15 @@ class Cars: Keychainable {
     static var key: KeychainKeys = .cars
 
     var defaultCar: Car?
-    var array: [Car]
+    var value: [Car]
 
     init(_ cars: [Car]) {
-        array = cars
-        defaultCar = array.first
+        value = cars
+        defaultCar = value.first
     }
 
     init(_ cars: [Car], chosen car: Car) {
-        array = cars
+        value = cars
         defaultCar = car
     }
 }

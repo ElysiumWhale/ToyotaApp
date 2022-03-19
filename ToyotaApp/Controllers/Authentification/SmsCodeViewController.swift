@@ -102,7 +102,7 @@ extension SmsCodeViewController {
         var params: RequestItems = [(.personalInfo(.phoneNumber), phoneNumber),
                                     (.auth(.code), smsCodeTextField!.text)]
         params.append(authType == .register ? (.auth(.brandId), Brand.Toyota)
-                                            : (.auth(.userId), KeychainManager<UserId>.get()?.id))
+                                            : (.auth(.userId), KeychainManager<UserId>.get()?.value))
         return params
     }
 

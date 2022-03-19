@@ -92,14 +92,14 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
-            if user?.getCars.array.isEmpty ?? false {
+            if user?.cars.value.isEmpty ?? false {
                 PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
                 carPickView.textField.placeholder = .common(.noCars)
                 carPickView.textField.isEnabled = false
                 carPickView.textField.toggle(state: .error)
                 return
             }
-            selectedCar = user?.getCars.defaultCar
+            selectedCar = user?.cars.defaultCar
         }
 
         startLoading()
@@ -108,7 +108,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     @objc private func carDidSelect(sender: Any?) {
         view.endEditing(true)
-        guard let cars = user?.getCars.array, cars.isNotEmpty else {
+        guard let cars = user?.cars.value, cars.isNotEmpty else {
             return
         }
 
@@ -121,9 +121,9 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     }
 
     func bookService() {
-        guard let userId = user?.getId,
+        guard let userId = user?.id,
               let showroomId = user?.selectedShowroom?.id,
-              let carId = user?.getCars.defaultCar?.id else { return }
+              let carId = user?.cars.defaultCar?.id else { return }
 
         var params: RequestItems = [(.auth(.userId), userId),
                                     (.carInfo(.showroomId), showroomId),
@@ -198,12 +198,12 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        user?.getCars.array.count ?? 0
+        user?.cars.value.count ?? .zero
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        user?.getCars.array[row].name
+        user?.cars.value[row].name
     }
 }
 

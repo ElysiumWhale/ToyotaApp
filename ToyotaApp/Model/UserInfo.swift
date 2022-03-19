@@ -1,29 +1,33 @@
 import Foundation
 
-protocol UserProxy {
-    var getId: String { get }
-    var getPhone: String { get }
-    var getPerson: Person { get }
-    var selectedShowroom: Showroom? { get }
-    var selectedCity: City? { get }
-    var getCars: Cars { get }
-    var getNotificator: Notificator { get }
-
+protocol UserProxy: UserStorage {
     func updatePerson(from person: Person)
     func updateSelected(car: Car)
     func addNew(car: Car)
     func removeCar(with id: String)
+}
+
+protocol UserStorage {
+    var id: String { get }
+    var phone: String { get }
+    var person: Person { get }
+    var cars: Cars { get }
+
+    var selectedShowroom: Showroom? { get }
+    var selectedCity: City? { get }
+
+    var notificator: Notificator { get }
 
     static func build() -> Result<UserProxy, AppErrors>
 }
 
 class UserInfo {
-    let id: UserId
-    private var phone: Phone
-    private var person: Person
-    private var cars: Cars
+    let id: String
+    let phone: String
+    private(set) var person: Person
+    private(set) var cars: Cars
 
-    private let notificator: Notificator
+    let notificator: Notificator
 
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         guard let userId = KeychainManager<UserId>.get(),
@@ -39,8 +43,8 @@ class UserInfo {
 
     private init(_ userId: UserId, _ userPhone: Phone,
                  _ personInfo: Person, _ carsInfo: Cars) {
-        id = userId
-        phone = userPhone
+        id = userId.value
+        phone = userPhone.value
         person = personInfo
         cars = carsInfo
         notificator = BaseNotificator()
@@ -52,16 +56,6 @@ extension UserInfo: UserProxy {
     static func build() -> Result<UserProxy, AppErrors> {
         buildUser()
     }
-
-    var getNotificator: Notificator { notificator }
-
-    var getId: String { id.id }
-
-    var getPhone: String { phone.phone }
-
-    var getPerson: Person { person }
-
-    var getCars: Cars { cars }
 
     var selectedShowroom: Showroom? {
         DefaultsManager.retrieve(for: .selectedShowroom)
@@ -78,7 +72,7 @@ extension UserInfo: UserProxy {
     }
 
     func addNew(car: Car) {
-        cars.array.append(car)
+        cars.value.append(car)
         if cars.defaultCar == nil {
             cars.defaultCar = car
         }
@@ -94,9 +88,9 @@ extension UserInfo: UserProxy {
 
     func removeCar(with id: String) {
         let updatedCars = cars
-        updatedCars.array.removeAll(where: { $0.id == id })
+        updatedCars.value.removeAll(where: { $0.id == id })
         if cars.defaultCar?.id == id {
-            updatedCars.defaultCar = updatedCars.array.first
+            updatedCars.defaultCar = updatedCars.value.first
         }
         KeychainManager.set(updatedCars)
         notificator.notificateObservers()

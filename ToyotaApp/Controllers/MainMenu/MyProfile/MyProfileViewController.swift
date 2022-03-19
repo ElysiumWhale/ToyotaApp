@@ -31,7 +31,7 @@ class MyProfileViewController: UIViewController {
         didSet { subscribe(on: user) }
     }
 
-    private var profile: Person { user.getPerson }
+    private var profile: Person { user.person }
 
     private var state: EditingStates = .none {
         didSet { switchInterface(state) }
@@ -172,7 +172,7 @@ extension MyProfileViewController {
         emailTextField.text = profile.email
         datePicker.date = profile.birthday.asDate(with: .server) ?? Date()
         dateDidSelect()
-        managerButton.isHidden = user.getCars.array.count < 1
+        managerButton.isHidden = user.cars.value.count < 1
     }
 }
 
@@ -187,7 +187,7 @@ extension MyProfileViewController {
     }
 
     private var requestParams: RequestItems {
-        [(.auth(.userId), user.getId),
+        [(.auth(.userId), user.id),
          (.personalInfo(.firstName), firstNameTextField.inputText),
          (.personalInfo(.secondName), secondNameTextField.inputText),
          (.personalInfo(.lastName), lastNameTextField.inputText),
@@ -226,11 +226,11 @@ extension MyProfileViewController {
 // MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
     func subscribe(on proxy: UserProxy) {
-        proxy.getNotificator.add(observer: self)
+        proxy.notificator.add(observer: self)
     }
 
     func unsubscribe(from proxy: UserProxy) {
-        proxy.getNotificator.remove(obsever: self)
+        proxy.notificator.remove(obsever: self)
     }
 
     func userDidUpdate() {

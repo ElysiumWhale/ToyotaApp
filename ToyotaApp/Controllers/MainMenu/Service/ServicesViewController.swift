@@ -19,7 +19,7 @@ class ServicesViewController: RefreshableController, PickerController {
         didSet { subscribe(on: user) }
     }
 
-    private var carsCount: Int { user.getCars.array.count }
+    private var carsCount: Int { user.cars.value.count }
 
     private var fieldHeight: CGFloat {
         showroomField.frame.height
@@ -171,11 +171,11 @@ extension ServicesViewController: WithUserInfo {
     }
 
     func subscribe(on proxy: UserProxy) {
-        proxy.getNotificator.add(observer: self)
+        proxy.notificator.add(observer: self)
     }
 
     func unsubscribe(from proxy: UserProxy) {
-        proxy.getNotificator.remove(obsever: self)
+        proxy.notificator.remove(obsever: self)
     }
 }
 

@@ -71,7 +71,7 @@ extension CheckVinViewController {
         checkVinButton.fadeOut()
         indicator.startAnimating()
 
-        let userId = KeychainManager<UserId>.get()!.id
+        let userId = KeychainManager<UserId>.get()!.value
         NetworkService.makeRequest(page: .registration(.checkVin),
                                    params: [(.carInfo(.skipStep), skip.rawValue),
                                             (.carInfo(.showroomId), showroom!.id),

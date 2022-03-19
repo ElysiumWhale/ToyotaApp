@@ -122,8 +122,12 @@ extension Array where Element == RequestItem {
 
     static let empty: RequestItems = []
 
+    static var userId: Self {
+        [(.auth(.userId), KeychainManager<UserId>.get()!.value)]
+    }
+
     mutating func withUserId() -> Self {
-        append((.auth(.userId), KeychainManager<UserId>.get()!.id))
+        append((.auth(.userId), KeychainManager<UserId>.get()!.value))
         return self
     }
 }

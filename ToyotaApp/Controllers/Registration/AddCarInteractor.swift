@@ -102,7 +102,7 @@ class AddCarInteractor {
 
         NetworkService.makeRequest(page: .registration(.setCar),
                                    params: [(.auth(.brandId), Brand.Toyota),
-                                            (.auth(.userId), KeychainManager<UserId>.get()?.id),
+                                            (.auth(.userId), KeychainManager<UserId>.get()?.value),
                                             (.carInfo(.modelId), modelId),
                                             (.carInfo(.colorId), colorId),
                                             (.carInfo(.vinCode), vin),
@@ -113,7 +113,7 @@ class AddCarInteractor {
 
     func skipRegister() {
         NetworkService.makeRequest(page: .registration(.checkVin),
-                                   params: [(.auth(.userId), KeychainManager<UserId>.get()?.id),
+                                   params: [(.auth(.userId), KeychainManager<UserId>.get()?.value),
                                             (.carInfo(.skipStep), .skipValue)],
                                    handler: skipAddCarHandler)
     }

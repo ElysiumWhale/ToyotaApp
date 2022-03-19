@@ -138,7 +138,7 @@ extension DealerViewController {
 
         nextButton.fadeOut()
         nextButtonIndicator.startAnimating()
-        let userId = KeychainManager<UserId>.get()!.id
+        let userId = KeychainManager<UserId>.get()!.value
         let page: RequestPath = type == .register ? .registration(.setShowroom)
                                                   : .profile(.addShowroom)
         NetworkService.makeRequest(page: page,
