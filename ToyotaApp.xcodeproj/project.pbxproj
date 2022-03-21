@@ -61,6 +61,7 @@
 		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
 		14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */; };
 		14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */; };
+		14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD827E92AB300715A5D /* FlowsTests.swift */; };
 		14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF66A4267F6081000FCEAC /* ManagerCVC.swift */; };
 		14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CFEF0A2714E22C0034046C /* CustomizableButton.swift */; };
 		14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FF92753AC0C00546587 /* RequestPath.swift */; };
@@ -186,6 +187,7 @@
 		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
 		14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagerViewController.swift; sourceTree = "<group>"; };
 		14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
+		14CB6AD827E92AB300715A5D /* FlowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowsTests.swift; sourceTree = "<group>"; };
 		14CF66A4267F6081000FCEAC /* ManagerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCVC.swift; sourceTree = "<group>"; };
 		14CFEF0A2714E22C0034046C /* CustomizableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableButton.swift; sourceTree = "<group>"; };
 		14D55FF92753AC0C00546587 /* RequestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPath.swift; sourceTree = "<group>"; };
@@ -359,6 +361,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		14CB6AD727E92A9A00715A5D /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				14CB6AD827E92AB300715A5D /* FlowsTests.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
 		14D55FF62753AB7100546587 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +449,7 @@
 		14F0920527E3EB7600B03130 /* ToyotaAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				14CB6AD727E92A9A00715A5D /* Flows */,
 				147D4A2B27E614E400010E63 /* Modules */,
 				147D4A2A27E614CA00010E63 /* Persistance */,
 			);
@@ -799,6 +810,7 @@
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
 				14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */,
+				14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
