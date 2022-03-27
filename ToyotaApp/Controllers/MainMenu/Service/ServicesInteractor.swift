@@ -9,19 +9,24 @@ protocol ServicesView: AnyObject {
 }
 
 class ServicesInteractor {
-    weak var view: ServicesView?
-
+    private let service: InfoService
     private let servicesTypesHandler = RequestHandler<ServicesTypesResponse>()
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
 
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
 
+    weak var view: ServicesView?
+
     @DefaultsBacked<City>(key: .selectedCity)
-    var selectedCity
+    var selectedCity {
+        didSet {
+            selectedShowroom = nil
+        }
+    }
 
     @DefaultsBacked<Showroom>(key: .selectedShowroom)
-    var selectedShowroom {
+    private(set) var selectedShowroom {
         didSet {
             guard let showroom = selectedShowroom else {
                 return
@@ -43,7 +48,8 @@ class ServicesInteractor {
         return showrooms.firstIndex(where: { $0.id == showroom.id })
     }
 
-    init() {
+    init(service: InfoService = .init()) {
+        self.service = service
         bindHandlers()
     }
 
@@ -57,17 +63,19 @@ class ServicesInteractor {
     }
 
     func loadServiceTypes() {
-        NetworkService.makeRequest(page: .services(.getServicesTypes),
-                                   params: [(.carInfo(.showroomId),
-                                             selectedShowroom?.id)],
-                                   handler: servicesTypesHandler)
+        guard let id = selectedShowroom?.id else {
+            return
+        }
+
+        service.getServiceTypes(with: .init(showroomId: id), handler: servicesTypesHandler)
     }
 
     func loadShowrooms() {
-        NetworkService.makeRequest(page: .registration(.getShowrooms),
-                                   params: [(.auth(.brandId), Brand.Toyota),
-                                            (.carInfo(.cityId), selectedCity?.id)],
-                                   handler: showroomsHandler)
+        guard let id = selectedCity?.id else {
+            return
+        }
+
+        service.getShowrooms(with: .init(brandId: Brand.Toyota, cityId: id), handler: showroomsHandler)
     }
 
     private func didLoad(showrooms: [Showroom]) {

@@ -95,7 +95,6 @@ extension ServicesViewController: CityPickerDelegate {
 
         navigationItem.titleView?.setTitleIfButtonFirst(city.name)
         interactor.selectedCity = city
-        interactor.selectedShowroom = nil
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
