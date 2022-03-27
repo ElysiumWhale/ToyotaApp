@@ -23,11 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self?.handle(error: error)
         }
 
-        NetworkService.makeRequest(page: .start(.checkUser),
-                                   params: [(.auth(.userId), userId),
-                                            (.auth(.brandId), Brand.Toyota),
-                                            (.auth(.secretKey), secretKey)],
-                                   handler: requestHandler!)
+        let body = CheckUserBody(userId: userId, secret: secretKey, brandId: Brand.Toyota)
+        InfoService().checkUser(with: body, handler: requestHandler!)
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {

@@ -88,22 +88,16 @@ extension SmsCodeViewController {
 
         switch type {
             case .register:
-                NetworkService.makeRequest(page: .registration(.checkCode),
-                                           params: buildRequestParams(authType: type),
-                                           handler: registerHandler)
+                let body = CheckSmsCodeBody(phone: phoneNumber,
+                                            code: smsCodeTextField.inputText,
+                                            brandId: Brand.Toyota)
+                InfoService().checkCode(with: body, handler: registerHandler)
             case .changeNumber:
-                NetworkService.makeRequest(page: .setting(.changePhone),
-                                           params: buildRequestParams(authType: type),
-                                           handler: changeNumberHandler)
+                let body = ChangePhoneBody(userId: KeychainManager<UserId>.get()!.value,
+                                           code: smsCodeTextField.inputText,
+                                           newPhone: phoneNumber)
+                InfoService().changePhone(with: body, handler: changeNumberHandler)
         }
-    }
-
-    private func buildRequestParams(authType: AuthType) -> RequestItems {
-        var params: RequestItems = [(.personalInfo(.phoneNumber), phoneNumber),
-                                    (.auth(.code), smsCodeTextField!.text)]
-        params.append(authType == .register ? (.auth(.brandId), Brand.Toyota)
-                                            : (.auth(.userId), KeychainManager<UserId>.get()?.value))
-        return params
     }
 
     private func handle(_ error: ErrorResponse) {

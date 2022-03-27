@@ -57,9 +57,9 @@ class AuthViewController: UIViewController {
         if case .register = type {
             KeychainManager.set(Phone(phone))
         }
-        NetworkService.makeRequest(page: .registration(.registerPhone),
-                                   params: [(.personalInfo(.phoneNumber), phone)],
-                                   handler: authRequestHandler)
+
+        InfoService().registerPhone(with: .init(phone: phone),
+                                    handler: authRequestHandler)
     }
 
     private func handle(isSuccess: Bool) {
