@@ -3,6 +3,11 @@ import Foundation
 typealias Response<TResponse: IResponse> = Result<TResponse, ErrorResponse>
 typealias ResponseHandler<TResponse: IResponse> = (Response<TResponse>) -> Void
 
+struct Request {
+    let page: RequestPath
+    let body: IBody
+}
+
 class NetworkService {
     private static let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -71,6 +76,39 @@ class NetworkService {
 
             let decoder = JSONDecoder()
             if let response = try? decoder.decode(TResponse.self, from: data) {
+                handler?.invokeSuccess(response)
+            } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
+                handler?.invokeFailure(errorResponse)
+            } else {
+                handler?.invokeFailure(.corruptedData)
+            }
+        }
+
+        handler.start(with: task)
+    }
+
+    class func makeRequest<Response>(_ request: Request,
+                                     handler: RequestHandler<Response>) where Response: IResponse {
+        let request = buildPostRequest(for: request.page.rawValue, with: request.body.asRequestItems)
+
+        let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
+            guard error == nil else {
+                handler?.invokeFailure(.lostConnection)
+                return
+            }
+
+            guard let data = data else {
+                handler?.invokeFailure(.corruptedData)
+                return
+            }
+
+            #if DEBUG
+            let json = try? JSONSerialization.jsonObject(with: data)
+            print(json ?? "Error while parsing json object")
+            #endif
+
+            let decoder = JSONDecoder()
+            if let response = try? decoder.decode(Response.self, from: data) {
                 handler?.invokeSuccess(response)
             } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
                 handler?.invokeFailure(errorResponse)
