@@ -6,7 +6,7 @@ protocol Notificator {
     func notificateObservers()
 }
 
-class BaseNotificator: Notificator {
+class UserNotificator: Notificator {
 
     private var observers: [ObjectIdentifier: Observer] = [:]
 
@@ -31,7 +31,7 @@ class BaseNotificator: Notificator {
     }
 }
 
-extension BaseNotificator {
+extension UserNotificator {
     struct Observer {
         weak var value: WithUserInfo?
     }

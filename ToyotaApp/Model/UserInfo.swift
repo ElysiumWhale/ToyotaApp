@@ -47,7 +47,7 @@ class UserInfo {
         phone = userPhone.value
         person = personInfo
         cars = carsInfo
-        notificator = BaseNotificator()
+        notificator = UserNotificator()
     }
 }
 
