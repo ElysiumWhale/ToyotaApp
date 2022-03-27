@@ -18,6 +18,7 @@
 		1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834327E28663004573A1 /* PersonalInfoPresenter.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
+		141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */; };
 		141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A42706519E00EEFC6E /* PickerModuleView.swift */; };
 		141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */; };
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
@@ -36,6 +37,7 @@
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
+		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */; };
@@ -145,6 +147,7 @@
 		1419834327E28663004573A1 /* PersonalInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoPresenter.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyProtocols.swift; sourceTree = "<group>"; };
 		141A64A42706519E00EEFC6E /* PickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A6270651AB00EEFC6E /* TimePickerModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModuleView.swift; sourceTree = "<group>"; };
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 		14D55FF82753ABF300546587 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */,
+				146E348227D5339000534B6F /* Bodies.swift */,
 				A77B9311253B035F0011282E /* Responses.swift */,
 				1419D0C727752F6500D95B7F /* Models.swift */,
 				14D55FF92753AC0C00546587 /* RequestPath.swift */,
@@ -856,6 +862,7 @@
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,
 				14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */,
+				141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */,
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
@@ -869,6 +876,7 @@
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
 				1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */,
+				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
