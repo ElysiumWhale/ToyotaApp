@@ -225,3 +225,16 @@ struct GetManagersBody: IBody, BodyWithUserAndBrandId {
     let userId: String
     let brandId: String
 }
+
+// MARK: - SkipSetCarBody
+struct SkipSetCarBody: IBody, BodyWithUserId {
+    let userId: String
+    let skipValue = "1"
+
+    var asRequestItems: [URLQueryItem] {
+        [
+            userIdItem,
+            .init(.carInfo(.skipStep), skipValue)
+        ]
+    }
+}

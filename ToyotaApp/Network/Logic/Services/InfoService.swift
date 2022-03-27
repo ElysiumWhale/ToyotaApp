@@ -86,6 +86,11 @@ class InfoService {
         NetworkService.makeRequest(request, handler: handler)
     }
 
+    func skipSetCar(with body: SkipSetCarBody, handler: RequestHandler<SimpleResponse>) {
+        let request = Request(page: .registration(.checkVin), body: body)
+        NetworkService.makeRequest(request, handler: handler)
+    }
+
     @available(*, unavailable)
     func addShowroom(with body: AddShowroomBody, handler: RequestHandler<SimpleResponse>) {
         let request = Request(page: .profile(.addShowroom), body: body)
