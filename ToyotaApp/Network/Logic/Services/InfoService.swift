@@ -11,6 +11,11 @@ class InfoService {
         NetworkService.makeRequest(request, handler: handler)
     }
 
+    func updateProfile(with body: SetProfileBody, handler: RequestHandler<SimpleResponse>) {
+        let request = Request(page: .profile(.editProfile), body: body)
+        NetworkService.makeRequest(request, handler: handler)
+    }
+
     func getCities(with body: GetCitiesBody, handler: RequestHandler<CitiesResponse>) {
         let request = Request(page: .profile(.getCities), body: body)
         NetworkService.makeRequest(request, handler: handler)
