@@ -387,7 +387,6 @@
 			children = (
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				1425230326FFBD7C00B177B7 /* RequestHandler.swift */,
-				A74D2898253680FB00A1C856 /* UrlBuilder.swift */,
 				14DF1E45272D8F6A00B4556E /* HtmlParser.swift */,
 			);
 			path = Logic;
@@ -404,6 +403,7 @@
 				14D55FFB2753AC1700546587 /* RequestKey.swift */,
 				14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */,
 				140BA59927A6CD73002A7423 /* CheckUserContext.swift */,
+				A74D2898253680FB00A1C856 /* UrlBuilder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
