@@ -6,7 +6,7 @@ struct SimpleBrandBody: IBody, BodyWithBrandId {
 }
 
 typealias GetCitiesBody = SimpleBrandBody
-typealias GetModelsAndColorBody = SimpleBrandBody
+typealias GetModelsAndColorsBody = SimpleBrandBody
 
 // MARK: - CheckUserBody
 struct CheckUserBody: IBody, BodyWithUserAndBrandId {
