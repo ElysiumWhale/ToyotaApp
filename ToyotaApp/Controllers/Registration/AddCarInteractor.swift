@@ -7,6 +7,8 @@ protocol AddCarViewInput: AnyObject {
 }
 
 class AddCarInteractor {
+    private let service: InfoService
+
     weak var view: AddCarViewInput?
 
     var type: AddInfoType = .register
@@ -60,6 +62,10 @@ class AddCarInteractor {
         models.isEmpty && colors.isEmpty
     }
 
+    init(service: InfoService = .init()) {
+        self.service = service
+    }
+
     // MARK: - Public methods
     func configure(type: AddInfoType, models: [Model], colors: [Color]) {
         self.type = type
@@ -96,32 +102,24 @@ class AddCarInteractor {
 
     func setCar() {
         guard let modelId = selectedModel?.id,
-              let colorId = selectedColor?.id else {
+              let colorId = selectedColor?.id,
+              let userId = KeychainManager<UserId>.get()?.value else {
             return
         }
 
-        NetworkService.makeRequest(page: .registration(.setCar),
-                                   params: [(.auth(.brandId), Brand.Toyota),
-                                            (.auth(.userId), KeychainManager<UserId>.get()?.value),
-                                            (.carInfo(.modelId), modelId),
-                                            (.carInfo(.colorId), colorId),
-                                            (.carInfo(.vinCode), vin),
-                                            (.carInfo(.licensePlate), plate),
-                                            (.carInfo(.releaseYear), selectedYear)],
-                                   handler: setCarHandler)
+        let body = SetCarBody(brandId: Brand.Toyota, userId: userId, carModelId: modelId,
+                              colorId: colorId, licensePlate: plate, vinCode: vin,
+                              year: selectedYear)
+        service.addCar(with: body, handler: setCarHandler)
     }
 
     func skipRegister() {
-        NetworkService.makeRequest(page: .registration(.checkVin),
-                                   params: [(.auth(.userId), KeychainManager<UserId>.get()?.value),
-                                            (.carInfo(.skipStep), .skipValue)],
-                                   handler: skipAddCarHandler)
+        service.skipSetCar(with: .init(userId: KeychainManager<UserId>.get()!.value),
+                           handler: skipAddCarHandler)
     }
 
     func loadModelsAndColors() {
-        NetworkService.makeRequest(page: .registration(.getModelsAndColors),
-                                   params: [(.auth(.brandId), Brand.Toyota)],
-                                   handler: loadModelsHandler)
+        service.getModelsAndColors(with: .init(brandId: Brand.Toyota), handler: loadModelsHandler)
     }
 
     // MARK: - Private methods
@@ -143,9 +141,4 @@ class AddCarInteractor {
                 userProxy.addNew(car: car)
         }
     }
-}
-
-// MARK: - Constants
-private extension String {
-    static let skipValue = "1"
 }

@@ -186,15 +186,6 @@ extension MyProfileViewController {
         profile.birthday.asDate(with: .server)?.asString(.client) != birthTextField.inputText
     }
 
-    private var requestParams: RequestItems {
-        [(.auth(.userId), user.id),
-         (.personalInfo(.firstName), firstNameTextField.inputText),
-         (.personalInfo(.secondName), secondNameTextField.inputText),
-         (.personalInfo(.lastName), lastNameTextField.inputText),
-         (.personalInfo(.email), emailTextField.inputText),
-         (.personalInfo(.birthday), date)]
-    }
-
     private func updateUserInfo() {
         guard hasChanges else {
             state = .none
@@ -207,9 +198,14 @@ extension MyProfileViewController {
         }
 
         state = .loading
-        NetworkService.makeRequest(page: .profile(.editProfile),
-                                   params: requestParams,
-                                   handler: updateUserHandler)
+        let body = SetProfileBody(brandId: firstNameTextField.inputText,
+                                  userId: KeychainManager<UserId>.get()!.value,
+                                  firstName: firstNameTextField.inputText,
+                                  secondName: secondNameTextField.inputText,
+                                  lastName: lastNameTextField.inputText,
+                                  email: emailTextField.inputText,
+                                  birthday: date)
+        InfoService().updateProfile(with: body, handler: updateUserHandler)
     }
 
     private func handle(success response: SimpleResponse) {

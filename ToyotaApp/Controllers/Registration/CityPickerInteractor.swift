@@ -12,6 +12,8 @@ protocol CityPickerDelegate: AnyObject {
 }
 
 class CityPickerInteractor {
+    private let service: InfoService
+
     weak var view: CityPickerView?
     weak var cityPickerDelegate: CityPickerDelegate?
 
@@ -35,6 +37,10 @@ class CityPickerInteractor {
             }
     }()
 
+    init(service: InfoService = .init()) {
+        self.service = service
+    }
+
     func configure(with cities: [City]) {
         if cities.isNotEmpty {
             self.cities = cities
@@ -50,9 +56,7 @@ class CityPickerInteractor {
     }
 
     func loadCities() {
-        NetworkService.makeRequest(page: .profile(.getCities),
-                                   params: [(.auth(.brandId), Brand.Toyota)],
-                                   handler: cityRequestHandler)
+        service.getCities(with: .init(brandId: Brand.Toyota), handler: cityRequestHandler)
     }
 
     func saveCity() -> Bool {
