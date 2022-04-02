@@ -78,3 +78,12 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    func configureDefaultNavBarAppearance() {
+        navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.toyotaType(.regular, of: 17)
+        ]
+    }
+}

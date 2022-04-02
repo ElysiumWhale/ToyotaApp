@@ -81,7 +81,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType.serviceTypeName
-        navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+        configureDefaultNavBarAppearance()
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
