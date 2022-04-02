@@ -1,5 +1,29 @@
 import UIKit
 
+protocol InitialazableView: UIView {
+    func addViews()
+    func configureLayout()
+    func configureAppearance()
+    func localize()
+}
+
+extension InitialazableView {
+    func initialize() {
+        addViews()
+        configureLayout()
+        configureAppearance()
+        localize()
+    }
+
+    func addViews() { }
+
+    func configureLayout() { }
+
+    func configureAppearance() { }
+
+    func localize() { }
+}
+
 enum Storyboards: String {
     case main = "Main"
     case launchScreen = "LaunchScreen"
