@@ -123,6 +123,7 @@
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
 		A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCVC.swift */; };
 		A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceCVC.swift */; };
+		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
 		A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12066253E713A005F85B0 /* DealerViewController.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
@@ -253,6 +254,7 @@
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCVC.swift; sourceTree = "<group>"; };
 		A7AABF7F25A9EACB00C72F65 /* ServiceCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCVC.swift; sourceTree = "<group>"; };
+		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		A7D12066253E713A005F85B0 /* DealerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerViewController.swift; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			children = (
 				A7AABF7F25A9EACB00C72F65 /* ServiceCVC.swift */,
 				14EC744C27F8F98100AC6648 /* BaseCollectionCell.swift */,
+				A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */,
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
 				14CF66A4267F6081000FCEAC /* ManagerCVC.swift */,
 			);
@@ -866,6 +869,7 @@
 				A77B9312253B035F0011282E /* Responses.swift in Sources */,
 				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceCVC.swift in Sources */,
+				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
