@@ -81,7 +81,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType.serviceTypeName
-        navigationController?.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+        configureDefaultNavBarAppearance()
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
@@ -210,27 +210,16 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
 // MARK: - Constraints setup
 extension BaseServiceController {
     private func setupScrollViewLayout() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.keyboardDismissMode = .interactive
-        NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
+        scrollView.edgesToSuperview()
+        scrollView.widthToSuperview()
     }
 
     private func setupStackViewLayout() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 20
-        NSLayoutConstraint.activate([
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40)
-        ])
+        stackView.horizontalToSuperview(insets: .horizontal(20))
+        stackView.verticalToSuperview(insets: .vertical(20))
+        stackView.width(to: view, offset: -40)
     }
 }

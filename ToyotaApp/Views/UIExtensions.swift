@@ -48,10 +48,10 @@ extension UITextField {
 // MARK: - Configuring shadow for cell
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat, shadowRadius: CGFloat = 3) {
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.black.cgColor.copy(alpha: 0.5)
         layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
         layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = 0.6
+        layer.shadowOpacity = 0.7
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
     }
@@ -192,8 +192,6 @@ extension UICollectionView {
     enum CollectionCells: String {
         /// CarCell
         case car = "CarCell"
-        /// ServiceCell
-        case service = "ServiceCell"
         /// ManagerCell
         case manager = "ManagerCell"
     }
