@@ -279,3 +279,18 @@ extension UIButton {
         return button
     }
 }
+
+// MARK: - UIStackView
+extension UIStackView {
+    func addArrangedSubviews(_ views: UIView...) {
+        for view in views {
+            addArrangedSubview(view)
+        }
+    }
+
+    func addArrangedSubviews(_ views: [UIView]) {
+        for view in views {
+            addArrangedSubview(view)
+        }
+    }
+}
