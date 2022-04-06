@@ -23,4 +23,8 @@ enum AuthFlow {
         }
         return nvc
     }
+
+    static func agreementModule() -> UIViewController {
+        storyboard.instantiate(.agreement)
+    }
 }
