@@ -34,6 +34,7 @@
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */; };
+		1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466B49F27FB91930026677B /* InitialazableViewController.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
@@ -164,6 +165,7 @@
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedButton.swift; sourceTree = "<group>"; };
+		1466B49F27FB91930026677B /* InitialazableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableViewController.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 		A7777519259BFA00006D30EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1466B49F27FB91930026677B /* InitialazableViewController.swift */,
 				A727F4102588263C00B8CB79 /* ControllersProtocols.swift */,
 				A7777513259BF8DE006D30EA /* ControllersExtensions.swift */,
 				1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */,
@@ -858,6 +861,7 @@
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
 				1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */,
 				A77B9312253B035F0011282E /* Responses.swift in Sources */,
+				1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
