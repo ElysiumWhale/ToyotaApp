@@ -96,6 +96,12 @@ class MyProfileViewController: UIViewController {
         }
     }
 
+    @IBAction private func showSettings(sender: Any?) {
+        let root = NewSettingsViewController(user: user)
+        let navigation = UINavigationController(rootViewController: root)
+        present(navigation, animated: true)
+    }
+
     @objc private func dateDidSelect() {
         date = datePicker.date.asString(.server)
         birthTextField.text = datePicker.date.asString(.client)
