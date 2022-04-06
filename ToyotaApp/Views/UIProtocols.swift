@@ -1,10 +1,11 @@
 import UIKit
 
-protocol InitialazableView: UIView {
+protocol InitialazableView {
     func addViews()
     func configureLayout()
     func configureAppearance()
     func localize()
+    func configureActions()
 }
 
 extension InitialazableView {
@@ -13,6 +14,7 @@ extension InitialazableView {
         configureLayout()
         configureAppearance()
         localize()
+        configureActions()
     }
 
     func addViews() { }
@@ -22,6 +24,8 @@ extension InitialazableView {
     func configureAppearance() { }
 
     func localize() { }
+
+    func configureActions() { }
 }
 
 enum Storyboards: String {
