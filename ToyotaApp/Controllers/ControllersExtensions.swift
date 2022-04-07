@@ -68,6 +68,8 @@ extension UIViewController {
 }
 
 extension UIViewController {
+    var wrappedInNavigation: UIViewController {
+        UINavigationController(rootViewController: self)
     }
 }
 

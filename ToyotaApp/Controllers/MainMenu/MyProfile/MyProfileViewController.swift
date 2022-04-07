@@ -97,9 +97,8 @@ class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func showSettings(sender: Any?) {
-        let root = SettingsViewController(user: user)
-        let navigation = UINavigationController(rootViewController: root)
-        present(navigation, animated: true)
+        let vc = SettingsViewController(user: user).wrappedInNavigation
+        present(vc, animated: true)
     }
 
     @objc private func dateDidSelect() {
