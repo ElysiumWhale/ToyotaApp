@@ -152,7 +152,7 @@ extension AddCarViewController: AddCarViewInput {
             case .register:
                 perform(segue: .addCarToEndRegistration)
             case .update:
-                popToRootWithDispatch(animated: true)
+                navigationController?.popToRootViewController(animated: true)
         }
     }
 

@@ -68,14 +68,6 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func popToRootWithDispatch(animated: Bool,
-                               beforeAction: @escaping Closure = { },
-                               afterAction: @escaping Closure = { }) {
-        DispatchQueue.main.async { [weak self] in
-            beforeAction()
-            self?.navigationController?.popToRootViewController(animated: animated)
-            afterAction()
-        }
     }
 }
 
