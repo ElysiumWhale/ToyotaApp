@@ -48,6 +48,8 @@ extension String {
         case no = "Нет"
         /// Выбрать
         case choose = "Выбрать"
+        /// Изменить
+        case change = "Изменить"
         /// Услуга
         case service = "Услуга"
         /// Услуги
@@ -106,6 +108,14 @@ extension String {
         case bookingInFuture = "Предстоит"
         /// Исполнено
         case bookingComplete = "Исполнено"
+        /// Настройки
+        case settings = "Настройки"
+        /// Номер телефона
+        case phoneNumber = "Номер телефона"
+        /// ALYANS PRO, OOO
+        case alyansPro = "ALYANS PRO, OOO"
+        /// Условия соглашения
+        case terms = "Условия соглашения"
     }
 
     enum QuestionStrings: String {
