@@ -1,6 +1,6 @@
 import UIKit
 
-final class NewSettingsViewController: InitialazableViewController {
+final class SettingsViewController: InitialazableViewController {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField()
     private let changeNumberButton = CustomizableButton()
@@ -22,7 +22,7 @@ final class NewSettingsViewController: InitialazableViewController {
     }
 
     override func addViews() {
-        let buttonItem = UIBarButtonItem(title: "Готово")
+        let buttonItem = UIBarButtonItem(title: .common(.done))
         buttonItem.action = #selector(customDismiss)
         buttonItem.tintColor = .appTint(.secondarySignatureRed)
         navigationItem.rightBarButtonItem = buttonItem
@@ -85,12 +85,12 @@ final class NewSettingsViewController: InitialazableViewController {
     }
 
     override func localize() {
-        navigationItem.title = "Настройки"
-        phoneLabel.text = "Номер телефона"
+        navigationItem.title = .common(.settings)
+        phoneLabel.text = .common(.phoneNumber)
         phoneTextField.text = user.phone
-        changeNumberButton.setTitle("Изменить", for: .normal)
-        agreementButton.setTitle("Условия соглашения", for: .normal)
-        companyNameLabel.text = "ALYANS PRO, OOO"
+        changeNumberButton.setTitle(.common(.change), for: .normal)
+        agreementButton.setTitle(.common(.terms), for: .normal)
+        companyNameLabel.text = .common(.alyansPro)
         versionLabel.text = "Версия 0.1 alpha"
     }
 
@@ -119,6 +119,6 @@ final class NewSettingsViewController: InitialazableViewController {
     }
 }
 
-extension NewSettingsViewController: WithUserInfo {
+extension SettingsViewController: WithUserInfo {
     func setUser(info: UserProxy) { }
 }
