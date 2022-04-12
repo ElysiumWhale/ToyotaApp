@@ -76,3 +76,20 @@ extension UIView {
         }
     }
 }
+
+// MARK: - Toolbar for controls
+extension UIView {
+    static func buildToolbar(with action: Selector) -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                       target: nil,
+                                       action: nil)
+        let doneButton = UIBarButtonItem(title: .common(.choose),
+                                         style: .done,
+                                         target: nil, action: action)
+        doneButton.tintColor = .appTint(.secondarySignatureRed)
+        toolBar.setItems([flexible, doneButton], animated: true)
+        return toolBar
+    }
+}

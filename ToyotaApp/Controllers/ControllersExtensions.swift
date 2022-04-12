@@ -1,18 +1,5 @@
 import UIKit
 
-// MARK: - Toolbar for controls
-extension UIViewController {
-    func buildToolbar(with action: Selector) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: nil, action: action)
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
-    }
-}
-
 // MARK: - UIPicker
 protocol PickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField)
@@ -22,7 +9,6 @@ extension PickerController {
     func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField) {
         picker.dataSource = self
         picker.delegate = self
-        textField.inputAccessoryView = buildToolbar(with: action)
         textField.inputView = picker
     }
 }
@@ -34,7 +20,6 @@ extension UIViewController {
         datePicker.locale = Locale(identifier: "ru")
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date()
-        textField.inputAccessoryView = buildToolbar(with: action)
         textField.inputView = datePicker
     }
 }
