@@ -46,6 +46,8 @@ public enum AppStoryboards: String {
     case register = "FirstLaunchRegistration"
     /// MainMenu
     case mainMenu = "MainMenu"
+    /// MyProfile
+    case myProfile = "MyProfile"
 }
 
 enum ViewControllers: String {
@@ -81,6 +83,10 @@ enum ViewControllers: String {
     case agreement = "AgreementViewController"
     /// CityPickerViewController
     case cityPick = "CityPickerViewController"
+    /// NewsViewController
+    case news = "NewsViewController"
+    /// MyProfileViewController
+    case myProfile = "MyProfileViewController"
 }
 
 public enum SegueIdentifiers: String {
