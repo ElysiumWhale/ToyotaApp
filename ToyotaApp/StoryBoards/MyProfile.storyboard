@@ -180,7 +180,7 @@
         <!--Мое авто-->
         <scene sceneID="ie7-fA-n9e">
             <objects>
-                <viewController storyboardIdentifier="MyCarViewController" title="Мое авто" id="hHJ-oo-scE" customClass="MyProfileViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyProfileViewController" title="Мое авто" id="hHJ-oo-scE" customClass="MyProfileViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uLl-zH-IdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

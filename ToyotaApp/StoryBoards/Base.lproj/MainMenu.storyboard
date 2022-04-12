@@ -62,7 +62,7 @@
         <!--Акции-->
         <scene sceneID="1am-hM-fZp">
             <objects>
-                <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ut1-el-nLF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,7 +176,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
                                 <rect key="frame" x="16" y="98" width="382" height="45.5"/>
                                 <color key="backgroundColor" name="Cell"/>
                                 <constraints>
@@ -217,6 +217,7 @@
         <!--Услуги-->
         <scene sceneID="xWu-aZ-S5c">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mp7-BB-kgn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="t2J-oM-keC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Услуги" id="7xw-yK-Xhz">
                         <imageReference key="image" image="bookmark" catalog="system" symbolScale="medium"/>
@@ -231,7 +232,6 @@
                         <segue destination="KLr-04-N2s" kind="relationship" relationship="rootViewController" id="alg-mV-BkK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mp7-BB-kgn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1154" y="871"/>
         </scene>
