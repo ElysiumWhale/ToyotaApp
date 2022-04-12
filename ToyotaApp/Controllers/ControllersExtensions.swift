@@ -1,29 +1,5 @@
 import UIKit
 
-// MARK: - UIPicker
-protocol PickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField)
-}
-
-extension PickerController {
-    func configurePicker(_ picker: UIPickerView, with action: Selector, for textField: UITextField) {
-        picker.dataSource = self
-        picker.delegate = self
-        textField.inputView = picker
-    }
-}
-
-// MARK: - UIDatePicker & Date Formatting
-extension UIViewController {
-    func configureDatePicker(_ datePicker: UIDatePicker, with action: Selector, for textField: UITextField) {
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru")
-        datePicker.datePickerMode = .date
-        datePicker.maximumDate = Date()
-        textField.inputView = datePicker
-    }
-}
-
 // MARK: - Dismissing controls
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {

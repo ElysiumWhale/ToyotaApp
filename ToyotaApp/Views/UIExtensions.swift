@@ -79,12 +79,12 @@ extension UIRefreshControl {
 
 // MARK: - UIPicker
 extension UIPickerView {
-    func configurePicker<T>(with action: Selector,
-                            for textField: UITextField,
-                            delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+    func configure(delegate: UIPickerViewDelegate & UIPickerViewDataSource,
+                   with action: Selector,
+                   for textField: UITextField) {
         self.dataSource = delegate
         self.delegate = delegate
-        textField.inputAccessoryView = UIToolbar.buildToolBar(for: delegate, with: action)
+        textField.inputAccessoryView = .buildToolbar(with: action)
         textField.inputView = self
     }
 
@@ -93,16 +93,6 @@ extension UIPickerView {
     }
 }
 
-// MARK: - UIToolBar
-extension UIToolbar {
-    static func buildToolBar<T>(for delegate: T, with action: Selector) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: delegate, action: nil)
-        let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: delegate, action: action)
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
 // MARK: - UIDatePicker
 extension UIDatePicker {
     func configure(with action: Selector,

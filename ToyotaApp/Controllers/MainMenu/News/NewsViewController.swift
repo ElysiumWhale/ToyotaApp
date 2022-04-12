@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: RefreshableController, PickerController {
+class NewsViewController: RefreshableController {
     @IBOutlet private(set) var refreshableView: UITableView!
     @IBOutlet private var showroomField: NoCopyPasteTexField!
 
@@ -74,7 +74,9 @@ class NewsViewController: RefreshableController, PickerController {
         }
         showroomField.setRightView(from: button, width: 30,
                                    height: showroomField.frame.height)
-        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
+        showroomPicker.configure(delegate: self,
+                                 with: #selector(showroomDidSelect),
+                                 for: showroomField)
     }
 }
 

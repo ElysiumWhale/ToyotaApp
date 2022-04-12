@@ -6,7 +6,7 @@ private enum ServiceSections: Int {
 
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
-class ServicesViewController: InitialazableViewController, Refreshable, PickerController {
+class ServicesViewController: InitialazableViewController, Refreshable {
     let showroomField = NoCopyPasteTexField()
     let refreshControl = UIRefreshControl()
 
@@ -103,7 +103,9 @@ class ServicesViewController: InitialazableViewController, Refreshable, PickerCo
     }
 
     override func configureActions() {
-        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
+        showroomPicker.configure(delegate: self,
+                                 with: #selector(showroomDidSelect),
+                                 for: showroomField)
     }
 
     func startRefreshing() {
