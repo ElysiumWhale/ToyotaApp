@@ -112,19 +112,6 @@ public enum SegueIdentifiers: String {
     /// CarToCheckVin
     case carToCheckVin = "CarToCheckVin"
 
-    // MARK: - Services
-
-    /// ServiceNavToTech
-    case serviceNavToTech = "ServiceNavToTech"
-    /// ServiceNavToService
-    case serviceNavToService = "ServiceNavToService"
-    /// ServiceNavToTest
-    case serviceNavToTest = "ServiceNavToTest"
-    /// ServiceNavToEmerg
-    case serviceNavToEmerg = "ServiceNavToEmerg"
-    /// ServiceNavToFeedback
-    case serviceNavToFeedback = "ServiceNavToFeedback"
-
     // MARK: - MyProfile
 
     /// MyProfileToCars
@@ -135,14 +122,6 @@ public enum SegueIdentifiers: String {
     case myManagersSegueCode = "MyProfileToManagers"
     /// MyProfileToBookings
     case myProfileToBookings = "MyProfileToBookings"
-}
-
-public struct CellIdentifiers {
-    static let CarCell = "CarCell"
-    static let NewsCell = "NewsCell"
-    static let ServiceCell = "ServiceCell"
-    static let BookingCell = "BookingCell"
-    static let ManagerCell = "ManagerCell"
 }
 
 public struct TimeMap {
