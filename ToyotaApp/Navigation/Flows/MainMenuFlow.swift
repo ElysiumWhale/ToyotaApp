@@ -13,6 +13,9 @@ enum MainMenuFlow {
 
     static func entryPoint(for user: UserProxy) -> UIViewController {
         let tbvc = MainTabBarController()
+        tbvc.setControllers(newsConfiguration,
+                            servicesConfiguration(with: user),
+                            profileConfiguration(with: user))
         return tbvc
     }
 
