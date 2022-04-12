@@ -84,7 +84,7 @@ extension UIPickerView {
                    for textField: UITextField) {
         self.dataSource = delegate
         self.delegate = delegate
-        textField.inputAccessoryView = .buildToolbar(with: action)
+        textField.inputAccessoryView = .buildToolbar(with: action, target: delegate)
         textField.inputView = self
     }
 
