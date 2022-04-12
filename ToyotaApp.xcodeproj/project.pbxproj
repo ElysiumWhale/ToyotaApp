@@ -45,6 +45,7 @@
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */; };
 		147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789327FFA8190017ACA7 /* UIImage+Constants.swift */; };
+		147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789527FFACB80017ACA7 /* MainTabBarController.swift */; };
 		149092622696502100390D04 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149092612696502100390D04 /* PhoneTextField.swift */; };
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
@@ -176,6 +177,7 @@
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
 		147E789327FFA8190017ACA7 /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
+		147E789527FFACB80017ACA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		140BA59127A6C261002A7423 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				147E789527FFACB80017ACA7 /* MainTabBarController.swift */,
 				140BA59227A6C28D002A7423 /* Flows */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 			);
@@ -892,6 +895,7 @@
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
 				14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
+				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,
 				14EC744D27F8F98100AC6648 /* BaseCollectionCell.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
