@@ -25,9 +25,7 @@ enum MainMenuFlow {
     }
 
     static func servicesModule(with user: UserProxy) -> UIViewController {
-        let servicesVC: ServicesViewController = storyboard.instantiate(.services)
-        servicesVC.setUser(info: user)
-        return servicesVC
+        ServicesViewController(user: user)
     }
 
     static func profileModule(with user: UserProxy) -> UIViewController {

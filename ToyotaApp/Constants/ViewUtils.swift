@@ -75,8 +75,6 @@ enum ViewControllers: String {
     case mainMenu = "MainMenuViewController"
     /// OffersViewController
     case offers = "OffersViewController"
-    /// ServicesViewController
-    case services = "ServicesViewController"
     /// MyCarViewController
     case myCar = "MyCarViewController"
     /// AgreementViewController
