@@ -103,6 +103,16 @@ extension UIToolbar {
         doneButton.tintColor = .appTint(.secondarySignatureRed)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar
+// MARK: - UIDatePicker
+extension UIDatePicker {
+    func configure(with action: Selector,
+                   for textField: UITextField) {
+        preferredDatePickerStyle = .wheels
+        locale = Locale(identifier: "ru")
+        datePickerMode = .date
+        maximumDate = Date()
+        textField.inputAccessoryView = .buildToolbar(with: action)
+        textField.inputView = self
     }
 }
 

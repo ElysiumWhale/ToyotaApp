@@ -29,7 +29,7 @@ class PersonalInfoViewController: KeyboardableController, PersonalInfoPresenterO
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
 
         fields.forEach {

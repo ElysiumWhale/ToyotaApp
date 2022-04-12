@@ -60,7 +60,7 @@ class MyProfileViewController: UIViewController {
         ]
         hideKeyboardWhenTappedAround()
         view.hideKeyboardWhenSwipedDown()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
         refreshFields()
 
         let constraints = getConstraints(for: state)
