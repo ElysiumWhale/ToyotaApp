@@ -30,7 +30,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="3kv-dm-Vwl" kind="relationship" relationship="viewControllers" id="uZK-ED-GPs"/>
-                        <segue destination="t2J-oM-keC" kind="relationship" relationship="viewControllers" id="h1K-uG-G1b"/>
                         <segue destination="Yh5-n3-Vaq" kind="relationship" relationship="viewControllers" id="kfI-0C-f2e"/>
                     </connections>
                 </tabBarController>
@@ -62,7 +61,7 @@
         <!--Акции-->
         <scene sceneID="1am-hM-fZp">
             <objects>
-                <viewController storyboardIdentifier="OffersViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsViewController" id="qV5-Is-7iF" customClass="NewsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ut1-el-nLF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,73 +167,6 @@
             </objects>
             <point key="canvasLocation" x="301.44927536231887" y="1615.8482142857142"/>
         </scene>
-        <!--Услуги-->
-        <scene sceneID="vV6-m5-P55">
-            <objects>
-                <viewController storyboardIdentifier="ServicesViewController" title="Услуги" id="KLr-04-N2s" customClass="ServicesViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mCd-HP-nmp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Салон" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3W-A2-Oo1" customClass="NoCopyPasteTexField" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="16" y="98" width="382" height="45.5"/>
-                                <color key="backgroundColor" name="Cell"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45.333333333333343" id="0ab-dg-jrt"/>
-                                </constraints>
-                                <color key="textColor" name="SignatureGray"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="afF-bh-RPv"/>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <constraints>
-                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="top" secondItem="afF-bh-RPv" secondAttribute="top" constant="10" id="7Qh-qj-Ysc"/>
-                            <constraint firstItem="afF-bh-RPv" firstAttribute="trailing" secondItem="r3W-A2-Oo1" secondAttribute="trailing" constant="16" id="Qgv-mL-5MZ"/>
-                            <constraint firstItem="r3W-A2-Oo1" firstAttribute="leading" secondItem="afF-bh-RPv" secondAttribute="leading" constant="16" id="mgy-Bp-8Ld"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Услуги" id="UKN-IC-MKf">
-                        <imageReference key="image" image="bookmark" catalog="system" symbolScale="medium"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" title="Город" id="9HU-D7-X9D">
-                        <barButtonItem key="backBarButtonItem" title="Услуги" id="jWX-MJ-O7z"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="showroomField" destination="r3W-A2-Oo1" id="3J2-1T-Wca"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bYw-e7-RDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1153.6231884057972" y="1615.8482142857142"/>
-        </scene>
-        <!--Услуги-->
-        <scene sceneID="xWu-aZ-S5c">
-            <objects>
-                <navigationController id="t2J-oM-keC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Услуги" id="7xw-yK-Xhz">
-                        <imageReference key="image" image="bookmark" catalog="system" symbolScale="medium"/>
-                        <imageReference key="selectedImage" image="bookmark.fill" catalog="system" symbolScale="medium"/>
-                    </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSz-xi-BdF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" name="MainTint"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="KLr-04-N2s" kind="relationship" relationship="rootViewController" id="alg-mV-BkK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mp7-BB-kgn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1154" y="871"/>
-        </scene>
         <!--Профиль-->
         <scene sceneID="IyJ-sk-tIT">
             <objects>
@@ -268,16 +200,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="r3W-A2-Oo1">
-            <size key="intrinsicContentSize" width="111.5" height="44"/>
-        </designable>
         <designable name="ynn-Sa-yJb">
             <size key="intrinsicContentSize" width="111.5" height="44"/>
         </designable>
     </designables>
     <resources>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
-        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>
         <image name="person" catalog="system" width="128" height="117"/>
@@ -287,9 +214,6 @@
         </namedColor>
         <namedColor name="Gray">
             <color red="0.67843137254901964" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="MainBackground">
-            <color red="0.93699997663497925" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainTint">
             <color red="0.62999999523162842" green="0.38999998569488525" blue="0.38999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

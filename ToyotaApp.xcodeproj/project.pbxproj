@@ -44,6 +44,9 @@
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */; };
+		147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789327FFA8190017ACA7 /* UIImage+Constants.swift */; };
+		147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789527FFACB80017ACA7 /* MainTabBarController.swift */; };
+		147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789727FFB2090017ACA7 /* UtilsFlow.swift */; };
 		149092622696502100390D04 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149092612696502100390D04 /* PhoneTextField.swift */; };
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
@@ -174,6 +177,9 @@
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
+		147E789327FFA8190017ACA7 /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
+		147E789527FFACB80017ACA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		147E789727FFB2090017ACA7 /* UtilsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsFlow.swift; sourceTree = "<group>"; };
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -282,6 +288,7 @@
 		140BA59127A6C261002A7423 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				147E789527FFACB80017ACA7 /* MainTabBarController.swift */,
 				140BA59227A6C28D002A7423 /* Flows */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
 			);
@@ -294,6 +301,7 @@
 				140BA59527A6C310002A7423 /* AuthFlow.swift */,
 				140BA59327A6C2A1002A7423 /* RegisterFlow.swift */,
 				140BA59727A6CB67002A7423 /* MainMenuFlow.swift */,
+				147E789727FFB2090017ACA7 /* UtilsFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -554,6 +562,7 @@
 				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
 				1425230526FFBF8F00B177B7 /* Strings.swift */,
+				147E789327FFA8190017ACA7 /* UIImage+Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -889,6 +898,7 @@
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
 				14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
+				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,
 				14EC744D27F8F98100AC6648 /* BaseCollectionCell.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
@@ -921,7 +931,9 @@
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 				141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */,
+				147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */,
 				14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */,
+				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,

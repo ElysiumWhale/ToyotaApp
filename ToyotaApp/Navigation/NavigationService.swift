@@ -70,7 +70,7 @@ class NavigationService: MainQueueRunnable {
             case .failure:
                 loadRegister(.error(message: .error(.profileLoadError)))
             case .success(let user):
-                switchRootView?(MainMenuFlow.entryPoint(with: user))
+                switchRootView?(MainMenuFlow.entryPoint(for: user))
         }
     }
 }

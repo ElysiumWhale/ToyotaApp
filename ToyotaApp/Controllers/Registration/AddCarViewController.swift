@@ -1,6 +1,6 @@
 import UIKit
 
-class AddCarViewController: UIViewController, PickerController, Loadable, UITextFieldDelegate {
+class AddCarViewController: UIViewController, Loadable, UITextFieldDelegate {
     @IBOutlet private var vinCodeTextField: InputTextField!
     @IBOutlet private var plateTextField: InputTextField!
     @IBOutlet private var modelTextField: InputTextField!
@@ -28,9 +28,9 @@ class AddCarViewController: UIViewController, PickerController, Loadable, UIText
 
         view.hideKeyboardWhenSwipedDown()
 
-        configurePicker(modelPicker, with: #selector(modelDidPick), for: modelTextField)
-        configurePicker(yearPicker, with: #selector(yearDidPick), for: yearTextField)
-        configurePicker(colorPicker, with: #selector(colorDidPick), for: colorTextField)
+        modelPicker.configure(delegate: self, with: #selector(modelDidPick), for: modelTextField)
+        yearPicker.configure(delegate: self, with: #selector(yearDidPick), for: yearTextField)
+        colorPicker.configure(delegate: self, with: #selector(colorDidPick), for: colorTextField)
 
         if interactor.loadNeeded {
             loadModelsAndColors()

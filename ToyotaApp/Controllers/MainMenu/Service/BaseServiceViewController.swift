@@ -26,8 +26,9 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     private lazy var carPickView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configurePicker(with: #selector(carDidSelect),
-                                                   for: internalView.textField, delegate: self)
+        internalView.servicePicker.configure(delegate: self,
+                                             with: #selector(carDidSelect),
+                                             for: internalView.textField)
         internalView.textField.placeholder = .common(.auto)
         internalView.textField.clipsToBounds = true
         internalView.serviceNameLabel.text = .common(.auto)
@@ -81,7 +82,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     override func viewDidLoad() {
         navigationItem.title = serviceType.serviceTypeName
-        configureDefaultNavBarAppearance()
+        configureNavBarAppearance()
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
