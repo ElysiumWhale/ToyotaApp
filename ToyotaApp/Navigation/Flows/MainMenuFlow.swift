@@ -15,6 +15,23 @@ enum MainMenuFlow {
         let tbvc = MainTabBarController()
         return tbvc
     }
+
+    static func newsModule() -> UIViewController {
+        let newsVC: NewsViewController = storyboard.instantiate(.news)
+        return newsVC
+    }
+
+    static func servicesModule(with user: UserProxy) -> UIViewController {
+        let servicesVC: ServicesViewController = storyboard.instantiate(.services)
+        servicesVC.setUser(info: user)
+        return servicesVC
+    }
+
+    static func profileModule(with user: UserProxy) -> UIViewController {
+        let profileVC: MyProfileViewController = UIStoryboard(.myProfile).instantiate(.myProfile)
+        profileVC.setUser(info: user)
+        return profileVC
+    }
 }
 
 enum UtilsFlow {
