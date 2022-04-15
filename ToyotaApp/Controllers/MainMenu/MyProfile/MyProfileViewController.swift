@@ -235,7 +235,7 @@ extension MyProfileViewController: WithUserInfo {
     }
 
     func userDidUpdate() {
-        DispatchQueue.main.async { [self] in
+        dispatch { [self] in
             view.setNeedsLayout()
             refreshFields()
         }

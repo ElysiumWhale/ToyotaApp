@@ -147,7 +147,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
+        dispatch { [weak self] in
             switch module.state {
                 case .idle: return
                 case .didDownload: self?.stopLoading()

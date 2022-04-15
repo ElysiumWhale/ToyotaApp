@@ -110,7 +110,7 @@ extension MyCarsViewController: WithUserInfo {
     }
 
     func userDidUpdate() {
-        DispatchQueue.main.async { [self] in
+        dispatch { [self] in
             carsCollection.reloadData()
             carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
         }
