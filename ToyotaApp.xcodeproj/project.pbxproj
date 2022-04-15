@@ -30,6 +30,7 @@
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
+		1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4C7280A09B9005636E0 /* ResourcesTests.swift */; };
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
@@ -163,6 +164,7 @@
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
+		1442F4C7280A09B9005636E0 /* ResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTests.swift; sourceTree = "<group>"; };
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -343,6 +345,14 @@
 			path = Persistance;
 			sourceTree = "<group>";
 		};
+		1442F4C6280A0982005636E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1442F4C7280A09B9005636E0 /* ResourcesTests.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		146590F926EAB5CD0056E37D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +486,7 @@
 		14F0920527E3EB7600B03130 /* ToyotaAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				1442F4C6280A0982005636E0 /* Resources */,
 				14CB6AD727E92A9A00715A5D /* Flows */,
 				147D4A2B27E614E400010E63 /* Modules */,
 				147D4A2A27E614CA00010E63 /* Persistance */,
@@ -834,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
