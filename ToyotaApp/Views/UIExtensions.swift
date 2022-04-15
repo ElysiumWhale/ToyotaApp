@@ -108,7 +108,7 @@ extension UIDatePicker {
 
 // MARK: - Fonts
 extension UIFont {
-    enum ToyotaFonts: String {
+    enum ToyotaFonts: String, CaseIterable {
         case semibold = "Semibold"
         case light = "Light"
         case regular = "Regular"
@@ -135,8 +135,7 @@ extension UIFont {
 
 // MARK: - Main app tint
 extension UIColor {
-    enum AppTints: String {
-        case mainRed = "MainTint"
+    enum AppTints: String, CaseIterable {
         case loading = "Loading"
         case signatureRed = "SignatureRed"
         case secondarySignatureRed = "SecondarySignatureRed"
@@ -147,7 +146,9 @@ extension UIColor {
         case dimmedSignatureRed = "DimmedSignatureRed"
     }
 
-    static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
+    static func appTint(_ tint: AppTints) -> UIColor {
+        UIColor(named: tint.rawValue)!
+    }
 }
 
 // MARK: - Sugar init and instatiate
