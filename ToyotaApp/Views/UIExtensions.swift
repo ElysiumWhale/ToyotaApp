@@ -118,16 +118,18 @@ extension UIFont {
 
         case lightItalic = "LightIt"
         case bookItalic = "BookIt"
-        case regularItalic = "RegularIt"
+        case regularItalic = "Italic" // something wrong with this type
         case semiboldItalic = "SemiboldIt"
         case boldItalic = "BoldIt"
         case blackItalic = "BlackIt"
 
-        func getName() -> String { "ToyotaType-\(self.rawValue)" }
+        var name: String {
+            "ToyotaType-\(rawValue)"
+        }
     }
 
     static func toyotaType(_ type: ToyotaFonts, of size: CGFloat) -> UIFont {
-        UIFont(name: type.getName(), size: size)!
+        UIFont(name: type.name, size: size)!
     }
 }
 

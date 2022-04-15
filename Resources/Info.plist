@@ -24,18 +24,18 @@
 	<string>Для вызова эвакуатора необходимо предоставить доступ к геопозиции</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>ToyotaType-SemiboldIt</string>
-		<string>ToyotaType-Semibold</string>
-		<string>ToyotaType-LightIt</string>
-		<string>ToyotaType-Light</string>
-		<string>ToyotaType-BoldIt</string>
-		<string>ToyotaType-Bold</string>
-		<string>ToyotaType-BlackIt</string>
-		<string>ToyotaType-Black</string>
-		<string>ToyotaType-RegularIt</string>
-		<string>ToyotaType-Regular</string>
-		<string>ToyotaType-BookIt</string>
-		<string>ToyotaType-Book</string>
+		<string>ToyotaType-SemiboldIt.ttf</string>
+		<string>ToyotaType-Semibold.ttf</string>
+		<string>ToyotaType-LightIt.ttf</string>
+		<string>ToyotaType-Light.ttf</string>
+		<string>ToyotaType-BoldIt.ttf</string>
+		<string>ToyotaType-Bold.ttf</string>
+		<string>ToyotaType-BlackIt.ttf</string>
+		<string>ToyotaType-Black.ttf</string>
+		<string>ToyotaType-RegularIt.ttf</string>
+		<string>ToyotaType-Regular.ttf</string>
+		<string>ToyotaType-BookIt.ttf</string>
+		<string>ToyotaType-Book.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
