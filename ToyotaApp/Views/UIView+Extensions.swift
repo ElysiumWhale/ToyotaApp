@@ -94,3 +94,18 @@ extension UIView {
         return toolBar
     }
 }
+
+// MARK: - Adding subviews
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for subview in views {
+            addSubview(subview)
+        }
+    }
+
+    func addSubviews(_ views: [UIView]) {
+        for subview in views {
+            addSubview(subview)
+        }
+    }
+}

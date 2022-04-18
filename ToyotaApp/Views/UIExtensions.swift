@@ -30,7 +30,7 @@ extension UITextField {
         })
     }
 
-    func setRightView(from view: UIView, width: Double, height: Double) {
+    func setRightView(from view: UIView, width: Double = 30, height: Double) {
         NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
         rightView = nil
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
