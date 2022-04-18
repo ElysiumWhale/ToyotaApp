@@ -20,8 +20,7 @@ enum MainMenuFlow {
     }
 
     static func newsModule() -> UIViewController {
-        let newsVC: NewsViewController = storyboard.instantiate(.news)
-        return newsVC
+        NewsViewController()
     }
 
     static func servicesModule(with user: UserProxy) -> UIViewController {
