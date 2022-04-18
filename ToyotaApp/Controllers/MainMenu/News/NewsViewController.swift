@@ -1,9 +1,9 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: RefreshableController {
-    @IBOutlet private(set) var refreshableView: UITableView!
-    @IBOutlet private var showroomField: NoCopyPasteTexField!
+class NewsViewController: InitialazableViewController, Refreshable {
+    let refreshableView: UITableView! = UITableView()
+    let showroomField = NoCopyPasteTexField()
 
     private(set) var refreshControl = UIRefreshControl()
     private let showroomPicker = UIPickerView()
@@ -22,17 +22,67 @@ class NewsViewController: RefreshableController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.toyotaType(.regular, of: 17)
-        ]
+
+        refreshableView.registerCell(NewsTableCell.self)
+        refreshableView.dataSource = self
+        refreshableView.delegate = self
+
         configureRefresh()
-        showroomField.text = selectedShowroom?.showroomName
-        configureShowroomField()
         if let index = showrooms.firstIndex(where: { $0.id == selectedShowroom?.id}) {
             showroomPicker.selectRow(index, inComponent: 0, animated: false)
         }
-        refreshableView.alwaysBounceVertical = true
         startRefreshing()
+    }
+
+    override func addViews() {
+        let button: UIButton = .imageButton { [weak self] in
+            self?.showroomField.becomeFirstResponder()
+        }
+        showroomField.setRightView(from: button,
+                                   height: 45)
+
+        addSubviews(showroomField, refreshableView)
+    }
+
+    override func configureLayout() {
+        showroomField.height(45)
+        showroomField.horizontalToSuperview(insets: .horizontal(16))
+        showroomField.topToSuperview(offset: 5, usingSafeArea: true)
+
+        refreshableView.topToBottom(of: showroomField, offset: 5)
+        refreshableView.edgesToSuperview(excluding: .top, usingSafeArea: true)
+
+        refreshableView.alwaysBounceVertical = true
+    }
+
+    override func configureAppearance() {
+        configureNavBarAppearance(color: nil)
+        view.backgroundColor = .systemBackground
+
+        showroomField.tintColor = .clear
+        showroomField.rightViewMode = .always
+        showroomField.backgroundColor = .appTint(.background)
+        showroomField.font = .toyotaType(.light, of: 25)
+        showroomField.textColor = .appTint(.signatureGray)
+        showroomField.adjustsFontSizeToFitWidth = true
+        showroomField.minimumFontSize = 17
+        showroomField.textAlignment = .center
+        showroomField.cornerRadius = 10
+
+        refreshableView.separatorStyle = .singleLine
+        refreshableView.separatorColor = .appTint(.secondaryGray)
+        refreshableView.sectionHeaderHeight = .zero
+    }
+
+    override func localize() {
+        navigationItem.title = .common(.offers)
+        showroomField.text = selectedShowroom?.showroomName
+    }
+
+    override func configureActions() {
+        showroomPicker.configure(delegate: self,
+                                 with: #selector(showroomDidSelect),
+                                 for: showroomField)
     }
 
     func startRefreshing() {
@@ -61,29 +111,18 @@ class NewsViewController: RefreshableController {
         }
         view.endEditing(true)
     }
-
-    private func configureShowroomField() {
-        showroomField.tintColor = .clear
-        showroomField.rightViewMode = .always
-        let button: UIButton = .imageButton { [weak self] in
-            self?.showroomField.becomeFirstResponder()
-        }
-        showroomField.setRightView(from: button, width: 30,
-                                   height: showroomField.frame.height)
-        showroomPicker.configure(delegate: self,
-                                 with: #selector(showroomDidSelect),
-                                 for: showroomField)
-    }
 }
 
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = news[indexPath.row].url {
-            selectedRow = indexPath
-            navigationController?.present(SFSafariViewController(url: url),
-                                          animated: true)
+        guard let url = news[indexPath.row].url else {
+            return
         }
+
+        selectedRow = indexPath
+        navigationController?.present(SFSafariViewController(url: url),
+                                      animated: true)
     }
 }
 
@@ -94,7 +133,7 @@ extension NewsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NewsTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: NewsTableCell = tableView.dequeue(for: indexPath)
         cell.configure(with: news[indexPath.item])
         return cell
     }

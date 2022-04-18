@@ -12,6 +12,10 @@ extension UITableView {
     func setBackground(text: String?) {
         backgroundView = createBackground(labelText: text)
     }
+
+    func registerCell(_ cellClass: UITableViewCell.Type) {
+        register(cellClass, forCellReuseIdentifier: String(describing: cellClass))
+    }
 }
 
 // MARK: - UITextField error border
@@ -176,8 +180,6 @@ extension UITableView {
         case bookingCell = "BookingCell"
         /// CityCell
         case cityCell = "CityCell"
-        /// NewsCell
-        case newsCell = "NewsCell"
     }
 
     func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
@@ -188,6 +190,15 @@ extension UITableView {
 
         assertionFailure("Can't dequeue cell.")
         return TCell()
+    }
+
+    func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
+        guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
+                                             for: indexPath) as? TCell else {
+            return TCell()
+        }
+
+        return cell
     }
 }
 

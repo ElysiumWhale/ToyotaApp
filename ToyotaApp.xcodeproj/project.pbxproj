@@ -53,14 +53,13 @@
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
-		1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTVC.swift */; };
+		1495723F25B9FEE40031A5AA /* NewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTableCell.swift */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4DA3E27581989009D66EA /* CityPickerViewController.swift */; };
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
-		14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B23BC7276E000200DC98E2 /* Redundant.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
 		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
@@ -92,7 +91,6 @@
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
-		A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* MainMenu.storyboard */; };
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
@@ -186,14 +184,13 @@
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		1495723E25B9FEE40031A5AA /* NewsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVC.swift; sourceTree = "<group>"; };
+		1495723E25B9FEE40031A5AA /* NewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCell.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
 		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		14A4DA3E27581989009D66EA /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		14B23BC7276E000200DC98E2 /* Redundant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redundant.swift; sourceTree = "<group>"; };
 		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
 		14B2A7E5275C0249002A6ADF /* Redundant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Redundant.storyboard; sourceTree = "<group>"; };
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
@@ -226,7 +223,6 @@
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A759468D2523E32F00312EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A75946922523E32F00312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainMenu.storyboard; sourceTree = "<group>"; };
 		A75946942523E33400312EBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -457,7 +453,6 @@
 				A76D4F0A256C83120086813E /* Main.storyboard */,
 				A791FDE32526707100A595BB /* Authentification.storyboard */,
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
-				A75946912523E32F00312EBE /* MainMenu.storyboard */,
 				14A8D8972617C5C40086BC12 /* MyProfile.storyboard */,
 				14B2A7E5275C0249002A6ADF /* Redundant.storyboard */,
 			);
@@ -479,7 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				1442F4D6280A25BC005636E0 /* BaseTableCell.swift */,
-				1495723E25B9FEE40031A5AA /* NewsTVC.swift */,
+				1495723E25B9FEE40031A5AA /* NewsTableCell.swift */,
 				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
 				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
@@ -529,7 +524,6 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
-				14B23BC7276E000200DC98E2 /* Redundant.swift */,
 				A777750E259BF72A006D30EA /* Constants */,
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
@@ -814,7 +808,6 @@
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
-				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
 				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
 				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
@@ -881,7 +874,7 @@
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
 				14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */,
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
-				1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */,
+				1495723F25B9FEE40031A5AA /* NewsTableCell.swift in Sources */,
 				A77B9312253B035F0011282E /* Responses.swift in Sources */,
 				1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
@@ -946,7 +939,6 @@
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 				141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */,
 				147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */,
-				14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */,
 				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
@@ -966,14 +958,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A75946912523E32F00312EBE /* MainMenu.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A75946922523E32F00312EBE /* Base */,
-			);
-			name = MainMenu.storyboard;
-			sourceTree = "<group>";
-		};
 		A75946962523E33400312EBE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

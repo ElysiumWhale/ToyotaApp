@@ -35,7 +35,7 @@ class FlowsTests: XCTestCase {
     }
 
     func testMainMenuFlow() throws {
-        let tab = MainMenuFlow.entryPoint(with: .mock)
+        let tab = MainMenuFlow.entryPoint(for: .mock)
         XCTAssertTrue(tab is UITabBarController)
 
         let connection = UtilsFlow.connectionLostModule()
