@@ -26,4 +26,12 @@ enum ShowroomsUrl: String {
                 return "https://cars.toyotasamaraug.ru/special-offers-list"
         }
     }
+
+    init?(rawValue: String?) {
+        guard let rawValue = rawValue else {
+            return nil
+        }
+
+        self.init(rawValue: rawValue)
+    }
 }

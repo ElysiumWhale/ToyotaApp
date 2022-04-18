@@ -15,11 +15,7 @@ class NewsViewController: RefreshableController {
     private var selectedRow: IndexPath?
     private var selectedShowroom: Showroom? = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
     private var url: ShowroomsUrl {
-        guard let selectedShowroom = selectedShowroom else {
-            return ShowroomsUrl.samaraAurora
-        }
-
-        return ShowroomsUrl(rawValue: selectedShowroom.id) ?? .samaraAurora
+        ShowroomsUrl(rawValue: selectedShowroom?.id) ?? .samaraAurora
     }
 
     private lazy var parser = HtmlParser(delegate: self)
