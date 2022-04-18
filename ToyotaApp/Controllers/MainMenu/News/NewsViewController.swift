@@ -23,8 +23,7 @@ class NewsViewController: InitialazableViewController, Refreshable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refreshableView.register(NewNewsTableViewCell.self,
-                                 forCellReuseIdentifier: NewNewsTableViewCell.identifier.rawValue)
+        refreshableView.registerCell(NewsTableCell.self)
         refreshableView.dataSource = self
         refreshableView.delegate = self
 
@@ -134,7 +133,7 @@ extension NewsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NewNewsTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: NewsTableCell = tableView.dequeue(for: indexPath)
         cell.configure(with: news[indexPath.item])
         return cell
     }
