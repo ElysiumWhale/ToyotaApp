@@ -44,15 +44,11 @@ public enum AppStoryboards: String {
     case auth = "Authentification"
     /// FirstLaunchRegistration
     case register = "FirstLaunchRegistration"
-    /// MainMenu
-    case mainMenu = "MainMenu"
     /// MyProfile
     case myProfile = "MyProfile"
 }
 
 enum ViewControllers: String {
-    /// MainMenuTabBarController
-    case mainMenuTabBar = "MainMenuTabBarController"
     /// AuthNavigationController
     case authNavigation = "AuthNavigationController"
     /// RegisterNavigationController
@@ -71,18 +67,12 @@ enum ViewControllers: String {
     case auth = "AuthViewController"
     /// SmsCodeViewController
     case code = "SmsCodeViewController"
-    /// MainMenuViewController
-    case mainMenu = "MainMenuViewController"
-    /// OffersViewController
-    case offers = "OffersViewController"
     /// MyCarViewController
     case myCar = "MyCarViewController"
     /// AgreementViewController
     case agreement = "AgreementViewController"
     /// CityPickerViewController
     case cityPick = "CityPickerViewController"
-    /// NewsViewController
-    case news = "NewsViewController"
     /// MyProfileViewController
     case myProfile = "MyProfileViewController"
 }
