@@ -10,7 +10,6 @@ class NewsViewController: InitialazableViewController, Refreshable {
 
     private let showrooms: [Showroom] = [.aurora, .north, .south]
 
-    private var user: UserProxy!
     private var news: [News] = []
     private var selectedRow: IndexPath?
     private var selectedShowroom: Showroom? = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
@@ -85,6 +84,14 @@ class NewsViewController: InitialazableViewController, Refreshable {
                                  for: showroomField)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let selectedRow = selectedRow {
+            refreshableView.deselectRow(at: selectedRow, animated: true)
+        }
+    }
+
     func startRefreshing() {
         if news.isNotEmpty {
             news = []
@@ -92,14 +99,6 @@ class NewsViewController: InitialazableViewController, Refreshable {
         }
         refreshControl.startRefreshing()
         parser.start(with: url)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if let selectedRow = selectedRow {
-            refreshableView.deselectRow(at: selectedRow, animated: true)
-        }
     }
 
     @objc func showroomDidSelect() {
@@ -137,10 +136,6 @@ extension NewsViewController: UITableViewDataSource {
         cell.configure(with: news[indexPath.item])
         return cell
     }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        nil
-    }
 }
 
 // MARK: - ParserDelegate
@@ -158,13 +153,6 @@ extension NewsViewController: ParserDelegate {
         let text: String? = loadedNews.isEmpty ? .background(.noNews) : nil
         refreshableView.setBackground(text: text)
         endRefreshing()
-    }
-}
-
-// MARK: - WithUserInfo
-extension NewsViewController: WithUserInfo {
-    func setUser(info: UserProxy) {
-        user = info
     }
 }
 
