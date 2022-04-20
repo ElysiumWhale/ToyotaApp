@@ -195,6 +195,7 @@ extension UITableView {
     func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
         guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
                                              for: indexPath) as? TCell else {
+            assertionFailure("Can't dequeue cell.")
             return TCell()
         }
 
