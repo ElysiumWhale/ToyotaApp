@@ -386,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				A75946992523E33400312EBE /* Info.plist */,
+				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
 				A7924CF1254B70B4001B67C1 /* Fonts */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
 			);
@@ -533,7 +534,6 @@
 				A791FDE225266F2700A595BB /* Views */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
-				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
 			);
 			path = ToyotaApp;
 			sourceTree = "<group>";
@@ -832,7 +832,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
