@@ -120,6 +120,12 @@ extension String {
         case alyansPro = "ALYANS PRO, OOO"
         /// Условия соглашения
         case terms = "Условия соглашения"
+        /// Вход в личный кабинет:
+        case accountEntering = "Вход в личный кабинет:"
+        /// Регистрируясь, Вы принимаете
+        case acceptWhileRegister = "Регистрируясь, Вы принимаете"
+        /// Ввод телефона
+        case phoneEntering = "Ввод телефона"
     }
 
     enum QuestionStrings: String {
