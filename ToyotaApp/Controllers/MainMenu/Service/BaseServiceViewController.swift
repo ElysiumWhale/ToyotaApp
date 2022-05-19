@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: Controller
-class BaseServiceController: UIViewController, IServiceController, Loadable {
+class BaseServiceController: InitialazableViewController, IServiceController, Loadable {
 
     // MARK: - View
     let loadingView = LoadingView()
@@ -40,7 +40,8 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
-    var loadingStopped: Bool = false
+    var isLoading: Bool = false
+
     var hasCarSelection: Bool {
         true
     }
@@ -73,11 +74,8 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
         self.modules = modules
         self.user = user
         self.serviceType = service
-        super.init(nibName: nil, bundle: .main)
-    }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init()
     }
 
     override func viewDidLoad() {

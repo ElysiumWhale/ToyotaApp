@@ -1,16 +1,25 @@
 import UIKit
 
 @IBDesignable
-class CustomizableButton: UIButton {
+class CustomizableButton: UIButton, BottomKeyboardBinded {
+    @IBOutlet
+    var keyboardConstraint: NSLayoutConstraint? {
+        didSet {
+            constant = keyboardConstraint?.constant ?? .zero
+        }
+    }
+
+    private(set) var constant: CGFloat = .zero
+
     @IBInspectable
     var rounded: Bool = false {
         didSet {
-            layer.cornerRadius = rounded ? frame.size.height / 2 : 0
+            layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
         }
     }
 
     @IBInspectable
-    var borderWidth: CGFloat = 0 {
+    var borderWidth: CGFloat = .zero {
         didSet {
             layer.borderWidth = borderWidth
         }
@@ -40,7 +49,7 @@ class CustomizableButton: UIButton {
     }
 
     override func prepareForInterfaceBuilder() {
-        layer.cornerRadius = rounded ? frame.size.height / 2 : 0
+        layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
         if rounded {
@@ -52,7 +61,7 @@ class CustomizableButton: UIButton {
         super.draw(rect)
 
         setTitleColor(.white, for: .highlighted)
-        layer.cornerRadius = rounded ? frame.size.height / 2 : 0
+        layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
         if rounded {

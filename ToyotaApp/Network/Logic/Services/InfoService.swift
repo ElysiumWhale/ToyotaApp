@@ -1,6 +1,10 @@
 import Foundation
 
-class InfoService {
+protocol AuthService {
+    func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>)
+}
+
+class InfoService: AuthService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestCreator: ValueClosure<Request>) {
         NetworkService.makeRequest(requestCreator(), handler: handler)

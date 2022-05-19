@@ -1,50 +1,134 @@
 import UIKit
 
-class AuthViewController: UIViewController {
-    @IBOutlet private var phoneNumber: PhoneTextField!
-    @IBOutlet private var incorrectLabel: UILabel!
-    @IBOutlet private var informationLabel: UILabel!
-    @IBOutlet private var sendPhoneButton: KeyboardBindedButton!
-    @IBOutlet private var indicator: UIActivityIndicatorView!
-    @IBOutlet private var agreementStack: UIStackView!
+final class AuthViewController: InitialazableViewController, Loadable {
+    private let logo = UIImageView(image: .toyotaLogo)
 
-    private let segueCode = SegueIdentifiers.numberToCode
+    private let infoStack = UIStackView()
+    private let informationLabel = UILabel()
+    private let phoneNumber = PhoneTextField()
+    private let incorrectLabel = UILabel()
 
-    private var type: AuthType = .register
+    private let agreementStack = UIStackView()
+    private let agreementLabel = UILabel()
+    private let agreementButton = UIButton()
+    private let sendPhoneButton = CustomizableButton()
 
-    private lazy var authRequestHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .observe(on: .main)
-            .bind { [weak self] _ in
-                self?.handle(isSuccess: true)
-            } onFailure: { [weak self] error in
-                self?.handle(isSuccess: false)
-                PopUp.display(.error(description: error.message ?? .error(.unknownError)))
-            }
-    }()
+    private let interactor: AuthInteractor
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        incorrectLabel.alpha = 0
+    let loadingView = LoadingView()
+
+    var isLoading: Bool = false
+
+    init(interactor: AuthInteractor) {
+        self.interactor = interactor
+        super.init()
+    }
+
+    // MARK: - Overrides
+    override func addViews() {
+        infoStack.addArrangedSubviews(informationLabel, phoneNumber, incorrectLabel)
+        agreementStack.addArrangedSubviews(agreementLabel, agreementButton)
+        addSubviews(logo, infoStack, agreementStack, sendPhoneButton)
+    }
+
+    override func configureLayout() {
         view.hideKeyboardWhenSwipedDown()
-        sendPhoneButton.bindToKeyboard()
 
-        if case .changeNumber = type {
+        logo.size(.init(width: 128, height: 128))
+        logo.aspectRatio(1)
+        logo.centerXToSuperview()
+        logo.topToSuperview(offset: 20, usingSafeArea: true)
+        logo.bottomToTop(of: infoStack, offset: -18)
+
+        infoStack.axis = .vertical
+        infoStack.horizontalToSuperview(insets: .horizontal(30))
+        infoStack.centerXToSuperview()
+        phoneNumber.height(50)
+        phoneNumber.clearButtonMode = .always
+
+        agreementButton.height(22)
+        agreementStack.axis = .vertical
+        agreementStack.horizontalToSuperview(insets: .horizontal(75))
+        agreementStack.bottomToSuperview(offset: -100)
+
+        sendPhoneButton.horizontalToSuperview(insets: .horizontal(80))
+        sendPhoneButton.keyboardConstraint = sendPhoneButton.bottomToSuperview(offset: -30)
+        sendPhoneButton.bindToKeyboard()
+    }
+
+    override func configureAppearance() {
+        view.backgroundColor = .systemBackground
+        configureNavBarAppearance(font: nil)
+
+        informationLabel.font = .toyotaType(.semibold, of: 22)
+        informationLabel.textColor = .appTint(.signatureGray)
+        informationLabel.textAlignment = .center
+        phoneNumber.font = .toyotaType(.light, of: 22)
+        phoneNumber.textAlignment = .center
+        phoneNumber.minimumFontSize = 17
+        phoneNumber.adjustsFontSizeToFitWidth = true
+        phoneNumber.textColor = .appTint(.signatureGray)
+        phoneNumber.backgroundColor = .appTint(.background)
+        incorrectLabel.font = .toyotaType(.regular, of: 18)
+        incorrectLabel.textAlignment = .center
+        incorrectLabel.textColor = .systemRed
+        incorrectLabel.alpha = 0
+
+        agreementLabel.font = .toyotaType(.regular, of: 14)
+        agreementLabel.textAlignment = .center
+        agreementLabel.textColor = .appTint(.signatureGray)
+        agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)
+        agreementButton.setTitleColor(.link, for: .normal)
+
+        sendPhoneButton.titleLabel?.font = .toyotaType(.regular, of: 22)
+        sendPhoneButton.setTitleColor(.white, for: .normal)
+        sendPhoneButton.normalColor = .appTint(.secondarySignatureRed)
+        sendPhoneButton.highlightedColor = .appTint(.dimmedSignatureRed)
+        sendPhoneButton.rounded = true
+    }
+
+    override func localize() {
+        informationLabel.text = .common(.accountEntering)
+        phoneNumber.placeholder = .common(.phoneNumber)
+        phoneNumber.countryPrefix = .ru
+        incorrectLabel.text = .error(.wrongPhoneEntered)
+        agreementLabel.text = .common(.acceptWhileRegister)
+        agreementButton.setTitle(.common(.terms).lowercased(), for: .normal)
+        sendPhoneButton.setTitle(.common(.next), for: .normal)
+        navigationController?.navigationBar.items?.first?.backButtonTitle = .common(.phoneEntering)
+
+        if case .changeNumber = interactor.type {
             informationLabel.text = .common(.enterNewNumber)
             agreementStack.isHidden = true
         }
     }
 
-    func configure(with authType: AuthType) {
-        type = authType
+    override func configureActions() {
+        phoneNumber.addTarget(self, action: #selector(phoneDidChange), for: .editingChanged)
+        sendPhoneButton.addTarget(self, action: #selector(sendPhoneDidPress), for: .touchUpInside)
+        agreementButton.addTarget(self, action: #selector(openAgreement), for: .touchUpInside)
+
+        interactor.onSuccess = { [weak self] in
+            self?.handle(isSuccess: true)
+        }
+
+        interactor.onFailure = { [weak self] errorMessage in
+            self?.handle(isSuccess: false)
+            PopUp.display(.error(description: errorMessage))
+        }
     }
 
-    @IBAction func phoneNumberDidChange(sender: UITextField) {
+    override func viewWillAppear(_ animated: Bool) {
+        sendPhoneButton.fadeIn()
+    }
+
+    // MARK: - Private methods
+    @objc private func phoneDidChange() {
         incorrectLabel.fadeOut(0.3)
         phoneNumber.toggle(state: .normal)
     }
 
-    @IBAction func nextButtonDidPress(sender: Any?) {
+    @objc private func sendPhoneDidPress() {
         guard let phone = phoneNumber.validPhone else {
             phoneNumber.toggle(state: .error)
             incorrectLabel.fadeIn(0.3)
@@ -52,38 +136,23 @@ class AuthViewController: UIViewController {
         }
 
         sendPhoneButton.fadeOut()
-        indicator.startAnimating()
+        startLoading()
         view.endEditing(true)
-        if case .register = type {
-            KeychainManager.set(Phone(phone))
-        }
 
-        InfoService().registerPhone(with: .init(phone: phone),
-                                    handler: authRequestHandler)
+        interactor.sendPhone(phone)
+    }
+
+    @objc private func openAgreement() {
+        navigationController?.present(AuthFlow.agreementModule(), animated: true)
     }
 
     private func handle(isSuccess: Bool) {
-        indicator.stopAnimating()
+        stopLoading()
         sendPhoneButton.fadeIn()
         if isSuccess {
-            perform(segue: segueCode)
+            let vc = AuthFlow.codeModule(authType: interactor.type,
+                                         number: phoneNumber.validPhone!)
+            navigationController?.pushViewController(vc, animated: true)
         }
-    }
-}
-
-// MARK: - Navigation
-extension AuthViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.code {
-            case segueCode:
-                let destinationVC = segue.destination as? SmsCodeViewController
-                destinationVC?.configure(with: type, and: phoneNumber.phone!)
-                indicator.stopAnimating()
-            default: return
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        sendPhoneButton.fadeIn()
     }
 }

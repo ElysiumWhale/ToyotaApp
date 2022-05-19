@@ -17,7 +17,7 @@ class AddCarViewController: UIViewController, Loadable, UITextFieldDelegate {
 
     private let interactor = AddCarInteractor()
 
-    var loadingStopped: Bool = false
+    var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

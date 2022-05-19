@@ -1,6 +1,10 @@
 import UIKit
 
 extension UIImage {
+    static var toyotaLogo: UIImage {
+        UIImage(imageLiteralResourceName: "ToyotaLogo")
+    }
+
     static var newspaper: UIImage {
         UIImage(systemName: "newspaper",
                 withConfiguration: SymbolConfiguration(scale: .medium))!

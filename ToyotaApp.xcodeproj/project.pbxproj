@@ -36,6 +36,7 @@
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */; };
+		14550602283195890035F47D /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14550601283195890035F47D /* AuthInteractor.swift */; };
 		1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466B49F27FB91930026677B /* InitialazableViewController.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
@@ -169,6 +170,7 @@
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedButton.swift; sourceTree = "<group>"; };
+		14550601283195890035F47D /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		1466B49F27FB91930026677B /* InitialazableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableViewController.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				14BDFF5C270892E200C90882 /* EntryPointViewController.swift */,
 				14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */,
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
+				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 			);
 			path = Authentification;
@@ -902,6 +905,7 @@
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
+				14550602283195890035F47D /* AuthInteractor.swift in Sources */,
 				14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
 				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,

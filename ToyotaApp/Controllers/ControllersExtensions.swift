@@ -29,7 +29,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    var wrappedInNavigation: UIViewController {
+    var wrappedInNavigation: UINavigationController {
         UINavigationController(rootViewController: self)
     }
 }
