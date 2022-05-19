@@ -36,7 +36,7 @@ class MyCarsViewController: UIViewController, Loadable {
             }
     }()
 
-    var loadingStopped: Bool = false
+    var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

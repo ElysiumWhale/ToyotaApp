@@ -107,17 +107,17 @@ extension Keyboardable {
 /// Default loading view with indicator handling
 protocol Loadable: UIViewController {
     var loadingView: LoadingView { get }
+    var isLoading: Bool { get set }
 
     func startLoading()
     func stopLoading()
-    var loadingStopped: Bool { get set }
 }
 
 extension Loadable {
     func startLoading() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let ref = self, !ref.loadingStopped else {
-                self?.loadingStopped = false
+        isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let ref = self, ref.isLoading else {
                 return
             }
 
@@ -125,11 +125,12 @@ extension Loadable {
             ref.loadingView.frame = ref.view.frame
             ref.loadingView.startAnimating()
             ref.loadingView.fadeIn()
+            ref.isLoading = false
         }
     }
 
     func stopLoading() {
-        loadingStopped = true
+        isLoading = false
         loadingView.fadeOut(1) { [weak self] in
             self?.loadingView.stopAnimating()
             self?.loadingView.removeFromSuperview()
