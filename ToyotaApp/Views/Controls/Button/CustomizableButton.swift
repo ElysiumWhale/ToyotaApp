@@ -1,7 +1,16 @@
 import UIKit
 
 @IBDesignable
-class CustomizableButton: UIButton {
+class CustomizableButton: UIButton, BottomKeyboardBinded {
+    @IBOutlet
+    var keyboardConstraint: NSLayoutConstraint? {
+        didSet {
+            constant = keyboardConstraint?.constant ?? .zero
+        }
+    }
+
+    private(set) var constant: CGFloat = .zero
+
     @IBInspectable
     var rounded: Bool = false {
         didSet {
