@@ -126,6 +126,10 @@ extension String {
         case acceptWhileRegister = "Регистрируясь, Вы принимаете"
         /// Ввод телефона
         case phoneEntering = "Ввод телефона"
+        /// Код из смс
+        case codeFromSms = "Код из смс"
+        /// Введите код из СМС для
+        case enterCodeFromSmsFor = "Введите код из СМС для"
     }
 
     enum QuestionStrings: String {

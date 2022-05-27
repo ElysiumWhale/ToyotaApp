@@ -62,6 +62,8 @@ enum AppErrors: String, Error {
     case showroomsError = "При загрузке салонов произошла ошибка. Повторите попытку позже"
     /// Неккоректно введен номер!
     case wrongPhoneEntered = "Неккоректно введен номер!"
+    /// Введен неверный код!
+    case wrongCodeEntered = "Введен неверный код!"
 }
 
 // MARK: - ErrorResponse
