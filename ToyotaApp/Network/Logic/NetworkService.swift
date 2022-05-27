@@ -124,6 +124,11 @@ class NetworkService {
         session.dataTask(with: buildPostRequest(for: page.rawValue, with: params.asQueryItems)).resume()
     }
 
+    class func makeRequest(_ request: Request) {
+        session.dataTask(with: buildPostRequest(for: request.page.rawValue,
+                                                with: request.body.asRequestItems)).resume()
+    }
+
     class private func buildPostRequest(for page: String,
                                         with params: [URLQueryItem] = []) -> URLRequest {
         var mainURL = UrlFactory.mainUrl
