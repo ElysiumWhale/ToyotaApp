@@ -26,6 +26,7 @@
 		141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BACD62725AEF400704589 /* CustomizableStackView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
+		142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B292728382B58007DC48D /* SmsCodeInteractor.swift */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
@@ -160,6 +161,7 @@
 		141BACD62725AEF400704589 /* CustomizableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableStackView.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		142B292728382B58007DC48D /* SmsCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeInteractor.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
+				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
+				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
