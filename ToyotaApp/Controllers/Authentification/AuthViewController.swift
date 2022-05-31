@@ -150,8 +150,8 @@ final class AuthViewController: InitialazableViewController, Loadable {
         stopLoading()
         sendPhoneButton.fadeIn()
         if isSuccess {
-            let vc = AuthFlow.codeModule(authType: interactor.type,
-                                         number: phoneNumber.validPhone!)
+            let vc = AuthFlow.codeModule(phone: phoneNumber.validPhone!,
+                                         authType: interactor.type)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
