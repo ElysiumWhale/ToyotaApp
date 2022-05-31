@@ -95,11 +95,12 @@ final class AuthViewController: InitialazableViewController, Loadable {
         agreementLabel.text = .common(.acceptWhileRegister)
         agreementButton.setTitle(.common(.terms).lowercased(), for: .normal)
         sendPhoneButton.setTitle(.common(.next), for: .normal)
-        navigationController?.navigationBar.items?.first?.backButtonTitle = .common(.phoneEntering)
 
         if case .changeNumber = interactor.type {
             informationLabel.text = .common(.enterNewNumber)
             agreementStack.isHidden = true
+        } else {
+            setBackButtonTitle(.common(.phoneEntering))
         }
     }
 

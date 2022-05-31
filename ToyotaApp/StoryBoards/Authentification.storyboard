@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,15 +12,6 @@
     <customFonts key="customFonts">
         <array key="ToyotaType-Book.ttf">
             <string>ToyotaType-Book</string>
-        </array>
-        <array key="ToyotaType-Light.ttf">
-            <string>ToyotaType-Light</string>
-        </array>
-        <array key="ToyotaType-Regular.ttf">
-            <string>ToyotaType-Regular</string>
-        </array>
-        <array key="ToyotaType-Semibold.ttf">
-            <string>ToyotaType-Semibold</string>
         </array>
     </customFonts>
     <scenes>
@@ -165,136 +156,8 @@ b). сторонним поставщикам услуг и партнерам,
             </objects>
             <point key="canvasLocation" x="1712" y="-105"/>
         </scene>
-        <!--Sms Code View Controller-->
-        <scene sceneID="XMv-3i-0vH">
-            <objects>
-                <viewController storyboardIdentifier="SmsCodeViewController" id="aSg-j3-GJZ" customClass="SmsCodeViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AMQ-DY-tbj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeZ-bJ-pbq" customClass="KeyboardBindedButton" customModule="ToyotaApp" customModuleProvider="target">
-                                <rect key="frame" x="83" y="808" width="248" height="44"/>
-                                <color key="backgroundColor" name="SecondaryGray"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="22"/>
-                                <state key="normal" title="Далее">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" systemColor="systemGray2Color"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                        <color key="value" name="DimmedSignatureRed"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" name="SecondarySignatureRed"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginWith:" destination="aSg-j3-GJZ" eventType="touchUpInside" id="ctl-K8-KgR"/>
-                                    <outlet property="keyboardConstraint" destination="hDs-3O-Dyk" id="pAM-XB-hyY"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="m8S-lG-OtC">
-                                <rect key="frame" x="30" y="204" width="354" height="154"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код из СМС для" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lS8-Ge-CYg">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="31.5"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Semibold" family="Toyota Type" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона:" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-rt-OYG">
-                                        <rect key="frame" x="0.0" y="36.5" width="354" height="31.5"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Код из смс" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwn-0n-Fd3" customClass="InputTextField" customModule="ToyotaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="73" width="354" height="50"/>
-                                        <color key="backgroundColor" name="Background"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Hj6-vE-cJP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Light" family="Toyota Type" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="codeValueDidChangeWith:" destination="aSg-j3-GJZ" eventType="editingChanged" id="6pF-tK-yND"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введен неверный код!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rh-38-XPD">
-                                        <rect key="frame" x="0.0" y="128" width="354" height="26"/>
-                                        <color key="tintColor" red="0.66908687349999996" green="0.37952250240000002" blue="0.38925755020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="ToyotaType-Regular" family="Toyota Type" pointSize="18"/>
-                                        <color key="textColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="highlightedColor" red="0.77888143060000004" green="0.3548936546" blue="0.37568554279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a71-Ud-3b3">
-                                <rect key="frame" x="188.5" y="811.5" width="37" height="37"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="0Rg-B1-f3B"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="YeZ-bJ-pbq" secondAttribute="trailing" constant="83" id="3X1-Ug-9e5"/>
-                            <constraint firstItem="m8S-lG-OtC" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="30" id="9Nl-jY-zoS"/>
-                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="trailing" secondItem="m8S-lG-OtC" secondAttribute="trailing" constant="30" id="A0S-fW-PML"/>
-                            <constraint firstItem="a71-Ud-3b3" firstAttribute="centerX" secondItem="YeZ-bJ-pbq" secondAttribute="centerX" id="DSH-ka-K1g"/>
-                            <constraint firstItem="m8S-lG-OtC" firstAttribute="top" secondItem="AMQ-DY-tbj" secondAttribute="top" constant="204" id="JIK-dN-Civ"/>
-                            <constraint firstItem="0Rg-B1-f3B" firstAttribute="bottom" secondItem="YeZ-bJ-pbq" secondAttribute="bottom" constant="10" id="hDs-3O-Dyk"/>
-                            <constraint firstItem="a71-Ud-3b3" firstAttribute="centerY" secondItem="YeZ-bJ-pbq" secondAttribute="centerY" id="nQV-k2-bjv"/>
-                            <constraint firstItem="YeZ-bJ-pbq" firstAttribute="leading" secondItem="0Rg-B1-f3B" secondAttribute="leading" constant="83" id="voB-Z0-a2b"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="6mc-16-KPA">
-                        <barButtonItem key="backBarButtonItem" title="Ввод телефона" id="MR2-TB-Gax"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="activitySwitcher" destination="a71-Ud-3b3" id="hKl-xX-t6S"/>
-                        <outlet property="phoneNumberLabel" destination="HQ1-rt-OYG" id="haO-3g-G5t"/>
-                        <outlet property="sendSmsCodeButton" destination="YeZ-bJ-pbq" id="dAT-L1-HPY"/>
-                        <outlet property="smsCodeTextField" destination="bwn-0n-Fd3" id="9Pg-xf-flF"/>
-                        <outlet property="wrongCodeLabel" destination="3rh-38-XPD" id="seC-1D-hyG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Gn-ep-FHv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1026" y="-105"/>
-        </scene>
     </scenes>
-    <designables>
-        <designable name="YeZ-bJ-pbq">
-            <size key="intrinsicContentSize" width="68" height="44"/>
-        </designable>
-        <designable name="bwn-0n-Fd3">
-            <size key="intrinsicContentSize" width="121" height="33"/>
-        </designable>
-    </designables>
     <resources>
-        <namedColor name="Background">
-            <color red="0.93725490196078431" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="DimmedSignatureRed">
-            <color red="0.6470588235294118" green="0.0" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SecondaryGray">
-            <color red="0.80784313725490198" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="SecondarySignatureRed">
             <color red="0.85100001096725464" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -303,9 +166,6 @@ b). сторонним поставщикам услуг и партнерам,
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
