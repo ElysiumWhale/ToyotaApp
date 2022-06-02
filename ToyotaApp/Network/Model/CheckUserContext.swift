@@ -32,4 +32,12 @@ struct CheckUserContext {
     init(response: CheckUserOrSmsCodeResponse) {
         self.response = response
     }
+
+    init?(_ nullableResponse: CheckUserOrSmsCodeResponse?) {
+        guard let response = nullableResponse else {
+            return nil
+        }
+
+        self.response = response
+    }
 }

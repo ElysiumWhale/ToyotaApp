@@ -95,11 +95,12 @@ final class AuthViewController: InitialazableViewController, Loadable {
         agreementLabel.text = .common(.acceptWhileRegister)
         agreementButton.setTitle(.common(.terms).lowercased(), for: .normal)
         sendPhoneButton.setTitle(.common(.next), for: .normal)
-        navigationController?.navigationBar.items?.first?.backButtonTitle = .common(.phoneEntering)
 
         if case .changeNumber = interactor.type {
             informationLabel.text = .common(.enterNewNumber)
             agreementStack.isHidden = true
+        } else {
+            setBackButtonTitle(.common(.phoneEntering))
         }
     }
 
@@ -150,8 +151,8 @@ final class AuthViewController: InitialazableViewController, Loadable {
         stopLoading()
         sendPhoneButton.fadeIn()
         if isSuccess {
-            let vc = AuthFlow.codeModule(authType: interactor.type,
-                                         number: phoneNumber.validPhone!)
+            let vc = AuthFlow.codeModule(phone: phoneNumber.validPhone!,
+                                         authType: interactor.type)
             navigationController?.pushViewController(vc, animated: true)
         }
     }

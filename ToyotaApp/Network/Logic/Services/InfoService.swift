@@ -2,6 +2,10 @@ import Foundation
 
 protocol AuthService {
     func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>)
+
+    func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
+    func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>)
+    func deleteTemporaryPhone(with body: DeletePhoneBody)
 }
 
 class InfoService: AuthService {
@@ -63,6 +67,11 @@ class InfoService: AuthService {
     func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>) {
         let request = Request(page: .setting(.changePhone), body: body)
         NetworkService.makeRequest(request, handler: handler)
+    }
+
+    func deleteTemporaryPhone(with body: DeletePhoneBody) {
+        let request = Request(page: .registration(.deleteTemp), body: body)
+        NetworkService.makeRequest(request)
     }
 
     func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>) {

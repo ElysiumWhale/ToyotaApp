@@ -36,4 +36,8 @@ class InitialazableViewController: UIViewController, InitialazableView {
     func configureActions() {
         // override in subclasses
     }
+
+    func setBackButtonTitle(_ title: String?) {
+        navigationController?.navigationBar.topItem?.backButtonTitle = title
+    }
 }

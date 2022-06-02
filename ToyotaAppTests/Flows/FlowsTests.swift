@@ -7,7 +7,7 @@ class FlowsTests: XCTestCase {
         let authModule = AuthFlow.authModule(authType: .register)
         XCTAssertTrue(authModule is AuthViewController)
 
-        let codeModule = AuthFlow.codeModule(authType: .register, number: "1")
+        let codeModule = AuthFlow.codeModule(phone: "1", authType: .register)
         XCTAssertTrue(codeModule is SmsCodeViewController)
 
         let entry = AuthFlow.entryPoint(with: [authModule, codeModule])
