@@ -44,6 +44,7 @@
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
 		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
+		1471C958284942B2000624FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C957284942B2000624FC /* AgreementViewController.swift */; };
 		147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 147BEB9527F66B1B005B3B6D /* TinyConstraints */; };
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
@@ -178,6 +179,7 @@
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
+		1471C957284942B2000624FC /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
+				1471C957284942B2000624FC /* AgreementViewController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
+				1471C958284942B2000624FC /* AgreementViewController.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
 			);
