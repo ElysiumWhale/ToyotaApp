@@ -20,7 +20,7 @@ final class AgreementViewController: InitialazableViewController {
     }
 
     override func localize() {
-        navigationItem.title = "Условия соглашения"
+        navigationItem.title = .common(.terms)
         navigationItem.titleView?.tintColor = .appTint(.signatureGray)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.backgroundColor = .systemBackground
