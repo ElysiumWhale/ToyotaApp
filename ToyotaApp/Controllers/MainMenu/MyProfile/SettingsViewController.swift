@@ -17,10 +17,6 @@ final class SettingsViewController: InitialazableViewController {
         super.init()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func addViews() {
         let buttonItem = UIBarButtonItem(title: .common(.done))
         buttonItem.action = #selector(customDismiss)
@@ -95,8 +91,6 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     override func configureActions() {
-        subscribe(on: user)
-
         changeNumberButton.addAction { [weak self] in
             self?.changeNumber()
         }
@@ -118,8 +112,4 @@ final class SettingsViewController: InitialazableViewController {
         present(AuthFlow.agreementModule().wrappedInNavigation,
                 animated: true)
     }
-}
-
-extension SettingsViewController: WithUserInfo {
-    func setUser(info: UserProxy) { }
 }
