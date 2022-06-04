@@ -115,7 +115,8 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     private func showAgreement() {
-        present(AuthFlow.agreementModule(), animated: true)
+        present(AuthFlow.agreementModule().wrappedInNavigation,
+                animated: true)
     }
 }
 

@@ -144,7 +144,8 @@ final class AuthViewController: InitialazableViewController, Loadable {
     }
 
     @objc private func openAgreement() {
-        navigationController?.present(AuthFlow.agreementModule(), animated: true)
+        present(AuthFlow.agreementModule().wrappedInNavigation,
+                animated: true)
     }
 
     private func handle(isSuccess: Bool) {

@@ -1,45 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-    </dependencies>
-    <customFonts key="customFonts">
-        <array key="ToyotaType-Book.ttf">
-            <string>ToyotaType-Book</string>
-        </array>
-    </customFonts>
-    <scenes>
-        <!--View Controller-->
-        <scene sceneID="wMX-Ub-lvP">
-            <objects>
-                <viewController storyboardIdentifier="AgreementViewController" id="AW2-3x-1C9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qiw-Lf-c2X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2BZ-GY-jxi">
-                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                                <items>
-                                    <navigationItem title="Условия соглашения" id="hqt-rC-zY9">
-                                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="ggv-xH-fce">
-                                            <color key="tintColor" name="SecondarySignatureRed"/>
-                                            <connections>
-                                                <action selector="customDismissWithSender:" destination="AW2-3x-1C9" id="KXd-68-ke4"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uro-IV-3Xg">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Политика в конфиденциальности персональных данных
+import UIKit
+
+final class AgreementViewController: InitialazableViewController {
+    private let textView = UITextView()
+    private let doneItem = UIBarButtonItem()
+
+    override func addViews() {
+        addSubviews(textView)
+        navigationItem.rightBarButtonItem = doneItem
+    }
+
+    override func configureLayout() {
+        textView.edgesToSuperview()
+    }
+
+    override func configureAppearance() {
+        doneItem.tintColor = .appTint(.secondarySignatureRed)
+        textView.font = .toyotaType(.book, of: 15)
+        textView.isEditable = false
+    }
+
+    override func localize() {
+        navigationItem.title = .common(.terms)
+        navigationItem.titleView?.tintColor = .appTint(.signatureGray)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .systemBackground
+
+        doneItem.title = .common(.done)
+        textView.text = .agreementText
+    }
+
+    override func configureActions() {
+        doneItem.action = #selector(customDismiss)
+    }
+}
+
+// swiftlint:disable line_length
+private extension String {
+    static var agreementText: String {
+        """
+Политика в конфиденциальности персональных данных
 1. Общие положения
 Настоящая политика конфиденциальности персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. №152-ФЗ «О персональных данных», Вы подтверждаете свое согласие на обработку компанией Альянс PRO1 (далее – Оператор) персональных данных: сбор, систематизацию, накопление, хранение, уточнение (обновление, изменение), использование, передачу исключительно в целях регистрации программного продукта и осуществления технической поддержки пользователя при использовании программного продукта.
 1.1. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.
@@ -56,7 +55,7 @@
 2.9. Пользователь – любой посетитель веб-сайта Оператора;
 2.10. Предоставление персональных данных – действия, направленные на раскрытие персональных данных определенному лицу или определенному кругу лиц;
 2.11. Распространение персональных данных – любые действия, направленные на раскрытие персональных данных неопределенному кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга лиц, в том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом;
-2.12. Трансграничная передача персональных данных – передача персональных данных на территорию иностранного государства органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу; 
+2.12. Трансграничная передача персональных данных – передача персональных данных на территорию иностранного государства органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу;
 2.13. Уничтожение персональных данных – любые действия, в результате которых персональные данные уничтожаются безвозвратно с невозможностью дальнейшего восстановления содержания персональных данных в информационной системе персональных данных и (или) уничтожаются материальные носители персональных данных.
 3. Оператор может обрабатывать следующие персональные данные Пользователя
 3.1. Персональная информация, предоставленная Вами при регистрации (создании учетной записи), такая как Ваше Фамилия, имя, отчество, номер телефона, Адрес электронной почты, дата рождения, географическое место нахождения устройства, точные данные геолокации, данные об использовании Вами наших сервисов, такие, как взаимодействие с приложением и определение параметров использования;
@@ -80,7 +79,7 @@
 5.1. Оператор обрабатывает персональные данные Пользователя только в случае их заполнения и/или отправки Пользователем самостоятельно через специальные формы, установленные на официальных продуктах Оператора. Заполняя соответствующие формы и/или отправляя свои персональные данные Оператору, Пользователь выражает свое согласие с данной Политикой.
 5.2. Оператор обрабатывает обезличенные данные о Пользователе в случае, если это разрешено в настройках браузера Пользователя (включено сохранение файлов «cookie» и использование технологии JavaScript).
  5.3. Порядок сбора, хранения, передачи и других видов обработки персональных данных
-Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных. 
+Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.
 
 5.4 Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.
 5.5. Срок обработки персональных данных является неограниченным. Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на электронный адрес Оператора alyans.developer@gmail.ru с пометкой «Отзыв согласия на обработку персональных данных с указанием названия продукта и личных данных».
@@ -93,7 +92,7 @@
 Данные о Вашем устройстве, такие, как наименование устройства и операционной системы, тип браузера и язык;
 Данные, которые мы собираем при помощи cookie-файлов и подобных технологий;
 Широкое географическое местонахождение, на основании Вашего IP адреса;
-Точные данные по геолокации  (GPS с Вашего согласия); 
+Точные данные по геолокации  (GPS с Вашего согласия);
 Данные об использовании Вами наших Сервисов, такие, как взаимодействие с приложением и определение параметров использования.
 
 6. Как мы используем Ваши персональные данные
@@ -105,24 +104,24 @@
 Для исполнения любых применимых договорных обязательств; и
 Для отправки Вам сообщений, связанных с Сервисами, включая подтверждения, технические уведомления, обновления, предупреждения системы безопасности и сообщения службы поддержки или административные сообщения и уведомления, связанные с посещениями Вашего профиля, поиском в каталоге и просмотром тегов, связанных с профилем, или любыми новыми тегами
 
-2. для  улучшения работы наших Сервисов. 
+2. для  улучшения работы наших Сервисов.
 Чтобы ответить на Ваши вопросы в службу поддержки клиентов;
 Чтобы получать сообщения об ошибках и любых проблемах, с которыми Вы / Ваше устройство сталкивается при использовании наших Сервисов, чтобы позволить нам исправить ошибки и проблемы функциональной совместимости;
 Чтобы обнаружить и предотвратить незаконную деятельность;
 Отслеживать установки приложения, в целях измерения эффекта от наших маркетинговых кампаний;
 Провести выборочные обзоры отзывов пользователей;
-Чтобы сохранить данные о Вас в следующий раз, когда Вы посещаете один из наших Сервисов; 
+Чтобы сохранить данные о Вас в следующий раз, когда Вы посещаете один из наших Сервисов;
 Чтобы сообщать Вам о рекламных акциях, предстоящих событиях, а также другие новости о продуктах и услугах, предлагаемых нами.
 Мы можем использовать Ваши персональные данные чтобы делиться с Вами информацией о Вашем взаимодействии с нашими Сервисами, включая активность любых Ваших контактов, прямых и косвенных, с другими пользователями наших Сервисов для предоставления уведомлений о посещении профиля либо связанных поисковых запросов чтобы связываться с Вами:
 Предоставлять Вам предложения в приложении на основе Вашего взаимодействия с нашими Сервисами;
-Предоставлять Вам соответствующую целевую рекламу; 
-Отправлять Вам маркетинговые сообщения и/или новостные рассылки, если Вы подписались на них, о рекламных акциях; 
+Предоставлять Вам соответствующую целевую рекламу;
+Отправлять Вам маркетинговые сообщения и/или новостные рассылки, если Вы подписались на них, о рекламных акциях;
 4. для проведения исследований, таких как анализ рыночной конъюнктуры и демографии потребителей;
 5. для соблюдения юридических обязательств, включая предотвращение и/или обнаружение случаев мошенничества, или обеспечить раскрытие данных компетентным органам, когда это требуется в соответствии действующим законодательством.
 7. С кем мы делимся Вашими персональными данными?
 Когда Вы используете любой из наших Сервисов, мы можем раскрыть Ваши персональные данные следующим лицам:
 a) любому компетентному правоохранительному органу, правительственному органу власти, суду или другой третьей стороне, которой, как мы полагаем, необходимо раскрыть такие данные.
-b). сторонним поставщикам услуг и партнерам, которые оказывают оконечные услуги и помогают нам анализировать эффективность наших Сервисов. Эти третьи лица имеют доступ к Вашим персональным данным строго только для цели выполнения этих задач от нашего имени и обязаны не разглашать и не использовать их в каких-либо других целях. 
+b). сторонним поставщикам услуг и партнерам, которые оказывают оконечные услуги и помогают нам анализировать эффективность наших Сервисов. Эти третьи лица имеют доступ к Вашим персональным данным строго только для цели выполнения этих задач от нашего имени и обязаны не разглашать и не использовать их в каких-либо других целях.
 8. Информирование
 При регистрации сервисов Оператора Вы соглашаетесь с получением информационных смс сообщений, а также первичного персонального кода для подтверждения учетной записи личного кабинета.
  9. Заключительные положения
@@ -132,40 +131,7 @@ b). сторонним поставщикам услуг и партнерам,
 Мы оставляем за собой право внести исправления или изменения в данную Политику конфиденциальности в любое время, и любые изменения будут опубликованы в наших Сервисах. Дата новой версии появится на этой странице. Если мы внесем существенные изменения в данную политику, мы можем также уведомить Вас об этом другими средствами, например, электронным письмом. Когда это требуется согласно закону, мы получим Ваше согласие на внесение этих изменений. Если Вы не соглашаетесь с любыми изменениями, не продолжайте использовать наши Сервисы.
 
 
-1 ООО «Альянс ПРО».</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" name="ToyotaType-Book" family="Toyota Type" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="uzR-1o-aAA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Uro-IV-3Xg" firstAttribute="leading" secondItem="uzR-1o-aAA" secondAttribute="leading" id="8Lg-y5-3pv"/>
-                            <constraint firstItem="uzR-1o-aAA" firstAttribute="trailing" secondItem="Uro-IV-3Xg" secondAttribute="trailing" id="LOl-9s-VgG"/>
-                            <constraint firstItem="2BZ-GY-jxi" firstAttribute="leading" secondItem="uzR-1o-aAA" secondAttribute="leading" id="Qtr-8L-B8y"/>
-                            <constraint firstItem="uzR-1o-aAA" firstAttribute="trailing" secondItem="2BZ-GY-jxi" secondAttribute="trailing" id="XZl-Oh-7If"/>
-                            <constraint firstItem="Uro-IV-3Xg" firstAttribute="top" secondItem="2BZ-GY-jxi" secondAttribute="bottom" id="jzA-oI-6Pr"/>
-                            <constraint firstItem="2BZ-GY-jxi" firstAttribute="top" secondItem="uzR-1o-aAA" secondAttribute="top" id="omV-bl-s2N"/>
-                            <constraint firstItem="uzR-1o-aAA" firstAttribute="bottom" secondItem="Uro-IV-3Xg" secondAttribute="bottom" id="xc3-Uh-Ayy"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="v7u-bT-tpG"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I4w-af-vRy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1712" y="-105"/>
-        </scene>
-    </scenes>
-    <resources>
-        <namedColor name="SecondarySignatureRed">
-            <color red="0.85100001096725464" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
-</document>
+1 ООО «Альянс ПРО».
+"""
+    }
+}

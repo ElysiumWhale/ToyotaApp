@@ -1,8 +1,6 @@
 import UIKit
 
 enum AuthFlow {
-    static let storyboard: UIStoryboard = UIStoryboard(.auth)
-
     static func authModule(authType: AuthType = .register,
                            authService: AuthService = InfoService()) -> UIViewController {
         let interactor = AuthInteractor(type: authType, authService: authService)
@@ -27,6 +25,6 @@ enum AuthFlow {
     }
 
     static func agreementModule() -> UIViewController {
-        storyboard.instantiate(.agreement)
+        AgreementViewController()
     }
 }

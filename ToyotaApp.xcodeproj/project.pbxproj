@@ -44,6 +44,7 @@
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
 		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
+		1471C958284942B2000624FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C957284942B2000624FC /* AgreementViewController.swift */; };
 		147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 147BEB9527F66B1B005B3B6D /* TinyConstraints */; };
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
@@ -64,7 +65,6 @@
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
-		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C64D292793804C0023C850 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C64D282793804C0023C850 /* Validatable.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
@@ -108,7 +108,6 @@
 		A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
-		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
 		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
 		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
@@ -179,6 +178,7 @@
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
+		1471C957284942B2000624FC /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
@@ -198,7 +198,6 @@
 		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
 		14B2A7E5275C0249002A6ADF /* Redundant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Redundant.storyboard; sourceTree = "<group>"; };
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
-		14BDFF5C270892E200C90882 /* EntryPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C64D282793804C0023C850 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +242,6 @@
 		A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
 		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
@@ -456,7 +454,6 @@
 			children = (
 				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
 				A76D4F0A256C83120086813E /* Main.storyboard */,
-				A791FDE32526707100A595BB /* Authentification.storyboard */,
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
 				14A8D8972617C5C40086BC12 /* MyProfile.storyboard */,
 				14B2A7E5275C0249002A6ADF /* Redundant.storyboard */,
@@ -545,12 +542,12 @@
 		A759469F2523E7D200312EBE /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
-				14BDFF5C270892E200C90882 /* EntryPointViewController.swift */,
 				14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */,
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
+				1471C957284942B2000624FC /* AgreementViewController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -815,7 +812,6 @@
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
 				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
-				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
 				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,7 +870,6 @@
 				14AB8D612714C81A004D225F /* LoadingView.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
-				14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
@@ -950,6 +945,7 @@
 				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
+				1471C958284942B2000624FC /* AgreementViewController.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
 			);
