@@ -6,8 +6,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if scene as? UIWindowScene == nil { return }
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+
+        guard let windowScene = scene as? UIWindowScene else {
+            return
+        }
+
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = SplashScreenViewController()
+        window?.makeKeyAndVisible()
 
         NavigationService.switchRootView = changeRootViewController
 
