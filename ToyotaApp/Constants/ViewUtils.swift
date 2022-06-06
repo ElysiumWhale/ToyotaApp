@@ -40,8 +40,6 @@ public enum AppStoryboards: String {
     case launchScreen = "LaunchScreen"
     /// Main
     case main = "Main"
-    /// Authentification
-    case auth = "Authentification"
     /// FirstLaunchRegistration
     case register = "FirstLaunchRegistration"
     /// MyProfile
@@ -49,28 +47,18 @@ public enum AppStoryboards: String {
 }
 
 enum ViewControllers: String {
-    /// AuthNavigationController
-    case authNavigation = "AuthNavigationController"
     /// RegisterNavigationController
     case registerNavigation = "RegisterNavigationController"
     /// PersonalInfoViewController
     case personalInfo = "PersonalInfoViewController"
-    /// DealerViewController
-    case dealer = "DealerViewController"
     /// AddingCarViewController
     case addCar = "AddCarViewController"
     /// CheckVinViewController
     case checkVin = "CheckVinViewController"
     /// ConnectionLostViewController
     case connectionLost = "ConnectionLostViewController"
-    /// AuthViewController
-    case auth = "AuthViewController"
-    /// SmsCodeViewController
-    case code = "SmsCodeViewController"
     /// MyCarViewController
     case myCar = "MyCarViewController"
-    /// AgreementViewController
-    case agreement = "AgreementViewController"
     /// CityPickerViewController
     case cityPick = "CityPickerViewController"
     /// MyProfileViewController
