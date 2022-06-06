@@ -24,8 +24,9 @@ extension String {
         formatter.date(from: self)
     }
 
-    func swapFormates(from: DateFormatters, to: DateFormatters) -> String {
-        to.string(from: from.date(from: self) ?? Date())
+    func swapFormats(from sourceFormat: DateFormatters,
+                     to destinationFormat: DateFormatters) -> String {
+        destinationFormat.string(from: sourceFormat.date(from: self) ?? Date())
     }
 
     func dateString(for formatter: DateFormatters) -> String {

@@ -161,7 +161,7 @@ extension UIStoryboard {
         self.init(name: identifier.rawValue, bundle: .main)
     }
 
-    /// Causes **fatalError()** when `ViewController` is not mapped to identifier
+    /// Causes **assertionFailure** when `ViewController` is not mapped to identifier
     func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
         let controller = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController
         if let result = controller {
