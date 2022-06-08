@@ -8,7 +8,11 @@ protocol AuthService {
     func deleteTemporaryPhone(with body: DeletePhoneBody)
 }
 
-final class InfoService: AuthService {
+protocol ReconnectionService {
+    func checkUser(with body: CheckUserBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
+}
+
+final class InfoService: AuthService, ReconnectionService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
         NetworkService.makeRequest(requestFactory(), handler: handler)

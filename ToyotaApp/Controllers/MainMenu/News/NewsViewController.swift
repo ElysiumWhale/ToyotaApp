@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: InitialazableViewController, Refreshable {
+final class NewsViewController: InitialazableViewController, Refreshable {
     let refreshableView: UITableView! = UITableView()
     let showroomField = NoCopyPasteTexField()
 
