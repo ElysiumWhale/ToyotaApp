@@ -70,6 +70,11 @@ class ServicesViewController: InitialazableViewController, Refreshable {
         addSubviews(showroomField, refreshableView)
         navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
                                                  action: chooseCityDidTap)
+        let chatButton = UIBarButtonItem(image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(chatButtonDidPress))
+        navigationItem.setRightBarButton(chatButton, animated: false)
         showroomField.setRightView(from: chevronButton, width: 30,
                                    height: fieldHeight)
     }
@@ -152,6 +157,11 @@ class ServicesViewController: InitialazableViewController, Refreshable {
                                                                 for: indexPath,
                                                                 item: serviceType)
         }
+    }
+
+    @objc private func chatButtonDidPress() {
+        navigationController?.pushViewController(MainMenuFlow.chatModule(),
+                                                 animated: true)
     }
 }
 
