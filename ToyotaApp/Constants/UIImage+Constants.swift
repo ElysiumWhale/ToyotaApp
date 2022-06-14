@@ -34,4 +34,14 @@ extension UIImage {
         UIImage(systemName: "person.fill",
                 withConfiguration: SymbolConfiguration(scale: .medium))!
     }
+
+    static var chat: UIImage {
+        UIImage(systemName: "text.bubble.fill",
+                withConfiguration: SymbolConfiguration(scale: .medium))!
+    }
+
+    static var send: UIImage {
+        UIImage(systemName: "arrow.up.square.fill",
+                withConfiguration: SymbolConfiguration(scale: .medium))!
+    }
 }
