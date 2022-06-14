@@ -5,8 +5,9 @@ class PickerModule: NSObject, IServiceModule {
 
     private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configurePicker(with: #selector(serviceDidSelect),
-                                                   for: internalView.textField, delegate: self)
+        internalView.servicePicker.configure(delegate: self,
+                                             with: #selector(serviceDidSelect),
+                                             for: internalView.textField)
         internalView.textField.placeholder = .common(.service)
         internalView.alpha = 0
         return internalView

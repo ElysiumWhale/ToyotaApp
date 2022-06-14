@@ -6,17 +6,18 @@ private enum ServiceSections: Int {
 
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
-class ServicesViewController: RefreshableController, PickerController {
-    @IBOutlet private var showroomField: NoCopyPasteTexField!
+class ServicesViewController: InitialazableViewController, Refreshable {
+    let showroomField = NoCopyPasteTexField()
+    let refreshControl = UIRefreshControl()
 
     private(set) lazy var refreshableView: UICollectionView! = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: makeCompositionalLayout())
         collectionView.backgroundColor = .appTint(.background)
+        collectionView.delegate = self
         return collectionView
     }()
 
-    private(set) var refreshControl = UIRefreshControl()
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
 
@@ -26,11 +27,8 @@ class ServicesViewController: RefreshableController, PickerController {
         self?.showroomField.becomeFirstResponder()
     }
 
-    private let interactor = ServicesInteractor()
-
-    private var user: UserProxy! {
-        didSet { subscribe(on: user) }
-    }
+    private let interactor: ServicesInteractor
+    private let user: UserProxy
 
     private var carsCount: Int { user.cars.value.count }
 
@@ -38,17 +36,27 @@ class ServicesViewController: RefreshableController, PickerController {
         showroomField.frame.height
     }
 
+    init(user: UserProxy, interactor: ServicesInteractor = .init()) {
+        self.user = user
+        self.interactor = interactor
+        super.init()
+
+        interactor.view = self
+        subscribe(on: self.user)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Public methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor.view = self
-        configureShowroomField()
-        configureCollectionView()
         hideKeyboardWhenTappedAround()
+        configureRefresh()
+        refreshableView.dataSource = dataSource
 
-        navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
-                                                 action: chooseCityDidTap)
         if interactor.selectedCity != nil {
             showroomField.text = interactor.selectedShowroom?.name
             startRefreshing()
@@ -56,6 +64,53 @@ class ServicesViewController: RefreshableController, PickerController {
         } else {
             refreshableView.setBackground(text: .background(.noCityAndShowroom))
         }
+    }
+
+    override func addViews() {
+        addSubviews(showroomField, refreshableView)
+        navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
+                                                 action: chooseCityDidTap)
+        let chatButton = UIBarButtonItem(image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(chatButtonDidPress))
+        navigationItem.setRightBarButton(chatButton, animated: false)
+        showroomField.setRightView(from: chevronButton, width: 30,
+                                   height: fieldHeight)
+    }
+
+    override func configureLayout() {
+        showroomField.edgesToSuperview(excluding: .bottom,
+                                       insets: .uniform(16),
+                                       usingSafeArea: true)
+        showroomField.height(45)
+        refreshableView.edgesToSuperview(excluding: .top)
+        refreshableView.topToBottom(of: showroomField)
+    }
+
+    override func localize() {
+        showroomField.placeholder = .common(.showroom)
+        navigationItem.backButtonTitle = .common(.services)
+    }
+
+    override func configureAppearance() {
+        configureNavBarAppearance(font: nil)
+        view.backgroundColor = .appTint(.background)
+        showroomField.textAlignment = .center
+        showroomField.font = .toyotaType(.light, of: 25)
+        showroomField.textColor = .appTint(.signatureGray)
+        showroomField.cornerRadius = 10
+        showroomField.minimumFontSize = 17
+        showroomField.adjustsFontSizeToFitWidth = true
+        showroomField.backgroundColor = .appTint(.cell)
+        showroomField.tintColor = .clear
+        showroomField.rightViewMode = .always
+    }
+
+    override func configureActions() {
+        showroomPicker.configure(delegate: self,
+                                 with: #selector(showroomDidSelect),
+                                 for: showroomField)
     }
 
     func startRefreshing() {
@@ -88,23 +143,6 @@ class ServicesViewController: RefreshableController, PickerController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    private func configureShowroomField() {
-        showroomField.tintColor = .clear
-        showroomField.rightViewMode = .always
-        showroomField.setRightView(from: chevronButton, width: 30,
-                                   height: fieldHeight)
-        configurePicker(showroomPicker, with: #selector(showroomDidSelect), for: showroomField)
-    }
-
-    private func configureCollectionView() {
-        view.addSubview(refreshableView)
-        refreshableView.edgesToSuperview(excluding: .top)
-        refreshableView.topToBottom(of: showroomField)
-        configureRefresh()
-        refreshableView.delegate = self
-        refreshableView.dataSource = dataSource
-    }
-
     @discardableResult
     private func configureDataSource() -> DataSource<ServiceSections, ServiceType.ID> {
         let cellRegistration = UICollectionView.CellRegistration<ServiceTypeCell, ServiceType> { cell, _, serviceType in
@@ -119,6 +157,11 @@ class ServicesViewController: RefreshableController, PickerController {
                                                                 for: indexPath,
                                                                 item: serviceType)
         }
+    }
+
+    @objc private func chatButtonDidPress() {
+        navigationController?.pushViewController(MainMenuFlow.chatModule(),
+                                                 animated: true)
     }
 }
 
@@ -151,7 +194,7 @@ extension ServicesViewController: CityPickerDelegate {
 // MARK: - ServicesView
 extension ServicesViewController: ServicesView {
     func didSelect(showroom: Showroom, with index: Int?) {
-        self.showroomField.text = showroom.name
+        showroomField.text = showroom.name
         if let index = index {
             showroomPicker.selectRow(index, inComponent: 0, animated: false)
         }
@@ -206,9 +249,7 @@ extension ServicesViewController: ServicesView {
 
 // MARK: - WithUserInfo
 extension ServicesViewController: WithUserInfo {
-    func setUser(info: UserProxy) {
-        user = info
-    }
+    func setUser(info: UserProxy) { }
 
     func subscribe(on proxy: UserProxy) {
         proxy.notificator.add(observer: self)
@@ -252,14 +293,6 @@ extension ServicesViewController: UICollectionViewDelegate {
                                                           for: controllerType,
                                                           user: user)
         navigationController?.pushViewController(controller, animated: true)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.alpha = 0
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.05 * Double(indexPath.row),
-                       animations: { cell.alpha = 1 })
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

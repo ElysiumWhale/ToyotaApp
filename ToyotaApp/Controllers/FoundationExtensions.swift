@@ -3,6 +3,7 @@ import Foundation
 typealias ParameterClosure<T> = (T) -> Void
 typealias Closure = () -> Void
 typealias ValueClosure<T> = () -> T
+typealias ParameterValueClosure<T1, T2> = (T1) -> T2
 
 extension Int {
     static let vinLength = 17

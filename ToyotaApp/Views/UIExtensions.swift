@@ -12,6 +12,10 @@ extension UITableView {
     func setBackground(text: String?) {
         backgroundView = createBackground(labelText: text)
     }
+
+    func registerCell(_ cellClass: UITableViewCell.Type) {
+        register(cellClass, forCellReuseIdentifier: String(describing: cellClass))
+    }
 }
 
 // MARK: - UITextField error border
@@ -30,7 +34,7 @@ extension UITextField {
         })
     }
 
-    func setRightView(from view: UIView, width: Double, height: Double) {
+    func setRightView(from view: UIView, width: Double = 30, height: Double) {
         NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
         rightView = nil
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
@@ -79,12 +83,12 @@ extension UIRefreshControl {
 
 // MARK: - UIPicker
 extension UIPickerView {
-    func configurePicker<T>(with action: Selector,
-                            for textField: UITextField,
-                            delegate: T) where T: UIPickerViewDelegate & UIPickerViewDataSource {
+    func configure(delegate: UIPickerViewDelegate & UIPickerViewDataSource,
+                   with action: Selector,
+                   for textField: UITextField) {
         self.dataSource = delegate
         self.delegate = delegate
-        textField.inputAccessoryView = UIToolbar.buildToolBar(for: delegate, with: action)
+        textField.inputAccessoryView = .buildToolbar(with: action, target: delegate)
         textField.inputView = self
     }
 
@@ -93,22 +97,22 @@ extension UIPickerView {
     }
 }
 
-// MARK: - UIToolBar
-extension UIToolbar {
-    static func buildToolBar<T>(for delegate: T, with action: Selector) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: delegate, action: nil)
-        let doneButton = UIBarButtonItem(title: .common(.choose), style: .done, target: delegate, action: action)
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
+// MARK: - UIDatePicker
+extension UIDatePicker {
+    func configure(with action: Selector,
+                   for textField: UITextField) {
+        preferredDatePickerStyle = .wheels
+        locale = Locale(identifier: "ru")
+        datePickerMode = .date
+        maximumDate = Date()
+        textField.inputAccessoryView = .buildToolbar(with: action)
+        textField.inputView = self
     }
 }
 
 // MARK: - Fonts
 extension UIFont {
-    enum ToyotaFonts: String {
+    enum ToyotaFonts: String, CaseIterable {
         case semibold = "Semibold"
         case light = "Light"
         case regular = "Regular"
@@ -118,23 +122,24 @@ extension UIFont {
 
         case lightItalic = "LightIt"
         case bookItalic = "BookIt"
-        case regularItalic = "RegularIt"
+        case regularItalic = "Italic" // something wrong with this type
         case semiboldItalic = "SemiboldIt"
         case boldItalic = "BoldIt"
         case blackItalic = "BlackIt"
 
-        func getName() -> String { "ToyotaType-\(self.rawValue)" }
+        var name: String {
+            "ToyotaType-\(rawValue)"
+        }
     }
 
     static func toyotaType(_ type: ToyotaFonts, of size: CGFloat) -> UIFont {
-        UIFont(name: type.getName(), size: size)!
+        UIFont(name: type.name, size: size)!
     }
 }
 
 // MARK: - Main app tint
 extension UIColor {
-    enum AppTints: String {
-        case mainRed = "MainTint"
+    enum AppTints: String, CaseIterable {
         case loading = "Loading"
         case signatureRed = "SignatureRed"
         case secondarySignatureRed = "SecondarySignatureRed"
@@ -145,7 +150,9 @@ extension UIColor {
         case dimmedSignatureRed = "DimmedSignatureRed"
     }
 
-    static func appTint(_ tint: AppTints) -> UIColor { UIColor(named: tint.rawValue)! }
+    static func appTint(_ tint: AppTints) -> UIColor {
+        UIColor(named: tint.rawValue)!
+    }
 }
 
 // MARK: - Sugar init and instatiate
@@ -154,7 +161,7 @@ extension UIStoryboard {
         self.init(name: identifier.rawValue, bundle: .main)
     }
 
-    /// Causes **fatalError()** when `ViewController` is not mapped to identifier
+    /// Causes **assertionFailure** when `ViewController` is not mapped to identifier
     func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
         let controller = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController
         if let result = controller {
@@ -173,8 +180,6 @@ extension UITableView {
         case bookingCell = "BookingCell"
         /// CityCell
         case cityCell = "CityCell"
-        /// NewsCell
-        case newsCell = "NewsCell"
     }
 
     func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
@@ -185,6 +190,16 @@ extension UITableView {
 
         assertionFailure("Can't dequeue cell.")
         return TCell()
+    }
+
+    func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
+        guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
+                                             for: indexPath) as? TCell else {
+            assertionFailure("Can't dequeue cell.")
+            return TCell()
+        }
+
+        return cell
     }
 }
 
@@ -277,5 +292,20 @@ extension UIButton {
         button.imageView?.tintColor = .appTint(.secondarySignatureRed)
         button.addAction(action)
         return button
+    }
+}
+
+// MARK: - UIStackView
+extension UIStackView {
+    func addArrangedSubviews(_ views: UIView...) {
+        for view in views {
+            addArrangedSubview(view)
+        }
+    }
+
+    func addArrangedSubviews(_ views: [UIView]) {
+        for view in views {
+            addArrangedSubview(view)
+        }
     }
 }

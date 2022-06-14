@@ -48,10 +48,16 @@ extension String {
         case no = "Нет"
         /// Выбрать
         case choose = "Выбрать"
+        /// Изменить
+        case change = "Изменить"
         /// Услуга
         case service = "Услуга"
         /// Услуги
         case services = "Услуги"
+        /// Акции
+        case offers = "Акции"
+        /// Профиль
+        case profile = "Профиль"
         /// Машина
         case car = "Машина"
         /// Автомобиль
@@ -106,6 +112,30 @@ extension String {
         case bookingInFuture = "Предстоит"
         /// Исполнено
         case bookingComplete = "Исполнено"
+        /// Настройки
+        case settings = "Настройки"
+        /// Номер телефона
+        case phoneNumber = "Номер телефона"
+        /// ALYANS PRO, OOO
+        case alyansPro = "ALYANS PRO, OOO"
+        /// Условия соглашения
+        case terms = "Условия соглашения"
+        /// Вход в личный кабинет:
+        case accountEntering = "Вход в личный кабинет:"
+        /// Регистрируясь, Вы принимаете
+        case acceptWhileRegister = "Регистрируясь, Вы принимаете"
+        /// Ввод телефона
+        case phoneEntering = "Ввод телефона"
+        /// Код из смс
+        case codeFromSms = "Код из смс"
+        /// Введите код из СМС для
+        case enterCodeFromSmsFor = "Введите код из СМС для"
+        /// Повторить
+        case retry = "Повторить"
+        /// Введите сообщение
+        case enterMessage = "Введите сообщение"
+        /// Здесь будут отображаться введенные сообщения...
+        case thereWillBeMessages = "Здесь будут отображаться введенные сообщения..."
     }
 
     enum QuestionStrings: String {

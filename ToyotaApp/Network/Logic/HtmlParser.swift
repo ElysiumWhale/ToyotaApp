@@ -8,7 +8,7 @@ protocol ParserDelegate: AnyObject {
 }
 
 /// Temporary class for parsing news from toyota showrooms
-class HtmlParser: NSObject, WKNavigationDelegate {
+final class HtmlParser: NSObject, WKNavigationDelegate {
     private let webView = WKWebView()
 
     private var url: ShowroomsUrl = .samaraAurora

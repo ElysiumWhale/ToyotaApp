@@ -52,8 +52,8 @@ class PopUp {
 
     class func displayChoice(with title: String,
                              description: String,
-                             confirmText: String,
-                             declineText: String,
+                             confirmText: String = .common(.yes),
+                             declineText: String = .common(.cancel),
                              onConfirm: @escaping Closure) {
 
         DispatchQueue.main.async {

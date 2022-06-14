@@ -1,116 +1,149 @@
 import UIKit
 
-class SmsCodeViewController: UIViewController {
-    @IBOutlet private var phoneNumberLabel: UILabel!
-    @IBOutlet private var smsCodeTextField: InputTextField!
-    @IBOutlet private var sendSmsCodeButton: KeyboardBindedButton!
-    @IBOutlet private var wrongCodeLabel: UILabel!
-    @IBOutlet private var activitySwitcher: UIActivityIndicatorView!
+final class SmsCodeViewController: InitialazableViewController, Loadable {
+    private let infoLabel = UILabel()
+    private let phoneLabel = UILabel()
+    private let codeTextField = InputTextField()
+    private let errorLabel = UILabel()
+    private let codeStack = UIStackView()
+    private let sendCodeButton = CustomizableButton()
 
-    private var phoneNumber: String!
-    private var type: AuthType = .register
+    private let interactor: SmsCodeInteractor
 
-    private lazy var registerHandler: RequestHandler<CheckUserOrSmsCodeResponse> = {
-        RequestHandler<CheckUserOrSmsCodeResponse>()
-            .observe(on: .main)
-            .bind { data in
-                KeychainManager.set(UserId(data.userId!))
-                KeychainManager.set(SecretKey(data.secretKey))
-                NavigationService.resolveNavigation(with: CheckUserContext(response: data)) {
-                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
-                }
-            } onFailure: { [weak self] error in
-                self?.handle(error)
-            }
-    }()
+    let loadingView = LoadingView()
 
-    private lazy var changeNumberHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .observe(on: .main)
-            .bind { [weak self] _ in
-                self?.handleSuccess()
-            } onFailure: { [weak self] error in
-                self?.handle(error)
-            }
-    }()
+    var isLoading: Bool = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        wrongCodeLabel.alpha = 0
+    init(interactor: SmsCodeInteractor) {
+        self.interactor = interactor
+        super.init()
+    }
+
+    override func addViews() {
+        codeStack.addArrangedSubviews(infoLabel, phoneLabel, codeTextField, errorLabel)
+        addSubviews(codeStack, sendCodeButton)
+    }
+
+    override func configureLayout() {
         view.hideKeyboardWhenSwipedDown()
-        sendSmsCodeButton.bindToKeyboard()
+
+        codeTextField.height(50)
+
+        codeStack.axis = .vertical
+        codeStack.alignment = .fill
+        codeStack.horizontalToSuperview(insets: .horizontal(30))
+        codeStack.topToSuperview(offset: 200)
+
+        sendCodeButton.horizontalToSuperview(insets: .horizontal(80))
+        sendCodeButton.keyboardConstraint = sendCodeButton.bottomToSuperview(offset: -30)
+        sendCodeButton.bindToKeyboard()
     }
 
-    func configure(with authType: AuthType, and number: String) {
-        type = authType
-        phoneNumber = number
+    override func configureAppearance() {
+        view.backgroundColor = .systemBackground
+
+        infoLabel.font = .toyotaType(.semibold, of: 22)
+        infoLabel.textColor = .appTint(.signatureGray)
+        infoLabel.textAlignment = .center
+
+        phoneLabel.font = .toyotaType(.book, of: 22)
+        phoneLabel.textColor = .appTint(.signatureGray)
+        phoneLabel.textAlignment = .center
+
+        codeTextField.font = .toyotaType(.light, of: 22)
+        codeTextField.textColor = .appTint(.signatureGray)
+        codeTextField.backgroundColor = .appTint(.background)
+        codeTextField.maxSymbolCount = 6
+        codeTextField.textAlignment = .center
+        codeTextField.cornerRadius = 10
+
+        errorLabel.font = .toyotaType(.regular, of: 18)
+        errorLabel.textColor = .systemRed
+        errorLabel.alpha = .zero
+        errorLabel.textAlignment = .center
+
+        sendCodeButton.titleLabel?.font = .toyotaType(.regular, of: 22)
+        sendCodeButton.setTitleColor(.white, for: .normal)
+        sendCodeButton.normalColor = .appTint(.secondarySignatureRed)
+        sendCodeButton.highlightedColor = .appTint(.dimmedSignatureRed)
+        sendCodeButton.rounded = true
     }
 
-    @IBAction func codeValueDidChange(with sender: UITextField) {
-        wrongCodeLabel.fadeOut(0.3)
-        smsCodeTextField.toggle(state: .normal)
+    override func localize() {
+        infoLabel.text = .common(.enterCodeFromSmsFor)
+        phoneLabel.text = interactor.phone
+        codeTextField.placeholder = .common(.codeFromSms)
+        sendCodeButton.setTitle(.common(.next), for: .normal)
+        errorLabel.text = .error(.wrongCodeEntered)
+
+        if interactor.type != .register {
+            setBackButtonTitle(.common(.phoneEntering))
+        }
     }
 
-    private func displayError() {
-        wrongCodeLabel.fadeIn(0.3)
-        activitySwitcher.stopAnimating()
-        sendSmsCodeButton.fadeIn(0.3)
-        smsCodeTextField.toggle(state: .error)
-    }
-}
-// MARK: - Navigation
-extension SmsCodeViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        phoneNumberLabel.text = phoneNumber
+    override func configureActions() {
+        codeTextField.addTarget(self, action: #selector(codeValueDidChange), for: .editingChanged)
+        sendCodeButton.addTarget(self, action: #selector(checkCode), for: .touchUpInside)
+
+        interactor.onSuccess = { [weak self] params in
+            self?.stopLoading()
+            self?.sendCodeButton.fadeIn()
+            self?.resolveNavigation(authType: params.0, context: params.1)
+        }
+
+        interactor.onError = { [weak self] errorMessage in
+            self?.stopLoading()
+            self?.sendCodeButton.fadeIn()
+            PopUp.display(.error(description: errorMessage))
+        }
     }
 
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
-            NetworkService.makeRequest(page: .registration(.deleteTemp),
-                                       params: [(.personalInfo(.phoneNumber), phoneNumber)])
+            interactor.deleteTemporaryPhone()
         }
     }
-}
 
-// MARK: - Request handling
-extension SmsCodeViewController {
-    @IBAction func login(with sender: UIButton) {
-        guard smsCodeTextField.text?.count == 4 else {
+    @objc private func checkCode() {
+        guard let code = codeTextField.text, code.count == 4 else {
             displayError()
             return
         }
-        sendSmsCodeButton.fadeOut()
-        activitySwitcher.startAnimating()
+
+        sendCodeButton.fadeOut()
+        startLoading()
         view.endEditing(true)
 
-        switch type {
+        interactor.checkCode(code: code)
+    }
+
+    private func displayError() {
+        errorLabel.fadeIn(0.3)
+        sendCodeButton.fadeIn(0.3)
+        codeTextField.toggle(state: .error)
+    }
+
+    @objc private func codeValueDidChange(with sender: UITextField) {
+        errorLabel.fadeOut(0.3)
+        codeTextField.toggle(state: .normal)
+    }
+
+    private func resolveNavigation(authType: AuthType, context: CheckUserContext?) {
+        switch authType {
             case .register:
-                let body = CheckSmsCodeBody(phone: phoneNumber,
-                                            code: smsCodeTextField.inputText,
-                                            brandId: Brand.Toyota)
-                InfoService().checkCode(with: body, handler: registerHandler)
-            case .changeNumber:
-                let body = ChangePhoneBody(userId: KeychainManager<UserId>.get()!.value,
-                                           code: smsCodeTextField.inputText,
-                                           newPhone: phoneNumber)
-                InfoService().changePhone(with: body, handler: changeNumberHandler)
-        }
-    }
+                guard let context = context else {
+                    return
+                }
 
-    private func handle(_ error: ErrorResponse) {
-        activitySwitcher.stopAnimating()
-        sendSmsCodeButton.fadeIn()
-        PopUp.display(.error(description: error.message ?? .error(.unknownError)))
-    }
-
-    private func handleSuccess() {
-        if case .changeNumber(let notificator) = type {
-            notificator.notificateObservers()
-            PopUp.display(.success(description: .common(.phoneChanged)))
-            navigationController?.dismiss(animated: true)
+                NavigationService.resolveNavigation(with: context) {
+                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+                }
+            case .changeNumber(let notificator):
+                notificator.notificateObservers()
+                PopUp.display(.success(description: .common(.phoneChanged)))
+                navigationController?.dismiss(animated: true)
         }
     }
 }

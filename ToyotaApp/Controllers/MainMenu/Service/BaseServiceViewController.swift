@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: Controller
-class BaseServiceController: UIViewController, IServiceController, Loadable {
+class BaseServiceController: InitialazableViewController, IServiceController, Loadable {
 
     // MARK: - View
     let loadingView = LoadingView()
@@ -26,8 +26,9 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     private lazy var carPickView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configurePicker(with: #selector(carDidSelect),
-                                                   for: internalView.textField, delegate: self)
+        internalView.servicePicker.configure(delegate: self,
+                                             with: #selector(carDidSelect),
+                                             for: internalView.textField)
         internalView.textField.placeholder = .common(.auto)
         internalView.textField.clipsToBounds = true
         internalView.serviceNameLabel.text = .common(.auto)
@@ -39,7 +40,8 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
 
-    var loadingStopped: Bool = false
+    var isLoading: Bool = false
+
     var hasCarSelection: Bool {
         true
     }
@@ -72,16 +74,13 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
         self.modules = modules
         self.user = user
         self.serviceType = service
-        super.init(nibName: nil, bundle: .main)
-    }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init()
     }
 
     override func viewDidLoad() {
         navigationItem.title = serviceType.serviceTypeName
-        configureDefaultNavBarAppearance()
+        configureNavBarAppearance()
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
@@ -146,7 +145,7 @@ class BaseServiceController: UIViewController, IServiceController, Loadable {
 
     // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
+        dispatch { [weak self] in
             switch module.state {
                 case .idle: return
                 case .didDownload: self?.stopLoading()

@@ -12,6 +12,7 @@
 		140BA59627A6C310002A7423 /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59527A6C310002A7423 /* AuthFlow.swift */; };
 		140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59727A6CB67002A7423 /* MainMenuFlow.swift */; };
 		140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59927A6CD73002A7423 /* CheckUserContext.swift */; };
+		14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14117EA9284EA86B001585CD /* SplashScreenViewController.swift */; };
 		141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141875CB279DE1D900FFEA99 /* BookingStatus.swift */; };
 		14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14188032278B3498000B82DD /* UIView+Extensions.swift */; };
 		1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */; };
@@ -26,39 +27,45 @@
 		141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BACD62725AEF400704589 /* CustomizableStackView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
+		142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B292728382B58007DC48D /* SmsCodeInteractor.swift */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
+		1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4C7280A09B9005636E0 /* ResourcesTests.swift */; };
+		1442F4D7280A25BC005636E0 /* BaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4D6280A25BC005636E0 /* BaseTableCell.swift */; };
 		1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDAD260BEEEE007CEBB1 /* Notificator.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */; };
 		144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */; };
+		14550602283195890035F47D /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14550601283195890035F47D /* AuthInteractor.swift */; };
+		1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466B49F27FB91930026677B /* InitialazableViewController.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
 		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
+		1471C958284942B2000624FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C957284942B2000624FC /* AgreementViewController.swift */; };
 		147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 147BEB9527F66B1B005B3B6D /* TinyConstraints */; };
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */; };
+		147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789327FFA8190017ACA7 /* UIImage+Constants.swift */; };
+		147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789527FFACB80017ACA7 /* MainTabBarController.swift */; };
+		147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789727FFB2090017ACA7 /* UtilsFlow.swift */; };
 		149092622696502100390D04 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149092612696502100390D04 /* PhoneTextField.swift */; };
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
-		1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTVC.swift */; };
+		1495723F25B9FEE40031A5AA /* NewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsTableCell.swift */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4DA3E27581989009D66EA /* CityPickerViewController.swift */; };
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
-		14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B23BC7276E000200DC98E2 /* Redundant.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
-		14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B2A7E5275C0249002A6ADF /* Redundant.storyboard */; };
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
-		14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BDFF5C270892E200C90882 /* EntryPointViewController.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C64D292793804C0023C850 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C64D282793804C0023C850 /* Validatable.swift */; };
 		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
@@ -81,19 +88,17 @@
 		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
 		14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
+		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
-		A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946912523E32F00312EBE /* MainMenu.storyboard */; };
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
-		A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */; };
-		A76D4F0B256C83120086813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76D4F0A256C83120086813E /* Main.storyboard */; };
 		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -104,7 +109,6 @@
 		A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
-		A791FDE42526707100A595BB /* Authentification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A791FDE32526707100A595BB /* Authentification.storyboard */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
 		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
 		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
@@ -124,7 +128,6 @@
 		A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCVC.swift */; };
 		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
 		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
-		A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12066253E713A005F85B0 /* DealerViewController.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +147,7 @@
 		140BA59527A6C310002A7423 /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
 		140BA59727A6CB67002A7423 /* MainMenuFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuFlow.swift; sourceTree = "<group>"; };
 		140BA59927A6CD73002A7423 /* CheckUserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserContext.swift; sourceTree = "<group>"; };
+		14117EA9284EA86B001585CD /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		141875CB279DE1D900FFEA99 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
 		14188032278B3498000B82DD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
@@ -158,37 +162,43 @@
 		141BACD62725AEF400704589 /* CustomizableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableStackView.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		142B292728382B58007DC48D /* SmsCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeInteractor.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
+		1442F4C7280A09B9005636E0 /* ResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTests.swift; sourceTree = "<group>"; };
+		1442F4D6280A25BC005636E0 /* BaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCell.swift; sourceTree = "<group>"; };
 		1443FDAD260BEEEE007CEBB1 /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedButton.swift; sourceTree = "<group>"; };
+		14550601283195890035F47D /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		1466B49F27FB91930026677B /* InitialazableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableViewController.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
+		1471C957284942B2000624FC /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
+		147E789327FFA8190017ACA7 /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
+		147E789527FFACB80017ACA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		147E789727FFB2090017ACA7 /* UtilsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsFlow.swift; sourceTree = "<group>"; };
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		1495723E25B9FEE40031A5AA /* NewsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVC.swift; sourceTree = "<group>"; };
+		1495723E25B9FEE40031A5AA /* NewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCell.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
 		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		14A4DA3E27581989009D66EA /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		14B23BC7276E000200DC98E2 /* Redundant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redundant.swift; sourceTree = "<group>"; };
 		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
-		14B2A7E5275C0249002A6ADF /* Redundant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Redundant.storyboard; sourceTree = "<group>"; };
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
-		14BDFF5C270892E200C90882 /* EntryPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C64D282793804C0023C850 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +220,7 @@
 		14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRouter.swift; sourceTree = "<group>"; };
 		14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyotaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
+		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -217,14 +228,11 @@
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A759468D2523E32F00312EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A75946922523E32F00312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainMenu.storyboard; sourceTree = "<group>"; };
 		A75946942523E33400312EBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
-		A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVinViewController.swift; sourceTree = "<group>"; };
-		A76D4F0A256C83120086813E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -235,7 +243,6 @@
 		A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		A791FDE32526707100A595BB /* Authentification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentification.storyboard; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
 		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
@@ -254,7 +261,6 @@
 		A7A72DC72554A5C500A44984 /* CarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCVC.swift; sourceTree = "<group>"; };
 		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
 		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
-		A7D12066253E713A005F85B0 /* DealerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerViewController.swift; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,8 +290,9 @@
 		140BA59127A6C261002A7423 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				140BA59227A6C28D002A7423 /* Flows */,
+				147E789527FFACB80017ACA7 /* MainTabBarController.swift */,
 				A7F8BFE325695E76002AC621 /* NavigationService.swift */,
+				140BA59227A6C28D002A7423 /* Flows */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -296,8 +303,19 @@
 				140BA59527A6C310002A7423 /* AuthFlow.swift */,
 				140BA59327A6C2A1002A7423 /* RegisterFlow.swift */,
 				140BA59727A6CB67002A7423 /* MainMenuFlow.swift */,
+				147E789727FFB2090017ACA7 /* UtilsFlow.swift */,
 			);
 			path = Flows;
+			sourceTree = "<group>";
+		};
+		14117EA8284EA7E9001585CD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */,
+				1471C957284942B2000624FC /* AgreementViewController.swift */,
+				14117EA9284EA86B001585CD /* SplashScreenViewController.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		1419834027E28572004573A1 /* PersonalInfoModule */ = {
@@ -338,6 +356,14 @@
 			path = Persistance;
 			sourceTree = "<group>";
 		};
+		1442F4C6280A0982005636E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1442F4C7280A09B9005636E0 /* ResourcesTests.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		146590F926EAB5CD0056E37D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				A75946992523E33400312EBE /* Info.plist */,
+				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
 				A7924CF1254B70B4001B67C1 /* Fonts */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
 			);
@@ -437,12 +464,8 @@
 			isa = PBXGroup;
 			children = (
 				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
-				A76D4F0A256C83120086813E /* Main.storyboard */,
-				A791FDE32526707100A595BB /* Authentification.storyboard */,
 				A77AA96825325917004D12E8 /* FirstLaunchRegistration.storyboard */,
-				A75946912523E32F00312EBE /* MainMenu.storyboard */,
 				14A8D8972617C5C40086BC12 /* MyProfile.storyboard */,
-				14B2A7E5275C0249002A6ADF /* Redundant.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -461,8 +484,9 @@
 		14E5A9CC26345B720057BEF3 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				1442F4D6280A25BC005636E0 /* BaseTableCell.swift */,
+				1495723E25B9FEE40031A5AA /* NewsTableCell.swift */,
 				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
-				1495723E25B9FEE40031A5AA /* NewsTVC.swift */,
 				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
 			path = TableCell;
@@ -471,11 +495,20 @@
 		14F0920527E3EB7600B03130 /* ToyotaAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				1442F4C6280A0982005636E0 /* Resources */,
 				14CB6AD727E92A9A00715A5D /* Flows */,
 				147D4A2B27E614E400010E63 /* Modules */,
 				147D4A2A27E614CA00010E63 /* Persistance */,
 			);
 			path = ToyotaAppTests;
+			sourceTree = "<group>";
+		};
+		14F4A79928592BC900400B36 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				14F4A79A2859300000400B36 /* ChatViewController.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		14F519932777E3AD00FF695D /* Button */ = {
@@ -510,7 +543,6 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
-				14B23BC7276E000200DC98E2 /* Redundant.swift */,
 				A777750E259BF72A006D30EA /* Constants */,
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
@@ -520,7 +552,6 @@
 				A791FDE225266F2700A595BB /* Views */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
-				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
 			);
 			path = ToyotaApp;
 			sourceTree = "<group>";
@@ -528,10 +559,10 @@
 		A759469F2523E7D200312EBE /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
-				14BDFF5C270892E200C90882 /* EntryPointViewController.swift */,
-				14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */,
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
+				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
+				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -556,6 +587,7 @@
 				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
 				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
 				1425230526FFBF8F00B177B7 /* Strings.swift */,
+				147E789327FFA8190017ACA7 /* UIImage+Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -563,12 +595,14 @@
 		A7777519259BFA00006D30EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1466B49F27FB91930026677B /* InitialazableViewController.swift */,
 				A727F4102588263C00B8CB79 /* ControllersProtocols.swift */,
 				A7777513259BF8DE006D30EA /* ControllersExtensions.swift */,
 				1449CDD925C590CF00BBDAAE /* FoundationExtensions.swift */,
 				A759469F2523E7D200312EBE /* Authentification */,
 				A7D1205D253E6A7F005F85B0 /* Registration */,
 				A791FDD82524E17300A595BB /* MainMenu */,
+				14117EA8284EA7E9001585CD /* Utility */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -602,6 +636,7 @@
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
 				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
+				14F4A79928592BC900400B36 /* Support */,
 				1419C7362683E0D7001F7EF3 /* Custom */,
 				146590F926EAB5CD0056E37D /* Modules */,
 			);
@@ -667,8 +702,6 @@
 				1419834027E28572004573A1 /* PersonalInfoModule */,
 				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
 				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
-				A7D12066253E713A005F85B0 /* DealerViewController.swift */,
-				A75FB5D825589C8C001CA3D1 /* CheckVinViewController.swift */,
 				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
 				14F2B43E2762BC88006CD697 /* AddCarViewController.swift */,
 				14DFB9242763F5BA00465736 /* AddCarInteractor.swift */,
@@ -781,25 +814,21 @@
 			files = (
 				146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */,
 				A7924D1C254B743F001B67C1 /* ToyotaType-SemiboldIt.ttf in Resources */,
-				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
-				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
 				A7924D18254B743F001B67C1 /* ToyotaType-Book.ttf in Resources */,
 				A7924D1D254B743F001B67C1 /* ToyotaType-BlackIt.ttf in Resources */,
-				A791FDE42526707100A595BB /* Authentification.storyboard in Resources */,
 				A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */,
-				A7924D17254B743F001B67C1 /* ToyotaType-Bold.ttf in Resources */,
 				A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */,
+				A7924D17254B743F001B67C1 /* ToyotaType-Bold.ttf in Resources */,
 				A7924D1B254B743F001B67C1 /* ToyotaType-Black.ttf in Resources */,
 				A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */,
-				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 				A7924D1A254B743F001B67C1 /* ToyotaType-LightIt.ttf in Resources */,
-				A75946932523E32F00312EBE /* MainMenu.storyboard in Resources */,
-				14B2A7E6275C0249002A6ADF /* Redundant.storyboard in Resources */,
-				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
-				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
-				A76D4F0B256C83120086813E /* Main.storyboard in Resources */,
 				A7924D19254B743F001B67C1 /* ToyotaType-BookIt.ttf in Resources */,
 				A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */,
+				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
+				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
+				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
+				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
+				A77AA96925325917004D12E8 /* FirstLaunchRegistration.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,7 +850,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -830,6 +859,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
@@ -856,15 +886,14 @@
 				14AB8D612714C81A004D225F /* LoadingView.swift in Sources */,
 				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
-				14BDFF5D270892E200C90882 /* EntryPointViewController.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
 				14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */,
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
-				1495723F25B9FEE40031A5AA /* NewsTVC.swift in Sources */,
+				1495723F25B9FEE40031A5AA /* NewsTableCell.swift in Sources */,
 				A77B9312253B035F0011282E /* Responses.swift in Sources */,
-				A7D12067253E713A005F85B0 /* DealerViewController.swift in Sources */,
+				1466B4A027FB91930026677B /* InitialazableViewController.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
@@ -890,8 +919,10 @@
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
+				14550602283195890035F47D /* AuthInteractor.swift in Sources */,
 				14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
+				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,
 				14EC744D27F8F98100AC6648 /* BaseCollectionCell.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
@@ -899,9 +930,11 @@
 				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
+				14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */,
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */,
+				1442F4D7280A25BC005636E0 /* BaseTableCell.swift in Sources */,
 				14F519922777E39900FF695D /* TintedImageButton.swift in Sources */,
 				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
@@ -909,6 +942,7 @@
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
+				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
@@ -918,17 +952,19 @@
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */,
+				14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */,
 				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 				141875CC279DE1D900FFEA99 /* BookingStatus.swift in Sources */,
-				14B23BC8276E000200DC98E2 /* Redundant.swift in Sources */,
+				147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */,
+				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */,
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
+				1471C958284942B2000624FC /* AgreementViewController.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,
-				A75FB5D925589C8C001CA3D1 /* CheckVinViewController.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -944,14 +980,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A75946912523E32F00312EBE /* MainMenu.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A75946922523E32F00312EBE /* Base */,
-			);
-			name = MainMenu.storyboard;
-			sourceTree = "<group>";
-		};
 		A75946962523E33400312EBE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

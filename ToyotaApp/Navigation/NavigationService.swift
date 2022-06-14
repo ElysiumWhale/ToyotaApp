@@ -1,12 +1,12 @@
 import UIKit
 
-enum RegistrationStates {
-    case error(message: String)
-    case firstPage
-    case secondPage(_ profile: Profile, _ cities: [City]?)
-}
+final class NavigationService: MainQueueRunnable {
+    enum RegistrationStates {
+        case error(message: String)
+        case firstPage
+        case secondPage(_ profile: Profile, _ cities: [City]?)
+    }
 
-class NavigationService: MainQueueRunnable {
     static var switchRootView: ((UIViewController) -> Void)?
 
     class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
@@ -70,20 +70,7 @@ class NavigationService: MainQueueRunnable {
             case .failure:
                 loadRegister(.error(message: .error(.profileLoadError)))
             case .success(let user):
-                switchRootView?(MainMenuFlow.entryPoint(with: user))
-        }
-    }
-}
-
-// MARK: - setUserForChildren
-extension UITabBarController {
-    func setUserForChildren(_ user: UserProxy) {
-        viewControllers?.forEach { controller in
-            if let navigationController = controller as? UINavigationController {
-                navigationController.setUserForChildren(user)
-            } else if let withUser = controller as? WithUserInfo {
-                withUser.setUser(info: user)
-            }
+                switchRootView?(MainMenuFlow.entryPoint(for: user))
         }
     }
 }

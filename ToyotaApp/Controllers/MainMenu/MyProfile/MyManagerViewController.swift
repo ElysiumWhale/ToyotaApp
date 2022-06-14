@@ -3,8 +3,6 @@ import UIKit
 class MyManagerViewController: UIViewController {
     @IBOutlet private var managersCollection: UICollectionView!
 
-    private let cellIdentifier = CellIdentifiers.ManagerCell
-
     private var user: UserProxy!
     private var managers: [Manager] = []
 

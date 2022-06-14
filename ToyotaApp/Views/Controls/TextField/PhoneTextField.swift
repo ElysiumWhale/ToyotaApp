@@ -14,10 +14,40 @@ class PhoneTextField: UITextField {
     var countryPrefix: CountryPrefix = .ru
 
     var prefix: String? { prefixLabel.text?.filter({ $0.isMathSymbol || $0.isNumber}) }
+
     var phone: String? {
-        if let prefix = prefix, let text = text {
-            return prefix + text
-        } else { return nil }
+        guard let prefix = prefix, let text = text else {
+            return nil
+        }
+
+        return prefix + text
+    }
+
+    var validPhone: String? {
+        guard let phone = phone, let prefixCount = prefix?.filter({$0.isNumber}).count else {
+            return nil
+        }
+
+        var numberOfDigits = 0
+        switch prefixCount {
+            case 1: numberOfDigits = 10
+            case 2: numberOfDigits = 9
+            case 3: numberOfDigits = 8
+            default: numberOfDigits = 0
+        }
+
+        let regEx = "^\\+[0-9]{\(prefixCount)}[0-9]{\(numberOfDigits)}$"
+        let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)
+        return phoneCheck.evaluate(with: phone) ? phone : nil
+    }
+
+    init() {
+        super.init(frame: .zero)
+        customizeView()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
     override func draw(_ rect: CGRect) {
@@ -59,33 +89,13 @@ class PhoneTextField: UITextField {
             textColor = .label
         }
     }
-
-    var validPhone: String? {
-        guard let phone = phone, let prefixCount = prefix?.filter({$0.isNumber}).count else {
-            return nil
-        }
-
-        var numberOfDigits = 0
-        switch prefixCount {
-            case 1: numberOfDigits = 10
-            case 2: numberOfDigits = 9
-            case 3: numberOfDigits = 8
-            default: numberOfDigits = 0
-        }
-
-        let regEx = "^\\+[0-9]{\(prefixCount)}[0-9]{\(numberOfDigits)}$"
-        let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)
-        return phoneCheck.evaluate(with: phone) ? phone : nil
-    }
 }
 
 // MARK: - UITextFieldDelegate
 extension PhoneTextField: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if range.location >= 10 {
-            return false
-        }
-
-        return true
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        range.location < 10
     }
 }

@@ -29,7 +29,7 @@ class PersonalInfoViewController: KeyboardableController, PersonalInfoPresenterO
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
         hideKeyboardWhenTappedAround()
 
         fields.forEach {
@@ -50,11 +50,12 @@ class PersonalInfoViewController: KeyboardableController, PersonalInfoPresenterO
     private func setup() {
         let presenter = PersonalInfoPresenter(output: self)
         interactor = PersonalInfoInteractor(output: presenter)
+
         router = PersonalInfoRouter(controller: self)
     }
 
     @IBAction private func nextButtonDidPressed(sender: Any?) {
-        guard fields.allSatisfy({ $0.isValid }) else {
+        guard fields.allSatisfy(\.isValid) else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }

@@ -91,35 +91,29 @@ class ServicesInteractor {
 
     private func bindHandlers() {
         servicesTypesHandler
+            .observe(on: .main)
             .bind { [weak self] response in
                 self?.serviceTypes = response.serviceType
-                DispatchQueue.main.async {
-                    self?.view?.didLoadServiceTypes()
-                }
+                self?.view?.didLoadServiceTypes()
             } onFailure: { [weak self] error in
                 let errorMessage = error.errorCode == .lostConnection
                     ? .error(.networkError) + " и "
                     : .error(.servicesError) + ". "
-                DispatchQueue.main.async {
-                    self?.serviceTypes = []
-                    self?.view?.didFailServiceTypes(with: errorMessage)
-                }
+                self?.serviceTypes = []
+                self?.view?.didFailServiceTypes(with: errorMessage)
             }
 
         showroomsHandler
+            .observe(on: .main)
             .bind { [weak self] response in
-                DispatchQueue.main.async {
-                    self?.didLoad(showrooms: response.showrooms)
-                }
+                self?.didLoad(showrooms: response.showrooms)
             } onFailure: { [weak self] error in
                 let errorMessage = error.errorCode == .lostConnection
                     ? .error(.networkError) + " и "
                     : .error(.showroomsError) + ". "
-                DispatchQueue.main.async {
-                    self?.showrooms = []
-                    self?.selectedShowroom = nil
-                    self?.view?.didFailShowrooms(with: errorMessage)
-                }
+                self?.showrooms = []
+                self?.selectedShowroom = nil
+                self?.view?.didFailShowrooms(with: errorMessage)
             }
     }
 }

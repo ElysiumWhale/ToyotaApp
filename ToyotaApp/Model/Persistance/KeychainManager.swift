@@ -17,7 +17,7 @@ protocol Keychainable: Codable {
 }
 
 /// Utility class for managing data stored in `Keychain`
-class KeychainManager<T: Keychainable> {
+final class KeychainManager<T: Keychainable> {
     class func get(from wrapper: KeychainWrapper = .standard) -> T? {
         guard let data = wrapper.data(forKey: T.key.rawValue) else {
             return nil

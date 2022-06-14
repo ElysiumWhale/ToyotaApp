@@ -36,7 +36,7 @@ class MyCarsViewController: UIViewController, Loadable {
             }
     }()
 
-    var loadingStopped: Bool = false
+    var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +110,7 @@ extension MyCarsViewController: WithUserInfo {
     }
 
     func userDidUpdate() {
-        DispatchQueue.main.async { [self] in
+        dispatch { [self] in
             carsCollection.reloadData()
             carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
         }

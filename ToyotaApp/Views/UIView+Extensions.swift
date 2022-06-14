@@ -76,3 +76,36 @@ extension UIView {
         }
     }
 }
+
+// MARK: - Toolbar for controls
+extension UIView {
+    static func buildToolbar(with action: Selector, target: Any? = nil) -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                       target: target,
+                                       action: nil)
+        let doneButton = UIBarButtonItem(title: .common(.choose),
+                                         style: .done,
+                                         target: target,
+                                         action: action)
+        doneButton.tintColor = .appTint(.secondarySignatureRed)
+        toolBar.setItems([flexible, doneButton], animated: true)
+        return toolBar
+    }
+}
+
+// MARK: - Adding subviews
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for subview in views {
+            addSubview(subview)
+        }
+    }
+
+    func addSubviews(_ views: [UIView]) {
+        for subview in views {
+            addSubview(subview)
+        }
+    }
+}

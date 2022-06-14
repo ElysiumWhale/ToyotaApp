@@ -60,7 +60,7 @@ class MyProfileViewController: UIViewController {
         ]
         hideKeyboardWhenTappedAround()
         view.hideKeyboardWhenSwipedDown()
-        configureDatePicker(datePicker, with: #selector(dateDidSelect), for: birthTextField)
+        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
         refreshFields()
 
         let constraints = getConstraints(for: state)
@@ -94,6 +94,11 @@ class MyProfileViewController: UIViewController {
             DefaultsManager.clearAll()
             NavigationService.loadAuth()
         }
+    }
+
+    @IBAction private func showSettings(sender: Any?) {
+        let vc = SettingsViewController(user: user).wrappedInNavigation
+        present(vc, animated: true)
     }
 
     @objc private func dateDidSelect() {
@@ -230,7 +235,7 @@ extension MyProfileViewController: WithUserInfo {
     }
 
     func userDidUpdate() {
-        DispatchQueue.main.async { [self] in
+        dispatch { [self] in
             view.setNeedsLayout()
             refreshFields()
         }

@@ -14,16 +14,12 @@ enum PersonalDataStoreState {
 }
 
 class PersonalInfoInteractor: PersonalInfoDataStore, PersonalInfoControllerOutput {
+    private var onSavePerson: Closure?
+
     let infoService: InfoService
     let presenter: PersonalInfoPresenter
 
     var state: PersonalDataStoreState
-
-    init(output: PersonalInfoPresenter, state: PersonalDataStoreState = .empty, service: InfoService = .init()) {
-        presenter = output
-        infoService = service
-        self.state = state
-    }
 
     private lazy var requestHandler: RequestHandler<CitiesResponse> = {
         RequestHandler<CitiesResponse>()
@@ -35,7 +31,13 @@ class PersonalInfoInteractor: PersonalInfoDataStore, PersonalInfoControllerOutpu
             }
     }()
 
-    private var onSavePerson: Closure?
+    init(output: PersonalInfoPresenter,
+         state: PersonalDataStoreState = .empty,
+         service: InfoService = .init()) {
+        presenter = output
+        infoService = service
+        self.state = state
+    }
 
     func setPerson(request: PersonalInfoModels.SetPersonRequest) {
         onSavePerson = { [weak self] in

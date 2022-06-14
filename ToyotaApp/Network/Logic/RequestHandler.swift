@@ -1,12 +1,12 @@
 import Foundation
 
-enum ObservationMode {
-    case both
-    case onSuccess
-    case onFailure
-}
-
 class RequestHandler<T: Codable> {
+    enum ObservationMode {
+        case both
+        case onSuccess
+        case onFailure
+    }
+
     private var queue: DispatchQueue?
     private var mode: ObservationMode = .both
 
@@ -44,14 +44,6 @@ class RequestHandler<T: Codable> {
         queue.async {
             self.onFailure?(error)
         }
-    }
-
-    func didRecieve(response: Result<T, ErrorResponse>) {
-        switch response {
-            case .success(let data): onSuccess?(data)
-            case .failure(let error): onFailure?(error)
-        }
-        currentTask = nil
     }
 
     deinit {
