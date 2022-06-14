@@ -132,6 +132,10 @@ extension String {
         case enterCodeFromSmsFor = "Введите код из СМС для"
         /// Повторить
         case retry = "Повторить"
+        /// Введите сообщение
+        case enterMessage = "Введите сообщение"
+        /// Здесь будут отображаться введенные сообщения...
+        case thereWillBeMessages = "Здесь будут отображаться введенные сообщения..."
     }
 
     enum QuestionStrings: String {
