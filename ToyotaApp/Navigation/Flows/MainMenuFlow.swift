@@ -24,6 +24,12 @@ enum MainMenuFlow {
         profileVC.setUser(info: user)
         return profileVC
     }
+
+    static func chatModule() -> UIViewController {
+        let vc = ChatViewController()
+        vc.hidesBottomBarWhenPushed = true
+        return vc
+    }
 }
 
 // MARK: - Configurations

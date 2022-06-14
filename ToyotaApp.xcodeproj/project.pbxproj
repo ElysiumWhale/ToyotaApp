@@ -88,6 +88,7 @@
 		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
 		14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
+		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -219,6 +220,7 @@
 		14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRouter.swift; sourceTree = "<group>"; };
 		14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyotaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
+		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -501,6 +503,14 @@
 			path = ToyotaAppTests;
 			sourceTree = "<group>";
 		};
+		14F4A79928592BC900400B36 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				14F4A79A2859300000400B36 /* ChatViewController.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		14F519932777E3AD00FF695D /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +636,7 @@
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
 				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
+				14F4A79928592BC900400B36 /* Support */,
 				1419C7362683E0D7001F7EF3 /* Custom */,
 				146590F926EAB5CD0056E37D /* Modules */,
 			);
@@ -919,6 +930,7 @@
 				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
+				14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */,
 				1443FDAE260BEEEE007CEBB1 /* Notificator.swift in Sources */,
 				A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */,
