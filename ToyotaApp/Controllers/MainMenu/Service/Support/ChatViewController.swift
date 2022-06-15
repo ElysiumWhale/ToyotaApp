@@ -10,28 +10,28 @@ final class ChatViewController: InitialazableViewController {
     }
 
     override func configureLayout() {
+        view.hideKeyboardWhenSwipedDown()
         stabLabel.topToSuperview(offset: 150)
         stabLabel.horizontalToSuperview(insets: .horizontal(16))
-        stabLabel.numberOfLines = .zero
-        messageField.leftToSuperview(offset: 16)
+        messageField.horizontalToSuperview(insets: .horizontal(16))
         messageField.keyboardConstraint = messageField.bottomToSuperview(offset: -20)
         messageField.bindToKeyboard()
         messageField.height(45)
-        messageField.rightToSuperview(offset: -16)
         messageField.setRightView(from: sendButton, width: 40, height: 40)
+        sendButton.contentVerticalAlignment = .fill
+        sendButton.contentHorizontalAlignment = .fill
+        sendButton.imageView?.contentMode = .scaleAspectFit
     }
 
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
         stabLabel.font = .toyotaType(.semibold, of: 22)
         stabLabel.textColor = .appTint(.signatureGray)
+        stabLabel.numberOfLines = .zero
         messageField.backgroundColor = .appTint(.background)
         messageField.cornerRadius = 10
         messageField.tintColor = .appTint(.secondarySignatureRed)
         messageField.rightViewMode = .always
-        sendButton.contentVerticalAlignment = .fill
-        sendButton.contentHorizontalAlignment = .fill
-        sendButton.imageView?.contentMode = .scaleAspectFit
         sendButton.setImage(.send, for: .normal)
         sendButton.tintColor = .appTint(.secondarySignatureRed)
     }
