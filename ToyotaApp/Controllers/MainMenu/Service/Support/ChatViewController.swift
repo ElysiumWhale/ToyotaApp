@@ -6,18 +6,19 @@ final class ChatViewController: InitialazableViewController {
     private let sendButton = CustomizableButton(type: .custom)
 
     override func addViews() {
-        addSubviews(stabLabel, messageField, sendButton)
+        addSubviews(stabLabel, messageField)
     }
 
     override func configureLayout() {
-        stabLabel.centerInSuperview()
+        stabLabel.topToSuperview(offset: 150)
+        stabLabel.horizontalToSuperview(insets: .horizontal(16))
+        stabLabel.numberOfLines = .zero
         messageField.leftToSuperview(offset: 16)
-        messageField.bottomToSuperview(offset: -20, usingSafeArea: true)
+        messageField.keyboardConstraint = messageField.bottomToSuperview(offset: -20)
+        messageField.bindToKeyboard()
         messageField.height(45)
-        messageField.rightToLeft(of: sendButton, offset: -5)
-        sendButton.rightToSuperview(offset: -16)
-        sendButton.centerY(to: messageField)
-        sendButton.size(CGSize(width: 40, height: 40))
+        messageField.rightToSuperview(offset: -16)
+        messageField.setRightView(from: sendButton, width: 40, height: 40)
     }
 
     override func configureAppearance() {
@@ -27,8 +28,10 @@ final class ChatViewController: InitialazableViewController {
         messageField.backgroundColor = .appTint(.background)
         messageField.cornerRadius = 10
         messageField.tintColor = .appTint(.secondarySignatureRed)
+        messageField.rightViewMode = .always
         sendButton.contentVerticalAlignment = .fill
         sendButton.contentHorizontalAlignment = .fill
+        sendButton.imageView?.contentMode = .scaleAspectFit
         sendButton.setImage(.send, for: .normal)
         sendButton.tintColor = .appTint(.secondarySignatureRed)
     }
@@ -36,6 +39,7 @@ final class ChatViewController: InitialazableViewController {
     override func localize() {
         messageField.placeholder = .common(.enterMessage)
         stabLabel.text = .common(.thereWillBeMessages)
+        navigationItem.title = .common(.support)
     }
 
     override func configureActions() {
