@@ -136,6 +136,8 @@ extension String {
         case enterMessage = "Введите сообщение"
         /// Здесь будут отображаться введенные сообщения...
         case thereWillBeMessages = "Здесь будут отображаться введенные сообщения..."
+        /// Поддержка
+        case support = "Поддержка"
     }
 
     enum QuestionStrings: String {
