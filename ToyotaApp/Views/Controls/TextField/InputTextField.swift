@@ -1,7 +1,15 @@
 import UIKit
 
 @IBDesignable
-class InputTextField: UITextField, Validatable {
+class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
+    @IBInspectable
+    var keyboardConstraint: NSLayoutConstraint? {
+        didSet {
+            constant = keyboardConstraint?.constant ?? .zero
+        }
+    }
+
+
     // MARK: - Inspectables
     @IBInspectable
     var cornerRadius: CGFloat {
@@ -23,6 +31,7 @@ class InputTextField: UITextField, Validatable {
     var rule: ValidationRule?
     var validationEnabled: Bool = true
 
+    private(set) var constant: CGFloat = .zero
     private(set) var isValid: Bool = true
     /// Safe `text` property for using **not only** on `Main` thread
     private(set) var inputText: String = .empty
