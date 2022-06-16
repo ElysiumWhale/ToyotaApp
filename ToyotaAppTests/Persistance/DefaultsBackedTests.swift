@@ -1,7 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-class DefaultsBackedTest: XCTestCase {
+final class DefaultsBackedTest: XCTestCase {
     @DefaultsBacked<City>(key: .testSelectedCity,
                           container: .defaultsBackedTestContainer)
     var city

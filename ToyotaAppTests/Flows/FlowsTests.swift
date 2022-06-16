@@ -1,8 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-class FlowsTests: XCTestCase {
-
+final class FlowsTests: XCTestCase {
     func testAuthFlow() throws {
         let authModule = AuthFlow.authModule(authType: .register)
         XCTAssertTrue(authModule is AuthViewController)

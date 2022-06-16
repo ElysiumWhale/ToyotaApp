@@ -1,7 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-class DefaultsManagerTests: XCTestCase {
+final class DefaultsManagerTests: XCTestCase {
     private let testCity = City(id: "1", name: "Samara")
     private let container = UserDefaults.defaultsManagerTestContainer
 
