@@ -23,8 +23,4 @@ enum AuthFlow {
 
         return module
     }
-
-    static func agreementModule() -> UIViewController {
-        AgreementViewController()
-    }
 }
