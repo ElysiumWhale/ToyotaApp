@@ -12,8 +12,8 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     private(set) lazy var refreshableView: UICollectionView! = {
         let collectionView = UICollectionView(frame: .zero,
-        collectionView.backgroundColor = .appTint(.background)
                                               collectionViewLayout: .servicesLayout)
+        collectionView.backgroundColor = .appTint(.blackBackground)
         collectionView.delegate = self
         return collectionView
     }()
@@ -43,10 +43,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
         interactor.view = self
         subscribe(on: self.user)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Public methods
@@ -95,7 +91,7 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     override func configureAppearance() {
         configureNavBarAppearance(font: nil)
-        view.backgroundColor = .appTint(.background)
+        view.backgroundColor = .appTint(.blackBackground)
         showroomField.textAlignment = .center
         showroomField.font = .toyotaType(.light, of: 25)
         showroomField.textColor = .appTint(.signatureGray)
