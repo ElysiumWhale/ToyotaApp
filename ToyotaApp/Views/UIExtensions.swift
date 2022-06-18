@@ -146,6 +146,7 @@ extension UIColor {
         case signatureGray = "SignatureGray"
         case secondaryGray = "SecondaryGray"
         case background = "Background"
+        case blackBackground = "BackgroundBlack"
         case cell = "Cell"
         case dimmedSignatureRed = "DimmedSignatureRed"
     }
