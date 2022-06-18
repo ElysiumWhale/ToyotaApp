@@ -9,7 +9,6 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
         }
     }
 
-
     // MARK: - Inspectables
     @IBInspectable
     var cornerRadius: CGFloat {

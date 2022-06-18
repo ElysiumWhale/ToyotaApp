@@ -48,9 +48,17 @@ final class FlowsTests: XCTestCase {
 
         let news = MainMenuFlow.newsModule()
         XCTAssertTrue(news is NewsViewController)
+    }
 
+    func testUtilsFlow() throws {
         let connection = UtilsFlow.connectionLostModule()
         XCTAssertTrue(connection is ConnectionLostViewController)
+
+        let agreement = UtilsFlow.agreementModule()
+        XCTAssertTrue(agreement is AgreementViewController)
+
+        let splash = UtilsFlow.splashScreenModule()
+        XCTAssertTrue(splash is SplashScreenViewController)
     }
 }
 
