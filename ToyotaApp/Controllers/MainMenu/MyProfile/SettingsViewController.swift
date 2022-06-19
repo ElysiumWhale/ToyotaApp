@@ -56,7 +56,7 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     override func configureAppearance() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
 
         phoneLabel.font = .toyotaType(.book, of: 18)
         phoneLabel.textColor = .appTint(.signatureGray)
