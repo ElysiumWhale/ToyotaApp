@@ -146,6 +146,7 @@ extension UIColor {
         case signatureGray = "SignatureGray"
         case secondaryGray = "SecondaryGray"
         case background = "Background"
+        case blackBackground = "BackgroundBlack"
         case cell = "Cell"
         case dimmedSignatureRed = "DimmedSignatureRed"
     }
@@ -307,5 +308,23 @@ extension UIStackView {
         for view in views {
             addArrangedSubview(view)
         }
+    }
+}
+
+extension UICollectionViewLayout {
+    static var servicesLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 10, leading: 8, bottom: 0, trailing: 8)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(110))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
+
+        let section = NSCollectionLayoutSection(group: group)
+
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }

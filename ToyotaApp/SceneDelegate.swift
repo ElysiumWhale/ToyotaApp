@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = SplashScreenViewController()
+        window?.rootViewController = UtilsFlow.splashScreenModule()
         window?.makeKeyAndVisible()
 
         NavigationService.switchRootView = changeRootViewController

@@ -758,7 +758,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="secondaryTint"/>
+                                                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="5pB-ys-Cqm"/>
                                                         <constraint firstAttribute="bottom" secondItem="SbV-gK-ccD" secondAttribute="bottom" id="5vj-cj-XW2"/>
@@ -790,7 +790,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="secondaryTint"/>
+                                                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="8so-et-xJu" secondAttribute="bottom" id="5pq-jY-CP2"/>
                                                         <constraint firstAttribute="trailing" secondItem="eYL-Wf-aoW" secondAttribute="trailing" constant="5" id="Ad1-ub-xtx"/>
@@ -934,11 +934,11 @@
         <namedColor name="SignatureRed">
             <color red="1" green="0.0" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="secondaryTint">
-            <color red="0.77600002288818359" green="0.77600002288818359" blue="0.78400003910064697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

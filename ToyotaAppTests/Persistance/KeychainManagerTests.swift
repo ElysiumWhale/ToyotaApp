@@ -2,7 +2,7 @@ import XCTest
 import class SwiftKeychainWrapper.KeychainWrapper
 @testable import ToyotaApp
 
-class KeychainManagerTests: XCTestCase {
+final class KeychainManagerTests: XCTestCase {
     let testUserId = UserId("-100")
     let testPhone = Phone("1")
 

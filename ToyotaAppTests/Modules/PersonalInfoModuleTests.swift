@@ -1,7 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-class PersonalInfoVCTest: XCTestCase {
+final class PersonalInfoVCTest: XCTestCase {
     var controller: PersonalInfoViewController?
 
     override func setUpWithError() throws {

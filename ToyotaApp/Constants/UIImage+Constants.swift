@@ -2,7 +2,7 @@ import UIKit
 
 extension UIImage {
     static var toyotaLogo: UIImage {
-        UIImage(imageLiteralResourceName: "ToyotaLogo")
+        #imageLiteral(resourceName: "ToyotaLogo")
     }
 
     static var newspaper: UIImage {

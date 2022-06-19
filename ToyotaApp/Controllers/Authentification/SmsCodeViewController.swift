@@ -56,6 +56,7 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
         codeTextField.maxSymbolCount = 6
         codeTextField.textAlignment = .center
         codeTextField.cornerRadius = 10
+        codeTextField.keyboardType = .numberPad
 
         errorLabel.font = .toyotaType(.regular, of: 18)
         errorLabel.textColor = .systemRed

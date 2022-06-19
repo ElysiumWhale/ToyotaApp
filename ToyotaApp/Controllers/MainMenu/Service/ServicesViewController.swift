@@ -12,8 +12,8 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     private(set) lazy var refreshableView: UICollectionView! = {
         let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: makeCompositionalLayout())
-        collectionView.backgroundColor = .appTint(.background)
+                                              collectionViewLayout: .servicesLayout)
+        collectionView.backgroundColor = .appTint(.blackBackground)
         collectionView.delegate = self
         return collectionView
     }()
@@ -43,10 +43,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
         interactor.view = self
         subscribe(on: self.user)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Public methods
@@ -85,7 +81,7 @@ class ServicesViewController: InitialazableViewController, Refreshable {
                                        usingSafeArea: true)
         showroomField.height(45)
         refreshableView.edgesToSuperview(excluding: .top)
-        refreshableView.topToBottom(of: showroomField)
+        refreshableView.topToBottom(of: showroomField, offset: 8)
     }
 
     override func localize() {
@@ -95,7 +91,7 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     override func configureAppearance() {
         configureNavBarAppearance(font: nil)
-        view.backgroundColor = .appTint(.background)
+        view.backgroundColor = .appTint(.blackBackground)
         showroomField.textAlignment = .center
         showroomField.font = .toyotaType(.light, of: 25)
         showroomField.textColor = .appTint(.signatureGray)
@@ -307,24 +303,5 @@ extension ServicesViewController: UICollectionViewDelegate {
             cell.backgroundColor = .appTint(.cell)
             cell.typeNameLabel.textColor = .appTint(.signatureGray)
         }
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension ServicesViewController: UICollectionViewDelegateFlowLayout {
-    func makeCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 10, leading: 8, bottom: 10, trailing: 8)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(1/3))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        return UICollectionViewCompositionalLayout(section: section)
     }
 }

@@ -56,7 +56,7 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     override func configureAppearance() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
 
         phoneLabel.font = .toyotaType(.book, of: 18)
         phoneLabel.textColor = .appTint(.signatureGray)
@@ -109,7 +109,7 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     private func showAgreement() {
-        present(AuthFlow.agreementModule().wrappedInNavigation,
+        present(UtilsFlow.agreementModule().wrappedInNavigation,
                 animated: true)
     }
 }

@@ -1,8 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-class FlowsTests: XCTestCase {
-
+final class FlowsTests: XCTestCase {
     func testAuthFlow() throws {
         let authModule = AuthFlow.authModule(authType: .register)
         XCTAssertTrue(authModule is AuthViewController)
@@ -36,10 +35,30 @@ class FlowsTests: XCTestCase {
 
     func testMainMenuFlow() throws {
         let tab = MainMenuFlow.entryPoint(for: .mock)
-        XCTAssertTrue(tab is UITabBarController)
+        XCTAssertTrue(tab is MainTabBarController)
 
+        let chat = MainMenuFlow.chatModule()
+        XCTAssertTrue(chat is ChatViewController)
+
+        let services = MainMenuFlow.servicesModule(with: .mock)
+        XCTAssertTrue(services is ServicesViewController)
+
+        let profile = MainMenuFlow.profileModule(with: .mock)
+        XCTAssertTrue(profile is MyProfileViewController)
+
+        let news = MainMenuFlow.newsModule()
+        XCTAssertTrue(news is NewsViewController)
+    }
+
+    func testUtilsFlow() throws {
         let connection = UtilsFlow.connectionLostModule()
         XCTAssertTrue(connection is ConnectionLostViewController)
+
+        let agreement = UtilsFlow.agreementModule()
+        XCTAssertTrue(agreement is AgreementViewController)
+
+        let splash = UtilsFlow.splashScreenModule()
+        XCTAssertTrue(splash is SplashScreenViewController)
     }
 }
 

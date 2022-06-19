@@ -6,4 +6,12 @@ enum UtilsFlow {
         let controller = ConnectionLostViewController(interactor: interactor)
         return controller
     }
+
+    static func agreementModule() -> UIViewController {
+        AgreementViewController()
+    }
+
+    static func splashScreenModule() -> UIViewController {
+        SplashScreenViewController()
+    }
 }
