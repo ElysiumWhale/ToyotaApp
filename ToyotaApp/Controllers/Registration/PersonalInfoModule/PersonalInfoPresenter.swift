@@ -5,7 +5,11 @@ protocol PersonalInfoPresenterOutput: AnyObject {
 }
 
 class PersonalInfoPresenter {
-    private(set) weak var controller: PersonalInfoPresenterOutput?
+    weak var controller: PersonalInfoPresenterOutput?
+
+    init() {
+        
+    }
 
     init(output: PersonalInfoPresenterOutput) {
         controller = output
