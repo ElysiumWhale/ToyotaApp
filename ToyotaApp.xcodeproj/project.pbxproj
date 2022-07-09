@@ -6,6 +6,20 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A7B59DA8287A3C6000E707C8 /* CodeLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A7B59DA9287A3C6000E707C8 /* Build configuration list for PBXAggregateTarget "CodeLint" */;
+			buildPhases = (
+				A7B59DAC287A3D0200E707C8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = CodeLint;
+			productName = CodeLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59327A6C2A1002A7423 /* RegisterFlow.swift */; };
@@ -737,7 +751,6 @@
 				A75946842523E32F00312EBE /* Sources */,
 				A75946852523E32F00312EBE /* Frameworks */,
 				A75946862523E32F00312EBE /* Resources */,
-				146CED0126B9E91D00427A1F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -772,6 +785,9 @@
 					A75946872523E32F00312EBE = {
 						CreatedOnToolsVersion = 11.7;
 					};
+					A7B59DA8287A3C6000E707C8 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 				};
 			};
 			buildConfigurationList = A75946832523E32F00312EBE /* Build configuration list for PBXProject "ToyotaApp" */;
@@ -796,6 +812,7 @@
 			targets = (
 				A75946872523E32F00312EBE /* ToyotaApp */,
 				14F0920327E3EB7500B03130 /* ToyotaAppTests */,
+				A7B59DA8287A3C6000E707C8 /* CodeLint */,
 			);
 		};
 /* End PBXProject section */
@@ -835,7 +852,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		146CED0126B9E91D00427A1F /* ShellScript */ = {
+		A7B59DAC287A3D0200E707C8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -850,7 +867,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1191,6 +1208,24 @@
 			};
 			name = Release;
 		};
+		A7B59DAA287A3C6000E707C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A7B59DAB287A3C6000E707C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1217,6 +1252,15 @@
 			buildConfigurations = (
 				A759469D2523E33400312EBE /* Debug */,
 				A759469E2523E33400312EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7B59DA9287A3C6000E707C8 /* Build configuration list for PBXAggregateTarget "CodeLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7B59DAA287A3C6000E707C8 /* Debug */,
+				A7B59DAB287A3C6000E707C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
