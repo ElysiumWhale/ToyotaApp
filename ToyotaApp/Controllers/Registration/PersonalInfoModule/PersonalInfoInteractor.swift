@@ -5,7 +5,7 @@ protocol PersonalInfoControllerOutput: PersonalInfoDataStore {
 }
 
 protocol PersonalInfoDataStore {
-    var state: PersonalDataStoreState { get set }
+    var state: PersonalDataStoreState { get }
 }
 
 enum PersonalDataStoreState {
@@ -19,7 +19,7 @@ class PersonalInfoInteractor: PersonalInfoDataStore, PersonalInfoControllerOutpu
     let infoService: InfoService
     let presenter: PersonalInfoPresenter
 
-    var state: PersonalDataStoreState
+    let state: PersonalDataStoreState
 
     private lazy var requestHandler: RequestHandler<CitiesResponse> = {
         RequestHandler<CitiesResponse>()
