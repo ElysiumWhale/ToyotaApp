@@ -2,6 +2,7 @@ import UIKit
 
 @IBDesignable
 class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
+    // MARK: - BottomKeyboardBinded
     @IBInspectable
     var keyboardConstraint: NSLayoutConstraint? {
         didSet {
@@ -9,7 +10,9 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
         }
     }
 
-    // MARK: - Inspectables
+    private(set) var constant: CGFloat = .zero
+
+    // MARK: - Additional properties
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
@@ -26,40 +29,60 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     @IBInspectable
     var maxSymbolCount: Int = 50
 
-    // MARK: - Properties
-    var rule: ValidationRule?
-    var validationEnabled: Bool = true
+    var rule: ValidationRule? {
+        didSet {
+            if let rule = rule {
+                validate(for: rule)
+            }
+        }
+    }
 
-    private(set) var constant: CGFloat = .zero
-    private(set) var isValid: Bool = true
-    /// Safe `text` property for using **not only** on `Main` thread
     private(set) var inputText: String = .empty
 
     override var text: String? {
         didSet {
-            inputDidChange(sender: self)
+            textDidChange()
         }
+    }
+
+    var isValid: Bool {
+        if let rule = rule {
+            return validate(for: rule, toggleState: true)
+        } else {
+            return true
+        }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
 
     // MARK: - Methods
-    func isValid(for rule: ValidationRule) -> Bool {
-        rule.validate(text: inputText)
-    }
+    @discardableResult
+    func validate(for rule: ValidationRule, toggleState: Bool = false) -> Bool {
+        let isValid = rule.validate(text: inputText)
 
-    func validate(newText: String?) {
-        inputText = newText ?? .empty
-        guard validationEnabled, let rule = rule else {
-            return
+        if toggleState {
+            toggle(state: isValid ? .normal : .error)
         }
 
-        isValid = isValid(for: rule)
-        toggle(state: isValid ? .normal : .error)
+        return isValid
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        addTarget(self, action: #selector(inputDidChange), for: .editingChanged)
+    func invalidate() {
+        if let rule = rule {
+            validate(for: rule, toggleState: true)
+        } else {
+            toggle(state: .normal)
+        }
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -76,16 +99,29 @@ extension InputTextField {
         UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: 0)
     }
 
-    @objc private func inputDidChange(sender: UITextField?) {
-        guard self === sender else {
-            return
-        }
-
-        if let text = text, text.count >= maxSymbolCount {
+    @objc private func textDidChange() {
+        guard let text = text, text.count <= maxSymbolCount else {
             self.text = inputText
             return
         }
 
-        validate(newText: text)
+        inputText = text
+        if let rule = rule {
+            validate(for: rule, toggleState: true)
+        }
+    }
+}
+
+extension Sequence where Element == InputTextField {
+    func allSatisfy(rule: ValidationRule, toggleState: Bool = true) -> Bool {
+        reduce(true, {
+            $1.validate(for: rule, toggleState: toggleState) && $0
+        })
+    }
+
+    var areValid: Bool {
+        reduce(true, {
+            $1.isValid && $0
+        })
     }
 }

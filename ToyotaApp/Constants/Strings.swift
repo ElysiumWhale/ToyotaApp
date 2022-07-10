@@ -138,6 +138,20 @@ extension String {
         case thereWillBeMessages = "Здесь будут отображаться введенные сообщения..."
         /// Поддержка
         case support = "Поддержка"
+        /// Имя
+        case name = "Имя"
+        /// Отчество
+        case secondName = "Отчество"
+        /// Фамилия
+        case lastName = "Фамилия"
+        /// Дата рождения
+        case birthDate = "Дата рождения"
+        /// Электронная почта
+        case email = "Электронная почта"
+        /// Заполните информацию о себе
+        case fillPersonalInfo = "Заполните информацию о себе"
+        /// Данные
+        case data = "Данные"
     }
 
     enum QuestionStrings: String {

@@ -2,11 +2,10 @@ import XCTest
 @testable import ToyotaApp
 
 final class PersonalInfoVCTest: XCTestCase {
-    var controller: PersonalInfoViewController?
+    var controller: PersonalInfoView?
 
     override func setUpWithError() throws {
-        let navVC = RegisterFlow.entryPoint() as? UINavigationController
-        controller = navVC?.topViewController as? PersonalInfoViewController
+        controller = RegisterFlow.personalModule() as? PersonalInfoView
     }
 
     override func tearDownWithError() throws {
@@ -15,7 +14,6 @@ final class PersonalInfoVCTest: XCTestCase {
 
     func testModuleParts() throws {
         XCTAssertNotNil(controller)
-        XCTAssertNotNil(controller?.router)
         XCTAssertNotNil(controller?.interactor)
     }
 
@@ -23,7 +21,7 @@ final class PersonalInfoVCTest: XCTestCase {
         try testModuleParts()
 
         var result = false
-        if case .empty = controller!.interactor!.state {
+        if case .empty = controller!.interactor.state {
             result = true
         }
 
@@ -38,7 +36,7 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
     let email = "aboba@aboba.com"
     let birthday = "2021-05-05"
 
-    var configuredController: PersonalInfoViewController?
+    var configuredController: PersonalInfoView?
 
     override func setUpWithError() throws {
         let profile = Profile(phone: .empty,
@@ -48,7 +46,7 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
                               email: email,
                               birthday: birthday)
 
-        configuredController = RegisterFlow.personalInfoModule(profile) as? PersonalInfoViewController
+        configuredController = RegisterFlow.personalModule(profile) as? PersonalInfoView
     }
 
     override func tearDownWithError() throws {
@@ -57,7 +55,6 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
 
     func testModuleParts() throws {
         XCTAssertNotNil(configuredController)
-        XCTAssertNotNil(configuredController?.router)
         XCTAssertNotNil(configuredController?.interactor)
     }
 
@@ -65,7 +62,7 @@ class ConfiguredPersonalInfoVCTest: XCTestCase {
         try testModuleParts()
 
         var configuredResult = false
-        if case .configured(let profile) = configuredController!.interactor!.state {
+        if case .configured(let profile) = configuredController!.interactor.state {
             XCTAssertEqual(profile.firstName, firstName)
             XCTAssertEqual(profile.secondName, secondName)
             XCTAssertEqual(profile.lastName, lastName)

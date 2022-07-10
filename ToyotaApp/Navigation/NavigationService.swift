@@ -49,7 +49,7 @@ final class NavigationService: MainQueueRunnable {
             case .firstPage: break
             case .secondPage(let profile, let cities):
                 let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
-                controllers = [RegisterFlow.personalInfoModule(profile),
+                controllers = [RegisterFlow.personalModule(profile),
                                RegisterFlow.cityModule(cities),
                                carModule].compactMap { $0 }
         }
