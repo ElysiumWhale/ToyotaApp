@@ -116,6 +116,7 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
 
     override func viewWillDisappear(_ animated: Bool) {
         setupKeyboard(isSubcribing: false)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     private func configureFields() {
