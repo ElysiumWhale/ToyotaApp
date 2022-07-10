@@ -101,6 +101,8 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
         emailTextField.placeholder = .common(.email)
         birthTextField.placeholder = .common(.birthDate)
         actionButton.setTitle(.common(.next), for: .normal)
+
+        configureTextIfNeeded(for: interactor.state)
     }
 
     override func configureActions() {
@@ -125,6 +127,19 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
             field.maxSymbolCount = 30
             field.rule = .personalInfo
             field.delegate = self
+        }
+    }
+
+    private func configureTextIfNeeded(for state: PersonalDataStoreState) {
+        switch state {
+        case .empty:
+            return
+        case .configured(let profile):
+            firstNameTextField.text = profile.firstName
+            secondNameTextField.text = profile.secondName
+            lastNameTextField.text = profile.lastName
+            emailTextField.text = profile.email
+            birthTextField.text = profile.birthdayDate?.asString(.client)
         }
     }
 }
