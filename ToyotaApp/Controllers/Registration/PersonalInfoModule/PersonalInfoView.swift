@@ -148,7 +148,7 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
 // MARK: - Actions
 extension PersonalInfoView {
     @objc private func actionButtonDidPress() {
-        guard fields.allSatisfy(\.isValid) else {
+        guard fields.areValid else {
             PopUp.display(.error(description: .error(.checkInput)))
             return
         }
