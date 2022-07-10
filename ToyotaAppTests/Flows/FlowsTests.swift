@@ -16,8 +16,8 @@ final class FlowsTests: XCTestCase {
     }
 
     func testRegisterFlow() throws {
-        let personalModule = RegisterFlow.personalInfoModule()
-        XCTAssertTrue(personalModule is PersonalInfoViewController)
+        let personalModule = RegisterFlow.personalModule()
+        XCTAssertTrue(personalModule is PersonalInfoView)
 
         let cityModule = RegisterFlow.cityModule([])
         XCTAssertTrue(cityModule is CityPickerViewController)
