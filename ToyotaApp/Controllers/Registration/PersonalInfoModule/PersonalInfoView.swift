@@ -175,12 +175,11 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
         actionButton.fadeIn()
 
         switch viewModel {
-            case .success(let cities, let models, let colors):
-                let cityPickerModule = CityPickerViewController()
-                cityPickerModule.configure(with: cities, models: models, colors: colors)
-                navigationController?.pushViewController(cityPickerModule, animated: true)
-            case .failure(let errorMessage):
-                PopUp.display(.error(description: errorMessage))
+        case .success(let cities, let models, let colors):
+            let cityPickerModule = RegisterFlow.cityModule(cities, models: models, colors: colors)
+            navigationController?.pushViewController(cityPickerModule, animated: true)
+        case .failure(let errorMessage):
+            PopUp.display(.error(description: errorMessage))
         }
     }
 }

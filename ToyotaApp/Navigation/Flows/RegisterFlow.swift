@@ -3,10 +3,10 @@ import UIKit
 enum RegisterFlow {
     static let storyboard: UIStoryboard = UIStoryboard(.register)
 
-    static func cityModule(_ cities: [City]?) -> UIViewController {
+    static func cityModule(_ cities: [City]?, models: [Model] = [], colors: [Color] = []) -> UIViewController {
         let cpvc: CityPickerViewController = storyboard.instantiate(.cityPick)
         if let cities = cities {
-            cpvc.configure(with: cities)
+            cpvc.configure(with: cities, models: models, colors: colors)
         }
         return cpvc
     }
