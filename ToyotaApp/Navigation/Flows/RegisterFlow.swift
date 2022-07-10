@@ -45,11 +45,10 @@ enum RegisterFlow {
     }
 
     static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
-        let nvc: UINavigationController = storyboard.instantiate(.registerNavigation)
+        let nvc = UINavigationController()
         nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-        if controllers.isNotEmpty {
-            nvc.setViewControllers(controllers, animated: false)
-        }
+        let vcs = controllers.isNotEmpty ? controllers : [personalModule()]
+        nvc.setViewControllers(vcs, animated: false)
         return nvc
     }
 }
