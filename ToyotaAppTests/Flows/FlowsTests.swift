@@ -16,7 +16,7 @@ final class FlowsTests: XCTestCase {
     }
 
     func testRegisterFlow() throws {
-        let personalModule = RegisterFlow.personalInfoModule(.empty)
+        let personalModule = RegisterFlow.personalInfoModule()
         XCTAssertTrue(personalModule is PersonalInfoViewController)
 
         let cityModule = RegisterFlow.cityModule([])
@@ -59,16 +59,5 @@ final class FlowsTests: XCTestCase {
 
         let splash = UtilsFlow.splashScreenModule()
         XCTAssertTrue(splash is SplashScreenViewController)
-    }
-}
-
-private extension Profile {
-    static var empty: Self {
-        Profile(phone: .empty,
-                firstName: .empty,
-                lastName: .empty,
-                secondName: .empty,
-                email: .empty,
-                birthday: .empty)
     }
 }

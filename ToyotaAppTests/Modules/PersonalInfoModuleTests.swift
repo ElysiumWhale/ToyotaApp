@@ -5,8 +5,7 @@ final class PersonalInfoVCTest: XCTestCase {
     var controller: PersonalInfoViewController?
 
     override func setUpWithError() throws {
-        let navVC = RegisterFlow.entryPoint() as? UINavigationController
-        controller = navVC?.topViewController as? PersonalInfoViewController
+        controller = RegisterFlow.personalInfoModule() as? PersonalInfoViewController
     }
 
     override func tearDownWithError() throws {

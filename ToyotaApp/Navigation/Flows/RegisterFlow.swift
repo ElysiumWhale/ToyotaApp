@@ -11,9 +11,11 @@ enum RegisterFlow {
         return cpvc
     }
 
-    static func personalInfoModule(_ profile: Profile) -> UIViewController {
+    static func personalInfoModule(_ profile: Profile? = nil) -> UIViewController {
         let pivc: PersonalInfoViewController = storyboard.instantiate(.personalInfo)
-        pivc.configure(with: profile)
+        if let profile = profile {
+            pivc.configure(with: profile)
+        }
         return pivc
     }
 
