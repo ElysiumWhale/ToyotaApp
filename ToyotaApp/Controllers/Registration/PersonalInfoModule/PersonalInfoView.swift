@@ -12,14 +12,7 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
     private let actionButton = CustomizableButton()
     private let datePicker = UIDatePicker()
 
-    let scrollView: UIScrollView! = UIScrollView()
-    let loadingView = LoadingView()
-
-    let interactor: PersonalInfoControllerOutput
-
-    var isLoading: Bool = false
-
-    var fields: [InputTextField] {
+    private var fields: [InputTextField] {
         [
             firstNameTextField,
             lastNameTextField,
@@ -28,6 +21,13 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
             birthTextField
         ]
     }
+
+    let scrollView: UIScrollView! = UIScrollView()
+    let loadingView = LoadingView()
+
+    let interactor: PersonalInfoControllerOutput
+
+    var isLoading: Bool = false
 
     init(interactor: PersonalInfoControllerOutput) {
         self.interactor = interactor
