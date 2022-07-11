@@ -36,10 +36,6 @@ enum AddInfoType: Equatable {
 
 // MARK: - Structs with view constants
 public enum AppStoryboards: String {
-    /// LaunchScreen
-    case launchScreen = "LaunchScreen"
-    /// Main
-    case main = "Main"
     /// FirstLaunchRegistration
     case register = "FirstLaunchRegistration"
     /// MyProfile
@@ -47,18 +43,8 @@ public enum AppStoryboards: String {
 }
 
 enum ViewControllers: String {
-    /// RegisterNavigationController
-    case registerNavigation = "RegisterNavigationController"
-    /// PersonalInfoViewController
-    case personalInfo = "PersonalInfoViewController"
     /// AddingCarViewController
     case addCar = "AddCarViewController"
-    /// CheckVinViewController
-    case checkVin = "CheckVinViewController"
-    /// ConnectionLostViewController
-    case connectionLost = "ConnectionLostViewController"
-    /// MyCarViewController
-    case myCar = "MyCarViewController"
     /// CityPickerViewController
     case cityPick = "CityPickerViewController"
     /// MyProfileViewController
@@ -66,29 +52,13 @@ enum ViewControllers: String {
 }
 
 public enum SegueIdentifiers: String {
-    // MARK: - Auth
-
-    /// NumberToCodeSegue
-    case numberToCode = "NumberToCodeSegue"
 
     // MARK: - Reg
 
-    /// PersonInfoToDealer
-    case personInfoToDealer = "PersonInfoToDealer"
-    /// PersonInfoToCity
-    case personInfoToCity = "PersonInfoToCity"
     /// CityToAddCar
     case cityToAddCar = "CityToAddCar"
     /// AddCarToEndRegistration
     case addCarToEndRegistration = "AddCarToEndRegistration"
-    /// DealerToCar
-    case dealerToCar = "DealerToCar"
-    /// DealerToCheckVin
-    case dealerToCheckVin = "DealerToCheckVin"
-    /// CarToEndRegistration
-    case carToEndRegistration = "CarToEndRegistration"
-    /// CarToCheckVin
-    case carToCheckVin = "CarToCheckVin"
 
     // MARK: - MyProfile
 
@@ -98,8 +68,6 @@ public enum SegueIdentifiers: String {
     case myProfileToSettings = "MyProfileToSettings"
     /// MyProfileToManagers
     case myManagersSegueCode = "MyProfileToManagers"
-    /// MyProfileToBookings
-    case myProfileToBookings = "MyProfileToBookings"
 }
 
 public struct TimeMap {
