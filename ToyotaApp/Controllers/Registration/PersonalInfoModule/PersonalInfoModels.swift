@@ -1,5 +1,18 @@
 import Foundation
 
+enum PersonalDataStoreState {
+    case empty
+    case configured(with: Profile)
+
+    static func from(_ profile: Profile?) -> Self {
+        guard let profile = profile else {
+            return empty
+        }
+
+        return configured(with: profile)
+    }
+}
+
 enum PersonalInfoModels {
     struct SetPersonRequest {
         let firstName: String

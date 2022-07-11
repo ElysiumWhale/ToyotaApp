@@ -1,6 +1,9 @@
 import UIKit
 
-final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadable {
+final class PersonalInfoView: InitialazableViewController,
+                              Keyboardable,
+                              Loadable {
+
     private let subtitleLabel = UILabel()
     private let firstNameTextField = InputTextField()
     private let secondNameTextField = InputTextField()
@@ -24,12 +27,11 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
 
     let scrollView: UIScrollView! = UIScrollView()
     let loadingView = LoadingView()
-
-    let interactor: PersonalInfoControllerOutput
+    let interactor: PersonalInfoViewOutput
 
     var isLoading: Bool = false
 
-    init(interactor: PersonalInfoControllerOutput) {
+    init(interactor: PersonalInfoViewOutput) {
         self.interactor = interactor
 
         super.init()
@@ -188,16 +190,16 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 extension PersonalInfoView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-            case firstNameTextField:
-                lastNameTextField.becomeFirstResponder()
-            case lastNameTextField:
-                secondNameTextField.becomeFirstResponder()
-            case secondNameTextField:
-                emailTextField.becomeFirstResponder()
-            case emailTextField:
-                birthTextField.becomeFirstResponder()
-            default:
-                view.endEditing(false)
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            secondNameTextField.becomeFirstResponder()
+        case secondNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            birthTextField.becomeFirstResponder()
+        default:
+            view.endEditing(false)
         }
 
         return false

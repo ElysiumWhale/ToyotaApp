@@ -106,6 +106,7 @@
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
+		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
@@ -237,6 +238,7 @@
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
+		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -333,10 +335,9 @@
 		1419834027E28572004573A1 /* PersonalInfoModule */ = {
 			isa = PBXGroup;
 			children = (
-				143CCB5A286261C900842050 /* PersonalInfoView.swift */,
-				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
-				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
+				A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */,
 				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
+				A7346F6B287CDBC1007A7668 /* Module */,
 			);
 			path = PersonalInfoModule;
 			sourceTree = "<group>";
@@ -530,6 +531,16 @@
 				144B8C6726D5A3D9006D7F29 /* KeyboardBindedButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		A7346F6B287CDBC1007A7668 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				143CCB5A286261C900842050 /* PersonalInfoView.swift */,
+				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
+				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 		A759467F2523E32F00312EBE = {
@@ -959,6 +970,7 @@
 				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
+				A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,

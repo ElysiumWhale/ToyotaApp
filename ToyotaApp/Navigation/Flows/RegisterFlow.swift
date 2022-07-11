@@ -12,19 +12,11 @@ enum RegisterFlow {
     }
 
     static func personalModule(_ profile: Profile? = nil) -> UIViewController {
-        let state: PersonalDataStoreState
-
-        if let profile = profile {
-            state = .configured(with: profile)
-        } else {
-            state = .empty
-        }
-
         let presenter = PersonalInfoPresenter()
         let interactor = PersonalInfoInteractor(output: presenter,
-                                                state: state)
+                                                state: .from(profile))
         let view = PersonalInfoView(interactor: interactor)
-        presenter.controller = view
+        presenter.view = view
         return view
     }
 

@@ -1,19 +1,7 @@
 import Foundation
 
-protocol PersonalInfoPresenterOutput: AnyObject {
-    func handle(state: PersonalInfoModels.SetPersonViewModel)
-}
-
-class PersonalInfoPresenter {
-    weak var controller: PersonalInfoPresenterOutput?
-
-    init() {
-        
-    }
-
-    init(output: PersonalInfoPresenterOutput) {
-        controller = output
-    }
+final class PersonalInfoPresenter: PersonalInfoInteractorOutput {
+    weak var view: PersonalInfoPresenterOutput?
 
     func personDidSet(response: PersonalInfoModels.SetPersonResponse) {
         let viewModel: PersonalInfoModels.SetPersonViewModel
@@ -27,6 +15,6 @@ class PersonalInfoPresenter {
                 viewModel = .failure(message: failure.message ?? .error(.requestError))
         }
 
-        controller?.handle(state: viewModel)
+        view?.handle(state: viewModel)
     }
 }
