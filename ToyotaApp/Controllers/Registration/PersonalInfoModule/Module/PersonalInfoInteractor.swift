@@ -3,7 +3,7 @@ import Foundation
 final class PersonalInfoInteractor: PersonalInfoViewOutput {
     private var onSavePerson: Closure?
 
-    let infoService: InfoService
+    let infoService: PersonalInfoService
     let presenter: PersonalInfoInteractorOutput
     let state: PersonalDataStoreState
 
@@ -18,7 +18,7 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
 
     init(output: PersonalInfoInteractorOutput,
          state: PersonalDataStoreState = .empty,
-         service: InfoService = .init()) {
+         service: PersonalInfoService = InfoService()) {
         presenter = output
         infoService = service
         self.state = state
