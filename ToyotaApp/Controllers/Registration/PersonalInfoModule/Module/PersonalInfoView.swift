@@ -76,7 +76,7 @@ final class PersonalInfoView: InitialazableViewController,
     }
 
     override func configureAppearance() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         subtitleLabel.font = .toyotaType(.semibold, of: 21)
         subtitleLabel.numberOfLines = 2
         scrollView.bounces = true
@@ -118,7 +118,6 @@ final class PersonalInfoView: InitialazableViewController,
 
     override func viewWillDisappear(_ animated: Bool) {
         setupKeyboard(isSubcribing: false)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     private func configureFields() {
