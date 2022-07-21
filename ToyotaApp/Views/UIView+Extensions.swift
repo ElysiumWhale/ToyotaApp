@@ -56,22 +56,28 @@ extension UIView {
     }
 
     // MARK: - TitleView
-    static func titleViewFor(city: String? = nil, action: @escaping Closure) -> UIStackView {
-        let str = city ?? .common(.chooseCity)
-        let button = UIButton.titleButton(with: str, action: action)
+    static func titleViewFor(city: String? = nil, action: @escaping Closure) -> UIView {
+        let button = UIButton.titleButton(with: city ?? .common(.chooseCity),
+                                          action: action)
         let rightButton = UIButton(frame: .init(x: 0, y: 0, width: 20, height: 20))
         rightButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         rightButton.tintColor = .appTint(.secondarySignatureRed)
         rightButton.addAction(action)
-        let stack = UIStackView(arrangedSubviews: [button, rightButton])
-        stack.axis = .horizontal
-        return stack
+
+        let container = UIView(frame: .init(x: 0, y: 0, width: 100, height: 30))
+        container.addSubviews(button, rightButton)
+
+        button.edgesToSuperview(excluding: .trailing)
+        rightButton.trailingToSuperview()
+        button.trailingToLeading(of: rightButton)
+        button.centerY(to: rightButton, offset: -3)
+
+        return container
     }
 
     // MARK: - SetTitleIfButtonFirst
     func setTitleIfButtonFirst(_ title: String) {
-        if let stack = self as? UIStackView,
-           let button = stack.arrangedSubviews.first as? UIButton {
+        if let button = self.subviews.first as? UIButton {
             button.setTitle(title, for: .normal)
         }
     }
