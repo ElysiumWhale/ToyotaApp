@@ -21,9 +21,11 @@ struct CheckUserOrSmsCodeResponse: IResponse {
     let registerStatus: Int?
 
     let cities: [City]?
+    let models: [Model]?
+    let colors: [Color]?
 
     private enum CodingKeys: String, CodingKey {
-        case result, cities
+        case result, cities, models, colors
         case secretKey = "secret_key"
         case userId = "user_id"
         case registerPage = "register_page"
