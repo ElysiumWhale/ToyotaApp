@@ -3,28 +3,20 @@ import UIKit
 enum RegisterFlow {
     static let storyboard: UIStoryboard = UIStoryboard(.register)
 
-    static func cityModule(_ cities: [City]?, models: [Model] = [], colors: [Color] = []) -> UIViewController {
-        let cpvc: CityPickerViewController = storyboard.instantiate(.cityPick)
-        if let cities = cities {
-            cpvc.configure(with: cities, models: models, colors: colors)
-        }
-        return cpvc
+    static func cityModule(_ cities: [City] = []) -> CityPikerModule {
+        let interactor = CityPickerInteractor(cities: cities)
+        let module = CityPickerViewController(interactor: interactor)
+        interactor.view = module
+
+        return module
     }
 
     static func personalModule(_ profile: Profile? = nil) -> UIViewController {
-        let state: PersonalDataStoreState
-
-        if let profile = profile {
-            state = .configured(with: profile)
-        } else {
-            state = .empty
-        }
-
         let presenter = PersonalInfoPresenter()
         let interactor = PersonalInfoInteractor(output: presenter,
-                                                state: state)
+                                                state: .from(profile))
         let view = PersonalInfoView(interactor: interactor)
-        presenter.controller = view
+        presenter.view = view
         return view
     }
 
@@ -38,6 +30,7 @@ enum RegisterFlow {
 
     static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
         let nvc = UINavigationController()
+        nvc.navigationBar.prefersLargeTitles = true
         nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
         let vcs = controllers.isNotEmpty ? controllers : [personalModule()]
         nvc.setViewControllers(vcs, animated: false)

@@ -1,6 +1,9 @@
 import UIKit
 
-final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadable {
+final class PersonalInfoView: InitialazableViewController,
+                              Keyboardable,
+                              Loadable {
+
     private let subtitleLabel = UILabel()
     private let firstNameTextField = InputTextField()
     private let secondNameTextField = InputTextField()
@@ -24,15 +27,16 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
 
     let scrollView: UIScrollView! = UIScrollView()
     let loadingView = LoadingView()
-
-    let interactor: PersonalInfoControllerOutput
+    let interactor: PersonalInfoViewOutput
 
     var isLoading: Bool = false
 
-    init(interactor: PersonalInfoControllerOutput) {
+    init(interactor: PersonalInfoViewOutput) {
         self.interactor = interactor
 
         super.init()
+
+        navigationItem.title = .common(.data)
     }
 
     // MARK: - Initialazable
@@ -74,7 +78,7 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
     }
 
     override func configureAppearance() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         subtitleLabel.font = .toyotaType(.semibold, of: 21)
         subtitleLabel.numberOfLines = 2
         scrollView.bounces = true
@@ -93,7 +97,6 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
     }
 
     override func localize() {
-        navigationItem.title = .common(.data)
         subtitleLabel.text = .common(.fillPersonalInfo)
         firstNameTextField.placeholder = .common(.name)
         lastNameTextField.placeholder = .common(.lastName)
@@ -116,7 +119,6 @@ final class PersonalInfoView: InitialazableViewController, Keyboardable, Loadabl
 
     override func viewWillDisappear(_ animated: Bool) {
         setupKeyboard(isSubcribing: false)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     private func configureFields() {
@@ -176,7 +178,14 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 
         switch viewModel {
         case .success(let cities, let models, let colors):
-            let cityPickerModule = RegisterFlow.cityModule(cities, models: models, colors: colors)
+            let cityPickerModule = RegisterFlow.cityModule(cities)
+
+            cityPickerModule.onCityPick = { [weak self] _ in
+                let addCar = RegisterFlow.addCarModule(models: models,
+                                                       colors: colors)
+                self?.navigationController?.pushViewController(addCar, animated: true)
+            }
+
             navigationController?.pushViewController(cityPickerModule, animated: true)
         case .failure(let errorMessage):
             PopUp.display(.error(description: errorMessage))
@@ -188,16 +197,16 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 extension PersonalInfoView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-            case firstNameTextField:
-                lastNameTextField.becomeFirstResponder()
-            case lastNameTextField:
-                secondNameTextField.becomeFirstResponder()
-            case secondNameTextField:
-                emailTextField.becomeFirstResponder()
-            case emailTextField:
-                birthTextField.becomeFirstResponder()
-            default:
-                view.endEditing(false)
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            secondNameTextField.becomeFirstResponder()
+        case secondNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            birthTextField.becomeFirstResponder()
+        default:
+            view.endEditing(false)
         }
 
         return false
