@@ -35,6 +35,8 @@ final class PersonalInfoView: InitialazableViewController,
         self.interactor = interactor
 
         super.init()
+
+        navigationItem.title = .common(.data)
     }
 
     // MARK: - Initialazable
@@ -95,7 +97,6 @@ final class PersonalInfoView: InitialazableViewController,
     }
 
     override func localize() {
-        navigationItem.title = .common(.data)
         subtitleLabel.text = .common(.fillPersonalInfo)
         firstNameTextField.placeholder = .common(.name)
         lastNameTextField.placeholder = .common(.lastName)
@@ -177,7 +178,14 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 
         switch viewModel {
         case .success(let cities, let models, let colors):
-            let cityPickerModule = RegisterFlow.cityModule(cities, models: models, colors: colors)
+            let cityPickerModule = RegisterFlow.cityModule(cities)
+
+            cityPickerModule.onCityPick = { [weak self] _ in
+                let addCar = RegisterFlow.addCarModule(models: models,
+                                                       colors: colors)
+                self?.navigationController?.pushViewController(addCar, animated: true)
+            }
+
             navigationController?.pushViewController(cityPickerModule, animated: true)
         case .failure(let errorMessage):
             PopUp.display(.error(description: errorMessage))

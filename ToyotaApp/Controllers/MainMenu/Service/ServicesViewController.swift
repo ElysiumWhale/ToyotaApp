@@ -125,6 +125,16 @@ class ServicesViewController: InitialazableViewController, Refreshable {
         }
     }
 
+    func cityDidSelect(_ city: City) {
+        navigationItem.titleView?.setTitleIfButtonFirst(city.name)
+        showroomField.text = .empty
+        showroomField.placeholder = .common(.showroomsLoading)
+        showroomIndicator.startAnimating()
+        showroomField.setRightView(from: showroomIndicator, width: 30,
+                                   height: fieldHeight)
+        interactor.loadShowrooms()
+    }
+
     // MARK: - Private methods
     @objc private func showroomDidSelect() {
         view.endEditing(true)
@@ -133,10 +143,15 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     @IBAction private func chooseCityDidTap() {
         view.endEditing(true)
-        let vc: CityPickerViewController = UIStoryboard(.register).instantiate(.cityPick)
-        vc.setDelegate(self)
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+
+        let cityPickerModule = RegisterFlow.cityModule()
+        cityPickerModule.hidesBottomBarWhenPushed = true
+        cityPickerModule.onCityPick = { [weak self] city in
+            self?.navigationController?.popViewController(animated: true)
+            self?.cityDidSelect(city)
+        }
+
+        navigationController?.pushViewController(cityPickerModule, animated: true)
     }
 
     @discardableResult
@@ -158,32 +173,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
     @objc private func chatButtonDidPress() {
         navigationController?.pushViewController(MainMenuFlow.chatModule(),
                                                  animated: true)
-    }
-}
-
-// MARK: - CityPickerDelegate
-extension ServicesViewController: CityPickerDelegate {
-    func cityDidSelect(_ city: City) {
-        if let selectedCity = interactor.selectedCity, city.id == selectedCity.id {
-            return
-        }
-
-        navigationItem.titleView?.setTitleIfButtonFirst(city.name)
-        interactor.selectedCity = city
-        showroomField.text = .empty
-        showroomField.placeholder = .common(.showroomsLoading)
-        showroomIndicator.startAnimating()
-        showroomField.setRightView(from: showroomIndicator, width: 30,
-                                   height: fieldHeight)
-        interactor.loadShowrooms()
-    }
-
-    var cityPickButtonText: String {
-        .common(.choose)
-    }
-
-    var dismissAfterPick: Bool {
-        true
     }
 }
 
