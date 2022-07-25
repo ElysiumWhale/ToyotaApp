@@ -44,14 +44,22 @@ final class NavigationService: MainQueueRunnable {
     class func loadRegister(_ state: RegistrationStates) {
         var controllers: [UIViewController] = []
         switch state {
-            case .error(let message):
-                PopUp.display(.error(description: message))
-            case .firstPage: break
-            case .secondPage(let profile, let cities):
-                let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
-                controllers = [RegisterFlow.personalModule(profile),
-                               RegisterFlow.cityModule(cities),
-                               carModule].compactMap { $0 }
+        case .error(let message):
+            PopUp.display(.error(description: message))
+        case .firstPage: break
+        case .secondPage(let profile, let cities):
+            let personalModule = RegisterFlow.personalModule(profile)
+            let cityModule = RegisterFlow.cityModule(cities ?? [])
+            let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
+
+            cityModule.onCityPick = { [weak personalModule] _ in
+                let addCar = RegisterFlow.addCarModule()
+                personalModule?.navigationController?.pushViewController(addCar, animated: true)
+            }
+
+            controllers = [personalModule,
+                           cityModule,
+                           carModule].compactMap { $0 }
         }
 
         switchRootView?(RegisterFlow.entryPoint(with: controllers))
