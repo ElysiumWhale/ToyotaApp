@@ -1,39 +1,82 @@
 import UIKit
 
-class CityPickerViewController: RefreshableController, CityPickerView {
-    @IBOutlet private(set) var refreshableView: UITableView!
-    @IBOutlet private var nextButton: CustomizableButton!
+protocol CityPikerModule: UIViewController {
+    var onCityPick: ParameterClosure<City>? { get set }
+}
 
+final class CityPickerView: InitialazableViewController,
+                            Refreshable,
+                            CityPikerModule {
+
+    private let interactor: CityPickerInteractor
+
+    private let subtitleLabel = UILabel()
+    private let actionButton = CustomizableButton()
+
+    let refreshableView: UITableView! = UITableView(frame: .zero, style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
-    var onSuccessfulPick: ParameterClosure<CityPickerViewController>? = { controller in
-        controller.perform(segue: .cityToAddCar)
+    var onCityPick: ParameterClosure<City>?
+
+    init(interactor: CityPickerInteractor) {
+        self.interactor = interactor
+
+        super.init()
+
+        navigationItem.title = .common(.city)
     }
-
-    private let interactor = CityPickerInteractor()
-
-    private var configureAddCar: ParameterClosure<AddCarViewController?>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor.view = self
 
-        nextButton.alpha = 0
-        nextButton.setTitle(interactor.cityPickerDelegate?.cityPickButtonText ?? .common(.next), for: .normal)
-        refreshableView.delegate = self
-        refreshableView.dataSource = self
-        configureRefresh()
-        interactor.cities.isEmpty ? startRefreshing() : refreshableView.reloadData()
+        interactor.cities.isEmpty
+            ? startRefreshing()
+            : refreshableView.reloadData()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.code {
-            case .cityToAddCar:
-                let destination = segue.destination as? AddCarViewController
-                configureAddCar?(destination)
-            default:
-                return
-        }
+    override func addViews() {
+        addSubviews(subtitleLabel, refreshableView, actionButton)
+        configureRefresh()
+        refreshableView.registerCell(CityCell.self)
+        refreshableView.delegate = self
+        refreshableView.dataSource = self
+    }
+
+    override func configureLayout() {
+        subtitleLabel.edgesToSuperview(excluding: .bottom,
+                                       insets: .horizontal(20),
+                                       usingSafeArea: true)
+        refreshableView.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        refreshableView.topToBottom(of: subtitleLabel)
+        actionButton.centerXToSuperview()
+        actionButton.size(.init(width: 245, height: 43))
+        actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
+    }
+
+    override func configureAppearance() {
+        view.backgroundColor = .systemBackground
+        refreshableView.separatorColor = .appTint(.secondaryGray)
+        refreshableView.allowsSelection = true
+        refreshableView.alwaysBounceVertical = true
+        refreshableView.backgroundColor = .systemBackground
+
+        subtitleLabel.font = .toyotaType(.semibold, of: 23)
+        subtitleLabel.textColor = .appTint(.signatureGray)
+
+        actionButton.alpha = 0
+        actionButton.rounded = true
+        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
+        actionButton.normalColor = .appTint(.secondarySignatureRed)
+        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
+    }
+
+    override func localize() {
+        subtitleLabel.text = .common(.chooseCity)
+        actionButton.setTitle(.common(.choose), for: .normal)
+    }
+
+    override func configureActions() {
+        actionButton.addTarget(self, action: #selector(actionButtonDidPress), for: .touchUpInside)
     }
 
     func startRefreshing() {
@@ -41,24 +84,8 @@ class CityPickerViewController: RefreshableController, CityPickerView {
         interactor.loadCities()
     }
 
-    func configure(with cities: [City], models: [Model] = [], colors: [Color] = []) {
-        interactor.configure(with: cities)
-        configureAddCar = { vc in
-            vc?.configure(models: models, colors: colors)
-        }
-    }
-
-    func setDelegate(_ delegate: CityPickerDelegate) {
-        interactor.cityPickerDelegate = delegate
-        if delegate.dismissAfterPick {
-            onSuccessfulPick = { controller in
-                controller.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-
     func handleSuccess() {
-        nextButton.fadeOut()
+        actionButton.fadeOut()
         refreshableView.backgroundView = nil
         refreshableView.reloadData()
         endRefreshing()
@@ -70,35 +97,22 @@ class CityPickerViewController: RefreshableController, CityPickerView {
         endRefreshing()
     }
 
-    @IBAction private func nextButtonDidPress(sender: UIButton?) {
-        guard interactor.saveCity() else {
+    @objc private func actionButtonDidPress() {
+        guard interactor.saveCity(),
+              let selectedCity = interactor.selectedCity else {
             return
         }
 
-        onSuccessfulPick?(self)
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension CityPickerViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        interactor.cities.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CityCell = tableView.dequeue(for: indexPath)
-        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
-                                                       isSelected: false)
-        return cell
+        onCityPick?(selectedCity)
     }
 }
 
 // MARK: - UITableViewDelegate
-extension CityPickerViewController: UITableViewDelegate {
+extension CityPickerView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if setCell(from: tableView, for: indexPath, isSelected: true) {
             interactor.selectCity(for: indexPath.row)
-            nextButton.fadeIn()
+            actionButton.fadeIn()
         }
     }
 
@@ -112,11 +126,26 @@ extension CityPickerViewController: UITableViewDelegate {
             return false
         }
 
-        cell.backgroundColor = isSelected
+        cell.contentView.backgroundColor = isSelected
             ? .appTint(.secondarySignatureRed)
             : .appTint(.background)
         cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
                                                        isSelected: isSelected)
         return true
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension CityPickerView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        interactor.cities.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CityCell = tableView.dequeue(for: indexPath)
+
+        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
+                                                       isSelected: false)
+        return cell
     }
 }

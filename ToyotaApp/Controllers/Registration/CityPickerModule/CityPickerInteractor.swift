@@ -1,21 +1,24 @@
 import Foundation
 
-protocol CityPickerView: AnyObject {
-    func handleSuccess()
-    func handleFailure()
-}
-
 protocol CityPickerDelegate: AnyObject {
-    func cityDidSelect(_ city: City)
     var cityPickButtonText: String { get }
     var dismissAfterPick: Bool { get }
+
+    func cityDidSelect(_ city: City)
 }
 
 class CityPickerInteractor {
     private let service: InfoService
 
-    weak var view: CityPickerView?
-    weak var cityPickerDelegate: CityPickerDelegate?
+    private lazy var cityRequestHandler = RequestHandler<CitiesResponse>()
+        .observe(on: .main)
+        .bind { [weak self] data in
+            self?.cities = data.cities
+            self?.view?.handleSuccess()
+        } onFailure: { [weak self] _ in
+            self?.cities = []
+            self?.view?.handleFailure()
+        }
 
     private(set) var cities: [City] = [] {
         didSet {
@@ -23,28 +26,13 @@ class CityPickerInteractor {
         }
     }
 
-    private var selectedCity: City?
+    private(set) var selectedCity: City?
 
-    private lazy var cityRequestHandler: RequestHandler<CitiesResponse> = {
-        RequestHandler<CitiesResponse>()
-            .observe(on: .main)
-            .bind { [weak self] data in
-                self?.cities = data.cities
-                self?.view?.handleSuccess()
-            } onFailure: { [weak self] _ in
-                self?.cities = []
-                self?.view?.handleFailure()
-            }
-    }()
+    weak var view: CityPickerView?
 
-    init(service: InfoService = .init()) {
+    init(cities: [City] = [], service: InfoService = .init()) {
+        self.cities = cities
         self.service = service
-    }
-
-    func configure(with cities: [City]) {
-        if cities.isNotEmpty {
-            self.cities = cities
-        }
     }
 
     func selectCity(for row: Int) {
@@ -64,7 +52,6 @@ class CityPickerInteractor {
             return false
         }
 
-        cityPickerDelegate?.cityDidSelect(selectedCity)
         return DefaultsManager.push(info: selectedCity, for: .selectedCity)
     }
 }
