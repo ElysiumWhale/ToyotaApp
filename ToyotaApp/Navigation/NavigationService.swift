@@ -9,7 +9,7 @@ final class NavigationService: MainQueueRunnable {
 
     static var switchRootView: ((UIViewController) -> Void)?
 
-    class func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
+    static func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
         switch context.state {
             case .empty:
                 fallbackCompletion()
@@ -27,12 +27,12 @@ final class NavigationService: MainQueueRunnable {
     }
 
     // MARK: - LoadConnectionLost
-    class func loadConnectionLost() {
+    static func loadConnectionLost() {
         switchRootView?(UtilsFlow.connectionLostModule())
     }
 
     // MARK: - LoadAuth
-    class func loadAuth(with error: String? = nil) {
+    static func loadAuth(with error: String? = nil) {
         if let error = error {
             PopUp.display(.error(description: error))
         }
@@ -41,7 +41,7 @@ final class NavigationService: MainQueueRunnable {
     }
 
     // MARK: - LoadRegister overloads
-    class func loadRegister(_ state: RegistrationStates) {
+    static func loadRegister(_ state: RegistrationStates) {
         var controllers: [UIViewController] = []
         switch state {
         case .error(let message):
@@ -66,7 +66,7 @@ final class NavigationService: MainQueueRunnable {
     }
 
     // MARK: - LoadMain overloads
-    class func loadMain(from user: RegisteredUser? = nil) {
+    static func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
             KeychainManager.set(user.profile.toDomain())
             if let cars = user.cars {
