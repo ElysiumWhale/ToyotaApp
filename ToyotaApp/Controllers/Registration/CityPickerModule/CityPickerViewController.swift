@@ -4,9 +4,9 @@ protocol CityPikerModule: UIViewController {
     var onCityPick: ParameterClosure<City>? { get set }
 }
 
-final class CityPickerView: InitialazableViewController,
-                            Refreshable,
-                            CityPikerModule {
+final class CityPickerViewController: InitialazableViewController,
+                                      Refreshable,
+                                      CityPikerModule {
 
     private let interactor: CityPickerInteractor
 
@@ -108,7 +108,7 @@ final class CityPickerView: InitialazableViewController,
 }
 
 // MARK: - UITableViewDelegate
-extension CityPickerView: UITableViewDelegate {
+extension CityPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if setCell(from: tableView, for: indexPath, isSelected: true) {
             interactor.selectCity(for: indexPath.row)
@@ -136,7 +136,7 @@ extension CityPickerView: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension CityPickerView: UITableViewDataSource {
+extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         interactor.cities.count
     }

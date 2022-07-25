@@ -28,7 +28,7 @@ class CityPickerInteractor {
 
     private(set) var selectedCity: City?
 
-    weak var view: CityPickerView?
+    weak var view: CityPickerViewController?
 
     init(cities: [City] = [], service: InfoService = .init()) {
         self.cities = cities
