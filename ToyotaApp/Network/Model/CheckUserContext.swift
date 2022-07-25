@@ -13,12 +13,14 @@ struct CheckUserContext {
 
     var state: States {
         if response.registerStatus == nil {
-            if response.registerPage == nil || response.registerPage == 1 {
+            let page = response.registerPage ?? .zero
+
+            if page < 2 {
                 return .startRegister
-            } else if let page = response.registerPage {
-                return response.registeredUser != nil
-                    ? .register(page, response.registeredUser!, response.cities ?? [])
-                    : .empty
+            } else if let user = response.registeredUser {
+                return .register(page, user, response.cities ?? [])
+            } else {
+                return .empty
             }
         }
 
