@@ -193,6 +193,7 @@ extension ServicesViewController: ServicesView {
         showroomPicker.selectRow(interactor.selectedShowroomIndex ?? 0,
                                  inComponent: 0,
                                  animated: false)
+        showroomField.text = interactor.selectedShowroom?.name
         if showroomIndicator.isAnimating {
             showroomIndicator.stopAnimating()
         }
