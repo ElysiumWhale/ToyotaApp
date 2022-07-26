@@ -66,6 +66,8 @@ public enum SegueIdentifiers: String {
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings
     case myProfileToSettings = "MyProfileToSettings"
+    /// MyProfileToBookings
+    case myProfileToBookings = "MyProfileToBookings"
     /// MyProfileToManagers
     case myManagersSegueCode = "MyProfileToManagers"
 }

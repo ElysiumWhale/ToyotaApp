@@ -76,7 +76,9 @@ final class CityPickerViewController: InitialazableViewController,
     }
 
     override func configureActions() {
-        actionButton.addTarget(self, action: #selector(actionButtonDidPress), for: .touchUpInside)
+        actionButton.addAction { [weak self] in
+            self?.actionButtonDidPress()
+        }
     }
 
     func startRefreshing() {
@@ -97,7 +99,7 @@ final class CityPickerViewController: InitialazableViewController,
         endRefreshing()
     }
 
-    @objc private func actionButtonDidPress() {
+    private func actionButtonDidPress() {
         guard interactor.saveCity(),
               let selectedCity = interactor.selectedCity else {
             return
