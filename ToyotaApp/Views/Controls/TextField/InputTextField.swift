@@ -120,8 +120,6 @@ extension Sequence where Element == InputTextField {
     }
 
     var areValid: Bool {
-        reduce(true, {
-            $1.isValid && $0
-        })
+        reduce(true, { $1.isValid && $0 })
     }
 }
