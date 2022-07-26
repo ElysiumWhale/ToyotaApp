@@ -107,6 +107,7 @@
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
+		A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74999E42890A2ED00C6E027 /* EventNotificator.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
@@ -239,6 +240,7 @@
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
 		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
+		A74999E42890A2ED00C6E027 /* EventNotificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificator.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 			children = (
 				1425230226FFBCC500B177B7 /* Persistance */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
+				A74999E42890A2ED00C6E027 /* EventNotificator.swift */,
 				1443FDAD260BEEEE007CEBB1 /* Notificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
@@ -926,6 +929,7 @@
 				1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */,
 				14AB8D612714C81A004D225F /* LoadingView.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
+				A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
