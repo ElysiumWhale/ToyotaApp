@@ -3,18 +3,21 @@ import UIKit
 enum RegisterFlow {
     static let storyboard: UIStoryboard = UIStoryboard(.register)
 
-    static func cityModule(_ cities: [City]?) -> UIViewController {
-        let cpvc: CityPickerViewController = storyboard.instantiate(.cityPick)
-        if let cities = cities {
-            cpvc.configure(with: cities)
-        }
-        return cpvc
+    static func cityModule(_ cities: [City] = []) -> CityPikerModule {
+        let interactor = CityPickerInteractor(cities: cities)
+        let module = CityPickerViewController(interactor: interactor)
+        interactor.view = module
+
+        return module
     }
 
-    static func personalInfoModule(_ profile: Profile) -> UIViewController {
-        let pivc: PersonalInfoViewController = storyboard.instantiate(.personalInfo)
-        pivc.configure(with: profile)
-        return pivc
+    static func personalModule(_ profile: Profile? = nil) -> UIViewController {
+        let presenter = PersonalInfoPresenter()
+        let interactor = PersonalInfoInteractor(output: presenter,
+                                                state: .from(profile))
+        let view = PersonalInfoView(interactor: interactor)
+        presenter.view = view
+        return view
     }
 
     static func addCarModule(models: [Model] = [],
@@ -26,11 +29,11 @@ enum RegisterFlow {
     }
 
     static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
-        let nvc: UINavigationController = storyboard.instantiate(.registerNavigation)
+        let nvc = UINavigationController()
+        nvc.navigationBar.prefersLargeTitles = true
         nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-        if controllers.isNotEmpty {
-            nvc.setViewControllers(controllers, animated: false)
-        }
+        let vcs = controllers.isNotEmpty ? controllers : [personalModule()]
+        nvc.setViewControllers(vcs, animated: false)
         return nvc
     }
 }

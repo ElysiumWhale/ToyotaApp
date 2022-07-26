@@ -6,6 +6,20 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A7B59DA8287A3C6000E707C8 /* CodeLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A7B59DA9287A3C6000E707C8 /* Build configuration list for PBXAggregateTarget "CodeLint" */;
+			buildPhases = (
+				A7B59DAC287A3D0200E707C8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = CodeLint;
+			productName = CodeLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		14025194267AAB89006CF4E2 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14025193267AAB89006CF4E2 /* MapModule.swift */; };
 		140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59327A6C2A1002A7423 /* RegisterFlow.swift */; };
@@ -29,6 +43,7 @@
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
 		142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B292728382B58007DC48D /* SmsCodeInteractor.swift */; };
 		1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433C7C7269F304C00BCB70B /* InputTextField.swift */; };
+		143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoView.swift */; };
 		143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
@@ -86,12 +101,13 @@
 		14EC744D27F8F98100AC6648 /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC744C27F8F98100AC6648 /* BaseCollectionCell.swift */; };
 		14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */; };
 		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
-		14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
+		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
+		A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74999E42890A2ED00C6E027 /* EventNotificator.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
 		A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468D2523E32F00312EBE /* SceneDelegate.swift */; };
@@ -127,7 +143,6 @@
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
 		A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCVC.swift */; };
 		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
-		A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +179,7 @@
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		142B292728382B58007DC48D /* SmsCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeInteractor.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		143CCB5A286261C900842050 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* UIProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
@@ -217,13 +233,14 @@
 		14EC744C27F8F98100AC6648 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
 		14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsUrl.swift; sourceTree = "<group>"; };
 		14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
-		14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRouter.swift; sourceTree = "<group>"; };
 		14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyotaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
+		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
+		A74999E42890A2ED00C6E027 /* EventNotificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificator.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A759468B2523E32F00312EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -260,7 +277,6 @@
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCVC.swift; sourceTree = "<group>"; };
 		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
-		A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -321,11 +337,9 @@
 		1419834027E28572004573A1 /* PersonalInfoModule */ = {
 			isa = PBXGroup;
 			children = (
-				A7D12063253E70E9005F85B0 /* PersonalInfoViewController.swift */,
-				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
-				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
+				A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */,
 				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
-				14F091FE27E3DC2500B03130 /* PersonalInfoRouter.swift */,
+				A7346F6B287CDBC1007A7668 /* Module */,
 			);
 			path = PersonalInfoModule;
 			sourceTree = "<group>";
@@ -521,6 +535,34 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		A7346F6B287CDBC1007A7668 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				143CCB5A286261C900842050 /* PersonalInfoView.swift */,
+				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
+				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		A73BF29A28836C11006944FB /* CityPickerModule */ = {
+			isa = PBXGroup;
+			children = (
+				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
+				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
+			);
+			path = CityPickerModule;
+			sourceTree = "<group>";
+		};
+		A73BF29B28836C54006944FB /* AddCarModule */ = {
+			isa = PBXGroup;
+			children = (
+				14F2B43E2762BC88006CD697 /* AddCarViewController.swift */,
+				14DFB9242763F5BA00465736 /* AddCarInteractor.swift */,
+			);
+			path = AddCarModule;
+			sourceTree = "<group>";
+		};
 		A759467F2523E32F00312EBE = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +614,7 @@
 			children = (
 				1425230226FFBCC500B177B7 /* Persistance */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
+				A74999E42890A2ED00C6E027 /* EventNotificator.swift */,
 				1443FDAD260BEEEE007CEBB1 /* Notificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
@@ -700,11 +743,9 @@
 			isa = PBXGroup;
 			children = (
 				1419834027E28572004573A1 /* PersonalInfoModule */,
-				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
-				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
+				A73BF29A28836C11006944FB /* CityPickerModule */,
+				A73BF29B28836C54006944FB /* AddCarModule */,
 				A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */,
-				14F2B43E2762BC88006CD697 /* AddCarViewController.swift */,
-				14DFB9242763F5BA00465736 /* AddCarInteractor.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -737,7 +778,6 @@
 				A75946842523E32F00312EBE /* Sources */,
 				A75946852523E32F00312EBE /* Frameworks */,
 				A75946862523E32F00312EBE /* Resources */,
-				146CED0126B9E91D00427A1F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -772,6 +812,9 @@
 					A75946872523E32F00312EBE = {
 						CreatedOnToolsVersion = 11.7;
 					};
+					A7B59DA8287A3C6000E707C8 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 				};
 			};
 			buildConfigurationList = A75946832523E32F00312EBE /* Build configuration list for PBXProject "ToyotaApp" */;
@@ -796,6 +839,7 @@
 			targets = (
 				A75946872523E32F00312EBE /* ToyotaApp */,
 				14F0920327E3EB7500B03130 /* ToyotaAppTests */,
+				A7B59DA8287A3C6000E707C8 /* CodeLint */,
 			);
 		};
 /* End PBXProject section */
@@ -835,7 +879,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		146CED0126B9E91D00427A1F /* ShellScript */ = {
+		A7B59DAC287A3D0200E707C8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -850,7 +894,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --config Resources/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -884,8 +928,8 @@
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
 				1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */,
 				14AB8D612714C81A004D225F /* LoadingView.swift in Sources */,
-				A7D12064253E70E9005F85B0 /* PersonalInfoViewController.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
+				A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
 				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
@@ -927,6 +971,7 @@
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
 				1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */,
+				143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */,
 				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
@@ -945,9 +990,9 @@
 				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
+				A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
-				14F091FF27E3DC2500B03130 /* PersonalInfoRouter.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
 				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
@@ -1191,6 +1236,24 @@
 			};
 			name = Release;
 		};
+		A7B59DAA287A3C6000E707C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A7B59DAB287A3C6000E707C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H22C8Q524;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1217,6 +1280,15 @@
 			buildConfigurations = (
 				A759469D2523E33400312EBE /* Debug */,
 				A759469E2523E33400312EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7B59DA9287A3C6000E707C8 /* Build configuration list for PBXAggregateTarget "CodeLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7B59DAA287A3C6000E707C8 /* Debug */,
+				A7B59DAB287A3C6000E707C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

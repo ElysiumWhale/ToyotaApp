@@ -2,7 +2,6 @@ import Foundation
 
 protocol AuthService {
     func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>)
-
     func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
     func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>)
     func deleteTemporaryPhone(with body: DeletePhoneBody)
@@ -12,16 +11,14 @@ protocol ReconnectionService {
     func checkUser(with body: CheckUserBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
 }
 
-final class InfoService: AuthService, ReconnectionService {
+protocol PersonalInfoService {
+    func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>)
+}
+
+final class InfoService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
         NetworkService.makeRequest(requestFactory(), handler: handler)
-    }
-
-    func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.setProfile), body: body)
-        }
     }
 
     func updateProfile(with body: SetProfileBody, handler: RequestHandler<SimpleResponse>) {
@@ -66,35 +63,6 @@ final class InfoService: AuthService, ReconnectionService {
         }
     }
 
-    func checkUser(with body: CheckUserBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>) {
-        perform(with: handler) {
-            Request(page: .start(.checkUser), body: body)
-        }
-    }
-
-    func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.registerPhone), body: body)
-        }
-    }
-
-    func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .setting(.changePhone), body: body)
-        }
-    }
-
-    func deleteTemporaryPhone(with body: DeletePhoneBody) {
-        let request = Request(page: .registration(.deleteTemp), body: body)
-        NetworkService.makeRequest(request)
-    }
-
-    func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.checkCode), body: body)
-        }
-    }
-
     func getModelsAndColors(with body: GetModelsAndColorsBody, handler: RequestHandler<ModelsAndColorsResponse>) {
         perform(with: handler) {
             Request(page: .registration(.getModelsAndColors), body: body)
@@ -135,6 +103,50 @@ final class InfoService: AuthService, ReconnectionService {
     func addShowroom(with body: AddShowroomBody, handler: RequestHandler<SimpleResponse>) {
         perform(with: handler) {
             Request(page: .profile(.addShowroom), body: body)
+        }
+    }
+}
+
+// MARK: - AuthService
+extension InfoService: AuthService {
+    func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.registerPhone), body: body)
+        }
+    }
+
+    func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .setting(.changePhone), body: body)
+        }
+    }
+
+    func deleteTemporaryPhone(with body: DeletePhoneBody) {
+        let request = Request(page: .registration(.deleteTemp), body: body)
+        NetworkService.makeRequest(request)
+    }
+
+    func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.checkCode), body: body)
+        }
+    }
+}
+
+// MARK: - ReconnectionService
+extension InfoService: ReconnectionService {
+    func checkUser(with body: CheckUserBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>) {
+        perform(with: handler) {
+            Request(page: .start(.checkUser), body: body)
+        }
+    }
+}
+
+// MARK: - PersonalInfoService
+extension InfoService: PersonalInfoService {
+    func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.setProfile), body: body)
         }
     }
 }

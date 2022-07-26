@@ -42,7 +42,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
         super.init()
 
         interactor.view = self
-        subscribe(on: self.user)
     }
 
     // MARK: - Public methods
@@ -125,6 +124,16 @@ class ServicesViewController: InitialazableViewController, Refreshable {
         }
     }
 
+    func cityDidSelect(_ city: City) {
+        navigationItem.titleView?.setTitleIfButtonFirst(city.name)
+        showroomField.text = .empty
+        showroomField.placeholder = .common(.showroomsLoading)
+        showroomIndicator.startAnimating()
+        showroomField.setRightView(from: showroomIndicator, width: 30,
+                                   height: fieldHeight)
+        interactor.loadShowrooms()
+    }
+
     // MARK: - Private methods
     @objc private func showroomDidSelect() {
         view.endEditing(true)
@@ -133,10 +142,15 @@ class ServicesViewController: InitialazableViewController, Refreshable {
 
     @IBAction private func chooseCityDidTap() {
         view.endEditing(true)
-        let vc: CityPickerViewController = UIStoryboard(.register).instantiate(.cityPick)
-        vc.setDelegate(self)
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+
+        let cityPickerModule = RegisterFlow.cityModule()
+        cityPickerModule.hidesBottomBarWhenPushed = true
+        cityPickerModule.onCityPick = { [weak self] city in
+            self?.navigationController?.popViewController(animated: true)
+            self?.cityDidSelect(city)
+        }
+
+        navigationController?.pushViewController(cityPickerModule, animated: true)
     }
 
     @discardableResult
@@ -161,32 +175,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
     }
 }
 
-// MARK: - CityPickerDelegate
-extension ServicesViewController: CityPickerDelegate {
-    func cityDidSelect(_ city: City) {
-        if let selectedCity = interactor.selectedCity, city.id == selectedCity.id {
-            return
-        }
-
-        navigationItem.titleView?.setTitleIfButtonFirst(city.name)
-        interactor.selectedCity = city
-        showroomField.text = .empty
-        showroomField.placeholder = .common(.showroomsLoading)
-        showroomIndicator.startAnimating()
-        showroomField.setRightView(from: showroomIndicator, width: 30,
-                                   height: fieldHeight)
-        interactor.loadShowrooms()
-    }
-
-    var cityPickButtonText: String {
-        .common(.choose)
-    }
-
-    var dismissAfterPick: Bool {
-        true
-    }
-}
-
 // MARK: - ServicesView
 extension ServicesViewController: ServicesView {
     func didSelect(showroom: Showroom, with index: Int?) {
@@ -205,6 +193,7 @@ extension ServicesViewController: ServicesView {
         showroomPicker.selectRow(interactor.selectedShowroomIndex ?? 0,
                                  inComponent: 0,
                                  animated: false)
+        showroomField.text = interactor.selectedShowroom?.name
         if showroomIndicator.isAnimating {
             showroomIndicator.stopAnimating()
         }
@@ -240,19 +229,6 @@ extension ServicesViewController: ServicesView {
     func didFailServiceTypes(with error: String) {
         endRefreshing()
         refreshableView.setBackground(text: error)
-    }
-}
-
-// MARK: - WithUserInfo
-extension ServicesViewController: WithUserInfo {
-    func setUser(info: UserProxy) { }
-
-    func subscribe(on proxy: UserProxy) {
-        proxy.notificator.add(observer: self)
-    }
-
-    func unsubscribe(from proxy: UserProxy) {
-        proxy.notificator.remove(obsever: self)
     }
 }
 

@@ -2,25 +2,28 @@ import Foundation
 
 protocol Validatable {
     var rule: ValidationRule? { get set }
-    var isValid: Bool { get }
-    var validationEnabled: Bool { get set }
-    func isValid(for rule: ValidationRule) -> Bool
+    func validate(for rule: ValidationRule, toggleState: Bool) -> Bool
 }
 
+typealias ValidationClosure = (String?) -> Bool
+
 class ValidationRule {
-    let validationClouse: (String?) -> Bool
+    let validationClouse: ValidationClosure
 
     func validate(text: String?) -> Bool {
         validationClouse(text)
     }
 
-    init(_ closure: @escaping (String?) -> Bool = { _ in true }) {
+    init(_ closure: @escaping ValidationClosure = { _ in true }) {
         self.validationClouse = closure
     }
 }
 
+// MARK: Presets
 extension ValidationRule {
-    static let personalInfo = ValidationRule { text in
-        text != nil && text!.isNotEmpty && text!.count < 25
+    static var personalInfo: ValidationRule {
+        ValidationRule { text in
+            text != nil && text!.isNotEmpty && text!.count < 25
+        }
     }
 }
