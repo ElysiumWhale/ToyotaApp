@@ -42,7 +42,6 @@ class ServicesViewController: InitialazableViewController, Refreshable {
         super.init()
 
         interactor.view = self
-        subscribe(on: self.user)
     }
 
     // MARK: - Public methods
@@ -229,19 +228,6 @@ extension ServicesViewController: ServicesView {
     func didFailServiceTypes(with error: String) {
         endRefreshing()
         refreshableView.setBackground(text: error)
-    }
-}
-
-// MARK: - WithUserInfo
-extension ServicesViewController: WithUserInfo {
-    func setUser(info: UserProxy) { }
-
-    func subscribe(on proxy: UserProxy) {
-        proxy.notificator.add(observer: self)
-    }
-
-    func unsubscribe(from proxy: UserProxy) {
-        proxy.notificator.remove(obsever: self)
     }
 }
 
