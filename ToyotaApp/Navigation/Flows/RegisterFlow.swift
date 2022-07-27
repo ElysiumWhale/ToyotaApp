@@ -28,6 +28,10 @@ enum RegisterFlow {
         return acvc
     }
 
+    static func endRegistrationModule() -> UIViewController {
+        EndRegistrationViewController()
+    }
+
     static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
         let nvc = UINavigationController()
         nvc.navigationBar.prefersLargeTitles = true
