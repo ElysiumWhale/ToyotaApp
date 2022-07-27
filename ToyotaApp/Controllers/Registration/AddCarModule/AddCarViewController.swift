@@ -148,11 +148,14 @@ extension AddCarViewController: AddCarViewInput {
     func handleCarAdded() {
         indicator.stopAnimating()
         nextButton.fadeIn()
+
         switch interactor.type {
-            case .register:
-                perform(segue: .addCarToEndRegistration)
-            case .update:
-                navigationController?.popToRootViewController(animated: true)
+        case .register:
+            let vc = RegisterFlow.endRegistrationModule()
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.present(vc, animated: true)
+        case .update:
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 
