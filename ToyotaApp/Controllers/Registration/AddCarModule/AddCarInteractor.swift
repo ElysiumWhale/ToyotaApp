@@ -7,7 +7,10 @@ protocol AddCarViewInput: AnyObject {
 }
 
 class AddCarInteractor {
-    private let service: InfoService
+    private let service: AddCarService
+    private let setCarHandler = RequestHandler<CarSetResponse>()
+    private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
+    private let skipAddCarHandler = RequestHandler<SimpleResponse>()
 
     weak var view: AddCarViewInput?
 
@@ -23,47 +26,21 @@ class AddCarInteractor {
     private var selectedColor: Color?
     private var selectedYear: String = .empty
 
-    private lazy var setCarHandler: RequestHandler<CarSetResponse> = {
-        RequestHandler<CarSetResponse>()
-            .observe(on: .main)
-            .bind { [weak self] data in
-                self?.saveCar(with: data.carId)
-                self?.view?.handleCarAdded()
-            } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
-            }
-    }()
-
-    private lazy var loadModelsHandler: RequestHandler<ModelsAndColorsResponse> = {
-        RequestHandler<ModelsAndColorsResponse>()
-            .observe(on: .main)
-            .bind { [weak self] data in
-                self?.models = data.models
-                self?.colors = data.colors
-                self?.view?.handleModelsLoaded()
-            } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
-            }
-    }()
-
-    private lazy var skipAddCarHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .observe(on: .main)
-            .bind { [weak self] _ in
-                if case .register = self?.type {
-                    self?.view?.handleCarAdded()
-                }
-            } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.requestError))
-            }
-    }()
-
     var loadNeeded: Bool {
         models.isEmpty && colors.isEmpty
     }
 
-    init(service: InfoService = .init()) {
+    init(type: AddInfoType = .register,
+         models: [Model] = [],
+         colors: [Color] = [],
+         service: AddCarService = InfoService()) {
+
+        self.type = type
+        self.models = models
+        self.colors = colors
         self.service = service
+
+        setupRequestHandlers()
     }
 
     // MARK: - Public methods
@@ -123,6 +100,37 @@ class AddCarInteractor {
     }
 
     // MARK: - Private methods
+    private func setupRequestHandlers() {
+        setCarHandler
+            .observe(on: .main)
+            .bind { [weak self] data in
+                self?.saveCar(with: data.carId)
+                self?.view?.handleCarAdded()
+            } onFailure: { [weak self] error in
+                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+            }
+
+        loadModelsHandler
+            .observe(on: .main)
+            .bind { [weak self] data in
+                self?.models = data.models
+                self?.colors = data.colors
+                self?.view?.handleModelsLoaded()
+            } onFailure: { [weak self] error in
+                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+            }
+
+        skipAddCarHandler
+            .observe(on: .main)
+            .bind { [weak self] _ in
+                if case .register = self?.type {
+                    self?.view?.handleCarAdded()
+                }
+            } onFailure: { [weak self] error in
+                self?.view?.handleFailure(with: error.message ?? .error(.requestError))
+            }
+    }
+
     private func saveCar(with id: String) {
         guard let selectedModel = selectedModel,
               let selectedColor = selectedColor,
