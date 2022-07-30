@@ -1,6 +1,9 @@
 import UIKit
 
-class AddCarViewController: UIViewController, Loadable, UITextFieldDelegate {
+final class AddCarViewController: InitialazableViewController,
+                                  Loadable,
+                                  UITextFieldDelegate {
+
     @IBOutlet private var vinCodeTextField: InputTextField!
     @IBOutlet private var plateTextField: InputTextField!
     @IBOutlet private var modelTextField: InputTextField!
@@ -44,7 +47,9 @@ class AddCarViewController: UIViewController, Loadable, UITextFieldDelegate {
         }
     }
 
-    func configure(models: [Model] = [], colors: [Color] = [], controllerType: AddInfoType = .register) {
+    func configure(models: [Model] = [],
+                   colors: [Color] = [],
+                   controllerType: AddInfoType = .register) {
         interactor.configure(type: controllerType, models: models, colors: colors)
     }
 
