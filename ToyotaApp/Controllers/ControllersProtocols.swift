@@ -121,6 +121,7 @@ extension Loadable {
                 return
             }
 
+            ref.loadingView.alpha = 0
             ref.view.addSubview(ref.loadingView)
             ref.loadingView.frame = ref.view.frame
             ref.loadingView.startAnimating()
