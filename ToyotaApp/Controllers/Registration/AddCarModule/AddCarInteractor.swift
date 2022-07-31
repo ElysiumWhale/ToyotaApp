@@ -14,9 +14,7 @@ final class AddCarInteractor {
 
     weak var view: AddCarViewInput?
 
-    var type: AddInfoType = .register
-    var vin: String = .empty
-    var plate: String = .empty
+    let type: AddInfoType
 
     private(set) var models: [Model] = []
     private(set) var colors: [Color] = []
@@ -25,6 +23,8 @@ final class AddCarInteractor {
     private var selectedModel: Model?
     private var selectedColor: Color?
     private var selectedYear: String = .empty
+    private var vin: String = .empty
+    private var plate: String = .empty
 
     var loadNeeded: Bool {
         models.isEmpty && colors.isEmpty
@@ -44,12 +44,6 @@ final class AddCarInteractor {
     }
 
     // MARK: - Public methods
-    func configure(type: AddInfoType, models: [Model], colors: [Color]) {
-        self.type = type
-        self.models = models
-        self.colors = colors
-    }
-
     func setSelectedModel(for row: Int) -> String? {
         guard models.indices.contains(row) else {
             return nil
@@ -77,13 +71,15 @@ final class AddCarInteractor {
         return selectedYear
     }
 
-    func setCar() {
+    func setCar(vin: String, plate: String) {
         guard let modelId = selectedModel?.id,
               let colorId = selectedColor?.id,
               let userId = KeychainManager<UserId>.get()?.value else {
             return
         }
 
+        self.vin = vin
+        self.plate = plate
         let body = SetCarBody(brandId: Brand.Toyota, userId: userId, carModelId: modelId,
                               colorId: colorId, licensePlate: plate, vinCode: vin,
                               year: selectedYear)
