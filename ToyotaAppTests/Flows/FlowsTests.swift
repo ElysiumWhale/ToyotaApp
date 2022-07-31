@@ -25,6 +25,9 @@ final class FlowsTests: XCTestCase {
         let addCarModule = RegisterFlow.addCarModule()
         XCTAssertTrue(addCarModule is AddCarViewController)
 
+        let endRegistrationModule = RegisterFlow.endRegistrationModule()
+        XCTAssertTrue(endRegistrationModule is EndRegistrationViewController)
+
         let entry = RegisterFlow.entryPoint(with: [personalModule,
                                                    cityModule,
                                                    addCarModule])

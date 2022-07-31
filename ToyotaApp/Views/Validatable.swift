@@ -26,4 +26,22 @@ extension ValidationRule {
             text != nil && text!.isNotEmpty && text!.count < 25
         }
     }
+
+    static var empty: ValidationRule {
+        ValidationRule { _ in
+            true
+        }
+    }
+
+    static var notEmpty: ValidationRule {
+        ValidationRule { text in
+            text != nil && text!.count > 0
+        }
+    }
+
+    static func requiredSymbolsCount(_ count: UInt) -> ValidationRule {
+        ValidationRule { text in
+            text?.count ?? 0 >= count
+        }
+    }
 }

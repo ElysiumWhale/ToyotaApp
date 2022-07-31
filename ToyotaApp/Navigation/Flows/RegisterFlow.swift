@@ -1,7 +1,6 @@
 import UIKit
 
 enum RegisterFlow {
-    static let storyboard: UIStoryboard = UIStoryboard(.register)
 
     static func cityModule(_ cities: [City] = []) -> CityPikerModule {
         let interactor = CityPickerInteractor(cities: cities)
@@ -20,12 +19,21 @@ enum RegisterFlow {
         return view
     }
 
-    static func addCarModule(models: [Model] = [],
-                             colors: [Color] = [],
-                             controllerType: AddInfoType = .register) -> UIViewController {
-        let acvc: AddCarViewController = storyboard.instantiate(.addCar)
-        acvc.configure(models: models, colors: colors, controllerType: controllerType)
-        return acvc
+    static func addCarModule(scenario: AddInfoType = .register,
+                             models: [Model] = [],
+                             colors: [Color] = []) -> UIViewController {
+
+        let interactor = AddCarInteractor(type: scenario,
+                                          models: models,
+                                          colors: colors)
+        let vc = AddCarViewController(intercator: interactor)
+        interactor.view = vc
+
+        return vc
+    }
+
+    static func endRegistrationModule() -> UIViewController {
+        EndRegistrationViewController()
     }
 
     static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {

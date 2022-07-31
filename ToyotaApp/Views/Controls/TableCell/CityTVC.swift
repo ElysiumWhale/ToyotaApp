@@ -1,19 +1,7 @@
 import UIKit
 
-final class CityCell: UITableViewCell, InitialazableView {
+final class CityCell: BaseTableCell {
     private let cityNameLabel = UILabel()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        initialize()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        initialize()
-    }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
@@ -31,15 +19,15 @@ final class CityCell: UITableViewCell, InitialazableView {
         })
     }
 
-    func addViews() {
+    override func addViews() {
         contentView.addSubview(cityNameLabel)
     }
 
-    func configureLayout() {
+    override func configureLayout() {
         cityNameLabel.edgesToSuperview()
     }
 
-    func configureAppearance() {
+    override func configureAppearance() {
         cityNameLabel.textColor = .appTint(.signatureGray)
         cityNameLabel.font = .toyotaType(.regular, of: 18)
     }
