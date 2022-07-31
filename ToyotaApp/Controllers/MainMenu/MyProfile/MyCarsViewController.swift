@@ -57,11 +57,10 @@ class MyCarsViewController: UIViewController, Loadable {
 
     private func handle(_ response: ModelsAndColorsResponse) {
         stopLoading()
-        let addCarVC: AddCarViewController = UIStoryboard(.register).instantiate(.addCar)
-        addCarVC.configure(models: response.models,
-                           colors: response.colors,
-                           controllerType: .update(with: user))
-        navigationController?.pushViewController(addCarVC, animated: true)
+        let vc = RegisterFlow.addCarModule(scenario: .update(with: user),
+                                           models: response.models,
+                                           colors: response.colors)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func removeCar(with id: String) {
