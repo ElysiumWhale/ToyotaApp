@@ -6,7 +6,7 @@ protocol AddCarViewInput: AnyObject {
     func handleModelsLoaded()
 }
 
-class AddCarInteractor {
+final class AddCarInteractor {
     private let service: AddCarService
     private let setCarHandler = RequestHandler<CarSetResponse>()
     private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
@@ -134,13 +134,19 @@ class AddCarInteractor {
     private func saveCar(with id: String) {
         guard let selectedModel = selectedModel,
               let selectedColor = selectedColor,
-              selectedYear.isNotEmpty, vin.isNotEmpty else {
+              selectedYear.isNotEmpty,
+              vin.isNotEmpty else {
             return
         }
 
-        let car = Car(id: id, brand: Brand.ToyotaName, model: selectedModel,
-                      color: selectedColor, year: selectedYear, plate: plate,
-                      vin: vin, isChecked: false)
+        let car = Car(id: id,
+                      brand: Brand.ToyotaName,
+                      model: selectedModel,
+                      color: selectedColor,
+                      year: selectedYear,
+                      plate: plate,
+                      vin: vin,
+                      isChecked: false)
 
         switch type {
             case .register:
