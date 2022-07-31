@@ -16,7 +16,8 @@ final class EventNotificator {
 
     static let shared = EventNotificator()
 
-    private let queue = DispatchQueue(label: "EventNotificatorQueue", attributes: [.concurrent])
+    private let queue = DispatchQueue(label: "EventNotificatorQueue",
+                                      attributes: [.concurrent])
 
     private var observers: [AppEvents: [WeakObserver]] = [:]
 

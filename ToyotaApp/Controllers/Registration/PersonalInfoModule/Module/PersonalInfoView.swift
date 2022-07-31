@@ -181,7 +181,8 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
             let cityPickerModule = RegisterFlow.cityModule(cities)
 
             cityPickerModule.onCityPick = { [weak self] _ in
-                let addCar = RegisterFlow.addCarModule(models: models,
+                let addCar = RegisterFlow.addCarModule(scenario: .register,
+                                                       models: models,
                                                        colors: colors)
                 self?.navigationController?.pushViewController(addCar, animated: true)
             }

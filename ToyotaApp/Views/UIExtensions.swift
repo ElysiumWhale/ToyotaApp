@@ -311,6 +311,7 @@ extension UIStackView {
     }
 }
 
+// MARK: - Collection View Layouts
 extension UICollectionViewLayout {
     static var servicesLayout: UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),

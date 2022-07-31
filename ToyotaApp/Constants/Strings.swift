@@ -160,6 +160,20 @@ extension String {
         case wishes = "Приятного пользования!"
         /// В главное меню
         case toMainMenu = "В главное меню"
+        /// Пропустить этот шаг
+        case skipThisStep = "Пропустить этот шаг"
+        /// Цвет
+        case color = "Цвет"
+        /// Год
+        case year = "Год"
+        /// Модель
+        case model = "Модель"
+        /// Номер (необязательно)
+        case numberNotNessesary = "Номер (необязательно)"
+        /// VIN
+        case vin = "VIN"
+        /// Заполните информацию об автомобиле
+        case fillAutoInfo = "Заполните информацию об автомобиле"
     }
 
     enum QuestionStrings: String {
