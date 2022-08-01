@@ -25,8 +25,6 @@ class UserNotificator: Notificator {
                 observers.removeValue(forKey: id)
                 continue
             }
-
-            observer.userDidUpdate()
         }
     }
 }

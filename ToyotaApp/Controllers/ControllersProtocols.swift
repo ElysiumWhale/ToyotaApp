@@ -3,15 +3,6 @@ import UIKit
 /// Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
-    func subscribe(on proxy: UserProxy)
-    func unsubscribe(from proxy: UserProxy)
-    func userDidUpdate()
-}
-
-extension WithUserInfo {
-    func subscribe(on proxy: UserProxy) { }
-    func unsubscribe(from proxy: UserProxy) { }
-    func userDidUpdate() { }
 }
 
 // MARK: - Refreshable
