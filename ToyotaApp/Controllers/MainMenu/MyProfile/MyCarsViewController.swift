@@ -8,7 +8,9 @@ class MyCarsViewController: UIViewController, Loadable {
     private(set) lazy var loadingView = LoadingView()
 
     private var user: UserProxy! {
-        didSet { subscribe(on: user) }
+        didSet {
+            EventNotificator.shared.add(self, for: .userUpdate)
+        }
     }
 
     private var cars: [Car] { user.cars.value }
@@ -100,22 +102,19 @@ extension MyCarsViewController: UICollectionViewDataSource {
 
 // MARK: - WithUserInfo
 extension MyCarsViewController: WithUserInfo {
-    func subscribe(on proxy: UserProxy) {
-        proxy.notificator.add(observer: self)
-    }
-
-    func unsubscribe(from proxy: UserProxy) {
-        proxy.notificator.remove(obsever: self)
-    }
-
-    func userDidUpdate() {
-        dispatch { [self] in
-            carsCollection.reloadData()
-            carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
-        }
-    }
-
     func setUser(info: UserProxy) {
         user = info
+    }
+}
+
+extension MyCarsViewController: ObservesEvents {
+    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+        switch event {
+        case .userUpdate:
+            dispatch { [self] in
+                carsCollection.reloadData()
+                carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
+            }
+        }
     }
 }

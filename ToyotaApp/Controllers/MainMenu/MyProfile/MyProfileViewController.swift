@@ -28,7 +28,9 @@ class MyProfileViewController: UIViewController {
 
     // MARK: - Properties
     private var user: UserProxy! {
-        didSet { subscribe(on: user) }
+        didSet {
+            EventNotificator.shared.add(self, for: .userUpdate)
+        }
     }
 
     private var profile: Person { user.person }
@@ -226,22 +228,20 @@ extension MyProfileViewController {
 
 // MARK: - WithUserInfo
 extension MyProfileViewController: WithUserInfo {
-    func subscribe(on proxy: UserProxy) {
-        proxy.notificator.add(observer: self)
-    }
-
-    func unsubscribe(from proxy: UserProxy) {
-        proxy.notificator.remove(obsever: self)
-    }
-
-    func userDidUpdate() {
-        dispatch { [self] in
-            view.setNeedsLayout()
-            refreshFields()
-        }
-    }
-
     func setUser(info: UserProxy) {
         user = info
+    }
+}
+
+// MARK: - ObservesEvents
+extension MyProfileViewController: ObservesEvents {
+    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+        switch event {
+        case .userUpdate:
+            dispatch { [self] in
+                view.setNeedsLayout()
+                refreshFields()
+            }
+        }
     }
 }
