@@ -116,7 +116,7 @@ protocol Loadable: UIViewController {
 extension Loadable {
     func startLoading() {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let ref = self, ref.isLoading else {
                 return
             }
