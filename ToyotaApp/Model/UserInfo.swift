@@ -37,8 +37,10 @@ class UserInfo {
         return Result.success(UserInfo(userId, phone, person, cars))
     }
 
-    fileprivate init(_ userId: UserId, _ userPhone: Phone,
-                     _ personInfo: Person, _ carsInfo: Cars) {
+    fileprivate init(_ userId: UserId,
+                     _ userPhone: Phone,
+                     _ personInfo: Person,
+                     _ carsInfo: Cars) {
         id = userId.value
         phone = userPhone.value
         person = personInfo
@@ -94,8 +96,13 @@ extension UserInfo: UserProxy {
 
 extension UserProxy where Self == UserInfo {
     static var mock: UserInfo {
-        UserInfo(.init(.empty), .init(.empty),
-                 .init(firstName: .empty, lastName: .empty, secondName: .empty, email: .empty, birthday: .empty),
+        UserInfo(.init(.empty),
+                 .init(.empty),
+                 .init(firstName: .empty,
+                       lastName: .empty,
+                       secondName: .empty,
+                       email: .empty,
+                       birthday: .empty),
                  .init([]))
     }
 }
