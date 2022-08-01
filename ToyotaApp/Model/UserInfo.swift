@@ -21,9 +21,13 @@ protocol UserStorage {
 
 class UserInfo {
     let id: String
-    let phone: String
+
     private(set) var person: Person
     private(set) var cars: Cars
+
+    var phone: String {
+        KeychainManager<Phone>.get()?.value ?? .empty
+    }
 
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         guard let userId = KeychainManager<UserId>.get(),
@@ -42,7 +46,6 @@ class UserInfo {
                      _ personInfo: Person,
                      _ carsInfo: Cars) {
         id = userId.value
-        phone = userPhone.value
         person = personInfo
         cars = carsInfo
     }
