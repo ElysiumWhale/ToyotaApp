@@ -133,18 +133,17 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
 
     private func resolveNavigation(authType: AuthType, context: CheckUserContext?) {
         switch authType {
-            case .register:
-                guard let context = context else {
-                    return
-                }
+        case .register:
+            guard let context = context else {
+                return
+            }
 
-                NavigationService.resolveNavigation(with: context) {
-                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
-                }
-            case .changeNumber(let notificator):
-                notificator.notificateObservers()
-                PopUp.display(.success(description: .common(.phoneChanged)))
-                navigationController?.dismiss(animated: true)
+            NavigationService.resolveNavigation(with: context) {
+                NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+            }
+        case .changeNumber:
+            PopUp.display(.success(description: .common(.phoneChanged)))
+            navigationController?.dismiss(animated: true)
         }
     }
 }

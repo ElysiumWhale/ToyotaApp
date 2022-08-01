@@ -103,7 +103,7 @@ final class SettingsViewController: InitialazableViewController {
     private func changeNumber() {
         PopUp.displayChoice(with: .common(.confirmation),
                             description: .question(.changeNumber)) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber(with: user.notificator))
+            let module = AuthFlow.authModule(authType: .changeNumber)
             navigationController?.pushViewController(module, animated: true)
         }
     }
