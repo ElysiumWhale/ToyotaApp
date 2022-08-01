@@ -12,6 +12,7 @@ final class EventNotificator {
 
     enum AppEvents {
         case userUpdate
+        case phoneUpdate
     }
 
     static let shared = EventNotificator()

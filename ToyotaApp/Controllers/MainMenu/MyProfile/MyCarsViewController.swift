@@ -115,6 +115,8 @@ extension MyCarsViewController: ObservesEvents {
                 carsCollection.reloadData()
                 carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
             }
+        default:
+            return
         }
     }
 }

@@ -242,6 +242,8 @@ extension MyProfileViewController: ObservesEvents {
                 view.setNeedsLayout()
                 refreshFields()
             }
+        default:
+            return
         }
     }
 }
