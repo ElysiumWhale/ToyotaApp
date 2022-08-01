@@ -1,18 +1,18 @@
 import Foundation
 
-enum AppEvents {
-    case userUpdate
-}
-
 struct WeakObserver {
     weak var value: ObservesEvents?
 }
 
 protocol ObservesEvents: AnyObject {
-    func handle(event: AppEvents, object: Any?, notificator: EventNotificator)
+    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator)
 }
 
 final class EventNotificator {
+
+    enum AppEvents {
+        case userUpdate
+    }
 
     static let shared = EventNotificator()
 
@@ -27,7 +27,7 @@ final class EventNotificator {
         }
 
         queue.async(flags: .barrier) { [weak self] in
-            var existObservers = self?.observers[event] ?? []
+            var existObservers = self?.observers[event]?.compactMap { $0 } ?? []
             existObservers.append(WeakObserver(value: observer))
             self?.observers[event] = existObservers
         }
@@ -41,10 +41,11 @@ final class EventNotificator {
             }
 
             self?.observers[event]?.remove(at: index)
+            self?.observers[event]?.removeAll(where: { $0.value == nil })
         }
     }
 
-    func notify(with event: AppEvents, object: AnyObject? = nil) {
+    func notify(with event: AppEvents) {
         queue.sync {
             guard let obs = observers[event] else {
                 return
@@ -52,7 +53,7 @@ final class EventNotificator {
 
             for observer in obs {
                 queue.async {
-                    observer.value?.handle(event: event, object: object, notificator: self)
+                    observer.value?.handle(event: event, notificator: self)
                 }
             }
         }
@@ -66,5 +67,12 @@ final class EventNotificator {
 
             return observers.contains(where: { $0.value === observer })
         }
+    }
+}
+
+// MARK: - CustomStringConvertible
+extension EventNotificator: CustomStringConvertible {
+    var description: String {
+        observers.debugDescription
     }
 }
