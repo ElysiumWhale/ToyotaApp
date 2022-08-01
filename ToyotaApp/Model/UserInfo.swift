@@ -16,8 +16,6 @@ protocol UserStorage {
     var selectedShowroom: Showroom? { get }
     var selectedCity: City? { get }
 
-    var notificator: Notificator { get }
-
     static func build() -> Result<UserProxy, AppErrors>
 }
 
@@ -26,8 +24,6 @@ class UserInfo {
     let phone: String
     private(set) var person: Person
     private(set) var cars: Cars
-
-    let notificator: Notificator
 
     fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
         guard let userId = KeychainManager<UserId>.get(),
@@ -47,7 +43,6 @@ class UserInfo {
         phone = userPhone.value
         person = personInfo
         cars = carsInfo
-        notificator = UserNotificator()
     }
 }
 
@@ -68,7 +63,7 @@ extension UserInfo: UserProxy {
     func updatePerson(from person: Person) {
         self.person = person
         KeychainManager.set(person)
-        notificator.notificateObservers()
+        EventNotificator.shared.notify(with: .userUpdate)
     }
 
     func addNew(car: Car) {
@@ -77,13 +72,13 @@ extension UserInfo: UserProxy {
             cars.defaultCar = car
         }
         KeychainManager.set(cars)
-        notificator.notificateObservers()
+        EventNotificator.shared.notify(with: .userUpdate)
     }
 
     func updateSelected(car: Car) {
         cars.defaultCar = car
         KeychainManager.set(cars)
-        notificator.notificateObservers()
+        EventNotificator.shared.notify(with: .userUpdate)
     }
 
     func removeCar(with id: String) {
@@ -93,7 +88,7 @@ extension UserInfo: UserProxy {
             updatedCars.defaultCar = updatedCars.value.first
         }
         KeychainManager.set(updatedCars)
-        notificator.notificateObservers()
+        EventNotificator.shared.notify(with: .userUpdate)
     }
 }
 
