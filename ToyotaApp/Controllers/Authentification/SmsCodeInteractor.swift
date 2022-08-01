@@ -54,6 +54,11 @@ final class SmsCodeInteractor {
     }
 
     private func handleSuccess(response: CheckUserOrSmsCodeResponse? = nil) {
+        if type == .changeNumber {
+            KeychainManager.set(Phone(phone))
+            EventNotificator.shared.notify(with: .phoneUpdate)
+        }
+
         onSuccess?((type, .init(response)))
     }
 }

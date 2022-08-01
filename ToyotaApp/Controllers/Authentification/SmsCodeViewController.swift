@@ -143,7 +143,7 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
             }
         case .changeNumber:
             PopUp.display(.success(description: .common(.phoneChanged)))
-            navigationController?.dismiss(animated: true)
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }
