@@ -1,55 +1,43 @@
 import UIKit
 
-class TimePickerView: UIView {
-    private(set) lazy var datePicker: UIPickerView = {
-        let picker = UIPickerView()
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        return picker
-    }()
+final class TimePickerView: BaseView {
+    let datePicker = UIPickerView()
 
-    private(set) lazy var dateTimeLabel: UILabel = {
+    let dateTimeLabel: UILabel = {
         let label = UILabel()
         label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .label
         label.text = .common(.chooseDateTime)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override class var requiresConstraintBasedLayout: Bool {
+        true
+    }
 
-        addSubview(dateTimeLabel)
-        addSubview(datePicker)
-        setupLayout()
+    override func addViews() {
+        addSubviews(dateTimeLabel, datePicker)
+    }
+
+    override func configureLayout() {
+        dateTimeLabel.edgesToSuperview(excluding: .bottom,
+                                       usingSafeArea: true)
+        dateTimeLabel.bottomToTop(of: datePicker, offset: -5)
+
+        datePicker.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        datePicker.height(150)
     }
 
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
-                case .title(let title):
-                    dateTimeLabel.text = title
-                default: return
+            case .title(let title):
+                dateTimeLabel.text = title
+            default:
+                return
             }
         }
-    }
-
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            dateTimeLabel.topAnchor.constraint(equalTo: topAnchor),
-            dateTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dateTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
-            datePicker.leadingAnchor.constraint(equalTo: leadingAnchor),
-            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor),
-            datePicker.heightAnchor.constraint(equalToConstant: 150),
-            dateTimeLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -5)
-        ])
-    }
-
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
     }
 
     func dataDidDownload() {

@@ -1,6 +1,6 @@
 import UIKit
 
-class PickerModule: NSObject, IServiceModule {
+final class PickerModule: NSObject, IServiceModule {
     var view: UIView { internalView }
 
     private lazy var internalView: PickerModuleView = {
@@ -59,29 +59,33 @@ class PickerModule: NSObject, IServiceModule {
 
     private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
         switch response {
-            case .failure(let error):
-                state = .error(.requestError(error.message))
-            case .success(let data):
-                array = data.array.isEmpty ? [Service.empty] : data.array
-                DispatchQueue.main.async { [weak self] in
-                    self?.internalView.fadeIn()
-                    self?.internalView.servicePicker.reloadAllComponents()
-                    self?.state = .didDownload
-                }
+        case .failure(let error):
+            state = .error(.requestError(error.message))
+        case .success(let data):
+            array = data.array.isEmpty ? [Service.empty] : data.array
+            DispatchQueue.main.async { [weak self] in
+                self?.internalView.fadeIn()
+                self?.internalView.servicePicker.reloadAllComponents()
+                self?.state = .didDownload
+            }
         }
     }
 
     func buildQueryItems() -> RequestItems {
         switch state {
-            case .didChose(let data): return [(.services(.serviceId), data.id)]
-            default: return []
+        case .didChose(let data):
+            return [(.services(.serviceId), data.id)]
+        default:
+            return []
         }
     }
 }
 
 // MARK: - UIPickerViewDataSource
 extension PickerModule: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         array?.count ?? 0
@@ -107,8 +111,11 @@ extension PickerModule: UIPickerViewDelegate {
         state = .didChose(array[index])
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
-                    forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView,
+                    viewForRow row: Int,
+                    forComponent component: Int,
+                    reusing view: UIView?) -> UIView {
+
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.light, of: 20)
         pickerLabel.textAlignment = .center

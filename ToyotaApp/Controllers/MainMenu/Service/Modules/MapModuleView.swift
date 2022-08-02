@@ -1,19 +1,17 @@
 import UIKit
-import MapKit
+import class MapKit.MKMapView
 
-// MARK: - View
-class MapModuleView: UIView {
-    private(set) lazy var label: UILabel = {
+final class MapModuleView: BaseView {
+    let label: UILabel = {
         let label = UILabel()
         label.font = .toyotaType(.semibold, of: 20)
         label.textColor = .label
         label.textAlignment = .left
         label.text = .common(.enterLocation)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private(set) lazy var map: MKMapView = {
+    let map: MKMapView = {
         let map = MKMapView()
         map.mapType = .hybrid
         map.layer.cornerRadius = 15
@@ -22,32 +20,22 @@ class MapModuleView: UIView {
         map.isRotateEnabled = true
         map.isUserInteractionEnabled = true
         map.showsCompass = true
-        map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        addSubview(label)
-        addSubview(map)
-        setupLayout()
-    }
-
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            map.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
-            map.leadingAnchor.constraint(equalTo: leadingAnchor),
-            map.trailingAnchor.constraint(equalTo: trailingAnchor),
-            map.bottomAnchor.constraint(equalTo: bottomAnchor),
-            map.heightAnchor.constraint(equalToConstant: 500)
-        ])
-    }
-
     override class var requiresConstraintBasedLayout: Bool {
-        return true
+        true
+    }
+
+    override func addViews() {
+        addSubviews(label, map)
+    }
+
+    override func configureLayout() {
+        label.edgesToSuperview(excluding: .bottom, usingSafeArea: true)
+
+        map.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        map.height(400)
+        map.topToBottom(of: label, offset: 10)
     }
 }

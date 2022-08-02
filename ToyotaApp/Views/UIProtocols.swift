@@ -31,8 +31,6 @@ extension InitialazableView {
 enum Storyboards: String {
     case main = "Main"
     case launchScreen = "LaunchScreen"
-    case auth = "Authentification"
-    case register = "FirstLaunchRegistration"
     case mainMenu = "MainMenu"
 }
 
