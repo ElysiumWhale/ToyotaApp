@@ -16,6 +16,7 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
 
     init(interactor: SmsCodeInteractor) {
         self.interactor = interactor
+
         super.init()
     }
 
@@ -53,10 +54,11 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
         codeTextField.font = .toyotaType(.light, of: 22)
         codeTextField.textColor = .appTint(.signatureGray)
         codeTextField.backgroundColor = .appTint(.background)
-        codeTextField.maxSymbolCount = 6
+        codeTextField.maxSymbolCount = 4 // future: 6
         codeTextField.textAlignment = .center
         codeTextField.cornerRadius = 10
         codeTextField.keyboardType = .numberPad
+        codeTextField.rule = smsRule
 
         errorLabel.font = .toyotaType(.regular, of: 18)
         errorLabel.textColor = .systemRed
@@ -83,8 +85,9 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
     }
 
     override func configureActions() {
-        codeTextField.addTarget(self, action: #selector(codeValueDidChange), for: .editingChanged)
-        sendCodeButton.addTarget(self, action: #selector(checkCode), for: .touchUpInside)
+        sendCodeButton.addAction { [weak self] in
+            self?.checkCode()
+        }
 
         interactor.onSuccess = { [weak self] params in
             self?.stopLoading()
@@ -107,9 +110,11 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
         }
     }
 
-    @objc private func checkCode() {
-        guard let code = codeTextField.text, code.count == 4 else {
-            displayError()
+    private func checkCode() {
+        guard let code = codeTextField.text,
+              codeTextField.validate(for: .requiredSymbolsCount(4),
+                                     toggleState: true) else {
+            errorLabel.fadeIn(0.3)
             return
         }
 
@@ -120,31 +125,29 @@ final class SmsCodeViewController: InitialazableViewController, Loadable {
         interactor.checkCode(code: code)
     }
 
-    private func displayError() {
-        errorLabel.fadeIn(0.3)
-        sendCodeButton.fadeIn(0.3)
-        codeTextField.toggle(state: .error)
-    }
-
-    @objc private func codeValueDidChange(with sender: UITextField) {
-        errorLabel.fadeOut(0.3)
-        codeTextField.toggle(state: .normal)
-    }
-
     private func resolveNavigation(authType: AuthType, context: CheckUserContext?) {
         switch authType {
-            case .register:
-                guard let context = context else {
-                    return
-                }
+        case .register:
+            guard let context = context else {
+                return
+            }
 
-                NavigationService.resolveNavigation(with: context) {
-                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
-                }
-            case .changeNumber(let notificator):
-                notificator.notificateObservers()
-                PopUp.display(.success(description: .common(.phoneChanged)))
-                navigationController?.dismiss(animated: true)
+            NavigationService.resolveNavigation(with: context) {
+                NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+            }
+        case .changeNumber:
+            PopUp.display(.success(description: .common(.phoneChanged)))
+            navigationController?.popToRootViewController(animated: true)
+        }
+    }
+}
+
+private extension SmsCodeViewController {
+    var smsRule: ValidationRule {
+        ValidationRule { [weak self] text in
+            self?.errorLabel.fadeOut(0.3)
+
+            return true
         }
     }
 }

@@ -91,6 +91,8 @@ final class SettingsViewController: InitialazableViewController {
     }
 
     override func configureActions() {
+        EventNotificator.shared.add(self, for: .phoneUpdate)
+
         changeNumberButton.addAction { [weak self] in
             self?.changeNumber()
         }
@@ -103,7 +105,7 @@ final class SettingsViewController: InitialazableViewController {
     private func changeNumber() {
         PopUp.displayChoice(with: .common(.confirmation),
                             description: .question(.changeNumber)) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber(with: user.notificator))
+            let module = AuthFlow.authModule(authType: .changeNumber)
             navigationController?.pushViewController(module, animated: true)
         }
     }
@@ -111,5 +113,18 @@ final class SettingsViewController: InitialazableViewController {
     private func showAgreement() {
         present(UtilsFlow.agreementModule().wrappedInNavigation,
                 animated: true)
+    }
+}
+
+// MARK: - ObservesEvents
+extension SettingsViewController: ObservesEvents {
+    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+        guard event == .phoneUpdate else {
+            return
+        }
+
+        dispatch { [self] in
+            phoneTextField.text = user.phone
+        }
     }
 }

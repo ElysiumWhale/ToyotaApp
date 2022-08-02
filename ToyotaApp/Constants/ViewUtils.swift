@@ -1,20 +1,8 @@
 import Foundation
 
-/// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
-/// In **rest** cases it will return `true`.
 enum AuthType: Equatable {
     case register
-    case changeNumber(with: Notificator)
-
-    static func == (lhs: AuthType, rhs: AuthType) -> Bool {
-        if case register = lhs, case register = rhs {
-            return true
-        }
-        if case changeNumber = lhs, case changeNumber = rhs {
-            return true
-        }
-        return false
-    }
+    case changeNumber
 }
 
 /// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.update`.

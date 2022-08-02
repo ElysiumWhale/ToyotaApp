@@ -20,7 +20,8 @@ class PickerModuleView: UIView {
         field.textColor = .label
         field.textAlignment = .center
         field.tintColor = .clear
-        field.borderStyle = .roundedRect
+        field.cornerRadius = 10
+        field.backgroundColor = .appTint(.background)
         return field
     }()
 

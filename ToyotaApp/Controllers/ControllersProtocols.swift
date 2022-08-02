@@ -3,15 +3,6 @@ import UIKit
 /// Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
-    func subscribe(on proxy: UserProxy)
-    func unsubscribe(from proxy: UserProxy)
-    func userDidUpdate()
-}
-
-extension WithUserInfo {
-    func subscribe(on proxy: UserProxy) { }
-    func unsubscribe(from proxy: UserProxy) { }
-    func userDidUpdate() { }
 }
 
 // MARK: - Refreshable
@@ -116,7 +107,7 @@ protocol Loadable: UIViewController {
 extension Loadable {
     func startLoading() {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let ref = self, ref.isLoading else {
                 return
             }
