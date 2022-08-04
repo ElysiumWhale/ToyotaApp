@@ -24,32 +24,16 @@ enum AddInfoType: Equatable {
 
 // MARK: - Structs with view constants
 public enum AppStoryboards: String {
-    /// FirstLaunchRegistration
-    case register = "FirstLaunchRegistration"
     /// MyProfile
     case myProfile = "MyProfile"
 }
 
 enum ViewControllers: String {
-    /// AddingCarViewController
-    case addCar = "AddCarViewController"
-    /// CityPickerViewController
-    case cityPick = "CityPickerViewController"
     /// MyProfileViewController
     case myProfile = "MyProfileViewController"
 }
 
 public enum SegueIdentifiers: String {
-
-    // MARK: - Reg
-
-    /// CityToAddCar
-    case cityToAddCar = "CityToAddCar"
-    /// AddCarToEndRegistration
-    case addCarToEndRegistration = "AddCarToEndRegistration"
-
-    // MARK: - MyProfile
-
     /// MyProfileToCars
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings

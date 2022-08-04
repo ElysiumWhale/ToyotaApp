@@ -9,9 +9,9 @@ protocol ServicesView: AnyObject {
 }
 
 final class ServicesInteractor {
-    private let service: InfoService
     private let servicesTypesHandler = RequestHandler<ServicesTypesResponse>()
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
+    private let service: InfoService
 
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
