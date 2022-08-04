@@ -7,10 +7,10 @@ protocol AddCarViewInput: AnyObject {
 }
 
 final class AddCarInteractor {
-    private let service: AddCarService
     private let setCarHandler = RequestHandler<CarSetResponse>()
     private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
     private let skipAddCarHandler = RequestHandler<SimpleResponse>()
+    private let service: AddCarService
 
     weak var view: AddCarViewInput?
 
@@ -145,10 +145,10 @@ final class AddCarInteractor {
                       isChecked: false)
 
         switch type {
-            case .register:
-                KeychainManager.set(Cars([car]))
-            case .update(let userProxy):
-                userProxy.addNew(car: car)
+        case .register:
+            KeychainManager.set(Cars([car]))
+        case .update(let userProxy):
+            userProxy.addNew(car: car)
         }
     }
 }
