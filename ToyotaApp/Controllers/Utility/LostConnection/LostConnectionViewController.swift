@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - ViewController
-final class LostConnectionViewController: InitialazableViewController {
+final class LostConnectionViewController: BaseViewController {
     private let logoView = UIImageView(image: .toyotaLogo)
     private let connectionTextView = UITextView()
     private let retryButton = CustomizableButton()

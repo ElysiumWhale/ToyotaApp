@@ -1,6 +1,6 @@
 import UIKit
 
-final class AddCarViewController: InitialazableViewController, Loadable {
+final class AddCarViewController: BaseViewController, Loadable {
 
     private let subtitleLabel = UILabel()
     private let fieldsStack = UIStackView()

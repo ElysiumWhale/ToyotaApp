@@ -1,6 +1,6 @@
 import UIKit
 
-final class EndRegistrationViewController: InitialazableViewController {
+final class EndRegistrationViewController: BaseViewController {
 
     private let logoImageView = UIImageView(image: .toyotaLogo)
     private let infoStack = UIStackView()

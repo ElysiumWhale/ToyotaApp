@@ -1,6 +1,6 @@
 import UIKit
 
-final class AuthViewController: InitialazableViewController, Loadable {
+final class AuthViewController: BaseViewController, Loadable {
     private let logo = UIImageView(image: .toyotaLogo)
 
     private let infoStack = UIStackView()

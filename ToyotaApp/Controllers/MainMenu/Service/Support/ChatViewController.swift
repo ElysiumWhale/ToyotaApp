@@ -1,6 +1,6 @@
 import UIKit
 
-final class ChatViewController: InitialazableViewController {
+final class ChatViewController: BaseViewController {
     private let stabLabel = UILabel()
     private let messageField = InputTextField()
     private let sendButton = CustomizableButton(type: .custom)
