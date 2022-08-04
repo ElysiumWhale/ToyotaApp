@@ -1,6 +1,6 @@
 import UIKit
 
-final class SettingsViewController: InitialazableViewController {
+final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField()
     private let changeNumberButton = CustomizableButton()

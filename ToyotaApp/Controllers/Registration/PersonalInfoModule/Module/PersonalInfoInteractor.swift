@@ -1,20 +1,13 @@
 import Foundation
 
 final class PersonalInfoInteractor: PersonalInfoViewOutput {
+    private let requestHandler = RequestHandler<CitiesResponse>()
+
     private var onSavePerson: Closure?
 
     let infoService: PersonalInfoService
     let presenter: PersonalInfoInteractorOutput
     let state: PersonalDataStoreState
-
-    private lazy var requestHandler =
-        RequestHandler<CitiesResponse>()
-            .observe(on: .main)
-            .bind { [weak self] response in
-                self?.handle(success: response)
-            } onFailure: { [weak self] error in
-                self?.presenter.personDidSet(response: .failure(response: error))
-            }
 
     init(output: PersonalInfoInteractorOutput,
          state: PersonalDataStoreState = .empty,
@@ -22,6 +15,8 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
         presenter = output
         infoService = service
         self.state = state
+
+        setupRequestHandlers()
     }
 
     func setPerson(request: PersonalInfoModels.SetPersonRequest) {
@@ -35,6 +30,16 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
         }
 
         infoService.setProfile(with: .from(request), handler: requestHandler)
+    }
+
+    private func setupRequestHandlers() {
+        requestHandler
+            .observe(on: .main)
+            .bind { [weak self] response in
+                self?.handle(success: response)
+            } onFailure: { [weak self] error in
+                self?.presenter.personDidSet(response: .failure(response: error))
+            }
     }
 
     private func handle(success response: CitiesResponse) {

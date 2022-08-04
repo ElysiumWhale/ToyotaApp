@@ -1,6 +1,6 @@
 import UIKit
 
-final class SmsCodeViewController: InitialazableViewController, Loadable {
+final class SmsCodeViewController: BaseViewController, Loadable {
     private let infoLabel = UILabel()
     private let phoneLabel = UILabel()
     private let codeTextField = InputTextField()

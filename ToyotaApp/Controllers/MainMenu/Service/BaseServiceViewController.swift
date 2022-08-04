@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: Controller
-class BaseServiceController: InitialazableViewController, IServiceController, Loadable {
+class BaseServiceController: BaseViewController, IServiceController, Loadable {
 
     // MARK: - View
     let loadingView = LoadingView()

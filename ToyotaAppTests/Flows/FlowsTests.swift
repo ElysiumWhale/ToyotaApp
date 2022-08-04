@@ -55,7 +55,7 @@ final class FlowsTests: XCTestCase {
 
     func testUtilsFlow() throws {
         let connection = UtilsFlow.connectionLostModule()
-        XCTAssertTrue(connection is ConnectionLostViewController)
+        XCTAssertTrue(connection is LostConnectionViewController)
 
         let agreement = UtilsFlow.agreementModule()
         XCTAssertTrue(agreement is AgreementViewController)

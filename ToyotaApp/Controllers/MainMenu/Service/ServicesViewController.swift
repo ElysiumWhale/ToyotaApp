@@ -6,7 +6,7 @@ private enum ServiceSections: Int {
 
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
-class ServicesViewController: InitialazableViewController, Refreshable {
+class ServicesViewController: BaseViewController, Refreshable {
     let showroomField = NoCopyPasteTexField()
     let refreshControl = UIRefreshControl()
 

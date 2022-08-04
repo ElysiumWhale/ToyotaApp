@@ -1,6 +1,6 @@
 import UIKit
 
-final class PersonalInfoView: InitialazableViewController,
+final class PersonalInfoView: BaseViewController,
                               Keyboardable,
                               Loadable {
 
