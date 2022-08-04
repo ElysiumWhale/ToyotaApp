@@ -37,8 +37,8 @@ extension Refreshable {
 
     func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak self] in
-            self?.refreshControl.stopRefreshing()
+                                      execute: { [weak refreshControl] in
+            refreshControl?.stopRefreshing()
         })
     }
 }
