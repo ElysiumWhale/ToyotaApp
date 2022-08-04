@@ -44,4 +44,12 @@ extension UIImage {
         UIImage(systemName: "arrow.up.square.fill",
                 withConfiguration: SymbolConfiguration(scale: .medium))!
     }
+
+    static var timeDone: UIImage {
+        UIImage(systemName: "clock.badge.checkmark.fill")!
+    }
+
+    static var timeAlert: UIImage {
+        UIImage(systemName: "clock.badge.exclamationmark.fill")!
+    }
 }

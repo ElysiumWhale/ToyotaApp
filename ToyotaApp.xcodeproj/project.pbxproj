@@ -56,7 +56,7 @@
 		1466B4A027FB91930026677B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466B49F27FB91930026677B /* BaseViewController.swift */; };
 		1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F78825D339DF00E318D3 /* UIExtensions.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
-		1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingTVC.swift */; };
+		1467F79A25DD73BC00E318D3 /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingCell.swift */; };
 		146CED0326B9EE8D00427A1F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 146CED0226B9EE8D00427A1F /* .swiftlint.yml */; };
 		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
 		1471C958284942B2000624FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C957284942B2000624FC /* AgreementViewController.swift */; };
@@ -115,6 +115,8 @@
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
 		A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */; };
+		A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F6289C1FC500FA46F0 /* StatusView.swift */; };
+		A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F8289C1FD000FA46F0 /* TimeView.swift */; };
 		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -192,7 +194,7 @@
 		1466B49F27FB91930026677B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
-		1467F79925DD73BC00E318D3 /* BookingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTVC.swift; sourceTree = "<group>"; };
+		1467F79925DD73BC00E318D3 /* BookingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCell.swift; sourceTree = "<group>"; };
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
 		1471C957284942B2000624FC /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,8 @@
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
 		A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionInteractor.swift; sourceTree = "<group>"; };
+		A763B0F6289C1FC500FA46F0 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		A763B0F8289C1FD000FA46F0 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -497,9 +501,9 @@
 		14E5A9CC26345B720057BEF3 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				A763B0F4289C1FA000FA46F0 /* Booking */,
 				1442F4D6280A25BC005636E0 /* BaseTableCell.swift */,
 				1495723E25B9FEE40031A5AA /* NewsTableCell.swift */,
-				1467F79925DD73BC00E318D3 /* BookingTVC.swift */,
 				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
 			);
 			path = TableCell;
@@ -629,6 +633,16 @@
 				A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */,
 			);
 			path = LostConnection;
+			sourceTree = "<group>";
+		};
+		A763B0F4289C1FA000FA46F0 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				1467F79925DD73BC00E318D3 /* BookingCell.swift */,
+				A763B0F6289C1FC500FA46F0 /* StatusView.swift */,
+				A763B0F8289C1FD000FA46F0 /* TimeView.swift */,
+			);
+			path = Booking;
 			sourceTree = "<group>";
 		};
 		A777750E259BF72A006D30EA /* Constants */ = {
@@ -959,13 +973,14 @@
 				14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */,
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,
 				14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */,
-				1467F79A25DD73BC00E318D3 /* BookingTVC.swift in Sources */,
+				1467F79A25DD73BC00E318D3 /* BookingCell.swift in Sources */,
 				141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */,
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCVC.swift in Sources */,
 				141A520727F0A18700E7B9B2 /* InfoService.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
+				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
 				1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
@@ -979,6 +994,7 @@
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
 				1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */,
 				143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */,
+				A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */,
 				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
