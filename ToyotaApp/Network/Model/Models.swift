@@ -178,6 +178,12 @@ struct Manager: Codable {
 
 // MARK: - Booking
 struct Booking: Codable {
+    enum BookingStatus: String, Codable {
+        case future = "0"
+        case cancelled = "1"
+        case done = "2"
+    }
+
     let bDate: String
     let cDate: String
     let startTime: String
