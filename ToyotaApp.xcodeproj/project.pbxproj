@@ -82,7 +82,7 @@
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C64D292793804C0023C850 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C64D282793804C0023C850 /* Validatable.swift */; };
-		14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */; };
+		14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* LostConnectionViewController.swift */; };
 		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
 		14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */; };
 		14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */; };
@@ -114,6 +114,7 @@
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
+		A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */; };
 		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -215,7 +216,7 @@
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C64D282793804C0023C850 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
-		14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostViewController.swift; sourceTree = "<group>"; };
+		14C7E65D26433B2A000B24B6 /* LostConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionViewController.swift; sourceTree = "<group>"; };
 		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
 		14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagerViewController.swift; sourceTree = "<group>"; };
 		14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
@@ -248,6 +249,7 @@
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
+		A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionInteractor.swift; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -325,7 +327,7 @@
 		14117EA8284EA7E9001585CD /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				14C7E65D26433B2A000B24B6 /* ConnectionLostViewController.swift */,
+				A763B0F2289C183300FA46F0 /* LostConnection */,
 				1471C957284942B2000624FC /* AgreementViewController.swift */,
 				14117EA9284EA86B001585CD /* SplashScreenViewController.swift */,
 			);
@@ -618,6 +620,15 @@
 				14920D6127A5DAB400B28D51 /* DateFormatting.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A763B0F2289C183300FA46F0 /* LostConnection */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E65D26433B2A000B24B6 /* LostConnectionViewController.swift */,
+				A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */,
+			);
+			path = LostConnection;
 			sourceTree = "<group>";
 		};
 		A777750E259BF72A006D30EA /* Constants */ = {
@@ -918,7 +929,7 @@
 				14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */,
 				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
 				141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */,
-				14C7E65E26433B2A000B24B6 /* ConnectionLostViewController.swift in Sources */,
+				14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
 				14C64D292793804C0023C850 /* Validatable.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
@@ -982,6 +993,7 @@
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
+				A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */,
 				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				143CF0A5266BDB2A00811FA3 /* UIProtocols.swift in Sources */,
