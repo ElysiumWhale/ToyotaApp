@@ -1,12 +1,13 @@
 import UIKit
 
-private enum EditingStates {
-    case none
-    case editing
-    case loading
-}
+final class MyProfileViewController: UIViewController {
 
-class MyProfileViewController: UIViewController {
+    private enum EditingStates {
+        case none
+        case editing
+        case loading
+    }
+
     // MARK: - UI properties
     @IBOutlet private var firstNameTextField: InputTextField!
     @IBOutlet private var secondNameTextField: InputTextField!
@@ -33,14 +34,20 @@ class MyProfileViewController: UIViewController {
         }
     }
 
-    private var profile: Person { user.person }
+    private var profile: Person {
+        user.person
+    }
 
     private var state: EditingStates = .none {
-        didSet { switchInterface(state) }
+        didSet {
+            switchInterface(state)
+        }
     }
 
     private var date: String = .empty {
-        didSet { view.endEditing(true) }
+        didSet {
+            view.endEditing(true)
+        }
     }
 
     private lazy var updateUserHandler: RequestHandler<SimpleResponse> = {
@@ -66,8 +73,10 @@ class MyProfileViewController: UIViewController {
         refreshFields()
 
         let constraints = getConstraints(for: state)
-        saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
-        cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
+        saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint,
+                                                     to: constraints.save)
+        cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint,
+                                                       to: constraints.cancel)
 
         for field in fields {
             field.rule = .personalInfo
@@ -77,9 +86,12 @@ class MyProfileViewController: UIViewController {
 
     @IBAction private func enterEditMode(sender: UIButton) {
         switch state {
-            case .none: state = .editing
-            case .loading: return
-            case .editing: updateUserInfo()
+        case .none:
+            state = .editing
+        case .loading:
+            return
+        case .editing:
+            updateUserInfo()
         }
     }
 
@@ -117,14 +129,15 @@ class MyProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         state = .none
         switch segue.code {
-            case .myProfileToCars, .myProfileToSettings:
-                let navVC = segue.destination as? UINavigationController
-                navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-                navVC?.setUserForChildren(user)
-            case .myManagersSegueCode:
-                let destinationVC = segue.destination as? WithUserInfo
-                destinationVC?.setUser(info: user)
-            default: return
+        case .myProfileToCars, .myProfileToSettings:
+            let navVC = segue.destination as? UINavigationController
+            navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
+            navVC?.setUserForChildren(user)
+        case .myManagersSegueCode:
+            let destinationVC = segue.destination as? WithUserInfo
+            destinationVC?.setUser(info: user)
+        default:
+            return
         }
     }
 
@@ -158,17 +171,25 @@ extension MyProfileViewController {
         cancelButton.isEnabled = isEditing
         let constraints = getConstraints(for: state)
 
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: { [self] in
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: { [self] in
             for field in fields {
                 field.isEnabled = isEditing
                 field.backgroundColor = isEditing ? .appTint(.secondaryGray) : .appTint(.background)
             }
-            saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint, to: constraints.save)
-            cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint, to: constraints.cancel)
+            saveLeadingConstraint = view.swapConstraints(from: saveLeadingConstraint,
+                                                         to: constraints.save)
+            cancelLeadingConstraint = view.swapConstraints(from: cancelLeadingConstraint,
+                                                           to: constraints.cancel)
             view.layoutIfNeeded()
 
             if state != .loading {
-                saveButton.setTitle(isEditing ? .common(.save) : .common(.edit), for: .normal)
+                saveButton.setTitle(isEditing
+                                        ? .common(.save)
+                                        : .common(.edit),
+                                    for: .normal)
             }
         })
 
