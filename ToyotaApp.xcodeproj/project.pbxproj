@@ -116,6 +116,7 @@
 		A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */; };
 		A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F6289C1FC500FA46F0 /* StatusView.swift */; };
 		A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F8289C1FD000FA46F0 /* TimeView.swift */; };
+		A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */; };
 		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -252,6 +253,7 @@
 		A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionInteractor.swift; sourceTree = "<group>"; };
 		A763B0F6289C1FC500FA46F0 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		A763B0F8289C1FD000FA46F0 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsInteractor.swift; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -642,6 +644,15 @@
 			path = Booking;
 			sourceTree = "<group>";
 		};
+		A763B0FA289C86A900FA46F0 /* BookingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
+				A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */,
+			);
+			path = BookingsModule;
+			sourceTree = "<group>";
+		};
 		A777750E259BF72A006D30EA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,11 +692,11 @@
 		A791FDD92524E18800A595BB /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				A763B0FA289C86A900FA46F0 /* BookingsModule */,
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 				14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */,
-				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -942,6 +953,7 @@
 				141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
+				A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */,
 				14C64D292793804C0023C850 /* Validatable.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
 				1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */,

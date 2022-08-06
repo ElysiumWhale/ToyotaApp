@@ -8,6 +8,13 @@ struct SimpleBrandBody: IBody, BodyWithBrandId {
 typealias GetCitiesBody = SimpleBrandBody
 typealias GetModelsAndColorsBody = SimpleBrandBody
 
+// MARK: - SimpleUserIdBody
+struct SimpleUserIdBody: IBody, BodyWithUserId {
+    let userId: String
+}
+
+typealias GetBookingsBody = SimpleUserIdBody
+
 // MARK: - CheckUserBody
 struct CheckUserBody: IBody, BodyWithUserAndBrandId {
     let userId: String

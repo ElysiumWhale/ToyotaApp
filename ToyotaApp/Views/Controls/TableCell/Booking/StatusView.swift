@@ -1,11 +1,32 @@
 import UIKit
 
-final class StatusView: UIView {
-    @IBOutlet private var statusLabel: UILabel!
-    @IBOutlet private var statusImage: UIImageView!
+final class StatusView: BaseView {
+    private let statusLabel = UILabel()
+    private let statusImage = UIImageView()
+
+    override func addViews() {
+        addSubviews(statusLabel, statusImage)
+    }
+
+    override func configureLayout() {
+        statusImage.leadingToSuperview(offset: 5)
+        statusLabel.trailingToSuperview(offset: 5)
+        statusImage.trailingToLeading(of: statusLabel, offset: -5)
+        statusLabel.topToSuperview()
+        statusLabel.bottomToSuperview(offset: -2)
+        statusImage.verticalToSuperview()
+    }
+
+    override func configureAppearance() {
+        layer.cornerRadius = 5
+        backgroundColor = .systemGroupedBackground
+
+        statusLabel.font = .toyotaType(.book, of: 14)
+        statusLabel.textColor = .appTint(.signatureGray)
+        statusImage.image = .statusCirle
+    }
 
     func configure(with booking: Booking) {
-        layer.cornerRadius = 5
         var bookingDate = booking.bookingDate
         let creationDate = booking.creationDate ?? Date()
 
@@ -25,8 +46,8 @@ final class StatusView: UIView {
         switch booking.status {
         case .future:
             return booking.date.inFuture(concreteTime: booking.bookingTime)
-            ? (.systemYellow, .common(.bookingInFuture))
-            : (.systemRed, .common(.bookingCancelled))
+                ? (.systemYellow, .common(.bookingInFuture))
+                : (.systemRed, .common(.bookingCancelled))
         case .cancelled:
             return (.systemRed, .common(.bookingCancelled))
         case .done:

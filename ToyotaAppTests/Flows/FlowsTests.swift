@@ -51,6 +51,9 @@ final class FlowsTests: XCTestCase {
 
         let news = MainMenuFlow.newsModule()
         XCTAssertTrue(news is NewsViewController)
+
+        let bookings = MainMenuFlow.bookingsModule()
+        XCTAssertTrue(bookings is BookingsViewController)
     }
 
     func testUtilsFlow() throws {

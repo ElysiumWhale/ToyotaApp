@@ -174,6 +174,8 @@ extension String {
         case vin = "VIN"
         /// Заполните информацию об автомобиле
         case fillAutoInfo = "Заполните информацию об автомобиле"
+        /// История обращений
+        case bookingsHistory = "История обращений"
     }
 
     enum QuestionStrings: String {

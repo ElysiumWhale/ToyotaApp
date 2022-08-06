@@ -5,7 +5,8 @@ protocol AuthService {
                        handler: RequestHandler<SimpleResponse>)
     func checkCode(with body: CheckSmsCodeBody,
                    handler: RequestHandler<CheckUserOrSmsCodeResponse>)
-    func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>)
+    func changePhone(with body: ChangePhoneBody,
+                     handler: RequestHandler<SimpleResponse>)
     func deleteTemporaryPhone(with body: DeletePhoneBody)
 }
 
@@ -15,14 +16,21 @@ protocol ReconnectionService {
 }
 
 protocol PersonalInfoService {
-    func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>)
+    func setProfile(with body: SetProfileBody,
+                    handler: RequestHandler<CitiesResponse>)
 }
 
 protocol AddCarService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>)
-    func skipSetCar(with body: SkipSetCarBody, handler: RequestHandler<SimpleResponse>)
+    func skipSetCar(with body: SkipSetCarBody,
+                    handler: RequestHandler<SimpleResponse>)
     func getModelsAndColors(with body: GetModelsAndColorsBody,
                             handler: RequestHandler<ModelsAndColorsResponse>)
+}
+
+protocol BookingsService {
+    func getBookings(with body: GetBookingsBody,
+                     handler: RequestHandler<BookingsResponse>)
 }
 
 final class InfoService {
@@ -160,6 +168,15 @@ extension InfoService: AddCarService {
     func getModelsAndColors(with body: GetModelsAndColorsBody, handler: RequestHandler<ModelsAndColorsResponse>) {
         perform(with: handler) {
             Request(page: .registration(.getModelsAndColors), body: body)
+        }
+    }
+}
+
+// MARK: - BookingsService
+extension InfoService: BookingsService {
+    func getBookings(with body: GetBookingsBody, handler: RequestHandler<BookingsResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.getBookings), body: body)
         }
     }
 }
