@@ -1,11 +1,31 @@
 import UIKit
 
-final class TimeView: UIView {
-    @IBOutlet private(set) var timeLabel: UILabel!
-    @IBOutlet private(set) var timeImage: UIImageView!
+final class TimeView: BaseView {
+    private let timeLabel = UILabel()
+    private let timeImage = UIImageView()
+
+    override func addViews() {
+        addSubviews(timeImage, timeLabel)
+    }
+
+    override func configureLayout() {
+        timeImage.leadingToSuperview(offset: 5)
+        timeLabel.trailingToSuperview(offset: 5)
+        timeImage.trailingToLeading(of: timeLabel, offset: -5)
+        timeLabel.topToSuperview()
+        timeLabel.bottomToSuperview(offset: -2)
+        timeImage.verticalToSuperview()
+    }
+
+    override func configureAppearance() {
+        layer.cornerRadius = 5
+        backgroundColor = .systemGroupedBackground
+
+        timeLabel.textColor = .appTint(.signatureGray)
+        timeLabel.font = .toyotaType(.regular, of: 16)
+    }
 
     func configure(with booking: Booking) {
-        layer.cornerRadius = 5
         if let text = booking.bookingTime?.hourAndMinute {
             timeLabel.text = text
             let (image, color) = timeAppearance(for: booking)
@@ -20,8 +40,8 @@ final class TimeView: UIView {
         switch booking.status {
         case .future:
             return booking.date.inFuture(concreteTime: booking.bookingTime)
-            ? (.timeAlert, .systemRed)
-            : (.timeDone, .systemGray)
+                ? (.timeAlert, .systemRed)
+                : (.timeDone, .systemGray)
         case .cancelled:
             return (.timeDone, .systemGray)
         case .done:
