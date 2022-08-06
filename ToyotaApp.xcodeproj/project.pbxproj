@@ -647,6 +647,7 @@
 		A763B0FA289C86A900FA46F0 /* BookingsModule */ = {
 			isa = PBXGroup;
 			children = (
+				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
 				A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */,
 			);
 			path = BookingsModule;
@@ -696,7 +697,6 @@
 				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 				14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */,
-				1467F79625DD726500E318D3 /* BookingsViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
