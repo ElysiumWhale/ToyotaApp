@@ -54,6 +54,9 @@ final class FlowsTests: XCTestCase {
 
         let bookings = MainMenuFlow.bookingsModule()
         XCTAssertTrue(bookings is BookingsViewController)
+
+        let settings = MainMenuFlow.settingsModule(user: .mock)
+        XCTAssertTrue(settings is SettingsViewController)
     }
 
     func testUtilsFlow() throws {

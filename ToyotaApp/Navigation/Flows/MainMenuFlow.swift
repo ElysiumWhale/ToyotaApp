@@ -36,6 +36,10 @@ enum MainMenuFlow {
         let vc = BookingsViewController(interactor: interactor)
         return vc
     }
+
+    static func settingsModule(user: UserProxy) -> UIViewController {
+        SettingsViewController(user: user)
+    }
 }
 
 // MARK: - Configurations

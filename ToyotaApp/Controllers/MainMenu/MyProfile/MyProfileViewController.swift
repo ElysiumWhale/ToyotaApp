@@ -99,8 +99,8 @@ class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func showSettings(sender: Any?) {
-        let vc = SettingsViewController(user: user).wrappedInNavigation
-        present(vc, animated: true)
+        let vc = MainMenuFlow.settingsModule(user: user).wrappedInNavigation
+        navigationController?.present(vc, animated: true)
     }
 
     @IBAction private func showBookings() {
