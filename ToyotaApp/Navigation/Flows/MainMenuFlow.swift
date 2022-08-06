@@ -30,6 +30,12 @@ enum MainMenuFlow {
         vc.hidesBottomBarWhenPushed = true
         return vc
     }
+
+    static func bookingsModule() -> UIViewController {
+        let interactor = BookingsInteractor()
+        let vc = BookingsViewController(interactor: interactor)
+        return vc
+    }
 }
 
 // MARK: - Configurations

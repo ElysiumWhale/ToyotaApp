@@ -103,6 +103,11 @@ class MyProfileViewController: UIViewController {
         present(vc, animated: true)
     }
 
+    @IBAction private func showBookings() {
+        let vc = MainMenuFlow.bookingsModule()
+        navigationController?.present(vc.wrappedInNavigation, animated: true)
+    }
+
     @objc private func dateDidSelect() {
         date = datePicker.date.asString(.server)
         birthTextField.text = datePicker.date.asString(.client)
