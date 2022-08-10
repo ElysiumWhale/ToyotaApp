@@ -8,7 +8,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
 
-    private(set) lazy var bookButton: CustomizableButton = {
+    let bookButton: CustomizableButton = {
         let button = CustomizableButton(type: .custom)
         button.normalColor = .appTint(.secondarySignatureRed)
         button.highlightedColor = .appTint(.dimmedSignatureRed)
@@ -16,19 +16,12 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         button.setTitle(.common(.book), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .toyotaType(.regular, of: 20)
-
-        button.addAction { [weak self] in
-            self?.bookService()
-        }
         button.alpha = 0
         return button
     }()
 
-    private lazy var carPickView: PickerModuleView = {
+    private let carPickView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configure(delegate: self,
-                                             with: #selector(carDidSelect),
-                                             for: internalView.textField)
         internalView.textField.placeholder = .common(.auto)
         internalView.textField.clipsToBounds = true
         internalView.serviceNameLabel.text = .common(.auto)
@@ -36,6 +29,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     }()
 
     // MARK: - Models
+    let bookingRequestHandler = DefaultRequestHandler()
     let serviceType: ServiceType
     private(set) var user: UserProxy?
     private(set) var modules: [IServiceModule] = []
@@ -54,15 +48,6 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         }
     }
 
-    private(set) lazy var bookingRequestHandler = DefaultRequestHandler()
-        .bind { [weak self] _ in
-            PopUp.display(.success(description: .common(.bookingSuccess))) {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        } onFailure: { error in
-            PopUp.display(.error(description: error.message ?? .error(.servicesError)))
-        }
-
     private var showroomItem: RequestItem {
         let showroomId = user?.selectedShowroom?.id
         return (.carInfo(.showroomId), showroomId)
@@ -74,18 +59,12 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         self.serviceType = service
 
         super.init()
+
+        setupRequestHandlers()
     }
 
     override func viewDidLoad() {
-        navigationItem.title = serviceType.serviceTypeName
-        configureNavBarAppearance()
-        view.backgroundColor = .systemBackground
-
-        view.addSubview(scrollView)
-        hideKeyboardWhenTappedAround()
-        setupScrollViewLayout()
-        scrollView.addSubview(stackView)
-        setupStackViewLayout()
+        super.viewDidLoad()
 
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
@@ -103,13 +82,35 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         start()
     }
 
-    @objc private func carDidSelect(sender: Any?) {
-        view.endEditing(true)
-        guard let cars = user?.cars.value, cars.isNotEmpty else {
-            return
-        }
+    override func addViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+    }
 
-        selectedCar = cars[carPickView.servicePicker.selectedRow]
+    override func configureLayout() {
+        setupScrollViewLayout()
+        setupStackViewLayout()
+    }
+
+    override func configureAppearance() {
+        configureNavBarAppearance()
+        view.backgroundColor = .systemBackground
+    }
+
+    override func localize() {
+        navigationItem.title = serviceType.serviceTypeName
+    }
+
+    override func configureActions() {
+        hideKeyboardWhenTappedAround()
+
+        carPickView.servicePicker.configure(delegate: self,
+                                            with: #selector(carDidSelect),
+                                            for: carPickView.textField)
+
+        bookButton.addAction { [weak self] in
+            self?.bookService()
+        }
     }
 
     func start() {
@@ -139,6 +140,17 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         NetworkService.makeRequest(page: .services(.bookService),
                                    params: params,
                                    handler: bookingRequestHandler)
+    }
+
+    func setupRequestHandlers() {
+        bookingRequestHandler
+            .bind { [weak self] _ in
+                PopUp.display(.success(description: .common(.bookingSuccess))) {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            } onFailure: { error in
+                PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+            }
     }
 
     // MARK: - Modules updates processing
@@ -185,6 +197,15 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         startLoading()
         nextModule.start(with: params)
         stackView.addArrangedSubview(nextModule.view)
+    }
+
+    @objc private func carDidSelect(sender: Any?) {
+        view.endEditing(true)
+        guard let cars = user?.cars.value, cars.isNotEmpty else {
+            return
+        }
+
+        selectedCar = cars[carPickView.servicePicker.selectedRow]
     }
 }
 
