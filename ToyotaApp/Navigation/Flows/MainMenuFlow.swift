@@ -43,8 +43,8 @@ enum MainMenuFlow {
 }
 
 // MARK: - Configurations
-extension MainMenuFlow {
-    private static var newsConfiguration: (UIViewController, TabConfiguration) {
+private extension MainMenuFlow {
+    static var newsConfiguration: (UIViewController, TabConfiguration) {
         let tabConfig = TabConfiguration(tabTitle: .common(.offers),
                                          image: .newspaper,
                                          selectedImage: .fillNewspaper,
@@ -52,7 +52,7 @@ extension MainMenuFlow {
         return (newsModule(), tabConfig)
     }
 
-    private static func servicesConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
+    static func servicesConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
         let tabConfig = TabConfiguration(tabTitle: .common(.services),
                                          image: .bookmark,
                                          selectedImage: .fillBookmark,
@@ -60,7 +60,7 @@ extension MainMenuFlow {
         return (servicesModule(with: user), tabConfig)
     }
 
-    private static func profileConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
+    static func profileConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
         let tabConfig = TabConfiguration(tabTitle: .common(.profile),
                                          image: .person,
                                          selectedImage: .fillPerson,
