@@ -12,8 +12,8 @@ final class PickerModuleView: BaseView {
         return label
     }()
 
-    let textField: NoPasteTextField = {
-        let field = NoPasteTextField()
+    let textField: NoCopyPasteTexField = {
+        let field = NoCopyPasteTexField()
         field.font = .toyotaType(.light, of: 22)
         field.textColor = .label
         field.textAlignment = .center
