@@ -2,13 +2,19 @@ import Foundation
 import SwiftSoup
 import WebKit
 
+protocol NewsParserService {
+    var parserDelegate: ParserDelegate? { get set }
+
+    func start(with showroomUrl: ShowroomsUrl)
+}
+
 protocol ParserDelegate: AnyObject {
     func newsDidLoad(_ news: [News])
     func errorDidReceive(_ error: Error)
 }
 
 /// Temporary class for parsing news from toyota showrooms
-final class HtmlParser: NSObject, WKNavigationDelegate {
+final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
     private let webView = WKWebView()
 
     private var url: ShowroomsUrl = .samaraAurora

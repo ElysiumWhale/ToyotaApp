@@ -17,7 +17,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         ShowroomsUrl(rawValue: selectedShowroom?.id) ?? .samaraAurora
     }
 
-    private lazy var parser = HtmlParser(delegate: self)
+    private lazy var parser: NewsParserService = HtmlParser(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
