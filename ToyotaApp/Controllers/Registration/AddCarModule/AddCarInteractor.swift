@@ -9,7 +9,7 @@ protocol AddCarViewInput: AnyObject {
 final class AddCarInteractor {
     private let setCarHandler = RequestHandler<CarSetResponse>()
     private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
-    private let skipAddCarHandler = RequestHandler<SimpleResponse>()
+    private let skipAddCarHandler = DefaultRequestHandler()
     private let service: AddCarService
 
     weak var view: AddCarViewInput?

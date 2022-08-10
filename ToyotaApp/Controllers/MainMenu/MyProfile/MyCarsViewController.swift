@@ -1,6 +1,6 @@
 import UIKit
 
-class MyCarsViewController: UIViewController, Loadable {
+final class MyCarsViewController: UIViewController, Loadable {
 
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
@@ -16,27 +16,23 @@ class MyCarsViewController: UIViewController, Loadable {
     private var cars: [Car] { user.cars.value }
     private var deleteCarClosure: Closure?
 
-    private lazy var citiesRequestHandler: RequestHandler<ModelsAndColorsResponse> = {
-        RequestHandler<ModelsAndColorsResponse>()
-            .observe(on: .main, mode: .onSuccess)
-            .bind { [weak self] response in
-                self?.handle(response)
-            } onFailure: { error in
-                PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
-            }
-    }()
+    private lazy var citiesRequestHandler = RequestHandler<ModelsAndColorsResponse>()
+        .observe(on: .main, mode: .onSuccess)
+        .bind { [weak self] response in
+            self?.handle(response)
+        } onFailure: { error in
+            PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
+        }
 
-    private lazy var removeCarHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .observe(on: .main)
-            .bind { [weak self] _ in
-                self?.deleteCarClosure?()
-                self?.stopLoading()
-            } onFailure: { [weak self] error in
-                self?.stopLoading()
-                PopUp.display(.error(description: error.message ?? .error(.requestError)))
-            }
-    }()
+    private lazy var removeCarHandler = DefaultRequestHandler()
+        .observe(on: .main)
+        .bind { [weak self] _ in
+            self?.deleteCarClosure?()
+            self?.stopLoading()
+        } onFailure: { [weak self] error in
+            self?.stopLoading()
+            PopUp.display(.error(description: error.message ?? .error(.requestError)))
+        }
 
     var isLoading: Bool = false
 

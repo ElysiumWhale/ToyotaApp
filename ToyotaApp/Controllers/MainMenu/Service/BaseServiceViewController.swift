@@ -54,16 +54,14 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         }
     }
 
-    private(set) lazy var bookingRequestHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .bind { [weak self] _ in
-                PopUp.display(.success(description: .common(.bookingSuccess))) {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            } onFailure: { error in
-                PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+    private(set) lazy var bookingRequestHandler = DefaultRequestHandler()
+        .bind { [weak self] _ in
+            PopUp.display(.success(description: .common(.bookingSuccess))) {
+                self?.navigationController?.popViewController(animated: true)
             }
-    }()
+        } onFailure: { error in
+            PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+        }
 
     private var showroomItem: RequestItem {
         let showroomId = user?.selectedShowroom?.id

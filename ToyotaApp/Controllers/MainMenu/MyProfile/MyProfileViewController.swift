@@ -50,16 +50,14 @@ final class MyProfileViewController: UIViewController {
         }
     }
 
-    private lazy var updateUserHandler: RequestHandler<SimpleResponse> = {
-        RequestHandler<SimpleResponse>()
-            .observe(on: .main)
-            .bind { [weak self] response in
-                self?.handle(success: response)
-            } onFailure: { [weak self] error in
-                PopUp.display(.error(description: error.message ?? .error(.savingError)))
-                self?.state = .editing
-            }
-    }()
+    private lazy var updateUserHandler = DefaultRequestHandler()
+        .observe(on: .main)
+        .bind { [weak self] response in
+            self?.handle(success: response)
+        } onFailure: { [weak self] error in
+            PopUp.display(.error(description: error.message ?? .error(.savingError)))
+            self?.state = .editing
+        }
 
     // MARK: - Methods
     override func viewDidLoad() {
