@@ -3,15 +3,6 @@ import UIKit
 /// Protocol for controllers which work with `UserProxy`
 protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
-    func subscribe(on proxy: UserProxy)
-    func unsubscribe(from proxy: UserProxy)
-    func userDidUpdate()
-}
-
-extension WithUserInfo {
-    func subscribe(on proxy: UserProxy) { }
-    func unsubscribe(from proxy: UserProxy) { }
-    func userDidUpdate() { }
 }
 
 // MARK: - Refreshable
@@ -46,8 +37,8 @@ extension Refreshable {
 
     func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak self] in
-            self?.refreshControl.stopRefreshing()
+                                      execute: { [weak refreshControl] in
+            refreshControl?.stopRefreshing()
         })
     }
 }
@@ -116,11 +107,12 @@ protocol Loadable: UIViewController {
 extension Loadable {
     func startLoading() {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let ref = self, ref.isLoading else {
                 return
             }
 
+            ref.loadingView.alpha = 0
             ref.view.addSubview(ref.loadingView)
             ref.loadingView.frame = ref.view.frame
             ref.loadingView.startAnimating()

@@ -5,7 +5,7 @@ private struct FreeTime {
     let freeTime: [DateComponents]
 }
 
-class TimePickerModule: NSObject, IServiceModule {
+final class TimePickerModule: NSObject, IServiceModule {
     var view: UIView { internalView }
 
     weak var delegate: ModuleDelegate?
@@ -29,7 +29,6 @@ class TimePickerModule: NSObject, IServiceModule {
     }()
 
     private var dates: [FreeTime] = []
-
     private var timeRows = (date: 0, time: 0)
 
     private var selectedDate: (date: String, time: String)? {
@@ -100,11 +99,14 @@ class TimePickerModule: NSObject, IServiceModule {
         prepareTime(from: response.freeTimeDict)
         internalView.dataDidDownload()
         DispatchQueue.main.async { [weak self] in
-            guard let module = self else { return }
-            module.timeRows.date = module.rowIn(component: 0)
-            module.timeRows.time = module.rowIn(component: 1)
-            module.state = .didChose(Service.empty)
+            self?.changeState()
         }
+    }
+
+    private func changeState() {
+        timeRows.date = rowIn(component: 0)
+        timeRows.time = rowIn(component: 1)
+        state = .didChose(Service.empty)
     }
 
     private func prepareTime(from timeDict: [String: [Int]]?) {
@@ -134,13 +136,18 @@ class TimePickerModule: NSObject, IServiceModule {
 
 // MARK: - UIPickerViewDataSource
 extension TimePickerModule: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int { 2 }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
-            case 0: return dates.count
-            case 1: return dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime.count : 0
-            default: return 0
+        case 0:
+            return dates.count
+        case 1:
+            return dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime.count : 0
+        default:
+            return 0
         }
     }
 }
@@ -161,11 +168,20 @@ extension TimePickerModule: UIPickerViewDelegate {
         pickerLabel.font = .toyotaType(.semibold, of: 20)
         pickerLabel.textColor = .label
         pickerLabel.textAlignment = .center
+
         switch component {
-            case 0: pickerLabel.text = dates.isNotEmpty ? dates[row].date.asString(.display) : .empty
-            case 1: pickerLabel.text = dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime[row].hourAndMinute : .empty
-            default: pickerLabel.text = .empty
+        case 0:
+            pickerLabel.text = dates.isNotEmpty
+                ? dates[row].date.asString(.display)
+                : .empty
+        case 1:
+            pickerLabel.text = dates.isNotEmpty
+                ? dates[rowIn(component: 0)].freeTime[row].hourAndMinute
+                : .empty
+        default:
+            pickerLabel.text = .empty
         }
+
         return pickerLabel
     }
 }

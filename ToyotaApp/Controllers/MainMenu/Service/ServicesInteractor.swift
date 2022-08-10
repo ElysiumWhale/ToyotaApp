@@ -8,10 +8,10 @@ protocol ServicesView: AnyObject {
     func didFailServiceTypes(with error: String)
 }
 
-class ServicesInteractor {
-    private let service: InfoService
+final class ServicesInteractor {
     private let servicesTypesHandler = RequestHandler<ServicesTypesResponse>()
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
+    private let service: InfoService
 
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
@@ -50,7 +50,8 @@ class ServicesInteractor {
 
     init(service: InfoService = .init()) {
         self.service = service
-        bindHandlers()
+
+        setupRequestHandlers()
     }
 
     func selectShowroom(for row: Int) {
@@ -89,7 +90,7 @@ class ServicesInteractor {
         selectedShowroom = showrooms.first
     }
 
-    private func bindHandlers() {
+    private func setupRequestHandlers() {
         servicesTypesHandler
             .observe(on: .main)
             .bind { [weak self] response in

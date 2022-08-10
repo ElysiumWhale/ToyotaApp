@@ -1,18 +1,36 @@
 import Foundation
 
 protocol AuthService {
-    func registerPhone(with body: RegsiterPhoneBody, handler: RequestHandler<SimpleResponse>)
-    func checkCode(with body: CheckSmsCodeBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
-    func changePhone(with body: ChangePhoneBody, handler: RequestHandler<SimpleResponse>)
+    func registerPhone(with body: RegsiterPhoneBody,
+                       handler: RequestHandler<SimpleResponse>)
+    func checkCode(with body: CheckSmsCodeBody,
+                   handler: RequestHandler<CheckUserOrSmsCodeResponse>)
+    func changePhone(with body: ChangePhoneBody,
+                     handler: RequestHandler<SimpleResponse>)
     func deleteTemporaryPhone(with body: DeletePhoneBody)
 }
 
 protocol ReconnectionService {
-    func checkUser(with body: CheckUserBody, handler: RequestHandler<CheckUserOrSmsCodeResponse>)
+    func checkUser(with body: CheckUserBody,
+                   handler: RequestHandler<CheckUserOrSmsCodeResponse>)
 }
 
 protocol PersonalInfoService {
-    func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>)
+    func setProfile(with body: SetProfileBody,
+                    handler: RequestHandler<CitiesResponse>)
+}
+
+protocol AddCarService {
+    func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>)
+    func skipSetCar(with body: SkipSetCarBody,
+                    handler: RequestHandler<SimpleResponse>)
+    func getModelsAndColors(with body: GetModelsAndColorsBody,
+                            handler: RequestHandler<ModelsAndColorsResponse>)
+}
+
+protocol BookingsService {
+    func getBookings(with body: GetBookingsBody,
+                     handler: RequestHandler<BookingsResponse>)
 }
 
 final class InfoService {
@@ -45,12 +63,6 @@ final class InfoService {
         }
     }
 
-    func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.setCar), body: body)
-        }
-    }
-
     func getServiceTypes(with body: GetServiceTypesBody, handler: RequestHandler<ServicesTypesResponse>) {
         perform(with: handler) {
             Request(page: .services(.getServicesTypes), body: body)
@@ -60,12 +72,6 @@ final class InfoService {
     func getServices(with body: GetServicesBody, handler: RequestHandler<ServicesResponse>) {
         perform(with: handler) {
             Request(page: .services(.getServices), body: body)
-        }
-    }
-
-    func getModelsAndColors(with body: GetModelsAndColorsBody, handler: RequestHandler<ModelsAndColorsResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.getModelsAndColors), body: body)
         }
     }
 
@@ -90,12 +96,6 @@ final class InfoService {
     func getFreeTime(with body: GetFreeTimeBody, handler: RequestHandler<FreeTimeResponse>) {
         perform(with: handler) {
             Request(page: .services(.getFreeTime), body: body)
-        }
-    }
-
-    func skipSetCar(with body: SkipSetCarBody, handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.checkVin), body: body)
         }
     }
 
@@ -147,6 +147,36 @@ extension InfoService: PersonalInfoService {
     func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>) {
         perform(with: handler) {
             Request(page: .registration(.setProfile), body: body)
+        }
+    }
+}
+
+// MARK: - AddCarService
+extension InfoService: AddCarService {
+    func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.setCar), body: body)
+        }
+    }
+
+    func skipSetCar(with body: SkipSetCarBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.checkVin), body: body)
+        }
+    }
+
+    func getModelsAndColors(with body: GetModelsAndColorsBody, handler: RequestHandler<ModelsAndColorsResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.getModelsAndColors), body: body)
+        }
+    }
+}
+
+// MARK: - BookingsService
+extension InfoService: BookingsService {
+    func getBookings(with body: GetBookingsBody, handler: RequestHandler<BookingsResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.getBookings), body: body)
         }
     }
 }

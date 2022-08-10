@@ -1,24 +1,8 @@
 import Foundation
 
-protocol CityPickerDelegate: AnyObject {
-    var cityPickButtonText: String { get }
-    var dismissAfterPick: Bool { get }
-
-    func cityDidSelect(_ city: City)
-}
-
-class CityPickerInteractor {
+final class CityPickerInteractor {
+    private let cityRequestHandler = RequestHandler<CitiesResponse>()
     private let service: InfoService
-
-    private lazy var cityRequestHandler = RequestHandler<CitiesResponse>()
-        .observe(on: .main)
-        .bind { [weak self] data in
-            self?.cities = data.cities
-            self?.view?.handleSuccess()
-        } onFailure: { [weak self] _ in
-            self?.cities = []
-            self?.view?.handleFailure()
-        }
 
     private(set) var cities: [City] = [] {
         didSet {
@@ -33,6 +17,8 @@ class CityPickerInteractor {
     init(cities: [City] = [], service: InfoService = .init()) {
         self.cities = cities
         self.service = service
+
+        setupRequestHandlers()
     }
 
     func selectCity(for row: Int) {
@@ -53,5 +39,17 @@ class CityPickerInteractor {
         }
 
         return DefaultsManager.push(info: selectedCity, for: .selectedCity)
+    }
+
+    private func setupRequestHandlers() {
+        cityRequestHandler
+            .observe(on: .main)
+            .bind { [weak self] data in
+                self?.cities = data.cities
+                self?.view?.handleSuccess()
+            } onFailure: { [weak self] _ in
+                self?.cities = []
+                self?.view?.handleFailure()
+            }
     }
 }

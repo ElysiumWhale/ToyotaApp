@@ -25,6 +25,9 @@ final class FlowsTests: XCTestCase {
         let addCarModule = RegisterFlow.addCarModule()
         XCTAssertTrue(addCarModule is AddCarViewController)
 
+        let endRegistrationModule = RegisterFlow.endRegistrationModule()
+        XCTAssertTrue(endRegistrationModule is EndRegistrationViewController)
+
         let entry = RegisterFlow.entryPoint(with: [personalModule,
                                                    cityModule,
                                                    addCarModule])
@@ -48,11 +51,17 @@ final class FlowsTests: XCTestCase {
 
         let news = MainMenuFlow.newsModule()
         XCTAssertTrue(news is NewsViewController)
+
+        let bookings = MainMenuFlow.bookingsModule()
+        XCTAssertTrue(bookings is BookingsViewController)
+
+        let settings = MainMenuFlow.settingsModule(user: .mock)
+        XCTAssertTrue(settings is SettingsViewController)
     }
 
     func testUtilsFlow() throws {
         let connection = UtilsFlow.connectionLostModule()
-        XCTAssertTrue(connection is ConnectionLostViewController)
+        XCTAssertTrue(connection is LostConnectionViewController)
 
         let agreement = UtilsFlow.agreementModule()
         XCTAssertTrue(agreement is AgreementViewController)

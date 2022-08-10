@@ -1,5 +1,7 @@
 import Foundation
 
+typealias DefaultRequestHandler = RequestHandler<SimpleResponse>
+
 class RequestHandler<T: Codable> {
     enum ObservationMode {
         case both

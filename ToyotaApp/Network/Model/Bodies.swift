@@ -8,6 +8,13 @@ struct SimpleBrandBody: IBody, BodyWithBrandId {
 typealias GetCitiesBody = SimpleBrandBody
 typealias GetModelsAndColorsBody = SimpleBrandBody
 
+// MARK: - SimpleUserIdBody
+struct SimpleUserIdBody: IBody, BodyWithUserId {
+    let userId: String
+}
+
+typealias GetBookingsBody = SimpleUserIdBody
+
 // MARK: - CheckUserBody
 struct CheckUserBody: IBody, BodyWithUserAndBrandId {
     let userId: String
@@ -202,6 +209,7 @@ struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
     let userId: String
     let showroomId: String
     let serviceId: String
+    let carId: String
     let dateBooking: String?
     let startBooking: String?
     let longitude: String?
@@ -212,6 +220,7 @@ struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
             userIdItem,
             showroomIdItem,
             .init(.services(.serviceId), serviceId),
+            .init(.carInfo(.carId), carId),
             .init(.services(.dateBooking), dateBooking),
             .init(.services(.startBooking), startBooking),
             .init(.services(.longitude), longitude),

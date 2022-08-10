@@ -1,6 +1,6 @@
 import UIKit
 
-final class SplashScreenViewController: InitialazableViewController {
+final class SplashScreenViewController: BaseViewController {
     private let logoView = UIImageView(image: .toyotaLogo)
     private let indicatorView = UIActivityIndicatorView(style: .large)
 

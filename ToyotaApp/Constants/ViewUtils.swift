@@ -1,20 +1,8 @@
 import Foundation
 
-/// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.changeNumber`.
-/// In **rest** cases it will return `true`.
 enum AuthType: Equatable {
     case register
-    case changeNumber(with: Notificator)
-
-    static func == (lhs: AuthType, rhs: AuthType) -> Bool {
-        if case register = lhs, case register = rhs {
-            return true
-        }
-        if case changeNumber = lhs, case changeNumber = rhs {
-            return true
-        }
-        return false
-    }
+    case changeNumber
 }
 
 /// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.update`.
@@ -36,32 +24,16 @@ enum AddInfoType: Equatable {
 
 // MARK: - Structs with view constants
 public enum AppStoryboards: String {
-    /// FirstLaunchRegistration
-    case register = "FirstLaunchRegistration"
     /// MyProfile
     case myProfile = "MyProfile"
 }
 
 enum ViewControllers: String {
-    /// AddingCarViewController
-    case addCar = "AddCarViewController"
-    /// CityPickerViewController
-    case cityPick = "CityPickerViewController"
     /// MyProfileViewController
     case myProfile = "MyProfileViewController"
 }
 
 public enum SegueIdentifiers: String {
-
-    // MARK: - Reg
-
-    /// CityToAddCar
-    case cityToAddCar = "CityToAddCar"
-    /// AddCarToEndRegistration
-    case addCarToEndRegistration = "AddCarToEndRegistration"
-
-    // MARK: - MyProfile
-
     /// MyProfileToCars
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings
@@ -104,15 +76,15 @@ public struct TimeMap {
 
     static let serverMap: [String: Int] = [
         "00:00": 0, "00:30": 1,
-        "1:00": 2, "1:30": 3,
-        "2:00": 4, "2:30": 5,
-        "3:00": 6, "3:30": 7,
-        "4:00": 8, "4:30": 9,
-        "5:00": 10, "5:30": 11,
-        "6:00": 12, "6:30": 13,
-        "7:00": 14, "7:30": 15,
-        "8:00": 16, "8:30": 17,
-        "9:00": 18, "9:30": 19,
+        "01:00": 2, "01:30": 3,
+        "02:00": 4, "02:30": 5,
+        "03:00": 6, "03:30": 7,
+        "04:00": 8, "04:30": 9,
+        "05:00": 10, "05:30": 11,
+        "06:00": 12, "06:30": 13,
+        "07:00": 14, "07:30": 15,
+        "08:00": 16, "08:30": 17,
+        "09:00": 18, "09:30": 19,
         "10:00": 20, "10:30": 21,
         "11:00": 22, "11:30": 23,
         "12:00": 24, "12:30": 25,

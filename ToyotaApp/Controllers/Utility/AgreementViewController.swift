@@ -1,6 +1,6 @@
 import UIKit
 
-final class AgreementViewController: InitialazableViewController {
+final class AgreementViewController: BaseViewController {
     private let textView = UITextView()
     private let doneItem = UIBarButtonItem()
 

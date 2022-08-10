@@ -40,4 +40,11 @@ extension Booking {
               carName: "Toyota RAV4", licensePlate: "А344РС163RUS", showroomName: "Mock Центр Самара Юг",
               serviceName: "Mock Mock Mock", postName: .empty)
     }
+
+    static var done: Booking {
+        .init(bDate: Date().asString(.server), cDate: .empty, startTime: "-1",
+              latitude: .empty, longitude: .empty, status: .done,
+              carName: .empty, licensePlate: .empty, showroomName: "Done Showroom",
+              serviceName: "Mock done", postName: .empty)
+    }
 }

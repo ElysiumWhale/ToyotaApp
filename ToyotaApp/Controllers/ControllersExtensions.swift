@@ -19,16 +19,11 @@ extension UIViewController {
 
 // MARK: - Navigation
 extension UIViewController {
-    func perform(segue: SegueIdentifiers) {
-        performSegue(withIdentifier: segue.rawValue, sender: self)
-    }
 
     @IBAction func customDismiss(sender: Any? = nil) {
         dismiss(animated: true)
     }
-}
 
-extension UIViewController {
     var wrappedInNavigation: UINavigationController {
         UINavigationController(rootViewController: self)
     }

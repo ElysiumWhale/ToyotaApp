@@ -176,23 +176,6 @@ extension UIStoryboard {
 
 // MARK: - Dequeue helpers
 extension UITableView {
-    enum TableCells: String {
-        /// BookingCell
-        case bookingCell = "BookingCell"
-        /// CityCell
-        case cityCell = "CityCell"
-    }
-
-    func dequeue<TCell: IdentifiableTableCell>(for indexPath: IndexPath) -> TCell {
-        let cell = dequeueReusableCell(withIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
-        if let result = cell {
-            return result
-        }
-
-        assertionFailure("Can't dequeue cell.")
-        return TCell()
-    }
-
     func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
         guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
                                              for: indexPath) as? TCell else {
@@ -311,6 +294,7 @@ extension UIStackView {
     }
 }
 
+// MARK: - Collection View Layouts
 extension UICollectionViewLayout {
     static var servicesLayout: UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),

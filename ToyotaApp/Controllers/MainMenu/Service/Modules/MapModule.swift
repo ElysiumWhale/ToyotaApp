@@ -1,12 +1,11 @@
 import UIKit
 import MapKit
 
-class MapModule: NSObject, IServiceModule {
+final class MapModule: NSObject, IServiceModule {
     var view: UIView { internalView }
 
     private lazy var internalView: MapModuleView = {
         let map = MapModuleView()
-        map.translatesAutoresizingMaskIntoConstraints = false
         map.alpha = 0
         map.map.delegate = self
         return map
@@ -71,9 +70,10 @@ class MapModule: NSObject, IServiceModule {
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
-                case .title(let title):
-                    internalView.label.text = title
-                default: return
+            case .title(let title):
+                internalView.label.text = title
+            default:
+                return
             }
         }
     }
@@ -86,10 +86,14 @@ extension MapModule: MKMapViewDelegate {
     }
 
     private func zoomToUserLocation(_ coordinate: CLLocationCoordinate2D) {
-        if !isInitiallyZoomedToUserLocation {
-            isInitiallyZoomedToUserLocation = true
-            let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
-            internalView.map.setRegion(viewRegion, animated: true)
+        guard !isInitiallyZoomedToUserLocation else {
+            return
         }
+
+        isInitiallyZoomedToUserLocation = true
+        let viewRegion = MKCoordinateRegion(center: coordinate,
+                                            latitudinalMeters: 300,
+                                            longitudinalMeters: 300)
+        internalView.map.setRegion(viewRegion, animated: true)
     }
 }

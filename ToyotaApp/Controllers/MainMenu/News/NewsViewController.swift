@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices
 
-final class NewsViewController: InitialazableViewController, Refreshable {
+final class NewsViewController: BaseViewController, Refreshable {
     let refreshableView: UITableView! = UITableView()
     let showroomField = NoCopyPasteTexField()
 
@@ -17,7 +17,7 @@ final class NewsViewController: InitialazableViewController, Refreshable {
         ShowroomsUrl(rawValue: selectedShowroom?.id) ?? .samaraAurora
     }
 
-    private lazy var parser = HtmlParser(delegate: self)
+    private lazy var parser: NewsParserService = HtmlParser(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()

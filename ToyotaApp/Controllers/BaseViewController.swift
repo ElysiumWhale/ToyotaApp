@@ -1,6 +1,6 @@
 import UIKit
 
-class InitialazableViewController: UIViewController, InitialazableView {
+class BaseViewController: UIViewController, InitialazableView {
 
     init() {
         super.init(nibName: nil, bundle: nil)

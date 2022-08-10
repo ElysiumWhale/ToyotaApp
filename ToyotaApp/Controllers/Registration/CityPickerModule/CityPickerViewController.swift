@@ -4,7 +4,7 @@ protocol CityPikerModule: UIViewController {
     var onCityPick: ParameterClosure<City>? { get set }
 }
 
-final class CityPickerViewController: InitialazableViewController,
+final class CityPickerViewController: BaseViewController,
                                       Refreshable,
                                       CityPikerModule {
 
