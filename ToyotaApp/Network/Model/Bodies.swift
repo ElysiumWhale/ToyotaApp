@@ -209,6 +209,7 @@ struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
     let userId: String
     let showroomId: String
     let serviceId: String
+    let carId: String
     let dateBooking: String?
     let startBooking: String?
     let longitude: String?
@@ -219,6 +220,7 @@ struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
             userIdItem,
             showroomIdItem,
             .init(.services(.serviceId), serviceId),
+            .init(.carInfo(.carId), carId),
             .init(.services(.dateBooking), dateBooking),
             .init(.services(.startBooking), startBooking),
             .init(.services(.longitude), longitude),
