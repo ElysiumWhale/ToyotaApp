@@ -25,7 +25,7 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
                                        lastName: request.secondName,
                                        secondName: request.lastName,
                                        email: request.email,
-                                       birthday: request.email))
+                                       birthday: request.date))
             self?.onSavePerson = nil
         }
 

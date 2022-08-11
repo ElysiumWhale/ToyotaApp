@@ -28,12 +28,12 @@ class MyManagerViewController: UIViewController {
     private func handle(_ response: ManagersResponse) {
         managers = response.managers
         #if DEBUG
-        if response.managers.isEmpty {
+        if managers.isEmpty {
             managers = Mocks.createManagers()
         }
         #endif
         managersCollection.reloadData()
-        if response.managers.isEmpty {
+        if managers.isEmpty {
             managersCollection.setBackground(text: .background(.noManagers))
         }
     }
@@ -41,24 +41,16 @@ class MyManagerViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 extension MyManagerViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         managers.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ManagerCollectionViewCell = collectionView.dequeue(for: indexPath)
         cell.configure(from: managers[indexPath.row])
         return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension MyManagerViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.alpha = 0
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.05 * Double(indexPath.row),
-                       animations: { cell.alpha = 1 })
     }
 }
 

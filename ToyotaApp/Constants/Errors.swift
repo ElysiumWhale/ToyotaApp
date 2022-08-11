@@ -8,10 +8,14 @@ enum NetworkErrors: String, Error {
 
     var message: String {
         switch self {
-            case .request: return AppErrors.requestError.rawValue
-            case .corruptedData: return AppErrors.serverBadResponse.rawValue
-            case .lostConnection: return AppErrors.connectionLost.rawValue
-            case .responseTimeout: return AppErrors.responseTimeout.rawValue
+        case .request:
+            return AppErrors.requestError.rawValue
+        case .corruptedData:
+            return AppErrors.serverBadResponse.rawValue
+        case .lostConnection:
+            return AppErrors.connectionLost.rawValue
+        case .responseTimeout:
+            return AppErrors.responseTimeout.rawValue
         }
     }
 }
