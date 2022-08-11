@@ -81,7 +81,8 @@ final class TimePickerModule: NSObject, IServiceModule {
     }
 
     func buildQueryItems() -> RequestItems {
-        guard let (date, time) = selectedDate, let value = TimeMap.serverMap[time] else {
+        guard let (date, time) = selectedDate,
+              let value = TimeMap.serverMap[time] else {
             return []
         }
 
