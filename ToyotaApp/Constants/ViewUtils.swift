@@ -38,13 +38,11 @@ public enum SegueIdentifiers: String {
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings
     case myProfileToSettings = "MyProfileToSettings"
-    /// MyProfileToBookings
-    case myProfileToBookings = "MyProfileToBookings"
     /// MyProfileToManagers
     case myManagersSegueCode = "MyProfileToManagers"
 }
 
-public struct TimeMap {
+public enum TimeMap {
     static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []
         for key in 18...38 {
