@@ -35,7 +35,7 @@ extension ValidationRule {
 
     static var notEmpty: ValidationRule {
         ValidationRule { text in
-            text != nil && text!.count > 0
+            text != nil && text!.isNotEmpty
         }
     }
 
