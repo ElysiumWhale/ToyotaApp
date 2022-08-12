@@ -10,7 +10,7 @@ class ServicesViewController: BaseViewController, Refreshable {
     let showroomField = NoCopyPasteTexField()
     let refreshControl = UIRefreshControl()
 
-    private(set) lazy var refreshableView: UICollectionView! = {
+    private(set) lazy var refreshableView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: .servicesLayout)
         collectionView.backgroundColor = .appTint(.blackBackground)

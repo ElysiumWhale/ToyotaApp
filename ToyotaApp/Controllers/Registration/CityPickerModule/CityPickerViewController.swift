@@ -13,7 +13,7 @@ final class CityPickerViewController: BaseViewController,
     private let subtitleLabel = UILabel()
     private let actionButton = CustomizableButton()
 
-    let refreshableView: UITableView! = UITableView(frame: .zero, style: .insetGrouped)
+    let refreshableView = UITableView(frame: .zero, style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
     var onCityPick: ParameterClosure<City>?

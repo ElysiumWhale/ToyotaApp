@@ -13,7 +13,7 @@ protocol Refreshable: UIViewController {
     associatedtype RefreshableView: UIScrollView
 
     var refreshControl: UIRefreshControl { get }
-    var refreshableView: RefreshableView! { get }
+    var refreshableView: RefreshableView { get }
 
     func configureRefresh()
     func startRefreshing()

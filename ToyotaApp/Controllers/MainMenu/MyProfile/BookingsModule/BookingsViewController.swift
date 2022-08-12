@@ -3,7 +3,7 @@ import UIKit
 final class BookingsViewController: BaseViewController, Refreshable, BookingsView {
     private let interactor: BookingsInteractor
 
-    let refreshableView: UITableView! = UITableView(frame: .zero, style: .insetGrouped)
+    let refreshableView = UITableView(frame: .zero, style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
     init(interactor: BookingsInteractor) {
