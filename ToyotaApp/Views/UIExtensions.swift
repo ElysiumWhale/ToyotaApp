@@ -67,7 +67,8 @@ extension UICollectionViewCell {
 
 // MARK: - Normal action adding to button
 extension UIControl {
-    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping Closure) {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside,
+                   _ closure: @escaping Closure) {
         addAction(UIAction { _ in closure() }, for: controlEvents)
     }
 }

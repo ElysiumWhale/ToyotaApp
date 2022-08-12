@@ -11,18 +11,19 @@ final class NavigationService: MainQueueRunnable {
 
     static func resolveNavigation(with context: CheckUserContext, fallbackCompletion: Closure) {
         switch context.state {
-            case .empty:
+        case .empty:
+            fallbackCompletion()
+        case .main(let user):
+            loadMain(from: user)
+        case .startRegister:
+            loadRegister(.firstPage)
+        case .register(let page, let user, let cities):
+            switch page {
+            case 2:
+                loadRegister(.secondPage(user.profile, cities))
+            default:
                 fallbackCompletion()
-            case .main(let user):
-                loadMain(from: user)
-            case .startRegister:
-                loadRegister(.firstPage)
-            case .register(let page, let user, let cities):
-                switch page {
-                    case 2:
-                        loadRegister(.secondPage(user.profile, cities))
-                    default: fallbackCompletion()
-                }
+            }
         }
     }
 
@@ -46,7 +47,8 @@ final class NavigationService: MainQueueRunnable {
         switch state {
         case .error(let message):
             PopUp.display(.error(description: message))
-        case .firstPage: break
+        case .firstPage:
+            break
         case .secondPage(let profile, let cities):
             let personalModule = RegisterFlow.personalModule(profile)
             let cityModule = RegisterFlow.cityModule(cities ?? [])
