@@ -104,6 +104,7 @@
 		14F519922777E39900FF695D /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F519912777E39900FF695D /* TintedImageButton.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
+		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
 		A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74999E42890A2ED00C6E027 /* EventNotificator.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
@@ -239,6 +240,7 @@
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
+		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
 		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
 		A74999E42890A2ED00C6E027 /* EventNotificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificator.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */,
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
 				14CF66A4267F6081000FCEAC /* ManagerCVC.swift */,
+				A728FAE028A66EA900326DA5 /* ManagerCell.swift */,
 			);
 			path = CollectionCell;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */,
 				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
+				A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
