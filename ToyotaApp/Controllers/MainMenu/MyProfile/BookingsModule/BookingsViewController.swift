@@ -3,8 +3,6 @@ import UIKit
 final class BookingsViewController: BaseViewController, Refreshable, BookingsView {
     private let interactor: BookingsInteractor
 
-    private let doneItem = UIBarButtonItem()
-
     let refreshableView: UITableView! = UITableView(frame: .zero, style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
@@ -24,9 +22,9 @@ final class BookingsViewController: BaseViewController, Refreshable, BookingsVie
     }
 
     override func addViews() {
+        addDismissRightButton()
         addSubviews(refreshableView)
         configureRefresh()
-        navigationItem.rightBarButtonItem = doneItem
         refreshableView.tableFooterView = UIView()
         refreshableView.registerCell(BookingCell.self)
     }
@@ -38,17 +36,10 @@ final class BookingsViewController: BaseViewController, Refreshable, BookingsVie
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
         refreshableView.allowsSelection = false
-
-        doneItem.tintColor = .appTint(.secondarySignatureRed)
     }
 
     override func localize() {
         navigationItem.title = .common(.bookingsHistory)
-        doneItem.title = .common(.done)
-    }
-
-    override func configureActions() {
-        doneItem.action = #selector(customDismiss)
     }
 
     func startRefreshing() {

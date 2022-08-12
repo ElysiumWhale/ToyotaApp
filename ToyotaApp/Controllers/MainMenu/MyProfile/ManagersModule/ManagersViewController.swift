@@ -22,11 +22,8 @@ final class ManagersViewController: BaseViewController {
 
     override func addViews() {
         addSubviews(managersCollection)
+        addDismissRightButton()
         managersCollection.registerCell(ManagerCell.self)
-        let buttonItem = UIBarButtonItem(title: .common(.done))
-        buttonItem.action = #selector(customDismiss)
-        buttonItem.tintColor = .appTint(.secondarySignatureRed)
-        navigationItem.rightBarButtonItem = buttonItem
     }
 
     override func configureLayout() {
