@@ -86,7 +86,6 @@
 		14C7E66926625AB0000B24B6 /* ManagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* ManagersViewController.swift */; };
 		14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */; };
 		14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD827E92AB300715A5D /* FlowsTests.swift */; };
-		14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF66A4267F6081000FCEAC /* ManagerCVC.swift */; };
 		14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CFEF0A2714E22C0034046C /* CustomizableButton.swift */; };
 		14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FF92753AC0C00546587 /* RequestPath.swift */; };
 		14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FFB2753AC1700546587 /* RequestKey.swift */; };
@@ -224,7 +223,6 @@
 		14C7E66826625AB0000B24B6 /* ManagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersViewController.swift; sourceTree = "<group>"; };
 		14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
 		14CB6AD827E92AB300715A5D /* FlowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowsTests.swift; sourceTree = "<group>"; };
-		14CF66A4267F6081000FCEAC /* ManagerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCVC.swift; sourceTree = "<group>"; };
 		14CFEF0A2714E22C0034046C /* CustomizableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableButton.swift; sourceTree = "<group>"; };
 		14D55FF92753AC0C00546587 /* RequestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPath.swift; sourceTree = "<group>"; };
 		14D55FFB2753AC1700546587 /* RequestKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestKey.swift; sourceTree = "<group>"; };
@@ -497,7 +495,6 @@
 				14EC744C27F8F98100AC6648 /* BaseCollectionCell.swift */,
 				A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */,
 				A7A72DC72554A5C500A44984 /* CarCVC.swift */,
-				14CF66A4267F6081000FCEAC /* ManagerCVC.swift */,
 				A728FAE028A66EA900326DA5 /* ManagerCell.swift */,
 			);
 			path = CollectionCell;
@@ -988,7 +985,6 @@
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */,
-				14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */,
 				140BA59627A6C310002A7423 /* AuthFlow.swift in Sources */,
 				14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */,
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
