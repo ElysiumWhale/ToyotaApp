@@ -5,6 +5,10 @@ extension UICollectionView {
     func setBackground(text: String?) {
         backgroundView = createBackground(labelText: text)
     }
+
+    func registerCell(_ cellClass: UICollectionViewCell.Type) {
+        register(cellClass, forCellWithReuseIdentifier: String(describing: cellClass))
+    }
 }
 
 // MARK: - UITableView set background text
@@ -195,6 +199,16 @@ extension UICollectionView {
         case manager = "ManagerCell"
     }
 
+    func dequeue<TCell: UICollectionViewCell>(for indexPath: IndexPath) -> TCell {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: TCell.self),
+                                             for: indexPath) as? TCell else {
+            assertionFailure("Can't dequeue cell.")
+            return TCell()
+        }
+
+        return cell
+    }
+
     func dequeue<TCell: IdentifiableCollectionCell>(for indexPath: IndexPath) -> TCell {
         let cell = dequeueReusableCell(withReuseIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
         if let result = cell {
@@ -305,6 +319,22 @@ extension UICollectionViewLayout {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .estimated(110))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
+
+        let section = NSCollectionLayoutSection(group: group)
+
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+
+    static var managersLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 10, leading: 8, bottom: 0, trailing: 8)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(320))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
 
         let section = NSCollectionLayoutSection(group: group)

@@ -176,6 +176,8 @@ extension String {
         case fillAutoInfo = "Заполните информацию об автомобиле"
         /// История обращений
         case bookingsHistory = "История обращений"
+        /// Список менджеров
+        case managersList = "Список менджеров"
     }
 
     enum QuestionStrings: String {
