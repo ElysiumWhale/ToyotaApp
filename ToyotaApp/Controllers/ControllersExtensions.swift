@@ -9,6 +9,7 @@ extension UIViewController {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         swipe.cancelsTouchesInView = false
         swipe.direction = [.up, .down, .left, .right]
+        tap.require(toFail: swipe)
         view.addGestureRecognizer(swipe)
     }
 
