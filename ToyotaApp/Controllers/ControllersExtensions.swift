@@ -27,6 +27,14 @@ extension UIViewController {
     var wrappedInNavigation: UINavigationController {
         UINavigationController(rootViewController: self)
     }
+
+    func addDismissRightButton(title: String = .common(.done),
+                               color: UIColor = .appTint(.secondarySignatureRed)) {
+        let buttonItem = UIBarButtonItem(title: title)
+        buttonItem.action = #selector(customDismiss)
+        buttonItem.tintColor = color
+        navigationItem.rightBarButtonItem = buttonItem
+    }
 }
 
 extension UIViewController {
