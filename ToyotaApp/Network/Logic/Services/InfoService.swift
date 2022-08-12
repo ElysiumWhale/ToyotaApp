@@ -33,6 +33,11 @@ protocol BookingsService {
                      handler: RequestHandler<BookingsResponse>)
 }
 
+protocol ManagersService {
+    func getManagers(with body: GetManagersBody,
+                     handler: RequestHandler<ManagersResponse>)
+}
+
 final class InfoService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
@@ -78,12 +83,6 @@ final class InfoService {
     func bookService(with body: BookServiceBody, handler: RequestHandler<SimpleResponse>) {
         perform(with: handler) {
             Request(page: .services(.bookService), body: body)
-        }
-    }
-
-    func getManagers(with body: GetManagersBody, handler: RequestHandler<ManagersResponse>) {
-        perform(with: handler) {
-            Request(page: .profile(.getManagers), body: body)
         }
     }
 
@@ -177,6 +176,15 @@ extension InfoService: BookingsService {
     func getBookings(with body: GetBookingsBody, handler: RequestHandler<BookingsResponse>) {
         perform(with: handler) {
             Request(page: .profile(.getBookings), body: body)
+        }
+    }
+}
+
+// MARK: - ManagersResponse
+extension InfoService: ManagersService {
+    func getManagers(with body: GetManagersBody, handler: RequestHandler<ManagersResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.getManagers), body: body)
         }
     }
 }
