@@ -83,7 +83,7 @@
 		14C64D292793804C0023C850 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C64D282793804C0023C850 /* Validatable.swift */; };
 		14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E65D26433B2A000B24B6 /* LostConnectionViewController.swift */; };
 		14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66426501770000B24B6 /* BaseServiceViewController.swift */; };
-		14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */; };
+		14C7E66926625AB0000B24B6 /* ManagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E66826625AB0000B24B6 /* ManagersViewController.swift */; };
 		14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */; };
 		14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD827E92AB300715A5D /* FlowsTests.swift */; };
 		14CF66A5267F6081000FCEAC /* ManagerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF66A4267F6081000FCEAC /* ManagerCVC.swift */; };
@@ -105,6 +105,7 @@
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
+		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
 		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
 		A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74999E42890A2ED00C6E027 /* EventNotificator.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
@@ -220,7 +221,7 @@
 		14C64D282793804C0023C850 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		14C7E65D26433B2A000B24B6 /* LostConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionViewController.swift; sourceTree = "<group>"; };
 		14C7E66426501770000B24B6 /* BaseServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceViewController.swift; sourceTree = "<group>"; };
-		14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagerViewController.swift; sourceTree = "<group>"; };
+		14C7E66826625AB0000B24B6 /* ManagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersViewController.swift; sourceTree = "<group>"; };
 		14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
 		14CB6AD827E92AB300715A5D /* FlowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowsTests.swift; sourceTree = "<group>"; };
 		14CF66A4267F6081000FCEAC /* ManagerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCVC.swift; sourceTree = "<group>"; };
@@ -241,6 +242,7 @@
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
+		A728FAE328A701D100326DA5 /* ManagersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersInteractor.swift; sourceTree = "<group>"; };
 		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
 		A74999E42890A2ED00C6E027 /* EventNotificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificator.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
@@ -541,6 +543,15 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		A728FAE228A701AD00326DA5 /* ManagersModule */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E66826625AB0000B24B6 /* ManagersViewController.swift */,
+				A728FAE328A701D100326DA5 /* ManagersInteractor.swift */,
+			);
+			path = ManagersModule;
+			sourceTree = "<group>";
+		};
 		A7346F6B287CDBC1007A7668 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,11 +706,11 @@
 		A791FDD92524E18800A595BB /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				A728FAE228A701AD00326DA5 /* ManagersModule */,
 				A763B0FA289C86A900FA46F0 /* BookingsModule */,
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
-				14C7E66826625AB0000B24B6 /* MyManagerViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -956,6 +967,7 @@
 				141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,
+				A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */,
 				A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */,
 				14C64D292793804C0023C850 /* Validatable.swift in Sources */,
 				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
@@ -965,7 +977,7 @@
 				A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */,
 				A75946A12523E80400312EBE /* AuthViewController.swift in Sources */,
 				1425230626FFBF8F00B177B7 /* Strings.swift in Sources */,
-				14C7E66926625AB0000B24B6 /* MyManagerViewController.swift in Sources */,
+				14C7E66926625AB0000B24B6 /* ManagersViewController.swift in Sources */,
 				14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */,
 				14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */,
 				1495723F25B9FEE40031A5AA /* NewsTableCell.swift in Sources */,
