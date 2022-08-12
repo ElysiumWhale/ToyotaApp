@@ -75,21 +75,10 @@ final class NavigationService: MainQueueRunnable {
         }
 
         switch UserInfo.build() {
-            case .failure:
-                loadRegister(.error(message: .error(.profileLoadError)))
-            case .success(let user):
-                switchRootView?(MainMenuFlow.entryPoint(for: user))
-        }
-    }
-}
-
-// MARK: - setUserForChildren
-extension UINavigationController {
-    func setUserForChildren(_ user: UserProxy) {
-        viewControllers.forEach { controller in
-            if let controllerWithUser = controller as? WithUserInfo {
-                controllerWithUser.setUser(info: user)
-            }
+        case .failure:
+            loadRegister(.error(message: .error(.profileLoadError)))
+        case .success(let user):
+            switchRootView?(MainMenuFlow.entryPoint(for: user))
         }
     }
 }

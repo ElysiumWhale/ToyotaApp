@@ -132,13 +132,10 @@ final class MyProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         state = .none
         switch segue.code {
-        case .myProfileToCars, .myProfileToSettings:
+        case .myProfileToCars:
             let navVC = segue.destination as? UINavigationController
             navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-            navVC?.setUserForChildren(user)
-        case .myManagersSegueCode:
-            let destinationVC = segue.destination as? WithUserInfo
-            destinationVC?.setUser(info: user)
+            (navVC?.topViewController as? WithUserInfo)?.setUser(info: user)
         default:
             return
         }
