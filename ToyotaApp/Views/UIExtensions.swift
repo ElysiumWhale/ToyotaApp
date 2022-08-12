@@ -5,6 +5,10 @@ extension UICollectionView {
     func setBackground(text: String?) {
         backgroundView = createBackground(labelText: text)
     }
+
+    func registerCell(_ cellClass: UICollectionViewCell.Type) {
+        register(cellClass, forCellWithReuseIdentifier: String(describing: cellClass))
+    }
 }
 
 // MARK: - UITableView set background text
@@ -193,6 +197,16 @@ extension UICollectionView {
         case car = "CarCell"
         /// ManagerCell
         case manager = "ManagerCell"
+    }
+
+    func dequeue<TCell: UICollectionViewCell>(for indexPath: IndexPath) -> TCell {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: TCell.self),
+                                             for: indexPath) as? TCell else {
+            assertionFailure("Can't dequeue cell.")
+            return TCell()
+        }
+
+        return cell
     }
 
     func dequeue<TCell: IdentifiableCollectionCell>(for indexPath: IndexPath) -> TCell {

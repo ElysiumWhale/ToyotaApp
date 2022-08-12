@@ -59,4 +59,9 @@ extension UIImage {
         UIImage(systemName: "circle.fill",
                 withConfiguration: UIImage.SymbolConfiguration(scale: .small))!
     }
+
+    static var personFill: UIImage {
+        UIImage(systemName: "person.fill",
+                withConfiguration: SymbolConfiguration(scale: .medium))!
+    }
 }
