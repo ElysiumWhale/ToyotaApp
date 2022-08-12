@@ -109,12 +109,17 @@ final class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func showSettings(sender: Any?) {
-        let vc = MainMenuFlow.settingsModule(user: user).wrappedInNavigation
-        navigationController?.present(vc, animated: true)
+        let vc = MainMenuFlow.settingsModule(user: user)
+        navigationController?.present(vc.wrappedInNavigation, animated: true)
     }
 
     @IBAction private func showBookings() {
         let vc = MainMenuFlow.bookingsModule()
+        navigationController?.present(vc.wrappedInNavigation, animated: true)
+    }
+
+    @IBAction private func showManagers() {
+        let vc = MainMenuFlow.managersModule(user: user)
         navigationController?.present(vc.wrappedInNavigation, animated: true)
     }
 
