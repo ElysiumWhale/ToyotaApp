@@ -38,8 +38,6 @@ public enum SegueIdentifiers: String {
     case myProfileToCars = "MyProfileToCars"
     /// MyProfileToSettings
     case myProfileToSettings = "MyProfileToSettings"
-    /// MyProfileToManagers
-    case myManagersSegueCode = "MyProfileToManagers"
 }
 
 public enum TimeMap {

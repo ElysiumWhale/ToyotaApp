@@ -195,8 +195,6 @@ extension UICollectionView {
     enum CollectionCells: String {
         /// CarCell
         case car = "CarCell"
-        /// ManagerCell
-        case manager = "ManagerCell"
     }
 
     func dequeue<TCell: UICollectionViewCell>(for indexPath: IndexPath) -> TCell {
