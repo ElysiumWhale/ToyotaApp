@@ -22,41 +22,44 @@ enum ControllerServiceType: String {
     case threePicksTimeMap = "14"
 }
 
-class ServiceModuleBuilder {
-    class func buildModule(serviceType: ServiceType,
-                           for controlType: ControllerServiceType,
-                           user: UserProxy) -> IServiceController {
+enum ServiceModuleBuilder {
+    static func buildModule(serviceType: ServiceType,
+                            for controlType: ControllerServiceType,
+                            user: UserProxy) -> IServiceController {
         var controller: IServiceController!
         let modules = buildModules(with: serviceType, for: controlType)
+
         switch serviceType.id {
-            case CustomServices.TestDrive: controller = TestDriveViewController(serviceType, modules, user)
-            default: controller = BaseServiceController(serviceType, modules, user)
+        case CustomServices.TestDrive:
+            controller = TestDriveViewController(serviceType, modules, user)
+        default:
+            controller = BaseServiceController(serviceType, modules, user)
         }
         modules.forEach { $0.delegate = controller }
         return controller
     }
 
-    class func buildModules(with serviceType: ServiceType,
-                            for controlType: ControllerServiceType) -> [IServiceModule] {
+    static func buildModules(with serviceType: ServiceType,
+                             for controlType: ControllerServiceType) -> [IServiceModule] {
         var modules: [IServiceModule] = []
         switch controlType {
             case .notDefined: break
             case .timepick:
                 modules.append(TimePickerModule(with: serviceType))
             case .map:
-                modules.append(MapModule(with: serviceType))
+                modules.append(MapModule())
             case .onePick:
                 modules.append(PickerModule(with: serviceType))
             case .onePickMap:
                 modules.append(PickerModule(with: serviceType))
-                modules.append(MapModule(with: serviceType))
+                modules.append(MapModule())
             case .onePickTime:
                 modules.append(PickerModule(with: serviceType))
                 modules.append(TimePickerModule(with: serviceType))
             case .onePickTimeMap:
                 modules.append(PickerModule(with: serviceType))
                 modules.append(TimePickerModule(with: serviceType))
-                modules.append(MapModule(with: serviceType))
+                modules.append(MapModule())
             case .threePicksTime:
                 modules.append(PickerModule(with: serviceType))
                 modules.append(PickerModule(with: serviceType))
