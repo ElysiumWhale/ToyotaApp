@@ -20,7 +20,7 @@ protocol PersonalInfoService {
                     handler: RequestHandler<CitiesResponse>)
 }
 
-protocol AddCarService {
+protocol CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>)
     func skipSetCar(with body: SkipSetCarBody,
                     handler: RequestHandler<SimpleResponse>)
@@ -152,7 +152,7 @@ extension InfoService: PersonalInfoService {
 }
 
 // MARK: - AddCarService
-extension InfoService: AddCarService {
+extension InfoService: CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>) {
         perform(with: handler) {
             Request(page: .registration(.setCar), body: body)

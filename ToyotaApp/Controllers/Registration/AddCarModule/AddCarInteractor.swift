@@ -10,7 +10,7 @@ final class AddCarInteractor {
     private let setCarHandler = RequestHandler<CarSetResponse>()
     private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
     private let skipAddCarHandler = DefaultRequestHandler()
-    private let service: AddCarService
+    private let service: CarsService
 
     weak var view: AddCarViewInput?
 
@@ -33,7 +33,7 @@ final class AddCarInteractor {
     init(type: AddInfoType = .register,
          models: [Model] = [],
          colors: [Color] = [],
-         service: AddCarService = InfoService()) {
+         service: CarsService = InfoService()) {
 
         self.type = type
         self.models = models
