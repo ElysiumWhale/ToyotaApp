@@ -20,12 +20,13 @@ protocol PersonalInfoService {
                     handler: RequestHandler<CitiesResponse>)
 }
 
-protocol AddCarService {
+protocol CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>)
     func skipSetCar(with body: SkipSetCarBody,
                     handler: RequestHandler<SimpleResponse>)
     func getModelsAndColors(with body: GetModelsAndColorsBody,
                             handler: RequestHandler<ModelsAndColorsResponse>)
+    func removeCar(with body: DeleteCarBody, handler: RequestHandler<SimpleResponse>)
 }
 
 protocol BookingsService {
@@ -151,10 +152,16 @@ extension InfoService: PersonalInfoService {
 }
 
 // MARK: - AddCarService
-extension InfoService: AddCarService {
+extension InfoService: CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>) {
         perform(with: handler) {
             Request(page: .registration(.setCar), body: body)
+        }
+    }
+
+    func removeCar(with body: DeleteCarBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.removeCar), body: body)
         }
     }
 

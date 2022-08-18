@@ -1,11 +1,14 @@
 import UIKit
 
 final class MyCarsViewController: UIViewController, Loadable {
+    private let carsService: CarsService = InfoService()
+    private let modelsAndColorsHandler = RequestHandler<ModelsAndColorsResponse>()
+    private let removeCarHandler = DefaultRequestHandler()
 
     @IBOutlet private(set) var carsCollection: UICollectionView!
     @IBOutlet var addShowroomButton: UIBarButtonItem!
 
-    private(set) lazy var loadingView = LoadingView()
+    let loadingView = LoadingView()
 
     private var user: UserProxy! {
         didSet {
@@ -16,41 +19,45 @@ final class MyCarsViewController: UIViewController, Loadable {
     private var cars: [Car] { user.cars.value }
     private var deleteCarClosure: Closure?
 
-    private lazy var citiesRequestHandler = RequestHandler<ModelsAndColorsResponse>()
-        .observe(on: .main, mode: .onSuccess)
-        .bind { [weak self] response in
-            self?.handle(response)
-        } onFailure: { error in
-            PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
-        }
-
-    private lazy var removeCarHandler = DefaultRequestHandler()
-        .observe(on: .main)
-        .bind { [weak self] _ in
-            self?.deleteCarClosure?()
-            self?.stopLoading()
-        } onFailure: { [weak self] error in
-            self?.stopLoading()
-            PopUp.display(.error(description: error.message ?? .error(.requestError)))
-        }
-
     var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupRequestHandlers()
         carsCollection.delaysContentTouches = false
         carsCollection.setBackground(text: cars.isEmpty ? .background(.noCars) : nil)
     }
 
     @IBAction func addCar(sender: Any?) {
         startLoading()
-        NetworkService.makeRequest(page: .registration(.getModelsAndColors),
-                                   params: [(.auth(.brandId), Brand.Toyota)],
-                                   handler: citiesRequestHandler)
+        carsService.getModelsAndColors(with: .init(brandId: Brand.Toyota),
+                                       handler: modelsAndColorsHandler)
     }
 
     @IBAction func doneDidPress(_ sender: Any) {
         dismiss(animated: true)
+    }
+
+    private func setupRequestHandlers() {
+        modelsAndColorsHandler
+            .observe(on: .main, mode: .onSuccess)
+            .bind { [weak self] response in
+                self?.handle(response)
+            } onFailure: { [weak self] error in
+                self?.stopLoading()
+                PopUp.display(.error(description: error.message ?? .error(.citiesLoadError)))
+            }
+
+        removeCarHandler
+            .observe(on: .main)
+            .bind { [weak self] _ in
+                self?.deleteCarClosure?()
+                self?.stopLoading()
+            } onFailure: { [weak self] error in
+                self?.stopLoading()
+                PopUp.display(.error(description: error.message ?? .error(.requestError)))
+            }
     }
 
     private func handle(_ response: ModelsAndColorsResponse) {
@@ -69,10 +76,8 @@ final class MyCarsViewController: UIViewController, Loadable {
 
         PopUp.display(.choise(description: .question(.removeCar))) { [self] in
             startLoading()
-            NetworkService.makeRequest(page: .profile(.removeCar),
-                                       params: [(.auth(.userId), user.id),
-                                                (.carInfo(.carId), id)],
-                                       handler: removeCarHandler)
+            carsService.removeCar(with: .init(userId: user.id, carId: id),
+                                  handler: removeCarHandler)
         }
     }
 }

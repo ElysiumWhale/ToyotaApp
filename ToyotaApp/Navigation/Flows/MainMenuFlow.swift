@@ -44,6 +44,12 @@ enum MainMenuFlow {
         let interactor = ManagersInteractor(user: user)
         return ManagersViewController(interactor: interactor)
     }
+
+    static func carsModule(user: UserProxy) -> UIViewController {
+        let vc: MyCarsViewController = UIStoryboard(.myProfile).instantiate(.myCars)
+        vc.setUser(info: user)
+        return vc
+    }
 }
 
 // MARK: - Configurations

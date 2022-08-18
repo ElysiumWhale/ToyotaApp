@@ -31,13 +31,8 @@ enum AppStoryboards: String {
 enum ViewControllers: String {
     /// MyProfileViewController
     case myProfile = "MyProfileViewController"
-}
-
-enum SegueIdentifiers: String {
-    /// MyProfileToCars
-    case myProfileToCars = "MyProfileToCars"
-    /// MyProfileToSettings
-    case myProfileToSettings = "MyProfileToSettings"
+    /// MyCarsViewController
+    case myCars = "MyCarsViewController"
 }
 
 enum TimeMap {

@@ -236,23 +236,6 @@ extension UICollectionView {
     }
 }
 
-// MARK: - SegueCode enum property
-extension UIStoryboardSegue {
-    var code: SegueIdentifiers? {
-        guard let id = identifier else {
-            assertionFailure("\nWarning: Segue code is empty\n")
-            return nil
-        }
-
-        guard let result = SegueIdentifiers(rawValue: id) else {
-            assertionFailure("Identifier \(id) is not mapped to storyboard segue!")
-            return nil
-        }
-
-        return result
-    }
-}
-
 // MARK: - City picking cell coniguration
 extension UIContentConfiguration where Self == UIListContentConfiguration {
     static func cellConfiguration(with text: String, isSelected: Bool) -> Self {
