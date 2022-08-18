@@ -71,7 +71,7 @@ enum AppErrors: String, Error {
 }
 
 // MARK: - ErrorResponse
-public struct ErrorResponse: Codable, Error {
+struct ErrorResponse: Codable, Error {
     let code: String
     let message: String?
 
