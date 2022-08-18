@@ -52,8 +52,8 @@ final class MyProfileViewController: UIViewController {
 
     private lazy var updateUserHandler = DefaultRequestHandler()
         .observe(on: .main)
-        .bind { [weak self] response in
-            self?.handle(success: response)
+        .bind { [weak self] _ in
+            self?.handlePersonUpdateSuccess()
         } onFailure: { [weak self] error in
             PopUp.display(.error(description: error.message ?? .error(.savingError)))
             self?.state = .editing
@@ -241,7 +241,7 @@ extension MyProfileViewController {
         InfoService().updateProfile(with: body, handler: updateUserHandler)
     }
 
-    private func handle(success response: SimpleResponse) {
+    private func handlePersonUpdateSuccess() {
         user.updatePerson(from: Person(firstName: firstNameTextField.inputText,
                                        lastName: lastNameTextField.inputText,
                                        secondName: secondNameTextField.inputText,

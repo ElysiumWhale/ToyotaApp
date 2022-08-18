@@ -235,10 +235,6 @@ extension Booking {
 /// Temporary struct
 struct News {
     let title: String
-    let content: String = .empty
-    let date: Date = Date()
-    let showroomId: String = .empty
-    let showroomName: String = .empty
     let imgUrl: URL?
     let url: URL?
 }

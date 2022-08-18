@@ -5,9 +5,6 @@ protocol WithUserInfo: AnyObject {
     func setUser(info: UserProxy)
 }
 
-// MARK: - Refreshable
-typealias RefreshableController = UIViewController & Refreshable
-
 /// Protocol for UIViewController with UIRefreshControl
 protocol Refreshable: UIViewController {
     associatedtype RefreshableView: UIScrollView
@@ -44,8 +41,6 @@ extension Refreshable {
 }
 
 // MARK: - Keyboard auto insets
-typealias KeyboardableController = UIViewController & Keyboardable
-
 protocol Keyboardable: UIViewController {
     associatedtype ScrollableView: UIScrollView
 
@@ -134,12 +129,6 @@ protocol MainQueueRunnable { }
 
 extension MainQueueRunnable {
     func dispatch(action: Closure?) {
-        DispatchQueue.main.async {
-            action?()
-        }
-    }
-
-    static func dispatch(action: Closure?) {
         DispatchQueue.main.async {
             action?()
         }

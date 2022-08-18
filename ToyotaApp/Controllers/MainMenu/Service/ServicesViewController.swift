@@ -30,8 +30,6 @@ class ServicesViewController: BaseViewController, Refreshable {
     private let interactor: ServicesInteractor
     private let user: UserProxy
 
-    private var carsCount: Int { user.cars.value.count }
-
     private var fieldHeight: CGFloat {
         showroomField.frame.height
     }

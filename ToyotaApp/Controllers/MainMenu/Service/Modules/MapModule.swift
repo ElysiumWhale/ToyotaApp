@@ -14,7 +14,6 @@ final class MapModule: NSObject, IServiceModule {
     private var locationManager: CLLocationManager!
     private var isInitiallyZoomedToUserLocation: Bool = false
 
-    private(set) var serviceType: ServiceType
     private(set) var state: ModuleStates = .idle {
         didSet {
             delegate?.moduleDidUpdate(self)
@@ -23,10 +22,6 @@ final class MapModule: NSObject, IServiceModule {
 
     weak var nextModule: IServiceModule?
     weak var delegate: ModuleDelegate?
-
-    init(with type: ServiceType) {
-        serviceType = type
-    }
 
     func start(with params: RequestItems) {
         if CLLocationManager.locationServicesEnabled() {

@@ -59,10 +59,6 @@ extension UIViewController {
 
 // MARK: - Adding subviews
 extension UIViewController {
-    func addSubview(_ view: UIView) {
-        view.addSubview(view)
-    }
-
     func addSubviews(_ views: UIView...) {
         view.addSubviews(views)
     }

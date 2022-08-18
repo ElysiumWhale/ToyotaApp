@@ -2,12 +2,13 @@ import Foundation
 
 protocol Validatable {
     var rule: ValidationRule? { get set }
+
     func validate(for rule: ValidationRule, toggleState: Bool) -> Bool
 }
 
 typealias ValidationClosure = (String?) -> Bool
 
-class ValidationRule {
+struct ValidationRule {
     let validationClouse: ValidationClosure
 
     func validate(text: String?) -> Bool {

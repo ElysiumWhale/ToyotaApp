@@ -164,7 +164,7 @@ extension UIColor {
 // MARK: - Sugar init and instatiate
 extension UIStoryboard {
     convenience init(_ identifier: AppStoryboards, bundle: Bundle = .main) {
-        self.init(name: identifier.rawValue, bundle: .main)
+        self.init(name: identifier.rawValue, bundle: bundle)
     }
 
     /// Causes **assertionFailure** when `ViewController` is not mapped to identifier

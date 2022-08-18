@@ -3,7 +3,6 @@ import Foundation
 extension String {
     static let empty = ""
     static let space = " "
-    static let newString = "\n"
 
     static func common(_ string: CommonStrings) -> String {
         string.rawValue
