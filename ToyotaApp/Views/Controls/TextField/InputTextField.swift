@@ -112,7 +112,7 @@ extension InputTextField {
     }
 }
 
-extension Sequence where Element == InputTextField {
+extension Sequence where Element: Validatable {
     func allSatisfy(rule: ValidationRule, toggleState: Bool = true) -> Bool {
         reduce(true, {
             $1.validate(for: rule, toggleState: toggleState) && $0
@@ -120,6 +120,12 @@ extension Sequence where Element == InputTextField {
     }
 
     var areValid: Bool {
-        reduce(true, { $1.isValid && $0 })
+        reduce(true, {
+            if let rule = $1.rule {
+                return $1.validate(for: rule, toggleState: true) && $0
+            } else {
+                return $0
+            }
+        })
     }
 }
