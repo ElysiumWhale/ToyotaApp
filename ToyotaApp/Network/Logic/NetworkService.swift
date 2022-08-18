@@ -120,10 +120,6 @@ class NetworkService {
         handler.start(with: task)
     }
 
-    class func makeRequest(page: RequestPath, params: RequestItems = .empty) {
-        session.dataTask(with: buildPostRequest(for: page.rawValue, with: params.asQueryItems)).resume()
-    }
-
     class func makeRequest(_ request: Request) {
         session.dataTask(with: buildPostRequest(for: request.page.rawValue,
                                                 with: request.body.asRequestItems)).resume()
