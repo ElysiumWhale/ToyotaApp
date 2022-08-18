@@ -123,6 +123,13 @@ final class MyProfileViewController: UIViewController {
         navigationController?.present(vc.wrappedInNavigation, animated: true)
     }
 
+    @IBAction private func showCars() {
+        let vc = MainMenuFlow.carsModule(user: user)
+        let navvc = vc.wrappedInNavigation
+        navvc.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+        navigationController?.present(navvc, animated: true)
+    }
+
     @objc private func dateDidSelect() {
         date = datePicker.date.asString(.server)
         birthTextField.text = datePicker.date.asString(.client)
