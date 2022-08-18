@@ -104,6 +104,19 @@ struct SetCarBody: IBody, BodyWithUserAndBrandId {
     }
 }
 
+// MARK: - DeleteCarBody
+struct DeleteCarBody: IBody, BodyWithUserId {
+    let userId: String
+    let carId: String
+
+    var asRequestItems: [URLQueryItem] {
+        [
+            userIdItem,
+            .init(.carInfo(.carId), carId)
+        ]
+    }
+}
+
 // MARK: - GetShowroomsBody
 typealias GetCarsForTestDriveBody = GetShowroomsBody
 
