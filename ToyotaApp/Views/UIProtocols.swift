@@ -28,12 +28,6 @@ extension InitialazableView {
     func configureActions() { }
 }
 
-enum Storyboards: String {
-    case main = "Main"
-    case launchScreen = "LaunchScreen"
-    case mainMenu = "MainMenu"
-}
-
 // MARK: - Identifiable cells
 typealias CollectionCell = IdentifiableCollectionCell & UICollectionViewCell
 
