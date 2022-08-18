@@ -339,7 +339,7 @@
         <!--Мои автомобили-->
         <scene sceneID="SdA-IS-he8">
             <objects>
-                <viewController id="8QR-Ub-LLe" customClass="MyCarsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyCarsViewController" id="8QR-Ub-LLe" customClass="MyCarsViewController" customModule="ToyotaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="clc-k9-V2r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

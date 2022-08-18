@@ -31,6 +31,8 @@ enum AppStoryboards: String {
 enum ViewControllers: String {
     /// MyProfileViewController
     case myProfile = "MyProfileViewController"
+    /// MyCarsViewController
+    case myCars = "MyCarsViewController"
 }
 
 enum SegueIdentifiers: String {
