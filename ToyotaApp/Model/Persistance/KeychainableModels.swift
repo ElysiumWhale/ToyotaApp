@@ -27,15 +27,6 @@ class Phone: Keychainable {
     }
 }
 
-class Showrooms: Keychainable {
-    static var key: KeychainKeys = .showrooms
-    var value: [Showroom]
-
-    init(_ showrooms: [Showroom]) {
-        value = showrooms
-    }
-}
-
 class Person: Keychainable {
     static var key: KeychainKeys = .person
 
