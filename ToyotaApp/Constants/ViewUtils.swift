@@ -35,13 +35,6 @@ enum ViewControllers: String {
     case myCars = "MyCarsViewController"
 }
 
-enum SegueIdentifiers: String {
-    /// MyProfileToCars
-    case myProfileToCars = "MyProfileToCars"
-    /// MyProfileToSettings
-    case myProfileToSettings = "MyProfileToSettings"
-}
-
 enum TimeMap {
     static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []

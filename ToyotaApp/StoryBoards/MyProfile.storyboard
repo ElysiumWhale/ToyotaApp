@@ -232,7 +232,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="q2j-LU-hLc" kind="presentation" identifier="MyProfileToCars" id="j5U-8y-gkd"/>
+                                            <action selector="showCars" destination="hHJ-oo-scE" eventType="touchUpInside" id="6Av-ra-07h"/>
                                         </connections>
                                     </button>
                                 </subviews>

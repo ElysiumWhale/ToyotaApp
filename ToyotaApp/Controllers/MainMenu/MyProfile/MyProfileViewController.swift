@@ -135,19 +135,6 @@ final class MyProfileViewController: UIViewController {
         birthTextField.text = datePicker.date.asString(.client)
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        state = .none
-        switch segue.code {
-        case .myProfileToCars:
-            let navVC = segue.destination as? UINavigationController
-            navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-            (navVC?.topViewController as? WithUserInfo)?.setUser(info: user)
-        default:
-            return
-        }
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
