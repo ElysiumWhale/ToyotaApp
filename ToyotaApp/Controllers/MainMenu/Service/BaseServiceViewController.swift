@@ -199,7 +199,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         stackView.addArrangedSubview(nextModule.view)
     }
 
-    @objc private func carDidSelect(sender: Any?) {
+    @objc private func carDidSelect() {
         view.endEditing(true)
         guard let cars = user?.cars.value, cars.isNotEmpty else {
             return
