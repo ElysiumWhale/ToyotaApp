@@ -15,11 +15,10 @@ protocol UserStorage {
 
     var selectedShowroom: Showroom? { get }
     var selectedCity: City? { get }
-
-    static func build() -> Result<UserProxy, AppErrors>
 }
 
-class UserInfo {
+final class UserInfo {
+    let notificator: EventNotificator
     let id: String
 
     private(set) var person: Person
@@ -29,7 +28,18 @@ class UserInfo {
         KeychainManager<Phone>.get()?.value ?? .empty
     }
 
-    fileprivate class func buildUser() -> Result<UserProxy, AppErrors> {
+    fileprivate init(_ userId: UserId,
+                     _ userPhone: Phone,
+                     _ personInfo: Person,
+                     _ carsInfo: Cars,
+                     notificator: EventNotificator = .shared) {
+        id = userId.value
+        person = personInfo
+        cars = carsInfo
+        self.notificator = notificator
+    }
+
+    static func build() -> Result<UserProxy, AppErrors> {
         guard let userId = KeychainManager<UserId>.get(),
               let phone = KeychainManager<Phone>.get(),
               let person = KeychainManager<Person>.get() else {
@@ -40,23 +50,10 @@ class UserInfo {
 
         return Result.success(UserInfo(userId, phone, person, cars))
     }
-
-    fileprivate init(_ userId: UserId,
-                     _ userPhone: Phone,
-                     _ personInfo: Person,
-                     _ carsInfo: Cars) {
-        id = userId.value
-        person = personInfo
-        cars = carsInfo
-    }
 }
 
 // MARK: - UserProxy
 extension UserInfo: UserProxy {
-    static func build() -> Result<UserProxy, AppErrors> {
-        buildUser()
-    }
-
     var selectedShowroom: Showroom? {
         DefaultsManager.retrieve(for: .selectedShowroom)
     }
@@ -68,7 +65,7 @@ extension UserInfo: UserProxy {
     func updatePerson(from person: Person) {
         self.person = person
         KeychainManager.set(person)
-        EventNotificator.shared.notify(with: .userUpdate)
+        notificator.notify(with: .userUpdate)
     }
 
     func addNew(car: Car) {
@@ -77,13 +74,13 @@ extension UserInfo: UserProxy {
             cars.defaultCar = car
         }
         KeychainManager.set(cars)
-        EventNotificator.shared.notify(with: .userUpdate)
+        notificator.notify(with: .userUpdate)
     }
 
     func updateSelected(car: Car) {
         cars.defaultCar = car
         KeychainManager.set(cars)
-        EventNotificator.shared.notify(with: .userUpdate)
+        notificator.notify(with: .userUpdate)
     }
 
     func removeCar(with id: String) {
@@ -93,7 +90,7 @@ extension UserInfo: UserProxy {
             updatedCars.defaultCar = updatedCars.value.first
         }
         KeychainManager.set(updatedCars)
-        EventNotificator.shared.notify(with: .userUpdate)
+        notificator.notify(with: .userUpdate)
     }
 }
 
