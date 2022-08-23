@@ -119,7 +119,7 @@
 		A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F6289C1FC500FA46F0 /* StatusView.swift */; };
 		A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F8289C1FD000FA46F0 /* TimeView.swift */; };
 		A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */; };
-		A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */; };
+		A775BB4E258E48ED00B8CA8A /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
@@ -259,7 +259,7 @@
 		A763B0F6289C1FC500FA46F0 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		A763B0F8289C1FD000FA46F0 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsInteractor.swift; sourceTree = "<group>"; };
-		A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsViewController.swift; sourceTree = "<group>"; };
+		A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
@@ -644,6 +644,7 @@
 		A760C6D528B0CF2A00984E44 /* CarsModule */ = {
 			isa = PBXGroup;
 			children = (
+				A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */,
 				A760C6D628B0CF6400984E44 /* CarsInteractor.swift */,
 			);
 			path = CarsModule;
@@ -720,7 +721,6 @@
 				A728FAE228A701AD00326DA5 /* ManagersModule */,
 				A763B0FA289C86A900FA46F0 /* BookingsModule */,
 				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
-				A775BB4D258E48ED00B8CA8A /* MyCarsViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 			);
 			path = MyProfile;
@@ -981,7 +981,7 @@
 				A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */,
 				A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */,
 				14C64D292793804C0023C850 /* Validatable.swift in Sources */,
-				A775BB4E258E48ED00B8CA8A /* MyCarsViewController.swift in Sources */,
+				A775BB4E258E48ED00B8CA8A /* CarsViewController.swift in Sources */,
 				1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */,
 				14AB8D612714C81A004D225F /* LoadingView.swift in Sources */,
 				A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */,
