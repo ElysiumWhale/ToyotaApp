@@ -27,10 +27,3 @@ extension InitialazableView {
 
     func configureActions() { }
 }
-
-// MARK: - Identifiable cells
-typealias CollectionCell = IdentifiableCollectionCell & UICollectionViewCell
-
-protocol IdentifiableCollectionCell: UICollectionViewCell {
-    static var identifier: UICollectionView.CollectionCells { get }
-}
