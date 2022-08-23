@@ -193,11 +193,6 @@ extension UITableView {
 }
 
 extension UICollectionView {
-    enum CollectionCells: String {
-        /// CarCell
-        case car = "CarCell"
-    }
-
     func dequeue<TCell: UICollectionViewCell>(for indexPath: IndexPath) -> TCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: TCell.self),
                                              for: indexPath) as? TCell else {
@@ -206,16 +201,6 @@ extension UICollectionView {
         }
 
         return cell
-    }
-
-    func dequeue<TCell: IdentifiableCollectionCell>(for indexPath: IndexPath) -> TCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: TCell.identifier.rawValue, for: indexPath) as? TCell
-        if let result = cell {
-            return result
-        }
-
-        assertionFailure("Can't dequeue cell.")
-        return TCell()
     }
 }
 
@@ -320,6 +305,25 @@ extension UICollectionViewLayout {
         group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
 
         let section = NSCollectionLayoutSection(group: group)
+
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+
+    static var carsLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .estimated(300))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(300))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = .init(top: 0,
+                                      leading: 10,
+                                      bottom: 0,
+                                      trailing: 10)
 
         return UICollectionViewCompositionalLayout(section: section)
     }
