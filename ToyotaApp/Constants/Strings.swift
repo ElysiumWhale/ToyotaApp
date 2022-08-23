@@ -177,6 +177,10 @@ extension String {
         case bookingsHistory = "История обращений"
         /// Список менджеров
         case managersList = "Список менджеров"
+        /// Добавить
+        case add = "Добавить"
+        /// Мои автомобили
+        case myCars = "Мои автомобили"
     }
 
     enum QuestionStrings: String {

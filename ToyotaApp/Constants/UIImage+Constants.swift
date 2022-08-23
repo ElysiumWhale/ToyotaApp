@@ -64,4 +64,9 @@ extension UIImage {
         UIImage(systemName: "person.fill",
                 withConfiguration: SymbolConfiguration(scale: .medium))!
     }
+
+    static var trashFill: UIImage {
+        UIImage(systemName: "trash.fill",
+                withConfiguration: SymbolConfiguration(scale: .large))!
+    }
 }
