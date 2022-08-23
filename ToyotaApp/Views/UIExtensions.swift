@@ -323,4 +323,23 @@ extension UICollectionViewLayout {
 
         return UICollectionViewCompositionalLayout(section: section)
     }
+
+    static var carsLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .estimated(300))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(300))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = .init(top: 0,
+                                      leading: 10,
+                                      bottom: 0,
+                                      trailing: 10)
+
+        return UICollectionViewCompositionalLayout(section: section)
+    }
 }
