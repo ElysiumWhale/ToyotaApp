@@ -8,7 +8,7 @@ protocol AddCarViewInput: AnyObject {
 
 final class AddCarInteractor {
     private let setCarHandler = RequestHandler<CarSetResponse>()
-    private let loadModelsHandler = RequestHandler<ModelsAndColorsResponse>()
+    private let modelsAndColorsHandler = RequestHandler<ModelsAndColorsResponse>()
     private let skipAddCarHandler = DefaultRequestHandler()
     private let service: CarsService
 
@@ -92,7 +92,8 @@ final class AddCarInteractor {
     }
 
     func loadModelsAndColors() {
-        service.getModelsAndColors(with: .init(brandId: Brand.Toyota), handler: loadModelsHandler)
+        service.getModelsAndColors(with: .init(brandId: Brand.Toyota),
+                                   handler: modelsAndColorsHandler)
     }
 
     // MARK: - Private methods
@@ -106,7 +107,7 @@ final class AddCarInteractor {
                 self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
             }
 
-        loadModelsHandler
+        modelsAndColorsHandler
             .observe(on: .main)
             .bind { [weak self] data in
                 self?.models = data.models
