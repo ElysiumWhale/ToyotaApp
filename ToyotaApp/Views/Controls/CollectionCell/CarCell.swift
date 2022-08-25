@@ -75,6 +75,8 @@ final class CarCell: BaseCollectionCell {
         removeButton.highlightedTintColor = .appTint(.secondarySignatureRed)
 
         checkStatusLabel.font = .toyotaType(.semibold, of: 16)
+        // Future
+        checkStatusLabel.isHidden = true
 
         layer.cornerRadius = 20
         layer.borderColor = UIColor.appTint(.signatureGray).cgColor

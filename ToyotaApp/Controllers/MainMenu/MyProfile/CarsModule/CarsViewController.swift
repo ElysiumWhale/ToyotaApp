@@ -42,6 +42,7 @@ final class CarsViewController: BaseViewController, Loadable {
 
     override func localize() {
         navigationItem.title = .common(.myCars)
+        navigationItem.backButtonTitle = .empty
     }
 
     override func configureActions() {
