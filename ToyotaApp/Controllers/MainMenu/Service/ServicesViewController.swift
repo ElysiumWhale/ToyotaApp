@@ -82,7 +82,7 @@ class ServicesViewController: BaseViewController, Refreshable {
 
     override func localize() {
         showroomField.placeholder = .common(.showroom)
-        navigationItem.backButtonTitle = .common(.services)
+        navigationItem.backButtonTitle = .empty
     }
 
     override func configureAppearance() {

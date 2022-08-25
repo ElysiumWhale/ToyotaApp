@@ -1,6 +1,11 @@
 import UIKit
 
-class LoadingView: UIView {
+protocol ILoadingView: UIView {
+    func startAnimating()
+    func stopAnimating()
+}
+
+class LoadingView: UIView, ILoadingView {
 
     private(set) var indicator = UIActivityIndicatorView(style: .large)
 

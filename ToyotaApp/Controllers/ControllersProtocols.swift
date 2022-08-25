@@ -1,10 +1,5 @@
 import UIKit
 
-/// Protocol for controllers which work with `UserProxy`
-protocol WithUserInfo: AnyObject {
-    func setUser(info: UserProxy)
-}
-
 /// Protocol for UIViewController with UIRefreshControl
 protocol Refreshable: UIViewController {
     associatedtype RefreshableView: UIScrollView
@@ -92,7 +87,9 @@ extension Keyboardable {
 
 /// Default loading view with indicator handling
 protocol Loadable: UIViewController {
-    var loadingView: LoadingView { get }
+    associatedtype TLoadingView: ILoadingView
+
+    var loadingView: TLoadingView { get }
     var isLoading: Bool { get set }
 
     func startLoading()
