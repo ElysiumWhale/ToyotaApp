@@ -87,7 +87,9 @@ extension Keyboardable {
 
 /// Default loading view with indicator handling
 protocol Loadable: UIViewController {
-    var loadingView: LoadingView { get }
+    associatedtype TLoadingView: ILoadingView
+
+    var loadingView: TLoadingView { get }
     var isLoading: Bool { get set }
 
     func startLoading()
