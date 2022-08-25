@@ -2,8 +2,7 @@ import UIKit
 
 final class CarsViewController: BaseViewController, Loadable {
     private let interactor: CarsInteractor
-    private let carsCollection = UICollectionView(frame: .zero,
-                                                  collectionViewLayout: .carsLayout)
+    private let carsCollection = UICollectionView(layout: .carsLayout)
 
     let loadingView = LoadingView()
 

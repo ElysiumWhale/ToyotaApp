@@ -1,8 +1,7 @@
 import UIKit
 
 final class ManagersViewController: BaseViewController {
-    private let managersCollection = UICollectionView(frame: .zero,
-                                                      collectionViewLayout: .managersLayout)
+    private let managersCollection = UICollectionView(layout: .managersLayout)
 
     private let interactor: ManagersInteractor
 

@@ -11,8 +11,7 @@ class ServicesViewController: BaseViewController, Refreshable {
     let refreshControl = UIRefreshControl()
 
     private(set) lazy var refreshableView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: .servicesLayout)
+        let collectionView = UICollectionView(layout: .servicesLayout)
         collectionView.backgroundColor = .appTint(.blackBackground)
         collectionView.delegate = self
         return collectionView

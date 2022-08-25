@@ -275,6 +275,12 @@ extension UIStackView {
     }
 }
 
+extension UICollectionView {
+    convenience init(layout: UICollectionViewLayout) {
+        self.init(frame: .zero, collectionViewLayout: layout)
+    }
+}
+
 // MARK: - Collection View Layouts
 extension UICollectionViewLayout {
     static var servicesLayout: UICollectionViewCompositionalLayout {
