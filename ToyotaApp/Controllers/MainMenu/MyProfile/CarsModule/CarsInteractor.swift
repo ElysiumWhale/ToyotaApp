@@ -5,6 +5,8 @@ final class CarsInteractor {
     private let modelsAndColorsHandler = RequestHandler<ModelsAndColorsResponse>()
     private let removeCarHandler = DefaultRequestHandler()
 
+    private var removingCarId: String?
+
     let user: UserProxy
 
     var onModelsAndColorsLoad: ParameterClosure<ModelsAndColorsResponse>?
@@ -28,13 +30,14 @@ final class CarsInteractor {
     }
 
     func removeCar(with id: String) {
+        removingCarId = id
         carsService.removeCar(with: .init(userId: user.id, carId: id),
                               handler: removeCarHandler)
     }
 
     private func setupRequestHandlers() {
         modelsAndColorsHandler
-            .observe(on: .main, mode: .onSuccess)
+            .observe(on: .main)
             .bind { [weak self] response in
                 self?.onModelsAndColorsLoad?(response)
             } onFailure: { [weak self] error in
@@ -44,9 +47,20 @@ final class CarsInteractor {
         removeCarHandler
             .observe(on: .main)
             .bind { [weak self] _ in
+                self?.removeCarIfNeeded()
                 self?.onRemoveCar?()
             } onFailure: { [weak self] error in
                 self?.onRequestError?(error.message ?? .error(.citiesLoadError))
+                self?.removingCarId = nil
             }
+    }
+
+    private func removeCarIfNeeded() {
+        guard let id = removingCarId else {
+            return
+        }
+
+        user.removeCar(with: id)
+        removingCarId = nil
     }
 }
