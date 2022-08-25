@@ -82,6 +82,10 @@ final class MyProfileViewController: UIViewController {
         fields.append(birthTextField)
     }
 
+    func setUser(info: UserProxy) {
+        user = info
+    }
+
     @IBAction private func enterEditMode(sender: UIButton) {
         switch state {
         case .none:
@@ -243,13 +247,6 @@ extension MyProfileViewController {
                                        birthday: date))
         PopUp.display(.success(description: .common(.personalDataSaved)))
         state = .none
-    }
-}
-
-// MARK: - WithUserInfo
-extension MyProfileViewController: WithUserInfo {
-    func setUser(info: UserProxy) {
-        user = info
     }
 }
 
