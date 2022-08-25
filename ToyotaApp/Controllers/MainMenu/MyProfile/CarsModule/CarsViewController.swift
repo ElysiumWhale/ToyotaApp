@@ -38,6 +38,8 @@ final class CarsViewController: BaseViewController, Loadable {
         view.backgroundColor = .systemGroupedBackground
         carsCollection.backgroundColor = .systemGroupedBackground
         carsCollection.showsVerticalScrollIndicator = false
+
+        carsCollection.setBackground(text: interactor.cars.isEmpty ? .background(.noCars) : nil)
     }
 
     override func localize() {
@@ -46,6 +48,8 @@ final class CarsViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
+        EventNotificator.shared.add(self, for: .userUpdate)
+
         interactor.onRemoveCar = { [weak self] in
             self?.stopLoading()
         }
