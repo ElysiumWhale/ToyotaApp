@@ -14,7 +14,11 @@ final class CarsInteractor {
     var onRequestError: ParameterClosure<String>?
 
     var cars: [Car] {
+        #if DEBUG
+        user.cars.value + Mocks.createCars()
+        #else
         user.cars.value
+        #endif
     }
 
     init(carsService: CarsService = InfoService(), user: UserProxy) {
