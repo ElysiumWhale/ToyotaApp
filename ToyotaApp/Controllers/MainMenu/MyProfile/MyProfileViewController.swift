@@ -86,7 +86,7 @@ final class MyProfileViewController: UIViewController {
         user = info
     }
 
-    @IBAction private func enterEditMode(sender: UIButton) {
+    @IBAction private func enterEditMode() {
         switch state {
         case .none:
             state = .editing
@@ -97,12 +97,12 @@ final class MyProfileViewController: UIViewController {
         }
     }
 
-    @IBAction private func cancelEdit(sender: UIButton) {
+    @IBAction private func cancelEdit() {
         refreshFields()
         state = .none
     }
 
-    @IBAction private func logout(sender: Any?) {
+    @IBAction private func logout() {
         PopUp.displayChoice(with: .common(.actionConfirmation),
                             description: .question(.quit),
                             confirmText: .common(.yes), declineText: .common(.no)) {
@@ -112,7 +112,7 @@ final class MyProfileViewController: UIViewController {
         }
     }
 
-    @IBAction private func showSettings(sender: Any?) {
+    @IBAction private func showSettings() {
         let vc = MainMenuFlow.settingsModule(user: user)
         navigationController?.present(vc.wrappedInNavigation, animated: true)
     }

@@ -73,7 +73,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="cancelEditWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="9Au-5O-NeZ"/>
+                                    <action selector="cancelEdit" destination="hHJ-oo-scE" eventType="touchUpInside" id="Ttk-gQ-gw1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLN-ma-9CJ" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
@@ -103,7 +103,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="enterEditModeWithSender:" destination="hHJ-oo-scE" eventType="touchUpInside" id="2ME-N3-GXH"/>
+                                    <action selector="enterEditMode" destination="hHJ-oo-scE" eventType="touchUpInside" id="2M3-J6-fxk"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-o0-Pts">
@@ -202,7 +202,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="showBookings" destination="hHJ-oo-scE" eventType="touchUpInside" id="t0l-hO-ApM"/>
+                                            <action selector="showBookings" destination="hHJ-oo-scE" eventType="touchUpInside" id="B54-WE-Myw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpN-XY-i4j" customClass="CustomizableButton" customModule="ToyotaApp" customModuleProvider="target">
@@ -229,7 +229,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="showCars" destination="hHJ-oo-scE" eventType="touchUpInside" id="6Av-ra-07h"/>
+                                            <action selector="showCars" destination="hHJ-oo-scE" eventType="touchUpInside" id="kOs-n1-dt3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -278,7 +278,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="showManagers" destination="hHJ-oo-scE" eventType="touchUpInside" id="8qh-p2-XPf"/>
+                                    <action selector="showManagers" destination="hHJ-oo-scE" eventType="touchUpInside" id="Dtc-T7-PoN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -306,13 +306,13 @@
                         <barButtonItem key="leftBarButtonItem" image="gearshape" catalog="system" id="Zx5-Uc-QMJ">
                             <color key="tintColor" name="SignatureGray"/>
                             <connections>
-                                <action selector="showSettingsWithSender:" destination="hHJ-oo-scE" id="C38-E0-W5h"/>
+                                <action selector="showSettings" destination="hHJ-oo-scE" id="d8T-F4-riZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="rectangle.righthalf.inset.fill.arrow.right" catalog="system" id="aSz-zW-hOY">
                             <color key="tintColor" name="SignatureGray"/>
                             <connections>
-                                <action selector="logoutWithSender:" destination="hHJ-oo-scE" id="vfB-br-DNh"/>
+                                <action selector="logout" destination="hHJ-oo-scE" id="g0A-fW-9gL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -342,16 +342,16 @@
             <size key="intrinsicContentSize" width="133" height="38"/>
         </designable>
         <designable name="Jf7-dL-lpo">
-            <size key="intrinsicContentSize" width="64.5" height="33"/>
+            <size key="intrinsicContentSize" width="69.5" height="33"/>
         </designable>
         <designable name="bQ3-h9-1jb">
-            <size key="intrinsicContentSize" width="100.5" height="33"/>
+            <size key="intrinsicContentSize" width="105.5" height="33"/>
         </designable>
         <designable name="bXP-CD-hXD">
             <size key="intrinsicContentSize" width="70" height="38"/>
         </designable>
         <designable name="cF0-c8-RVQ">
-            <size key="intrinsicContentSize" width="101.5" height="33"/>
+            <size key="intrinsicContentSize" width="106.5" height="33"/>
         </designable>
         <designable name="eyL-fs-0tQ">
             <size key="intrinsicContentSize" width="92" height="26"/>
@@ -360,15 +360,15 @@
             <size key="intrinsicContentSize" width="136" height="38"/>
         </designable>
         <designable name="jXL-vB-E0w">
-            <size key="intrinsicContentSize" width="45" height="33"/>
+            <size key="intrinsicContentSize" width="50" height="33"/>
         </designable>
         <designable name="oif-rQ-akP">
-            <size key="intrinsicContentSize" width="163" height="33"/>
+            <size key="intrinsicContentSize" width="168" height="33"/>
         </designable>
     </designables>
     <resources>
-        <image name="archivebox" catalog="system" width="32" height="32"/>
-        <image name="car" catalog="system" width="32" height="32"/>
+        <image name="archivebox" catalog="system" width="128" height="106"/>
+        <image name="car" catalog="system" width="128" height="93"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.righthalf.inset.fill.arrow.right" catalog="system" width="128" height="93"/>
