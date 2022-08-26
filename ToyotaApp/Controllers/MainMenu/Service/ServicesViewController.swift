@@ -7,7 +7,7 @@ private enum ServiceSections: Int {
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
 class ServicesViewController: BaseViewController, Refreshable {
-    let showroomField = NoCopyPasteTexField()
+    let showroomField = NoCopyPasteTextField()
     let refreshControl = UIRefreshControl()
 
     private(set) lazy var refreshableView: UICollectionView = {

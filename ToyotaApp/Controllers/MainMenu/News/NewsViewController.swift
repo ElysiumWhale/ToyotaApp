@@ -3,7 +3,7 @@ import SafariServices
 
 final class NewsViewController: BaseViewController, Refreshable {
     let refreshableView = TableView<NewsCell>()
-    let showroomField = NoCopyPasteTexField()
+    let showroomField = NoCopyPasteTextField()
 
     private(set) var refreshControl = UIRefreshControl()
     private let showroomPicker = UIPickerView()
