@@ -142,7 +142,7 @@ final class MyProfileViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        state = .none
+        cancelEdit()
     }
 }
 
