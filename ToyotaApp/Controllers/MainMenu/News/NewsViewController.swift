@@ -2,7 +2,7 @@ import UIKit
 import SafariServices
 
 final class NewsViewController: BaseViewController, Refreshable {
-    let refreshableView = UITableView()
+    let refreshableView = TableView<NewsCell>()
     let showroomField = NoCopyPasteTexField()
 
     private(set) var refreshControl = UIRefreshControl()
@@ -22,7 +22,6 @@ final class NewsViewController: BaseViewController, Refreshable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refreshableView.registerCell(NewsTableCell.self)
         refreshableView.dataSource = self
         refreshableView.delegate = self
 
@@ -132,7 +131,7 @@ extension NewsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NewsTableCell = tableView.dequeue(for: indexPath)
+        let cell: NewsCell = tableView.dequeue(for: indexPath)
         cell.configure(with: news[indexPath.item])
         return cell
     }

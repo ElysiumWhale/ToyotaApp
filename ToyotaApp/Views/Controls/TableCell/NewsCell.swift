@@ -1,7 +1,7 @@
 import UIKit
 import Nuke
 
-final class NewsTableCell: BaseTableCell {
+final class NewsCell: BaseTableCell {
     private let titleLabel = UILabel()
     private let newsImage = UIImageView()
 
