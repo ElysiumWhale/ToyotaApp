@@ -5,29 +5,20 @@ protocol ILoadingView: UIView {
     func stopAnimating()
 }
 
-class LoadingView: UIView, ILoadingView {
+final class LoadingView: BaseView, ILoadingView {
+    private let indicator = UIActivityIndicatorView(style: .large)
 
-    private(set) var indicator = UIActivityIndicatorView(style: .large)
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        configure()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func configure() {
+    override func addViews() {
         addSubview(indicator)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    override func configureLayout() {
+        indicator.centerInSuperview()
+    }
+
+    override func configureAppearance() {
         indicator.tintColor = .white
         backgroundColor = .appTint(.loading)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
     }
 
     func startAnimating() {
