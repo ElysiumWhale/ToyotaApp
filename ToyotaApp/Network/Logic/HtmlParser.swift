@@ -2,30 +2,23 @@ import Foundation
 import SwiftSoup
 import WebKit
 
-protocol NewsParserService {
-    var parserDelegate: ParserDelegate? { get set }
-
-    func start(with showroomUrl: ShowroomsUrl)
-}
-
-protocol ParserDelegate: AnyObject {
-    func newsDidLoad(_ news: [News])
-    func errorDidReceive(_ error: Error)
+protocol NewsService {
+    func getNews(for showroomUrl: ShowroomsUrl,
+                 handler: ParameterClosure<Result<[News], Error>>?)
 }
 
 /// Temporary class for parsing news from toyota showrooms
-final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
+final class HtmlParser: NSObject, WKNavigationDelegate, NewsService {
     private let webView = WKWebView()
 
     private var url: ShowroomsUrl = .samaraAurora
 
-    weak var parserDelegate: ParserDelegate?
+    private var handler: ParameterClosure<Result<[News], Error>>?
 
-    init(delegate: ParserDelegate) {
-        parserDelegate = delegate
-    }
+    func getNews(for showroomUrl: ShowroomsUrl,
+                 handler: ParameterClosure<Result<[News], Error>>?) {
+        self.handler = handler
 
-    func start(with showroomUrl: ShowroomsUrl) {
         url = showroomUrl
         webView.navigationDelegate = self
         webView.load(URLRequest(url: URL(string: showroomUrl.url)!))
@@ -39,12 +32,12 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
             result.append(contentsOf: cards.array().compactMap { parseCard(from: $0) })
         } catch {
             DispatchQueue.main.async { [weak self] in
-                self?.parserDelegate?.errorDidReceive(error)
+                self?.handler?(.failure(error))
             }
         }
 
         DispatchQueue.main.async { [weak self] in
-            self?.parserDelegate?.newsDidLoad(result)
+            self?.handler?(.success(result))
         }
     }
 
@@ -68,7 +61,7 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript(.documentJavaScript) { [weak self] (html, error) in
             if let webError = error {
-                self?.parserDelegate?.errorDidReceive(webError)
+                self?.handler?(.failure(webError))
             } else {
                 self?.parseNews(from: html as? String ?? .empty)
             }
