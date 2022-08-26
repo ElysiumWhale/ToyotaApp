@@ -13,7 +13,7 @@ final class CityPickerViewController: BaseViewController,
     private let subtitleLabel = UILabel()
     private let actionButton = CustomizableButton()
 
-    let refreshableView = UITableView(frame: .zero, style: .insetGrouped)
+    let refreshableView = TableView<CityCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
     var onCityPick: ParameterClosure<City>?
@@ -37,7 +37,6 @@ final class CityPickerViewController: BaseViewController,
     override func addViews() {
         addSubviews(subtitleLabel, refreshableView, actionButton)
         configureRefresh()
-        refreshableView.registerCell(CityCell.self)
         refreshableView.delegate = self
         refreshableView.dataSource = self
     }
