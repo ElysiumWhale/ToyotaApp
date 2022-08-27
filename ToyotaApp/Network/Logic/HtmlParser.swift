@@ -80,7 +80,13 @@ private extension String {
 }
 
 extension Showroom {
-    static let aurora = Showroom(id: "7", showroomName: "Тойота Самара Аврора", cityName: "Самара")
-    static let south = Showroom(id: "1", showroomName: "Тойота Самара Юг", cityName: "Самара")
-    static let north = Showroom(id: "2", showroomName: "Тойота Самара Север", cityName: "Самара")
+    static let aurora = Showroom(id: "7",
+                                 showroomName: "Тойота Самара Аврора",
+                                 cityName: "Самара")
+    static let south = Showroom(id: "1",
+                                showroomName: "Тойота Самара Юг",
+                                cityName: "Самара")
+    static let north = Showroom(id: "2",
+                                showroomName: "Тойота Самара Север",
+                                cityName: "Самара")
 }
