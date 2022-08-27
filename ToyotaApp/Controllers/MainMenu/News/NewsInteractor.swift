@@ -19,7 +19,7 @@ final class NewsInteractor {
     var onSuccessNewsLoad: Closure?
     var onFailureNewsLoad: Closure?
 
-    init(newsService: NewsService = HtmlParser()) {
+    init(newsService: NewsService = NewsInfoService()) {
         self.newsService = newsService
 
         selectedShowroom = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
