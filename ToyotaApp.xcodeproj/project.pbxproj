@@ -91,7 +91,7 @@
 		14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FFB2753AC1700546587 /* RequestKey.swift */; };
 		14D560002753D1FA00546587 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 14D55FFF2753D1FA00546587 /* Nuke */; };
 		14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 14DF1E43272D8F3C00B4556E /* SwiftSoup */; };
-		14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF1E45272D8F6A00B4556E /* HtmlParser.swift */; };
+		14DF1E46272D8F6A00B4556E /* HtmlNewsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF1E45272D8F6A00B4556E /* HtmlNewsParser.swift */; };
 		14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFB9242763F5BA00465736 /* AddCarInteractor.swift */; };
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
@@ -229,7 +229,7 @@
 		14CFEF0A2714E22C0034046C /* CustomizableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableButton.swift; sourceTree = "<group>"; };
 		14D55FF92753AC0C00546587 /* RequestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPath.swift; sourceTree = "<group>"; };
 		14D55FFB2753AC1700546587 /* RequestKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestKey.swift; sourceTree = "<group>"; };
-		14DF1E45272D8F6A00B4556E /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
+		14DF1E45272D8F6A00B4556E /* HtmlNewsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlNewsParser.swift; sourceTree = "<group>"; };
 		14DFB9242763F5BA00465736 /* AddCarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarInteractor.swift; sourceTree = "<group>"; };
 		14E5A9CE26345D7C0057BEF3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 				141A520527F0A13F00E7B9B2 /* Services */,
 				A77AA962252E7993004D12E8 /* NetworkService.swift */,
 				1425230326FFBD7C00B177B7 /* RequestHandler.swift */,
-				14DF1E45272D8F6A00B4556E /* HtmlParser.swift */,
+				14DF1E45272D8F6A00B4556E /* HtmlNewsParser.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1009,7 +1009,7 @@
 				14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */,
 				14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */,
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,
-				14DF1E46272D8F6A00B4556E /* HtmlParser.swift in Sources */,
+				14DF1E46272D8F6A00B4556E /* HtmlNewsParser.swift in Sources */,
 				1467F79A25DD73BC00E318D3 /* BookingCell.swift in Sources */,
 				141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */,
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,

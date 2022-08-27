@@ -2,29 +2,55 @@ import Foundation
 import SwiftSoup
 import WebKit
 
-protocol NewsService {
-    func getNews(for showroomUrl: ShowroomsUrl,
-                 handler: ParameterClosure<Result<[News], Error>>?)
+/// Experimental
+struct ParserContainer<T: HtmlParserService> {
+    let parser: T
+
+    init(parser: T) {
+        self.parser = parser
+    }
+}
+
+/// Experimental
+protocol HtmlParserService {
+    associatedtype TParsingData
+    associatedtype TAdditionalParameters: Hashable
+
+    func parseData(from url: URL?,
+                   additionalParameters: [TAdditionalParameters: Any],
+                   handler: ParameterClosure<Result<TParsingData, Error>>?)
 }
 
 /// Temporary class for parsing news from toyota showrooms
-final class HtmlParser: NSObject, WKNavigationDelegate, NewsService {
-    private let webView = WKWebView()
+final class HtmlNewsParser: NSObject, HtmlParserService {
+    enum AdditionalParameters: Hashable {
+        case baseUrl
+    }
 
-    private var url: ShowroomsUrl = .samaraAurora
+    private let webView = WKWebView(frame: .init(x: 0, y: 0, width: 1, height: 1))
+
+    private var currentUrl: URL?
+    private var imageBaseUrl: String = .empty
 
     private var handler: ParameterClosure<Result<[News], Error>>?
 
-    func getNews(for showroomUrl: ShowroomsUrl,
-                 handler: ParameterClosure<Result<[News], Error>>?) {
-        self.handler = handler
+    func parseData(from url: URL?,
+                   additionalParameters: [AdditionalParameters: Any],
+                   handler: ParameterClosure<Result<[News], Error>>?) {
 
-        url = showroomUrl
+        guard let url = url else {
+            handler?(.failure(AppErrors.newsError))
+            return
+        }
+
+        self.handler = handler
+        currentUrl = url
+        imageBaseUrl = additionalParameters[.baseUrl] as? String ?? .empty
         webView.navigationDelegate = self
-        webView.load(URLRequest(url: URL(string: showroomUrl.url)!))
+        webView.load(.init(url: url))
     }
 
-    func parseNews(from html: String) {
+    private func parseNews(from html: String) {
         var result: [News] = []
         do {
             let body = try SwiftSoup.parse(html).body()
@@ -41,7 +67,7 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsService {
         }
     }
 
-    func parseCard(from element: Element) -> News? {
+    private func parseCard(from element: Element) -> News? {
         do {
             let link: String = try element.attr(.href)
             let img = try element.select(.img).first()!
@@ -52,12 +78,15 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsService {
 
             return News(title: truncatedTitle.firstUppercased,
                         imgUrl: URL(string: imgLink),
-                        url: URL(string: url.baseUrl + link))
+                        url: URL(string: imageBaseUrl + link))
         } catch {
             return nil
         }
     }
+}
 
+// MARK: - WKNavigationDelegate
+extension HtmlNewsParser: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript(.documentJavaScript) { [weak self] (html, error) in
             if let webError = error {
