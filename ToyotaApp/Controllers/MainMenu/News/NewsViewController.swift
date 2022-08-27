@@ -2,25 +2,17 @@ import UIKit
 import SafariServices
 
 final class NewsViewController: BaseViewController, Refreshable {
-    private let newsService: NewsService
-    private let showrooms: [Showroom] = [.aurora, .north, .south]
+    private let interactor: NewsInteractor
     private let showroomPicker = UIPickerView()
 
     let refreshableView = TableView<NewsCell>()
     let showroomField = NoCopyPasteTextField()
+    let refreshControl = UIRefreshControl()
 
-    private(set) var refreshControl = UIRefreshControl()
-
-    private var news: [News] = []
     private var selectedRow: IndexPath?
-    private var selectedShowroom: Showroom? = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
-    private var url: ShowroomsUrl {
-        ShowroomsUrl(rawValue: selectedShowroom?.id) ?? .samaraAurora
-    }
 
-
-    init(newsService: NewsService = HtmlParser()) {
-        self.newsService = newsService
+    init(interactor: NewsInteractor = .init()) {
+        self.interactor = interactor
 
         super.init()
     }
@@ -32,7 +24,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         refreshableView.delegate = self
 
         configureRefresh()
-        if let index = showrooms.firstIndex(where: { $0.id == selectedShowroom?.id}) {
+        if let index = interactor.selectedShowroomIndex {
             showroomPicker.selectRow(index, inComponent: 0, animated: false)
         }
         startRefreshing()
@@ -80,13 +72,22 @@ final class NewsViewController: BaseViewController, Refreshable {
 
     override func localize() {
         navigationItem.title = .common(.offers)
-        showroomField.text = selectedShowroom?.showroomName
+        showroomField.text = interactor.selectedShowroom?.showroomName
+        showroomField.placeholder = .common(.chooseShowroom)
     }
 
     override func configureActions() {
         showroomPicker.configure(delegate: self,
                                  with: #selector(showroomDidSelect),
                                  for: showroomField)
+
+        interactor.onSuccessNewsLoad = { [weak self] in
+            self?.handleSuccess()
+        }
+
+        interactor.onFailureNewsLoad = { [weak self] in
+            self?.handleError()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,39 +99,29 @@ final class NewsViewController: BaseViewController, Refreshable {
     }
 
     func startRefreshing() {
-        if news.isNotEmpty {
-            news = []
-            refreshableView.reloadData()
-        }
         refreshControl.startRefreshing()
-        newsService.getNews(for: url) { [weak self] response in
-            self?.handleNewsResponse(response)
-        }
+        interactor.loadNews()
     }
 
-    private func handleNewsResponse(_ response: Result<[News], Error>) {
-        switch response {
-        case .failure:
-            news = []
-            refreshableView.reloadData()
-            endRefreshing()
-            refreshableView.setBackground(text: .error(.newsError))
-        case .success(let loadedNews):
-            news = loadedNews
-            refreshableView.reloadData()
-            let text: String? = loadedNews.isEmpty ? .background(.noNews) : nil
-            refreshableView.setBackground(text: text)
-            endRefreshing()
-        }
+    private func handleError() {
+        refreshableView.reloadData()
+        endRefreshing()
+        refreshableView.setBackground(text: .error(.newsError))
+    }
+
+    private func handleSuccess() {
+        refreshableView.reloadData()
+        let text: String? = interactor.news.isEmpty ? .background(.noNews) : nil
+        refreshableView.setBackground(text: text)
+        endRefreshing()
     }
 
     @objc func showroomDidSelect() {
-        let newShowroom = showrooms[showroomPicker.selectedRow]
-        if newShowroom.id != selectedShowroom?.id {
-            selectedShowroom = newShowroom
-            startRefreshing()
-            showroomField.text = newShowroom.showroomName
+        if interactor.selectShowroomIfNeeded(at: showroomPicker.selectedRow) {
+            showroomField.text = interactor.selectedShowroom?.showroomName
+            refreshControl.refreshManually()
         }
+
         view.endEditing(true)
     }
 }
@@ -138,7 +129,7 @@ final class NewsViewController: BaseViewController, Refreshable {
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = news[indexPath.row].url else {
+        guard let url = interactor.news[indexPath.row].url else {
             return
         }
 
@@ -155,13 +146,13 @@ extension NewsViewController: UITableViewDelegate {
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        news.count
+        interactor.news.count
     }
 
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NewsCell = tableView.dequeue(for: indexPath)
-        cell.configure(with: news[indexPath.item])
+        cell.configure(with: interactor.news[indexPath.item])
         return cell
     }
 }
@@ -172,7 +163,7 @@ extension NewsViewController: UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
-        showrooms.count
+        interactor.showrooms.count
     }
 }
 
@@ -181,6 +172,6 @@ extension NewsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        showrooms[row].showroomName
+        interactor.showrooms[row].showroomName
     }
 }
