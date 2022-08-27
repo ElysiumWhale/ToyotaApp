@@ -76,6 +76,10 @@ extension UIControl {
 // MARK: - Start and stop refreshing
 extension UIRefreshControl {
     func startRefreshing(title: String = .common(.loading)) {
+        guard !isRefreshing else {
+            return
+        }
+
         attributedTitle = NSAttributedString(string: title)
         beginRefreshing()
     }
@@ -83,6 +87,20 @@ extension UIRefreshControl {
     func stopRefreshing(title: String = .common(.pullToRefresh)) {
         endRefreshing()
         attributedTitle = NSAttributedString(string: title)
+    }
+
+    func refreshManually() {
+        guard !isRefreshing else {
+            return
+        }
+
+        if let scrollView = superview as? UIScrollView {
+            let y = scrollView.contentOffset.y - frame.height
+            scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: true)
+        }
+
+        beginRefreshing()
+        sendActions(for: .valueChanged)
     }
 }
 
