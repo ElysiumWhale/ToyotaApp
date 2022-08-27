@@ -2,36 +2,55 @@ import Foundation
 import SwiftSoup
 import WebKit
 
-protocol NewsParserService {
-    var parserDelegate: ParserDelegate? { get set }
+/// Experimental
+struct ParserContainer<T: HtmlParserService> {
+    let parser: T
 
-    func start(with showroomUrl: ShowroomsUrl)
+    init(parser: T) {
+        self.parser = parser
+    }
 }
 
-protocol ParserDelegate: AnyObject {
-    func newsDidLoad(_ news: [News])
-    func errorDidReceive(_ error: Error)
+/// Experimental
+protocol HtmlParserService {
+    associatedtype TParsingData
+    associatedtype TAdditionalParameters: Hashable
+
+    func parseData(from url: URL?,
+                   additionalParameters: [TAdditionalParameters: Any],
+                   handler: ParameterClosure<Result<TParsingData, Error>>?)
 }
 
 /// Temporary class for parsing news from toyota showrooms
-final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
-    private let webView = WKWebView()
-
-    private var url: ShowroomsUrl = .samaraAurora
-
-    weak var parserDelegate: ParserDelegate?
-
-    init(delegate: ParserDelegate) {
-        parserDelegate = delegate
+final class HtmlNewsParser: NSObject, HtmlParserService {
+    enum AdditionalParameters: Hashable {
+        case baseUrl
     }
 
-    func start(with showroomUrl: ShowroomsUrl) {
-        url = showroomUrl
+    private let webView = WKWebView(frame: .init(x: 0, y: 0, width: 1, height: 1))
+
+    private var currentUrl: URL?
+    private var imageBaseUrl: String = .empty
+
+    private var handler: ParameterClosure<Result<[News], Error>>?
+
+    func parseData(from url: URL?,
+                   additionalParameters: [AdditionalParameters: Any],
+                   handler: ParameterClosure<Result<[News], Error>>?) {
+
+        guard let url = url else {
+            handler?(.failure(AppErrors.newsError))
+            return
+        }
+
+        self.handler = handler
+        currentUrl = url
+        imageBaseUrl = additionalParameters[.baseUrl] as? String ?? .empty
         webView.navigationDelegate = self
-        webView.load(URLRequest(url: URL(string: showroomUrl.url)!))
+        webView.load(.init(url: url))
     }
 
-    func parseNews(from html: String) {
+    private func parseNews(from html: String) {
         var result: [News] = []
         do {
             let body = try SwiftSoup.parse(html).body()
@@ -39,16 +58,16 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
             result.append(contentsOf: cards.array().compactMap { parseCard(from: $0) })
         } catch {
             DispatchQueue.main.async { [weak self] in
-                self?.parserDelegate?.errorDidReceive(error)
+                self?.handler?(.failure(error))
             }
         }
 
         DispatchQueue.main.async { [weak self] in
-            self?.parserDelegate?.newsDidLoad(result)
+            self?.handler?(.success(result))
         }
     }
 
-    func parseCard(from element: Element) -> News? {
+    private func parseCard(from element: Element) -> News? {
         do {
             let link: String = try element.attr(.href)
             let img = try element.select(.img).first()!
@@ -59,16 +78,19 @@ final class HtmlParser: NSObject, WKNavigationDelegate, NewsParserService {
 
             return News(title: truncatedTitle.firstUppercased,
                         imgUrl: URL(string: imgLink),
-                        url: URL(string: url.baseUrl + link))
+                        url: URL(string: imageBaseUrl + link))
         } catch {
             return nil
         }
     }
+}
 
+// MARK: - WKNavigationDelegate
+extension HtmlNewsParser: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript(.documentJavaScript) { [weak self] (html, error) in
             if let webError = error {
-                self?.parserDelegate?.errorDidReceive(webError)
+                self?.handler?(.failure(webError))
             } else {
                 self?.parseNews(from: html as? String ?? .empty)
             }
@@ -84,10 +106,4 @@ private extension String {
     static let title = "title"
     static let unicodeSpace = "&#160;"
     static let documentJavaScript = "document.documentElement.outerHTML"
-}
-
-extension Showroom {
-    static let aurora = Showroom(id: "7", showroomName: "Тойота Самара Аврора", cityName: "Самара")
-    static let south = Showroom(id: "1", showroomName: "Тойота Самара Юг", cityName: "Самара")
-    static let north = Showroom(id: "2", showroomName: "Тойота Самара Север", cityName: "Самара")
 }

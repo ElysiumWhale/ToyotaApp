@@ -2,32 +2,29 @@ import UIKit
 import SafariServices
 
 final class NewsViewController: BaseViewController, Refreshable {
-    let refreshableView = UITableView()
-    let showroomField = NoCopyPasteTexField()
-
-    private(set) var refreshControl = UIRefreshControl()
+    private let interactor: NewsInteractor
     private let showroomPicker = UIPickerView()
 
-    private let showrooms: [Showroom] = [.aurora, .north, .south]
+    let refreshableView = TableView<NewsCell>()
+    let showroomField = NoCopyPasteTextField()
+    let refreshControl = UIRefreshControl()
 
-    private var news: [News] = []
     private var selectedRow: IndexPath?
-    private var selectedShowroom: Showroom? = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
-    private var url: ShowroomsUrl {
-        ShowroomsUrl(rawValue: selectedShowroom?.id) ?? .samaraAurora
-    }
 
-    private lazy var parser: NewsParserService = HtmlParser(delegate: self)
+    init(interactor: NewsInteractor = .init()) {
+        self.interactor = interactor
+
+        super.init()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refreshableView.registerCell(NewsTableCell.self)
         refreshableView.dataSource = self
         refreshableView.delegate = self
 
         configureRefresh()
-        if let index = showrooms.firstIndex(where: { $0.id == selectedShowroom?.id}) {
+        if let index = interactor.selectedShowroomIndex {
             showroomPicker.selectRow(index, inComponent: 0, animated: false)
         }
         startRefreshing()
@@ -75,13 +72,22 @@ final class NewsViewController: BaseViewController, Refreshable {
 
     override func localize() {
         navigationItem.title = .common(.offers)
-        showroomField.text = selectedShowroom?.showroomName
+        showroomField.text = interactor.selectedShowroom?.showroomName
+        showroomField.placeholder = .common(.chooseShowroom)
     }
 
     override func configureActions() {
         showroomPicker.configure(delegate: self,
                                  with: #selector(showroomDidSelect),
                                  for: showroomField)
+
+        interactor.onSuccessNewsLoad = { [weak self] in
+            self?.handleSuccess()
+        }
+
+        interactor.onFailureNewsLoad = { [weak self] in
+            self?.handleError()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,21 +99,29 @@ final class NewsViewController: BaseViewController, Refreshable {
     }
 
     func startRefreshing() {
-        if news.isNotEmpty {
-            news = []
-            refreshableView.reloadData()
-        }
         refreshControl.startRefreshing()
-        parser.start(with: url)
+        interactor.loadNews()
+    }
+
+    private func handleError() {
+        refreshableView.reloadData()
+        endRefreshing()
+        refreshableView.setBackground(text: .error(.newsError))
+    }
+
+    private func handleSuccess() {
+        refreshableView.reloadData()
+        let text: String? = interactor.news.isEmpty ? .background(.noNews) : nil
+        refreshableView.setBackground(text: text)
+        endRefreshing()
     }
 
     @objc func showroomDidSelect() {
-        let newShowroom = showrooms[showroomPicker.selectedRow]
-        if newShowroom.id != selectedShowroom?.id {
-            selectedShowroom = newShowroom
-            startRefreshing()
-            showroomField.text = newShowroom.showroomName
+        if interactor.selectShowroomIfNeeded(at: showroomPicker.selectedRow) {
+            showroomField.text = interactor.selectedShowroom?.showroomName
+            refreshControl.refreshManually()
         }
+
         view.endEditing(true)
     }
 }
@@ -115,44 +129,31 @@ final class NewsViewController: BaseViewController, Refreshable {
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = news[indexPath.row].url else {
+        guard let url = interactor.news[indexPath.row].url else {
             return
         }
 
         selectedRow = indexPath
-        navigationController?.present(SFSafariViewController(url: url),
+
+        let webController = SFSafariViewController(url: url)
+        webController.preferredControlTintColor = .appTint(.secondarySignatureRed)
+        navigationController?.present(webController,
                                       animated: true)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        interactor.news.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NewsTableCell = tableView.dequeue(for: indexPath)
-        cell.configure(with: news[indexPath.item])
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NewsCell = tableView.dequeue(for: indexPath)
+        cell.configure(with: interactor.news[indexPath.item])
         return cell
-    }
-}
-
-// MARK: - ParserDelegate
-extension NewsViewController: ParserDelegate {
-    func errorDidReceive(_ error: Error) {
-        news = []
-        refreshableView.reloadData()
-        endRefreshing()
-        refreshableView.setBackground(text: .error(.newsError))
-    }
-
-    func newsDidLoad(_ loadedNews: [News]) {
-        news = loadedNews
-        refreshableView.reloadData()
-        let text: String? = loadedNews.isEmpty ? .background(.noNews) : nil
-        refreshableView.setBackground(text: text)
-        endRefreshing()
     }
 }
 
@@ -160,14 +161,17 @@ extension NewsViewController: ParserDelegate {
 extension NewsViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        showrooms.count
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
+        interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension NewsViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        showrooms[row].showroomName
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        interactor.showrooms[row].showroomName
     }
 }

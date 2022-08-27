@@ -71,8 +71,8 @@ extension String {
         case confirmation = "Подтверждение"
         /// Подтверждние действия
         case actionConfirmation = "Подтверждение действия"
-        /// Выберите салон
-        case chooseShowroom = "Выберите салон"
+        /// Выберите автосалон
+        case chooseShowroom = "Выберите автосалон"
         /// Выберите город
         case chooseCity = "Выберите город"
         /// Выберите машину

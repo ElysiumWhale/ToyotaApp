@@ -84,6 +84,16 @@ extension UIRefreshControl {
         endRefreshing()
         attributedTitle = NSAttributedString(string: title)
     }
+
+    func refreshManually() {
+        if let scrollView = superview as? UIScrollView {
+            let y = scrollView.contentOffset.y - frame.height
+            scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: true)
+        }
+
+        beginRefreshing()
+        sendActions(for: .valueChanged)
+    }
 }
 
 // MARK: - UIPicker

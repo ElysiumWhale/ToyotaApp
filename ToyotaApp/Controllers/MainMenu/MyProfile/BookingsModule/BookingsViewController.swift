@@ -3,7 +3,7 @@ import UIKit
 final class BookingsViewController: BaseViewController, Refreshable, BookingsView {
     private let interactor: BookingsInteractor
 
-    let refreshableView = UITableView(frame: .zero, style: .insetGrouped)
+    let refreshableView = TableView<BookingCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
     init(interactor: BookingsInteractor) {
@@ -26,7 +26,6 @@ final class BookingsViewController: BaseViewController, Refreshable, BookingsVie
         addSubviews(refreshableView)
         configureRefresh()
         refreshableView.tableFooterView = UIView()
-        refreshableView.registerCell(BookingCell.self)
     }
 
     override func configureLayout() {
