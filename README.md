@@ -10,18 +10,13 @@ This is box solution prototype for car dealers which want present their services
 
 ### Testing devices
 
-| Device | iOS |
-|-|-|
-| iPhone XS | 15.3 |
-| iPhone 7 | 15.3 |
-
 SMS-code for testing: **1234** (works with any phone number)
 
 ## Ready parts
 
 - Registration:
   - full register with car or without
-  - auth from new device with downloading all userdata
+  - auth from new device with downloading all userdata (new device auth causes unlogin on others)
   - continue from particular registration step (personal data, city picking, car checking)
   - logout
 - User info:
