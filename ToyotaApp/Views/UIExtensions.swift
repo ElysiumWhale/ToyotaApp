@@ -1,17 +1,6 @@
 import UIKit
 
-// MARK: - UICollectionView set background text
-extension UICollectionView {
-    func setBackground(text: String?) {
-        backgroundView = createBackground(labelText: text)
-    }
-
-    func registerCell(_ cellClass: UICollectionViewCell.Type) {
-        register(cellClass, forCellWithReuseIdentifier: String(describing: cellClass))
-    }
-}
-
-// MARK: - UITableView set background text
+// MARK: - UITableView
 extension UITableView {
     func setBackground(text: String?) {
         backgroundView = createBackground(labelText: text)
@@ -20,9 +9,19 @@ extension UITableView {
     func registerCell(_ cellClass: UITableViewCell.Type) {
         register(cellClass, forCellReuseIdentifier: String(describing: cellClass))
     }
+
+    func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
+        guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
+                                             for: indexPath) as? TCell else {
+            assertionFailure("Can't dequeue cell.")
+            return TCell()
+        }
+
+        return cell
+    }
 }
 
-// MARK: - UITextField error border
+// MARK: - UITextField
 extension UITextField {
     enum FieldState {
         case error
@@ -53,7 +52,7 @@ extension UITextField {
     }
 }
 
-// MARK: - Configuring shadow for cell
+// MARK: - UICollectionViewCell
 extension UICollectionViewCell {
     func configureShadow(with cornerRadius: CGFloat, shadowRadius: CGFloat = 3) {
         layer.shadowColor = UIColor.black.cgColor.copy(alpha: 0.5)
@@ -65,7 +64,7 @@ extension UICollectionViewCell {
     }
 }
 
-// MARK: - Normal action adding to button
+// MARK: - UIControl
 extension UIControl {
     func addAction(for controlEvents: UIControl.Event = .touchUpInside,
                    _ closure: @escaping Closure) {
@@ -73,7 +72,7 @@ extension UIControl {
     }
 }
 
-// MARK: - Start and stop refreshing
+// MARK: - UIRefreshControl
 extension UIRefreshControl {
     func startRefreshing(title: String = .common(.loading)) {
         attributedTitle = NSAttributedString(string: title)
@@ -96,7 +95,7 @@ extension UIRefreshControl {
     }
 }
 
-// MARK: - UIPicker
+// MARK: - UIPickerView
 extension UIPickerView {
     func configure(delegate: UIPickerViewDelegate & UIPickerViewDataSource,
                    with action: Selector,
@@ -125,7 +124,7 @@ extension UIDatePicker {
     }
 }
 
-// MARK: - Fonts
+// MARK: - UIFont
 extension UIFont {
     enum ToyotaFonts: String, CaseIterable {
         case semibold = "Semibold"
@@ -152,7 +151,7 @@ extension UIFont {
     }
 }
 
-// MARK: - Main app tint
+// MARK: - UIColor
 extension UIColor {
     enum AppTints: String, CaseIterable {
         case loading = "Loading"
@@ -171,7 +170,7 @@ extension UIColor {
     }
 }
 
-// MARK: - Sugar init and instatiate
+// MARK: - UIStoryboard
 extension UIStoryboard {
     convenience init(_ identifier: AppStoryboards, bundle: Bundle = .main) {
         self.init(name: identifier.rawValue, bundle: bundle)
@@ -189,48 +188,6 @@ extension UIStoryboard {
     }
 }
 
-// MARK: - Dequeue helpers
-extension UITableView {
-    func dequeue<TCell: UITableViewCell>(for indexPath: IndexPath) -> TCell {
-        guard let cell = dequeueReusableCell(withIdentifier: String(describing: TCell.self),
-                                             for: indexPath) as? TCell else {
-            assertionFailure("Can't dequeue cell.")
-            return TCell()
-        }
-
-        return cell
-    }
-}
-
-extension UICollectionView {
-    func dequeue<TCell: UICollectionViewCell>(for indexPath: IndexPath) -> TCell {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: TCell.self),
-                                             for: indexPath) as? TCell else {
-            assertionFailure("Can't dequeue cell.")
-            return TCell()
-        }
-
-        return cell
-    }
-}
-
-// MARK: - Changing cell with animation
-extension UICollectionView {
-    func change<TCell: UICollectionViewCell>(_ cellType: TCell.Type,
-                                             at indexPath: IndexPath,
-                                             _ changeAction: @escaping ParameterClosure<TCell>) {
-        guard let cell = cellForItem(at: indexPath) as? TCell else {
-            return
-        }
-
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2,
-                                                       delay: 0,
-                                                       options: [.curveEaseOut]) {
-            changeAction(cell)
-        }
-    }
-}
-
 // MARK: - City picking cell coniguration
 extension UIContentConfiguration where Self == UIListContentConfiguration {
     static func cellConfiguration(with text: String, isSelected: Bool) -> Self {
@@ -244,7 +201,7 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
     }
 }
 
-// MARK: - TitleButton
+// MARK: - UIButton
 extension UIButton {
     static func titleButton(with text: String, action: @escaping Closure) -> UIButton {
         let button =  UIButton(type: .custom)
@@ -282,65 +239,5 @@ extension UIStackView {
         for view in views {
             addArrangedSubview(view)
         }
-    }
-}
-
-extension UICollectionView {
-    convenience init(layout: UICollectionViewLayout) {
-        self.init(frame: .zero, collectionViewLayout: layout)
-    }
-}
-
-// MARK: - Collection View Layouts
-extension UICollectionViewLayout {
-    static var servicesLayout: UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 10, leading: 8, bottom: 0, trailing: 8)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .estimated(110))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        return UICollectionViewCompositionalLayout(section: section)
-    }
-
-    static var managersLayout: UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 10, leading: 8, bottom: 0, trailing: 8)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .estimated(320))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
-        group.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        return UICollectionViewCompositionalLayout(section: section)
-    }
-
-    static var carsLayout: UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .estimated(300))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .estimated(300))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.contentInsets = .init(top: 0,
-                                      leading: 10,
-                                      bottom: 0,
-                                      trailing: 10)
-
-        return UICollectionViewCompositionalLayout(section: section)
     }
 }
