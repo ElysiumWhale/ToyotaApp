@@ -77,7 +77,7 @@
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
 		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
-		14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityTVC.swift */; };
+		14B2A7E4275BECF3002A6ADF /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityCell.swift */; };
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
 		14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C50A0625F3CCFE00608056 /* SettingsViewController.swift */; };
 		14C64D292793804C0023C850 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C64D282793804C0023C850 /* Validatable.swift */; };
@@ -218,7 +218,7 @@
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		14B2A7E3275BECF3002A6ADF /* CityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTVC.swift; sourceTree = "<group>"; };
+		14B2A7E3275BECF3002A6ADF /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
 		14C50A0625F3CCFE00608056 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14C64D282793804C0023C850 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				A763B0F4289C1FA000FA46F0 /* Booking */,
 				1442F4D6280A25BC005636E0 /* BaseTableCell.swift */,
 				1495723E25B9FEE40031A5AA /* NewsCell.swift */,
-				14B2A7E3275BECF3002A6ADF /* CityTVC.swift */,
+				14B2A7E3275BECF3002A6ADF /* CityCell.swift */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -1047,7 +1047,7 @@
 				14F519922777E39900FF695D /* TintedImageButton.swift in Sources */,
 				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
-				14B2A7E4275BECF3002A6ADF /* CityTVC.swift in Sources */,
+				14B2A7E4275BECF3002A6ADF /* CityCell.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
