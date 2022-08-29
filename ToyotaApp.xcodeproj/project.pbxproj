@@ -148,6 +148,7 @@
 		A7A72DC82554A5C500A44984 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCell.swift */; };
 		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
 		A7CAA4A728B9CBF500F7BAB5 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */; };
+		A7CAA4A928BAD69600F7BAB5 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 		A7FF97662899CB1300AF3EE4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF97652899CB1300AF3EE4 /* BaseView.swift */; };
 /* End PBXBuildFile section */
@@ -288,6 +289,7 @@
 		A7A72DC72554A5C500A44984 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
 		A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
+		A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		A7FF97652899CB1300AF3EE4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -368,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				141A520627F0A18700E7B9B2 /* InfoService.swift */,
+				A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */,
 				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
 				A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */,
+				A7CAA4A928BAD69600F7BAB5 /* NewsService.swift in Sources */,
 				A7CAA4A728B9CBF500F7BAB5 /* NewsInteractor.swift in Sources */,
 				A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
