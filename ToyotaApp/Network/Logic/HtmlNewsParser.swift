@@ -4,10 +4,21 @@ import WebKit
 
 /// Experimental
 struct ParserContainer<T: HtmlParserService> {
-    let parser: T
+    private let parser: T
 
     init(parser: T) {
         self.parser = parser
+    }
+
+    func parse<TData, TParams>(
+        from url: URL?,
+        params: [TParams: Any] = [:],
+        handler: ParameterClosure<Result<TData, Error>>?
+    ) where TData == T.TParsingData, TParams == T.TAdditionalParameters {
+
+        parser.parseData(from: url,
+                         additionalParameters: params,
+                         handler: handler)
     }
 }
 

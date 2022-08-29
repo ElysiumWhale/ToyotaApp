@@ -15,8 +15,8 @@ final class NewsInfoService: NewsService {
 
     func getNews(for showroomUrl: ShowroomsUrl,
                  handler: ParameterClosure<Result<[News], Error>>?) {
-        container.parser.parseData(from: URL(string: showroomUrl.url)!,
-                                   additionalParameters: [.baseUrl: showroomUrl.baseUrl],
-                                   handler: handler)
+        container.parse(from: URL(string: showroomUrl.url)!,
+                        params: [.baseUrl: showroomUrl.baseUrl],
+                        handler: handler)
     }
 }
