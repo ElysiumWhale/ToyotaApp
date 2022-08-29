@@ -29,9 +29,7 @@ final class HtmlNewsParser: NSObject, HtmlParserService {
 
     private let webView = WKWebView(frame: .init(x: 0, y: 0, width: 1, height: 1))
 
-    private var currentUrl: URL?
     private var imageBaseUrl: String = .empty
-
     private var handler: ParameterClosure<Result<[News], Error>>?
 
     func parseData(from url: URL?,
@@ -44,7 +42,6 @@ final class HtmlNewsParser: NSObject, HtmlParserService {
         }
 
         self.handler = handler
-        currentUrl = url
         imageBaseUrl = additionalParameters[.baseUrl] as? String ?? .empty
         webView.navigationDelegate = self
         webView.load(.init(url: url))
