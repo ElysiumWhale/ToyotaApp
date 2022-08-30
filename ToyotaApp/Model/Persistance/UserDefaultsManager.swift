@@ -46,10 +46,6 @@ public class DefaultsManager {
 }
 
 extension Bool {
-    static var noCarsMessageIsShown: Self {
-        DefaultsManager.retrieve(for: .noCarsMessage) ?? false
-    }
-
     static var cityIsSelected: Self {
         let city: City? = DefaultsManager.retrieve(for: .selectedCity)
         return city != nil

@@ -28,4 +28,8 @@ class BaseCollectionCell: UICollectionViewCell, InitialazableView {
     func localize() {
         // override in subclasses
     }
+
+    func configureActions() {
+        // override in subclasses
+    }
 }

@@ -3,7 +3,6 @@ import Foundation
 extension String {
     static let empty = ""
     static let space = " "
-    static let newString = "\n"
 
     static func common(_ string: CommonStrings) -> String {
         string.rawValue
@@ -72,8 +71,8 @@ extension String {
         case confirmation = "Подтверждение"
         /// Подтверждние действия
         case actionConfirmation = "Подтверждение действия"
-        /// Выберите салон
-        case chooseShowroom = "Выберите салон"
+        /// Выберите автосалон
+        case chooseShowroom = "Выберите автосалон"
         /// Выберите город
         case chooseCity = "Выберите город"
         /// Выберите машину
@@ -176,6 +175,12 @@ extension String {
         case fillAutoInfo = "Заполните информацию об автомобиле"
         /// История обращений
         case bookingsHistory = "История обращений"
+        /// Список менджеров
+        case managersList = "Список менджеров"
+        /// Добавить
+        case add = "Добавить"
+        /// Мои автомобили
+        case myCars = "Мои автомобили"
     }
 
     enum QuestionStrings: String {

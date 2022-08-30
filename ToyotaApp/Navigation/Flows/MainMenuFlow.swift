@@ -32,13 +32,19 @@ enum MainMenuFlow {
     }
 
     static func bookingsModule() -> UIViewController {
-        let interactor = BookingsInteractor()
-        let vc = BookingsViewController(interactor: interactor)
-        return vc
+        BookingsViewController(interactor: .init())
     }
 
     static func settingsModule(user: UserProxy) -> UIViewController {
         SettingsViewController(user: user)
+    }
+
+    static func managersModule(user: UserProxy) -> UIViewController {
+        ManagersViewController(interactor: .init(user: user))
+    }
+
+    static func carsModule(user: UserProxy) -> UIViewController {
+        CarsViewController(interactor: .init(user: user))
     }
 }
 

@@ -57,6 +57,12 @@ final class FlowsTests: XCTestCase {
 
         let settings = MainMenuFlow.settingsModule(user: .mock)
         XCTAssertTrue(settings is SettingsViewController)
+
+        let managers = MainMenuFlow.managersModule(user: .mock)
+        XCTAssertTrue(managers is ManagersViewController)
+
+        let cars = MainMenuFlow.carsModule(user: .mock)
+        XCTAssertTrue(cars is CarsViewController)
     }
 
     func testUtilsFlow() throws {

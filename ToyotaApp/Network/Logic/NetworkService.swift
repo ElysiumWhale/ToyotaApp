@@ -120,10 +120,6 @@ class NetworkService {
         handler.start(with: task)
     }
 
-    class func makeRequest(page: RequestPath, params: RequestItems = .empty) {
-        session.dataTask(with: buildPostRequest(for: page.rawValue, with: params.asQueryItems)).resume()
-    }
-
     class func makeRequest(_ request: Request) {
         session.dataTask(with: buildPostRequest(for: request.page.rawValue,
                                                 with: request.body.asRequestItems)).resume()
@@ -164,13 +160,4 @@ extension Array where Element == RequestItem {
     }
 
     static let empty: RequestItems = []
-
-    static var userId: Self {
-        [(.auth(.userId), KeychainManager<UserId>.get()!.value)]
-    }
-
-    mutating func withUserId() -> Self {
-        append((.auth(.userId), KeychainManager<UserId>.get()!.value))
-        return self
-    }
 }

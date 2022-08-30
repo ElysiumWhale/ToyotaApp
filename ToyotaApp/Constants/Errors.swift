@@ -71,7 +71,7 @@ enum AppErrors: String, Error {
 }
 
 // MARK: - ErrorResponse
-public struct ErrorResponse: Codable, Error {
+struct ErrorResponse: Codable, Error {
     let code: String
     let message: String?
 
@@ -79,7 +79,7 @@ public struct ErrorResponse: Codable, Error {
         .init(rawValue: code) ?? .request
     }
 
-    init(code: String, message: String?) {
+    init(code: String, message: String? = nil) {
         self.code = code
         self.message = message
     }

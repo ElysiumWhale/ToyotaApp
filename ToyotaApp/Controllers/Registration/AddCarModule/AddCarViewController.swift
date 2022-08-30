@@ -27,6 +27,15 @@ final class AddCarViewController: BaseViewController, Loadable {
         super.init()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if interactor.loadNeeded {
+            startLoading()
+            interactor.loadModelsAndColors()
+        }
+    }
+
     override func addViews() {
         addSubviews(subtitleLabel, fieldsStack, skipButton, actionButton)
         fieldsStack.addArrangedSubviews(textFields)

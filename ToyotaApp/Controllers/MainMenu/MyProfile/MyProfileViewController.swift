@@ -52,8 +52,8 @@ final class MyProfileViewController: UIViewController {
 
     private lazy var updateUserHandler = DefaultRequestHandler()
         .observe(on: .main)
-        .bind { [weak self] response in
-            self?.handle(success: response)
+        .bind { [weak self] _ in
+            self?.handlePersonUpdateSuccess()
         } onFailure: { [weak self] error in
             PopUp.display(.error(description: error.message ?? .error(.savingError)))
             self?.state = .editing
@@ -82,7 +82,11 @@ final class MyProfileViewController: UIViewController {
         fields.append(birthTextField)
     }
 
-    @IBAction private func enterEditMode(sender: UIButton) {
+    func setUser(info: UserProxy) {
+        user = info
+    }
+
+    @IBAction private func enterEditMode() {
         switch state {
         case .none:
             state = .editing
@@ -93,12 +97,12 @@ final class MyProfileViewController: UIViewController {
         }
     }
 
-    @IBAction private func cancelEdit(sender: UIButton) {
+    @IBAction private func cancelEdit() {
         refreshFields()
         state = .none
     }
 
-    @IBAction private func logout(sender: Any?) {
+    @IBAction private func logout() {
         PopUp.displayChoice(with: .common(.actionConfirmation),
                             description: .question(.quit),
                             confirmText: .common(.yes), declineText: .common(.no)) {
@@ -108,9 +112,9 @@ final class MyProfileViewController: UIViewController {
         }
     }
 
-    @IBAction private func showSettings(sender: Any?) {
-        let vc = MainMenuFlow.settingsModule(user: user).wrappedInNavigation
-        navigationController?.present(vc, animated: true)
+    @IBAction private func showSettings() {
+        let vc = MainMenuFlow.settingsModule(user: user)
+        navigationController?.present(vc.wrappedInNavigation, animated: true)
     }
 
     @IBAction private func showBookings() {
@@ -118,31 +122,27 @@ final class MyProfileViewController: UIViewController {
         navigationController?.present(vc.wrappedInNavigation, animated: true)
     }
 
+    @IBAction private func showManagers() {
+        let vc = MainMenuFlow.managersModule(user: user)
+        navigationController?.present(vc.wrappedInNavigation, animated: true)
+    }
+
+    @IBAction private func showCars() {
+        let vc = MainMenuFlow.carsModule(user: user)
+        let navvc = vc.wrappedInNavigation
+        navvc.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+        navigationController?.present(navvc, animated: true)
+    }
+
     @objc private func dateDidSelect() {
         date = datePicker.date.asString(.server)
         birthTextField.text = datePicker.date.asString(.client)
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        state = .none
-        switch segue.code {
-        case .myProfileToCars, .myProfileToSettings:
-            let navVC = segue.destination as? UINavigationController
-            navVC?.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
-            navVC?.setUserForChildren(user)
-        case .myManagersSegueCode:
-            let destinationVC = segue.destination as? WithUserInfo
-            destinationVC?.setUser(info: user)
-        default:
-            return
-        }
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        state = .none
+        cancelEdit()
     }
 }
 
@@ -239,7 +239,7 @@ extension MyProfileViewController {
         InfoService().updateProfile(with: body, handler: updateUserHandler)
     }
 
-    private func handle(success response: SimpleResponse) {
+    private func handlePersonUpdateSuccess() {
         user.updatePerson(from: Person(firstName: firstNameTextField.inputText,
                                        lastName: lastNameTextField.inputText,
                                        secondName: secondNameTextField.inputText,
@@ -247,13 +247,6 @@ extension MyProfileViewController {
                                        birthday: date))
         PopUp.display(.success(description: .common(.personalDataSaved)))
         state = .none
-    }
-}
-
-// MARK: - WithUserInfo
-extension MyProfileViewController: WithUserInfo {
-    func setUser(info: UserProxy) {
-        user = info
     }
 }
 

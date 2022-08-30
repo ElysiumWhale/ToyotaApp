@@ -20,17 +20,23 @@ protocol PersonalInfoService {
                     handler: RequestHandler<CitiesResponse>)
 }
 
-protocol AddCarService {
+protocol CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>)
     func skipSetCar(with body: SkipSetCarBody,
                     handler: RequestHandler<SimpleResponse>)
     func getModelsAndColors(with body: GetModelsAndColorsBody,
                             handler: RequestHandler<ModelsAndColorsResponse>)
+    func removeCar(with body: DeleteCarBody, handler: RequestHandler<SimpleResponse>)
 }
 
 protocol BookingsService {
     func getBookings(with body: GetBookingsBody,
                      handler: RequestHandler<BookingsResponse>)
+}
+
+protocol ManagersService {
+    func getManagers(with body: GetManagersBody,
+                     handler: RequestHandler<ManagersResponse>)
 }
 
 final class InfoService {
@@ -78,12 +84,6 @@ final class InfoService {
     func bookService(with body: BookServiceBody, handler: RequestHandler<SimpleResponse>) {
         perform(with: handler) {
             Request(page: .services(.bookService), body: body)
-        }
-    }
-
-    func getManagers(with body: GetManagersBody, handler: RequestHandler<ManagersResponse>) {
-        perform(with: handler) {
-            Request(page: .profile(.getManagers), body: body)
         }
     }
 
@@ -152,10 +152,16 @@ extension InfoService: PersonalInfoService {
 }
 
 // MARK: - AddCarService
-extension InfoService: AddCarService {
+extension InfoService: CarsService {
     func addCar(with body: SetCarBody, handler: RequestHandler<CarSetResponse>) {
         perform(with: handler) {
             Request(page: .registration(.setCar), body: body)
+        }
+    }
+
+    func removeCar(with body: DeleteCarBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.removeCar), body: body)
         }
     }
 
@@ -177,6 +183,15 @@ extension InfoService: BookingsService {
     func getBookings(with body: GetBookingsBody, handler: RequestHandler<BookingsResponse>) {
         perform(with: handler) {
             Request(page: .profile(.getBookings), body: body)
+        }
+    }
+}
+
+// MARK: - ManagersResponse
+extension InfoService: ManagersService {
+    func getManagers(with body: GetManagersBody, handler: RequestHandler<ManagersResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.getManagers), body: body)
         }
     }
 }
