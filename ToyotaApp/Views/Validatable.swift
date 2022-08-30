@@ -2,12 +2,13 @@ import Foundation
 
 protocol Validatable {
     var rule: ValidationRule? { get set }
+
     func validate(for rule: ValidationRule, toggleState: Bool) -> Bool
 }
 
 typealias ValidationClosure = (String?) -> Bool
 
-class ValidationRule {
+struct ValidationRule {
     let validationClouse: ValidationClosure
 
     func validate(text: String?) -> Bool {
@@ -35,7 +36,7 @@ extension ValidationRule {
 
     static var notEmpty: ValidationRule {
         ValidationRule { text in
-            text != nil && text!.count > 0
+            text != nil && text!.isNotEmpty
         }
     }
 

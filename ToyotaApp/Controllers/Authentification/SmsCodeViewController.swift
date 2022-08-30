@@ -144,7 +144,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
 private extension SmsCodeViewController {
     var smsRule: ValidationRule {
-        ValidationRule { [weak self] text in
+        ValidationRule { [weak self] _ in
             self?.errorLabel.fadeOut(0.3)
 
             return true

@@ -9,7 +9,7 @@ class NoPasteTextField: InputTextField {
     }
 }
 
-class NoCopyPasteTexField: InputTextField {
+class NoCopyPasteTextField: InputTextField {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool { false }
 
     override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] { [] }
@@ -17,9 +17,6 @@ class NoCopyPasteTexField: InputTextField {
     override func caretRect(for position: UITextPosition) -> CGRect { .zero }
 
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer.numberOfTouches == 1 {
-            return true
-        }
-        return false
+        gestureRecognizer.numberOfTouches == 1
     }
 }

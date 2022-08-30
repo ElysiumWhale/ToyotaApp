@@ -7,23 +7,23 @@ enum ShowroomsUrl: String {
 
     var baseUrl: String {
         switch self {
-            case .samaraAurora:
-                return "https://cars.toyota-aurora.ru"
-            case .samaraNorth:
-                return "https://cars.toyotasever.ru"
-            case .samraSouth:
-                return "https://cars.toyotasamaraug.ru"
+        case .samaraAurora:
+            return "https://cars.toyota-aurora.ru"
+        case .samaraNorth:
+            return "https://cars.toyotasever.ru"
+        case .samraSouth:
+            return "https://cars.toyotasamaraug.ru"
         }
     }
 
     var url: String {
         switch self {
-            case .samaraAurora:
-                return "https://cars.toyota-aurora.ru/special-offers-list"
-            case .samaraNorth:
-                return "https://cars.toyotasever.ru/special-offers-list"
-            case .samraSouth:
-                return "https://cars.toyotasamaraug.ru/special-offers-list"
+        case .samaraAurora:
+            return "https://cars.toyota-aurora.ru/special-offers-list"
+        case .samaraNorth:
+            return "https://cars.toyotasever.ru/special-offers-list"
+        case .samraSouth:
+            return "https://cars.toyotasamaraug.ru/special-offers-list"
         }
     }
 

@@ -9,6 +9,7 @@ extension UIViewController {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         swipe.cancelsTouchesInView = false
         swipe.direction = [.up, .down, .left, .right]
+        tap.require(toFail: swipe)
         view.addGestureRecognizer(swipe)
     }
 
@@ -26,6 +27,14 @@ extension UIViewController {
 
     var wrappedInNavigation: UINavigationController {
         UINavigationController(rootViewController: self)
+    }
+
+    func addDismissRightButton(title: String = .common(.done),
+                               color: UIColor = .appTint(.secondarySignatureRed)) {
+        let buttonItem = UIBarButtonItem(title: title)
+        buttonItem.action = #selector(customDismiss)
+        buttonItem.tintColor = color
+        navigationItem.rightBarButtonItem = buttonItem
     }
 }
 
@@ -50,10 +59,6 @@ extension UIViewController {
 
 // MARK: - Adding subviews
 extension UIViewController {
-    func addSubview(_ view: UIView) {
-        view.addSubview(view)
-    }
-
     func addSubviews(_ views: UIView...) {
         view.addSubviews(views)
     }

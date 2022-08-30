@@ -31,6 +31,26 @@ public class Mocks {
                         imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg",
                         showroomName: "Тойота Самара Север")]
     }
+
+    class func createCars() -> [Car] {
+        [
+            .init(id: "2",
+                  brand: "Toyota Lamborghini Toyota Toyota",
+                  model: .init(id: "1",
+                               name: "Toyota Toyota Toyota Toyota",
+                               brandId: "1"),
+                  color: .init(id: "2",
+                               name: "Toyota Toyota Toyota Ctht,hbcnsq gthkfvenhjdsq",
+                               code: "33",
+                               colorDescription: "2333 Toyota Toyota Toyota",
+                               isMetallic: "1",
+                               hex: "123"),
+                  year: "2011",
+                  plate: "a228aa163rus",
+                  vin: "21",
+                  isChecked: true)
+        ]
+    }
 }
 
 extension Booking {

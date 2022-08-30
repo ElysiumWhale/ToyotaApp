@@ -5,10 +5,6 @@ typealias Closure = () -> Void
 typealias ValueClosure<T> = () -> T
 typealias ParameterValueClosure<T1, T2> = (T1) -> T2
 
-extension Int {
-    static let vinLength = 17
-}
-
 // MARK: - Init with request key
 extension URLQueryItem {
     init(_ key: RequestKeys, _ value: String?) {

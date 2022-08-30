@@ -1,6 +1,6 @@
 import Foundation
 
-class UserId: Keychainable {
+final class UserId: Keychainable {
     static var key: KeychainKeys = .userId
     let value: String
 
@@ -9,7 +9,7 @@ class UserId: Keychainable {
     }
 }
 
-class SecretKey: Keychainable {
+final class SecretKey: Keychainable {
     static var key: KeychainKeys = .secretKey
     let value: String
 
@@ -18,7 +18,7 @@ class SecretKey: Keychainable {
     }
 }
 
-class Phone: Keychainable {
+final class Phone: Keychainable {
     static var key: KeychainKeys = .phone
     var value: String
 
@@ -27,16 +27,7 @@ class Phone: Keychainable {
     }
 }
 
-class Showrooms: Keychainable {
-    static var key: KeychainKeys = .showrooms
-    var value: [Showroom]
-
-    init(_ showrooms: [Showroom]) {
-        value = showrooms
-    }
-}
-
-class Person: Keychainable {
+final class Person: Keychainable {
     static var key: KeychainKeys = .person
 
     var firstName: String
@@ -54,7 +45,7 @@ class Person: Keychainable {
     }
 }
 
-class Cars: Keychainable {
+final class Cars: Keychainable {
     static var key: KeychainKeys = .cars
 
     var defaultCar: Car?
@@ -63,10 +54,5 @@ class Cars: Keychainable {
     init(_ cars: [Car]) {
         value = cars
         defaultCar = value.first
-    }
-
-    init(_ cars: [Car], chosen car: Car) {
-        value = cars
-        defaultCar = car
     }
 }

@@ -7,12 +7,11 @@ private enum ServiceSections: Int {
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
 class ServicesViewController: BaseViewController, Refreshable {
-    let showroomField = NoCopyPasteTexField()
+    let showroomField = NoCopyPasteTextField()
     let refreshControl = UIRefreshControl()
 
-    private(set) lazy var refreshableView: UICollectionView! = {
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: .servicesLayout)
+    private(set) lazy var refreshableView: UICollectionView = {
+        let collectionView = UICollectionView(layout: .servicesLayout)
         collectionView.backgroundColor = .appTint(.blackBackground)
         collectionView.delegate = self
         return collectionView
@@ -29,8 +28,6 @@ class ServicesViewController: BaseViewController, Refreshable {
 
     private let interactor: ServicesInteractor
     private let user: UserProxy
-
-    private var carsCount: Int { user.cars.value.count }
 
     private var fieldHeight: CGFloat {
         showroomField.frame.height
@@ -85,7 +82,7 @@ class ServicesViewController: BaseViewController, Refreshable {
 
     override func localize() {
         showroomField.placeholder = .common(.showroom)
-        navigationItem.backButtonTitle = .common(.services)
+        navigationItem.backButtonTitle = .empty
     }
 
     override func configureAppearance() {

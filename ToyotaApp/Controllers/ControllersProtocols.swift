@@ -1,19 +1,11 @@
 import UIKit
 
-/// Protocol for controllers which work with `UserProxy`
-protocol WithUserInfo: AnyObject {
-    func setUser(info: UserProxy)
-}
-
-// MARK: - Refreshable
-typealias RefreshableController = UIViewController & Refreshable
-
 /// Protocol for UIViewController with UIRefreshControl
 protocol Refreshable: UIViewController {
     associatedtype RefreshableView: UIScrollView
 
     var refreshControl: UIRefreshControl { get }
-    var refreshableView: RefreshableView! { get }
+    var refreshableView: RefreshableView { get }
 
     func configureRefresh()
     func startRefreshing()
@@ -44,8 +36,6 @@ extension Refreshable {
 }
 
 // MARK: - Keyboard auto insets
-typealias KeyboardableController = UIViewController & Keyboardable
-
 protocol Keyboardable: UIViewController {
     associatedtype ScrollableView: UIScrollView
 
@@ -97,7 +87,9 @@ extension Keyboardable {
 
 /// Default loading view with indicator handling
 protocol Loadable: UIViewController {
-    var loadingView: LoadingView { get }
+    associatedtype TLoadingView: ILoadingView
+
+    var loadingView: TLoadingView { get }
     var isLoading: Bool { get set }
 
     func startLoading()
@@ -134,12 +126,6 @@ protocol MainQueueRunnable { }
 
 extension MainQueueRunnable {
     func dispatch(action: Closure?) {
-        DispatchQueue.main.async {
-            action?()
-        }
-    }
-
-    static func dispatch(action: Closure?) {
         DispatchQueue.main.async {
             action?()
         }

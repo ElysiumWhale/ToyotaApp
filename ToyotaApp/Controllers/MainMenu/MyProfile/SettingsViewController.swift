@@ -18,11 +18,7 @@ final class SettingsViewController: BaseViewController {
     }
 
     override func addViews() {
-        let buttonItem = UIBarButtonItem(title: .common(.done))
-        buttonItem.action = #selector(customDismiss)
-        buttonItem.tintColor = .appTint(.secondarySignatureRed)
-        navigationItem.rightBarButtonItem = buttonItem
-
+        addDismissRightButton()
         bottomStack.addArrangedSubviews(agreementButton,
                                         companyNameLabel,
                                         versionLabel)

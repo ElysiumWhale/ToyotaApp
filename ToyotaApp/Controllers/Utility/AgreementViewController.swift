@@ -2,11 +2,10 @@ import UIKit
 
 final class AgreementViewController: BaseViewController {
     private let textView = UITextView()
-    private let doneItem = UIBarButtonItem()
 
     override func addViews() {
+        addDismissRightButton()
         addSubviews(textView)
-        navigationItem.rightBarButtonItem = doneItem
     }
 
     override func configureLayout() {
@@ -14,7 +13,6 @@ final class AgreementViewController: BaseViewController {
     }
 
     override func configureAppearance() {
-        doneItem.tintColor = .appTint(.secondarySignatureRed)
         textView.font = .toyotaType(.book, of: 15)
         textView.isEditable = false
     }
@@ -25,12 +23,7 @@ final class AgreementViewController: BaseViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.backgroundColor = .systemBackground
 
-        doneItem.title = .common(.done)
         textView.text = .agreementText
-    }
-
-    override func configureActions() {
-        doneItem.action = #selector(customDismiss)
     }
 }
 
