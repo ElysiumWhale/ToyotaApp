@@ -4,8 +4,6 @@
 
 This is box solution prototype for car dealers which want present their services for customers in easy form of mobile app.
 
----
-
 ## Overview
 
 ### Testing devices
