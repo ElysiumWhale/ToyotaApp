@@ -48,11 +48,51 @@ extension UIView {
                                              action: #selector(UIView.dismissKeyboard))
         swipe.cancelsTouchesInView = false
         swipe.direction = [.down]
-        self.addGestureRecognizer(swipe)
+        addGestureRecognizer(swipe)
+    }
+
+    enum Gesture {
+        case tap
+        case swipe
+        case tapAndSwipe
+    }
+
+    func hideKeyboard(when option: Gesture) {
+        switch option {
+        case .tap:
+            addTapRecognizer()
+        case .swipe:
+            addSwipeRecongizer()
+        case .tapAndSwipe:
+            let tap = addTapRecognizer()
+            let swipe = addSwipeRecongizer()
+            tap.require(toFail: swipe)
+        }
     }
 
     @objc func dismissKeyboard() {
         endEditing(true)
+    }
+
+    @discardableResult
+    private func addTapRecognizer() -> UITapGestureRecognizer {
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(UIView.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        addGestureRecognizer(tap)
+
+        return tap
+    }
+
+    @discardableResult
+    private func addSwipeRecongizer() -> UISwipeGestureRecognizer {
+        let swipe = UISwipeGestureRecognizer(target: self,
+                                             action: #selector(UIView.dismissKeyboard))
+        swipe.cancelsTouchesInView = false
+        swipe.direction = [.up, .down, .left, .right]
+        addGestureRecognizer(swipe)
+
+        return swipe
     }
 
     // MARK: - TitleView
