@@ -181,6 +181,12 @@ extension String {
         case add = "Добавить"
         /// Мои автомобили
         case myCars = "Мои автомобили"
+        /// Мой менеджер
+        case myManager = "Мой менеджер"
+        /// Заявки
+        case bookings = "Заявки"
+        /// Мои авто
+        case myAuto = "Мои авто"
     }
 
     enum QuestionStrings: String {
