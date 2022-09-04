@@ -18,6 +18,8 @@ protocol ReconnectionService {
 protocol PersonalInfoService {
     func setProfile(with body: SetProfileBody,
                     handler: RequestHandler<CitiesResponse>)
+    func updateProfile(with body: EditProfileBody,
+                       handler: RequestHandler<SimpleResponse>)
 }
 
 protocol CarsService {
@@ -43,12 +45,6 @@ final class InfoService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
         NetworkService.makeRequest(requestFactory(), handler: handler)
-    }
-
-    func updateProfile(with body: SetProfileBody, handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .profile(.editProfile), body: body)
-        }
     }
 
     func getCities(with body: GetCitiesBody, handler: RequestHandler<CitiesResponse>) {
@@ -147,6 +143,12 @@ extension InfoService: PersonalInfoService {
     func setProfile(with body: SetProfileBody, handler: RequestHandler<CitiesResponse>) {
         perform(with: handler) {
             Request(page: .registration(.setProfile), body: body)
+        }
+    }
+
+    func updateProfile(with body: EditProfileBody, handler: RequestHandler<SimpleResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.editProfile), body: body)
         }
     }
 }

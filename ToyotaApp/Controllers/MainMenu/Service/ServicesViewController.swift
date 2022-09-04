@@ -45,7 +45,7 @@ class ServicesViewController: BaseViewController, Refreshable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboard(when: .tapAndSwipe)
         configureRefresh()
         refreshableView.dataSource = dataSource
 

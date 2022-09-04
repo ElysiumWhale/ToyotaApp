@@ -43,7 +43,7 @@ final class ChatViewController: BaseViewController {
     }
 
     override func configureActions() {
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboard(when: .tapAndSwipe)
         sendButton.addTarget(self,
                              action: #selector(sendButtonDidPress),
                              for: .touchUpInside)

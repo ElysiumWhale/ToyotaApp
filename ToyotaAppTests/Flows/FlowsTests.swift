@@ -47,7 +47,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(services is ServicesViewController)
 
         let profile = MainMenuFlow.profileModule(with: .mock)
-        XCTAssertTrue(profile is MyProfileViewController)
+        XCTAssertTrue(profile is ProfileViewController)
 
         let news = MainMenuFlow.newsModule()
         XCTAssertTrue(news is NewsViewController)
