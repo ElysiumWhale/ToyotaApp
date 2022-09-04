@@ -102,7 +102,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     }
 
     override func configureActions() {
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboard(when: .tapAndSwipe)
 
         carPickView.servicePicker.configure(delegate: self,
                                             with: #selector(carDidSelect),
