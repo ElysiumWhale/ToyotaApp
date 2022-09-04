@@ -48,7 +48,7 @@ final class ProfileInteractor {
     }
 }
 
-private extension SetProfileBody {
+private extension EditProfileBody {
     static func from(_ person: Person) -> Self {
         .init(brandId: Brand.Toyota,
               userId: KeychainManager<UserId>.get()!.value,

@@ -18,7 +18,7 @@ protocol ReconnectionService {
 protocol PersonalInfoService {
     func setProfile(with body: SetProfileBody,
                     handler: RequestHandler<CitiesResponse>)
-    func updateProfile(with body: SetProfileBody,
+    func updateProfile(with body: EditProfileBody,
                        handler: RequestHandler<SimpleResponse>)
 }
 
@@ -146,7 +146,7 @@ extension InfoService: PersonalInfoService {
         }
     }
 
-    func updateProfile(with body: SetProfileBody, handler: RequestHandler<SimpleResponse>) {
+    func updateProfile(with body: EditProfileBody, handler: RequestHandler<SimpleResponse>) {
         perform(with: handler) {
             Request(page: .profile(.editProfile), body: body)
         }
