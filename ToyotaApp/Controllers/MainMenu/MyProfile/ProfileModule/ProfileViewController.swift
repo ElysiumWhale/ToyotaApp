@@ -126,6 +126,10 @@ final class ProfileViewController: BaseViewController, Loadable {
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
 
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.toyotaType(.regular, of: 17)
+        ]
+
         for field in fields {
             field.rule = .personalInfo
             field.cornerRadius = 10
