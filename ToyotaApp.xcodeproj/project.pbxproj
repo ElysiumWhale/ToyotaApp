@@ -75,7 +75,6 @@
 		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
 		14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4DA3E27581989009D66EA /* CityPickerViewController.swift */; };
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
-		14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A8D8972617C5C40086BC12 /* MyProfile.storyboard */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
 		14B2A7E4275BECF3002A6ADF /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E3275BECF3002A6ADF /* CityCell.swift */; };
 		14B2A7E8275C0996002A6ADF /* CityPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */; };
@@ -127,7 +126,6 @@
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
 		A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A4EF72548EA600026B76B /* NoPasteTextField.swift */; };
-		A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
@@ -219,7 +217,6 @@
 		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		14A4DA3E27581989009D66EA /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
-		14A8D8972617C5C40086BC12 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		14B2A7E3275BECF3002A6ADF /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerInteractor.swift; sourceTree = "<group>"; };
@@ -272,7 +269,6 @@
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
-		A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -437,6 +433,7 @@
 				146CED0226B9EE8D00427A1F /* .swiftlint.yml */,
 				A7924CF1254B70B4001B67C1 /* Fonts */,
 				A75946942523E33400312EBE /* Assets.xcassets */,
+				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -493,15 +490,6 @@
 				149092612696502100390D04 /* PhoneTextField.swift */,
 			);
 			path = TextField;
-			sourceTree = "<group>";
-		};
-		14E5A9CA26345B290057BEF3 /* StoryBoards */ = {
-			isa = PBXGroup;
-			children = (
-				A75946962523E33400312EBE /* LaunchScreen.storyboard */,
-				14A8D8972617C5C40086BC12 /* MyProfile.storyboard */,
-			);
-			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		14E5A9CB26345B640057BEF3 /* CollectionCell */ = {
@@ -619,7 +607,6 @@
 				14D55FF62753AB7100546587 /* Network */,
 				A7777519259BFA00006D30EA /* Controllers */,
 				140BA59127A6C261002A7423 /* Navigation */,
-				14E5A9CA26345B290057BEF3 /* StoryBoards */,
 				A791FDE225266F2700A595BB /* Views */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
 				A759468D2523E32F00312EBE /* SceneDelegate.swift */,
@@ -654,7 +641,6 @@
 		A7598D1128BE9E6D00F6A1E7 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */,
 				A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */,
 			);
@@ -949,7 +935,6 @@
 				A7924D16254B743F001B67C1 /* ToyotaType-Regular.ttf in Resources */,
 				A75946952523E33400312EBE /* Assets.xcassets in Resources */,
 				A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */,
-				14A8D8982617C5C40086BC12 /* MyProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,7 +979,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */,
-				A791FDDD2524E1B900A595BB /* MyProfileViewController.swift in Sources */,
 				14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */,
 				14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */,
 				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
