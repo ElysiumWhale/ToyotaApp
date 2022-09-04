@@ -715,12 +715,12 @@
 			children = (
 				A791FDDB2524E19B00A595BB /* News */,
 				A791FDDA2524E19300A595BB /* Service */,
-				A791FDD92524E18800A595BB /* MyProfile */,
+				A791FDD92524E18800A595BB /* Profile */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
 		};
-		A791FDD92524E18800A595BB /* MyProfile */ = {
+		A791FDD92524E18800A595BB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				A7598D1128BE9E6D00F6A1E7 /* ProfileModule */,
@@ -729,7 +729,7 @@
 				A763B0FA289C86A900FA46F0 /* BookingsModule */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 			);
-			path = MyProfile;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		A791FDDA2524E19300A595BB /* Service */ = {
