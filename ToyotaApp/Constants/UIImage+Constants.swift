@@ -69,4 +69,24 @@ extension UIImage {
         UIImage(systemName: "trash.fill",
                 withConfiguration: SymbolConfiguration(scale: .large))!
     }
+
+    static var settings: UIImage {
+        UIImage(systemName: "gearshape",
+                withConfiguration: SymbolConfiguration(scale: .large))!
+    }
+
+    static var logout: UIImage {
+        UIImage(systemName: "rectangle.righthalf.inset.fill.arrow.right",
+                withConfiguration: SymbolConfiguration(scale: .large))!
+    }
+
+    static var bookings: UIImage {
+        UIImage(systemName: "archivebox",
+                withConfiguration: SymbolConfiguration(scale: .medium))!
+    }
+
+    static var car: UIImage {
+        UIImage(systemName: "car",
+                withConfiguration: SymbolConfiguration(scale: .medium))!
+    }
 }
