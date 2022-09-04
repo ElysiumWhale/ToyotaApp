@@ -65,8 +65,7 @@ final class MyProfileViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
-        hideKeyboardWhenTappedAround()
-        view.hideKeyboardWhenSwipedDown()
+        view.hideKeyboard(when: .tapAndSwipe)
         datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
         refreshFields()
 
@@ -123,8 +122,12 @@ final class MyProfileViewController: UIViewController {
     }
 
     @IBAction private func showManagers() {
-        let vc = MainMenuFlow.managersModule(user: user)
-        navigationController?.present(vc.wrappedInNavigation, animated: true)
+//        let vc = MainMenuFlow.managersModule(user: user)
+//        navigationController?.present(vc.wrappedInNavigation, animated: true)
+
+        let interactor = ProfileInteractor(user: user)
+        let vc = ProfileViewController(interactor: interactor)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction private func showCars() {
@@ -229,7 +232,7 @@ extension MyProfileViewController {
         }
 
         state = .loading
-        let body = SetProfileBody(brandId: firstNameTextField.inputText,
+        let body = SetProfileBody(brandId: Brand.Toyota,
                                   userId: KeychainManager<UserId>.get()!.value,
                                   firstName: firstNameTextField.inputText,
                                   secondName: secondNameTextField.inputText,

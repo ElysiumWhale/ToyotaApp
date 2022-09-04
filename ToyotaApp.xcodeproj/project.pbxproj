@@ -113,6 +113,8 @@
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
+		A7598D1328BE9F1700F6A1E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */; };
+		A7598D1528BE9F4700F6A1E7 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
 		A760C6D728B0CF6400984E44 /* CarsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A760C6D628B0CF6400984E44 /* CarsInteractor.swift */; };
 		A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */; };
@@ -256,6 +258,8 @@
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
 		A760C6D628B0CF6400984E44 /* CarsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsInteractor.swift; sourceTree = "<group>"; };
 		A763B0F0289C17F800FA46F0 /* LostConnectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostConnectionInteractor.swift; sourceTree = "<group>"; };
@@ -647,6 +651,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A7598D1128BE9E6D00F6A1E7 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
+				A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */,
+				A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
 		A760C6D528B0CF2A00984E44 /* CarsModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,10 +737,10 @@
 		A791FDD92524E18800A595BB /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				A7598D1128BE9E6D00F6A1E7 /* ProfileModule */,
 				A760C6D528B0CF2A00984E44 /* CarsModule */,
 				A728FAE228A701AD00326DA5 /* ManagersModule */,
 				A763B0FA289C86A900FA46F0 /* BookingsModule */,
-				A791FDDC2524E1B900A595BB /* MyProfileViewController.swift */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 			);
 			path = MyProfile;
@@ -1039,6 +1053,7 @@
 				1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */,
 				143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */,
 				A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */,
+				A7598D1528BE9F4700F6A1E7 /* ProfileInteractor.swift in Sources */,
 				146E348327D5339000534B6F /* Bodies.swift in Sources */,
 				149092622696502100390D04 /* PhoneTextField.swift in Sources */,
 				A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */,
@@ -1081,6 +1096,7 @@
 				141BACD72725AEF400704589 /* CustomizableStackView.swift in Sources */,
 				1471C958284942B2000624FC /* AgreementViewController.swift in Sources */,
 				A7FF97662899CB1300AF3EE4 /* BaseView.swift in Sources */,
+				A7598D1328BE9F1700F6A1E7 /* ProfileViewController.swift in Sources */,
 				1433C7C8269F304C00BCB70B /* InputTextField.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
 			);
