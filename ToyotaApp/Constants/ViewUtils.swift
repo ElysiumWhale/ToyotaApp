@@ -22,17 +22,6 @@ enum AddInfoType: Equatable {
     }
 }
 
-// MARK: - Structs with view constants
-enum AppStoryboards: String {
-    /// MyProfile
-    case myProfile = "MyProfile"
-}
-
-enum ViewControllers: String {
-    /// MyProfileViewController
-    case myProfile = "MyProfileViewController"
-}
-
 enum TimeMap {
     static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []

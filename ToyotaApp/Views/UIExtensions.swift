@@ -170,24 +170,6 @@ extension UIColor {
     }
 }
 
-// MARK: - UIStoryboard
-extension UIStoryboard {
-    convenience init(_ identifier: AppStoryboards, bundle: Bundle = .main) {
-        self.init(name: identifier.rawValue, bundle: bundle)
-    }
-
-    /// Causes **assertionFailure** when `ViewController` is not mapped to identifier
-    func instantiate<ViewController: UIViewController>(_ viewController: ViewControllers) -> ViewController {
-        let controller = instantiateViewController(withIdentifier: viewController.rawValue) as? ViewController
-        if let result = controller {
-            return result
-        }
-
-        assertionFailure("Identifier \(viewController) is not mapped to type \(ViewController.Type.self)")
-        return ViewController()
-    }
-}
-
 // MARK: - City picking cell coniguration
 extension UIContentConfiguration where Self == UIListContentConfiguration {
     static func cellConfiguration(with text: String, isSelected: Bool) -> Self {

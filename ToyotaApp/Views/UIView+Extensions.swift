@@ -15,15 +15,6 @@ extension UIView {
         return label
     }
 
-    // MARK: - Constraints swapping
-    @discardableResult
-    func swapConstraints(from removingConstraint: NSLayoutConstraint,
-                         to addingContsraint: NSLayoutConstraint) -> NSLayoutConstraint {
-        removeConstraint(removingConstraint)
-        addConstraint(addingContsraint)
-        return addingContsraint
-    }
-
     // MARK: - FadeIn UIView Animation
     func fadeIn(_ duration: TimeInterval = 0.5) {
         if alpha == 0 {
