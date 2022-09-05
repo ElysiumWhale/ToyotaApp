@@ -1,17 +1,12 @@
 import UIKit
 
-class TintedImageButton: CustomizableButton {
+final class TintedImageButton: CustomizableButton {
 
-    var highlightedTintColor: UIColor = .clear {
-        didSet {
-            setTitleColor(highlightedTintColor, for: .highlighted)
-        }
-    }
+    var highlightedTintColor: UIColor = .clear
 
     var normalTintColor: UIColor = .clear {
         didSet {
             imageView?.tintColor = normalTintColor
-            setTitleColor(normalTintColor, for: .normal)
         }
     }
 

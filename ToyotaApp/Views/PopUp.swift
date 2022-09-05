@@ -5,8 +5,7 @@ typealias LabelContent = EKProperty.LabelContent
 typealias ButtonContent = EKProperty.ButtonContent
 typealias ButtonBarContent = EKProperty.ButtonBarContent
 
-final class PopUp {
-    private init() { }
+enum PopUp {
 
     // MARK: - Constants
     private static let popupColor: EKColor = .init(light: .appTint(.background),
