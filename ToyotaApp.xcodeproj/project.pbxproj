@@ -562,6 +562,16 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		A73990C228C686F9005C1A92 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1467F78825D339DF00E318D3 /* UIExtensions.swift */,
+				14188032278B3498000B82DD /* UIView+Extensions.swift */,
+				A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A73BF29A28836C11006944FB /* CityPickerModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,19 +768,17 @@
 		A791FDE225266F2700A595BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A73990C228C686F9005C1A92 /* Extensions */,
+				A791FDE8252672FA00A595BB /* Components */,
 				143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */,
 				A7FF97652899CB1300AF3EE4 /* BaseView.swift */,
-				1467F78825D339DF00E318D3 /* UIExtensions.swift */,
-				14188032278B3498000B82DD /* UIView+Extensions.swift */,
 				14C64D282793804C0023C850 /* Validatable.swift */,
 				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
-				A791FDE8252672FA00A595BB /* Controls */,
-				A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A791FDE8252672FA00A595BB /* Controls */ = {
+		A791FDE8252672FA00A595BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				A799474228B95693007D4FA0 /* TableView.swift */,
@@ -781,7 +789,7 @@
 				14E5A9CB26345B640057BEF3 /* CollectionCell */,
 				14E5A9CC26345B720057BEF3 /* TableCell */,
 			);
-			path = Controls;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		A7924CF1254B70B4001B67C1 /* Fonts */ = {
