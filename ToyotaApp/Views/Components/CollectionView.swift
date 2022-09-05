@@ -1,6 +1,7 @@
 import UIKit
 
 final class CollectionView<TCell: BaseCollectionCell>: UICollectionView {
+
     override init(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
 

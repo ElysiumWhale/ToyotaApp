@@ -5,6 +5,7 @@ extension UIImage {
                               scale: UIImage.SymbolScale) -> UIImage {
         UIImage(systemName: name,
                 withConfiguration: SymbolConfiguration(scale: scale))!
+            .withRenderingMode(.alwaysTemplate)
     }
 
     static var toyotaLogo: UIImage {
