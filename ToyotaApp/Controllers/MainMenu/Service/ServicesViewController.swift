@@ -7,15 +7,9 @@ private enum ServiceSections: Int {
 private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
 
 class ServicesViewController: BaseViewController, Refreshable {
+    let refreshableView = UICollectionView(layout: .servicesLayout)
     let showroomField = NoCopyPasteTextField()
     let refreshControl = UIRefreshControl()
-
-    private(set) lazy var refreshableView: UICollectionView = {
-        let collectionView = UICollectionView(layout: .servicesLayout)
-        collectionView.backgroundColor = .appTint(.blackBackground)
-        collectionView.delegate = self
-        return collectionView
-    }()
 
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
@@ -48,6 +42,7 @@ class ServicesViewController: BaseViewController, Refreshable {
         view.hideKeyboard(when: .tapAndSwipe)
         configureRefresh()
         refreshableView.dataSource = dataSource
+        refreshableView.delegate = self
 
         if interactor.selectedCity != nil {
             showroomField.text = interactor.selectedShowroom?.name
@@ -88,6 +83,7 @@ class ServicesViewController: BaseViewController, Refreshable {
     override func configureAppearance() {
         configureNavBarAppearance(font: nil)
         view.backgroundColor = .appTint(.blackBackground)
+        refreshableView.backgroundColor = .appTint(.blackBackground)
         showroomField.textAlignment = .center
         showroomField.font = .toyotaType(.light, of: 25)
         showroomField.textColor = .appTint(.signatureGray)

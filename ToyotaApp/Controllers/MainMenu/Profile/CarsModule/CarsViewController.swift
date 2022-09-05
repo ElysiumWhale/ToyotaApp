@@ -2,7 +2,7 @@ import UIKit
 
 final class CarsViewController: BaseViewController, Loadable {
     private let interactor: CarsInteractor
-    private let carsCollection = UICollectionView(layout: .carsLayout)
+    private let carsCollection = CollectionView<CarCell>(layout: .carsLayout)
 
     let loadingView = LoadingView()
 
@@ -26,7 +26,6 @@ final class CarsViewController: BaseViewController, Loadable {
         buttonItem.tintColor = .appTint(.secondarySignatureRed)
         navigationItem.leftBarButtonItem = buttonItem
 
-        carsCollection.registerCell(CarCell.self)
         carsCollection.dataSource = self
     }
 

@@ -1,7 +1,7 @@
 import UIKit
 
 final class ManagersViewController: BaseViewController {
-    private let managersCollection = UICollectionView(layout: .managersLayout)
+    private let managersCollection = CollectionView<ManagerCell>(layout: .managersLayout)
 
     private let interactor: ManagersInteractor
 
@@ -22,7 +22,6 @@ final class ManagersViewController: BaseViewController {
     override func addViews() {
         addSubviews(managersCollection)
         addDismissRightButton()
-        managersCollection.registerCell(ManagerCell.self)
     }
 
     override func configureLayout() {
