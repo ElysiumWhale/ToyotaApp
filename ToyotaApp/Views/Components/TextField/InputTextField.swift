@@ -13,15 +13,6 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     private(set) var constant: CGFloat = .zero
 
     // MARK: - Additional properties
-    @IBInspectable
-    var cornerRadius: CGFloat {
-        get {
-            layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-        }
-    }
 
     @IBInspectable
     var leftPadding: CGFloat = 5

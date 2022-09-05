@@ -18,21 +18,6 @@ class CustomizableButton: UIButton, BottomKeyboardBinded {
         }
     }
 
-    @IBInspectable
-    var borderWidth: CGFloat = .zero {
-        didSet {
-            layer.borderWidth = borderWidth
-        }
-    }
-
-    @IBInspectable
-    var borderColor: UIColor = .clear {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
-    }
-
-    @IBInspectable
     var highlightedColor: UIColor = .clear
 
     @IBInspectable
