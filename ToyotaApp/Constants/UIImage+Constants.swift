@@ -2,7 +2,7 @@ import UIKit
 
 extension UIImage {
     private static func image(name: String,
-                       scale: UIImage.SymbolScale) -> UIImage {
+                              scale: UIImage.SymbolScale) -> UIImage {
         UIImage(systemName: name,
                 withConfiguration: SymbolConfiguration(scale: scale))!
     }
