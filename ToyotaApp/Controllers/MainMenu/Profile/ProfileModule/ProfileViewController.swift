@@ -22,7 +22,7 @@ final class ProfileViewController: BaseViewController, Loadable {
     private let bookingsButton = CustomizableButton()
     private let carsButton = CustomizableButton()
     private let fieldsStack = UIStackView()
-    private let bottomButtonsStack = CustomizableStackView()
+    private let bottomButtonsStack = UIStackView()
     private let datePicker = UIDatePicker()
 
     private var saveLeadingConstraint: NSLayoutConstraint!

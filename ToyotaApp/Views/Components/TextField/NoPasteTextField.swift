@@ -1,6 +1,6 @@
 import UIKit
 
-class NoPasteTextField: InputTextField {
+final class NoPasteTextField: InputTextField {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.paste(_:)) || action == #selector(UIResponderStandardEditActions.cut(_:)) {
             return false
@@ -9,7 +9,7 @@ class NoPasteTextField: InputTextField {
     }
 }
 
-class NoCopyPasteTextField: InputTextField {
+final class NoCopyPasteTextField: InputTextField {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool { false }
 
     override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] { [] }

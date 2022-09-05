@@ -7,8 +7,7 @@ enum CountryPrefix: String {
     case uzb = "🇺🇿+998"
 }
 
-@IBDesignable
-class PhoneTextField: UITextField {
+final class PhoneTextField: UITextField {
     private var prefixLabel: UILabel!
 
     var countryPrefix: CountryPrefix = .ru
@@ -41,13 +40,15 @@ class PhoneTextField: UITextField {
         return phoneCheck.evaluate(with: phone) ? phone : nil
     }
 
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect = .zero) {
+        super.init(frame: frame)
+
         customizeView()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func draw(_ rect: CGRect) {
@@ -59,15 +60,6 @@ class PhoneTextField: UITextField {
         prefixLabel.text = countryPrefix.rawValue
         leftView = prefixLabel
         leftViewMode = .always
-    }
-
-    override func prepareForInterfaceBuilder() {
-        customizeView()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        customizeView()
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {

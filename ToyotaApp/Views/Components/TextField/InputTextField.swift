@@ -1,9 +1,7 @@
 import UIKit
 
-@IBDesignable
 class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     // MARK: - BottomKeyboardBinded
-    @IBInspectable
     var keyboardConstraint: NSLayoutConstraint? {
         didSet {
             constant = keyboardConstraint?.constant ?? .zero
@@ -13,20 +11,9 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     private(set) var constant: CGFloat = .zero
 
     // MARK: - Additional properties
-    @IBInspectable
-    var cornerRadius: CGFloat {
-        get {
-            layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-        }
-    }
 
-    @IBInspectable
     var leftPadding: CGFloat = 5
 
-    @IBInspectable
     var maxSymbolCount: Int = 50
 
     var rule: ValidationRule? {

@@ -20,7 +20,7 @@ struct ValidationRule {
     }
 }
 
-// MARK: Presets
+// MARK: - Presets
 extension ValidationRule {
     static var personalInfo: ValidationRule {
         ValidationRule { text in

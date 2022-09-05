@@ -146,3 +146,37 @@ extension UIView {
         }
     }
 }
+
+// MARK: - Customization
+extension UIView {
+    var cornerRadius: CGFloat {
+        get {
+            layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+
+    var borderWidth: CGFloat {
+        get {
+            layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+
+    var borderColor: UIColor {
+        get {
+            guard let cgColor = layer.borderColor else {
+                return .clear
+            }
+
+            return UIColor(cgColor: cgColor)
+        }
+        set {
+            layer.borderColor = newValue.cgColor
+        }
+    }
+}
