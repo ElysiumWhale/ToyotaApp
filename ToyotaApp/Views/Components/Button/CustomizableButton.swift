@@ -1,8 +1,6 @@
 import UIKit
 
-@IBDesignable
 class CustomizableButton: UIButton, BottomKeyboardBinded {
-    @IBOutlet
     var keyboardConstraint: NSLayoutConstraint? {
         didSet {
             constant = keyboardConstraint?.constant ?? .zero
@@ -11,7 +9,6 @@ class CustomizableButton: UIButton, BottomKeyboardBinded {
 
     private(set) var constant: CGFloat = .zero
 
-    @IBInspectable
     var rounded: Bool = false {
         didSet {
             layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
@@ -20,7 +17,6 @@ class CustomizableButton: UIButton, BottomKeyboardBinded {
 
     var highlightedColor: UIColor = .clear
 
-    @IBInspectable
     var normalColor: UIColor = .clear {
         didSet {
             backgroundColor = normalColor
@@ -30,15 +26,6 @@ class CustomizableButton: UIButton, BottomKeyboardBinded {
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? highlightedColor : normalColor
-        }
-    }
-
-    override func prepareForInterfaceBuilder() {
-        layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
-        layer.borderWidth = borderWidth
-        layer.borderColor = borderColor.cgColor
-        if rounded {
-            clipsToBounds = true
         }
     }
 
