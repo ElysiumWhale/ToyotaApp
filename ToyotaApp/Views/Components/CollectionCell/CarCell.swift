@@ -78,9 +78,9 @@ final class CarCell: BaseCollectionCell {
         // Future
         checkStatusLabel.isHidden = true
 
-        layer.cornerRadius = 20
-        layer.borderColor = UIColor.appTint(.signatureGray).cgColor
-        layer.borderWidth = 1
+        cornerRadius = 20
+        borderColor = .appTint(.signatureGray)
+        borderWidth = 1
     }
 
     override func configureActions() {
@@ -101,5 +101,11 @@ final class CarCell: BaseCollectionCell {
         checkStatusLabel.textColor = car.isChecked ?? false
             ? .systemGreen
             : .systemRed
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        borderColor = .appTint(.signatureGray)
     }
 }
