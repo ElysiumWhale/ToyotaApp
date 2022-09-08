@@ -86,14 +86,6 @@ extension DateFormatter {
     /// ```
     static let serverWithTime = formatter(with: .yyyyMMddTime)
 
-    /// Formats date in **MM.dd.yyyy**
-    ///
-    /// Example:
-    /// ```
-    /// "12.25.2020"
-    /// ```
-    static let common = formatter(with: .MMddyyyy)
-
     /// Formats date in **dd.MM.yyyy**
     ///
     /// Example:
@@ -121,8 +113,6 @@ extension DateFormatter {
 extension String {
     /// *dd.MM.yyyy*
     static let ddMMyyyy = "dd.MM.yyyy"
-    /// *MM.dd.yyyy*
-    static let MMddyyyy = "MM.dd.yyyy"
     /// *yyyy-MM-dd*
     static let yyyyMMdd = "yyyy-MM-dd"
     /// *yyyy-MM-dd HH:mm:ss*

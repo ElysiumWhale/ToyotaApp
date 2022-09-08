@@ -94,13 +94,6 @@ final class InfoService {
             Request(page: .services(.getFreeTime), body: body)
         }
     }
-
-    @available(*, unavailable)
-    func addShowroom(with body: AddShowroomBody, handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .profile(.addShowroom), body: body)
-        }
-    }
 }
 
 // MARK: - AuthService

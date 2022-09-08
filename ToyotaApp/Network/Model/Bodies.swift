@@ -174,19 +174,6 @@ struct GetFreeTimeBody: IBody, BodyWithShowroomId {
     }
 }
 
-// MARK: - AddShowroomBody
-struct AddShowroomBody: IBody, BodyWithUserId, BodyWithShowroomId {
-    let userId: String
-    let showroomId: String
-
-    var asRequestItems: [URLQueryItem] {
-        [
-            userIdItem,
-            showroomIdItem
-        ]
-    }
-}
-
 // MARK: - ChangePhoneBody
 struct ChangePhoneBody: IBody, BodyWithUserId {
     let userId: String

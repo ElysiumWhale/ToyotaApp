@@ -28,9 +28,6 @@ final class DateFormattingTests: XCTestCase {
 
         let displayExpectation = ("25.12.2020", commonDate)
         testFormatter(.display, expectation: displayExpectation)
-
-        let commonExpectation = ("12.25.2020", commonDate)
-        testFormatter(.common, expectation: commonExpectation)
     }
 
     func testDateComponentsUtils() throws {
