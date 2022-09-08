@@ -24,7 +24,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         let internalView = PickerModuleView()
         internalView.textField.placeholder = .common(.auto)
         internalView.textField.clipsToBounds = true
-        internalView.serviceNameLabel.text = .common(.auto)
+        internalView.label.text = .common(.auto)
         return internalView
     }()
 
@@ -104,7 +104,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     override func configureActions() {
         view.hideKeyboard(when: .tapAndSwipe)
 
-        carPickView.servicePicker.configure(delegate: self,
+        carPickView.picker.configure(delegate: self,
                                             with: #selector(carDidSelect),
                                             for: carPickView.textField)
 
@@ -205,7 +205,7 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
             return
         }
 
-        selectedCar = cars[carPickView.servicePicker.selectedRow]
+        selectedCar = cars[carPickView.picker.selectedRow]
     }
 }
 
