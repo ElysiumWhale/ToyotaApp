@@ -2,9 +2,11 @@ import Foundation
 
 protocol ServicesView: AnyObject {
     func didSelect(showroom: Showroom, with index: Int?)
+
     func didLoadShowrooms()
-    func didLoadServiceTypes()
     func didFailShowrooms(with error: String)
+
+    func didLoadServiceTypes()
     func didFailServiceTypes(with error: String)
 }
 
