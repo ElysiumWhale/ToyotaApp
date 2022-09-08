@@ -125,7 +125,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         interactor.checkCode(code: code)
     }
 
-    private func resolveNavigation(authType: AuthType, context: CheckUserContext?) {
+    private func resolveNavigation(authType: AuthScenario, context: CheckUserContext?) {
         switch authType {
         case .register:
             guard let context = context else {
