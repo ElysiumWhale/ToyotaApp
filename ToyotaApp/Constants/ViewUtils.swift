@@ -1,27 +1,5 @@
 import Foundation
 
-enum AuthType: Equatable {
-    case register
-    case changeNumber
-}
-
-/// **Warning!** Equality comparison will result `false` **ONLY** if one operator is `.register` and another is `.update`.
-/// In **rest** cases it will return `true`.
-enum AddInfoType: Equatable {
-    case register
-    case update(with: UserProxy)
-
-    static func == (lhs: AddInfoType, rhs: AddInfoType) -> Bool {
-        if case register = lhs, case register = rhs {
-            return true
-        }
-        if case update = lhs, case update = rhs {
-            return true
-        }
-        return false
-    }
-}
-
 enum TimeMap {
     static func getFullSchedule(after hour: Int? = nil) -> [DateComponents] {
         var times: [DateComponents] = []

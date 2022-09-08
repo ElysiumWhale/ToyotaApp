@@ -14,7 +14,7 @@ final class AddCarInteractor {
 
     weak var view: AddCarViewInput?
 
-    let type: AddInfoType
+    let type: AddInfoScenario
 
     private(set) var models: [Model] = []
     private(set) var colors: [Color] = []
@@ -30,7 +30,7 @@ final class AddCarInteractor {
         models.isEmpty && colors.isEmpty
     }
 
-    init(type: AddInfoType = .register,
+    init(type: AddInfoScenario = .register,
          models: [Model] = [],
          colors: [Color] = [],
          service: CarsService = InfoService()) {

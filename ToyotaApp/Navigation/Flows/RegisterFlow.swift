@@ -1,5 +1,19 @@
 import UIKit
 
+enum AddInfoScenario: Equatable {
+    case register
+    case update(with: UserProxy)
+
+    static func == (lhs: AddInfoScenario, rhs: AddInfoScenario) -> Bool {
+        switch (lhs, rhs) {
+        case (register, register), (update, update):
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 enum RegisterFlow {
 
     static func cityModule(_ cities: [City] = []) -> CityPikerModule {
@@ -19,7 +33,7 @@ enum RegisterFlow {
         return view
     }
 
-    static func addCarModule(scenario: AddInfoType = .register,
+    static func addCarModule(scenario: AddInfoScenario = .register,
                              models: [Model] = [],
                              colors: [Color] = []) -> UIViewController {
 
