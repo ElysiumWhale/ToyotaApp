@@ -1,39 +1,37 @@
 import UIKit
 
 final class TimePickerView: BaseView {
-    let datePicker = UIPickerView()
-
-    let dateTimeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .toyotaType(.semibold, of: 20)
-        label.textAlignment = .left
-        label.textColor = .label
-        label.text = .common(.chooseDateTime)
-        return label
-    }()
-
-    override class var requiresConstraintBasedLayout: Bool {
-        true
-    }
+    let picker = UIPickerView()
+    let label = UILabel()
 
     override func addViews() {
-        addSubviews(dateTimeLabel, datePicker)
+        addSubviews(label, picker)
     }
 
     override func configureLayout() {
-        dateTimeLabel.edgesToSuperview(excluding: .bottom,
+        label.edgesToSuperview(excluding: .bottom,
                                        usingSafeArea: true)
-        dateTimeLabel.bottomToTop(of: datePicker, offset: -5)
+        label.bottomToTop(of: picker, offset: -5)
 
-        datePicker.edgesToSuperview(excluding: .top, usingSafeArea: true)
-        datePicker.height(150)
+        picker.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        picker.height(150)
+    }
+
+    override func configureAppearance() {
+        label.font = .toyotaType(.semibold, of: 20)
+        label.textAlignment = .left
+        label.textColor = .appTint(.signatureGray)
+    }
+
+    override func localize() {
+        label.text = .common(.chooseDateTime)
     }
 
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
             case .title(let title):
-                dateTimeLabel.text = title
+                label.text = title
             default:
                 return
             }
@@ -42,8 +40,8 @@ final class TimePickerView: BaseView {
 
     func dataDidDownload() {
         DispatchQueue.main.async { [weak self] in
-            self?.datePicker.selectRow(0, inComponent: 0, animated: false)
-            self?.datePicker.reloadAllComponents()
+            self?.picker.selectRow(0, inComponent: 0, animated: false)
+            self?.picker.reloadAllComponents()
             self?.fadeIn()
         }
     }
