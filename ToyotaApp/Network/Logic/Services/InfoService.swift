@@ -41,6 +41,13 @@ protocol ManagersService {
                      handler: RequestHandler<ManagersResponse>)
 }
 
+protocol ServicesService {
+    func getShowrooms(with body: GetShowroomsBody,
+                      handler: RequestHandler<ShowroomsResponse>)
+    func getServiceTypes(with body: GetServiceTypesBody,
+                         handler: RequestHandler<ServicesTypesResponse>)
+}
+
 final class InfoService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
@@ -53,21 +60,10 @@ final class InfoService {
         }
     }
 
-    func getShowrooms(with body: GetShowroomsBody, handler: RequestHandler<ShowroomsResponse>) {
-        perform(with: handler) {
-            Request(page: .registration(.getShowrooms), body: body)
-        }
-    }
 
     func getShowroomsFTD(with body: GetShowroomsForTestDriveBody, handler: RequestHandler<ShowroomsResponse>) {
         perform(with: handler) {
             Request(page: .services(.getTestDriveShowrooms), body: body)
-        }
-    }
-
-    func getServiceTypes(with body: GetServiceTypesBody, handler: RequestHandler<ServicesTypesResponse>) {
-        perform(with: handler) {
-            Request(page: .services(.getServicesTypes), body: body)
         }
     }
 
@@ -182,11 +178,26 @@ extension InfoService: BookingsService {
     }
 }
 
-// MARK: - ManagersResponse
+// MARK: - ManagersService
 extension InfoService: ManagersService {
     func getManagers(with body: GetManagersBody, handler: RequestHandler<ManagersResponse>) {
         perform(with: handler) {
             Request(page: .profile(.getManagers), body: body)
+        }
+    }
+}
+
+// MARK: - ServicesService
+extension InfoService: ServicesService {
+    func getShowrooms(with body: GetShowroomsBody, handler: RequestHandler<ShowroomsResponse>) {
+        perform(with: handler) {
+            Request(page: .registration(.getShowrooms), body: body)
+        }
+    }
+
+    func getServiceTypes(with body: GetServiceTypesBody, handler: RequestHandler<ServicesTypesResponse>) {
+        perform(with: handler) {
+            Request(page: .services(.getServicesTypes), body: body)
         }
     }
 }

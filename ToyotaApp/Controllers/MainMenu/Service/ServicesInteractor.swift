@@ -11,7 +11,7 @@ protocol ServicesView: AnyObject {
 final class ServicesInteractor {
     private let servicesTypesHandler = RequestHandler<ServicesTypesResponse>()
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
-    private let service: InfoService
+    private let service: ServicesService
 
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
@@ -48,7 +48,7 @@ final class ServicesInteractor {
         return showrooms.firstIndex(where: { $0.id == showroom.id })
     }
 
-    init(service: InfoService = .init()) {
+    init(service: ServicesService = InfoService()) {
         self.service = service
 
         setupRequestHandlers()
