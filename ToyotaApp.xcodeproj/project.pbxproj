@@ -129,7 +129,7 @@
 		A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A4EF72548EA600026B76B /* NoPasteTextField.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
-		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
+		A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* TimeMap.swift */; };
 		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
 		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
 		A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */; };
@@ -274,7 +274,7 @@
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		A791FDE925267A1A00A595BB /* TimeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMap.swift; sourceTree = "<group>"; };
 		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
 		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
 		A7924CF8254B70E8001B67C1 /* ToyotaType-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Book.ttf"; sourceTree = "<group>"; };
@@ -628,7 +628,6 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
-				A777750E259BF72A006D30EA /* Constants */,
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
 				A7777519259BFA00006D30EA /* Controllers */,
@@ -659,6 +658,9 @@
 				A74999E42890A2ED00C6E027 /* EventNotificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
+				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
+				1425230526FFBF8F00B177B7 /* Strings.swift */,
+				A791FDE925267A1A00A595BB /* TimeMap.swift */,
 				14920D6127A5DAB400B28D51 /* DateFormatting.swift */,
 			);
 			path = Model;
@@ -708,16 +710,6 @@
 				A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */,
 			);
 			path = BookingsModule;
-			sourceTree = "<group>";
-		};
-		A777750E259BF72A006D30EA /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
-				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
-				1425230526FFBF8F00B177B7 /* Strings.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		A7777519259BFA00006D30EA /* Controllers */ = {
@@ -1040,7 +1032,7 @@
 				140BA59627A6C310002A7423 /* AuthFlow.swift in Sources */,
 				14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */,
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
-				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
+				A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */,
 				14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */,
 				14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */,
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,
