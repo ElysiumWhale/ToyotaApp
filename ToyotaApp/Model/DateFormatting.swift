@@ -20,22 +20,13 @@ extension DateComponents {
 
 // MARK: - Formatting helpers
 extension String {
-    func asDate(with formatter: DateFormatters) -> Date? {
+    func asDate(with formatter: DateFormatter) -> Date? {
         formatter.date(from: self)
-    }
-
-    func swapFormats(from sourceFormat: DateFormatters,
-                     to destinationFormat: DateFormatters) -> String {
-        destinationFormat.string(from: sourceFormat.date(from: self) ?? Date())
-    }
-
-    func dateString(for formatter: DateFormatters) -> String {
-        formatter.string(from: formatter.date(from: self) ?? Date())
     }
 }
 
 extension Date {
-    func asString(_ formatter: DateFormatters) -> String {
+    func asString(_ formatter: DateFormatter) -> String {
         formatter.string(from: self)
     }
 
@@ -65,38 +56,12 @@ extension Date {
                 && now.minute < minute
     }
 
-    var calendar: Calendar {
+    private var calendar: Calendar {
         Calendar.current
     }
 }
 
-enum DateFormatters {
-    case common
-    case display
-    case client
-    case server
-    case serverWithTime
-
-    func string(from date: Date) -> String {
-        formatter.string(from: date)
-    }
-
-    func date(from string: String) -> Date? {
-        formatter.date(from: string)
-    }
-
-    private var formatter: DateFormatter {
-        switch self {
-            case .common: return .common
-            case .display: return .display
-            case .client: return .client
-            case .server: return .server
-            case .serverWithTime: return .serverWithTime
-        }
-    }
-}
-
-// MARK: - Formatters instanses
+// MARK: - Formatters presets
 extension DateFormatter {
     private static func formatter(with format: String) -> DateFormatter {
         let formatter = DateFormatter()
@@ -111,7 +76,7 @@ extension DateFormatter {
     /// ```
     /// "2020-12-25"
     /// ```
-    static let server: DateFormatter = formatter(with: .yyyyMMdd)
+    static let server = formatter(with: .yyyyMMdd)
 
     /// Formats date in **yyyy-MM-dd HH:mm:ss**
     ///
@@ -119,7 +84,7 @@ extension DateFormatter {
     /// ```
     /// "2020-12-25 23:04:45"
     /// ```
-    static let serverWithTime: DateFormatter = formatter(with: .yyyyMMddTime)
+    static let serverWithTime = formatter(with: .yyyyMMddTime)
 
     /// Formats date in **MM.dd.yyyy**
     ///
@@ -127,7 +92,7 @@ extension DateFormatter {
     /// ```
     /// "12.25.2020"
     /// ```
-    static let common: DateFormatter = formatter(with: .MMddyyyy)
+    static let common = formatter(with: .MMddyyyy)
 
     /// Formats date in **dd.MM.yyyy**
     ///
@@ -135,21 +100,21 @@ extension DateFormatter {
     /// ```
     /// "25.12.2020"
     /// ```
-    static let display: DateFormatter = formatter(with: .ddMMyyyy)
+    static let display = formatter(with: .ddMMyyyy)
 
     /// Formats date in **ru**  medium date style
     ///
     /// Example:
     /// ```
-    /// "26 янв. 2077"
+    /// "26 янв. 2077 г."
     /// ```
-    static var client: DateFormatter {
+    static let client: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru")
         formatter.dateStyle = .medium
         formatter.timeZone = .autoupdatingCurrent
         return formatter
-    }
+    }()
 }
 
 // MARK: - Date formatting masks
