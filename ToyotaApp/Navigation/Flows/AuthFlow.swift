@@ -1,14 +1,19 @@
 import UIKit
 
+enum AuthScenario: Equatable {
+    case register
+    case changeNumber
+}
+
 enum AuthFlow {
-    static func authModule(authType: AuthType = .register,
+    static func authModule(authType: AuthScenario = .register,
                            authService: AuthService = InfoService()) -> UIViewController {
         let interactor = AuthInteractor(type: authType, authService: authService)
         return AuthViewController(interactor: interactor)
     }
 
     static func codeModule(phone: String,
-                           authType: AuthType = .register,
+                           authType: AuthScenario = .register,
                            authService: AuthService = InfoService()) -> UIViewController {
         let interactor = SmsCodeInteractor(type: authType, phone: phone, authService: authService)
         return SmsCodeViewController(interactor: interactor)

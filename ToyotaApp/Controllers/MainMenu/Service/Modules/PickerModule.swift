@@ -5,7 +5,7 @@ final class PickerModule: NSObject, IServiceModule {
 
     private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.servicePicker.configure(delegate: self,
+        internalView.picker.configure(delegate: self,
                                              with: #selector(serviceDidSelect),
                                              for: internalView.textField)
         internalView.textField.placeholder = .common(.service)
@@ -65,7 +65,7 @@ final class PickerModule: NSObject, IServiceModule {
             array = data.array.isEmpty ? [Service.empty] : data.array
             DispatchQueue.main.async { [weak self] in
                 self?.internalView.fadeIn()
-                self?.internalView.servicePicker.reloadAllComponents()
+                self?.internalView.picker.reloadAllComponents()
                 self?.state = .didDownload
             }
         }
@@ -100,7 +100,7 @@ extension PickerModule: UIPickerViewDelegate {
             return
         }
 
-        let index = internalView.servicePicker.selectedRow
+        let index = internalView.picker.selectedRow
         if array[index].id == "-1" {
             view.endEditing(true)
             return

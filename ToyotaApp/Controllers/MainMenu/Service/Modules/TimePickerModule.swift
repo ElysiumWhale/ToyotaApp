@@ -22,8 +22,8 @@ final class TimePickerModule: NSObject, IServiceModule {
     // MARK: - Private properties
     private lazy var internalView: TimePickerView = {
         let view = TimePickerView()
-        view.datePicker.delegate = self
-        view.datePicker.dataSource = self
+        view.picker.delegate = self
+        view.picker.dataSource = self
         view.alpha = 0
         return view
     }()
@@ -93,7 +93,7 @@ final class TimePickerModule: NSObject, IServiceModule {
     // MARK: - Private methods
 
     private func rowIn(component: Int) -> Int {
-        internalView.datePicker.selectedRow(inComponent: component)
+        internalView.picker.selectedRow(inComponent: component)
     }
 
     private func completion(for response: FreeTimeResponse) {
@@ -157,7 +157,7 @@ extension TimePickerModule: UIPickerViewDataSource {
 extension TimePickerModule: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            internalView.datePicker.reloadComponent(1)
+            internalView.picker.reloadComponent(1)
             timeRows.date = rowIn(component: 0)
         }
         timeRows.time = rowIn(component: 1)

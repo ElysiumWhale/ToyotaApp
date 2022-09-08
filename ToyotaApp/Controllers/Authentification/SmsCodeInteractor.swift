@@ -5,13 +5,13 @@ final class SmsCodeInteractor {
     private let changeNumberHandler = DefaultRequestHandler()
     private let authService: AuthService
 
-    let type: AuthType
+    let type: AuthScenario
     let phone: String
 
-    var onSuccess: ParameterClosure<(AuthType, CheckUserContext?)>?
+    var onSuccess: ParameterClosure<(AuthScenario, CheckUserContext?)>?
     var onError: ParameterClosure<String>?
 
-    init(type: AuthType = .register, phone: String, authService: AuthService = InfoService()) {
+    init(type: AuthScenario = .register, phone: String, authService: AuthService = InfoService()) {
         self.type = type
         self.phone = phone
         self.authService = authService

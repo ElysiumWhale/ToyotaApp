@@ -129,7 +129,7 @@
 		A78A4EF82548EA600026B76B /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A4EF72548EA600026B76B /* NoPasteTextField.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
-		A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* ViewUtils.swift */; };
+		A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* TimeMap.swift */; };
 		A7924D13254B743F001B67C1 /* ToyotaType-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFB254B70E8001B67C1 /* ToyotaType-Light.ttf */; };
 		A7924D14254B743F001B67C1 /* ToyotaType-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFD254B70E8001B67C1 /* ToyotaType-RegularIt.ttf */; };
 		A7924D15254B743F001B67C1 /* ToyotaType-BoldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */; };
@@ -150,6 +150,7 @@
 		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
 		A7CAA4A728B9CBF500F7BAB5 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */; };
 		A7CAA4A928BAD69600F7BAB5 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */; };
+		A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */; };
 		A7D4A7F628BD791A009747E4 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 		A7FF97662899CB1300AF3EE4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF97652899CB1300AF3EE4 /* BaseView.swift */; };
@@ -273,7 +274,7 @@
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		A791FDE925267A1A00A595BB /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		A791FDE925267A1A00A595BB /* TimeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMap.swift; sourceTree = "<group>"; };
 		A7924CF6254B70E7001B67C1 /* ToyotaType-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BlackIt.ttf"; sourceTree = "<group>"; };
 		A7924CF7254B70E8001B67C1 /* ToyotaType-BookIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BookIt.ttf"; sourceTree = "<group>"; };
 		A7924CF8254B70E8001B67C1 /* ToyotaType-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-Book.ttf"; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
 		A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattingTests.swift; sourceTree = "<group>"; };
 		A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		A7FF97652899CB1300AF3EE4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 		14F0920527E3EB7600B03130 /* ToyotaAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7CBAC8F28CA02C400639758 /* Buisness Logic */,
 				1442F4C6280A0982005636E0 /* Resources */,
 				14CB6AD727E92A9A00715A5D /* Flows */,
 				147D4A2B27E614E400010E63 /* Modules */,
@@ -625,7 +628,6 @@
 		A759468A2523E32F00312EBE /* ToyotaApp */ = {
 			isa = PBXGroup;
 			children = (
-				A777750E259BF72A006D30EA /* Constants */,
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
 				A7777519259BFA00006D30EA /* Controllers */,
@@ -656,6 +658,9 @@
 				A74999E42890A2ED00C6E027 /* EventNotificator.swift */,
 				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
+				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
+				1425230526FFBF8F00B177B7 /* Strings.swift */,
+				A791FDE925267A1A00A595BB /* TimeMap.swift */,
 				14920D6127A5DAB400B28D51 /* DateFormatting.swift */,
 			);
 			path = Model;
@@ -705,16 +710,6 @@
 				A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */,
 			);
 			path = BookingsModule;
-			sourceTree = "<group>";
-		};
-		A777750E259BF72A006D30EA /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				A791FDE925267A1A00A595BB /* ViewUtils.swift */,
-				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
-				1425230526FFBF8F00B177B7 /* Strings.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		A7777519259BFA00006D30EA /* Controllers */ = {
@@ -820,6 +815,14 @@
 				A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A7CBAC8F28CA02C400639758 /* Buisness Logic */ = {
+			isa = PBXGroup;
+			children = (
+				A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */,
+			);
+			path = "Buisness Logic";
 			sourceTree = "<group>";
 		};
 		A7D1205D253E6A7F005F85B0 /* Registration */ = {
@@ -984,6 +987,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
@@ -1028,7 +1032,7 @@
 				140BA59627A6C310002A7423 /* AuthFlow.swift in Sources */,
 				14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */,
 				144B8C6826D5A3D9006D7F29 /* KeyboardBindedButton.swift in Sources */,
-				A791FDEA25267A1A00A595BB /* ViewUtils.swift in Sources */,
+				A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */,
 				14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */,
 				14188033278B3499000B82DD /* UIView+Extensions.swift in Sources */,
 				14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */,

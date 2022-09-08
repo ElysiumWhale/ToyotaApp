@@ -4,12 +4,12 @@ final class AuthInteractor {
     private let authRequestHandler = DefaultRequestHandler()
     private let authService: AuthService
 
-    let type: AuthType
+    let type: AuthScenario
 
     var onSuccess: Closure?
     var onFailure: ParameterClosure<String>?
 
-    init(type: AuthType = .register, authService: AuthService = InfoService()) {
+    init(type: AuthScenario = .register, authService: AuthService = InfoService()) {
         self.type = type
         self.authService = authService
 

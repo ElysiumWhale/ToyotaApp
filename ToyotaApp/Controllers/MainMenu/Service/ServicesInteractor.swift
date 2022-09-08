@@ -2,16 +2,18 @@ import Foundation
 
 protocol ServicesView: AnyObject {
     func didSelect(showroom: Showroom, with index: Int?)
+
     func didLoadShowrooms()
-    func didLoadServiceTypes()
     func didFailShowrooms(with error: String)
+
+    func didLoadServiceTypes()
     func didFailServiceTypes(with error: String)
 }
 
 final class ServicesInteractor {
     private let servicesTypesHandler = RequestHandler<ServicesTypesResponse>()
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
-    private let service: InfoService
+    private let service: ServicesService
 
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
@@ -48,7 +50,7 @@ final class ServicesInteractor {
         return showrooms.firstIndex(where: { $0.id == showroom.id })
     }
 
-    init(service: InfoService = .init()) {
+    init(service: ServicesService = InfoService()) {
         self.service = service
 
         setupRequestHandlers()
