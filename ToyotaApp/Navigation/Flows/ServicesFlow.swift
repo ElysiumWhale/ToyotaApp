@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-private struct CustomServices {
+struct CustomServices {
     static let TestDrive = "3"
 }
 
