@@ -150,6 +150,8 @@ class NetworkService {
     }
 }
 
+extension URLSessionDataTask: RequestTask { }
+
 // MARK: - Request items
 typealias RequestItem = (key: RequestKeys, value: String?)
 typealias RequestItems = [RequestItem]
