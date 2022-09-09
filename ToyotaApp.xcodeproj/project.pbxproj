@@ -44,7 +44,7 @@
 		143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoView.swift */; };
 		143CF0A5266BDB2A00811FA3 /* InitialazableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
-		143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */; };
+		143CF0A9266CEDF600811FA3 /* ServicesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */; };
 		1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4C7280A09B9005636E0 /* ResourcesTests.swift */; };
 		1442F4D7280A25BC005636E0 /* BaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4D6280A25BC005636E0 /* BaseTableCell.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
@@ -190,7 +190,7 @@
 		143CCB5A286261C900842050 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableView.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
-		143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModuleBuilder.swift; sourceTree = "<group>"; };
+		143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesFlow.swift; sourceTree = "<group>"; };
 		1442F4C7280A09B9005636E0 /* ResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTests.swift; sourceTree = "<group>"; };
 		1442F4D6280A25BC005636E0 /* BaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCell.swift; sourceTree = "<group>"; };
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
@@ -339,6 +339,7 @@
 				140BA59527A6C310002A7423 /* AuthFlow.swift */,
 				140BA59327A6C2A1002A7423 /* RegisterFlow.swift */,
 				140BA59727A6CB67002A7423 /* MainMenuFlow.swift */,
+				143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */,
 				147E789727FFB2090017ACA7 /* UtilsFlow.swift */,
 			);
 			path = Flows;
@@ -656,7 +657,6 @@
 				1425230226FFBCC500B177B7 /* Persistance */,
 				A7A085F4255C7BC600807225 /* UserInfo.swift */,
 				A74999E42890A2ED00C6E027 /* EventNotificator.swift */,
-				143CF0A8266CEDF600811FA3 /* ServiceModuleBuilder.swift */,
 				14A8D8942617C25F0086BC12 /* Mocks.swift */,
 				14E5A9CE26345D7C0057BEF3 /* Errors.swift */,
 				1425230526FFBF8F00B177B7 /* Strings.swift */,
@@ -1004,7 +1004,7 @@
 				1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */,
 				14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */,
 				14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */,
-				143CF0A9266CEDF600811FA3 /* ServiceModuleBuilder.swift in Sources */,
+				143CF0A9266CEDF600811FA3 /* ServicesFlow.swift in Sources */,
 				141A64A7270651AB00EEFC6E /* TimePickerModuleView.swift in Sources */,
 				14C7E65E26433B2A000B24B6 /* LostConnectionViewController.swift in Sources */,
 				1467F78925D339DF00E318D3 /* UIExtensions.swift in Sources */,

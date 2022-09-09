@@ -59,16 +59,7 @@ extension IServiceModule {
     func configure(appearance: [ModuleAppearances]) { }
 }
 
-/// Controller which manages `IServiceModule`s.
-/// Configured by `ServiceModuleBuilder`
-protocol IServiceController: UIViewController, ModuleDelegate {
-    var modules: [IServiceModule] { get }
-    var serviceType: ServiceType { get }
-    var user: UserProxy? { get }
-    var hasCarSelection: Bool { get }
-}
-
-protocol ModuleDelegate: AnyObject {
+protocol ModuleDelegate: UIViewController {
     func moduleDidUpdate(_ module: IServiceModule)
 }
 

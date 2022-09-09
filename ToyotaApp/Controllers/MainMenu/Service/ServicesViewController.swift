@@ -253,9 +253,9 @@ extension ServicesViewController: UICollectionViewDelegate {
             return
         }
 
-        let controller = ServiceModuleBuilder.buildModule(serviceType: service,
-                                                          for: controllerType,
-                                                          user: user)
+        let controller = ServicesFlow.buildModule(serviceType: service,
+                                                  for: controllerType,
+                                                  user: user)
         navigationController?.pushViewController(controller, animated: true)
     }
 

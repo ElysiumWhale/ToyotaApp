@@ -1,9 +1,6 @@
 import UIKit
 
-// MARK: Controller
-class BaseServiceController: BaseViewController, IServiceController, Loadable {
-
-    // MARK: - View
+class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     let loadingView = LoadingView()
     private(set) var scrollView = UIScrollView()
     private(set) var stackView = UIStackView()
