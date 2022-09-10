@@ -730,14 +730,14 @@
 		A791FDD82524E17300A595BB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
-				A791FDDB2524E19B00A595BB /* News */,
-				A791FDDA2524E19300A595BB /* Service */,
-				A791FDD92524E18800A595BB /* Profile */,
+				A791FDDB2524E19B00A595BB /* NewsModule */,
+				A791FDDA2524E19300A595BB /* ServicesModule */,
+				A791FDD92524E18800A595BB /* ProfileModule */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
 		};
-		A791FDD92524E18800A595BB /* Profile */ = {
+		A791FDD92524E18800A595BB /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
 				A7598D1128BE9E6D00F6A1E7 /* ProfileModule */,
@@ -746,10 +746,10 @@
 				A763B0FA289C86A900FA46F0 /* BookingsModule */,
 				14C50A0625F3CCFE00608056 /* SettingsViewController.swift */,
 			);
-			path = Profile;
+			path = ProfileModule;
 			sourceTree = "<group>";
 		};
-		A791FDDA2524E19300A595BB /* Service */ = {
+		A791FDDA2524E19300A595BB /* ServicesModule */ = {
 			isa = PBXGroup;
 			children = (
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
@@ -760,16 +760,16 @@
 				1419C7362683E0D7001F7EF3 /* Custom */,
 				146590F926EAB5CD0056E37D /* Modules */,
 			);
-			path = Service;
+			path = ServicesModule;
 			sourceTree = "<group>";
 		};
-		A791FDDB2524E19B00A595BB /* News */ = {
+		A791FDDB2524E19B00A595BB /* NewsModule */ = {
 			isa = PBXGroup;
 			children = (
 				A791FDE02524E1E400A595BB /* NewsViewController.swift */,
 				A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */,
 			);
-			path = News;
+			path = NewsModule;
 			sourceTree = "<group>";
 		};
 		A791FDE225266F2700A595BB /* Views */ = {
