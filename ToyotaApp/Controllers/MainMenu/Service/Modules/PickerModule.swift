@@ -1,19 +1,24 @@
 import UIKit
 
 final class PickerModule: NSObject, IServiceModule {
-    var view: UIView { internalView }
+    private var services: [IService] = []
 
     private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
         internalView.picker.configure(delegate: self,
-                                             with: #selector(serviceDidSelect),
-                                             for: internalView.textField)
+                                      with: #selector(serviceDidSelect),
+                                      for: internalView.textField)
         internalView.textField.placeholder = .common(.service)
         internalView.alpha = 0
         return internalView
     }()
 
-    private(set) var serviceType: ServiceType
+    let serviceType: ServiceType
+
+    var view: UIView {
+        internalView
+    }
+
     private(set) var state: ModuleStates = .idle {
         didSet {
             delegate?.moduleDidUpdate(self)
@@ -23,12 +28,11 @@ final class PickerModule: NSObject, IServiceModule {
     weak var nextModule: IServiceModule?
     weak var delegate: ModuleDelegate?
 
-    private var array: [IService]?
-
     init(with type: ServiceType) {
         serviceType = type
     }
 
+    // MARK: - Public methods
     func configure(appearance: [ModuleAppearances]) {
         internalView.configure(appearance: appearance)
     }
