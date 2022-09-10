@@ -1,5 +1,13 @@
 import Foundation
 
+struct AnyBody: IBody {
+    let items: RequestItems
+
+    var asRequestItems: [URLQueryItem] {
+        items.asQueryItems
+    }
+}
+
 // MARK: - SimpleBrandBody
 struct SimpleBrandBody: IBody, BodyWithBrandId {
     let brandId: String

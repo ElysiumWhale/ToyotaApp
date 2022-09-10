@@ -1,6 +1,6 @@
 import Foundation
 
-protocol IBody: Encodable {
+protocol IBody {
     var asRequestItems: [URLQueryItem] { get }
 }
 
