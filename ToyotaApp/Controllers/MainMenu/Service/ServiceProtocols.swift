@@ -69,6 +69,8 @@ protocol IService: Codable {
 }
 
 protocol IServiceResponse: IResponse {
+    associatedtype TService: IService
+
     var result: String { get }
-    var array: [IService] { get }
+    var array: [TService] { get }
 }
