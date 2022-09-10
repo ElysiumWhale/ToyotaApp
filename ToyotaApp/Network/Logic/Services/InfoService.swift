@@ -60,7 +60,6 @@ final class InfoService {
         }
     }
 
-
     func getShowroomsFTD(with body: GetShowroomsForTestDriveBody, handler: RequestHandler<ShowroomsResponse>) {
         perform(with: handler) {
             Request(page: .services(.getTestDriveShowrooms), body: body)

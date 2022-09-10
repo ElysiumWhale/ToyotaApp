@@ -28,12 +28,6 @@ extension ValidationRule {
         }
     }
 
-    static var empty: ValidationRule {
-        ValidationRule { _ in
-            true
-        }
-    }
-
     static var notEmpty: ValidationRule {
         ValidationRule { text in
             text != nil && text!.isNotEmpty
