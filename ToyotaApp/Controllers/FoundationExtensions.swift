@@ -20,6 +20,12 @@ extension Collection {
     var isNotEmpty: Bool {
         !isEmpty
     }
+
+    subscript(safe index: Self.Index) -> Self.Element? {
+        get {
+            indices.contains(index) ? self[index] : nil
+        }
+    }
 }
 
 // MARK: - Years strings
