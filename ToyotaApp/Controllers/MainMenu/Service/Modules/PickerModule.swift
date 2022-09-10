@@ -1,6 +1,8 @@
 import UIKit
 
 final class PickerModule: NSObject, IServiceModule {
+    private let handler = RequestHandler<ServicesResponse>()
+
     private var services: [IService] = []
 
     private lazy var internalView: PickerModuleView = {
@@ -30,6 +32,9 @@ final class PickerModule: NSObject, IServiceModule {
 
     init(with type: ServiceType) {
         serviceType = type
+        super.init()
+
+        setupRequestHandlers()
     }
 
     // MARK: - Public methods
@@ -43,10 +48,10 @@ final class PickerModule: NSObject, IServiceModule {
 
         var queryParams = params
         queryParams.append((.services(.serviceTypeId), serviceType.id))
-        NetworkService.makeRequest(page: .services(.getServices),
-                                   params: queryParams) { [weak self] (response: Response<ServicesResponse>) in
-            self?.completion(for: response)
-        }
+
+        NetworkService.makeRequest(.init(page: .services(.getServices),
+                                         body: AnyBody(items: queryParams)),
+                                   handler: handler)
     }
 
     func customStart<TResponse: IServiceResponse>(page: RequestPath,
@@ -57,20 +62,11 @@ final class PickerModule: NSObject, IServiceModule {
 
         NetworkService.makeRequest(page: page,
                                    params: params) { [weak self] (response: Response<TResponse>) in
-            self?.completion(for: response)
-        }
-    }
-
-    private func completion<TResponse: IServiceResponse>(for response: Result<TResponse, ErrorResponse>) {
-        switch response {
-        case .failure(let error):
-            state = .error(.requestError(error.message))
-        case .success(let data):
-            array = data.array.isEmpty ? [Service.empty] : data.array
-            DispatchQueue.main.async { [weak self] in
-                self?.internalView.fadeIn()
-                self?.internalView.picker.reloadAllComponents()
-                self?.state = .didDownload
+            switch response {
+            case .failure(let error):
+                self?.failureCompletion(error)
+            case .success(let data):
+                self?.successCompletion(data)
             }
         }
     }
@@ -83,6 +79,44 @@ final class PickerModule: NSObject, IServiceModule {
             return []
         }
     }
+
+    // MARK: - Private methods
+    private func setupRequestHandlers() {
+        handler
+            .observe(on: .main)
+            .bind(onSuccess: { [weak self] response in
+                self?.successCompletion(response)
+            }, onFailure: { [weak self] errorResponse in
+                self?.failureCompletion(errorResponse)
+            })
+    }
+
+    private func successCompletion<TResponse: IServiceResponse>(_ response: TResponse) {
+        services = response.array.isEmpty ? [.empty] : response.array
+        DispatchQueue.main.async { [weak self] in
+            self?.internalView.fadeIn()
+            self?.internalView.picker.reloadAllComponents()
+            self?.state = .didDownload
+        }
+    }
+
+    private func failureCompletion(_ errorResponse: ErrorResponse) {
+        state = .error(.requestError(errorResponse.message))
+    }
+
+    @objc private func serviceDidSelect() {
+        guard services.isNotEmpty,
+              let service = services[safe: internalView.picker.selectedRow],
+              service.id != "-1" else {
+
+            view.endEditing(true)
+            return
+        }
+
+        internalView.textField.text = service.name
+        internalView.endEditing(true)
+        state = .didChose(service)
+    }
 }
 
 // MARK: - UIPickerViewDataSource
@@ -91,30 +125,14 @@ extension PickerModule: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        array?.count ?? 0
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
+        services.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension PickerModule: UIPickerViewDelegate {
-    @IBAction func serviceDidSelect(sender: Any?) {
-        guard let array = array, array.isNotEmpty else {
-            view.endEditing(true)
-            return
-        }
-
-        let index = internalView.picker.selectedRow
-        if array[index].id == "-1" {
-            view.endEditing(true)
-            return
-        }
-
-        internalView.textField.text = array[index].name
-        internalView.endEditing(true)
-        state = .didChose(array[index])
-    }
-
     func pickerView(_ pickerView: UIPickerView,
                     viewForRow row: Int,
                     forComponent component: Int,
@@ -123,12 +141,13 @@ extension PickerModule: UIPickerViewDelegate {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.light, of: 20)
         pickerLabel.textAlignment = .center
-        pickerLabel.text = array?[row].name
+        pickerLabel.text = services[safe: row]?.name
         return pickerLabel
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        array?[row].name ?? "PickerModule.array is empty"
+        services[safe: row]?.name
     }
 }
