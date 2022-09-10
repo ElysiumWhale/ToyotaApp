@@ -71,7 +71,7 @@
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCell.swift */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
-		149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* ServiceProtocols.swift */; };
+		149FA73D26889B00002B0658 /* SubmodulesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* SubmodulesProtocols.swift */; };
 		14A4DA3F27581989009D66EA /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4DA3E27581989009D66EA /* CityPickerViewController.swift */; };
 		14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D8942617C25F0086BC12 /* Mocks.swift */; };
 		14AB8D612714C81A004D225F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB8D602714C81A004D225F /* LoadingView.swift */; };
@@ -215,7 +215,7 @@
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
-		149FA73C26889B00002B0658 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
+		149FA73C26889B00002B0658 /* SubmodulesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmodulesProtocols.swift; sourceTree = "<group>"; };
 		14A4DA3E27581989009D66EA /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		14A8D8942617C25F0086BC12 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		14AB8D602714C81A004D225F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -365,14 +365,6 @@
 			path = PersonalInfoModule;
 			sourceTree = "<group>";
 		};
-		1419C7362683E0D7001F7EF3 /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
-			);
-			path = Custom;
-			sourceTree = "<group>";
-		};
 		141A520527F0A13F00E7B9B2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,9 +392,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		146590F926EAB5CD0056E37D /* Modules */ = {
+		146590F926EAB5CD0056E37D /* Submodules */ = {
 			isa = PBXGroup;
 			children = (
+				149FA73C26889B00002B0658 /* SubmodulesProtocols.swift */,
 				143CF0A6266CEA4100811FA3 /* PickerModule.swift */,
 				141A64A42706519E00EEFC6E /* PickerModuleView.swift */,
 				149CC28626765AB700B5172A /* TimePickerModule.swift */,
@@ -410,7 +403,7 @@
 				14025193267AAB89006CF4E2 /* MapModule.swift */,
 				141A64A8270651BB00EEFC6E /* MapModuleView.swift */,
 			);
-			path = Modules;
+			path = Submodules;
 			sourceTree = "<group>";
 		};
 		147D4A2A27E614CA00010E63 /* Persistance */ = {
@@ -531,12 +524,12 @@
 			path = ToyotaAppTests;
 			sourceTree = "<group>";
 		};
-		14F4A79928592BC900400B36 /* Support */ = {
+		14F4A79928592BC900400B36 /* SupportModule */ = {
 			isa = PBXGroup;
 			children = (
 				14F4A79A2859300000400B36 /* ChatViewController.swift */,
 			);
-			path = Support;
+			path = SupportModule;
 			sourceTree = "<group>";
 		};
 		14F519932777E3AD00FF695D /* Button */ = {
@@ -754,11 +747,10 @@
 			children = (
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
-				149FA73C26889B00002B0658 /* ServiceProtocols.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
-				14F4A79928592BC900400B36 /* Support */,
-				1419C7362683E0D7001F7EF3 /* Custom */,
-				146590F926EAB5CD0056E37D /* Modules */,
+				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
+				146590F926EAB5CD0056E37D /* Submodules */,
+				14F4A79928592BC900400B36 /* SupportModule */,
 			);
 			path = ServicesModule;
 			sourceTree = "<group>";
@@ -1072,7 +1064,7 @@
 				A799474328B95693007D4FA0 /* TableView.swift in Sources */,
 				1442F4D7280A25BC005636E0 /* BaseTableCell.swift in Sources */,
 				14F519922777E39900FF695D /* TintedImageButton.swift in Sources */,
-				149FA73D26889B00002B0658 /* ServiceProtocols.swift in Sources */,
+				149FA73D26889B00002B0658 /* SubmodulesProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				14B2A7E4275BECF3002A6ADF /* CityCell.swift in Sources */,
 				A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */,
