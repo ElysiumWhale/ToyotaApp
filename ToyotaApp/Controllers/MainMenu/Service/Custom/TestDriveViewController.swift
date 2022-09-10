@@ -95,8 +95,8 @@ class TestDriveViewController: BaseServiceController {
                                     (.services(.serviceId), carId)]
         params.append(contentsOf: modules[3].buildQueryItems())
 
-        NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params,
+        NetworkService.makeRequest(.init(page: .services(.bookService),
+                                         body: AnyBody(items: params)),
                                    handler: bookingRequestHandler)
     }
 }

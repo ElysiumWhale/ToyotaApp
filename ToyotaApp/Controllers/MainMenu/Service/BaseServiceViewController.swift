@@ -135,8 +135,8 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
             params.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params,
+        NetworkService.makeRequest(.init(page: .services(.bookService),
+                                         body: AnyBody(items: params)),
                                    handler: bookingRequestHandler)
     }
 
