@@ -194,7 +194,9 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         params.append(showroomItem)
         startLoading()
         nextModule.start(with: params)
-        stackView.addArrangedSubview(nextModule.view)
+        if !stackView.arrangedSubviews.contains(nextModule.view) {
+            stackView.addArrangedSubview(nextModule.view)
+        }
     }
 
     @objc private func carDidSelect() {
