@@ -48,6 +48,10 @@ protocol ServicesService {
                          handler: RequestHandler<ServicesTypesResponse>)
 }
 
+protocol CitiesService {
+    func getCities(with body: GetCitiesBody, handler: RequestHandler<CitiesResponse>)
+}
+
 final class InfoService {
     func perform<TResponse: IResponse>(with handler: RequestHandler<TResponse>,
                                        _ requestFactory: ValueClosure<Request>) {
@@ -197,6 +201,15 @@ extension InfoService: ServicesService {
     func getServiceTypes(with body: GetServiceTypesBody, handler: RequestHandler<ServicesTypesResponse>) {
         perform(with: handler) {
             Request(page: .services(.getServicesTypes), body: body)
+        }
+    }
+}
+
+// MARK: - CitiesService
+extension InfoService: CitiesService {
+    func getCities(with body: GetCitiesBody, handler: RequestHandler<CitiesResponse>) {
+        perform(with: handler) {
+            Request(page: .profile(.getCities), body: body)
         }
     }
 }
