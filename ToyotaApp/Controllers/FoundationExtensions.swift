@@ -3,7 +3,6 @@ import Foundation
 typealias ParameterClosure<T> = (T) -> Void
 typealias Closure = () -> Void
 typealias ValueClosure<T> = () -> T
-typealias ParameterValueClosure<T1, T2> = (T1) -> T2
 
 // MARK: - Init with request key
 extension URLQueryItem {
@@ -20,6 +19,12 @@ extension Collection {
 
     var isNotEmpty: Bool {
         !isEmpty
+    }
+
+    subscript(safe index: Self.Index) -> Self.Element? {
+        get {
+            indices.contains(index) ? self[index] : nil
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-public class Mocks {
+class Mocks {
     class func createOrder() -> Service {
         .init(id: "1", name: "1")
     }
@@ -20,16 +20,18 @@ public class Mocks {
     }
 
     class func createManagers() -> [Manager] {
-        return [Manager(id: "-1", userId: "", firstName: "Valery",
-                        secondName: "Aboba", lastName: "Aboba",
-                        phone: "8-800-535-35-35", email: "aboba.val@gmail.com",
-                        imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg",
-                        showroomName: "Тойота Самара Юг"),
-                Manager(id: "-1", userId: "", firstName: "Valery",
-                        secondName: "Aboba", lastName: "Aboba",
-                        phone: "8-800-535-35-35", email: "aboba.val@gmail.com",
-                        imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg",
-                        showroomName: "Тойота Самара Север")]
+        [
+            Manager(id: "-1", userId: "", firstName: "Valery",
+                    secondName: "Aboba", lastName: "Aboba",
+                    phone: "8-800-535-35-35", email: "aboba.val@gmail.com",
+                    imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg",
+                    showroomName: "Тойота Самара Юг"),
+            Manager(id: "-1", userId: "", firstName: "Valery",
+                    secondName: "Aboba", lastName: "Aboba",
+                    phone: "8-800-535-35-35", email: "aboba.val@gmail.com",
+                    imageUrl: "public/images/avatars/toyota/sh1/foto-ava.jpg",
+                    showroomName: "Тойота Самара Север")
+        ]
     }
 
     class func createCars() -> [Car] {

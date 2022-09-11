@@ -57,8 +57,9 @@ extension Keyboardable {
         }
 
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                               object: nil, queue: .main) { [weak self] notification in
-            self?.keyboardWillHide(notification: notification)
+                                               object: nil,
+                                               queue: .main) { [weak self] _ in
+            self?.keyboardWillHide()
         }
     }
 
@@ -76,8 +77,8 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
       }
 
-    private func keyboardWillHide(notification: Notification) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    private func keyboardWillHide() {
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }

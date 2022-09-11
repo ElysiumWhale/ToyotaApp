@@ -1,5 +1,13 @@
 import Foundation
 
+struct AnyBody: IBody {
+    let items: RequestItems
+
+    var asRequestItems: [URLQueryItem] {
+        items.asQueryItems
+    }
+}
+
 // MARK: - SimpleBrandBody
 struct SimpleBrandBody: IBody, BodyWithBrandId {
     let brandId: String
@@ -170,19 +178,6 @@ struct GetFreeTimeBody: IBody, BodyWithShowroomId {
         [
             showroomIdItem,
             .init(.services(.serviceId), serviceId)
-        ]
-    }
-}
-
-// MARK: - AddShowroomBody
-struct AddShowroomBody: IBody, BodyWithUserId, BodyWithShowroomId {
-    let userId: String
-    let showroomId: String
-
-    var asRequestItems: [URLQueryItem] {
-        [
-            userIdItem,
-            showroomIdItem
         ]
     }
 }

@@ -107,8 +107,7 @@ final class AddCarViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
-        view.hideKeyboardWhenSwipedDown()
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboard(when: .tapAndSwipe)
 
         modelPicker.configure(delegate: self,
                               with: #selector(modelDidPick),

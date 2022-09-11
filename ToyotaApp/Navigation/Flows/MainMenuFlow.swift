@@ -20,9 +20,7 @@ enum MainMenuFlow {
     }
 
     static func profileModule(with user: UserProxy) -> UIViewController {
-        let profileVC: MyProfileViewController = UIStoryboard(.myProfile).instantiate(.myProfile)
-        profileVC.setUser(info: user)
-        return profileVC
+        ProfileViewController(interactor: .init(user: user))
     }
 
     static func chatModule() -> UIViewController {

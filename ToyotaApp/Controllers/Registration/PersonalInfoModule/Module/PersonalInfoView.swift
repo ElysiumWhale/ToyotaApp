@@ -52,7 +52,7 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func configureLayout() {
-        hideKeyboardWhenTappedAround()
+        view.hideKeyboard(when: .tapAndSwipe)
 
         subtitleLabel.edgesToSuperview(excluding: .bottom,
                                        insets: .horizontal(16),

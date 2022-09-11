@@ -149,8 +149,10 @@ struct Service: IService {
     }
 }
 
-extension Service {
-    static let empty = Service(id: "-1", name: "Нет доступных сервисов")
+extension IService where Self == Service {
+    static var empty: Self {
+        Service(id: "-1", name: "Нет доступных сервисов")
+    }
 }
 
 // MARK: - Manager

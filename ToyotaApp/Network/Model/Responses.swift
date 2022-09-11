@@ -41,7 +41,7 @@ struct CitiesResponse: IServiceResponse {
     let models: [Model]?
     let colors: [Color]?
 
-    var array: [IService] { cities }
+    var array: [City] { cities }
 }
 
 // MARK: - ShowroomsResponse
@@ -73,7 +73,7 @@ struct ShoroomsResponce: IServiceResponse {
     let result: String
     let showrooms: [Showroom]
 
-    var array: [IService] { showrooms }
+    var array: [Showroom] { showrooms }
 }
 
 // MARK: - ServicesTypesResponse
@@ -92,7 +92,7 @@ struct ServicesResponse: IServiceResponse {
     let result: String
     let services: [Service]
 
-    var array: [IService] { services }
+    var array: [Service] { services }
 }
 
 // MARK: - FreeTimeResponse
@@ -118,10 +118,10 @@ struct ManagersResponse: IResponse {
 
 // MARK: - CarsResponse
 struct CarsResponse: IServiceResponse {
-    var array: [IService] { cars }
-
     let result: String
     let cars: [Service]
+
+    var array: [Service] { cars }
 }
 
 // MARK: - BookingsResponse

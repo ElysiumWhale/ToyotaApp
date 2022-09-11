@@ -1,23 +1,5 @@
 import UIKit
 
-// MARK: - Dismissing controls
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        swipe.cancelsTouchesInView = false
-        swipe.direction = [.up, .down, .left, .right]
-        tap.require(toFail: swipe)
-        view.addGestureRecognizer(swipe)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
 // MARK: - Navigation
 extension UIViewController {
 
