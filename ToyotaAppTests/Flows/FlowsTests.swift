@@ -75,4 +75,32 @@ final class FlowsTests: XCTestCase {
         let splash = UtilsFlow.splashScreenModule()
         XCTAssertTrue(splash is SplashScreenViewController)
     }
+
+    func testServicesFlow() throws {
+        let service = ServicesFlow.buildModule(serviceType: .mock,
+                                                   for: .onePick,
+                                                   user: .mock)
+        XCTAssertTrue(service is BaseServiceController)
+
+        let testDrive = ServicesFlow.buildModule(serviceType: .testDriveMock,
+                                                 for: .onePick,
+                                                 user: .mock)
+        XCTAssertTrue(testDrive is TestDriveViewController)
+    }
+}
+
+private extension ServiceType {
+    static var mock: Self {
+        .init(id: .empty,
+              serviceTypeName: .empty,
+              controlTypeId: .empty,
+              controlTypeDesc: .empty)
+    }
+
+    static var testDriveMock: Self {
+        .init(id: CustomServices.TestDrive,
+              serviceTypeName: .empty,
+              controlTypeId: .empty,
+              controlTypeDesc: .empty)
+    }
 }

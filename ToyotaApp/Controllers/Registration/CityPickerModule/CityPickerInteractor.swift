@@ -2,7 +2,7 @@ import Foundation
 
 final class CityPickerInteractor {
     private let cityRequestHandler = RequestHandler<CitiesResponse>()
-    private let service: InfoService
+    private let service: CitiesService
 
     private(set) var cities: [City] = [] {
         didSet {
@@ -14,7 +14,7 @@ final class CityPickerInteractor {
 
     weak var view: CityPickerViewController?
 
-    init(cities: [City] = [], service: InfoService = .init()) {
+    init(cities: [City] = [], service: CitiesService = InfoService()) {
         self.cities = cities
         self.service = service
 

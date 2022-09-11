@@ -85,17 +85,18 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let userId = user?.id,
-              let showroomId = modules[2].state.getService()?.id,
-              let carId = modules[1].state.getService()?.id else { return }
+        guard let showroomId = modules[2].state.getService()?.id,
+              let carId = modules[1].state.getService()?.id else {
+            return
+        }
 
-        var params: RequestItems = [(.auth(.userId), userId),
+        var params: RequestItems = [(.auth(.userId), user.id),
                                     (.carInfo(.showroomId), showroomId),
                                     (.services(.serviceId), carId)]
         params.append(contentsOf: modules[3].buildQueryItems())
 
-        NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params,
+        NetworkService.makeRequest(.init(page: .services(.bookService),
+                                         body: AnyBody(items: params)),
                                    handler: bookingRequestHandler)
     }
 }

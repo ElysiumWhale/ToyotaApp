@@ -18,9 +18,11 @@ class NetworkService {
         return session
     }()
 
-    class func makeRequest<TResponse>(page: RequestPath,
-                                      params: RequestItems = .empty,
-                                      completion: @escaping ResponseHandler<TResponse>) where TResponse: IResponse {
+    class func makeRequest<TResponse>(
+        page: RequestPath,
+        params: RequestItems = .empty,
+        completion: @escaping ResponseHandler<TResponse>
+    ) where TResponse: IResponse {
 
         let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
 
@@ -52,43 +54,11 @@ class NetworkService {
         task.resume()
     }
 
-    class func makeRequest<TResponse>(page: RequestPath,
-                                      params: RequestItems = .empty,
-                                      handler: RequestHandler<TResponse>) where TResponse: IResponse {
+    class func makeRequest<Response>(
+        _ request: Request,
+        handler: RequestHandler<Response>
+    ) where Response: IResponse {
 
-        let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
-
-        let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
-            guard error == nil else {
-                handler?.invokeFailure(.lostConnection)
-                return
-            }
-
-            guard let data = data else {
-                handler?.invokeFailure(.corruptedData)
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            let decoder = JSONDecoder()
-            if let response = try? decoder.decode(TResponse.self, from: data) {
-                handler?.invokeSuccess(response)
-            } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-                handler?.invokeFailure(errorResponse)
-            } else {
-                handler?.invokeFailure(.corruptedData)
-            }
-        }
-
-        handler.start(with: task)
-    }
-
-    class func makeRequest<Response>(_ request: Request,
-                                     handler: RequestHandler<Response>) where Response: IResponse {
         let request = buildPostRequest(for: request.page.rawValue, with: request.body.asRequestItems)
 
         let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
@@ -149,6 +119,8 @@ class NetworkService {
         return query.url
     }
 }
+
+extension URLSessionDataTask: RequestTask { }
 
 // MARK: - Request items
 typealias RequestItem = (key: RequestKeys, value: String?)

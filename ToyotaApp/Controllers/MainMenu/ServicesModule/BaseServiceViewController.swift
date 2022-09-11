@@ -1,37 +1,17 @@
 import UIKit
 
-// MARK: Controller
-class BaseServiceController: BaseViewController, IServiceController, Loadable {
-
-    // MARK: - View
+class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     let loadingView = LoadingView()
-    private(set) var scrollView = UIScrollView()
-    private(set) var stackView = UIStackView()
-
-    let bookButton: CustomizableButton = {
-        let button = CustomizableButton(type: .custom)
-        button.normalColor = .appTint(.secondarySignatureRed)
-        button.highlightedColor = .appTint(.dimmedSignatureRed)
-        button.rounded = true
-        button.setTitle(.common(.book), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .toyotaType(.regular, of: 20)
-        button.alpha = 0
-        return button
-    }()
-
-    private let carPickView: PickerModuleView = {
-        let internalView = PickerModuleView()
-        internalView.textField.placeholder = .common(.auto)
-        internalView.textField.clipsToBounds = true
-        internalView.label.text = .common(.auto)
-        return internalView
-    }()
+    let scrollView = UIScrollView()
+    let stackView = UIStackView()
+    let carPickView = PickerModuleView()
+    let bookButton = CustomizableButton()
 
     // MARK: - Models
     let bookingRequestHandler = DefaultRequestHandler()
     let serviceType: ServiceType
-    private(set) var user: UserProxy?
+    let user: UserProxy
+
     private(set) var modules: [IServiceModule] = []
 
     var isLoading: Bool = false
@@ -43,13 +23,13 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     private var selectedCar: Car? {
         didSet {
             guard let car = selectedCar else { return }
-            user?.updateSelected(car: car)
+            user.updateSelected(car: car)
             carPickView.textField.text = car.name
         }
     }
 
     private var showroomItem: RequestItem {
-        let showroomId = user?.selectedShowroom?.id
+        let showroomId = user.selectedShowroom?.id
         return (.carInfo(.showroomId), showroomId)
     }
 
@@ -68,17 +48,17 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
 
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
-            if user?.cars.value.isEmpty ?? false {
+            if user.cars.value.isEmpty {
                 PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
                 carPickView.textField.placeholder = .common(.noCars)
                 carPickView.textField.isEnabled = false
                 carPickView.textField.toggle(state: .error)
                 return
             }
-            selectedCar = user?.cars.defaultCar
+
+            selectedCar = user.cars.defaultCar
         }
 
-        startLoading()
         start()
     }
 
@@ -88,17 +68,31 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     }
 
     override func configureLayout() {
-        setupScrollViewLayout()
-        setupStackViewLayout()
+        scrollView.keyboardDismissMode = .interactive
+        scrollView.edgesToSuperview()
+        scrollView.widthToSuperview()
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.edgesToSuperview(insets: .uniform(20))
+        stackView.widthToSuperview(offset: -40)
     }
 
     override func configureAppearance() {
         configureNavBarAppearance()
         view.backgroundColor = .systemBackground
+        bookButton.normalColor = .appTint(.secondarySignatureRed)
+        bookButton.highlightedColor = .appTint(.dimmedSignatureRed)
+        bookButton.rounded = true
+        bookButton.setTitleColor(.white, for: .normal)
+        bookButton.titleLabel?.font = .toyotaType(.regular, of: 20)
+        bookButton.alpha = 0
     }
 
     override func localize() {
         navigationItem.title = serviceType.serviceTypeName
+        bookButton.setTitle(.common(.book), for: .normal)
+        carPickView.textField.placeholder = .common(.auto)
+        carPickView.label.text = .common(.auto)
     }
 
     override func configureActions() {
@@ -114,22 +108,26 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
     }
 
     func start() {
+        startLoading()
         stackView.addArrangedSubview(modules.first?.view ?? UIView())
         modules.first?.start(with: [showroomItem])
     }
 
     func bookService() {
-        guard let userId = user?.id,
-              let showroomId = user?.selectedShowroom?.id,
-              let carId = user?.cars.defaultCar?.id else { return }
+        guard let showroomId = user.selectedShowroom?.id,
+              let carId = user.cars.defaultCar?.id else {
+            return
+        }
 
-        var params: RequestItems = [(.auth(.userId), userId),
+        var params: RequestItems = [(.auth(.userId), user.id),
                                     (.carInfo(.showroomId), showroomId),
                                     (.carInfo(.carId), carId)]
 
         for module in modules {
             let items = module.buildQueryItems()
-            if items.isEmpty { return }
+            guard !items.isEmpty else {
+                return
+            }
             params.append(contentsOf: items)
         }
 
@@ -137,8 +135,8 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
             params.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(page: .services(.bookService),
-                                   params: params,
+        NetworkService.makeRequest(.init(page: .services(.bookService),
+                                         body: AnyBody(items: params)),
                                    handler: bookingRequestHandler)
     }
 
@@ -196,16 +194,18 @@ class BaseServiceController: BaseViewController, IServiceController, Loadable {
         params.append(showroomItem)
         startLoading()
         nextModule.start(with: params)
-        stackView.addArrangedSubview(nextModule.view)
+        if !stackView.arrangedSubviews.contains(nextModule.view) {
+            stackView.addArrangedSubview(nextModule.view)
+        }
     }
 
     @objc private func carDidSelect() {
         view.endEditing(true)
-        guard let cars = user?.cars.value, cars.isNotEmpty else {
+        guard user.cars.value.isNotEmpty else {
             return
         }
 
-        selectedCar = cars[carPickView.picker.selectedRow]
+        selectedCar = user.cars.value[carPickView.picker.selectedRow]
     }
 }
 
@@ -215,29 +215,14 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        user?.cars.value.count ?? .zero
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
+        user.cars.value.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        user?.cars.value[row].name
-    }
-}
-
-// MARK: - Constraints setup
-extension BaseServiceController {
-    private func setupScrollViewLayout() {
-        scrollView.keyboardDismissMode = .interactive
-        scrollView.edgesToSuperview()
-        scrollView.widthToSuperview()
-    }
-
-    private func setupStackViewLayout() {
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.horizontalToSuperview(insets: .horizontal(20))
-        stackView.verticalToSuperview(insets: .vertical(20))
-        stackView.width(to: view, offset: -40)
+        user.cars.value[row].name
     }
 }

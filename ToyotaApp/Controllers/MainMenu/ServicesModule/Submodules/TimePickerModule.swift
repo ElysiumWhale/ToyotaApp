@@ -6,6 +6,8 @@ private struct FreeTime {
 }
 
 final class TimePickerModule: NSObject, IServiceModule {
+    private let requestHandler = RequestHandler<FreeTimeResponse>()
+
     var view: UIView { internalView }
 
     weak var delegate: ModuleDelegate?
@@ -41,17 +43,11 @@ final class TimePickerModule: NSObject, IServiceModule {
                 time: freeTime.freeTime[timeRows.time].hourAndMinute)
     }
 
-    private lazy var requestHandler: RequestHandler<FreeTimeResponse> = {
-        RequestHandler<FreeTimeResponse>()
-            .bind { [weak self] data in
-                self?.completion(for: data)
-            } onFailure: { [weak self] error in
-                self?.state = .error(.requestError(error.message))
-            }
-    }()
-
     init(with type: ServiceType) {
         serviceType = type
+        super.init()
+
+        setupRequestHandlers()
     }
 
     // MARK: - Public methods
@@ -66,8 +62,8 @@ final class TimePickerModule: NSObject, IServiceModule {
             queryParams.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(page: .services(.getFreeTime),
-                                   params: queryParams,
+        NetworkService.makeRequest(.init(page: .services(.getFreeTime),
+                                         body: AnyBody(items: queryParams)),
                                    handler: requestHandler)
     }
 
@@ -75,8 +71,8 @@ final class TimePickerModule: NSObject, IServiceModule {
                                                   with params: RequestItems,
                                                   response type: TResponse.Type) {
         state = .idle
-        NetworkService.makeRequest(page: .services(.getFreeTime),
-                                   params: params,
+        NetworkService.makeRequest(.init(page: .services(.getFreeTime),
+                                         body: AnyBody(items: params)),
                                    handler: requestHandler)
     }
 
@@ -91,6 +87,14 @@ final class TimePickerModule: NSObject, IServiceModule {
     }
 
     // MARK: - Private methods
+    private func setupRequestHandlers() {
+        requestHandler
+            .bind { [weak self] data in
+                self?.completion(for: data)
+            } onFailure: { [weak self] error in
+                self?.state = .error(.requestError(error.message))
+            }
+    }
 
     private func rowIn(component: Int) -> Int {
         internalView.picker.selectedRow(inComponent: component)

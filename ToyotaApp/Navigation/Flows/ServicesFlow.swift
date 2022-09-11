@@ -1,6 +1,7 @@
 import Foundation
+import UIKit
 
-private struct CustomServices {
+struct CustomServices {
     static let TestDrive = "3"
 }
 
@@ -22,11 +23,11 @@ enum ControllerServiceType: String {
     case threePicksTimeMap = "14"
 }
 
-enum ServiceModuleBuilder {
+enum ServicesFlow {
     static func buildModule(serviceType: ServiceType,
                             for controlType: ControllerServiceType,
-                            user: UserProxy) -> IServiceController {
-        var controller: IServiceController!
+                            user: UserProxy) -> UIViewController {
+        var controller: ModuleDelegate!
         let modules = buildModules(with: serviceType, for: controlType)
 
         switch serviceType.id {
@@ -36,11 +37,15 @@ enum ServiceModuleBuilder {
             controller = BaseServiceController(serviceType, modules, user)
         }
         modules.forEach { $0.delegate = controller }
+
         return controller
     }
 
-    static func buildModules(with serviceType: ServiceType,
-                             for controlType: ControllerServiceType) -> [IServiceModule] {
+    private static func buildModules(
+        with serviceType: ServiceType,
+        for controlType: ControllerServiceType
+    ) -> [IServiceModule] {
+
         var modules: [IServiceModule] = []
         switch controlType {
             case .notDefined: break

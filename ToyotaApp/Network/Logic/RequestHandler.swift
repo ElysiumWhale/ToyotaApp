@@ -2,6 +2,11 @@ import Foundation
 
 typealias DefaultRequestHandler = RequestHandler<SimpleResponse>
 
+protocol RequestTask {
+    func resume()
+    func cancel()
+}
+
 class RequestHandler<T: Codable> {
     enum ObservationMode {
         case both
@@ -12,7 +17,7 @@ class RequestHandler<T: Codable> {
     private var queue: DispatchQueue?
     private var mode: ObservationMode = .both
 
-    private var currentTask: URLSessionDataTask? {
+    private var currentTask: RequestTask? {
         willSet {
             currentTask?.cancel()
         }
@@ -21,7 +26,7 @@ class RequestHandler<T: Codable> {
     private var onSuccess: ParameterClosure<T>?
     private var onFailure: ParameterClosure<ErrorResponse>?
 
-    func start(with task: URLSessionDataTask) {
+    func start(with task: RequestTask) {
         currentTask = task
         currentTask?.resume()
     }
