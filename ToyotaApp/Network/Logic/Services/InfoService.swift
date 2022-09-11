@@ -58,12 +58,6 @@ final class InfoService {
         NetworkService.makeRequest(requestFactory(), handler: handler)
     }
 
-    func getCities(with body: GetCitiesBody, handler: RequestHandler<CitiesResponse>) {
-        perform(with: handler) {
-            Request(page: .profile(.getCities), body: body)
-        }
-    }
-
     func getShowroomsFTD(with body: GetShowroomsForTestDriveBody, handler: RequestHandler<ShowroomsResponse>) {
         perform(with: handler) {
             Request(page: .services(.getTestDriveShowrooms), body: body)
