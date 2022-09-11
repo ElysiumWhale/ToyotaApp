@@ -45,6 +45,9 @@ final class TimePickerModule: NSObject, IServiceModule {
 
     init(with type: ServiceType) {
         serviceType = type
+        super.init()
+
+        setupRequestHandlers()
     }
 
     // MARK: - Public methods

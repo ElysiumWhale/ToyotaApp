@@ -247,7 +247,8 @@ extension ServicesViewController: UIPickerViewDelegate {
 
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let service = interactor.serviceTypes[indexPath.row]
         guard let controllerType = ControllerServiceType(rawValue: service.controlTypeId) else {
             return
