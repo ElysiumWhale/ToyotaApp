@@ -5,7 +5,7 @@ struct CustomServices {
     static let TestDrive = "3"
 }
 
-enum ControllerServiceType: String {
+enum ServiceViewType: String {
     case notDefined = "0"
     case timepick = "1"
     case map = "2"
@@ -25,7 +25,7 @@ enum ControllerServiceType: String {
 
 enum ServicesFlow {
     static func buildModule(serviceType: ServiceType,
-                            for controlType: ControllerServiceType,
+                            for controlType: ServiceViewType,
                             user: UserProxy) -> UIViewController {
         var controller: ModuleDelegate!
         let modules = buildModules(with: serviceType, for: controlType)
@@ -43,7 +43,7 @@ enum ServicesFlow {
 
     private static func buildModules(
         with serviceType: ServiceType,
-        for controlType: ControllerServiceType
+        for controlType: ServiceViewType
     ) -> [IServiceModule] {
 
         var modules: [IServiceModule] = []

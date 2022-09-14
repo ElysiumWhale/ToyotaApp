@@ -230,14 +230,16 @@ extension ServicesViewController: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         interactor.showrooms.isEmpty ? 1 : interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
                     forComponent component: Int) -> String? {
         interactor.showrooms.isEmpty
             ? .common(.noShoworooms)
@@ -249,13 +251,14 @@ extension ServicesViewController: UIPickerViewDelegate {
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let service = interactor.serviceTypes[indexPath.row]
-        guard let controllerType = ControllerServiceType(rawValue: service.controlTypeId) else {
+
+        guard let service = interactor.serviceTypes[safe: indexPath.row],
+              let viewType = ServiceViewType(rawValue: service.controlTypeId) else {
             return
         }
 
         let controller = ServicesFlow.buildModule(serviceType: service,
-                                                  for: controllerType,
+                                                  for: viewType,
                                                   user: user)
         navigationController?.pushViewController(controller, animated: true)
     }
