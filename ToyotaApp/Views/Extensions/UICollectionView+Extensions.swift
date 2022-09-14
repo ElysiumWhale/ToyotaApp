@@ -1,5 +1,8 @@
 import UIKit
 
+typealias CVCellRegistration<T1: UICollectionViewCell, T2> = UICollectionView.CellRegistration<T1, T2>
+typealias CVDataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
+
 // MARK: - Helpers
 extension UICollectionView {
     convenience init(layout: UICollectionViewLayout) {
