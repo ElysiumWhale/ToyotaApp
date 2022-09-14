@@ -1,11 +1,5 @@
 import UIKit
 
-private enum ServiceSections: Int {
-    case main
-}
-
-private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
-
 final class ServicesViewController: BaseViewController, Refreshable {
     let refreshableView = UICollectionView(layout: .servicesLayout)
     let showroomField = NoCopyPasteTextField()
@@ -17,9 +11,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     private let interactor: ServicesInteractor
     private let user: UserProxy
-
-    // DataSource<ServiceSections, ServiceType.ID>
-    private lazy var dataSource = makeDataSource()
+    private let dataSource: ServicesDataSource
 
     private var fieldHeight: CGFloat {
         showroomField.frame.height
@@ -28,6 +20,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
     init(user: UserProxy, interactor: ServicesInteractor = .init()) {
         self.user = user
         self.interactor = interactor
+        self.dataSource = ServicesDataSource(refreshableView)
         super.init()
 
         interactor.view = self
@@ -39,7 +32,6 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
         view.hideKeyboard(when: .tapAndSwipe)
         configureRefresh()
-        refreshableView.dataSource = dataSource
         refreshableView.delegate = self
 
         if interactor.selectedCity != nil {
@@ -152,21 +144,6 @@ final class ServicesViewController: BaseViewController, Refreshable {
         navigationController?.pushViewController(MainMenuFlow.chatModule(),
                                                  animated: true)
     }
-
-    private func makeDataSource() -> DataSource<ServiceSections, ServiceType.ID> {
-        let cellRegistration = UICollectionView.CellRegistration<ServiceTypeCell, ServiceType> { cell, _, serviceType in
-
-            cell.configure(name: serviceType.serviceTypeName)
-        }
-
-        return DataSource(collectionView: refreshableView) { [weak self] collectionView, indexPath, _ -> UICollectionViewCell in
-
-            let serviceType = self?.interactor.serviceTypes[indexPath.row]
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                                for: indexPath,
-                                                                item: serviceType)
-        }
-    }
 }
 
 // MARK: - ServicesView
@@ -194,10 +171,9 @@ extension ServicesViewController: ServicesView {
     }
 
     func didLoadServiceTypes() {
-        let servicesIds = interactor.serviceTypes.map { $0.id }
-        var snapshot = NSDiffableDataSourceSnapshot<ServiceSections, ServiceType.ID>()
+        var snapshot = NSDiffableDataSourceSnapshot<ServiceSections, ServiceType>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(servicesIds, toSection: .main)
+        snapshot.appendItems(interactor.serviceTypes, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: true)
 
         endRefreshing()

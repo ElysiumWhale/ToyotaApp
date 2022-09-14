@@ -1,5 +1,9 @@
 import UIKit
 
+enum ServiceSections: Int {
+    case main
+}
+
 typealias ServicesDataSource = CVDataSource<ServiceSections, ServiceType>
 typealias ServiceTypeCellRegistration = CVCellRegistration<ServiceTypeCell, ServiceType>
 
