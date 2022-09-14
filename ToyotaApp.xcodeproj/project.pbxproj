@@ -148,6 +148,7 @@
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
 		A7A72DC82554A5C500A44984 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A72DC72554A5C500A44984 /* CarCell.swift */; };
 		A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */; };
+		A7BDE30A28D291EE005F8AF2 /* ServicesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */; };
 		A7CAA4A728B9CBF500F7BAB5 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */; };
 		A7CAA4A928BAD69600F7BAB5 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */; };
 		A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */; };
@@ -292,6 +293,7 @@
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		A7AABF7F25A9EACB00C72F65 /* ServiceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTypeCell.swift; sourceTree = "<group>"; };
+		A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDataSource.swift; sourceTree = "<group>"; };
 		A7CAA4A628B9CBF500F7BAB5 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattingTests.swift; sourceTree = "<group>"; };
@@ -745,6 +747,7 @@
 		A791FDDA2524E19300A595BB /* ServicesModule */ = {
 			isa = PBXGroup;
 			children = (
+				A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
 				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
@@ -1090,6 +1093,7 @@
 				A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */,
 				14CFEF0B2714E22C0034046C /* CustomizableButton.swift in Sources */,
 				A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */,
+				A7BDE30A28D291EE005F8AF2 /* ServicesDataSource.swift in Sources */,
 				A759468E2523E32F00312EBE /* SceneDelegate.swift in Sources */,
 				147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */,
 				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
