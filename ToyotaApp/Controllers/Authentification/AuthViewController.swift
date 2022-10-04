@@ -68,6 +68,7 @@ final class AuthViewController: BaseViewController, Loadable {
         phoneNumber.minimumFontSize = 17
         phoneNumber.adjustsFontSizeToFitWidth = true
         phoneNumber.textColor = .appTint(.signatureGray)
+        phoneNumber.tintColor = .appTint(.secondarySignatureRed)
         phoneNumber.backgroundColor = .appTint(.background)
         phoneNumber.keyboardType = .numberPad
         incorrectLabel.font = .toyotaType(.regular, of: 18)

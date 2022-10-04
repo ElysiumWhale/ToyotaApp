@@ -124,6 +124,7 @@ final class PersonalInfoView: BaseViewController,
     private func configureFields() {
         fields.forEach { field in
             field.backgroundColor = .appTint(.background)
+            field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 23)
             field.cornerRadius = 10
             field.leftPadding = 15
@@ -131,6 +132,8 @@ final class PersonalInfoView: BaseViewController,
             field.rule = .personalInfo
             field.delegate = self
         }
+
+        birthTextField.tintColor = .clear
     }
 
     private func configureTextIfNeeded(for state: PersonalDataStoreState) {

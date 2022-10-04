@@ -134,6 +134,7 @@ final class ProfileViewController: BaseViewController, Loadable {
             field.rule = .personalInfo
             field.cornerRadius = 10
             field.backgroundColor = .appTint(.background)
+            field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 22)
             field.textAlignment = .center
             field.tintColor = .appTint(.secondarySignatureRed)
