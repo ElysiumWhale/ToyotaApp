@@ -33,7 +33,10 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         return (.carInfo(.showroomId), showroomId)
     }
 
-    init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
+    init(_ service: ServiceType,
+         _ modules: [IServiceModule],
+         _ user: UserProxy) {
+
         self.modules = modules
         self.user = user
         self.serviceType = service
@@ -99,8 +102,8 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         view.hideKeyboard(when: .tapAndSwipe)
 
         carPickView.picker.configure(delegate: self,
-                                            with: #selector(carDidSelect),
-                                            for: carPickView.textField)
+                                     with: #selector(carDidSelect),
+                                     for: carPickView.textField)
 
         bookButton.addAction { [weak self] in
             self?.bookService()

@@ -26,20 +26,26 @@ enum RegisterFlow {
 
     static func personalModule(_ profile: Profile? = nil) -> UIViewController {
         let presenter = PersonalInfoPresenter()
-        let interactor = PersonalInfoInteractor(output: presenter,
-                                                state: .from(profile))
+        let interactor = PersonalInfoInteractor(
+            output: presenter,
+            state: .from(profile)
+        )
         let view = PersonalInfoView(interactor: interactor)
         presenter.view = view
         return view
     }
 
-    static func addCarModule(scenario: AddInfoScenario = .register,
-                             models: [Model] = [],
-                             colors: [Color] = []) -> UIViewController {
+    static func addCarModule(
+        scenario: AddInfoScenario = .register,
+        models: [Model] = [],
+        colors: [Color] = []
+    ) -> UIViewController {
 
-        let interactor = AddCarInteractor(type: scenario,
-                                          models: models,
-                                          colors: colors)
+        let interactor = AddCarInteractor(
+            type: scenario,
+            models: models,
+            colors: colors
+        )
         let vc = AddCarViewController(intercator: interactor)
         interactor.view = vc
 
@@ -49,8 +55,10 @@ enum RegisterFlow {
     static func endRegistrationModule() -> UIViewController {
         EndRegistrationViewController()
     }
-
-    static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
+    
+    static func entryPoint(
+        with controllers: [UIViewController] = []
+    ) -> UIViewController {
         let nvc = UINavigationController()
         nvc.navigationBar.prefersLargeTitles = true
         nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)

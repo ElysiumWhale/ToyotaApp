@@ -45,21 +45,28 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     override func addViews() {
         addSubviews(showroomField, refreshableView)
-        navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
-                                                 action: chooseCityDidTap)
-        let chatButton = UIBarButtonItem(image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(chatButtonDidPress))
+        navigationItem.titleView = .titleViewFor(
+            city: interactor.selectedCity?.name,
+            action: chooseCityDidTap
+        )
+        let chatButton = UIBarButtonItem(
+            image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
+            style: .plain,
+            target: self,
+            action: #selector(chatButtonDidPress)
+        )
         navigationItem.setRightBarButton(chatButton, animated: false)
-        showroomField.setRightView(from: chevronButton, width: 30,
+        showroomField.setRightView(from: chevronButton,
+                                   width: 30,
                                    height: fieldHeight)
     }
 
     override func configureLayout() {
-        showroomField.edgesToSuperview(excluding: .bottom,
-                                       insets: .uniform(16),
-                                       usingSafeArea: true)
+        showroomField.edgesToSuperview(
+            excluding: .bottom,
+            insets: .uniform(16),
+            usingSafeArea: true
+        )
         showroomField.height(45)
         refreshableView.edgesToSuperview(excluding: .top)
         refreshableView.topToBottom(of: showroomField, offset: 8)
@@ -137,7 +144,9 @@ final class ServicesViewController: BaseViewController, Refreshable {
             self?.cityDidSelect(city)
         }
 
-        navigationController?.pushViewController(cityPickerModule, animated: true)
+        navigationController?.pushViewController(
+            cityPickerModule, animated: true
+        )
     }
 
     @objc private func chatButtonDidPress() {

@@ -42,14 +42,18 @@ final class CityPickerViewController: BaseViewController,
     }
 
     override func configureLayout() {
-        subtitleLabel.edgesToSuperview(excluding: .bottom,
-                                       insets: .horizontal(20),
-                                       usingSafeArea: true)
-        refreshableView.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        subtitleLabel.edgesToSuperview(
+            excluding: .bottom,
+            insets: .horizontal(20),
+            usingSafeArea: true
+        )
+        refreshableView.edgesToSuperview(excluding: .top,
+                                         usingSafeArea: true)
         refreshableView.topToBottom(of: subtitleLabel)
         actionButton.centerXToSuperview()
         actionButton.size(.init(width: 245, height: 43))
-        actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
+        actionButton.bottomToSuperview(offset: -16,
+                                       usingSafeArea: true)
     }
 
     override func configureAppearance() {
@@ -110,19 +114,23 @@ final class CityPickerViewController: BaseViewController,
 
 // MARK: - UITableViewDelegate
 extension CityPickerViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
         if setCell(from: tableView, for: indexPath, isSelected: true) {
             interactor.selectCity(for: indexPath.row)
             actionButton.fadeIn()
         }
     }
 
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didDeselectRowAt indexPath: IndexPath) {
         setCell(from: tableView, for: indexPath, isSelected: false)
     }
 
     @discardableResult
-    private func setCell(from tableView: UITableView, for indexPath: IndexPath, isSelected: Bool) -> Bool {
+    private func setCell(from tableView: UITableView,
+                         for indexPath: IndexPath,
+                         isSelected: Bool) -> Bool {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return false
         }
@@ -130,23 +138,29 @@ extension CityPickerViewController: UITableViewDelegate {
         cell.contentView.backgroundColor = isSelected
             ? .appTint(.secondarySignatureRed)
             : .appTint(.background)
-        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
-                                                       isSelected: isSelected)
+        cell.contentConfiguration = .cellConfiguration(
+            with: interactor.cities[indexPath.row].name,
+            isSelected: isSelected
+        )
         return true
     }
 }
 
 // MARK: - UITableViewDataSource
 extension CityPickerViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         interactor.cities.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CityCell = tableView.dequeue(for: indexPath)
 
-        cell.contentConfiguration = .cellConfiguration(with: interactor.cities[indexPath.row].name,
-                                                       isSelected: false)
+        cell.contentConfiguration = .cellConfiguration(
+            with: interactor.cities[indexPath.row].name,
+            isSelected: false
+        )
         return cell
     }
 }

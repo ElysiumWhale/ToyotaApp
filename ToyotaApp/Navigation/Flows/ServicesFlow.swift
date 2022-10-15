@@ -24,9 +24,12 @@ enum ServiceViewType: String {
 }
 
 enum ServicesFlow {
-    static func buildModule(serviceType: ServiceType,
-                            for controlType: ServiceViewType,
-                            user: UserProxy) -> UIViewController {
+    static func buildModule(
+        serviceType: ServiceType,
+        for controlType: ServiceViewType,
+        user: UserProxy
+    ) -> UIViewController {
+
         var controller: ModuleDelegate!
         let modules = buildModules(with: serviceType, for: controlType)
 

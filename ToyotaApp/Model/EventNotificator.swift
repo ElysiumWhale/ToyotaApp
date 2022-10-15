@@ -5,7 +5,8 @@ struct WeakObserver {
 }
 
 protocol ObservesEvents: AnyObject {
-    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator)
+    func handle(event: EventNotificator.AppEvents,
+                notificator: EventNotificator)
 }
 
 final class EventNotificator {
@@ -60,7 +61,8 @@ final class EventNotificator {
         }
     }
 
-    private func hasObserver(_ observer: ObservesEvents, for event: AppEvents) -> Bool {
+    private func hasObserver(_ observer: ObservesEvents,
+                             for event: AppEvents) -> Bool {
         queue.sync {
             guard let observers = observers[event] else {
                 return false

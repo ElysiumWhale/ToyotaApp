@@ -81,8 +81,10 @@ final class HtmlNewsParser: NSObject, HtmlParserService {
             let img = try element.select(.img).first()!
             let imgLink: String = try img.attr(.src)
             let imgTitle: String = try img.attr(.title)
-            let truncatedTitle = imgTitle.replacingOccurrences(of: String.unicodeSpace,
-                                                               with: String.space)
+            let truncatedTitle = imgTitle.replacingOccurrences(
+                of: String.unicodeSpace,
+                with: String.space
+            )
 
             return News(title: truncatedTitle.firstUppercased,
                         imgUrl: URL(string: imgLink),

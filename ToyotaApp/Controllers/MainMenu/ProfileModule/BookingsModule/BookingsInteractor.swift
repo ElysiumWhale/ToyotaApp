@@ -33,9 +33,11 @@ final class BookingsInteractor {
         var list = response.booking
         list.append(.todayNotInFuture)
         list.append(.done)
-        let response = BookingsResponse(result: .common(.ok).lowercased(),
-                                        booking: list,
-                                        count: list.count)
+        let response = BookingsResponse(
+            result: .common(.ok).lowercased(),
+            booking: list,
+            count: list.count
+        )
         #endif
         bookings = response.booking.sorted(by: { $0.date > $1.date })
 

@@ -36,7 +36,12 @@ final class Person: Keychainable {
     var email: String
     var birthday: String
 
-    init(firstName: String?, lastName: String?, secondName: String?, email: String?, birthday: String?) {
+    init(firstName: String?,
+         lastName: String?,
+         secondName: String?,
+         email: String?,
+         birthday: String?) {
+
         self.firstName = firstName ?? .empty
         self.lastName = lastName ?? .empty
         self.secondName = secondName ?? .empty

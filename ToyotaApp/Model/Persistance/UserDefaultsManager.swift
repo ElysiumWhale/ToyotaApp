@@ -11,8 +11,10 @@ enum DefaultKeys: String {
 }
 
 public class DefaultsManager {
-    class func retrieve<T: Codable>(for key: DefaultKeys,
-                                    from container: UserDefaults = .standard) -> T? {
+    class func retrieve<T: Codable>(
+        for key: DefaultKeys,
+        from container: UserDefaults = .standard
+    ) -> T? {
         guard let data = container.data(forKey: key.rawValue) else {
             return nil
         }
@@ -21,9 +23,11 @@ public class DefaultsManager {
     }
 
     @discardableResult
-    class func push<T: Codable>(info: T,
-                                for key: DefaultKeys,
-                                to container: UserDefaults = .standard) -> Bool {
+    class func push<T: Codable>(
+        info: T,
+        for key: DefaultKeys,
+        to container: UserDefaults = .standard
+    ) -> Bool {
         do {
             let data = try JSONEncoder().encode(info)
             container.set(data, forKey: key.rawValue)

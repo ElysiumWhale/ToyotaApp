@@ -11,15 +11,20 @@ enum PopUp {
     private static let popupColor: EKColor = .init(light: .appTint(.background),
                                                    dark: .darkGray)
     private static let redColor = EKColor(.appTint(.secondarySignatureRed))
-    private static let fontColor = EKColor(light: .appTint(.signatureGray), dark: .white)
+    private static let fontColor = EKColor(light: .appTint(.signatureGray),
+                                           dark: .white)
 
-    private static let titleLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.semibold, of: 19),
-                                                               color: fontColor,
-                                                               alignment: .center)
+    private static let titleLabelStyle = EKProperty.LabelStyle(
+        font: .toyotaType(.semibold, of: 19),
+        color: fontColor,
+        alignment: .center
+    )
 
-    private static let messageLabelStyle = EKProperty.LabelStyle(font: .toyotaType(.book, of: 17),
-                                                                 color: fontColor,
-                                                                 alignment: .center)
+    private static let messageLabelStyle = EKProperty.LabelStyle(
+        font: .toyotaType(.book, of: 17),
+        color: fontColor,
+        alignment: .center
+    )
 
     private static let configuration: EKAttributes = {
         var attr = EKAttributes.centerFloat
@@ -31,10 +36,14 @@ enum PopUp {
         attr.screenInteraction = .absorbTouches
         attr.entryInteraction = .absorbTouches
         attr.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
-        attr.entranceAnimation = .init(translate: .init(duration: 0.5,
-                                                        spring: .init(damping: 1, initialVelocity: 0)))
+        attr.entranceAnimation = .init(translate: .init(
+            duration: 0.5,
+            spring: .init(damping: 1, initialVelocity: 0)
+        ))
         attr.exitAnimation = .init(translate: .init(duration: 0.2))
-        attr.popBehavior = .animated(animation: .init(translate: .init(duration: 0.1)))
+        attr.popBehavior = .animated(animation: .init(
+            translate: .init(duration: 0.1)
+        ))
         attr.positionConstraints.verticalOffset = 50
         attr.statusBar = .inferred
         return attr
@@ -47,104 +56,145 @@ enum PopUp {
         SwiftEntryKit.display(entry: view, using: configuration)
     }
 
-    static func displayChoice(with title: String,
-                              description: String,
-                              confirmText: String = .common(.yes),
-                              declineText: String = .common(.cancel),
-                              onConfirm: @escaping Closure) {
+    static func displayChoice(
+        with title: String,
+        description: String,
+        confirmText: String = .common(.yes),
+        declineText: String = .common(.cancel),
+        onConfirm: @escaping Closure
+    ) {
 
         DispatchQueue.main.async {
-            let message = buildAlertWithChoiceMessage(with: title,
-                                                      description: description,
-                                                      confirmText: confirmText,
-                                                      declineText: declineText,
-                                                      onConfirm: onConfirm)
+            let message = buildAlertWithChoiceMessage(
+                with: title,
+                description: description,
+                confirmText: confirmText,
+                declineText: declineText,
+                onConfirm: onConfirm
+            )
             display(alert: message)
         }
     }
 
-    static func displayMessage(with title: String,
-                               description: String,
-                               buttonText: String = .common(.ok),
-                               onDismiss: @escaping Closure = { }) {
+    static func displayMessage(
+        with title: String,
+        description: String,
+        buttonText: String = .common(.ok),
+        onDismiss: @escaping Closure = { }
+    ) {
 
         DispatchQueue.main.async {
-            let message = buildAlertMessage(title: title,
-                                            description: description,
-                                            buttonText: buttonText,
-                                            onDismiss)
+            let message = buildAlertMessage(
+                title: title,
+                description: description,
+                buttonText: buttonText,
+                onDismiss
+            )
 
             display(alert: message)
         }
     }
 
     // MARK: - AlertMessage building
-    static private func buildAlertWithChoiceMessage(with title: String,
-                                                    description: String,
-                                                    confirmText: String,
-                                                    declineText: String,
-                                                    onConfirm: @escaping Closure) -> EKAlertMessage {
-        let titleLabel = LabelContent(text: title, style: titleLabelStyle)
-        let descrLabel = LabelContent(text: description, style: messageLabelStyle)
+    static private func buildAlertWithChoiceMessage(
+        with title: String,
+        description: String,
+        confirmText: String,
+        declineText: String,
+        onConfirm: @escaping Closure
+    ) -> EKAlertMessage {
+
+        let titleLabel = LabelContent(text: title,
+                                      style: titleLabelStyle)
+        let descrLabel = LabelContent(text: description,
+                                      style: messageLabelStyle)
         let buttonBar = buildChoiceButtons(confirmText, declineText, onConfirm)
 
-        return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
-                              buttonBarContent: buttonBar)
+        return EKAlertMessage(
+            simpleMessage: .init(title: titleLabel,
+                                 description: descrLabel),
+            buttonBarContent: buttonBar
+        )
     }
 
-    static private func buildAlertMessage(title: String,
-                                          description: String,
-                                          buttonText: String,
-                                          _ onDismiss: @escaping Closure = { }) -> EKAlertMessage {
+    static private func buildAlertMessage(
+        title: String,
+        description: String,
+        buttonText: String,
+        _ onDismiss: @escaping Closure = { }
+    ) -> EKAlertMessage {
 
-        let titleLabel = LabelContent(text: title, style: titleLabelStyle)
-        let descrLabel = LabelContent(text: description, style: messageLabelStyle)
+        let titleLabel = LabelContent(text: title,
+                                      style: titleLabelStyle)
+        let descrLabel = LabelContent(text: description,
+                                      style: messageLabelStyle)
 
         let buttonBar = buildSingleButton(text: buttonText, onDismiss)
 
-        return EKAlertMessage(simpleMessage: .init(title: titleLabel, description: descrLabel),
-                              buttonBarContent: buttonBar)
+        return EKAlertMessage(
+            simpleMessage: .init(title: titleLabel,
+                                 description: descrLabel),
+            buttonBarContent: buttonBar
+        )
     }
 
     // MARK: - Buttons building
-    static private func buildSingleButton(text: String,
-                                          _ onDismiss: @escaping Closure = { }) -> ButtonBarContent {
-        let buttonLabel = LabelContent(text: text, style: titleLabelStyle)
+    static private func buildSingleButton(
+        text: String,
+        _ onDismiss: @escaping Closure = { }
+    ) -> ButtonBarContent {
+        let buttonLabel = LabelContent(text: text,
+                                       style: titleLabelStyle)
 
-        let button = ButtonContent(label: buttonLabel,
-                                   backgroundColor: .clear,
-                                   highlightedBackgroundColor: redColor) {
+        let button = ButtonContent(
+            label: buttonLabel,
+            backgroundColor: .clear,
+            highlightedBackgroundColor: redColor
+        ) {
             onDismiss()
             SwiftEntryKit.dismiss()
         }
 
-        return ButtonBarContent(with: button,
-                                separatorColor: .clear,
-                                expandAnimatedly: false)
+        return ButtonBarContent(
+            with: button,
+            separatorColor: .clear,
+            expandAnimatedly: false
+        )
     }
 
-    static private func buildChoiceButtons(_ confirmText: String,
-                                           _ declineText: String,
-                                           _ onConfirm: @escaping Closure) -> ButtonBarContent {
+    static private func buildChoiceButtons(
+        _ confirmText: String,
+        _ declineText: String,
+        _ onConfirm: @escaping Closure
+    ) -> ButtonBarContent {
 
-        let buttonContent = LabelContent(text: confirmText, style: titleLabelStyle)
-        let confirmButton = ButtonContent(label: buttonContent,
-                                          backgroundColor: .clear,
-                                          highlightedBackgroundColor: redColor) {
+        let buttonContent = LabelContent(text: confirmText,
+                                         style: titleLabelStyle)
+        let confirmButton = ButtonContent(
+            label: buttonContent,
+            backgroundColor: .clear,
+            highlightedBackgroundColor: redColor
+        ) {
             onConfirm()
             SwiftEntryKit.dismiss()
         }
 
-        let labelContent = LabelContent(text: declineText, style: titleLabelStyle)
-        let declineButton = ButtonContent(label: labelContent,
-                                          backgroundColor: .clear,
-                                          highlightedBackgroundColor: redColor) {
+        let labelContent = LabelContent(text: declineText,
+                                        style: titleLabelStyle)
+        let declineButton = ButtonContent(
+            label: labelContent,
+            backgroundColor: .clear,
+            highlightedBackgroundColor: redColor
+        ) {
             SwiftEntryKit.dismiss()
         }
 
-        return ButtonBarContent(with: confirmButton, declineButton,
-                                separatorColor: EKColor(.opaqueSeparator),
-                                expandAnimatedly: false)
+        return ButtonBarContent(
+            with: confirmButton,
+            declineButton,
+            separatorColor: EKColor(.opaqueSeparator),
+            expandAnimatedly: false
+        )
     }
 }
 
@@ -157,7 +207,8 @@ extension PopUp {
         case choise(description: String)
     }
 
-    static func display(_ type: MessageTypes, completion: @escaping Closure = { }) {
+    static func display(_ type: MessageTypes,
+                        completion: @escaping Closure = { }) {
         switch type {
             case .error(let text):
                 displayMessage(with: .common(.error),

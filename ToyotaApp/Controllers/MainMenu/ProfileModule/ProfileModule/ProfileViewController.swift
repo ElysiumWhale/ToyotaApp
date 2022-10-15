@@ -67,11 +67,13 @@ final class ProfileViewController: BaseViewController, Loadable {
     }
 
     override func addViews() {
-        fieldsStack.addArrangedSubviews(firstNameTextField,
-                                        secondNameTextField,
-                                        lastNameTextField,
-                                        emailTextField,
-                                        birthTextField)
+        fieldsStack.addArrangedSubviews(
+            firstNameTextField,
+            secondNameTextField,
+            lastNameTextField,
+            emailTextField,
+            birthTextField
+        )
         bottomButtonsStack.addArrangedSubviews(bookingsButton, carsButton)
         addSubviews(fieldsStack,
                     managerButton,
@@ -79,17 +81,22 @@ final class ProfileViewController: BaseViewController, Loadable {
                     saveButton,
                     bottomButtonsStack)
 
-        let leftItem = UIBarButtonItem(image: .settings,
-                                       style: .plain,
-                                       target: self,
-                                       action: #selector(showSettings))
+        let leftItem = UIBarButtonItem(
+            image: .settings,
+            style: .plain,
+            target: self,
+            action: #selector(showSettings)
+        )
         leftItem.tintColor = .appTint(.signatureGray)
-        navigationItem.leftBarButtonItem = leftItem
-        let rightItem = UIBarButtonItem(image: .logout,
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(logout))
+        let rightItem = UIBarButtonItem(
+            image: .logout,
+            style: .plain,
+            target: self,
+            action: #selector(logout)
+        )
         rightItem.tintColor = .appTint(.signatureGray)
+
+        navigationItem.leftBarButtonItem = leftItem
         navigationItem.rightBarButtonItem = rightItem
     }
 
@@ -97,9 +104,11 @@ final class ProfileViewController: BaseViewController, Loadable {
         fieldsStack.axis = .vertical
         fieldsStack.distribution = .fillEqually
         fieldsStack.spacing = 15
-        fieldsStack.edgesToSuperview(excluding: .bottom,
-                                     insets: .uniform(16),
-                                     usingSafeArea: true)
+        fieldsStack.edgesToSuperview(
+            excluding: .bottom,
+            insets: .uniform(16),
+            usingSafeArea: true
+        )
         firstNameTextField.height(45)
 
         for button in [saveButton, cancelButton] {
@@ -117,9 +126,11 @@ final class ProfileViewController: BaseViewController, Loadable {
         bottomButtonsStack.distribution = .fillEqually
         bottomButtonsStack.spacing = 3
         bottomButtonsStack.cornerRadius = 8
-        bottomButtonsStack.edgesToSuperview(excluding: .top,
-                                            insets: .uniform(16),
-                                            usingSafeArea: true)
+        bottomButtonsStack.edgesToSuperview(
+            excluding: .top,
+            insets: .uniform(16),
+            usingSafeArea: true
+        )
         bookingsButton.height(60)
     }
 
@@ -168,12 +179,23 @@ final class ProfileViewController: BaseViewController, Loadable {
     override func configureActions() {
         view.hideKeyboard(when: .tapAndSwipe)
 
-        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
-        managerButton.addTarget(self, action: #selector(showManagers), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(enterEditMode), for: .touchUpInside)
-        cancelButton.addTarget(self, action: #selector(cancelEdit), for: .touchUpInside)
-        bookingsButton.addTarget(self, action: #selector(showBookings), for: .touchUpInside)
-        carsButton.addTarget(self, action: #selector(showCars), for: .touchUpInside)
+        datePicker.configure(with: #selector(dateDidSelect),
+                             for: birthTextField)
+        managerButton.addTarget(
+            self, action: #selector(showManagers), for: .touchUpInside
+        )
+        saveButton.addTarget(
+            self, action: #selector(enterEditMode), for: .touchUpInside
+        )
+        cancelButton.addTarget(
+            self, action: #selector(cancelEdit), for: .touchUpInside
+        )
+        bookingsButton.addTarget(
+            self, action: #selector(showBookings), for: .touchUpInside
+        )
+        carsButton.addTarget(
+            self, action: #selector(showCars), for: .touchUpInside
+        )
 
         interactor.onUserUpdateFailure = { [weak self] errorMessage in
             PopUp.display(.error(description: errorMessage))
@@ -239,11 +261,13 @@ final class ProfileViewController: BaseViewController, Loadable {
         }
 
         state = .loading
-        interactor.updateProfile(.init(firstName: firstNameTextField.inputText,
-                                       lastName: lastNameTextField.inputText,
-                                       secondName: secondNameTextField.inputText,
-                                       email: emailTextField.inputText,
-                                       birthday: date))
+        interactor.updateProfile(.init(
+            firstName: firstNameTextField.inputText,
+            lastName: lastNameTextField.inputText,
+            secondName: secondNameTextField.inputText,
+            email: emailTextField.inputText,
+            birthday: date
+        ))
     }
 }
 
@@ -343,7 +367,8 @@ private extension ProfileViewController {
 
 // MARK: - ObservesEvents
 extension ProfileViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+    func handle(event: EventNotificator.AppEvents,
+                notificator: EventNotificator) {
         switch event {
         case .userUpdate:
             dispatch { [self] in

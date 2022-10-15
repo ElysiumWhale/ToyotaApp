@@ -30,11 +30,15 @@ extension UITextField {
 
     func toggle(state: FieldState) {
         let hasError = state == .error
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0,
-                                                       options: [.curveEaseOut], animations: {
-            self.layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
-            self.layer.borderWidth = hasError ? 1 : 0
-        })
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0,
+            options: [.curveEaseOut],
+            animations: {
+                self.layer.borderColor = hasError ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
+                self.layer.borderWidth = hasError ? 1 : 0
+            }
+        )
     }
 
     func setRightView(from view: UIView, width: Double = 30, height: Double) {
@@ -185,7 +189,10 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
 
 // MARK: - UIButton
 extension UIButton {
-    static func titleButton(with text: String, action: @escaping Closure) -> UIButton {
+    static func titleButton(
+        with text: String,
+        action: @escaping Closure
+    ) -> UIButton {
         let button =  UIButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         button.backgroundColor = .clear
@@ -197,8 +204,10 @@ extension UIButton {
         return button
     }
 
-    static func imageButton(imageName: String = "chevron.down",
-                            action: Closure? = nil) -> UIButton {
+    static func imageButton(
+        imageName: String = "chevron.down",
+        action: Closure? = nil
+    ) -> UIButton {
         let button = UIButton()
         let image = UIImage(systemName: imageName)
         button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),

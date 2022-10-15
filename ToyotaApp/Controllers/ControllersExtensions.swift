@@ -11,8 +11,10 @@ extension UIViewController {
         UINavigationController(rootViewController: self)
     }
 
-    func addDismissRightButton(title: String = .common(.done),
-                               color: UIColor = .appTint(.secondarySignatureRed)) {
+    func addDismissRightButton(
+        title: String = .common(.done),
+        color: UIColor = .appTint(.secondarySignatureRed)
+    ) {
         let buttonItem = UIBarButtonItem(title: title)
         buttonItem.action = #selector(customDismiss)
         buttonItem.tintColor = color
@@ -21,8 +23,10 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func configureNavBarAppearance(color: UIColor? = .appTint(.secondarySignatureRed),
-                                   font: UIFont? = .toyotaType(.regular, of: 17)) {
+    func configureNavBarAppearance(
+        color: UIColor? = .appTint(.secondarySignatureRed),
+        font: UIFont? = .toyotaType(.regular, of: 17)
+    ) {
         guard let navigation = navigationController else {
             return
         }

@@ -21,7 +21,12 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     }
 
     override func addViews() {
-        codeStack.addArrangedSubviews(infoLabel, phoneLabel, codeTextField, errorLabel)
+        codeStack.addArrangedSubviews(
+            infoLabel,
+            phoneLabel,
+            codeTextField,
+            errorLabel
+        )
         addSubviews(codeStack, sendCodeButton)
     }
 

@@ -70,7 +70,8 @@ final class ServicesInteractor {
             return
         }
 
-        service.getServiceTypes(with: .init(showroomId: id), handler: servicesTypesHandler)
+        service.getServiceTypes(with: .init(showroomId: id),
+                                handler: servicesTypesHandler)
     }
 
     func loadShowrooms() {
@@ -78,7 +79,8 @@ final class ServicesInteractor {
             return
         }
 
-        service.getShowrooms(with: .init(brandId: Brand.Toyota, cityId: id), handler: showroomsHandler)
+        service.getShowrooms(with: .init(brandId: Brand.Toyota, cityId: id),
+                             handler: showroomsHandler)
     }
 
     private func didLoad(showrooms: [Showroom]) {

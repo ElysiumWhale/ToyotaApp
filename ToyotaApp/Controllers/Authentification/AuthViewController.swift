@@ -107,9 +107,21 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
-        phoneNumber.addTarget(self, action: #selector(phoneDidChange), for: .editingChanged)
-        sendPhoneButton.addTarget(self, action: #selector(sendPhoneDidPress), for: .touchUpInside)
-        agreementButton.addTarget(self, action: #selector(openAgreement), for: .touchUpInside)
+        phoneNumber.addTarget(
+            self,
+            action: #selector(phoneDidChange),
+            for: .editingChanged
+        )
+        sendPhoneButton.addTarget(
+            self,
+            action: #selector(sendPhoneDidPress),
+            for: .touchUpInside
+        )
+        agreementButton.addTarget(
+            self,
+            action: #selector(openAgreement),
+            for: .touchUpInside
+        )
 
         interactor.onSuccess = { [weak self] in
             self?.handle(isSuccess: true)
@@ -153,10 +165,15 @@ final class AuthViewController: BaseViewController, Loadable {
     private func handle(isSuccess: Bool) {
         stopLoading()
         sendPhoneButton.fadeIn()
-        if isSuccess {
-            let vc = AuthFlow.codeModule(phone: phoneNumber.validPhone!,
-                                         authType: interactor.type)
-            navigationController?.pushViewController(vc, animated: true)
+
+        guard isSuccess else {
+            return
         }
+        
+        let vc = AuthFlow.codeModule(
+            phone: phoneNumber.validPhone!,
+            authType: interactor.type
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

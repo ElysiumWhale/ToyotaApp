@@ -21,11 +21,13 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
 
     func setPerson(request: PersonalInfoModels.SetPersonRequest) {
         onSavePerson = { [weak self] in
-            KeychainManager.set(Person(firstName: request.firstName,
-                                       lastName: request.secondName,
-                                       secondName: request.lastName,
-                                       email: request.email,
-                                       birthday: request.date))
+            KeychainManager.set(Person(
+                firstName: request.firstName,
+                lastName: request.secondName,
+                secondName: request.lastName,
+                email: request.email,
+                birthday: request.date
+            ))
             self?.onSavePerson = nil
         }
 

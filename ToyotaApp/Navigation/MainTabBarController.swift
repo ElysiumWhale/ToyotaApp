@@ -11,6 +11,7 @@ class MainTabBarController: UITabBarController {
 
     func setControllers(_ configurations: (controller: UIViewController,
                                            tab: TabConfiguration)...) {
+
         let controllers = configurations.map { config -> UIViewController in
             let navVC = UINavigationController(rootViewController: config.controller)
             navVC.tabBarItem.title = config.tab.tabTitle

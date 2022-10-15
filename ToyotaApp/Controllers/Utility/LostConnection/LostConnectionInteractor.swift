@@ -1,22 +1,16 @@
 import Foundation
 
 final class LostConnectionInteractor {
+    private let requestHandler = RequestHandler<CheckUserOrSmsCodeResponse>()
     private let reconnectionService: ReconnectionService
 
     var onSuccess: ParameterClosure<CheckUserContext>?
     var onError: ParameterClosure<ErrorResponse>?
 
-    private lazy var requestHandler = RequestHandler<CheckUserOrSmsCodeResponse>()
-        .observe(on: .main)
-        .bind { [weak self] response in
-            KeychainManager.set(SecretKey(response.secretKey))
-            self?.onSuccess?(CheckUserContext(response: response))
-        } onFailure: { [weak self] errorResponse in
-            self?.onError?(errorResponse)
-        }
-
     init(reconnectionService: ReconnectionService) {
         self.reconnectionService = reconnectionService
+
+        setupRequestHandlers()
     }
 
     func reconnect() {
@@ -26,7 +20,21 @@ final class LostConnectionInteractor {
             return
         }
 
-        let body = CheckUserBody(userId: userId, secret: secretKey, brandId: Brand.Toyota)
-        reconnectionService.checkUser(with: body, handler: requestHandler)
+        let body = CheckUserBody(userId: userId,
+                                 secret: secretKey,
+                                 brandId: Brand.Toyota)
+        reconnectionService.checkUser(with: body,
+                                      handler: requestHandler)
+    }
+
+    private func setupRequestHandlers() {
+        requestHandler
+            .observe(on: .main)
+            .bind { [weak self] response in
+                KeychainManager.set(SecretKey(response.secretKey))
+                self?.onSuccess?(CheckUserContext(response: response))
+            } onFailure: { [weak self] errorResponse in
+                self?.onError?(errorResponse)
+            }
     }
 }

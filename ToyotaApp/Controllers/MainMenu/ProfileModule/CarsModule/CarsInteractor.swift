@@ -29,14 +29,18 @@ final class CarsInteractor {
     }
 
     func getModelsAndColors() {
-        carsService.getModelsAndColors(with: .init(brandId: Brand.Toyota),
-                                       handler: modelsAndColorsHandler)
+        carsService.getModelsAndColors(
+            with: .init(brandId: Brand.Toyota),
+            handler: modelsAndColorsHandler
+        )
     }
 
     func removeCar(with id: String) {
         removingCarId = id
-        carsService.removeCar(with: .init(userId: user.id, carId: id),
-                              handler: removeCarHandler)
+        carsService.removeCar(
+            with: .init(userId: user.id, carId: id),
+            handler: removeCarHandler
+        )
     }
 
     private func setupRequestHandlers() {

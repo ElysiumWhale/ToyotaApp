@@ -1,6 +1,9 @@
 import UIKit
 
-final class BookingsViewController: BaseViewController, Refreshable, BookingsView {
+final class BookingsViewController: BaseViewController,
+                                    Refreshable,
+                                    BookingsView {
+
     private let interactor: BookingsInteractor
 
     let refreshableView = TableView<BookingCell>(style: .insetGrouped)
@@ -68,8 +71,10 @@ extension BookingsViewController: UITableViewDataSource {
         interactor.bookings.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let cell: BookingCell = tableView.dequeue(for: indexPath)
         cell.configure(with: interactor.bookings[indexPath.item])
         return cell

@@ -9,7 +9,8 @@ final class AuthInteractor {
     var onSuccess: Closure?
     var onFailure: ParameterClosure<String>?
 
-    init(type: AuthScenario = .register, authService: AuthService = InfoService()) {
+    init(type: AuthScenario = .register,
+         authService: AuthService = InfoService()) {
         self.type = type
         self.authService = authService
 
