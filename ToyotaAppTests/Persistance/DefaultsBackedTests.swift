@@ -2,8 +2,10 @@ import XCTest
 @testable import ToyotaApp
 
 final class DefaultsBackedTest: XCTestCase {
-    @DefaultsBacked<City>(key: .testSelectedCity,
-                          container: .defaultsBackedTestContainer)
+    @DefaultsBacked<City>(
+        key: .testSelectedCity,
+        container: .defaultsBackedTestContainer
+    )
     var city
 
     let comparingCity = City(id: "1", name: "Самара")
