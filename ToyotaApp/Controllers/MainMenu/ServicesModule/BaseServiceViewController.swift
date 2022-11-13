@@ -125,6 +125,7 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         var params: RequestItems = [(.auth(.userId), user.id),
                                     (.carInfo(.showroomId), showroomId),
                                     (.carInfo(.carId), carId)]
+        bookButton.isEnabled = false
 
         for module in modules {
             let items = module.buildQueryItems()
@@ -149,8 +150,11 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
                 PopUp.display(.success(description: .common(.bookingSuccess))) {
                     self?.navigationController?.popViewController(animated: true)
                 }
-            } onFailure: { error in
-                PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+            } onFailure: { [weak bookButton] error in
+                PopUp.display(.error(
+                    description: error.message ?? .error(.servicesError)
+                ))
+                bookButton?.isEnabled = true
             }
     }
 
