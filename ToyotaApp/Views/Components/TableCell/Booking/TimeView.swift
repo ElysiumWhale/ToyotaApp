@@ -11,7 +11,7 @@ final class TimeView: BaseView {
     override func configureLayout() {
         timeImage.leadingToSuperview(offset: 5)
         timeLabel.trailingToSuperview(offset: 5)
-        timeImage.trailingToLeading(of: timeLabel, offset: -5)
+        timeLabel.leadingToTrailing(of: timeImage, offset: 5)
         timeLabel.topToSuperview()
         timeLabel.bottomToSuperview(offset: -2)
         timeImage.verticalToSuperview()

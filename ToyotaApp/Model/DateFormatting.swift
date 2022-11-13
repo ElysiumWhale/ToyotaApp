@@ -48,8 +48,8 @@ extension Date {
             return true
         }
 
-        let hour: Int = concreteTime?.hour ?? self.hour
-        let minute: Int = concreteTime?.minute ?? self.minute
+        let hour: Int = concreteTime?.hour ?? hour
+        let minute: Int = concreteTime?.minute ?? minute
 
         return calendar.isDateInToday(self)
                 && now.hour < hour

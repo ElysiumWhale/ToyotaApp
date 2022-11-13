@@ -10,13 +10,15 @@ final class BookingCell: BaseTableCell {
     private let timeView = TimeView()
 
     override func addViews() {
-        contentView.addSubviews(dateLabel,
-                                contentLabel,
-                                titleLabel,
-                                carLabel,
-                                licenseLabel,
-                                statusView,
-                                timeView)
+        contentView.addSubviews(
+            dateLabel,
+            contentLabel,
+            titleLabel,
+            carLabel,
+            licenseLabel,
+            statusView,
+            timeView
+        )
     }
 
     override func configureLayout() {
