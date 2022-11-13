@@ -103,7 +103,7 @@ final class AddCarViewController: BaseViewController, Loadable {
         navigationItem.title = .common(.auto)
         subtitleLabel.text = .common(.fillAutoInfo)
         vinCodeTextField.placeholder = .common(.vin)
-        plateTextField.placeholder = .common(.numberNotNessesary)
+        plateTextField.placeholder = .common(.numberNotNecessary)
         modelTextField.placeholder = .common(.model)
         yearTextField.placeholder = .common(.year)
         colorTextField.placeholder = .common(.color)
