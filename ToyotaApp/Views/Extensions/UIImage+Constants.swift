@@ -52,7 +52,7 @@ extension UIImage {
         image(name: "clock.badge.exclamationmark.fill", scale: .small)
     }
 
-    static var statusCirle: UIImage {
+    static var statusCircle: UIImage {
         image(name: "circle.fill", scale: .small)
     }
 

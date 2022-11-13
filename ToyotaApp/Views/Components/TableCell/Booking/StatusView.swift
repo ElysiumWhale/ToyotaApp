@@ -23,7 +23,7 @@ final class StatusView: BaseView {
 
         statusLabel.font = .toyotaType(.book, of: 14)
         statusLabel.textColor = .appTint(.signatureGray)
-        statusImage.image = .statusCirle
+        statusImage.image = .statusCircle
     }
 
     func configure(with booking: Booking) {
