@@ -84,6 +84,7 @@ final class AddCarViewController: BaseViewController, Loadable {
             field.textAlignment = .center
             field.textColor = .appTint(.signatureGray)
             field.rule = .notEmpty
+            field.tintColor = .appTint(.secondarySignatureRed)
         }
 
         plateTextField.rule = nil
