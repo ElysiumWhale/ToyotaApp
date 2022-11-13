@@ -24,22 +24,32 @@ final class TimeView: BaseView {
         timeLabel.textColor = .appTint(.signatureGray)
         timeLabel.font = .toyotaType(.regular, of: 16)
     }
+}
 
-    func configure(with booking: Booking) {
-        if let text = booking.bookingTime?.hourAndMinute {
+// MARK: - Configuration with ViewModel
+extension TimeView {
+    struct ViewModel {
+        let dateComponents: DateComponents?
+        let status: Booking.BookingStatus
+        let date: Date
+    }
+
+    func configure(with viewModel: ViewModel) {
+        if let text = viewModel.dateComponents?.hourAndMinute {
             timeLabel.text = text
-            let (image, color) = timeAppearance(for: booking)
+            let (image, color) = timeAppearance(for: viewModel)
             timeImage.image = image
             timeImage.tintColor = color
+            isHidden = false
         } else {
             isHidden = true
         }
     }
 
-    private func timeAppearance(for booking: Booking) -> (UIImage, UIColor) {
-        switch booking.status {
+    private func timeAppearance(for viewModel: ViewModel) -> (UIImage, UIColor) {
+        switch viewModel.status {
         case .future:
-            return booking.date.inFuture(concreteTime: booking.bookingTime)
+            return viewModel.date.inFuture(concreteTime: viewModel.dateComponents)
                 ? (.timeAlert, .systemRed)
                 : (.timeDone, .systemGray)
         case .cancelled:

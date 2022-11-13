@@ -75,7 +75,11 @@ final class BookingCell: BaseTableCell {
         licenseLabel.text = booking.licensePlate.uppercased()
         dateLabel.text = booking.date.asString(.display)
         statusView.configure(with: booking)
-        timeView.configure(with: booking)
+        timeView.configure(with: .init(
+            dateComponents: booking.bookingTime,
+            status: booking.status,
+            date: booking.date
+        ))
     }
 }
 
