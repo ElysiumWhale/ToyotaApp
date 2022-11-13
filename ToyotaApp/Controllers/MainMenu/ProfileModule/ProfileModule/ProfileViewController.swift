@@ -353,11 +353,12 @@ private extension ProfileViewController {
     }
 
     @objc func logout() {
-        PopUp.displayChoice(with: .common(.actionConfirmation),
-                            description: .question(.quit),
-                            confirmText: .common(.yes),
-                            declineText: .common(.no)) {
-
+        PopUp.displayChoice(
+            with: .common(.actionConfirmation),
+            description: .question(.quit),
+            confirmText: .common(.yes),
+            declineText: .common(.no)
+        ) {
             KeychainManager.clearAll()
             DefaultsManager.clearAll()
             NavigationService.loadAuth()
@@ -367,8 +368,10 @@ private extension ProfileViewController {
 
 // MARK: - ObservesEvents
 extension ProfileViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents,
-                notificator: EventNotificator) {
+    func handle(
+        event: EventNotificator.AppEvents,
+        notificator: EventNotificator
+    ) {
         switch event {
         case .userUpdate:
             dispatch { [self] in

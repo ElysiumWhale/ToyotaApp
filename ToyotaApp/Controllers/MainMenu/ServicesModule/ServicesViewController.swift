@@ -56,9 +56,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
             action: #selector(chatButtonDidPress)
         )
         navigationItem.setRightBarButton(chatButton, animated: false)
-        showroomField.setRightView(from: chevronButton,
-                                   width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: chevronButton,
+            width: 30,
+            height: fieldHeight
+        )
     }
 
     override func configureLayout() {
@@ -93,9 +95,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
     }
 
     override func configureActions() {
-        showroomPicker.configure(delegate: self,
-                                 with: #selector(showroomDidSelect),
-                                 for: showroomField)
+        showroomPicker.configure(
+            delegate: self,
+            with: #selector(showroomDidSelect),
+            for: showroomField
+        )
 
         chevronButton.addAction { [weak self] in
             self?.showroomField.becomeFirstResponder()
@@ -110,8 +114,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
-            showroomField.setRightView(from: showroomIndicator, width: 30,
-                                       height: fieldHeight)
+            showroomField.setRightView(
+                from: showroomIndicator,
+                width: 30,
+                height: fieldHeight
+            )
             interactor.loadShowrooms()
         } else {
             interactor.loadServiceTypes()
@@ -123,8 +130,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
-        showroomField.setRightView(from: showroomIndicator, width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: showroomIndicator,
+            width: 30,
+            height: fieldHeight
+        )
         interactor.loadShowrooms()
     }
 
@@ -150,8 +160,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
     }
 
     @objc private func chatButtonDidPress() {
-        navigationController?.pushViewController(MainMenuFlow.chatModule(),
-                                                 animated: true)
+        navigationController?.pushViewController(
+            MainMenuFlow.chatModule(),
+            animated: true
+        )
     }
 }
 
@@ -170,13 +182,18 @@ extension ServicesViewController: ServicesView {
         view.endEditing(true)
         showroomField.placeholder = .common(.showroom)
         showroomPicker.reloadComponent(0)
-        showroomPicker.selectRow(interactor.selectedShowroomIndex ?? 0,
-                                 inComponent: 0,
-                                 animated: false)
+        showroomPicker.selectRow(
+            interactor.selectedShowroomIndex ?? 0,
+            inComponent: 0,
+            animated: false
+        )
         showroomField.text = interactor.selectedShowroom?.name
         showroomIndicator.stopAnimating()
-        showroomField.setRightView(from: chevronButton, width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: chevronButton,
+            width: 30,
+            height: fieldHeight
+        )
     }
 
     func didLoadServiceTypes() {
@@ -242,9 +259,11 @@ extension ServicesViewController: UICollectionViewDelegate {
             return
         }
 
-        let controller = ServicesFlow.buildModule(serviceType: service,
-                                                  for: viewType,
-                                                  user: user)
+        let controller = ServicesFlow.buildModule(
+            serviceType: service,
+            for: viewType,
+            user: user
+        )
         navigationController?.pushViewController(controller, animated: true)
     }
 
