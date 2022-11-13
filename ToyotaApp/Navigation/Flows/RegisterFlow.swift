@@ -55,7 +55,7 @@ enum RegisterFlow {
     static func endRegistrationModule() -> UIViewController {
         EndRegistrationViewController()
     }
-    
+
     static func entryPoint(
         with controllers: [UIViewController] = []
     ) -> UIViewController {

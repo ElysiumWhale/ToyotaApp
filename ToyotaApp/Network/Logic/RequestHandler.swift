@@ -7,7 +7,7 @@ protocol RequestTask {
     func cancel()
 }
 
-class RequestHandler<T: Codable> {
+class RequestHandler<T: Decodable> {
     enum ObservationMode {
         case both
         case onSuccess
