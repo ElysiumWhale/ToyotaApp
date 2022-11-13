@@ -1,22 +1,28 @@
 import Foundation
 
 protocol NewsService {
-    func getNews(for showroomUrl: ShowroomsUrl,
-                 handler: ParameterClosure<Result<[News], Error>>?)
+    func getNews(
+        for showroomUrl: ShowroomsUrl,
+        handler: ParameterClosure<Result<[News], Error>>?
+    )
 }
 
 /// Experimental
-final class NewsInfoService: NewsService {
-    private let container: ParserContainer<HtmlNewsParser>
+struct NewsInfoService: NewsService {
+    private let container: any HtmlParserService<[News], HtmlNewsParser.AdditionalParameters>
 
-    init(container: ParserContainer<HtmlNewsParser> = .init(parser: .init())) {
+    init(container: any HtmlParserService<[News], HtmlNewsParser.AdditionalParameters> = HtmlNewsParser()) {
         self.container = container
     }
 
-    func getNews(for showroomUrl: ShowroomsUrl,
-                 handler: ParameterClosure<Result<[News], Error>>?) {
-        container.parse(from: URL(string: showroomUrl.url)!,
-                        params: [.baseUrl: showroomUrl.baseUrl],
-                        handler: handler)
+    func getNews(
+        for showroomUrl: ShowroomsUrl,
+        handler: ParameterClosure<Result<[News], Error>>?
+    ) {
+        container.parseData(
+            from: URL(string: showroomUrl.url)!,
+            additionalParameters: [.baseUrl: showroomUrl.baseUrl],
+            handler: handler
+        )
     }
 }

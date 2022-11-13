@@ -3,33 +3,15 @@ import SwiftSoup
 import WebKit
 
 /// Experimental
-struct ParserContainer<T: HtmlParserService> {
-    private let parser: T
-
-    init(parser: T) {
-        self.parser = parser
-    }
-
-    func parse<TData, TParams>(
-        from url: URL?,
-        params: [TParams: Any] = [:],
-        handler: ParameterClosure<Result<TData, Error>>?
-    ) where TData == T.TParsingData, TParams == T.TAdditionalParameters {
-
-        parser.parseData(from: url,
-                         additionalParameters: params,
-                         handler: handler)
-    }
-}
-
-/// Experimental
-protocol HtmlParserService {
+protocol HtmlParserService<TParsingData, TAdditionalParameters> {
     associatedtype TParsingData
     associatedtype TAdditionalParameters: Hashable
 
-    func parseData(from url: URL?,
-                   additionalParameters: [TAdditionalParameters: Any],
-                   handler: ParameterClosure<Result<TParsingData, Error>>?)
+    func parseData(
+        from url: URL?,
+        additionalParameters: [TAdditionalParameters: Any],
+        handler: ParameterClosure<Result<TParsingData, Error>>?
+    )
 }
 
 /// Temporary class for parsing news from toyota showrooms
@@ -43,10 +25,11 @@ final class HtmlNewsParser: NSObject, HtmlParserService {
     private var imageBaseUrl: String = .empty
     private var handler: ParameterClosure<Result<[News], Error>>?
 
-    func parseData(from url: URL?,
-                   additionalParameters: [AdditionalParameters: Any],
-                   handler: ParameterClosure<Result<[News], Error>>?) {
-
+    func parseData(
+        from url: URL?,
+        additionalParameters: [AdditionalParameters: Any],
+        handler: ParameterClosure<Result<[News], Error>>?
+    ) {
         guard let url = url else {
             handler?(.failure(AppErrors.newsError))
             return
