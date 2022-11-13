@@ -15,7 +15,6 @@ enum AddInfoScenario: Equatable {
 }
 
 enum RegisterFlow {
-
     static func cityModule(_ cities: [City] = []) -> CityPikerModule {
         let interactor = CityPickerInteractor(cities: cities)
         let module = CityPickerViewController(interactor: interactor)
