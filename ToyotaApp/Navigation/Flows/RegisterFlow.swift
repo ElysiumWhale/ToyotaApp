@@ -46,7 +46,7 @@ enum RegisterFlow {
             models: models,
             colors: colors
         )
-        let vc = AddCarViewController(intercator: interactor)
+        let vc = AddCarViewController(interactor: interactor)
         interactor.view = vc
 
         return vc

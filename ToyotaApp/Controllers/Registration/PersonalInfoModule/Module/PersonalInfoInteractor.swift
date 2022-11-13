@@ -31,7 +31,10 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
             self?.onSavePerson = nil
         }
 
-        infoService.setProfile(with: .from(request), handler: requestHandler)
+        infoService.setProfile(
+            with: SetProfileBody.from(request),
+            handler: requestHandler
+        )
     }
 
     private func setupRequestHandlers() {

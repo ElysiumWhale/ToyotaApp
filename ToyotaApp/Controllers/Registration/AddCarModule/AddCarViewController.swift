@@ -21,8 +21,8 @@ final class AddCarViewController: BaseViewController, Loadable {
 
     var isLoading: Bool = false
 
-    init(intercator: AddCarInteractor) {
-        self.interactor = intercator
+    init(interactor: AddCarInteractor) {
+        self.interactor = interactor
 
         super.init()
     }

@@ -30,8 +30,10 @@ final class CityPickerInteractor {
     }
 
     func loadCities() {
-        service.getCities(with: .init(brandId: Brand.Toyota),
-                          handler: cityRequestHandler)
+        service.getCities(
+            with: GetCitiesBody(brandId: Brand.Toyota),
+            handler: cityRequestHandler
+        )
     }
 
     func saveCity() -> Bool {

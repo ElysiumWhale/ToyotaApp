@@ -24,8 +24,10 @@ final class ProfileInteractor {
     func updateProfile(_ person: Person) {
         changedPerson = person
 
-        service.updateProfile(with: .from(person),
-                              handler: updateUserHandler)
+        service.updateProfile(
+            with: EditProfileBody.from(person),
+            handler: updateUserHandler
+        )
     }
 
     private func setupRequestHandlers() {
@@ -50,12 +52,14 @@ final class ProfileInteractor {
 
 private extension EditProfileBody {
     static func from(_ person: Person) -> Self {
-        .init(brandId: Brand.Toyota,
-              userId: KeychainManager<UserId>.get()!.value,
-              firstName: person.firstName,
-              secondName: person.secondName,
-              lastName: person.lastName,
-              email: person.email,
-              birthday: person.birthday)
+        EditProfileBody(
+            brandId: Brand.Toyota,
+            userId: KeychainManager<UserId>.get()!.value,
+            firstName: person.firstName,
+            secondName: person.secondName,
+            lastName: person.lastName,
+            email: person.email,
+            birthday: person.birthday
+        )
     }
 }

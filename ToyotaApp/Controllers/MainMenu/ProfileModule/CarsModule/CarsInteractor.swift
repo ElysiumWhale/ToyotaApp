@@ -30,7 +30,7 @@ final class CarsInteractor {
 
     func getModelsAndColors() {
         carsService.getModelsAndColors(
-            with: .init(brandId: Brand.Toyota),
+            with: GetModelsAndColorsBody(brandId: Brand.Toyota),
             handler: modelsAndColorsHandler
         )
     }
@@ -38,7 +38,7 @@ final class CarsInteractor {
     func removeCar(with id: String) {
         removingCarId = id
         carsService.removeCar(
-            with: .init(userId: user.id, carId: id),
+            with: DeleteCarBody(userId: user.id, carId: id),
             handler: removeCarHandler
         )
     }

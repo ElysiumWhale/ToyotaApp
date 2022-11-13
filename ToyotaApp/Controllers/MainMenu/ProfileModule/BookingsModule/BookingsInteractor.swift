@@ -24,8 +24,10 @@ final class BookingsInteractor {
             return
         }
 
-        bookingsService.getBookings(with: .init(userId: userId),
-                                    handler: bookingsHandler)
+        bookingsService.getBookings(
+            with: GetBookingsBody(userId: userId),
+            handler: bookingsHandler
+        )
     }
 
     private func handle(success response: BookingsResponse) {
@@ -50,7 +52,9 @@ final class BookingsInteractor {
             .bind { [weak self] response in
                 self?.handle(success: response)
             } onFailure: { [weak view] error in
-                view?.handleBookingsFailure(with: error.message ?? .error(.requestError))
+                view?.handleBookingsFailure(
+                    with: error.message ?? .error(.requestError)
+                )
             }
     }
 }

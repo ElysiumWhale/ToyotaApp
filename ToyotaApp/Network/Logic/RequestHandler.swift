@@ -59,12 +59,13 @@ class RequestHandler<T: Codable> {
 }
 
 extension RequestHandler {
-    convenience init(queue: DispatchQueue = .main,
-                     mode: ObservationMode = .both,
-                     onSuccess: ParameterClosure<T>?,
-                     onFailure: ParameterClosure<ErrorResponse>?) {
+    convenience init(
+        queue: DispatchQueue = .main,
+        mode: ObservationMode = .both,
+        onSuccess: ParameterClosure<T>?,
+        onFailure: ParameterClosure<ErrorResponse>?
+    ) {
         self.init()
-
         self.queue = queue
         self.mode = mode
         self.onSuccess = onSuccess
@@ -72,15 +73,20 @@ extension RequestHandler {
     }
 
     @discardableResult
-    func bind(onSuccess: ParameterClosure<T>? = nil,
-              onFailure: ParameterClosure<ErrorResponse>? = nil) -> Self {
+    func bind(
+        onSuccess: ParameterClosure<T>? = nil,
+        onFailure: ParameterClosure<ErrorResponse>? = nil
+    ) -> Self {
         self.onSuccess = onSuccess
         self.onFailure = onFailure
         return self
     }
 
     @discardableResult
-    func observe(on queue: DispatchQueue, mode: ObservationMode = .both) -> Self {
+    func observe(
+        on queue: DispatchQueue,
+        mode: ObservationMode = .both
+    ) -> Self {
         self.queue = queue
         self.mode = mode
         return self
