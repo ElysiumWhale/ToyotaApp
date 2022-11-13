@@ -9,23 +9,25 @@ typealias ServiceTypeCellRegistration = CVCellRegistration<ServiceTypeCell, Serv
 
 extension ServicesDataSource {
     convenience init(_ collectionView: UICollectionView) {
-        self.init(collectionView: collectionView,
-                  cellProvider: ServicesCellProvider().make())
+        self.init(
+            collectionView: collectionView,
+            cellProvider: ServicesCellProvider.make()
+        )
     }
-}
 
-struct ServicesCellProvider {
-    func make() -> ServicesDataSource.CellProvider {
-        let registration = ServiceTypeCellRegistration { cell, _, item in
-            cell.configure(name: item.name)
-        }
+    enum ServicesCellProvider {
+        static func make() -> ServicesDataSource.CellProvider {
+            let registration = ServiceTypeCellRegistration { cell, _, item in
+                cell.configure(name: item.name)
+            }
 
-        return { collectionView, indexPath, item in
-            collectionView.dequeueConfiguredReusableCell(
-                using: registration,
-                for: indexPath,
-                item: item
-            )
+            return { collectionView, indexPath, item in
+                collectionView.dequeueConfiguredReusableCell(
+                    using: registration,
+                    for: indexPath,
+                    item: item
+                )
+            }
         }
     }
 }
