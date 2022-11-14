@@ -1,11 +1,5 @@
 import UIKit
 
-private enum ServiceSections: Int {
-    case main
-}
-
-private typealias DataSource<T1: Hashable, T2: Hashable> = UICollectionViewDiffableDataSource<T1, T2>
-
 final class ServicesViewController: BaseViewController, Refreshable {
     let refreshableView = UICollectionView(layout: .servicesLayout)
     let showroomField = NoCopyPasteTextField()
@@ -17,9 +11,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     private let interactor: ServicesInteractor
     private let user: UserProxy
-
-    // DataSource<ServiceSections, ServiceType.ID>
-    private lazy var dataSource = makeDataSource()
+    private let dataSource: ServicesDataSource
 
     private var fieldHeight: CGFloat {
         showroomField.frame.height
@@ -28,6 +20,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
     init(user: UserProxy, interactor: ServicesInteractor = .init()) {
         self.user = user
         self.interactor = interactor
+        self.dataSource = ServicesDataSource(refreshableView)
         super.init()
 
         interactor.view = self
@@ -39,7 +32,6 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
         view.hideKeyboard(when: .tapAndSwipe)
         configureRefresh()
-        refreshableView.dataSource = dataSource
         refreshableView.delegate = self
 
         if interactor.selectedCity != nil {
@@ -53,21 +45,30 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     override func addViews() {
         addSubviews(showroomField, refreshableView)
-        navigationItem.titleView = .titleViewFor(city: interactor.selectedCity?.name,
-                                                 action: chooseCityDidTap)
-        let chatButton = UIBarButtonItem(image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(chatButtonDidPress))
+        navigationItem.titleView = .titleViewFor(
+            city: interactor.selectedCity?.name,
+            action: chooseCityDidTap
+        )
+        let chatButton = UIBarButtonItem(
+            image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
+            style: .plain,
+            target: self,
+            action: #selector(chatButtonDidPress)
+        )
         navigationItem.setRightBarButton(chatButton, animated: false)
-        showroomField.setRightView(from: chevronButton, width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: chevronButton,
+            width: 30,
+            height: fieldHeight
+        )
     }
 
     override func configureLayout() {
-        showroomField.edgesToSuperview(excluding: .bottom,
-                                       insets: .uniform(16),
-                                       usingSafeArea: true)
+        showroomField.edgesToSuperview(
+            excluding: .bottom,
+            insets: .uniform(16),
+            usingSafeArea: true
+        )
         showroomField.height(45)
         refreshableView.edgesToSuperview(excluding: .top)
         refreshableView.topToBottom(of: showroomField, offset: 8)
@@ -94,9 +95,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
     }
 
     override func configureActions() {
-        showroomPicker.configure(delegate: self,
-                                 with: #selector(showroomDidSelect),
-                                 for: showroomField)
+        showroomPicker.configure(
+            delegate: self,
+            with: #selector(showroomDidSelect),
+            for: showroomField
+        )
 
         chevronButton.addAction { [weak self] in
             self?.showroomField.becomeFirstResponder()
@@ -111,8 +114,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
-            showroomField.setRightView(from: showroomIndicator, width: 30,
-                                       height: fieldHeight)
+            showroomField.setRightView(
+                from: showroomIndicator,
+                width: 30,
+                height: fieldHeight
+            )
             interactor.loadShowrooms()
         } else {
             interactor.loadServiceTypes()
@@ -124,8 +130,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
-        showroomField.setRightView(from: showroomIndicator, width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: showroomIndicator,
+            width: 30,
+            height: fieldHeight
+        )
         interactor.loadShowrooms()
     }
 
@@ -145,27 +154,16 @@ final class ServicesViewController: BaseViewController, Refreshable {
             self?.cityDidSelect(city)
         }
 
-        navigationController?.pushViewController(cityPickerModule, animated: true)
+        navigationController?.pushViewController(
+            cityPickerModule, animated: true
+        )
     }
 
     @objc private func chatButtonDidPress() {
-        navigationController?.pushViewController(MainMenuFlow.chatModule(),
-                                                 animated: true)
-    }
-
-    private func makeDataSource() -> DataSource<ServiceSections, ServiceType.ID> {
-        let cellRegistration = UICollectionView.CellRegistration<ServiceTypeCell, ServiceType> { cell, _, serviceType in
-
-            cell.configure(name: serviceType.serviceTypeName)
-        }
-
-        return DataSource(collectionView: refreshableView) { [weak self] collectionView, indexPath, _ -> UICollectionViewCell in
-
-            let serviceType = self?.interactor.serviceTypes[indexPath.row]
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                                for: indexPath,
-                                                                item: serviceType)
-        }
+        navigationController?.pushViewController(
+            MainMenuFlow.chatModule(),
+            animated: true
+        )
     }
 }
 
@@ -184,20 +182,24 @@ extension ServicesViewController: ServicesView {
         view.endEditing(true)
         showroomField.placeholder = .common(.showroom)
         showroomPicker.reloadComponent(0)
-        showroomPicker.selectRow(interactor.selectedShowroomIndex ?? 0,
-                                 inComponent: 0,
-                                 animated: false)
+        showroomPicker.selectRow(
+            interactor.selectedShowroomIndex ?? 0,
+            inComponent: 0,
+            animated: false
+        )
         showroomField.text = interactor.selectedShowroom?.name
         showroomIndicator.stopAnimating()
-        showroomField.setRightView(from: chevronButton, width: 30,
-                                   height: fieldHeight)
+        showroomField.setRightView(
+            from: chevronButton,
+            width: 30,
+            height: fieldHeight
+        )
     }
 
     func didLoadServiceTypes() {
-        let servicesIds = interactor.serviceTypes.map { $0.id }
-        var snapshot = NSDiffableDataSourceSnapshot<ServiceSections, ServiceType.ID>()
+        var snapshot = NSDiffableDataSourceSnapshot<ServiceSections, ServiceType>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(servicesIds, toSection: .main)
+        snapshot.appendItems(interactor.serviceTypes, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: true)
 
         endRefreshing()
@@ -230,14 +232,16 @@ extension ServicesViewController: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         interactor.showrooms.isEmpty ? 1 : interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
                     forComponent component: Int) -> String? {
         interactor.showrooms.isEmpty
             ? .common(.noShoworooms)
@@ -249,14 +253,17 @@ extension ServicesViewController: UIPickerViewDelegate {
 extension ServicesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let service = interactor.serviceTypes[indexPath.row]
-        guard let controllerType = ControllerServiceType(rawValue: service.controlTypeId) else {
+
+        guard let service = interactor.serviceTypes[safe: indexPath.row],
+              let viewType = ServiceViewType(rawValue: service.controlTypeId) else {
             return
         }
 
-        let controller = ServicesFlow.buildModule(serviceType: service,
-                                                  for: controllerType,
-                                                  user: user)
+        let controller = ServicesFlow.buildModule(
+            serviceType: service,
+            for: viewType,
+            user: user
+        )
         navigationController?.pushViewController(controller, animated: true)
     }
 

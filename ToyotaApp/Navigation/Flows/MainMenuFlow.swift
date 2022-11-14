@@ -49,26 +49,36 @@ enum MainMenuFlow {
 // MARK: - Configurations
 private extension MainMenuFlow {
     static var newsConfiguration: (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(tabTitle: .common(.offers),
-                                         image: .newspaper,
-                                         selectedImage: .fillNewspaper,
-                                         navTitle: .common(.offers))
+        let tabConfig = TabConfiguration(
+            tabTitle: .common(.offers),
+            image: .newspaper,
+            selectedImage: .fillNewspaper,
+            navTitle: .common(.offers)
+        )
         return (newsModule(), tabConfig)
     }
-
-    static func servicesConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(tabTitle: .common(.services),
-                                         image: .bookmark,
-                                         selectedImage: .fillBookmark,
-                                         navTitle: .common(.services))
+    
+    static func servicesConfiguration(
+        with user: UserProxy
+    ) -> (UIViewController, TabConfiguration) {
+        let tabConfig = TabConfiguration(
+            tabTitle: .common(.services),
+            image: .bookmark,
+            selectedImage: .fillBookmark,
+            navTitle: .common(.services)
+        )
         return (servicesModule(with: user), tabConfig)
     }
-
-    static func profileConfiguration(with user: UserProxy) -> (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(tabTitle: .common(.profile),
-                                         image: .person,
-                                         selectedImage: .fillPerson,
-                                         navTitle: .common(.profile))
+    
+    static func profileConfiguration(
+        with user: UserProxy
+    ) -> (UIViewController, TabConfiguration) {
+        let tabConfig = TabConfiguration(
+            tabTitle: .common(.profile),
+            image: .person,
+            selectedImage: .fillPerson,
+            navTitle: .common(.profile)
+        )
         return (profileModule(with: user), tabConfig)
     }
 }

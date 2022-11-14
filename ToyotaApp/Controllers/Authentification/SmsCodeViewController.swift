@@ -21,7 +21,12 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     }
 
     override func addViews() {
-        codeStack.addArrangedSubviews(infoLabel, phoneLabel, codeTextField, errorLabel)
+        codeStack.addArrangedSubviews(
+            infoLabel,
+            phoneLabel,
+            codeTextField,
+            errorLabel
+        )
         addSubviews(codeStack, sendCodeButton)
     }
 
@@ -53,6 +58,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
         codeTextField.font = .toyotaType(.light, of: 22)
         codeTextField.textColor = .appTint(.signatureGray)
+        codeTextField.tintColor = .appTint(.secondarySignatureRed)
         codeTextField.backgroundColor = .appTint(.background)
         codeTextField.maxSymbolCount = 4 // future: 6
         codeTextField.textAlignment = .center

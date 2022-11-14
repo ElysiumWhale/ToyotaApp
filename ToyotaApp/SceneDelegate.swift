@@ -32,14 +32,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self?.handle(error: error)
         }
 
-        let body = CheckUserBody(userId: userId, secret: secretKey, brandId: Brand.Toyota)
-        InfoService().checkUser(with: body, handler: requestHandler!)
+        let body = CheckUserBody(userId: userId,
+                                 secret: secretKey,
+                                 brandId: Brand.Toyota)
+        InfoService().checkUser(with: body,
+                                handler: requestHandler!)
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
         requestHandler = nil
         KeychainManager.set(SecretKey(response.secretKey))
-        NavigationService.resolveNavigation(with: CheckUserContext(response: response)) {
+        NavigationService.resolveNavigation(
+            with: CheckUserContext(response: response)
+        ) {
             NavigationService.loadAuth()
         }
     }
@@ -51,7 +56,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 NavigationService.loadConnectionLost()
             default:
                 KeychainManager<SecretKey>.clear()
-                NavigationService.loadAuth(with: response.message ?? .error(.errorWhileAuth))
+                NavigationService.loadAuth(
+                    with: response.message ?? .error(.errorWhileAuth)
+                )
         }
     }
 }

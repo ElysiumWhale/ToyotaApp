@@ -46,7 +46,8 @@ final class NewsViewController: BaseViewController, Refreshable {
         showroomField.topToSuperview(offset: 5, usingSafeArea: true)
 
         refreshableView.topToBottom(of: showroomField, offset: 5)
-        refreshableView.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        refreshableView.edgesToSuperview(excluding: .top,
+                                         usingSafeArea: true)
 
         refreshableView.alwaysBounceVertical = true
     }
@@ -128,7 +129,8 @@ final class NewsViewController: BaseViewController, Refreshable {
 
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
         guard let url = interactor.news[indexPath.row].url else {
             return
         }

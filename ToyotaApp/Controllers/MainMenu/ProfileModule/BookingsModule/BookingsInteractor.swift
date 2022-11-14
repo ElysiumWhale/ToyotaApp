@@ -24,8 +24,10 @@ final class BookingsInteractor {
             return
         }
 
-        bookingsService.getBookings(with: .init(userId: userId),
-                                    handler: bookingsHandler)
+        bookingsService.getBookings(
+            with: GetBookingsBody(userId: userId),
+            handler: bookingsHandler
+        )
     }
 
     private func handle(success response: BookingsResponse) {
@@ -33,9 +35,11 @@ final class BookingsInteractor {
         var list = response.booking
         list.append(.todayNotInFuture)
         list.append(.done)
-        let response = BookingsResponse(result: .common(.ok).lowercased(),
-                                        booking: list,
-                                        count: list.count)
+        let response = BookingsResponse(
+            result: .common(.ok).lowercased(),
+            booking: list,
+            count: list.count
+        )
         #endif
         bookings = response.booking.sorted(by: { $0.date > $1.date })
 
@@ -48,7 +52,9 @@ final class BookingsInteractor {
             .bind { [weak self] response in
                 self?.handle(success: response)
             } onFailure: { [weak view] error in
-                view?.handleBookingsFailure(with: error.message ?? .error(.requestError))
+                view?.handleBookingsFailure(
+                    with: error.message ?? .error(.requestError)
+                )
             }
     }
 }

@@ -15,9 +15,11 @@ class TestDriveViewController: BaseServiceController {
         stackView.addArrangedSubview(bookButton)
         view.addSubview(loadingView)
         loadingView.fadeIn()
-        modules.first?.customStart(page: .profile(.getCities),
-                                   with: [(.auth(.brandId), Brand.Toyota)],
-                                   response: CitiesResponse.self)
+        modules.first?.customStart(
+            page: .profile(.getCities),
+            with: [(.auth(.brandId), Brand.Toyota)],
+            response: CitiesResponse.self
+        )
     }
 
     override func moduleDidUpdate(_ module: IServiceModule) {
@@ -33,25 +35,35 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func didChose(_ service: IService, in module: IServiceModule) {
-        guard let index = modules.firstIndex(where: { $0 === module }) else { return }
+        guard let index = modules.firstIndex(where: { $0 === module }) else {
+            return
+        }
+
         index < 3 ? fadeOutAfter(module: index) : stopLoading()
         let params = buildParams(for: index, value: service.id)
         switch index {
-            case 0:
-                module.nextModule?.customStart(page: .services(.getTestDriveCars),
-                                               with: params,
-                                               response: CarsResponse.self)
-            case 1:
-                module.nextModule?.customStart(page: .services(.getTestDriveShowrooms),
-                                               with: params,
-                                               response: ShoroomsResponce.self)
-            case 2:
-                module.nextModule?.customStart(page: .services(.getFreeTime),
-                                               with: params,
-                                               response: CarsResponse.self)
-            case 3:
-                bookButton.fadeIn()
-            default: return
+        case 0:
+            module.nextModule?.customStart(
+                page: .services(.getTestDriveCars),
+                with: params,
+                response: CarsResponse.self
+            )
+        case 1:
+            module.nextModule?.customStart(
+                page: .services(.getTestDriveShowrooms),
+                with: params,
+                response: ShoroomsResponce.self
+            )
+        case 2:
+            module.nextModule?.customStart(
+                page: .services(.getFreeTime),
+                with: params,
+                response: CarsResponse.self
+            )
+        case 3:
+            bookButton.fadeIn()
+        default:
+            return
         }
     }
 
@@ -81,6 +93,7 @@ class TestDriveViewController: BaseServiceController {
         for index in index+2...3 {
             modules[index].view.fadeOut()
         }
+
         bookButton.fadeOut()
     }
 
@@ -104,9 +117,11 @@ class TestDriveViewController: BaseServiceController {
 // MARK: - Modules configurations
 extension TestDriveViewController {
     func configurationForModules() -> [[ModuleAppearances]] {
-        return [[.title(.common(.chooseCity)), .placeholder(.common(.city))],
-                [.title(.common(.chooseCar)), .placeholder(.common(.car))],
-                [.title(.common(.chooseShowroom)), .placeholder(.common(.showroom))],
-                [.title(.common(.chooseTime))]]
+        [
+            [.title(.common(.chooseCity)), .placeholder(.common(.city))],
+            [.title(.common(.chooseCar)), .placeholder(.common(.car))],
+            [.title(.common(.chooseShowroom)), .placeholder(.common(.showroom))],
+            [.title(.common(.chooseTime))]
+        ]
     }
 }

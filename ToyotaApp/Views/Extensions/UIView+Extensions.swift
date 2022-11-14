@@ -18,25 +18,31 @@ extension UIView {
     // MARK: - FadeIn UIView Animation
     func fadeIn(_ duration: TimeInterval = 0.5) {
         if alpha == 0 {
-            UIView.animate(withDuration: duration,
-                           animations: { [weak self] in self?.alpha = 1 })
+            UIView.animate(
+                withDuration: duration,
+                animations: { [weak self] in self?.alpha = 1 }
+            )
         }
     }
 
     // MARK: - FadeOut UIView Animation
-    func fadeOut(_ duration: TimeInterval = 0.5, completion: @escaping Closure = { }) {
+    func fadeOut(_ duration: TimeInterval = 0.5,
+                 completion: @escaping Closure = { }) {
         if alpha == 1 {
-            UIView.animate(withDuration: duration,
-                           animations: { [weak self] in self?.alpha = 0 },
-                           completion: { _ in completion() }
+            UIView.animate(
+                withDuration: duration,
+                animations: { [weak self] in self?.alpha = 0 },
+                completion: { _ in completion() }
             )
         }
     }
 
     // MARK: - Dismiss keyboard on swipe down
     func hideKeyboardWhenSwipedDown() {
-        let swipe = UISwipeGestureRecognizer(target: self,
-                                             action: #selector(UIView.dismissKeyboard))
+        let swipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(UIView.dismissKeyboard)
+        )
         swipe.cancelsTouchesInView = false
         swipe.direction = [.down]
         addGestureRecognizer(swipe)
@@ -67,8 +73,10 @@ extension UIView {
 
     @discardableResult
     private func addTapRecognizer() -> UITapGestureRecognizer {
-        let tap = UITapGestureRecognizer(target: self,
-                                         action: #selector(UIView.dismissKeyboard))
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIView.dismissKeyboard)
+        )
         tap.cancelsTouchesInView = false
         addGestureRecognizer(tap)
 
@@ -77,8 +85,10 @@ extension UIView {
 
     @discardableResult
     private func addSwipeRecongizer() -> UISwipeGestureRecognizer {
-        let swipe = UISwipeGestureRecognizer(target: self,
-                                             action: #selector(UIView.dismissKeyboard))
+        let swipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(UIView.dismissKeyboard)
+        )
         swipe.cancelsTouchesInView = false
         swipe.direction = [.up, .down, .left, .right]
         addGestureRecognizer(swipe)
@@ -87,15 +97,25 @@ extension UIView {
     }
 
     // MARK: - TitleView
-    static func titleViewFor(city: String? = nil, action: @escaping Closure) -> UIView {
-        let button = UIButton.titleButton(with: city ?? .common(.chooseCity),
-                                          action: action)
-        let rightButton = UIButton(frame: .init(x: 0, y: 0, width: 20, height: 20))
-        rightButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+    static func titleViewFor(
+        city: String? = nil,
+        action: @escaping Closure
+    ) -> UIView {
+        let button = UIButton.titleButton(
+            with: city ?? .common(.chooseCity),
+            action: action
+        )
+        let rightButton = UIButton(frame: .init(
+            x: 0, y: 0, width: 20, height: 20)
+        )
+        rightButton.setImage(UIImage(systemName: "chevron.right"),
+                             for: .normal)
         rightButton.tintColor = .appTint(.secondarySignatureRed)
         rightButton.addAction(action)
 
-        let container = UIView(frame: .init(x: 0, y: 0, width: 100, height: 30))
+        let container = UIView(frame: .init(
+            x: 0, y: 0, width: 100, height: 30)
+        )
         container.addSubviews(button, rightButton)
 
         button.edgesToSuperview(excluding: .trailing)
@@ -116,16 +136,23 @@ extension UIView {
 
 // MARK: - Toolbar for controls
 extension UIView {
-    static func buildToolbar(with action: Selector, target: Any? = nil) -> UIToolbar {
+    static func buildToolbar(
+        with action: Selector,
+        target: Any? = nil
+    ) -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                       target: target,
-                                       action: nil)
-        let doneButton = UIBarButtonItem(title: .common(.choose),
-                                         style: .done,
-                                         target: target,
-                                         action: action)
+        let flexible = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: target,
+            action: nil
+        )
+        let doneButton = UIBarButtonItem(
+            title: .common(.choose),
+            style: .done,
+            target: target,
+            action: action
+        )
         doneButton.tintColor = .appTint(.secondarySignatureRed)
         toolBar.setItems([flexible, doneButton], animated: true)
         return toolBar

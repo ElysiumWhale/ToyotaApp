@@ -24,7 +24,8 @@ class NetworkService {
         completion: @escaping ResponseHandler<TResponse>
     ) where TResponse: IResponse {
 
-        let request = buildPostRequest(for: page.rawValue, with: params.asQueryItems)
+        let request = buildPostRequest(for: page.rawValue,
+                                       with: params.asQueryItems)
 
         let task = session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
@@ -59,7 +60,8 @@ class NetworkService {
         handler: RequestHandler<Response>
     ) where Response: IResponse {
 
-        let request = buildPostRequest(for: request.page.rawValue, with: request.body.asRequestItems)
+        let request = buildPostRequest(for: request.page.rawValue,
+                                       with: request.body.asRequestItems)
 
         let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
             guard error == nil else {
@@ -91,8 +93,10 @@ class NetworkService {
     }
 
     class func makeRequest(_ request: Request) {
-        session.dataTask(with: buildPostRequest(for: request.page.rawValue,
-                                                with: request.body.asRequestItems)).resume()
+        session.dataTask(
+            with: buildPostRequest(for: request.page.rawValue,
+                                   with: request.body.asRequestItems)
+        ).resume()
     }
 
     class private func buildPostRequest(for page: String,

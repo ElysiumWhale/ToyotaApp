@@ -44,19 +44,23 @@ final class PersonalInfoView: BaseViewController,
         addSubviews(subtitleLabel, scrollView, actionButton)
         scrollView.addSubview(containerView)
         containerView.addSubview(fieldsStackView)
-        fieldsStackView.addArrangedSubviews(firstNameTextField,
-                                            lastNameTextField,
-                                            secondNameTextField,
-                                            emailTextField,
-                                            birthTextField)
+        fieldsStackView.addArrangedSubviews(
+            firstNameTextField,
+            lastNameTextField,
+            secondNameTextField,
+            emailTextField,
+            birthTextField
+        )
     }
 
     override func configureLayout() {
         view.hideKeyboard(when: .tapAndSwipe)
 
-        subtitleLabel.edgesToSuperview(excluding: .bottom,
-                                       insets: .horizontal(16),
-                                       usingSafeArea: true)
+        subtitleLabel.edgesToSuperview(
+            excluding: .bottom,
+            insets: .horizontal(16),
+            usingSafeArea: true
+        )
         scrollView.edgesToSuperview(excluding: .top, insets: .horizontal(16))
         scrollView.topToBottom(of: subtitleLabel)
 
@@ -109,8 +113,11 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func configureActions() {
-        datePicker.configure(with: #selector(dateDidSelect), for: birthTextField)
-        actionButton.addTarget(self, action: #selector(actionButtonDidPress), for: .touchUpInside)
+        datePicker.configure(with: #selector(dateDidSelect),
+                             for: birthTextField)
+        actionButton.addTarget(
+            self, action: #selector(actionButtonDidPress), for: .touchUpInside
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -124,6 +131,7 @@ final class PersonalInfoView: BaseViewController,
     private func configureFields() {
         fields.forEach { field in
             field.backgroundColor = .appTint(.background)
+            field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 23)
             field.cornerRadius = 10
             field.leftPadding = 15
@@ -131,6 +139,8 @@ final class PersonalInfoView: BaseViewController,
             field.rule = .personalInfo
             field.delegate = self
         }
+
+        birthTextField.tintColor = .clear
     }
 
     private func configureTextIfNeeded(for state: PersonalDataStoreState) {
@@ -157,11 +167,13 @@ extension PersonalInfoView {
 
         actionButton.fadeOut()
         startLoading()
-        interactor.setPerson(request: .init(firstName: firstNameTextField.inputText,
-                                            secondName: secondNameTextField.inputText,
-                                            lastName: lastNameTextField.inputText,
-                                            email: emailTextField.inputText,
-                                            date: datePicker.date.asString(.server)))
+        interactor.setPerson(request: .init(
+            firstName: firstNameTextField.inputText,
+            secondName: secondNameTextField.inputText,
+            lastName: lastNameTextField.inputText,
+            email: emailTextField.inputText,
+            date: datePicker.date.asString(.server)
+        ))
     }
 
     @objc private func dateDidSelect() {
@@ -181,13 +193,19 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
             let cityPickerModule = RegisterFlow.cityModule(cities)
 
             cityPickerModule.onCityPick = { [weak self] _ in
-                let addCar = RegisterFlow.addCarModule(scenario: .register,
-                                                       models: models,
-                                                       colors: colors)
-                self?.navigationController?.pushViewController(addCar, animated: true)
+                let addCar = RegisterFlow.addCarModule(
+                    scenario: .register,
+                    models: models,
+                    colors: colors
+                )
+                self?.navigationController?.pushViewController(
+                    addCar, animated: true
+                )
             }
 
-            navigationController?.pushViewController(cityPickerModule, animated: true)
+            navigationController?.pushViewController(
+                cityPickerModule, animated: true
+            )
         case .failure(let errorMessage):
             PopUp.display(.error(description: errorMessage))
         }

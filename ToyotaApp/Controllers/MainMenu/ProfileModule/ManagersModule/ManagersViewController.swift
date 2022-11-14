@@ -61,8 +61,10 @@ extension ManagersViewController: UICollectionViewDataSource {
         interactor.managers.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell: ManagerCell = collectionView.dequeue(for: indexPath)
         cell.configure(from: interactor.managers[indexPath.row])
         return cell

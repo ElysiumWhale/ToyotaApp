@@ -16,13 +16,7 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
 
     var maxSymbolCount: Int = 50
 
-    var rule: ValidationRule? {
-        didSet {
-            if let rule = rule {
-                validate(for: rule)
-            }
-        }
-    }
+    var rule: ValidationRule?
 
     private(set) var inputText: String = .empty
 

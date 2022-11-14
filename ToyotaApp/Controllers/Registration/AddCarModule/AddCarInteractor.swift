@@ -30,11 +30,12 @@ final class AddCarInteractor {
         models.isEmpty && colors.isEmpty
     }
 
-    init(type: AddInfoScenario = .register,
-         models: [Model] = [],
-         colors: [Color] = [],
-         service: CarsService = InfoService()) {
-
+    init(
+        type: AddInfoScenario = .register,
+        models: [Model] = [],
+        colors: [Color] = [],
+        service: CarsService = InfoService()
+    ) {
         self.type = type
         self.models = models
         self.colors = colors
@@ -45,29 +46,17 @@ final class AddCarInteractor {
 
     // MARK: - Public methods
     func setSelectedModel(for row: Int) -> String? {
-        guard models.indices.contains(row) else {
-            return nil
-        }
-
-        selectedModel = models[row]
+        selectedModel = models[safe: row]
         return selectedModel?.name
     }
 
     func setSelectedColor(for row: Int) -> String? {
-        guard colors.indices.contains(row) else {
-            return nil
-        }
-
-        selectedColor = colors[row]
+        selectedColor = colors[safe: row]
         return selectedColor?.name
     }
 
     func setSelectedYear(for row: Int) -> String? {
-        guard years.indices.contains(row) else {
-            return nil
-        }
-
-        selectedYear = years[row]
+        selectedYear = years[safe: row] ?? .empty
         return selectedYear
     }
 
@@ -80,20 +69,30 @@ final class AddCarInteractor {
 
         self.vin = vin
         self.plate = plate
-        let body = SetCarBody(brandId: Brand.Toyota, userId: userId, carModelId: modelId,
-                              colorId: colorId, licensePlate: plate, vinCode: vin,
-                              year: selectedYear)
+        let body = SetCarBody(
+            brandId: Brand.Toyota,
+            userId: userId,
+            carModelId: modelId,
+            colorId: colorId,
+            licensePlate: plate,
+            vinCode: vin,
+            year: selectedYear
+        )
         service.addCar(with: body, handler: setCarHandler)
     }
 
     func skipRegister() {
-        service.skipSetCar(with: .init(userId: KeychainManager<UserId>.get()!.value),
-                           handler: skipAddCarHandler)
+        service.skipSetCar(
+            with: SkipSetCarBody(userId: KeychainManager<UserId>.get()!.value),
+            handler: skipAddCarHandler
+        )
     }
 
     func loadModelsAndColors() {
-        service.getModelsAndColors(with: .init(brandId: Brand.Toyota),
-                                   handler: modelsAndColorsHandler)
+        service.getModelsAndColors(
+            with: GetModelsAndColorsBody(brandId: Brand.Toyota),
+            handler: modelsAndColorsHandler
+        )
     }
 
     // MARK: - Private methods
@@ -136,14 +135,16 @@ final class AddCarInteractor {
             return
         }
 
-        let car = Car(id: id,
-                      brand: Brand.ToyotaName,
-                      model: selectedModel,
-                      color: selectedColor,
-                      year: selectedYear,
-                      plate: plate,
-                      vin: vin,
-                      isChecked: false)
+        let car = Car(
+            id: id,
+            brand: Brand.ToyotaName,
+            model: selectedModel,
+            color: selectedColor,
+            year: selectedYear,
+            plate: plate,
+            vin: vin,
+            isChecked: false
+        )
 
         switch type {
         case .register:

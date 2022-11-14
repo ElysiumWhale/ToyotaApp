@@ -120,7 +120,7 @@ struct Color: IService {
 }
 
 // MARK: - ServiceType
-struct ServiceType: IService, Identifiable {
+struct ServiceType: IService, Identifiable, Hashable {
     let id: String
     let serviceTypeName: String
     let controlTypeId: String

@@ -28,7 +28,8 @@ final class LostConnectionViewController: BaseViewController {
         connectionTextView.centerYToSuperview()
         connectionTextView.horizontalToSuperview(insets: .horizontal(20))
 
-        retryButton.bottomToSuperview(offset: -20, usingSafeArea: true)
+        retryButton.bottomToSuperview(offset: -20,
+                                      usingSafeArea: true)
         retryButton.horizontalToSuperview(insets: .horizontal(30))
         retryButton.height(45)
         indicator.center(in: retryButton)
@@ -52,7 +53,9 @@ final class LostConnectionViewController: BaseViewController {
     }
 
     override func configureActions() {
-        retryButton.addTarget(self, action: #selector(reconnect), for: .touchUpInside)
+        retryButton.addTarget(
+            self, action: #selector(reconnect), for: .touchUpInside
+        )
 
         interactor.onSuccess = { context in
             NavigationService.resolveNavigation(with: context) {

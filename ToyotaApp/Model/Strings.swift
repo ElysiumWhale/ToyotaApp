@@ -168,7 +168,7 @@ extension String {
         /// Модель
         case model = "Модель"
         /// Номер (необязательно)
-        case numberNotNessesary = "Номер (необязательно)"
+        case numberNotNecessary = "Номер (необязательно)"
         /// VIN
         case vin = "VIN"
         /// Заполните информацию об автомобиле

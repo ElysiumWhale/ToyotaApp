@@ -18,7 +18,7 @@ protocol Keychainable: Codable {
 
 /// Utility class for managing data stored in `Keychain`
 final class KeychainManager<T: Keychainable> {
-    class func get(from wrapper: KeychainWrapper = .standard) -> T? {
+    static func get(from wrapper: KeychainWrapper = .standard) -> T? {
         guard let data = wrapper.data(forKey: T.key.rawValue) else {
             return nil
         }
@@ -26,13 +26,14 @@ final class KeychainManager<T: Keychainable> {
         return try? JSONDecoder().decode(T.self, from: data)
     }
 
-    class func set(_ info: T, to wrapper: KeychainWrapper = .standard) {
+    static func set(_ info: T, to wrapper: KeychainWrapper = .standard) {
         if let data = try? JSONEncoder().encode(info) {
             wrapper.set(data, forKey: T.key.rawValue.rawValue)
         }
     }
 
-    class func update(_ action: (T?) -> T, in wrapper: KeychainWrapper = .standard) {
+    static func update(_ action: (T?) -> T,
+                       in wrapper: KeychainWrapper = .standard) {
         guard let data = wrapper.data(forKey: T.key.rawValue),
               let value = try? JSONDecoder().decode(T.self, from: data) else {
             set(action(nil))
@@ -42,7 +43,7 @@ final class KeychainManager<T: Keychainable> {
         set(action(value), to: wrapper)
     }
 
-    class func clear(from wrapper: KeychainWrapper = .standard) {
+    static func clear(from wrapper: KeychainWrapper = .standard) {
         wrapper.remove(forKey: T.key.rawValue)
     }
 }

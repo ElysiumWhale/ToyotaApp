@@ -10,7 +10,8 @@ final class ManagersInteractor {
     var onManagersLoad: Closure?
     var onError: ParameterClosure<String>?
 
-    init(user: UserProxy, managersService: ManagersService = InfoService()) {
+    init(user: UserProxy,
+         managersService: ManagersService = InfoService()) {
         self.user = user
         self.managersService = managersService
 
@@ -18,8 +19,10 @@ final class ManagersInteractor {
     }
 
     func getManagers() {
-        managersService.getManagers(with: .init(userId: user.id, brandId: Brand.Toyota),
-                                    handler: managersRequestHandler)
+        managersService.getManagers(
+            with: GetManagersBody(userId: user.id, brandId: Brand.Toyota),
+            handler: managersRequestHandler
+        )
     }
 
     private func setupRequestHandlers() {

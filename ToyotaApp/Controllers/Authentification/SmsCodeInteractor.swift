@@ -11,7 +11,10 @@ final class SmsCodeInteractor {
     var onSuccess: ParameterClosure<(AuthScenario, CheckUserContext?)>?
     var onError: ParameterClosure<String>?
 
-    init(type: AuthScenario = .register, phone: String, authService: AuthService = InfoService()) {
+    init(type: AuthScenario = .register,
+         phone: String,
+         authService: AuthService = InfoService()) {
+
         self.type = type
         self.phone = phone
         self.authService = authService
@@ -22,12 +25,17 @@ final class SmsCodeInteractor {
     func checkCode(code: String) {
         switch type {
         case .register:
-            let body = CheckSmsCodeBody(phone: phone, code: code, brandId: Brand.Toyota)
+            let body = CheckSmsCodeBody(phone: phone,
+                                        code: code,
+                                        brandId: Brand.Toyota)
             authService.checkCode(with: body, handler: registerHandler)
         case .changeNumber:
             let id = KeychainManager<UserId>.get()!.value
-            let body = ChangePhoneBody(userId: id, code: code, newPhone: phone)
-            authService.changePhone(with: body, handler: changeNumberHandler)
+            let body = ChangePhoneBody(userId: id,
+                                       code: code,
+                                       newPhone: phone)
+            authService.changePhone(with: body,
+                                    handler: changeNumberHandler)
         }
     }
 

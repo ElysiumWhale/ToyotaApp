@@ -38,7 +38,9 @@ final class CarsViewController: BaseViewController, Loadable {
         carsCollection.backgroundColor = .systemGroupedBackground
         carsCollection.showsVerticalScrollIndicator = false
 
-        carsCollection.setBackground(text: interactor.cars.isEmpty ? .background(.noCars) : nil)
+        carsCollection.setBackground(
+            text: interactor.cars.isEmpty ? .background(.noCars) : nil
+        )
     }
 
     override func localize() {
@@ -77,9 +79,11 @@ final class CarsViewController: BaseViewController, Loadable {
 
     private func handle(_ response: ModelsAndColorsResponse) {
         stopLoading()
-        let vc = RegisterFlow.addCarModule(scenario: .update(with: interactor.user),
-                                           models: response.models,
-                                           colors: response.colors)
+        let vc = RegisterFlow.addCarModule(
+            scenario: .update(with: interactor.user),
+            models: response.models,
+            colors: response.colors
+        )
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -90,8 +94,10 @@ extension CarsViewController: UICollectionViewDataSource {
         interactor.cars.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell: CarCell = collectionView.dequeue(for: indexPath)
         let car = interactor.cars[indexPath.row]
         cell.configure(car: car)
@@ -102,8 +108,10 @@ extension CarsViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - ObservesEvents
 extension CarsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+    func handle(event: EventNotificator.AppEvents,
+                notificator: EventNotificator) {
         switch event {
         case .userUpdate:
             dispatch { [self] in

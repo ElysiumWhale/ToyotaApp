@@ -29,11 +29,13 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     }
 
     private var showroomItem: RequestItem {
-        let showroomId = user.selectedShowroom?.id
-        return (.carInfo(.showroomId), showroomId)
+        (.carInfo(.showroomId), user.selectedShowroom?.id)
     }
 
-    init(_ service: ServiceType, _ modules: [IServiceModule], _ user: UserProxy) {
+    init(_ service: ServiceType,
+         _ modules: [IServiceModule],
+         _ user: UserProxy
+    ) {
         self.modules = modules
         self.user = user
         self.serviceType = service
@@ -97,11 +99,11 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
 
     override func configureActions() {
         view.hideKeyboard(when: .tapAndSwipe)
-
-        carPickView.picker.configure(delegate: self,
-                                            with: #selector(carDidSelect),
-                                            for: carPickView.textField)
-
+        carPickView.picker.configure(
+            delegate: self,
+            with: #selector(carDidSelect),
+            for: carPickView.textField
+        )
         bookButton.addAction { [weak self] in
             self?.bookService()
         }
@@ -119,9 +121,13 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
             return
         }
 
-        var params: RequestItems = [(.auth(.userId), user.id),
-                                    (.carInfo(.showroomId), showroomId),
-                                    (.carInfo(.carId), carId)]
+        bookButton.isEnabled = false
+
+        var params: RequestItems = [
+            (.auth(.userId), user.id),
+            (.carInfo(.showroomId), showroomId),
+            (.carInfo(.carId), carId)
+        ]
 
         for module in modules {
             let items = module.buildQueryItems()
@@ -146,8 +152,11 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
                 PopUp.display(.success(description: .common(.bookingSuccess))) {
                     self?.navigationController?.popViewController(animated: true)
                 }
-            } onFailure: { error in
-                PopUp.display(.error(description: error.message ?? .error(.servicesError)))
+            } onFailure: { [weak bookButton] error in
+                PopUp.display(.error(
+                    description: error.message ?? .error(.servicesError)
+                ))
+                bookButton?.isEnabled = true
             }
     }
 
@@ -205,7 +214,7 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
             return
         }
 
-        selectedCar = user.cars.value[carPickView.picker.selectedRow]
+        selectedCar = user.cars.value[safe: carPickView.picker.selectedRow]
     }
 }
 
@@ -215,14 +224,18 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         user.cars.value.count
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
-        user.cars.value[row].name
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
+        user.cars.value[safe: row]?.name
     }
 }

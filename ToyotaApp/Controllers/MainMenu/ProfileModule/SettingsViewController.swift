@@ -19,9 +19,11 @@ final class SettingsViewController: BaseViewController {
 
     override func addViews() {
         addDismissRightButton()
-        bottomStack.addArrangedSubviews(agreementButton,
-                                        companyNameLabel,
-                                        versionLabel)
+        bottomStack.addArrangedSubviews(
+            agreementButton,
+            companyNameLabel,
+            versionLabel
+        )
 
         addSubviews(phoneLabel,
                     phoneTextField,
@@ -30,9 +32,11 @@ final class SettingsViewController: BaseViewController {
     }
 
     override func configureLayout() {
-        phoneLabel.edgesToSuperview(excluding: .bottom,
-                                    insets: .uniform(20),
-                                    usingSafeArea: true)
+        phoneLabel.edgesToSuperview(
+            excluding: .bottom,
+            insets: .uniform(20),
+            usingSafeArea: true
+        )
 
         phoneTextField.topToBottom(of: phoneLabel, offset: 10)
         phoneTextField.horizontalToSuperview(insets: .horizontal(20))
@@ -46,9 +50,11 @@ final class SettingsViewController: BaseViewController {
 
         bottomStack.axis = .vertical
         bottomStack.alignment = .center
-        bottomStack.edgesToSuperview(excluding: .top,
-                                     insets: .uniform(20),
-                                     usingSafeArea: true)
+        bottomStack.edgesToSuperview(
+            excluding: .top,
+            insets: .uniform(20),
+            usingSafeArea: true
+        )
     }
 
     override func configureAppearance() {
@@ -99,8 +105,10 @@ final class SettingsViewController: BaseViewController {
     }
 
     private func changeNumber() {
-        PopUp.displayChoice(with: .common(.confirmation),
-                            description: .question(.changeNumber)) { [self] in
+        PopUp.displayChoice(
+            with: .common(.confirmation),
+            description: .question(.changeNumber)
+        ) { [self] in
             let module = AuthFlow.authModule(authType: .changeNumber)
             navigationController?.pushViewController(module, animated: true)
         }
@@ -114,7 +122,8 @@ final class SettingsViewController: BaseViewController {
 
 // MARK: - ObservesEvents
 extension SettingsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents, notificator: EventNotificator) {
+    func handle(event: EventNotificator.AppEvents,
+                notificator: EventNotificator) {
         guard event == .phoneUpdate else {
             return
         }

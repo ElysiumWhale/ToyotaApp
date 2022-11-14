@@ -28,11 +28,13 @@ final class UserInfo {
         KeychainManager<Phone>.get()?.value ?? .empty
     }
 
-    fileprivate init(_ userId: UserId,
-                     _ userPhone: Phone,
-                     _ personInfo: Person,
-                     _ carsInfo: Cars,
-                     notificator: EventNotificator = .shared) {
+    fileprivate init(
+        _ userId: UserId,
+        _ userPhone: Phone,
+        _ personInfo: Person,
+        _ carsInfo: Cars,
+        notificator: EventNotificator = .shared
+    ) {
         id = userId.value
         person = personInfo
         cars = carsInfo

@@ -15,7 +15,6 @@ enum AddInfoScenario: Equatable {
 }
 
 enum RegisterFlow {
-
     static func cityModule(_ cities: [City] = []) -> CityPikerModule {
         let interactor = CityPickerInteractor(cities: cities)
         let module = CityPickerViewController(interactor: interactor)
@@ -26,21 +25,27 @@ enum RegisterFlow {
 
     static func personalModule(_ profile: Profile? = nil) -> UIViewController {
         let presenter = PersonalInfoPresenter()
-        let interactor = PersonalInfoInteractor(output: presenter,
-                                                state: .from(profile))
+        let interactor = PersonalInfoInteractor(
+            output: presenter,
+            state: .from(profile)
+        )
         let view = PersonalInfoView(interactor: interactor)
         presenter.view = view
         return view
     }
 
-    static func addCarModule(scenario: AddInfoScenario = .register,
-                             models: [Model] = [],
-                             colors: [Color] = []) -> UIViewController {
+    static func addCarModule(
+        scenario: AddInfoScenario = .register,
+        models: [Model] = [],
+        colors: [Color] = []
+    ) -> UIViewController {
 
-        let interactor = AddCarInteractor(type: scenario,
-                                          models: models,
-                                          colors: colors)
-        let vc = AddCarViewController(intercator: interactor)
+        let interactor = AddCarInteractor(
+            type: scenario,
+            models: models,
+            colors: colors
+        )
+        let vc = AddCarViewController(interactor: interactor)
         interactor.view = vc
 
         return vc
@@ -50,7 +55,9 @@ enum RegisterFlow {
         EndRegistrationViewController()
     }
 
-    static func entryPoint(with controllers: [UIViewController] = []) -> UIViewController {
+    static func entryPoint(
+        with controllers: [UIViewController] = []
+    ) -> UIViewController {
         let nvc = UINavigationController()
         nvc.navigationBar.prefersLargeTitles = true
         nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)

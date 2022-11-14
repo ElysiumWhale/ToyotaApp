@@ -48,12 +48,20 @@ extension Date {
             return true
         }
 
-        let hour: Int = concreteTime?.hour ?? self.hour
-        let minute: Int = concreteTime?.minute ?? self.minute
+        let hour: Int = concreteTime?.hour ?? hour
+        let minute: Int = concreteTime?.minute ?? minute
 
-        return calendar.isDateInToday(self)
-                && now.hour < hour
-                && now.minute < minute
+        guard calendar.isDateInToday(self) else {
+            return false
+        }
+
+        if now.hour < hour {
+            return true
+        } else if now.hour == hour {
+            return now.minute < minute
+        } else {
+            return false
+        }
     }
 
     private var calendar: Calendar {

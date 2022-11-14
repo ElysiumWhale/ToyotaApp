@@ -19,7 +19,8 @@ final class EndRegistrationViewController: BaseViewController {
         infoStack.spacing = 12
 
         logoImageView.size(.init(width: 128, height: 128))
-        logoImageView.topToSuperview(offset: 45, usingSafeArea: true)
+        logoImageView.topToSuperview(offset: 45,
+                                     usingSafeArea: true)
         logoImageView.centerXToSuperview()
 
         infoStack.topToBottom(of: logoImageView, offset: 5)
@@ -27,7 +28,8 @@ final class EndRegistrationViewController: BaseViewController {
 
         actionButton.centerXToSuperview()
         actionButton.size(.init(width: 245, height: 43))
-        actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
+        actionButton.bottomToSuperview(offset: -16,
+                                       usingSafeArea: true)
     }
 
     override func configureAppearance() {
@@ -36,11 +38,11 @@ final class EndRegistrationViewController: BaseViewController {
         infoLabel.font = .toyotaType(.regular, of: 22)
         wishesLabel.font = .toyotaType(.regular, of: 22)
 
-        [thanksLabel, infoLabel, wishesLabel].forEach {
-            $0.textColor = .appTint(.signatureGray)
-            $0.numberOfLines = .zero
-            $0.lineBreakMode = .byWordWrapping
-            $0.textAlignment = .center
+        for label in [thanksLabel, infoLabel, wishesLabel] {
+            label.textColor = .appTint(.signatureGray)
+            label.numberOfLines = .zero
+            label.lineBreakMode = .byWordWrapping
+            label.textAlignment = .center
         }
 
         actionButton.rounded = true

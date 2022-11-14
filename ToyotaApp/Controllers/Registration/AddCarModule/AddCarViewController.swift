@@ -21,8 +21,8 @@ final class AddCarViewController: BaseViewController, Loadable {
 
     var isLoading: Bool = false
 
-    init(intercator: AddCarInteractor) {
-        self.interactor = intercator
+    init(interactor: AddCarInteractor) {
+        self.interactor = interactor
 
         super.init()
     }
@@ -42,9 +42,11 @@ final class AddCarViewController: BaseViewController, Loadable {
     }
 
     override func configureLayout() {
-        subtitleLabel.edgesToSuperview(excluding: .bottom,
-                                       insets: .horizontal(16),
-                                       usingSafeArea: true)
+        subtitleLabel.edgesToSuperview(
+            excluding: .bottom,
+            insets: .horizontal(16),
+            usingSafeArea: true
+        )
 
         fieldsStack.axis = .vertical
         fieldsStack.spacing = 8
@@ -55,11 +57,13 @@ final class AddCarViewController: BaseViewController, Loadable {
         vinCodeTextField.height(50)
 
         skipButton.centerXToSuperview()
-        skipButton.bottomToSuperview(offset: -65, usingSafeArea: true)
+        skipButton.bottomToSuperview(offset: -65,
+                                     usingSafeArea: true)
 
         actionButton.centerXToSuperview()
         actionButton.size(.init(width: 245, height: 43))
-        actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
+        actionButton.bottomToSuperview(offset: -16,
+                                       usingSafeArea: true)
     }
 
     override func configureAppearance() {
@@ -80,6 +84,7 @@ final class AddCarViewController: BaseViewController, Loadable {
             field.textAlignment = .center
             field.textColor = .appTint(.signatureGray)
             field.rule = .notEmpty
+            field.tintColor = .appTint(.secondarySignatureRed)
         }
 
         plateTextField.rule = nil
@@ -98,7 +103,7 @@ final class AddCarViewController: BaseViewController, Loadable {
         navigationItem.title = .common(.auto)
         subtitleLabel.text = .common(.fillAutoInfo)
         vinCodeTextField.placeholder = .common(.vin)
-        plateTextField.placeholder = .common(.numberNotNessesary)
+        plateTextField.placeholder = .common(.numberNotNecessary)
         modelTextField.placeholder = .common(.model)
         yearTextField.placeholder = .common(.year)
         colorTextField.placeholder = .common(.color)
@@ -139,8 +144,10 @@ final class AddCarViewController: BaseViewController, Loadable {
 
     private func actionButtonDidPress() {
         let fieldsValidation = textFields.areValid
-        let vinValidation = vinCodeTextField.validate(for: .requiredSymbolsCount(17),
-                                                      toggleState: true)
+        let vinValidation = vinCodeTextField.validate(
+            for: .requiredSymbolsCount(17),
+            toggleState: true
+        )
 
         guard fieldsValidation, vinValidation else {
             return
