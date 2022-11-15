@@ -149,6 +149,7 @@ final class ProfileViewController: BaseViewController, Loadable {
             field.font = .toyotaType(.light, of: 22)
             field.textAlignment = .center
             field.tintColor = .appTint(.secondarySignatureRed)
+            field.isEnabled = false
         }
 
         birthTextField.rule = .notEmpty
