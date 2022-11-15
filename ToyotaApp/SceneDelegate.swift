@@ -6,9 +6,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>?
 
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
 
         guard let windowScene = scene as? UIWindowScene else {
             return
@@ -32,11 +34,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self?.handle(error: error)
         }
 
-        let body = CheckUserBody(userId: userId,
-                                 secret: secretKey,
-                                 brandId: Brand.Toyota)
-        InfoService().checkUser(with: body,
-                                handler: requestHandler!)
+        let body = CheckUserBody(
+            userId: userId,
+            secret: secretKey,
+            brandId: Brand.Toyota
+        )
+        InfoService().checkUser(
+            with: body,
+            handler: requestHandler!
+        )
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
@@ -52,13 +58,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func handle(error response: ErrorResponse) {
         requestHandler = nil
         switch response.errorCode {
-            case .lostConnection:
-                NavigationService.loadConnectionLost()
-            default:
-                KeychainManager<SecretKey>.clear()
-                NavigationService.loadAuth(
-                    with: response.message ?? .error(.errorWhileAuth)
-                )
+        case .lostConnection:
+            NavigationService.loadConnectionLost()
+        default:
+            KeychainManager<SecretKey>.clear()
+            NavigationService.loadAuth(
+                with: response.message ?? .error(.errorWhileAuth)
+            )
         }
     }
 }
@@ -72,10 +78,12 @@ extension SceneDelegate {
 
         window.rootViewController = vc
 
-        UIView.transition(with: window,
-                          duration: 0.5,
-                          options: [.transitionFlipFromLeft],
-                          animations: nil)
+        UIView.transition(
+            with: window,
+            duration: 0.5,
+            options: [.transitionFlipFromLeft],
+            animations: nil
+        )
     }
 }
 
