@@ -3,16 +3,15 @@ import Foundation
 final class ManagersInteractor {
     private let managersService: ManagersService
     private let managersRequestHandler = RequestHandler<ManagersResponse>()
-    private let user: UserProxy
+    private let userId: String
 
     private(set) var managers: [Manager] = []
 
     var onManagersLoad: Closure?
     var onError: ParameterClosure<String>?
 
-    init(user: UserProxy,
-         managersService: ManagersService = InfoService()) {
-        self.user = user
+    init(userId: String, managersService: ManagersService = InfoService()) {
+        self.userId = userId
         self.managersService = managersService
 
         setupRequestHandlers()
@@ -20,7 +19,7 @@ final class ManagersInteractor {
 
     func getManagers() {
         managersService.getManagers(
-            with: GetManagersBody(userId: user.id, brandId: Brand.Toyota),
+            with: GetManagersBody(userId: userId, brandId: Brand.Toyota),
             handler: managersRequestHandler
         )
     }

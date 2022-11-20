@@ -8,22 +8,20 @@ protocol BookingsView: AnyObject {
 final class BookingsInteractor {
     private let bookingsHandler = RequestHandler<BookingsResponse>()
     private let bookingsService: BookingsService
+    private let userId: String
 
     private(set) var bookings: [Booking] = []
 
     weak var view: BookingsView?
 
-    init(bookingsService: BookingsService = InfoService()) {
+    init(userId: String, bookingsService: BookingsService = InfoService()) {
+        self.userId = userId
         self.bookingsService = bookingsService
 
         setupRequestHandlers()
     }
 
     func getBookings() {
-        guard let userId = KeychainManager<UserId>.get()?.value else {
-            return
-        }
-
         bookingsService.getBookings(
             with: GetBookingsBody(userId: userId),
             handler: bookingsHandler
