@@ -78,16 +78,22 @@ final class NewsViewController: BaseViewController, Refreshable {
     }
 
     override func configureActions() {
-        showroomPicker.configure(delegate: self,
-                                 with: #selector(showroomDidSelect),
-                                 for: showroomField)
+        showroomPicker.configure(
+            delegate: self,
+            with: #selector(showroomDidSelect),
+            for: showroomField
+        )
 
         interactor.onSuccessNewsLoad = { [weak self] in
-            self?.handleSuccess()
+            DispatchQueue.main.async {
+                self?.handleSuccess()
+            }
         }
 
         interactor.onFailureNewsLoad = { [weak self] in
-            self?.handleError()
+            DispatchQueue.main.async {
+                self?.handleError()
+            }
         }
     }
 
