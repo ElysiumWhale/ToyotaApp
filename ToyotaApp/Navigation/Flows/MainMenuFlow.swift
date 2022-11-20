@@ -1,13 +1,22 @@
 import UIKit
 
-private typealias TabConfiguration = MainTabBarController.TabConfiguration
-
 enum MainMenuFlow {
-    static func entryPoint(for user: UserProxy) -> UIViewController {
+    static func entryPoint(for user: UserProxy) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
-        tbvc.setControllers(newsConfiguration,
-                            servicesConfiguration(with: user),
-                            profileConfiguration(with: user))
+
+        let payload = ProfilePayload(user: user)
+        let profileModule = makeProfileModule(with: payload) { [weak tbvc] in
+            tbvc?.tabsRoots[.profile]
+        }
+
+        let servicesModule = servicesModule(with: ServicesPayload(user: user))
+
+        tbvc.setControllersForTabs(
+            (newsModule(), .news),
+            (servicesModule, .services),
+            (profileModule, .profile)
+        )
+
         return tbvc
     }
 
@@ -15,70 +24,124 @@ enum MainMenuFlow {
         NewsViewController()
     }
 
-    static func servicesModule(with user: UserProxy) -> UIViewController {
-        ServicesViewController(user: user)
-    }
-
-    static func profileModule(with user: UserProxy) -> UIViewController {
-        ProfileViewController(interactor: .init(user: user))
-    }
-
     static func chatModule() -> UIViewController {
         let vc = ChatViewController()
         vc.hidesBottomBarWhenPushed = true
         return vc
     }
+}
 
-    static func bookingsModule() -> UIViewController {
-        BookingsViewController(interactor: .init())
+// MARK: - Profile
+extension MainMenuFlow {
+    struct ProfilePayload {
+        let user: UserProxy
     }
 
-    static func settingsModule(user: UserProxy) -> UIViewController {
-        SettingsViewController(user: user)
+    static func profileModule(with payload: ProfilePayload) -> ProfileModule {
+        let interactor = ProfileInteractor(user: payload.user)
+        let controller = ProfileViewController(interactor: interactor)
+        return controller
     }
 
-    static func managersModule(user: UserProxy) -> UIViewController {
-        ManagersViewController(interactor: .init(user: user))
-    }
+    static func makeProfileModule(
+        with payload: ProfilePayload,
+        navigationFactory: @escaping ValueClosure<UINavigationController?>
+    ) -> UIViewController {
 
-    static func carsModule(user: UserProxy) -> UIViewController {
-        CarsViewController(interactor: .init(user: user))
+        let profileModule = profileModule(with: payload)
+
+        profileModule.onShowCars = {
+            let carsModule = carsModule(with: CarsPayload(user: payload.user))
+                .wrappedInNavigation
+            carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+            navigationFactory()?.present(
+                carsModule, animated: true
+            )
+        }
+
+        profileModule.onShowBookings = {
+            navigationFactory()?.present(
+                bookingsModule(with: BookingsPayload(userId: payload.user.id))
+                    .wrappedInNavigation,
+                animated: true
+            )
+        }
+
+        profileModule.onShowManagers = {
+            navigationFactory()?.present(
+                managersModule(with: ManagersPayload(userId: payload.user.id))
+                    .wrappedInNavigation,
+                animated: true
+            )
+        }
+
+        profileModule.onShowSettings = {
+            navigationFactory()?.present(
+                settingsModule(with: SettingsPayload(user: payload.user))
+                    .wrappedInNavigation,
+                animated: true)
+        }
+
+        return profileModule
     }
 }
 
-// MARK: - Configurations
-private extension MainMenuFlow {
-    static var newsConfiguration: (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(
-            tabTitle: .common(.offers),
-            image: .newspaper,
-            selectedImage: .fillNewspaper,
-            navTitle: .common(.offers)
-        )
-        return (newsModule(), tabConfig)
+// MARK: - Services
+extension MainMenuFlow {
+    struct ServicesPayload {
+        let user: UserProxy
     }
-    
-    static func servicesConfiguration(
-        with user: UserProxy
-    ) -> (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(
-            tabTitle: .common(.services),
-            image: .bookmark,
-            selectedImage: .fillBookmark,
-            navTitle: .common(.services)
-        )
-        return (servicesModule(with: user), tabConfig)
+
+    static func servicesModule(with payload: ServicesPayload) -> UIViewController {
+        ServicesViewController(user: payload.user)
     }
-    
-    static func profileConfiguration(
-        with user: UserProxy
-    ) -> (UIViewController, TabConfiguration) {
-        let tabConfig = TabConfiguration(
-            tabTitle: .common(.profile),
-            image: .person,
-            selectedImage: .fillPerson,
-            navTitle: .common(.profile)
-        )
-        return (profileModule(with: user), tabConfig)
+}
+
+// MARK: - Managers
+extension MainMenuFlow {
+    struct ManagersPayload {
+        let userId: String
+    }
+
+    static func managersModule(with payload: ManagersPayload) -> UIViewController {
+        let interactor = ManagersInteractor(userId: payload.userId)
+        let controller = ManagersViewController(interactor: interactor)
+        return controller
+    }
+}
+
+// MARK: - Settings
+extension MainMenuFlow {
+    struct SettingsPayload {
+        let user: UserProxy
+    }
+
+    static func settingsModule(with payload: SettingsPayload) -> UIViewController {
+        SettingsViewController(user: payload.user)
+    }
+}
+
+// MARK: - Bookings
+extension MainMenuFlow {
+    struct BookingsPayload {
+        let userId: String
+    }
+
+    static func bookingsModule(with payload: BookingsPayload) -> UIViewController {
+        let interactor = BookingsInteractor(userId: payload.userId)
+        return BookingsViewController(interactor: interactor)
+    }
+}
+
+// MARK: - Cars
+extension MainMenuFlow {
+    struct CarsPayload {
+        let user: UserProxy
+    }
+
+    static func carsModule(with payload: CarsPayload) -> UIViewController {
+        let interactor = CarsInteractor(user: payload.user)
+        let controller = CarsViewController(interactor: interactor)
+        return controller
     }
 }

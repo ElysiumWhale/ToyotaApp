@@ -1,6 +1,15 @@
 import UIKit
 
-final class ProfileViewController: BaseViewController, Loadable {
+protocol ProfileModule: UIViewController {
+    var onShowBookings: Closure? { get set }
+    var onShowSettings: Closure? { get set }
+    var onShowCars: Closure? { get set }
+    var onShowManagers: Closure? { get set }
+}
+
+final class ProfileViewController: BaseViewController,
+                                   Loadable,
+                                   ProfileModule {
 
     enum EditingStates {
         case none
@@ -51,6 +60,11 @@ final class ProfileViewController: BaseViewController, Loadable {
     let loadingView = LoadingView()
 
     var isLoading: Bool = false
+
+    var onShowBookings: Closure?
+    var onShowSettings: Closure?
+    var onShowCars: Closure?
+    var onShowManagers: Closure?
 
     init(interactor: ProfileInteractor) {
         self.interactor = interactor
@@ -149,6 +163,7 @@ final class ProfileViewController: BaseViewController, Loadable {
             field.font = .toyotaType(.light, of: 22)
             field.textAlignment = .center
             field.tintColor = .appTint(.secondarySignatureRed)
+            field.isEnabled = false
         }
 
         birthTextField.rule = .notEmpty
@@ -181,20 +196,24 @@ final class ProfileViewController: BaseViewController, Loadable {
 
         datePicker.configure(with: #selector(dateDidSelect),
                              for: birthTextField)
-        managerButton.addTarget(
-            self, action: #selector(showManagers), for: .touchUpInside
-        )
+
+        managerButton.addAction { [weak self] in
+            self?.onShowManagers?()
+        }
+
+        bookingsButton.addAction { [weak self] in
+            self?.onShowBookings?()
+        }
+
+        carsButton.addAction { [weak self] in
+            self?.onShowCars?()
+        }
+
         saveButton.addTarget(
             self, action: #selector(enterEditMode), for: .touchUpInside
         )
         cancelButton.addTarget(
             self, action: #selector(cancelEdit), for: .touchUpInside
-        )
-        bookingsButton.addTarget(
-            self, action: #selector(showBookings), for: .touchUpInside
-        )
-        carsButton.addTarget(
-            self, action: #selector(showCars), for: .touchUpInside
         )
 
         interactor.onUserUpdateFailure = { [weak self] errorMessage in
@@ -331,25 +350,7 @@ private extension ProfileViewController {
 // MARK: - Navigation
 private extension ProfileViewController {
     @objc func showSettings() {
-        let vc = MainMenuFlow.settingsModule(user: interactor.user)
-        navigationController?.present(vc.wrappedInNavigation, animated: true)
-    }
-
-    @objc func showBookings() {
-        let vc = MainMenuFlow.bookingsModule()
-        navigationController?.present(vc.wrappedInNavigation, animated: true)
-    }
-
-    @objc func showManagers() {
-        let vc = MainMenuFlow.managersModule(user: interactor.user)
-        navigationController?.present(vc.wrappedInNavigation, animated: true)
-    }
-
-    @objc func showCars() {
-        let vc = MainMenuFlow.carsModule(user: interactor.user)
-        let navvc = vc.wrappedInNavigation
-        navvc.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-        navigationController?.present(navvc, animated: true)
+        onShowSettings?()
     }
 
     @objc func logout() {

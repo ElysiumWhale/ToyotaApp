@@ -1,23 +1,38 @@
 import UIKit
 
-class MainTabBarController: UITabBarController {
+protocol NavigationRootHolder<Path> {
+    associatedtype Path: Hashable
 
-    struct TabConfiguration {
-        let tabTitle: String
-        let image: UIImage
-        let selectedImage: UIImage
-        let navTitle: String
+    var tabsRoots: [Path: UINavigationController] { get }
+    var root: UIViewController { get }
+}
+
+final class MainTabBarController: UITabBarController,
+                                  NavigationRootHolder {
+
+    private(set) var tabsRoots: [Tabs: UINavigationController] = [:]
+
+    var root: UIViewController {
+        self
     }
 
-    func setControllers(_ configurations: (controller: UIViewController,
-                                           tab: TabConfiguration)...) {
+    func setControllersForTabs(
+        _ controllersForTabs: (
+            controller: UIViewController,
+            tab: Tabs
+        )...
+    ) {
 
-        let controllers = configurations.map { config -> UIViewController in
+        let controllers = controllersForTabs.map { config -> UIViewController in
             let navVC = UINavigationController(rootViewController: config.controller)
-            navVC.tabBarItem.title = config.tab.tabTitle
-            navVC.navigationItem.title = config.tab.navTitle
-            navVC.tabBarItem.image = config.tab.image
-            navVC.tabBarItem.selectedImage = config.tab.selectedImage
+            let tabConfig = config.tab.configuration
+
+            navVC.tabBarItem.title = tabConfig.tabTitle
+            navVC.navigationItem.title = tabConfig.navTitle
+            navVC.tabBarItem.image = tabConfig.image
+            navVC.tabBarItem.selectedImage = tabConfig.selectedImage
+
+            tabsRoots[config.tab] = navVC
             return navVC
         }
 
