@@ -5,6 +5,7 @@ protocol ProfileModule: UIViewController {
     var onShowSettings: Closure? { get set }
     var onShowCars: Closure? { get set }
     var onShowManagers: Closure? { get set }
+    var onLogout: Closure? { get set }
 }
 
 final class ProfileViewController: BaseViewController,
@@ -65,6 +66,7 @@ final class ProfileViewController: BaseViewController,
     var onShowSettings: Closure?
     var onShowCars: Closure?
     var onShowManagers: Closure?
+    var onLogout: Closure?
 
     init(interactor: ProfileInteractor) {
         self.interactor = interactor
@@ -354,16 +356,7 @@ private extension ProfileViewController {
     }
 
     @objc func logout() {
-        PopUp.displayChoice(
-            with: .common(.actionConfirmation),
-            description: .question(.quit),
-            confirmText: .common(.yes),
-            declineText: .common(.no)
-        ) {
-            KeychainManager.clearAll()
-            DefaultsManager.clearAll()
-            NavigationService.loadAuth()
-        }
+        onLogout?()
     }
 }
 
