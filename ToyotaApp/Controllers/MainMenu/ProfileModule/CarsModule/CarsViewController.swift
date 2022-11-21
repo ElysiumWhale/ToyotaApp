@@ -8,10 +8,12 @@ final class CarsViewController: BaseViewController, Loadable {
 
     var isLoading: Bool = false
 
-    init(interactor: CarsInteractor) {
+    init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
 
         super.init()
+
+        notificator.add(self, for: .userUpdate)
     }
 
     override func addViews() {
@@ -49,8 +51,6 @@ final class CarsViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
-        EventNotificator.shared.add(self, for: .userUpdate)
-
         interactor.onRemoveCar = { [weak self] in
             self?.stopLoading()
         }

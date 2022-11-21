@@ -68,10 +68,12 @@ final class ProfileViewController: BaseViewController,
     var onShowManagers: Closure?
     var onLogout: Closure?
 
-    init(interactor: ProfileInteractor) {
+    init(interactor: ProfileInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
 
         super.init()
+
+        notificator.add(self, for: .userUpdate)
     }
 
     // MARK: - InitialazableView
@@ -79,7 +81,6 @@ final class ProfileViewController: BaseViewController,
         super.viewDidLoad()
 
         refreshFields()
-        EventNotificator.shared.add(self, for: .userUpdate)
     }
 
     override func addViews() {
@@ -91,11 +92,13 @@ final class ProfileViewController: BaseViewController,
             birthTextField
         )
         bottomButtonsStack.addArrangedSubviews(bookingsButton, carsButton)
-        addSubviews(fieldsStack,
-                    managerButton,
-                    cancelButton,
-                    saveButton,
-                    bottomButtonsStack)
+        addSubviews(
+            fieldsStack,
+            managerButton,
+            cancelButton,
+            saveButton,
+            bottomButtonsStack
+        )
 
         let leftItem = UIBarButtonItem(
             image: .settings,
