@@ -5,6 +5,7 @@ protocol ProfileModule: UIViewController {
     var onShowSettings: Closure? { get set }
     var onShowCars: Closure? { get set }
     var onShowManagers: Closure? { get set }
+    var onLogout: Closure? { get set }
 }
 
 final class ProfileViewController: BaseViewController,
@@ -65,11 +66,14 @@ final class ProfileViewController: BaseViewController,
     var onShowSettings: Closure?
     var onShowCars: Closure?
     var onShowManagers: Closure?
+    var onLogout: Closure?
 
-    init(interactor: ProfileInteractor) {
+    init(interactor: ProfileInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
 
         super.init()
+
+        notificator.add(self, for: .userUpdate)
     }
 
     // MARK: - InitialazableView
@@ -77,7 +81,6 @@ final class ProfileViewController: BaseViewController,
         super.viewDidLoad()
 
         refreshFields()
-        EventNotificator.shared.add(self, for: .userUpdate)
     }
 
     override func addViews() {
@@ -89,11 +92,13 @@ final class ProfileViewController: BaseViewController,
             birthTextField
         )
         bottomButtonsStack.addArrangedSubviews(bookingsButton, carsButton)
-        addSubviews(fieldsStack,
-                    managerButton,
-                    cancelButton,
-                    saveButton,
-                    bottomButtonsStack)
+        addSubviews(
+            fieldsStack,
+            managerButton,
+            cancelButton,
+            saveButton,
+            bottomButtonsStack
+        )
 
         let leftItem = UIBarButtonItem(
             image: .settings,
@@ -354,16 +359,7 @@ private extension ProfileViewController {
     }
 
     @objc func logout() {
-        PopUp.displayChoice(
-            with: .common(.actionConfirmation),
-            description: .question(.quit),
-            confirmText: .common(.yes),
-            declineText: .common(.no)
-        ) {
-            KeychainManager.clearAll()
-            DefaultsManager.clearAll()
-            NavigationService.loadAuth()
-        }
+        onLogout?()
     }
 }
 

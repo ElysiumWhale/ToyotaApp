@@ -82,6 +82,19 @@ extension MainMenuFlow {
                 animated: true)
         }
 
+        profileModule.onLogout = {
+            PopUp.displayChoice(
+                with: .common(.actionConfirmation),
+                description: .question(.quit),
+                confirmText: .common(.yes),
+                declineText: .common(.no)
+            ) {
+                KeychainManager.clearAll()
+                DefaultsManager.clearAll()
+                NavigationService.loadAuth()
+            }
+        }
+
         return profileModule
     }
 }

@@ -11,10 +11,12 @@ final class SettingsViewController: BaseViewController {
 
     private let user: UserProxy
 
-    init(user: UserProxy) {
+    init(user: UserProxy, notificator: EventNotificator = .shared) {
         self.user = user
 
         super.init()
+
+        notificator.add(self, for: .phoneUpdate)
     }
 
     override func addViews() {
@@ -93,8 +95,6 @@ final class SettingsViewController: BaseViewController {
     }
 
     override func configureActions() {
-        EventNotificator.shared.add(self, for: .phoneUpdate)
-
         changeNumberButton.addAction { [weak self] in
             self?.changeNumber()
         }
