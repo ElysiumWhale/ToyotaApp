@@ -78,6 +78,11 @@ extension DateFormatter {
         return formatter
     }
 
+    func withTimeZone(_ identifier: String) -> Self {
+        timeZone = TimeZone(identifier: identifier)
+        return self
+    }
+
     /// Formats date in **yyyy-MM-dd**
     ///
     /// Example:
