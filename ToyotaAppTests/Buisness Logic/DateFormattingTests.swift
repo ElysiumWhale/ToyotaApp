@@ -54,7 +54,14 @@ final class DateFormattingTests: XCTestCase {
 
     func testDateComponentsUtils() throws {
         // 2020-12-25 23:04:45
-        let date = Date(timeIntervalSince1970: 1608923085)
+        let date = Calendar.current.date(from: DateComponents(
+            year: 2020,
+            month: 12,
+            day: 25,
+            hour: 23,
+            minute: 4,
+            second: 45
+        ))!
 
         XCTAssertEqual(date.day, 25)
         XCTAssertEqual(date.hour, 23)
