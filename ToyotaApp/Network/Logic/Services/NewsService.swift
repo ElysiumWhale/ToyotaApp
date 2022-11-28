@@ -9,9 +9,9 @@ protocol NewsService {
 
 /// Experimental
 struct NewsInfoService: NewsService {
-    private let container: any HtmlParserService<[News], HtmlNewsParser.AdditionalParameters>
+    private let container: HtmlNewsParser
 
-    init(container: any HtmlParserService<[News], HtmlNewsParser.AdditionalParameters> = HtmlNewsParser()) {
+    init(container: HtmlNewsParser = HtmlNewsParser()) {
         self.container = container
     }
 
