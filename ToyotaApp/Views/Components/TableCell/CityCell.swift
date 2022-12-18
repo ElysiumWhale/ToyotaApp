@@ -12,12 +12,14 @@ final class CityCell: BaseTableCell {
             return
         }
 
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2,
-                                                       delay: 0.0,
-                                                       options: .curveEaseOut,
-                                                       animations: {
-            self.contentView.backgroundColor = .appTint(.secondarySignatureRed)
-        })
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0.0,
+            options: .curveEaseOut,
+            animations: {
+                self.contentView.backgroundColor = .appTint(.secondarySignatureRed)
+            }
+        )
     }
 
     override func addViews() {

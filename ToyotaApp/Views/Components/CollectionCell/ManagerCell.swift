@@ -9,7 +9,12 @@ final class ManagerCell: BaseCollectionCell {
     private let photoView = LazyImageView()
 
     override func addViews() {
-        contentView.addSubviews(showroomLabel, nameLabel, infoLabel, photoView)
+        contentView.addSubviews(
+            showroomLabel,
+            nameLabel,
+            infoLabel,
+            photoView
+        )
     }
 
     override func configureLayout() {
@@ -44,16 +49,25 @@ final class ManagerCell: BaseCollectionCell {
         contentView.backgroundColor = .appTint(.background)
         contentView.layer.cornerRadius = 15
     }
+}
 
-    func configure(from manager: Manager) {
+// MARK: - State rendering
+extension ManagerCell {
+    struct ViewState {
+        let manager: Manager
+        let photoUrl: URL?
+    }
+
+    func render(_ viewState: ViewState) {
+        let manager = viewState.manager
+
         showroomLabel.text = manager.showroomName
         nameLabel.text = "\(manager.firstName) \(manager.lastName)"
         infoLabel.text = "\(manager.phone) \(manager.email)"
 
-        guard manager.imageUrl.isNotEmpty,
-              let url = NetworkService.buildImageUrl(manager.imageUrl) else {
-                  return
-              }
+        guard let url = viewState.photoUrl else {
+            return
+        }
 
         photoView.transition = .fadeIn(duration: 0.6)
         photoView.failureImage = .personFill

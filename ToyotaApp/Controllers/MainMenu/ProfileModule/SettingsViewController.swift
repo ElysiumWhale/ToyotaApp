@@ -28,10 +28,12 @@ final class SettingsViewController: BaseViewController {
             versionLabel
         )
 
-        addSubviews(phoneLabel,
-                    phoneTextField,
-                    changeNumberButton,
-                    bottomStack)
+        addSubviews(
+            phoneLabel,
+            phoneTextField,
+            changeNumberButton,
+            bottomStack
+        )
     }
 
     override func configureLayout() {

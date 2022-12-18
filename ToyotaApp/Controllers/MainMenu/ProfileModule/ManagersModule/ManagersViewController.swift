@@ -61,8 +61,10 @@ final class ManagersViewController: BaseViewController {
 
 // MARK: - UICollectionViewDataSource
 extension ManagersViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         interactor.managers.count
     }
 
@@ -71,7 +73,11 @@ extension ManagersViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell: ManagerCell = collectionView.dequeue(for: indexPath)
-        cell.configure(from: interactor.managers[indexPath.row])
+        let manager = interactor.managers[indexPath.row]
+        cell.render(.init(
+            manager: manager,
+            photoUrl: NetworkService.buildImageUrl(manager.imageUrl)
+        ))
         return cell
     }
 }
