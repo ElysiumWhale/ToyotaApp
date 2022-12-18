@@ -3,19 +3,19 @@ import DesignKit
 
 extension UIView {
     static func titleViewFor(
-        city: String? = nil,
+        title: String,
+        _ backgroundColor: UIColor,
         action: @escaping () -> Void
     ) -> UIView {
-        let button = UIButton.titleButton(
-            with: city ?? .common(.chooseCity),
-            action: action
-        )
+        let button = UIButton.titleButton(with: title,action: action)
+        button.titleLabel?.backgroundColor = backgroundColor
         let rightButton = UIButton(frame: .init(
             x: 0, y: 0, width: 20, height: 20)
         )
         rightButton.setImage(UIImage(systemName: "chevron.right"),
                              for: .normal)
         rightButton.tintColor = .appTint(.secondarySignatureRed)
+        rightButton.imageView?.backgroundColor = backgroundColor
         rightButton.addAction(action)
 
         let container = UIView(frame: .init(
