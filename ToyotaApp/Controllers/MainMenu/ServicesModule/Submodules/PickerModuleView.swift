@@ -28,6 +28,7 @@ final class PickerModuleView: BaseView {
         label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .appTint(.signatureGray)
+        label.backgroundColor = .systemBackground
 
         textField.font = .toyotaType(.light, of: 22)
         textField.textColor = .appTint(.signatureGray)

@@ -48,6 +48,9 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
+        [infoLabel, phoneLabel, errorLabel].forEach {
+            $0.backgroundColor = view.backgroundColor
+        }
 
         infoLabel.font = .toyotaType(.semibold, of: 22)
         infoLabel.textColor = .appTint(.signatureGray)

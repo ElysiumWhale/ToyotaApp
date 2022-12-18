@@ -24,6 +24,7 @@ final class StatusView: BaseView {
 
         statusLabel.font = .toyotaType(.book, of: 14)
         statusLabel.textColor = .appTint(.signatureGray)
+        statusLabel.backgroundColor = backgroundColor
         statusImage.image = .statusCircle
     }
 

@@ -62,10 +62,11 @@ final class CityPickerViewController: BaseViewController,
         refreshableView.separatorColor = .appTint(.secondaryGray)
         refreshableView.allowsSelection = true
         refreshableView.alwaysBounceVertical = true
-        refreshableView.backgroundColor = .systemBackground
+        refreshableView.backgroundColor = view.backgroundColor
 
         subtitleLabel.font = .toyotaType(.semibold, of: 23)
         subtitleLabel.textColor = .appTint(.signatureGray)
+        subtitleLabel.backgroundColor = view.backgroundColor
 
         actionButton.alpha = 0
         actionButton.rounded = true

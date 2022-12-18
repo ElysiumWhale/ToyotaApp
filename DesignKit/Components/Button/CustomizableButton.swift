@@ -33,6 +33,7 @@ open class CustomizableButton: UIButton, BottomKeyboardBinded {
         super.draw(rect)
 
         setTitleColor(.white, for: .highlighted)
+        titleLabel?.backgroundColor = backgroundColor
         layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor

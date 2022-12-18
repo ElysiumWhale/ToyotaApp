@@ -23,10 +23,13 @@ final class NewsCell: BaseTableCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .systemBackground
+
         titleLabel.font = .toyotaType(.regular, of: 17)
         titleLabel.textColor = .appTint(.signatureGray)
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3
+        titleLabel.backgroundColor = contentView.backgroundColor
 
         newsImage.contentMode = .scaleAspectFill
     }

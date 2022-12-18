@@ -22,6 +22,7 @@ final class TimePickerView: BaseView {
         label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .appTint(.signatureGray)
+        label.backgroundColor = .systemBackground
     }
 
     override func localize() {

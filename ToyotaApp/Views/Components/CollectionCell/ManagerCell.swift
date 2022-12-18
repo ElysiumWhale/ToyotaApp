@@ -32,11 +32,15 @@ final class ManagerCell: BaseCollectionCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .appTint(.background)
+        contentView.layer.cornerRadius = 15
+
         photoView.contentMode = .scaleAspectFit
         photoView.tintColor = .appTint(.secondarySignatureRed)
         showroomLabel.font = .toyotaType(.semibold, of: 20)
         showroomLabel.textColor = .appTint(.secondarySignatureRed)
         showroomLabel.textAlignment = .center
+        showroomLabel.backgroundColor = contentView.backgroundColor
 
         for label in [nameLabel, infoLabel] {
             label.numberOfLines = 0
@@ -44,10 +48,8 @@ final class ManagerCell: BaseCollectionCell {
             label.font = .toyotaType(.semibold, of: 20)
             label.textColor = .appTint(.signatureGray)
             label.textAlignment = .center
+            label.backgroundColor = contentView.backgroundColor
         }
-
-        contentView.backgroundColor = .appTint(.background)
-        contentView.layer.cornerRadius = 15
     }
 }
 

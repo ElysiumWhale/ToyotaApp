@@ -26,6 +26,7 @@ final class ChatViewController: BaseViewController {
 
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
+        stabLabel.backgroundColor = view.backgroundColor
         stabLabel.font = .toyotaType(.semibold, of: 22)
         stabLabel.textColor = .appTint(.signatureGray)
         stabLabel.numberOfLines = .zero

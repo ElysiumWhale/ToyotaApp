@@ -37,7 +37,8 @@ final class BookingsViewController: BaseViewController,
     }
 
     override func configureAppearance() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGroupedBackground
+        refreshableView.backgroundColor = view.backgroundColor
         refreshableView.allowsSelection = false
     }
 
