@@ -93,6 +93,7 @@ extension UIColor {
         case background = "Background"
         case blackBackground = "BackgroundBlack"
         case cell = "Cell"
+        case darkCell = "DarkCell"
         case dimmedSignatureRed = "DimmedSignatureRed"
     }
 
