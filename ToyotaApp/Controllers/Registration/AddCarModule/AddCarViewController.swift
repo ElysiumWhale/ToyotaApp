@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class AddCarViewController: BaseViewController, Loadable {
 
@@ -114,15 +115,21 @@ final class AddCarViewController: BaseViewController, Loadable {
     override func configureActions() {
         view.hideKeyboard(when: .tapAndSwipe)
 
-        modelPicker.configure(delegate: self,
-                              with: #selector(modelDidPick),
-                              for: modelTextField)
-        yearPicker.configure(delegate: self,
-                             with: #selector(yearDidPick),
-                             for: yearTextField)
-        colorPicker.configure(delegate: self,
-                              with: #selector(colorDidPick),
-                              for: colorTextField)
+        modelPicker.configure(
+            delegate: self,
+            for: modelTextField,
+            .buildToolbar(with: #selector(modelDidPick))
+        )
+        yearPicker.configure(
+            delegate: self,
+            for: yearTextField,
+            .buildToolbar(with: #selector(yearDidPick))
+        )
+        colorPicker.configure(
+            delegate: self,
+            for: colorTextField,
+            .buildToolbar(with: #selector(colorDidPick))
+        )
 
         skipButton.addAction { [weak self] in
             self?.skipButtonDidPress()

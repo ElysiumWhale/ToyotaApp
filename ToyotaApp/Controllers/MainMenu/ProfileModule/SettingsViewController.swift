@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()

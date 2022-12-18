@@ -1,5 +1,6 @@
 import UIKit
 import class MapKit.MKMapView
+import DesignKit
 
 final class MapModuleView: BaseView {
     let label = UILabel()

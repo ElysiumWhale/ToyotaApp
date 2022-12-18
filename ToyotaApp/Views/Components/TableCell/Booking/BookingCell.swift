@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class BookingCell: BaseTableCell {
     private let dateLabel = UILabel()

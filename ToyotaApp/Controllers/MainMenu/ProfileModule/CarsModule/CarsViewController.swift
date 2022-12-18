@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class CarsViewController: BaseViewController, Loadable {
     private let interactor: CarsInteractor
@@ -39,10 +40,7 @@ final class CarsViewController: BaseViewController, Loadable {
         view.backgroundColor = .systemGroupedBackground
         carsCollection.backgroundColor = .systemGroupedBackground
         carsCollection.showsVerticalScrollIndicator = false
-
-        carsCollection.setBackground(
-            text: interactor.cars.isEmpty ? .background(.noCars) : nil
-        )
+        updateBackground()
     }
 
     override func localize() {
@@ -86,6 +84,14 @@ final class CarsViewController: BaseViewController, Loadable {
         )
         navigationController?.pushViewController(vc, animated: true)
     }
+
+    private func updateBackground() {
+        let background: BackgroundConfig = interactor.cars.isEmpty
+        ? .label(.background(.noCars), .toyotaType(.semibold, of: 25))
+        : .empty
+
+        carsCollection.setBackground(background)
+    }
 }
 
 extension CarsViewController: UICollectionViewDataSource {
@@ -116,7 +122,7 @@ extension CarsViewController: ObservesEvents {
         case .userUpdate:
             dispatch { [self] in
                 carsCollection.reloadData()
-                carsCollection.setBackground(text: interactor.cars.isEmpty ? .background(.noCars) : nil)
+                updateBackground()
             }
         default:
             return

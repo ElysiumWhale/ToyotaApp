@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class CityCell: BaseTableCell {
     private let cityNameLabel = UILabel()

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class CarCell: BaseCollectionCell {
     private let brandNameLabel = UILabel()
@@ -23,13 +24,15 @@ final class CarCell: BaseCollectionCell {
     var removeAction: Closure?
 
     override func addViews() {
-        contentView.addSubviews(brandNameLabel,
-                                liscencePlateLabel,
-                                colorNameLabel,
-                                colorDesrLabel,
-                                yearLabel,
-                                checkStatusLabel,
-                                removeButton)
+        contentView.addSubviews(
+            brandNameLabel,
+            liscencePlateLabel,
+            colorNameLabel,
+            colorDesrLabel,
+            yearLabel,
+            checkStatusLabel,
+            removeButton
+        )
     }
 
     override func configureLayout() {

@@ -1,5 +1,6 @@
 import UIKit
 import TinyConstraints
+import DesignKit
 
 final class ServiceTypeCell: BaseCollectionCell {
     let typeNameLabel: UILabel = {

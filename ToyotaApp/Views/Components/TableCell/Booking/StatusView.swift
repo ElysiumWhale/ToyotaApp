@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class StatusView: BaseView {
     private let statusLabel = UILabel()

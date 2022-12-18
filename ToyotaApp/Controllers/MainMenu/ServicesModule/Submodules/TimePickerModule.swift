@@ -62,18 +62,28 @@ final class TimePickerModule: NSObject, IServiceModule {
             queryParams.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(.init(page: .services(.getFreeTime),
-                                         body: AnyBody(items: queryParams)),
-                                   handler: requestHandler)
+        NetworkService.makeRequest(
+            Request(
+                page: .services(.getFreeTime),
+                body: AnyBody(items: queryParams)
+            ),
+            handler: requestHandler
+        )
     }
 
-    func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: RequestItems,
-                                                  response type: TResponse.Type) {
+    func customStart<TResponse: IServiceResponse>(
+        page: RequestPath,
+        with params: RequestItems,
+        response type: TResponse.Type
+    ) {
         state = .idle
-        NetworkService.makeRequest(.init(page: .services(.getFreeTime),
-                                         body: AnyBody(items: params)),
-                                   handler: requestHandler)
+        NetworkService.makeRequest(
+            Request(
+                page: .services(.getFreeTime),
+                body: AnyBody(items: params)
+            ),
+            handler: requestHandler
+        )
     }
 
     func buildQueryItems() -> RequestItems {
@@ -159,7 +169,11 @@ extension TimePickerModule: UIPickerViewDataSource {
 
 // MARK: - UIPickerViewDelegate
 extension TimePickerModule: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        didSelectRow row: Int,
+        inComponent component: Int
+    ) {
         if component == 0 {
             internalView.picker.reloadComponent(1)
             timeRows.date = rowIn(component: 0)
@@ -167,8 +181,12 @@ extension TimePickerModule: UIPickerViewDelegate {
         timeRows.time = rowIn(component: 1)
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
-                    forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        viewForRow row: Int,
+        forComponent component: Int,
+        reusing view: UIView?
+    ) -> UIView {
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.semibold, of: 20)
         pickerLabel.textColor = .label

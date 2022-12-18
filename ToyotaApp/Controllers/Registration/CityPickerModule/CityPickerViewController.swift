@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 protocol CityPikerModule: UIViewController {
     var onCityPick: ParameterClosure<City>? { get set }
@@ -98,7 +99,9 @@ final class CityPickerViewController: BaseViewController,
 
     func handleFailure() {
         refreshableView.reloadData()
-        refreshableView.setBackground(text: .background(.noCities))
+        refreshableView.setBackground(.label(
+            .background(.noCities), .toyotaType(.semibold, of: 25)
+        ))
         endRefreshing()
     }
 

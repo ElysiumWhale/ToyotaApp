@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class SmsCodeViewController: BaseViewController, Loadable {
     private let infoLabel = UILabel()

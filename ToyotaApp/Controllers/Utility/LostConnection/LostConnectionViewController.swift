@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 // MARK: - ViewController
 final class LostConnectionViewController: BaseViewController {

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class LoadingView: BaseView, ILoadingView {
     private let indicator = UIActivityIndicatorView(style: .large)

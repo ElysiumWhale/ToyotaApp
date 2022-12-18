@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class TimeView: BaseView {
     private let timeLabel = UILabel()

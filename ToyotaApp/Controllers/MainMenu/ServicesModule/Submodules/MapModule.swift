@@ -86,9 +86,11 @@ extension MapModule: MKMapViewDelegate {
         }
 
         isInitiallyZoomedToUserLocation = true
-        let viewRegion = MKCoordinateRegion(center: coordinate,
-                                            latitudinalMeters: 300,
-                                            longitudinalMeters: 300)
+        let viewRegion = MKCoordinateRegion(
+            center: coordinate,
+            latitudinalMeters: 300,
+            longitudinalMeters: 300
+        )
         internalView.map.setRegion(viewRegion, animated: true)
     }
 }

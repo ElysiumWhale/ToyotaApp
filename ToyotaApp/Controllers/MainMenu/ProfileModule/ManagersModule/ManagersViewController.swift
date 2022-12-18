@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class ManagersViewController: BaseViewController {
     private let managersCollection = CollectionView<ManagerCell>(layout: .managersLayout)
@@ -42,14 +43,18 @@ final class ManagersViewController: BaseViewController {
         }
 
         interactor.onError = { [weak self] text in
-            self?.managersCollection.setBackground(text: text)
+            self?.managersCollection.setBackground(.label(
+                text, .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 
     private func reloadCollection() {
         managersCollection.reloadData()
         if interactor.managers.isEmpty {
-            managersCollection.setBackground(text: .background(.noManagers))
+            managersCollection.setBackground(.label(
+                .background(.noManagers), .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 }

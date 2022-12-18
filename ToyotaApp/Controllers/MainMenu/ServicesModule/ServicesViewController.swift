@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class ServicesViewController: BaseViewController, Refreshable {
     let refreshableView = UICollectionView(layout: .servicesLayout)
@@ -39,7 +40,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
             startRefreshing()
             interactor.loadShowrooms()
         } else {
-            refreshableView.setBackground(text: .background(.noCityAndShowroom))
+            refreshableView.setBackground(.label(
+                .background(.noCityAndShowroom),
+                .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 
@@ -97,8 +101,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
     override func configureActions() {
         showroomPicker.configure(
             delegate: self,
-            with: #selector(showroomDidSelect),
-            for: showroomField
+            for: showroomField,
+            .buildToolbar(with: #selector(showroomDidSelect))
         )
 
         chevronButton.addAction { [weak self] in
@@ -110,7 +114,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
         view.endEditing(true)
         refreshControl.startRefreshing()
         if interactor.selectedCity == nil {
-            refreshableView.setBackground(text: .background(.noCityAndShowroom))
+            refreshableView.setBackground(.label(
+                .background(.noCityAndShowroom),
+                .toyotaType(.semibold, of: 25)
+            ))
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
@@ -203,10 +210,10 @@ extension ServicesViewController: ServicesView {
         dataSource.apply(snapshot, animatingDifferences: true)
 
         endRefreshing()
-        let background: String? = interactor.serviceTypes.isEmpty
-            ? .background(.noServices)
-            : nil
-        refreshableView.setBackground(text: background)
+        let config: BackgroundConfig = interactor.serviceTypes.isEmpty
+        ? .label(.background(.noServices), .toyotaType(.semibold, of: 25))
+        : .empty
+        refreshableView.setBackground(config)
     }
 
     // MARK: - Failure loading
@@ -217,12 +224,17 @@ extension ServicesViewController: ServicesView {
         showroomPicker.reloadComponent(0)
         showroomField.text = .empty
         showroomField.placeholder = .common(.error)
-        refreshableView.setBackground(text: error + .common(.pullToRefresh))
+        refreshableView.setBackground(.label(
+            error + .common(.pullToRefresh),
+            .toyotaType(.semibold, of: 25)
+        ))
     }
 
     func didFailServiceTypes(with error: String) {
         endRefreshing()
-        refreshableView.setBackground(text: error)
+        refreshableView.setBackground(.label(
+            error, .toyotaType(.semibold, of: 25)
+        ))
     }
 }
 

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 import Nuke
 
 final class ManagerCell: BaseCollectionCell {

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     let loadingView = LoadingView()
@@ -101,8 +102,8 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         view.hideKeyboard(when: .tapAndSwipe)
         carPickView.picker.configure(
             delegate: self,
-            with: #selector(carDidSelect),
-            for: carPickView.textField
+            for: carPickView.textField,
+            .buildToolbar(with: #selector(carDidSelect))
         )
         bookButton.addAction { [weak self] in
             self?.bookService()

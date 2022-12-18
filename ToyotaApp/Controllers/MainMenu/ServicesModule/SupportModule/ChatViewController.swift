@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class ChatViewController: BaseViewController {
     private let stabLabel = UILabel()

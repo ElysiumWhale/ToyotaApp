@@ -1,4 +1,6 @@
 import UIKit
+import DesignKit
+import TinyConstraints
 import Nuke
 
 final class NewsCell: BaseTableCell {
@@ -36,9 +38,11 @@ final class NewsCell: BaseTableCell {
             return
         }
 
-        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.6),
-                                          failureImage: nil,
-                                          failureImageTransition: .fadeIn(duration: 0.3))
+        let options = ImageLoadingOptions(
+            transition: .fadeIn(duration: 0.6),
+            failureImage: nil,
+            failureImageTransition: .fadeIn(duration: 0.3)
+        )
         Nuke.loadImage(with: url, options: options, into: newsImage)
     }
 }

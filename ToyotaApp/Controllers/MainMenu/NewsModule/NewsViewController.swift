@@ -1,5 +1,6 @@
 import UIKit
 import SafariServices
+import DesignKit
 
 final class NewsViewController: BaseViewController, Refreshable {
     private let interactor: NewsInteractor
@@ -80,8 +81,8 @@ final class NewsViewController: BaseViewController, Refreshable {
     override func configureActions() {
         showroomPicker.configure(
             delegate: self,
-            with: #selector(showroomDidSelect),
-            for: showroomField
+            for: showroomField,
+            .buildToolbar(with: #selector(showroomDidSelect))
         )
 
         interactor.onSuccessNewsLoad = { [weak self] in
@@ -113,13 +114,17 @@ final class NewsViewController: BaseViewController, Refreshable {
     private func handleError() {
         refreshableView.reloadData()
         endRefreshing()
-        refreshableView.setBackground(text: .error(.newsError))
+        refreshableView.setBackground(.label(
+            .error(.newsError), .toyotaType(.semibold, of: 25)
+        ))
     }
 
     private func handleSuccess() {
         refreshableView.reloadData()
-        let text: String? = interactor.news.isEmpty ? .background(.noNews) : nil
-        refreshableView.setBackground(text: text)
+        let config: BackgroundConfig = interactor.news.isEmpty
+        ? .label(.background(.noNews), .toyotaType(.semibold, of: 25))
+        : .empty
+        refreshableView.setBackground(config)
         endRefreshing()
     }
 
