@@ -11,19 +11,24 @@ final class PickerModuleView: BaseView {
     }
 
     override func configureLayout() {
-        label.edgesToSuperview(excluding: .bottom,
-                                          usingSafeArea: true)
         label.bottomToTop(of: textField, offset: -10)
+        label.edgesToSuperview(
+            excluding: .bottom,
+            usingSafeArea: true
+        )
 
-        textField.edgesToSuperview(excluding: .top,
-                                   usingSafeArea: true)
         textField.height(45)
+        textField.edgesToSuperview(
+            excluding: .top,
+            usingSafeArea: true
+        )
     }
 
     override func configureAppearance() {
         label.font = .toyotaType(.semibold, of: 20)
         label.textAlignment = .left
         label.textColor = .appTint(.signatureGray)
+        label.backgroundColor = .systemBackground
 
         textField.font = .toyotaType(.light, of: 22)
         textField.textColor = .appTint(.signatureGray)

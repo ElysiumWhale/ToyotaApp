@@ -8,7 +8,7 @@ final class NewsCell: BaseTableCell {
     private let newsImage = LazyImageView()
 
     override func addViews() {
-        addSubviews(titleLabel, newsImage)
+        contentView.addSubviews(titleLabel, newsImage)
     }
 
     override func configureLayout() {
@@ -23,18 +23,29 @@ final class NewsCell: BaseTableCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .systemBackground
+
         titleLabel.font = .toyotaType(.regular, of: 17)
         titleLabel.textColor = .appTint(.signatureGray)
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3
+        titleLabel.backgroundColor = contentView.backgroundColor
 
         newsImage.contentMode = .scaleAspectFill
     }
+}
 
-    func configure(with news: News) {
-        titleLabel.text = news.title
+// MARK: - State rendering
+extension NewsCell {
+    struct ViewState {
+        let title: String
+        let url: URL?
+    }
 
-        guard let url = news.imgUrl else {
+    func render(_ viewState: ViewState) {
+        titleLabel.text = viewState.title
+
+        guard let url = viewState.url else {
             return
         }
 

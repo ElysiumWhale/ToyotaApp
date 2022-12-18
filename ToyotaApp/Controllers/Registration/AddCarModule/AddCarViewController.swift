@@ -71,6 +71,7 @@ final class AddCarViewController: BaseViewController, Loadable {
         view.backgroundColor = .systemBackground
 
         subtitleLabel.textColor = .appTint(.signatureGray)
+        subtitleLabel.backgroundColor = view.backgroundColor
         subtitleLabel.font = .toyotaType(.semibold, of: 23)
         subtitleLabel.numberOfLines = .zero
         subtitleLabel.lineBreakMode = .byWordWrapping

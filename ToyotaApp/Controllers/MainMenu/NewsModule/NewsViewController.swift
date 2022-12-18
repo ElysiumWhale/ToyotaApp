@@ -140,8 +140,10 @@ final class NewsViewController: BaseViewController, Refreshable {
 
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         guard let url = interactor.news[indexPath.row].url else {
             return
         }
@@ -157,15 +159,20 @@ extension NewsViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         interactor.news.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let cell: NewsCell = tableView.dequeue(for: indexPath)
-        cell.configure(with: interactor.news[indexPath.item])
+        let news = interactor.news[indexPath.item]
+        cell.render(.init(title: news.title, url: news.imgUrl))
         return cell
     }
 }
@@ -174,17 +181,21 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension NewsViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         interactor.showrooms[row].showroomName
     }
 }

@@ -98,7 +98,8 @@ final class PersonalInfoView: BaseViewController,
         configureFields()
 
         view.backgroundColor = .systemBackground
-        containerView.backgroundColor = .systemBackground
+        subtitleLabel.backgroundColor = view.backgroundColor
+        containerView.backgroundColor = view.backgroundColor
     }
 
     override func localize() {

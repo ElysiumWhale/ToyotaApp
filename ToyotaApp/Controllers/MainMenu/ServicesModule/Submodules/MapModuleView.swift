@@ -22,6 +22,7 @@ final class MapModuleView: BaseView {
         label.font = .toyotaType(.semibold, of: 20)
         label.textColor = .appTint(.signatureGray)
         label.textAlignment = .left
+        label.backgroundColor = .systemBackground
 
         map.mapType = .hybrid
         map.layer.cornerRadius = 15

@@ -65,6 +65,7 @@ final class AuthViewController: BaseViewController, Loadable {
         informationLabel.font = .toyotaType(.semibold, of: 22)
         informationLabel.textColor = .appTint(.signatureGray)
         informationLabel.textAlignment = .center
+        informationLabel.backgroundColor = view.backgroundColor
         phoneNumber.font = .toyotaType(.light, of: 22)
         phoneNumber.textAlignment = .center
         phoneNumber.minimumFontSize = 17

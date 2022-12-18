@@ -50,7 +50,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
     override func addViews() {
         addSubviews(showroomField, refreshableView)
         navigationItem.titleView = .titleViewFor(
-            city: interactor.selectedCity?.name,
+            title: interactor.selectedCity?.name ?? .common(.chooseCity),
+            .appTint(.blackBackground),
             action: chooseCityDidTap
         )
         let chatButton = UIBarButtonItem(
@@ -279,19 +280,27 @@ extension ServicesViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didHighlightItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didHighlightItemAt indexPath: IndexPath
+    ) {
         collectionView.change(ServiceTypeCell.self, at: indexPath) { cell in
-            cell.backgroundColor = .appTint(.secondarySignatureRed)
-            cell.typeNameLabel.textColor = .white
+            cell.render(.init(
+                backgroundColor: .appTint(.secondarySignatureRed),
+                textColor: .white
+            ))
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didUnhighlightItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didUnhighlightItemAt indexPath: IndexPath
+    ) {
         collectionView.change(ServiceTypeCell.self, at: indexPath) { cell in
-            cell.backgroundColor = .appTint(.cell)
-            cell.typeNameLabel.textColor = .appTint(.signatureGray)
+            cell.render(.init(
+                backgroundColor: .appTint(.cell),
+                textColor: .appTint(.signatureGray)
+            ))
         }
     }
 }

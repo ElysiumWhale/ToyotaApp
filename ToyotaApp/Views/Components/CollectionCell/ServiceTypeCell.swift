@@ -3,18 +3,10 @@ import TinyConstraints
 import DesignKit
 
 final class ServiceTypeCell: BaseCollectionCell {
-    let typeNameLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.font = .toyotaType(.semibold, of: 17)
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center
-        label.textColor = .appTint(.signatureGray)
-        return label
-    }()
+    private let typeNameLabel = UILabel()
 
     override func addViews() {
-        addSubview(typeNameLabel)
+        contentView.addSubview(typeNameLabel)
     }
 
     override func configureLayout() {
@@ -22,10 +14,34 @@ final class ServiceTypeCell: BaseCollectionCell {
 
         layer.cornerRadius = 8
         configureShadow(with: 8)
-        backgroundColor = .appTint(.cell)
+        clipsToBounds = true
+    }
+
+    override func configureAppearance() {
+        contentView.backgroundColor = .appTint(.cell)
+        typeNameLabel.layer.backgroundColor = contentView.backgroundColor?.cgColor
+        typeNameLabel.numberOfLines = 2
+        typeNameLabel.font = .toyotaType(.semibold, of: 17)
+        typeNameLabel.lineBreakMode = .byWordWrapping
+        typeNameLabel.textAlignment = .center
+        typeNameLabel.textColor = .appTint(.signatureGray)
     }
 
     func configure(name: String) {
         typeNameLabel.text = name.firstCapitalized
+    }
+}
+
+// MARK: - State rendering
+extension ServiceTypeCell {
+    struct ViewState {
+        let backgroundColor: UIColor
+        let textColor: UIColor
+    }
+
+    func render(_ viewState: ViewState) {
+        contentView.backgroundColor = viewState.backgroundColor
+        typeNameLabel.textColor = viewState.textColor
+        typeNameLabel.layer.backgroundColor = viewState.backgroundColor.cgColor
     }
 }

@@ -24,6 +24,7 @@ final class TimeView: BaseView {
 
         timeLabel.textColor = .appTint(.signatureGray)
         timeLabel.font = .toyotaType(.regular, of: 16)
+        timeLabel.backgroundColor = backgroundColor
     }
 }
 
