@@ -1,0 +1,5 @@
+project: ToyotaApp.xcodeproj
+schemes:
+- ToyotaApp
+targets:
+- ToyotaApp

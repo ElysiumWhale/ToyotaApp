@@ -1,6 +1,6 @@
 import UIKit
 
-protocol InitialazableView {
+public protocol InitialazableView {
     func addViews()
     func configureLayout()
     func configureAppearance()
@@ -8,7 +8,7 @@ protocol InitialazableView {
     func configureActions()
 }
 
-extension InitialazableView {
+public extension InitialazableView {
     func initialize() {
         addViews()
         configureLayout()

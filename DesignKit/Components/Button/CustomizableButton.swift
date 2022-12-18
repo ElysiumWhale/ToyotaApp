@@ -1,35 +1,35 @@
 import UIKit
 
-class CustomizableButton: UIButton, BottomKeyboardBinded {
-    var keyboardConstraint: NSLayoutConstraint? {
+open class CustomizableButton: UIButton, BottomKeyboardBinded {
+    public var keyboardConstraint: NSLayoutConstraint? {
         didSet {
             constant = keyboardConstraint?.constant ?? .zero
         }
     }
 
-    private(set) var constant: CGFloat = .zero
+    private(set) public var constant: CGFloat = .zero
 
-    var rounded: Bool = false {
+    public var rounded: Bool = false {
         didSet {
             layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
         }
     }
 
-    var highlightedColor: UIColor = .clear
+    public var highlightedColor: UIColor = .clear
 
-    var normalColor: UIColor = .clear {
+    public var normalColor: UIColor = .clear {
         didSet {
             backgroundColor = normalColor
         }
     }
 
-    override var isHighlighted: Bool {
+    open override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? highlightedColor : normalColor
         }
     }
 
-    override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         super.draw(rect)
 
         setTitleColor(.white, for: .highlighted)

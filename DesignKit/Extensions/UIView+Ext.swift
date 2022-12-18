@@ -1,40 +1,55 @@
 import UIKit
 
-extension UIView {
+public enum BackgroundConfig {
+    case empty
+    case label(_ text: String, _ font: UIFont)
+}
+
+public extension UIView {
     // MARK: - Background creating
-    func createBackground(labelText: String?) -> UILabel? {
-        guard let text = labelText else { return nil }
-        let label = UILabel()
-        label.text = text
-        label.textColor = .systemGray
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center
-        label.font = .toyotaType(.semibold, of: 25)
-        label.sizeToFit()
-        return label
+    func createBackground(_ config: BackgroundConfig = .empty) -> UILabel? {
+        switch config {
+        case .empty:
+            return nil
+        case let .label(text, font):
+            let label = UILabel()
+            label.text = text
+            label.textColor = .systemGray
+            label.numberOfLines = .zero
+            label.lineBreakMode = .byWordWrapping
+            label.textAlignment = .center
+            label.font = font
+            label.sizeToFit()
+            return label
+        }
     }
 
     // MARK: - FadeIn UIView Animation
     func fadeIn(_ duration: TimeInterval = 0.5) {
-        if alpha == 0 {
-            UIView.animate(
-                withDuration: duration,
-                animations: { [weak self] in self?.alpha = 1 }
-            )
+        guard alpha == 0 else {
+            return
         }
+
+        UIView.animate(
+            withDuration: duration,
+            animations: { self.alpha = 1 }
+        )
     }
 
     // MARK: - FadeOut UIView Animation
-    func fadeOut(_ duration: TimeInterval = 0.5,
-                 completion: @escaping Closure = { }) {
-        if alpha == 1 {
-            UIView.animate(
-                withDuration: duration,
-                animations: { [weak self] in self?.alpha = 0 },
-                completion: { _ in completion() }
-            )
+    func fadeOut(
+        _ duration: TimeInterval = 0.5,
+        completion: @escaping () -> Void = { }
+    ) {
+        guard alpha == 1 else {
+            return
         }
+
+        UIView.animate(
+            withDuration: duration,
+            animations: { self.alpha = 0 },
+            completion: { _ in completion() }
+        )
     }
 
     // MARK: - Dismiss keyboard on swipe down
@@ -97,34 +112,6 @@ extension UIView {
     }
 
     // MARK: - TitleView
-    static func titleViewFor(
-        city: String? = nil,
-        action: @escaping Closure
-    ) -> UIView {
-        let button = UIButton.titleButton(
-            with: city ?? .common(.chooseCity),
-            action: action
-        )
-        let rightButton = UIButton(frame: .init(
-            x: 0, y: 0, width: 20, height: 20)
-        )
-        rightButton.setImage(UIImage(systemName: "chevron.right"),
-                             for: .normal)
-        rightButton.tintColor = .appTint(.secondarySignatureRed)
-        rightButton.addAction(action)
-
-        let container = UIView(frame: .init(
-            x: 0, y: 0, width: 100, height: 30)
-        )
-        container.addSubviews(button, rightButton)
-
-        button.edgesToSuperview(excluding: .trailing)
-        rightButton.trailingToSuperview()
-        button.trailingToLeading(of: rightButton)
-        button.centerY(to: rightButton, offset: -3)
-
-        return container
-    }
 
     // MARK: - SetTitleIfButtonFirst
     func setTitleIfButtonFirst(_ title: String) {
@@ -134,33 +121,9 @@ extension UIView {
     }
 }
 
-// MARK: - Toolbar for controls
-extension UIView {
-    static func buildToolbar(
-        with action: Selector,
-        target: Any? = nil
-    ) -> UIToolbar {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexible = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: target,
-            action: nil
-        )
-        let doneButton = UIBarButtonItem(
-            title: .common(.choose),
-            style: .done,
-            target: target,
-            action: action
-        )
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
-        return toolBar
-    }
-}
 
 // MARK: - Adding subviews
-extension UIView {
+public extension UIView {
     func addSubviews(_ views: UIView...) {
         for subview in views {
             addSubview(subview)
@@ -174,8 +137,18 @@ extension UIView {
     }
 }
 
+public extension UITableViewCell {
+    func addViews(_ views: UIView...) {
+        contentView.addSubviews(views)
+    }
+
+    func addViews(_ views: [UIView]) {
+        contentView.addSubviews(views)
+    }
+}
+
 // MARK: - Customization
-extension UIView {
+public extension UIView {
     var cornerRadius: CGFloat {
         get {
             layer.cornerRadius
