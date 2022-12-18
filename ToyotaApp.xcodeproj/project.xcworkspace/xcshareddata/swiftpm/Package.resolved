@@ -5,17 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke",
       "state" : {
-        "revision" : "7f73ceaeacd5df75a7994cd82e165ad9ff1815db",
-        "version" : "9.6.1"
-      }
-    },
-    {
-      "identity" : "quicklayout",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/huri000/QuickLayout",
-      "state" : {
-        "revision" : "6be62decbe508d8fc8f9dbafc349d05bab03c38b",
-        "version" : "3.0.1"
+        "revision" : "1e7395a8931ad19659fd1e10137a862b9c1e2a38",
+        "version" : "11.5.0"
       }
     },
     {
@@ -23,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/huri000/SwiftEntryKit",
       "state" : {
-        "revision" : "c2d42574e4fe4e1f9719843f35add7922942a16b",
-        "version" : "1.2.7"
+        "revision" : "5ad36cccf0c4b9fea32f4e9b17a8e38f07563ef0",
+        "version" : "2.0.0"
       }
     },
     {

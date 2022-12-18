@@ -77,7 +77,6 @@
 		14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD827E92AB300715A5D /* FlowsTests.swift */; };
 		14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FF92753AC0C00546587 /* RequestPath.swift */; };
 		14D55FFC2753AC1700546587 /* RequestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D55FFB2753AC1700546587 /* RequestKey.swift */; };
-		14D560002753D1FA00546587 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 14D55FFF2753D1FA00546587 /* Nuke */; };
 		14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 14DF1E43272D8F3C00B4556E /* SwiftSoup */; };
 		14DF1E46272D8F6A00B4556E /* HtmlNewsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF1E45272D8F6A00B4556E /* HtmlNewsParser.swift */; };
 		14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFB9242763F5BA00465736 /* AddCarInteractor.swift */; };
@@ -112,6 +111,7 @@
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
+		A77DEA13294EA15C00431CFD /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A77DEA12294EA15C00431CFD /* NukeUI */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* TimeMap.swift */; };
@@ -353,9 +353,9 @@
 				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
 				14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */,
 				147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */,
+				A77DEA13294EA15C00431CFD /* NukeUI in Frameworks */,
 				A7FA6867294E65D600008AFB /* DesignKit.framework in Frameworks */,
 				1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */,
-				14D560002753D1FA00546587 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +653,7 @@
 				14F0920527E3EB7600B03130 /* ToyotaAppTests */,
 				A7FA6862294E65D600008AFB /* DesignKit */,
 				A75946892523E32F00312EBE /* Products */,
+				A77DEA11294EA15C00431CFD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -765,6 +766,13 @@
 				14117EA8284EA7E9001585CD /* Utility */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A77DEA11294EA15C00431CFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A791FDD82524E17300A595BB /* MainMenu */ = {
@@ -964,8 +972,8 @@
 				A7A085FC255C869C00807225 /* SwiftEntryKit */,
 				1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */,
 				14DF1E43272D8F3C00B4556E /* SwiftSoup */,
-				14D55FFF2753D1FA00546587 /* Nuke */,
 				147BEB9527F66B1B005B3B6D /* TinyConstraints */,
+				A77DEA12294EA15C00431CFD /* NukeUI */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -1628,7 +1636,7 @@
 			repositoryURL = "https://github.com/kean/Nuke";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 11.5.0;
 			};
 		};
 		14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
@@ -1644,7 +1652,7 @@
 			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.6;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1660,15 +1668,15 @@
 			package = 1494038B26B0796F0088C7E4 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
 		};
-		14D55FFF2753D1FA00546587 /* Nuke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = Nuke;
-		};
 		14DF1E43272D8F3C00B4556E /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		A77DEA12294EA15C00431CFD /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
 		};
 		A7A085FC255C869C00807225 /* SwiftEntryKit */ = {
 			isa = XCSwiftPackageProductDependency;

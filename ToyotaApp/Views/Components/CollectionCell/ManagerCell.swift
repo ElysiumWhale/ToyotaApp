@@ -1,12 +1,12 @@
 import UIKit
 import DesignKit
-import Nuke
+import NukeUI
 
 final class ManagerCell: BaseCollectionCell {
     private let showroomLabel = UILabel()
     private let nameLabel = UILabel()
     private let infoLabel = UILabel()
-    private let photoView = UIImageView()
+    private let photoView = LazyImageView()
 
     override func addViews() {
         contentView.addSubviews(showroomLabel, nameLabel, infoLabel, photoView)
@@ -55,9 +55,8 @@ final class ManagerCell: BaseCollectionCell {
                   return
               }
 
-        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.3),
-                                          failureImage: .personFill,
-                                          failureImageTransition: .fadeIn(duration: 0.3))
-        Nuke.loadImage(with: url, options: options, into: photoView)
+        photoView.transition = .fadeIn(duration: 0.6)
+        photoView.failureImage = .personFill
+        photoView.url = url
     }
 }

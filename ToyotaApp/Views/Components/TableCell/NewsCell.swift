@@ -1,11 +1,11 @@
 import UIKit
+import NukeUI
 import DesignKit
 import TinyConstraints
-import Nuke
 
 final class NewsCell: BaseTableCell {
     private let titleLabel = UILabel()
-    private let newsImage = UIImageView()
+    private let newsImage = LazyImageView()
 
     override func addViews() {
         addSubviews(titleLabel, newsImage)
@@ -38,11 +38,8 @@ final class NewsCell: BaseTableCell {
             return
         }
 
-        let options = ImageLoadingOptions(
-            transition: .fadeIn(duration: 0.6),
-            failureImage: nil,
-            failureImageTransition: .fadeIn(duration: 0.3)
-        )
-        Nuke.loadImage(with: url, options: options, into: newsImage)
+        newsImage.transition = .fadeIn(duration: 0.6)
+        newsImage.failureImage = nil
+        newsImage.url = url
     }
 }
