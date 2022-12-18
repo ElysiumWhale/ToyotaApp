@@ -1,5 +1,6 @@
 import UIKit
 import class MapKit.MKMapView
+import DesignKit
 
 final class MapModuleView: BaseView {
     let label = UILabel()
@@ -21,6 +22,7 @@ final class MapModuleView: BaseView {
         label.font = .toyotaType(.semibold, of: 20)
         label.textColor = .appTint(.signatureGray)
         label.textAlignment = .left
+        label.backgroundColor = .systemBackground
 
         map.mapType = .hybrid
         map.layer.cornerRadius = 15

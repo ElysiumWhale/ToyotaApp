@@ -118,6 +118,10 @@ class NetworkService {
     }
 
     class func buildImageUrl(_ path: String) -> URL? {
+        guard path.isNotEmpty else {
+            return nil
+        }
+
         var query = UrlFactory.imageUrl
         query.path.append(path)
         return query.url

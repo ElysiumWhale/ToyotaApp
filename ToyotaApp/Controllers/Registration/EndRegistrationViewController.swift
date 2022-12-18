@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class EndRegistrationViewController: BaseViewController {
 
@@ -43,6 +44,7 @@ final class EndRegistrationViewController: BaseViewController {
             label.numberOfLines = .zero
             label.lineBreakMode = .byWordWrapping
             label.textAlignment = .center
+            label.backgroundColor = view.backgroundColor
         }
 
         actionButton.rounded = true

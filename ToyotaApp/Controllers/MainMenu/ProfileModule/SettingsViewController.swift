@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()
@@ -27,10 +28,12 @@ final class SettingsViewController: BaseViewController {
             versionLabel
         )
 
-        addSubviews(phoneLabel,
-                    phoneTextField,
-                    changeNumberButton,
-                    bottomStack)
+        addSubviews(
+            phoneLabel,
+            phoneTextField,
+            changeNumberButton,
+            bottomStack
+        )
     }
 
     override func configureLayout() {
@@ -65,6 +68,7 @@ final class SettingsViewController: BaseViewController {
         phoneLabel.font = .toyotaType(.book, of: 18)
         phoneLabel.textColor = .appTint(.signatureGray)
         phoneLabel.textAlignment = .center
+        phoneLabel.backgroundColor = view.backgroundColor
 
         phoneTextField.font = .toyotaType(.light, of: 22)
         phoneTextField.backgroundColor = .appTint(.background)
@@ -78,10 +82,13 @@ final class SettingsViewController: BaseViewController {
 
         agreementButton.setTitleColor(.link, for: .normal)
         agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)
+        agreementButton.titleLabel?.backgroundColor = view.backgroundColor
 
         versionLabel.font = .toyotaType(.regular, of: 17)
         versionLabel.textColor = .lightGray
         versionLabel.textAlignment = .center
+        versionLabel.backgroundColor = view.backgroundColor
+        companyNameLabel.backgroundColor = view.backgroundColor
     }
 
     override func localize() {

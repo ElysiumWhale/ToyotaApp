@@ -1,5 +1,6 @@
 import UIKit
 import SafariServices
+import DesignKit
 
 final class NewsViewController: BaseViewController, Refreshable {
     private let interactor: NewsInteractor
@@ -80,8 +81,8 @@ final class NewsViewController: BaseViewController, Refreshable {
     override func configureActions() {
         showroomPicker.configure(
             delegate: self,
-            with: #selector(showroomDidSelect),
-            for: showroomField
+            for: showroomField,
+            .buildToolbar(with: #selector(showroomDidSelect))
         )
 
         interactor.onSuccessNewsLoad = { [weak self] in
@@ -113,13 +114,17 @@ final class NewsViewController: BaseViewController, Refreshable {
     private func handleError() {
         refreshableView.reloadData()
         endRefreshing()
-        refreshableView.setBackground(text: .error(.newsError))
+        refreshableView.setBackground(.label(
+            .error(.newsError), .toyotaType(.semibold, of: 25)
+        ))
     }
 
     private func handleSuccess() {
         refreshableView.reloadData()
-        let text: String? = interactor.news.isEmpty ? .background(.noNews) : nil
-        refreshableView.setBackground(text: text)
+        let config: BackgroundConfig = interactor.news.isEmpty
+        ? .label(.background(.noNews), .toyotaType(.semibold, of: 25))
+        : .empty
+        refreshableView.setBackground(config)
         endRefreshing()
     }
 
@@ -135,8 +140,10 @@ final class NewsViewController: BaseViewController, Refreshable {
 
 // MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         guard let url = interactor.news[indexPath.row].url else {
             return
         }
@@ -152,15 +159,20 @@ extension NewsViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         interactor.news.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let cell: NewsCell = tableView.dequeue(for: indexPath)
-        cell.configure(with: interactor.news[indexPath.item])
+        let news = interactor.news[indexPath.item]
+        cell.render(.init(title: news.title, url: news.imgUrl))
         return cell
     }
 }
@@ -169,17 +181,21 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension NewsViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         interactor.showrooms[row].showroomName
     }
 }

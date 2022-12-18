@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     // MARK: - BottomKeyboardBinded

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class BookingsViewController: BaseViewController,
                                     Refreshable,
@@ -36,7 +37,8 @@ final class BookingsViewController: BaseViewController,
     }
 
     override func configureAppearance() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGroupedBackground
+        refreshableView.backgroundColor = view.backgroundColor
         refreshableView.allowsSelection = false
     }
 
@@ -53,14 +55,18 @@ final class BookingsViewController: BaseViewController,
         endRefreshing()
         refreshableView.reloadData()
         if interactor.bookings.isEmpty {
-            refreshableView.setBackground(text: .background(.noBookings))
+            refreshableView.setBackground(BackgroundConfig.label(
+                .background(.noBookings), .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 
     func handleBookingsFailure(with message: String) {
         PopUp.display(.error(description: message))
         endRefreshing()
-        refreshableView.setBackground(text: .background(.somethingWentWrong))
+        refreshableView.setBackground(BackgroundConfig.label(
+            .background(.somethingWentWrong), .toyotaType(.semibold, of: 25)
+        ))
     }
 }
 

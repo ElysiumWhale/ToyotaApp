@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class PersonalInfoView: BaseViewController,
                               Keyboardable,
@@ -97,7 +98,8 @@ final class PersonalInfoView: BaseViewController,
         configureFields()
 
         view.backgroundColor = .systemBackground
-        containerView.backgroundColor = .systemBackground
+        subtitleLabel.backgroundColor = view.backgroundColor
+        containerView.backgroundColor = view.backgroundColor
     }
 
     override func localize() {
@@ -113,8 +115,10 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func configureActions() {
-        datePicker.configure(with: #selector(dateDidSelect),
-                             for: birthTextField)
+        datePicker.configure(
+            .buildToolbar(with: #selector(dateDidSelect)),
+            for: birthTextField
+        )
         actionButton.addTarget(
             self, action: #selector(actionButtonDidPress), for: .touchUpInside
         )

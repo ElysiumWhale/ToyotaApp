@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class TimeView: BaseView {
     private let timeLabel = UILabel()
@@ -23,6 +24,7 @@ final class TimeView: BaseView {
 
         timeLabel.textColor = .appTint(.signatureGray)
         timeLabel.font = .toyotaType(.regular, of: 16)
+        timeLabel.backgroundColor = backgroundColor
     }
 }
 

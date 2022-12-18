@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class BookingCell: BaseTableCell {
     private let dateLabel = UILabel()
@@ -51,6 +52,8 @@ final class BookingCell: BaseTableCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .appTint(.darkCell)
+
         titleLabel.font = .toyotaType(.semibold, of: 15)
         titleLabel.textColor = .appTint(.signatureGray)
 
@@ -67,6 +70,10 @@ final class BookingCell: BaseTableCell {
             label.textColor = .appTint(.signatureGray)
             label.lineBreakMode = .byWordWrapping
             label.textAlignment = .right
+        }
+
+        [titleLabel, carLabel, licenseLabel, dateLabel, contentLabel].forEach {
+            $0.backgroundColor = contentView.backgroundColor
         }
     }
 

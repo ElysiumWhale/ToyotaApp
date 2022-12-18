@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class ServicesViewController: BaseViewController, Refreshable {
     let refreshableView = UICollectionView(layout: .servicesLayout)
@@ -39,14 +40,18 @@ final class ServicesViewController: BaseViewController, Refreshable {
             startRefreshing()
             interactor.loadShowrooms()
         } else {
-            refreshableView.setBackground(text: .background(.noCityAndShowroom))
+            refreshableView.setBackground(.label(
+                .background(.noCityAndShowroom),
+                .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 
     override func addViews() {
         addSubviews(showroomField, refreshableView)
         navigationItem.titleView = .titleViewFor(
-            city: interactor.selectedCity?.name,
+            title: interactor.selectedCity?.name ?? .common(.chooseCity),
+            .appTint(.blackBackground),
             action: chooseCityDidTap
         )
         let chatButton = UIBarButtonItem(
@@ -97,8 +102,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
     override func configureActions() {
         showroomPicker.configure(
             delegate: self,
-            with: #selector(showroomDidSelect),
-            for: showroomField
+            for: showroomField,
+            .buildToolbar(with: #selector(showroomDidSelect))
         )
 
         chevronButton.addAction { [weak self] in
@@ -110,7 +115,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
         view.endEditing(true)
         refreshControl.startRefreshing()
         if interactor.selectedCity == nil {
-            refreshableView.setBackground(text: .background(.noCityAndShowroom))
+            refreshableView.setBackground(.label(
+                .background(.noCityAndShowroom),
+                .toyotaType(.semibold, of: 25)
+            ))
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
@@ -203,10 +211,10 @@ extension ServicesViewController: ServicesView {
         dataSource.apply(snapshot, animatingDifferences: true)
 
         endRefreshing()
-        let background: String? = interactor.serviceTypes.isEmpty
-            ? .background(.noServices)
-            : nil
-        refreshableView.setBackground(text: background)
+        let config: BackgroundConfig = interactor.serviceTypes.isEmpty
+        ? .label(.background(.noServices), .toyotaType(.semibold, of: 25))
+        : .empty
+        refreshableView.setBackground(config)
     }
 
     // MARK: - Failure loading
@@ -217,12 +225,17 @@ extension ServicesViewController: ServicesView {
         showroomPicker.reloadComponent(0)
         showroomField.text = .empty
         showroomField.placeholder = .common(.error)
-        refreshableView.setBackground(text: error + .common(.pullToRefresh))
+        refreshableView.setBackground(.label(
+            error + .common(.pullToRefresh),
+            .toyotaType(.semibold, of: 25)
+        ))
     }
 
     func didFailServiceTypes(with error: String) {
         endRefreshing()
-        refreshableView.setBackground(text: error)
+        refreshableView.setBackground(.label(
+            error, .toyotaType(.semibold, of: 25)
+        ))
     }
 }
 
@@ -267,19 +280,27 @@ extension ServicesViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didHighlightItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didHighlightItemAt indexPath: IndexPath
+    ) {
         collectionView.change(ServiceTypeCell.self, at: indexPath) { cell in
-            cell.backgroundColor = .appTint(.secondarySignatureRed)
-            cell.typeNameLabel.textColor = .white
+            cell.render(.init(
+                backgroundColor: .appTint(.secondarySignatureRed),
+                textColor: .white
+            ))
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didUnhighlightItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didUnhighlightItemAt indexPath: IndexPath
+    ) {
         collectionView.change(ServiceTypeCell.self, at: indexPath) { cell in
-            cell.backgroundColor = .appTint(.cell)
-            cell.typeNameLabel.textColor = .appTint(.signatureGray)
+            cell.render(.init(
+                backgroundColor: .appTint(.cell),
+                textColor: .appTint(.signatureGray)
+            ))
         }
     }
 }

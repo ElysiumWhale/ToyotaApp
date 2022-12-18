@@ -1,18 +1,18 @@
 import UIKit
 
-protocol BottomKeyboardBinded: UIView {
+public protocol BottomKeyboardBinded: UIView {
     var keyboardConstraint: NSLayoutConstraint? { get set }
     var constant: CGFloat { get }
 }
 
-extension BottomKeyboardBinded {
+public extension BottomKeyboardBinded {
     func bindToKeyboard() {
-        NotificationCenter
-            .default
-            .addObserver(forName: UIResponder.keyboardWillChangeFrameNotification,
-                         object: nil,
-                         queue: .main,
-                         using: keyboardWillChange)
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil,
+            queue: .main,
+            using: keyboardWillChange
+        )
     }
 
     func keyboardWillChange(_ notification: Notification) {

@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 protocol ProfileModule: UIViewController {
     var onShowBookings: Closure? { get set }
@@ -199,8 +200,10 @@ final class ProfileViewController: BaseViewController,
     override func configureActions() {
         view.hideKeyboard(when: .tapAndSwipe)
 
-        datePicker.configure(with: #selector(dateDidSelect),
-                             for: birthTextField)
+        datePicker.configure(
+            .buildToolbar(with: #selector(dateDidSelect)),
+            for: birthTextField
+        )
 
         managerButton.addAction { [weak self] in
             self?.onShowManagers?()

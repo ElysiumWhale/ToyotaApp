@@ -9,14 +9,14 @@ protocol Validatable {
 typealias ValidationClosure = (String?) -> Bool
 
 struct ValidationRule {
-    let validationClouse: ValidationClosure
+    let validationClosure: ValidationClosure
 
     func validate(text: String?) -> Bool {
-        validationClouse(text)
+        validationClosure(text)
     }
 
     init(_ closure: @escaping ValidationClosure = { _ in true }) {
-        self.validationClouse = closure
+        self.validationClosure = closure
     }
 }
 

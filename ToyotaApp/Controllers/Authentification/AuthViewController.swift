@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class AuthViewController: BaseViewController, Loadable {
     private let logo = UIImageView(image: .toyotaLogo)
@@ -43,6 +44,7 @@ final class AuthViewController: BaseViewController, Loadable {
         infoStack.axis = .vertical
         infoStack.horizontalToSuperview(insets: .horizontal(30))
         infoStack.centerXToSuperview()
+        infoStack.spacing = 8
         phoneNumber.height(50)
         phoneNumber.clearButtonMode = .always
 
@@ -63,6 +65,7 @@ final class AuthViewController: BaseViewController, Loadable {
         informationLabel.font = .toyotaType(.semibold, of: 22)
         informationLabel.textColor = .appTint(.signatureGray)
         informationLabel.textAlignment = .center
+        informationLabel.backgroundColor = view.backgroundColor
         phoneNumber.font = .toyotaType(.light, of: 22)
         phoneNumber.textAlignment = .center
         phoneNumber.minimumFontSize = 17

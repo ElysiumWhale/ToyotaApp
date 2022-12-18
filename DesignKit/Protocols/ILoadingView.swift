@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ILoadingView: UIView {
+public protocol ILoadingView: UIView {
     func startAnimating()
     func stopAnimating()
 }

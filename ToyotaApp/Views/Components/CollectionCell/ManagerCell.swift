@@ -1,14 +1,20 @@
 import UIKit
-import Nuke
+import DesignKit
+import NukeUI
 
 final class ManagerCell: BaseCollectionCell {
     private let showroomLabel = UILabel()
     private let nameLabel = UILabel()
     private let infoLabel = UILabel()
-    private let photoView = UIImageView()
+    private let photoView = LazyImageView()
 
     override func addViews() {
-        contentView.addSubviews(showroomLabel, nameLabel, infoLabel, photoView)
+        contentView.addSubviews(
+            showroomLabel,
+            nameLabel,
+            infoLabel,
+            photoView
+        )
     }
 
     override func configureLayout() {
@@ -26,11 +32,15 @@ final class ManagerCell: BaseCollectionCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .appTint(.background)
+        contentView.layer.cornerRadius = 15
+
         photoView.contentMode = .scaleAspectFit
         photoView.tintColor = .appTint(.secondarySignatureRed)
         showroomLabel.font = .toyotaType(.semibold, of: 20)
         showroomLabel.textColor = .appTint(.secondarySignatureRed)
         showroomLabel.textAlignment = .center
+        showroomLabel.backgroundColor = contentView.backgroundColor
 
         for label in [nameLabel, infoLabel] {
             label.numberOfLines = 0
@@ -38,25 +48,31 @@ final class ManagerCell: BaseCollectionCell {
             label.font = .toyotaType(.semibold, of: 20)
             label.textColor = .appTint(.signatureGray)
             label.textAlignment = .center
+            label.backgroundColor = contentView.backgroundColor
         }
+    }
+}
 
-        contentView.backgroundColor = .appTint(.background)
-        contentView.layer.cornerRadius = 15
+// MARK: - State rendering
+extension ManagerCell {
+    struct ViewState {
+        let manager: Manager
+        let photoUrl: URL?
     }
 
-    func configure(from manager: Manager) {
+    func render(_ viewState: ViewState) {
+        let manager = viewState.manager
+
         showroomLabel.text = manager.showroomName
         nameLabel.text = "\(manager.firstName) \(manager.lastName)"
         infoLabel.text = "\(manager.phone) \(manager.email)"
 
-        guard manager.imageUrl.isNotEmpty,
-              let url = NetworkService.buildImageUrl(manager.imageUrl) else {
-                  return
-              }
+        guard let url = viewState.photoUrl else {
+            return
+        }
 
-        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.3),
-                                          failureImage: .personFill,
-                                          failureImageTransition: .fadeIn(duration: 0.3))
-        Nuke.loadImage(with: url, options: options, into: photoView)
+        photoView.transition = .fadeIn(duration: 0.6)
+        photoView.failureImage = .personFill
+        photoView.url = url
     }
 }

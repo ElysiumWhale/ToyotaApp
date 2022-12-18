@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class PickerModule: NSObject, IServiceModule {
     private let handler = RequestHandler<ServicesResponse>()
@@ -7,9 +8,14 @@ final class PickerModule: NSObject, IServiceModule {
 
     private lazy var internalView: PickerModuleView = {
         let internalView = PickerModuleView()
-        internalView.picker.configure(delegate: self,
-                                      with: #selector(serviceDidSelect),
-                                      for: internalView.textField)
+        internalView.picker.configure(
+            delegate: self,
+            for: internalView.textField,
+            .buildToolbar(
+                with: #selector(serviceDidSelect),
+                target: self
+            )
+        )
         internalView.textField.placeholder = .common(.service)
         internalView.alpha = 0
         return internalView
@@ -49,19 +55,27 @@ final class PickerModule: NSObject, IServiceModule {
         var queryParams = params
         queryParams.append((.services(.serviceTypeId), serviceType.id))
 
-        NetworkService.makeRequest(.init(page: .services(.getServices),
-                                         body: AnyBody(items: queryParams)),
-                                   handler: handler)
+        NetworkService.makeRequest(
+            Request(
+                page: .services(.getServices),
+                body: AnyBody(items: queryParams)
+            ),
+            handler: handler
+        )
     }
 
-    func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: RequestItems,
-                                                  response type: TResponse.Type) {
+    func customStart<TResponse: IServiceResponse>(
+        page: RequestPath,
+        with params: RequestItems,
+        response type: TResponse.Type
+    ) {
         state = .idle
         internalView.textField.text = .empty
 
-        NetworkService.makeRequest(page: page,
-                                   params: params) { [weak self] (response: Response<TResponse>) in
+        NetworkService.makeRequest(
+            page: page,
+            params: params
+        ) { [weak self] (response: Response<TResponse>) in
             switch response {
             case .failure(let error):
                 self?.failureCompletion(error)
@@ -125,18 +139,22 @@ extension PickerModule: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         services.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension PickerModule: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    viewForRow row: Int,
-                    forComponent component: Int,
-                    reusing view: UIView?) -> UIView {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        viewForRow row: Int,
+        forComponent component: Int,
+        reusing view: UIView?
+    ) -> UIView {
 
         let pickerLabel = view as? UILabel ?? UILabel()
         pickerLabel.font = .toyotaType(.light, of: 20)
@@ -145,9 +163,11 @@ extension PickerModule: UIPickerViewDelegate {
         return pickerLabel
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         services[safe: row]?.name
     }
 }

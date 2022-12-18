@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class ManagersViewController: BaseViewController {
     private let managersCollection = CollectionView<ManagerCell>(layout: .managersLayout)
@@ -42,22 +43,28 @@ final class ManagersViewController: BaseViewController {
         }
 
         interactor.onError = { [weak self] text in
-            self?.managersCollection.setBackground(text: text)
+            self?.managersCollection.setBackground(.label(
+                text, .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 
     private func reloadCollection() {
         managersCollection.reloadData()
         if interactor.managers.isEmpty {
-            managersCollection.setBackground(text: .background(.noManagers))
+            managersCollection.setBackground(.label(
+                .background(.noManagers), .toyotaType(.semibold, of: 25)
+            ))
         }
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension ManagersViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         interactor.managers.count
     }
 
@@ -66,7 +73,11 @@ extension ManagersViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell: ManagerCell = collectionView.dequeue(for: indexPath)
-        cell.configure(from: interactor.managers[indexPath.row])
+        let manager = interactor.managers[indexPath.row]
+        cell.render(.init(
+            manager: manager,
+            photoUrl: NetworkService.buildImageUrl(manager.imageUrl)
+        ))
         return cell
     }
 }

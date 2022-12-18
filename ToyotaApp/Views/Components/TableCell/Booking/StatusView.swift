@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class StatusView: BaseView {
     private let statusLabel = UILabel()
@@ -23,6 +24,7 @@ final class StatusView: BaseView {
 
         statusLabel.font = .toyotaType(.book, of: 14)
         statusLabel.textColor = .appTint(.signatureGray)
+        statusLabel.backgroundColor = backgroundColor
         statusImage.image = .statusCircle
     }
 

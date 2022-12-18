@@ -1,4 +1,5 @@
 import UIKit
+import DesignKit
 
 final class CarCell: BaseCollectionCell {
     private let brandNameLabel = UILabel()
@@ -23,13 +24,15 @@ final class CarCell: BaseCollectionCell {
     var removeAction: Closure?
 
     override func addViews() {
-        contentView.addSubviews(brandNameLabel,
-                                liscencePlateLabel,
-                                colorNameLabel,
-                                colorDesrLabel,
-                                yearLabel,
-                                checkStatusLabel,
-                                removeButton)
+        contentView.addSubviews(
+            brandNameLabel,
+            liscencePlateLabel,
+            colorNameLabel,
+            colorDesrLabel,
+            yearLabel,
+            checkStatusLabel,
+            removeButton
+        )
     }
 
     override func configureLayout() {
@@ -57,9 +60,12 @@ final class CarCell: BaseCollectionCell {
     }
 
     override func configureAppearance() {
+        contentView.backgroundColor = .systemBackground
+
         for label in infoLabels {
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
+            label.backgroundColor = contentView.backgroundColor
         }
 
         brandNameLabel.textAlignment = .center
@@ -81,6 +87,8 @@ final class CarCell: BaseCollectionCell {
         cornerRadius = 20
         borderColor = .appTint(.signatureGray)
         borderWidth = 1
+
+        clipsToBounds = true
     }
 
     override func configureActions() {

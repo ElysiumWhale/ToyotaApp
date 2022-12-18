@@ -1,40 +1,5 @@
 import UIKit
 
-/// Protocol for UIViewController with UIRefreshControl
-protocol Refreshable: UIViewController {
-    associatedtype RefreshableView: UIScrollView
-
-    var refreshControl: UIRefreshControl { get }
-    var refreshableView: RefreshableView { get }
-
-    func configureRefresh()
-    func startRefreshing()
-    func endRefreshing()
-}
-
-extension Refreshable {
-    func setTitle(with string: String) {
-        refreshControl.attributedTitle = NSAttributedString(string: string)
-    }
-
-    func configureRefresh() {
-        refreshableView.alwaysBounceVertical = true
-        refreshControl.isEnabled = true
-        refreshControl.addAction(for: .valueChanged) { [weak self] in
-            self?.startRefreshing()
-        }
-        refreshControl.layer.zPosition = -1
-        refreshableView.refreshControl = refreshControl
-    }
-
-    func endRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak refreshControl] in
-            refreshControl?.stopRefreshing()
-        })
-    }
-}
-
 // MARK: - Keyboard auto insets
 protocol Keyboardable: UIViewController {
     associatedtype ScrollableView: UIScrollView
@@ -81,45 +46,6 @@ extension Keyboardable {
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-    }
-}
-
-// MARK: - Loadable
-
-/// Default loading view with indicator handling
-protocol Loadable: UIViewController {
-    associatedtype TLoadingView: ILoadingView
-
-    var loadingView: TLoadingView { get }
-    var isLoading: Bool { get set }
-
-    func startLoading()
-    func stopLoading()
-}
-
-extension Loadable {
-    func startLoading() {
-        isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let ref = self, ref.isLoading else {
-                return
-            }
-
-            ref.loadingView.alpha = 0
-            ref.view.addSubview(ref.loadingView)
-            ref.loadingView.frame = ref.view.frame
-            ref.loadingView.startAnimating()
-            ref.loadingView.fadeIn()
-            ref.isLoading = false
-        }
-    }
-
-    func stopLoading() {
-        isLoading = false
-        loadingView.fadeOut(1) { [weak self] in
-            self?.loadingView.stopAnimating()
-            self?.loadingView.removeFromSuperview()
-        }
     }
 }
 
