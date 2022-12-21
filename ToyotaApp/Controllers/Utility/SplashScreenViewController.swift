@@ -7,6 +7,7 @@ final class SplashScreenViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        indicatorView.fadeIn(0.3)
         indicatorView.startAnimating()
     }
 
@@ -23,5 +24,6 @@ final class SplashScreenViewController: BaseViewController {
 
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
+        indicatorView.alpha = .zero
     }
 }
