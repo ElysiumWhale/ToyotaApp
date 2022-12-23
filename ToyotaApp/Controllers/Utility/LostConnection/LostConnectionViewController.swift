@@ -4,7 +4,7 @@ import DesignKit
 // MARK: - ViewController
 final class LostConnectionViewController: BaseViewController {
     private let logoView = UIImageView(image: .toyotaLogo)
-    private let connectionTextView = UITextView()
+    private let textLabel = UILabel()
     private let retryButton = CustomizableButton()
     private let indicator = UIActivityIndicatorView()
 
@@ -17,7 +17,7 @@ final class LostConnectionViewController: BaseViewController {
     }
 
     override func addViews() {
-        addSubviews(logoView, connectionTextView, retryButton, indicator)
+        addSubviews(logoView, textLabel, retryButton, indicator)
     }
 
     override func configureLayout() {
@@ -25,12 +25,14 @@ final class LostConnectionViewController: BaseViewController {
         logoView.centerXToSuperview()
         logoView.size(CGSize(width: 128, height: 128))
 
-        connectionTextView.topToBottom(of: logoView, offset: 20)
-        connectionTextView.centerYToSuperview()
-        connectionTextView.horizontalToSuperview(insets: .horizontal(20))
+        textLabel.topToBottom(of: logoView, offset: 20)
+        textLabel.centerYToSuperview()
+        textLabel.horizontalToSuperview(insets: .horizontal(20))
 
-        retryButton.bottomToSuperview(offset: -20,
-                                      usingSafeArea: true)
+        retryButton.bottomToSuperview(
+            offset: -20,
+            usingSafeArea: true
+        )
         retryButton.horizontalToSuperview(insets: .horizontal(30))
         retryButton.height(45)
         indicator.center(in: retryButton)
@@ -39,8 +41,10 @@ final class LostConnectionViewController: BaseViewController {
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
 
-        connectionTextView.font = .toyotaType(.semibold, of: 22)
-        connectionTextView.textAlignment = .center
+        textLabel.font = .toyotaType(.semibold, of: 22)
+        textLabel.textAlignment = .center
+        textLabel.backgroundColor = view.backgroundColor
+        textLabel.numberOfLines = 0
 
         retryButton.normalColor = .appTint(.secondarySignatureRed)
         retryButton.highlightedColor = .appTint(.dimmedSignatureRed)
@@ -50,7 +54,7 @@ final class LostConnectionViewController: BaseViewController {
 
     override func localize() {
         retryButton.setTitle(.common(.retry), for: .normal)
-        connectionTextView.text = .connectionError
+        textLabel.text = .connectionError
     }
 
     override func configureActions() {
