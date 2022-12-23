@@ -6,6 +6,19 @@ public enum BackgroundConfig {
 }
 
 public extension UIView {
+    func applyCornerMask(radius: CGFloat) {
+        let maskPath = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: .allCorners,
+            cornerRadii: .init(width: radius, height: radius)
+        )
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = maskPath.cgPath
+        maskLayer.frame = bounds
+        layer.mask = maskLayer
+    }
+
     // MARK: - Background creating
     func createBackground(_ config: BackgroundConfig = .empty) -> UILabel? {
         switch config {

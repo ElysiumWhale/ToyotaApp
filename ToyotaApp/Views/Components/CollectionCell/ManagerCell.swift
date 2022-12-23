@@ -33,7 +33,8 @@ final class ManagerCell: BaseCollectionCell {
 
     override func configureAppearance() {
         contentView.backgroundColor = .appTint(.background)
-        contentView.layer.cornerRadius = 15
+        cornerRadius = 15
+        clipsToBounds = true
 
         photoView.contentMode = .scaleAspectFit
         photoView.tintColor = .appTint(.secondarySignatureRed)
