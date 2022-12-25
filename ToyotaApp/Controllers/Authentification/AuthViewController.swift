@@ -33,8 +33,6 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureLayout() {
-        view.hideKeyboardWhenSwipedDown()
-
         logo.size(.init(width: 128, height: 128))
         logo.aspectRatio(1)
         logo.centerXToSuperview()
@@ -110,6 +108,8 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
+        view.hideKeyboardWhenSwipedDown()
+
         phoneNumber.addTarget(
             self,
             action: #selector(phoneDidChange),
@@ -125,15 +125,6 @@ final class AuthViewController: BaseViewController, Loadable {
             action: #selector(openAgreement),
             for: .touchUpInside
         )
-
-        interactor.onSuccess = { [weak self] in
-            self?.handle(isSuccess: true)
-        }
-
-        interactor.onFailure = { [weak self] errorMessage in
-            self?.handle(isSuccess: false)
-            PopUp.display(.error(description: errorMessage))
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -157,7 +148,15 @@ final class AuthViewController: BaseViewController, Loadable {
         startLoading()
         view.endEditing(true)
 
-        interactor.sendPhone(phone)
+        Task {
+            switch await interactor.sendPhone(phone) {
+            case .success:
+                handle(isSuccess: true)
+            case let .failure(message):
+                handle(isSuccess: false)
+                PopUp.display(.error(description: message))
+            }
+        }
     }
 
     @objc private func openAgreement() {

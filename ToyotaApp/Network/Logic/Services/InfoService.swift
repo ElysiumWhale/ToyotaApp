@@ -1,7 +1,7 @@
 import Foundation
 
 protocol AuthService {
-    func registerPhone(with body: RegsiterPhoneBody,
+    func registerPhone(with body: RegisterPhoneBody,
                        handler: RequestHandler<SimpleResponse>)
     func checkCode(with body: CheckSmsCodeBody,
                    handler: RequestHandler<CheckUserOrSmsCodeResponse>)
@@ -101,7 +101,7 @@ final class InfoService {
 
 // MARK: - AuthService
 extension InfoService: AuthService {
-    func registerPhone(with body: RegsiterPhoneBody,
+    func registerPhone(with body: RegisterPhoneBody,
                        handler: RequestHandler<SimpleResponse>) {
         perform(with: handler) {
             Request(page: .registration(.registerPhone), body: body)

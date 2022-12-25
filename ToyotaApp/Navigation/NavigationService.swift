@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 final class NavigationService: MainQueueRunnable {
     enum RegistrationStates {
         case error(message: String)

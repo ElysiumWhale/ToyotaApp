@@ -1,38 +1,28 @@
 import Foundation
 
+@MainActor
 final class AuthInteractor {
-    private let authRequestHandler = DefaultRequestHandler()
-    private let authService: AuthService
+    private let authService: IRegistrationService
 
     let type: AuthScenario
 
-    var onSuccess: Closure?
-    var onFailure: ParameterClosure<String>?
-
-    init(type: AuthScenario = .register,
-         authService: AuthService = InfoService()) {
+    init(
+        type: AuthScenario = .register,
+        authService: IRegistrationService = NewInfoService()
+    ) {
         self.type = type
         self.authService = authService
-
-        setupRequestHandlers()
     }
 
-    func sendPhone(_ phone: String) {
-        if case .register = type {
-            KeychainManager.set(Phone(phone))
-        }
-
-        authService.registerPhone(with: .init(phone: phone),
-                                  handler: authRequestHandler)
-    }
-
-    private func setupRequestHandlers() {
-        authRequestHandler
-            .observe(on: .main)
-            .bind { [weak self] _ in
-                self?.onSuccess?()
-            } onFailure: { [weak self] error in
-                self?.onFailure?(error.message ?? .error(.unknownError))
+    func sendPhone(_ phone: String) async -> Result<Void, String> {
+        switch await authService.registerPhone(.init(phone: phone)) {
+        case .success:
+            if case .register = type {
+                KeychainManager.set(Phone(phone))
             }
+            return .success(())
+        case let .failure(error):
+            return .failure(error.message ?? .error(.unknownError))
+        }
     }
 }
