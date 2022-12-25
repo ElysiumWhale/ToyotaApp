@@ -116,7 +116,7 @@ final class SettingsViewController: BaseViewController {
             with: .common(.confirmation),
             description: .question(.changeNumber)
         ) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber)
+            let module = AuthFlow.authModule(authType: .changeNumber(userId: user.id))
             navigationController?.pushViewController(module, animated: true)
         }
     }

@@ -38,6 +38,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
         codeStack.axis = .vertical
         codeStack.alignment = .fill
+        codeStack.spacing = 8
         codeStack.horizontalToSuperview(insets: .horizontal(30))
         codeStack.topToSuperview(offset: 200)
 

@@ -33,8 +33,6 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureLayout() {
-        view.hideKeyboardWhenSwipedDown()
-
         logo.size(.init(width: 128, height: 128))
         logo.aspectRatio(1)
         logo.centerXToSuperview()
@@ -110,6 +108,8 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
+        view.hideKeyboardWhenSwipedDown()
+
         phoneNumber.addTarget(
             self,
             action: #selector(phoneDidChange),
