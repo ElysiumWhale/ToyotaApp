@@ -1,6 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
+@MainActor
 final class FlowsTests: XCTestCase {
     func testAuthFlow() throws {
         let authModule = AuthFlow.authModule(authType: .register)
@@ -10,9 +11,11 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(codeModule is SmsCodeViewController)
 
         let entry = AuthFlow.entryPoint(with: [authModule, codeModule])
-        XCTAssertTrue(entry is UINavigationController)
-        let nvc = entry as? UINavigationController
-        XCTAssertTrue(nvc!.topViewController is SmsCodeViewController)
+        guard let nvc = entry as? UINavigationController else {
+            XCTFail()
+            return
+        }
+        XCTAssertTrue(nvc.topViewController is SmsCodeViewController)
     }
 
     func testRegisterFlow() throws {
