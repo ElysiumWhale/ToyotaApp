@@ -39,7 +39,7 @@ struct CheckUserBody: IBody, BodyWithUserAndBrandId {
 }
 
 // MARK: - RegsiterPhoneBody
-struct RegsiterPhoneBody: IBody {
+struct RegisterPhoneBody: IBody {
     let phone: String
 
     var asRequestItems: [URLQueryItem] {
