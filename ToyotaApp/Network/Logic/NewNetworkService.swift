@@ -72,3 +72,5 @@ actor NewNetworkService {
         return request
     }
 }
+
+extension String: Error { }

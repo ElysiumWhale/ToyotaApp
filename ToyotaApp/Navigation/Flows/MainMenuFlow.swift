@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 enum MainMenuFlow {
     static func entryPoint(for user: UserProxy) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
