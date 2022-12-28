@@ -1,7 +1,7 @@
 import UIKit
 
 @MainActor
-final class NavigationService: MainQueueRunnable {
+final class NavigationService {
     enum RegistrationStates {
         case error(message: String)
         case firstPage

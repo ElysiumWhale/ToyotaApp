@@ -135,7 +135,7 @@ extension SettingsViewController: ObservesEvents {
             return
         }
 
-        dispatch { [self] in
+        DispatchQueue.main.async { [self] in
             phoneTextField.text = user.phone
         }
     }

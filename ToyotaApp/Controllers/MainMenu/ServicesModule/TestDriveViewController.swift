@@ -23,7 +23,7 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func moduleDidUpdate(_ module: IServiceModule) {
-        dispatch { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             switch module.state {
                 case .idle: return
                 case .didDownload: self?.stopLoading()

@@ -120,9 +120,9 @@ extension CarsViewController: ObservesEvents {
                 notificator: EventNotificator) {
         switch event {
         case .userUpdate:
-            dispatch { [self] in
                 carsCollection.reloadData()
                 updateBackground()
+            DispatchQueue.main.async { [weak self] in
             }
         default:
             return

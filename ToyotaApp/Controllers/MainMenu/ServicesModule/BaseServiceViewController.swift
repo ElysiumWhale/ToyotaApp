@@ -163,7 +163,6 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
 
     // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
-        dispatch { [weak self] in
             switch module.state {
                 case .idle: return
                 case .didDownload: self?.stopLoading()
@@ -171,6 +170,7 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
                 case .block(let message): self?.didBlock(module, message)
                 case .didChose(let service): self?.didChose(service, in: module)
             }
+        DispatchQueue.main.async { [weak self] in
         }
     }
 

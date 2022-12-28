@@ -374,7 +374,7 @@ extension ProfileViewController: ObservesEvents {
     ) {
         switch event {
         case .userUpdate:
-            dispatch { [self] in
+            DispatchQueue.main.async { [self] in
                 view.setNeedsLayout()
                 refreshFields()
                 state = .none
