@@ -16,14 +16,18 @@ extension Keyboardable {
             return
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                               object: nil, queue: .main) { [weak self] notification in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil, queue: .main
+        ) { [weak self] notification in
             self?.keyboardWillShow(notification: notification)
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] _ in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
             self?.keyboardWillHide()
         }
     }
@@ -48,15 +52,3 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 }
-
-protocol MainQueueRunnable { }
-
-extension MainQueueRunnable {
-    func dispatch(action: Closure?) {
-        DispatchQueue.main.async {
-            action?()
-        }
-    }
-}
-
-extension UIViewController: MainQueueRunnable { }

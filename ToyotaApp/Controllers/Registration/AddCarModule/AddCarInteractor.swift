@@ -118,8 +118,8 @@ final class AddCarInteractor {
 
         skipAddCarHandler
             .observe(on: .main)
-            .bind { [weak self] _ in
-                if case .register = self?.type {
+            .bind { [weak self, type] _ in
+                if case .register = type {
                     self?.view?.handleCarAdded()
                 }
             } onFailure: { [weak self] error in

@@ -78,7 +78,10 @@ extension MapModule: CLLocationManagerDelegate {
 
 // MARK: - MKMapViewDelegate
 extension MapModule: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+    func mapView(
+        _ mapView: MKMapView,
+        didUpdate userLocation: MKUserLocation
+    ) {
         zoomToUserLocation(userLocation.coordinate)
     }
 

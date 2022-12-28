@@ -95,8 +95,10 @@ final class CarsViewController: BaseViewController, Loadable {
 }
 
 extension CarsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         interactor.cars.count
     }
 
@@ -116,13 +118,15 @@ extension CarsViewController: UICollectionViewDataSource {
 
 // MARK: - ObservesEvents
 extension CarsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents,
-                notificator: EventNotificator) {
+    func handle(
+        event: EventNotificator.AppEvents,
+        notificator: EventNotificator
+    ) {
         switch event {
         case .userUpdate:
-                carsCollection.reloadData()
-                updateBackground()
             DispatchQueue.main.async { [weak self] in
+                self?.carsCollection.reloadData()
+                self?.updateBackground()
             }
         default:
             return

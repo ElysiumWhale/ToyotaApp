@@ -10,8 +10,10 @@ final class NavigationService {
 
     static var switchRootView: ((UIViewController) -> Void)?
 
-    static func resolveNavigation(with context: CheckUserContext,
-                                  fallbackCompletion: Closure) {
+    static func resolveNavigation(
+        with context: CheckUserContext,
+        fallbackCompletion: Closure
+    ) {
         switch context.state {
         case .empty:
             fallbackCompletion()
