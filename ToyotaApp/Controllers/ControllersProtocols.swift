@@ -6,12 +6,12 @@ protocol Keyboardable: UIViewController {
 
     var scrollView: ScrollableView! { get }
 
-    func setupKeyboard(isSubcribing: Bool)
+    func setupKeyboard(isSubscribing: Bool)
 }
 
 extension Keyboardable {
-    func setupKeyboard(isSubcribing: Bool) {
-        guard isSubcribing else {
+    func setupKeyboard(isSubscribing: Bool) {
+        guard isSubscribing else {
             NotificationCenter.default.removeObserver(self)
             return
         }

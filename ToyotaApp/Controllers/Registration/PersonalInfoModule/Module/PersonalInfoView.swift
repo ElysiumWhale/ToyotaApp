@@ -125,11 +125,11 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: true)
+        setupKeyboard(isSubscribing: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: false)
+        setupKeyboard(isSubscribing: false)
     }
 
     private func configureFields() {

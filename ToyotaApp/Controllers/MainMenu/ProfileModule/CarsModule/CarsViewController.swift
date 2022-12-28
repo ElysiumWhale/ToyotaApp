@@ -69,7 +69,7 @@ final class CarsViewController: BaseViewController, Loadable {
     }
 
     private func removeCar(with id: String) {
-        PopUp.display(.choise(description: .question(.removeCar))) { [self] in
+        PopUp.display(.choice(description: .question(.removeCar))) { [self] in
             startLoading()
             interactor.removeCar(with: id)
         }
