@@ -171,7 +171,7 @@ final class AuthViewController: BaseViewController, Loadable {
         guard isSuccess else {
             return
         }
-        
+
         let vc = AuthFlow.codeModule(
             phone: phoneNumber.validPhone!,
             authType: interactor.type

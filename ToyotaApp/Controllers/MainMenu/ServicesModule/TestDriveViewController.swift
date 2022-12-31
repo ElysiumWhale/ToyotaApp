@@ -39,7 +39,12 @@ class TestDriveViewController: BaseServiceController {
             return
         }
 
-        index < 3 ? fadeOutAfter(module: index) : stopLoading()
+        if index < 3 {
+            fadeOutAfter(module: index)
+        } else {
+            stopLoading()
+        }
+
         let params = buildParams(for: index, value: service.id)
         switch index {
         case 0:
@@ -52,7 +57,7 @@ class TestDriveViewController: BaseServiceController {
             module.nextModule?.customStart(
                 page: .services(.getTestDriveShowrooms),
                 with: params,
-                response: ShoroomsResponce.self
+                response: ShowroomsResponse.self
             )
         case 2:
             module.nextModule?.customStart(
