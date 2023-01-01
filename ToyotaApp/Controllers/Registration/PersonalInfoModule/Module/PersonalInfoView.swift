@@ -125,11 +125,11 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: true)
+        setupKeyboard(isSubscribing: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: false)
+        setupKeyboard(isSubscribing: false)
     }
 
     private func configureFields() {
@@ -193,7 +193,7 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
         actionButton.fadeIn()
 
         switch viewModel {
-        case .success(let cities, let models, let colors):
+        case let .success(cities, models, colors):
             let cityPickerModule = RegisterFlow.cityModule(cities)
 
             cityPickerModule.onCityPick = { [weak self] _ in
@@ -210,8 +210,8 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
             navigationController?.pushViewController(
                 cityPickerModule, animated: true
             )
-        case .failure(let errorMessage):
-            PopUp.display(.error(description: errorMessage))
+        case let .failure(message):
+            PopUp.display(.error(description: message))
         }
     }
 }

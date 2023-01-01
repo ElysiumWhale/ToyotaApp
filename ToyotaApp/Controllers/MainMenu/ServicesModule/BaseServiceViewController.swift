@@ -163,14 +163,8 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
 
     // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
-        dispatch { [weak self] in
-            switch module.state {
-                case .idle: return
-                case .didDownload: self?.stopLoading()
-                case .error(let error): self?.didRaiseError(module, error)
-                case .block(let message): self?.didBlock(module, message)
-                case .didChose(let service): self?.didChose(service, in: module)
-            }
+        DispatchQueue.main.async { [weak self] in
+            self?.handleUpdate(of: module)
         }
     }
 
@@ -206,6 +200,21 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         nextModule.start(with: params)
         if !stackView.arrangedSubviews.contains(nextModule.view) {
             stackView.addArrangedSubview(nextModule.view)
+        }
+    }
+
+    private func handleUpdate(of module: IServiceModule) {
+        switch module.state {
+            case .idle:
+                return
+            case .didDownload:
+                stopLoading()
+            case let .error(error):
+                didRaiseError(module, error)
+            case let .block(message):
+                didBlock(module, message)
+            case let .didChose(service):
+                didChose(service, in: module)
         }
     }
 

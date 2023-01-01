@@ -204,30 +204,40 @@ extension PopUp {
         case error(description: String)
         case warning(description: String)
         case success(description: String)
-        case choise(description: String)
+        case choice(description: String)
     }
 
-    static func display(_ type: MessageTypes,
-                        completion: @escaping Closure = { }) {
+    static func display(
+        _ type: MessageTypes,
+        completion: @escaping Closure = { }
+    ) {
         switch type {
-            case .error(let text):
-                displayMessage(with: .common(.error),
-                               description: text,
-                               onDismiss: completion)
-            case .warning(let text):
-                displayMessage(with: .common(.warning),
-                               description: text,
-                               onDismiss: completion)
-            case .success(let text):
-                displayMessage(with: .common(.success),
-                               description: text,
-                               onDismiss: completion)
-            case .choise(let text):
-                displayChoice(with: .common(.actionConfirmation),
-                              description: text,
-                              confirmText: .common(.yes),
-                              declineText: .common(.cancel),
-                              onConfirm: completion)
+        case let .error(text):
+            displayMessage(
+                with: .common(.error),
+                description: text,
+                onDismiss: completion
+            )
+        case let .warning(text):
+            displayMessage(
+                with: .common(.warning),
+                description: text,
+                onDismiss: completion
+            )
+        case let .success(text):
+            displayMessage(
+                with: .common(.success),
+                description: text,
+                onDismiss: completion
+            )
+        case let .choice(text):
+            displayChoice(
+                with: .common(.actionConfirmation),
+                description: text,
+                confirmText: .common(.yes),
+                declineText: .common(.cancel),
+                onConfirm: completion
+            )
         }
     }
 }

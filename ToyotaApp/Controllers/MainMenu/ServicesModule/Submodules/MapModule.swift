@@ -8,10 +8,11 @@ final class MapModule: NSObject, IServiceModule {
         let map = MapModuleView()
         map.alpha = 0
         map.map.delegate = self
+        map.map.isUserInteractionEnabled = false
         return map
     }()
 
-    private var locationManager: CLLocationManager!
+    private let locationManager = CLLocationManager()
     private var isInitiallyZoomedToUserLocation: Bool = false
 
     private(set) var state: ModuleStates = .idle {
@@ -24,32 +25,9 @@ final class MapModule: NSObject, IServiceModule {
     weak var delegate: ModuleDelegate?
 
     func start(with params: RequestItems) {
-        if CLLocationManager.locationServicesEnabled() {
-            let locManager = CLLocationManager()
-            locManager.requestWhenInUseAuthorization()
-            DispatchQueue.global(qos: .userInitiated).async { [self] in
-                while locManager.authorizationStatus == .notDetermined {
-                    // nothing
-                }
-                switch locManager.authorizationStatus {
-                    case .authorizedAlways, .authorizedWhenInUse:
-                        locationManager = locManager
-                        DispatchQueue.main.async { [self] in
-                            internalView.map.showsUserLocation = true
-                        }
-                        state = .didChose(Service.empty)
-                    default:
-                        DispatchQueue.main.async { [self] in
-                            internalView.map.isUserInteractionEnabled = false
-                        }
-                        state = .block(.error(.geoRestriction))
-                }
-            }
-            internalView.fadeIn()
-        } else {
-            internalView.map.isUserInteractionEnabled = false
-            state = .block(.error(.geoRestriction))
-        }
+        locationManager.delegate = self
+        locationManagerDidChangeAuthorization(locationManager)
+        internalView.fadeIn()
     }
 
     func buildQueryItems() -> RequestItems {
@@ -74,9 +52,36 @@ final class MapModule: NSObject, IServiceModule {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+extension MapModule: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            DispatchQueue.main.async {
+                self.internalView.map.showsUserLocation = true
+                self.internalView.map.isUserInteractionEnabled = true
+            }
+            state = .didChose(Service.empty)
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        default:
+            DispatchQueue.main.async {
+                self.internalView.map.isUserInteractionEnabled = false
+            }
+            // In another case popup is not shown
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.state = .block(.error(.geoRestriction))
+            }
+        }
+    }
+}
+
 // MARK: - MKMapViewDelegate
 extension MapModule: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+    func mapView(
+        _ mapView: MKMapView,
+        didUpdate userLocation: MKUserLocation
+    ) {
         zoomToUserLocation(userLocation.coordinate)
     }
 

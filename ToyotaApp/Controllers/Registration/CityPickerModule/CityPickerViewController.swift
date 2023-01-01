@@ -30,9 +30,11 @@ final class CityPickerViewController: BaseViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor.cities.isEmpty
-            ? startRefreshing()
-            : refreshableView.reloadData()
+        if interactor.cities.isEmpty {
+            startRefreshing()
+        } else {
+            refreshableView.reloadData()
+        }
     }
 
     override func addViews() {

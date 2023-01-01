@@ -7,7 +7,7 @@ extension UIView {
         _ backgroundColor: UIColor,
         action: @escaping () -> Void
     ) -> UIView {
-        let button = UIButton.titleButton(with: title,action: action)
+        let button = UIButton.titleButton(with: title, action: action)
         button.titleLabel?.backgroundColor = backgroundColor
         let rightButton = UIButton(frame: .init(
             x: 0, y: 0, width: 20, height: 20)

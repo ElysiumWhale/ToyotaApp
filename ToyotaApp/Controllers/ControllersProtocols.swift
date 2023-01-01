@@ -6,24 +6,28 @@ protocol Keyboardable: UIViewController {
 
     var scrollView: ScrollableView! { get }
 
-    func setupKeyboard(isSubcribing: Bool)
+    func setupKeyboard(isSubscribing: Bool)
 }
 
 extension Keyboardable {
-    func setupKeyboard(isSubcribing: Bool) {
-        guard isSubcribing else {
+    func setupKeyboard(isSubscribing: Bool) {
+        guard isSubscribing else {
             NotificationCenter.default.removeObserver(self)
             return
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                               object: nil, queue: .main) { [weak self] notification in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil, queue: .main
+        ) { [weak self] notification in
             self?.keyboardWillShow(notification: notification)
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] _ in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
             self?.keyboardWillHide()
         }
     }
@@ -48,15 +52,3 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 }
-
-protocol MainQueueRunnable { }
-
-extension MainQueueRunnable {
-    func dispatch(action: Closure?) {
-        DispatchQueue.main.async {
-            action?()
-        }
-    }
-}
-
-extension UIViewController: MainQueueRunnable { }
