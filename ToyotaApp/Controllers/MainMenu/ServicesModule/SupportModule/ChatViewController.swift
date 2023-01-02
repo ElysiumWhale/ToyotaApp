@@ -15,7 +15,9 @@ final class ChatViewController: BaseViewController {
         stabLabel.topToSuperview(offset: 150)
         stabLabel.horizontalToSuperview(insets: .horizontal(16))
         messageField.horizontalToSuperview(insets: .horizontal(16))
-        messageField.keyboardConstraint = messageField.bottomToSuperview(offset: -20)
+        messageField.keyboardConstraint = messageField.bottomToSuperview(
+            offset: -30
+        )
         messageField.bindToKeyboard()
         messageField.height(45)
         messageField.setRightView(from: sendButton, width: 40, height: 40)
