@@ -23,16 +23,11 @@ final class TimePickerModule: NSObject, IServiceModule {
     }
 
     // MARK: - Private properties
-    private lazy var internalView: TimePickerView = {
-        let view = TimePickerView()
-        view.picker.delegate = self
-        view.picker.dataSource = self
-        view.alpha = 0
-        return view
-    }()
 
     private var dates: [FreeTime] = []
     private var timeRows = (date: 0, time: 0)
+
+    private lazy var internalView = TimePickerView(delegate: self, alpha: 0)
 
     private var selectedDate: (date: String, time: String)? {
         guard dates.isNotEmpty else {
