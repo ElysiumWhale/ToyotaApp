@@ -212,6 +212,8 @@ struct GetShowroomsForTestDriveBody: IBody, BodyWithBrandId {
     }
 }
 
+typealias NewBookServiceBody = AnyBody
+
 // MARK: - BookServiceBody
 struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
     let userId: String

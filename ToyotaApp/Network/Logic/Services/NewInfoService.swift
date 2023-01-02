@@ -16,6 +16,10 @@ protocol IRegistrationService {
     func checkCode(_ body: CheckSmsCodeBody) async -> NewResponse<CheckUserOrSmsCodeResponse>
 }
 
+protocol IBookingService {
+    func bookService(_ body: NewBookServiceBody) async -> DefaultResponse
+}
+
 actor NewInfoService {
     private let networkService: NewNetworkService
 
@@ -62,6 +66,15 @@ extension NewInfoService: IRegistrationService {
     ) async -> NewResponse<CheckUserOrSmsCodeResponse> {
         await networkService.makeRequest(Request(
             page: .registration(.checkCode), body: body
+        ))
+    }
+}
+
+// MARK: - IBookingService
+extension NewInfoService: IBookingService {
+    func bookService(_ body: NewBookServiceBody) async -> DefaultResponse {
+        await networkService.makeRequest(Request(
+            page: .services(.bookService), body: body
         ))
     }
 }
