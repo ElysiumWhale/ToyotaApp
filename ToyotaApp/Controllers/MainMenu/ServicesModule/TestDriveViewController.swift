@@ -1,17 +1,12 @@
 import UIKit
 
-class TestDriveViewController: BaseServiceController {
+final class TestDriveViewController: BaseServiceController {
     override var hasCarSelection: Bool {
         false
     }
 
     override func start() {
-        let configs = configurationForModules()
-
-        for (module, config) in zip(modules, configs) {
-            stackView.addArrangedSubview(module.view)
-            module.configure(appearance: config)
-        }
+        configureModulesAppearance()
         stackView.addArrangedSubview(bookButton)
         view.addSubview(loadingView)
         loadingView.fadeIn()
@@ -109,8 +104,8 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let showroomId = modules[2].state.getService()?.id,
-              let carId = modules[1].state.getService()?.id else {
+        guard let showroomId = modules[2].state.service?.id,
+              let carId = modules[1].state.service?.id else {
             return
         }
 
@@ -129,6 +124,14 @@ class TestDriveViewController: BaseServiceController {
 
 // MARK: - Modules configurations
 extension TestDriveViewController {
+    func configureModulesAppearance() {
+        let configs = configurationForModules()
+        for (module, config) in zip(modules, configs) {
+            stackView.addArrangedSubview(module.view)
+            module.configure(appearance: config)
+        }
+    }
+
     func configurationForModules() -> [[ModuleAppearances]] {
         [
             [.title(.common(.chooseCity)), .placeholder(.common(.city))],

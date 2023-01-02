@@ -94,13 +94,17 @@ class NetworkService {
 
     class func makeRequest(_ request: Request) {
         session.dataTask(
-            with: buildPostRequest(for: request.page.rawValue,
-                                   with: request.body.asRequestItems)
+            with: buildPostRequest(
+                for: request.page.rawValue,
+                with: request.body.asRequestItems
+            )
         ).resume()
     }
 
-    class private func buildPostRequest(for page: String,
-                                        with params: [URLQueryItem] = []) -> URLRequest {
+    class private func buildPostRequest(
+        for page: String,
+        with params: [URLQueryItem] = []
+    ) -> URLRequest {
         var mainURL = UrlFactory.mainUrl
         mainURL.path.append(page)
         mainURL.queryItems = params
@@ -111,7 +115,7 @@ class NetworkService {
         // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
         // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
-        //                                        options: JSONSerialization.WritingOptions.prettyPrinted)
+        //                                        options: JSONSerialisation.WritingOptions.prettyPrinted)
         // request.httpBody = data
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request
