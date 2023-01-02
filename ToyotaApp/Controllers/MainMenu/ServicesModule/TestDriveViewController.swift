@@ -116,9 +116,9 @@ final class TestDriveViewController: BaseServiceController {
         ]
         params.append(contentsOf: modules[3].buildQueryItems())
 
-        NetworkService.makeRequest(.init(page: .services(.bookService),
-                                         body: AnyBody(items: params)),
-                                   handler: bookingRequestHandler)
+        Task {
+            await makeBookingRequest(params)
+        }
     }
 }
 

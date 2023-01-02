@@ -9,7 +9,7 @@ class BaseServiceController: BaseViewController, Loadable {
     let bookButton = CustomizableButton()
 
     // MARK: - Models
-    let bookingRequestHandler = DefaultRequestHandler()
+    let bookingService: IBookingService
     let serviceType: ServiceType
     let user: UserProxy
 
@@ -35,15 +35,15 @@ class BaseServiceController: BaseViewController, Loadable {
 
     init(_ service: ServiceType,
          _ modules: [IServiceModule],
-         _ user: UserProxy
+         _ user: UserProxy,
+         _ bookingService: IBookingService = NewInfoService()
     ) {
         self.modules = modules
         self.user = user
         self.serviceType = service
+        self.bookingService = bookingService
 
         super.init()
-
-        setupRequestHandlers()
     }
 
     override func viewDidLoad() {
@@ -142,23 +142,22 @@ class BaseServiceController: BaseViewController, Loadable {
             params.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(.init(page: .services(.bookService),
-                                         body: AnyBody(items: params)),
-                                   handler: bookingRequestHandler)
+        Task {
+            await makeBookingRequest(params)
+        }
     }
 
-    func setupRequestHandlers() {
-        bookingRequestHandler
-            .bind { [weak self] _ in
-                PopUp.display(.success(description: .common(.bookingSuccess))) {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            } onFailure: { [weak bookButton] error in
-                PopUp.display(.error(
-                    description: error.message ?? .error(.servicesError)
-                ))
-                bookButton?.isEnabled = true
-            }
+    func makeBookingRequest(_ params: RequestItems) async {
+        switch await bookingService.bookService(BookServiceBody(items: params)) {
+        case .success:
+            navigationController?.popViewController(animated: true)
+            PopUp.display(.success(description: .common(.bookingSuccess)))
+        case let .failure(error):
+            PopUp.display(.error(
+                description: error.message ?? .error(.servicesError)
+            ))
+            bookButton.isEnabled = true
+        }
     }
 
     // MARK: - Modules updates processing
