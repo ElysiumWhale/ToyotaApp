@@ -23,14 +23,15 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
-            switch module.state {
-                case .idle: return
-                case .didDownload: self?.stopLoading()
-                case .error(let error): self?.didRaiseError(module, error)
-                case .block: break
-                case .didChose(let service): self?.didChose(service, in: module)
-            }
+        switch module.state {
+        case .idle, .block:
+            return
+        case .didDownload:
+            stopLoading()
+        case let .error(error):
+            didRaiseError(module, error)
+        case let .didChose(service):
+            didChose(service, in: module)
         }
     }
 
@@ -74,19 +75,24 @@ class TestDriveViewController: BaseServiceController {
 
     private func buildParams(for index: Int, value: String) -> RequestItems {
         switch index {
-            case 0:
-                return [(.carInfo(.cityId), value),
-                        (.auth(.brandId), Brand.Toyota)]
-            case 1:
-                return [(.auth(.brandId), Brand.Toyota),
-                        (.carInfo(.cityId),
-                        modules[0].state.getService()?.id),
-                        (.services(.serviceId), value)]
-            case 2:
-                return [(.carInfo(.showroomId), value),
-                        (.services(.serviceId),
-                        modules[1].state.getService()?.id)]
-            default: return []
+        case 0:
+            return [
+                (.carInfo(.cityId), value),
+                (.auth(.brandId), Brand.Toyota)
+            ]
+        case 1:
+            return [
+                (.auth(.brandId), Brand.Toyota),
+                (.carInfo(.cityId), modules[0].state.service?.id),
+                (.services(.serviceId), value)
+            ]
+        case 2:
+            return [
+                (.carInfo(.showroomId), value),
+                (.services(.serviceId), modules[1].state.service?.id)
+            ]
+        default:
+            return []
         }
     }
 
@@ -108,9 +114,11 @@ class TestDriveViewController: BaseServiceController {
             return
         }
 
-        var params: RequestItems = [(.auth(.userId), user.id),
-                                    (.carInfo(.showroomId), showroomId),
-                                    (.services(.serviceId), carId)]
+        var params: RequestItems = [
+            (.auth(.userId), user.id),
+            (.carInfo(.showroomId), showroomId),
+            (.services(.serviceId), carId)
+        ]
         params.append(contentsOf: modules[3].buildQueryItems())
 
         NetworkService.makeRequest(.init(page: .services(.bookService),

@@ -155,12 +155,17 @@ extension TimePickerModule: UIPickerViewDataSource {
         2
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         switch component {
         case 0:
             return dates.count
         case 1:
-            return dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime.count : 0
+            return dates.isNotEmpty
+            ? dates[rowIn(component: 0)].freeTime.count
+            : 0
         default:
             return 0
         }

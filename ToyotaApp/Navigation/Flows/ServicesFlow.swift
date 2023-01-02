@@ -51,29 +51,31 @@ enum ServicesFlow {
 
         var modules: [IServiceModule] = []
         switch controlType {
-            case .notDefined: break
-            case .timepick:
-                modules.append(TimePickerModule(with: serviceType))
-            case .map:
-                modules.append(MapModule())
-            case .onePick:
-                modules.append(PickerModule(with: serviceType))
-            case .onePickMap:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(MapModule())
-            case .onePickTime:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-            case .onePickTimeMap:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-                modules.append(MapModule())
-            case .threePicksTime:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(PickerModule(with: serviceType))
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-            default: break
+        case .notDefined:
+            break
+        case .timepick:
+            modules.append(TimePickerModule(with: serviceType))
+        case .map:
+            modules.append(MapModule())
+        case .onePick:
+            modules.append(PickerModule(with: serviceType))
+        case .onePickMap:
+            modules.append(PickerModule(with: serviceType))
+            modules.append(MapModule())
+        case .onePickTime:
+            modules.append(PickerModule(with: serviceType))
+            modules.append(TimePickerModule(with: serviceType))
+        case .onePickTimeMap:
+            modules.append(PickerModule(with: serviceType))
+            modules.append(TimePickerModule(with: serviceType))
+            modules.append(MapModule())
+        case .threePicksTime:
+            modules.append(PickerModule(with: serviceType))
+            modules.append(PickerModule(with: serviceType))
+            modules.append(PickerModule(with: serviceType))
+            modules.append(TimePickerModule(with: serviceType))
+        default:
+            break
         }
 
         return modules.chained()

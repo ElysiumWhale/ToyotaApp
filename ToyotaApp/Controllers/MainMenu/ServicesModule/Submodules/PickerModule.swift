@@ -87,7 +87,7 @@ final class PickerModule: NSObject, IServiceModule {
 
     func buildQueryItems() -> RequestItems {
         switch state {
-        case .didChose(let data):
+        case let .didChose(data):
             return [(.services(.serviceId), data.id)]
         default:
             return []
@@ -105,7 +105,9 @@ final class PickerModule: NSObject, IServiceModule {
             })
     }
 
-    private func successCompletion<TResponse: IServiceResponse>(_ response: TResponse) {
+    private func successCompletion<TResponse: IServiceResponse>(
+        _ response: TResponse
+    ) {
         services = response.array.isEmpty ? [.empty] : response.array
         DispatchQueue.main.async { [weak self] in
             self?.internalView.fadeIn()
@@ -119,16 +121,13 @@ final class PickerModule: NSObject, IServiceModule {
     }
 
     @objc private func serviceDidSelect() {
-        guard services.isNotEmpty,
-              let service = services[safe: internalView.picker.selectedRow],
+        view.endEditing(true)
+        guard let service = services[safe: internalView.picker.selectedRow],
               service.id != "-1" else {
-
-            view.endEditing(true)
             return
         }
 
         internalView.textField.text = service.name
-        internalView.endEditing(true)
         state = .didChose(service)
     }
 }
