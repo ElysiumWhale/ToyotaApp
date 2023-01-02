@@ -12,10 +12,13 @@ final class TimePickerModule: NSObject, IServiceModule {
 
     weak var nextModule: IServiceModule?
 
+    var onUpdate: ((IServiceModule) -> Void)?
+
     private(set) var serviceType: ServiceType
 
     private(set) var state: ModuleStates = .idle {
         didSet {
+            onUpdate?(self)
         }
     }
 

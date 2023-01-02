@@ -37,6 +37,7 @@ protocol IServiceModule: AnyObject {
     var view: UIView { get }
     var state: ModuleStates { get }
     var nextModule: IServiceModule? { get set }
+    var onUpdate: ((IServiceModule) -> Void)? { get set }
 
     func start(with params: RequestItems)
     func customStart<TResponse: IServiceResponse>(page: RequestPath,

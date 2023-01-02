@@ -40,6 +40,14 @@ enum ServicesFlow {
             controller = BaseServiceController(serviceType, modules, user)
         }
 
+        modules.forEach {
+            $0.onUpdate = { [weak controller] module in
+                DispatchQueue.main.async {
+                    controller?.moduleDidUpdate(module)
+                }
+            }
+        }
+
         return controller
     }
 

@@ -17,10 +17,13 @@ final class MapModule: NSObject, IServiceModule {
 
     private(set) var state: ModuleStates = .idle {
         didSet {
+            onUpdate?(self)
         }
     }
 
     weak var nextModule: IServiceModule?
+
+    var onUpdate: ((IServiceModule) -> Void)?
 
     func start(with params: RequestItems) {
         locationManager.delegate = self
