@@ -18,43 +18,6 @@ class NetworkService {
         return session
     }()
 
-    class func makeRequest<TResponse>(
-        page: RequestPath,
-        params: RequestItems = .empty,
-        completion: @escaping ResponseHandler<TResponse>
-    ) where TResponse: IResponse {
-
-        let request = buildPostRequest(for: page.rawValue,
-                                       with: params.asQueryItems)
-
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                completion(Result.failure(.lostConnection))
-                return
-            }
-
-            guard let data = data else {
-                completion(Result.failure(.corruptedData))
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            if let response = try? JSONDecoder().decode(TResponse.self, from: data) {
-                completion(Result.success(response))
-            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                completion(Result.failure(errorResponse))
-            } else {
-                completion(Result.failure(.corruptedData))
-            }
-        }
-
-        task.resume()
-    }
-
     class func makeRequest<Response>(
         _ request: Request,
         handler: RequestHandler<Response>
