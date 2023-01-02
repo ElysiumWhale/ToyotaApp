@@ -50,38 +50,38 @@ final class PickerModule: NSObject, IServiceModule {
     }
 
     func start(with params: RequestItems) {
-        state = .idle
-        internalView.textField.text = .empty
-
         var queryParams = params
         queryParams.append((.services(.serviceTypeId), serviceType.id))
 
-        NetworkService.makeRequest(
-            Request(
-                page: .services(.getServices),
-                body: AnyBody(items: queryParams)
-            ),
-            handler: handler
+        customStart(
+            request: (.services(.getServices), queryParams),
+            response: ServicesResponse.self
         )
     }
 
     func customStart<TResponse: IServiceResponse>(
-        page: RequestPath,
-        with params: RequestItems,
+        request: (path: RequestPath, items: RequestItems),
         response type: TResponse.Type
     ) {
         state = .idle
         internalView.textField.text = .empty
 
-        NetworkService.makeRequest(
-            page: page,
-            params: params
-        ) { [weak self] (response: Response<TResponse>) in
-            switch response {
-            case .failure(let error):
-                self?.failureCompletion(error)
-            case .success(let data):
-                self?.successCompletion(data)
+        let newRequest = Request(
+            page: request.path,
+            body: AnyBody(items: request.items)
+        )
+        Task {
+            let result: NewResponse<TResponse> = await NewNetworkService.shared.makeRequest(newRequest)
+            switch result {
+            case let .success(response):
+                services = response.array.isEmpty ? [.empty] : response.array
+                DispatchQueue.main.async { [weak self] in
+                    self?.internalView.fadeIn()
+                    self?.internalView.picker.reloadAllComponents()
+                    self?.state = .didDownload
+                }
+            case let .failure(error):
+                state = .error(.requestError(error.message))
             }
         }
     }

@@ -40,21 +40,19 @@ protocol IServiceModule: AnyObject {
     var onUpdate: ((IServiceModule) -> Void)? { get set }
 
     func start(with params: RequestItems)
-    func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: RequestItems,
-                                                  response type: TResponse.Type)
+    func customStart<TResponse: IServiceResponse>(
+        request: (path: RequestPath, items: RequestItems),
+        response type: TResponse.Type
+    )
     func buildQueryItems() -> RequestItems
     func configure(appearance: [ModuleAppearances])
 }
 
 extension IServiceModule {
-    func customStart<TResponse: IServiceResponse>(page: RequestPath,
-                                                  with params: RequestItems,
-                                                  response type: TResponse.Type) { }
-
-    func start(with params: RequestItems = []) {
-        start(with: [])
-    }
+    func customStart<TResponse: IServiceResponse>(
+        request: (path: RequestPath, items: RequestItems),
+        response type: TResponse.Type
+    ) { }
 
     func configure(appearance: [ModuleAppearances]) { }
 }
