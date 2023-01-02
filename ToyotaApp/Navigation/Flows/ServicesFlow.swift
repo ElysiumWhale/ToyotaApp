@@ -82,12 +82,12 @@ enum ServicesFlow {
 
 private extension Array where Element == IServiceModule {
     func chained() -> Self {
-        guard isNotEmpty else {
+        guard !isEmpty else {
             return self
         }
 
-        for i in 0...count - 1 {
-            self[i].nextModule = i + 1 <= count - 1 ? self[i + 1] : nil
+        for i in 0..<count {
+            self[i].nextModule = self[safe: i + 1]
         }
 
         return self
