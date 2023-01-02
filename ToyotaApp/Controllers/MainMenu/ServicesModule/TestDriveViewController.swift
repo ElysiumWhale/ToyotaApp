@@ -11,8 +11,10 @@ final class TestDriveViewController: BaseServiceController {
         view.addSubview(loadingView)
         loadingView.fadeIn()
         modules.first?.customStart(
-            page: .profile(.getCities),
-            with: [(.auth(.brandId), Brand.Toyota)],
+            request: (
+                path: .profile(.getCities),
+                items: [(.auth(.brandId), Brand.Toyota)]
+            ),
             response: CitiesResponse.self
         )
     }
@@ -45,20 +47,17 @@ final class TestDriveViewController: BaseServiceController {
         switch index {
         case 0:
             module.nextModule?.customStart(
-                page: .services(.getTestDriveCars),
-                with: params,
+                request: (.services(.getTestDriveCars), params),
                 response: CarsResponse.self
             )
         case 1:
             module.nextModule?.customStart(
-                page: .services(.getTestDriveShowrooms),
-                with: params,
+                request: (.services(.getTestDriveShowrooms), params),
                 response: ShowroomsResponse.self
             )
         case 2:
             module.nextModule?.customStart(
-                page: .services(.getFreeTime),
-                with: params,
+                request: (.services(.getFreeTime), params),
                 response: CarsResponse.self
             )
         case 3:
