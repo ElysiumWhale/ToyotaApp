@@ -212,32 +212,8 @@ struct GetShowroomsForTestDriveBody: IBody, BodyWithBrandId {
     }
 }
 
-typealias NewBookServiceBody = AnyBody
-
 // MARK: - BookServiceBody
-struct BookServiceBody: IBody, BodyWithUserId, BodyWithShowroomId {
-    let userId: String
-    let showroomId: String
-    let serviceId: String
-    let carId: String
-    let dateBooking: String?
-    let startBooking: String?
-    let longitude: String?
-    let latitude: String?
-
-    var asRequestItems: [URLQueryItem] {
-        [
-            userIdItem,
-            showroomIdItem,
-            .init(.services(.serviceId), serviceId),
-            .init(.carInfo(.carId), carId),
-            .init(.services(.dateBooking), dateBooking),
-            .init(.services(.startBooking), startBooking),
-            .init(.services(.longitude), longitude),
-            .init(.services(.latitude), latitude)
-        ]
-    }
-}
+typealias BookServiceBody = AnyBody
 
 // MARK: - GetManagersBody
 struct GetManagersBody: IBody, BodyWithUserAndBrandId {

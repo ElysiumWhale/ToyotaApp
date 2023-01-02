@@ -17,7 +17,7 @@ protocol IRegistrationService {
 }
 
 protocol IBookingService {
-    func bookService(_ body: NewBookServiceBody) async -> DefaultResponse
+    func bookService(_ body: BookServiceBody) async -> DefaultResponse
 }
 
 actor NewInfoService {
@@ -72,7 +72,7 @@ extension NewInfoService: IRegistrationService {
 
 // MARK: - IBookingService
 extension NewInfoService: IBookingService {
-    func bookService(_ body: NewBookServiceBody) async -> DefaultResponse {
+    func bookService(_ body: BookServiceBody) async -> DefaultResponse {
         await networkService.makeRequest(Request(
             page: .services(.bookService), body: body
         ))
