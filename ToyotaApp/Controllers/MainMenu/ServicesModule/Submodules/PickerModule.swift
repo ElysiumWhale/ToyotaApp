@@ -2,6 +2,7 @@ import UIKit
 import DesignKit
 
 final class PickerModule: NSObject, IServiceModule {
+    private let serviceType: ServiceType
 
     private var services: [IService] = []
 
@@ -20,8 +21,6 @@ final class PickerModule: NSObject, IServiceModule {
         return internalView
     }()
 
-    let serviceType: ServiceType
-
     var view: UIView {
         internalView
     }
@@ -36,12 +35,12 @@ final class PickerModule: NSObject, IServiceModule {
 
     var onUpdate: ((IServiceModule) -> Void)?
 
-    init(with type: ServiceType) {
-        serviceType = type
+    init(_ serviceType: ServiceType) {
+        self.serviceType = serviceType
         super.init()
     }
 
-    // MARK: - Public methods
+    // MARK: - IServiceModule
     func configure(appearance: [ModuleAppearances]) {
         internalView.configure(appearance: appearance)
     }

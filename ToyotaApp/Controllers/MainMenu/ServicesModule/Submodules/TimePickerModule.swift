@@ -6,22 +6,7 @@ private struct FreeTime {
 }
 
 final class TimePickerModule: NSObject, IServiceModule {
-
-    var view: UIView { internalView }
-
-    weak var nextModule: IServiceModule?
-
-    var onUpdate: ((IServiceModule) -> Void)?
-
-    private(set) var serviceType: ServiceType
-
-    private(set) var state: ModuleStates = .idle {
-        didSet {
-            onUpdate?(self)
-        }
-    }
-
-    // MARK: - Private properties
+    private let serviceType: ServiceType
 
     private var dates: [FreeTime] = []
     private var timeRows = (date: 0, time: 0)
@@ -34,17 +19,30 @@ final class TimePickerModule: NSObject, IServiceModule {
         }
 
         let freeTime = dates[timeRows.date]
-        return (date: freeTime.date.asString(.server),
-                time: freeTime.freeTime[timeRows.time].hourAndMinute)
+        return (
+            date: freeTime.date.asString(.server),
+            time: freeTime.freeTime[timeRows.time].hourAndMinute
+        )
     }
 
-    init(with type: ServiceType) {
-        serviceType = type
+    var view: UIView { internalView }
+
+    var onUpdate: ((IServiceModule) -> Void)?
+
+    weak var nextModule: IServiceModule?
+
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            onUpdate?(self)
+        }
+    }
+
+    init(_ serviceType: ServiceType) {
+        self.serviceType = serviceType
         super.init()
-
     }
 
-    // MARK: - Public methods
+    // MARK: - IServiceModule
     func configure(appearance: [ModuleAppearances]) {
         internalView.configure(appearance: appearance)
     }

@@ -61,26 +61,26 @@ enum ServicesFlow {
         case .notDefined:
             break
         case .timepick:
-            modules.append(TimePickerModule(with: serviceType))
+            modules.append(TimePickerModule(serviceType))
         case .map:
             modules.append(MapModule())
         case .onePick:
-            modules.append(PickerModule(with: serviceType))
+            modules.append(PickerModule(serviceType))
         case .onePickMap:
-            modules.append(PickerModule(with: serviceType))
+            modules.append(PickerModule(serviceType))
             modules.append(MapModule())
         case .onePickTime:
-            modules.append(PickerModule(with: serviceType))
-            modules.append(TimePickerModule(with: serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
         case .onePickTimeMap:
-            modules.append(PickerModule(with: serviceType))
-            modules.append(TimePickerModule(with: serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
             modules.append(MapModule())
         case .threePicksTime:
-            modules.append(PickerModule(with: serviceType))
-            modules.append(PickerModule(with: serviceType))
-            modules.append(PickerModule(with: serviceType))
-            modules.append(TimePickerModule(with: serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
         default:
             break
         }
