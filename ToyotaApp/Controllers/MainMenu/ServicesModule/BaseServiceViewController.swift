@@ -1,7 +1,7 @@
 import UIKit
 import DesignKit
 
-class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
+class BaseServiceController: BaseViewController, Loadable {
     let loadingView = LoadingView()
     let scrollView = UIScrollView()
     let stackView = UIStackView()

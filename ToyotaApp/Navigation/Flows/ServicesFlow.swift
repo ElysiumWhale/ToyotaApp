@@ -30,8 +30,8 @@ enum ServicesFlow {
         user: UserProxy
     ) -> UIViewController {
 
-        var controller: ModuleDelegate!
-        let modules = buildModules(with: serviceType, for: controlType)
+        let controller: BaseServiceController
+        let modules = makeChainedModules(with: serviceType, for: controlType)
 
         switch serviceType.id {
         case CustomServices.TestDrive:
@@ -39,12 +39,11 @@ enum ServicesFlow {
         default:
             controller = BaseServiceController(serviceType, modules, user)
         }
-        modules.forEach { $0.delegate = controller }
 
         return controller
     }
 
-    private static func buildModules(
+    private static func makeChainedModules(
         with serviceType: ServiceType,
         for controlType: ServiceViewType
     ) -> [IServiceModule] {

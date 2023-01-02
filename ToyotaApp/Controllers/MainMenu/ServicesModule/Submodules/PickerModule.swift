@@ -29,12 +29,10 @@ final class PickerModule: NSObject, IServiceModule {
 
     private(set) var state: ModuleStates = .idle {
         didSet {
-            delegate?.moduleDidUpdate(self)
         }
     }
 
     weak var nextModule: IServiceModule?
-    weak var delegate: ModuleDelegate?
 
     init(with type: ServiceType) {
         serviceType = type

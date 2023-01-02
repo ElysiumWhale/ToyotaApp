@@ -17,12 +17,10 @@ final class MapModule: NSObject, IServiceModule {
 
     private(set) var state: ModuleStates = .idle {
         didSet {
-            delegate?.moduleDidUpdate(self)
         }
     }
 
     weak var nextModule: IServiceModule?
-    weak var delegate: ModuleDelegate?
 
     func start(with params: RequestItems) {
         locationManager.delegate = self
