@@ -6,7 +6,6 @@ private struct FreeTime {
 }
 
 final class TimePickerModule: NSObject, IServiceModule {
-    private let requestHandler = RequestHandler<FreeTimeResponse>()
 
     var view: UIView { internalView }
 
@@ -43,7 +42,6 @@ final class TimePickerModule: NSObject, IServiceModule {
         serviceType = type
         super.init()
 
-        setupRequestHandlers()
     }
 
     // MARK: - Public methods
@@ -95,25 +93,8 @@ final class TimePickerModule: NSObject, IServiceModule {
     }
 
     // MARK: - Private methods
-    private func setupRequestHandlers() {
-        requestHandler
-            .bind { [weak self] data in
-                self?.completion(for: data)
-            } onFailure: { [weak self] error in
-                self?.state = .error(.requestError(error.message))
-            }
-    }
-
     private func rowIn(component: Int) -> Int {
         internalView.picker.selectedRow(inComponent: component)
-    }
-
-    private func completion(for response: FreeTimeResponse) {
-        prepareTime(from: response.freeTimeDict)
-        internalView.dataDidDownload()
-        DispatchQueue.main.async { [weak self] in
-            self?.changeState()
-        }
     }
 
     private func changeState() {

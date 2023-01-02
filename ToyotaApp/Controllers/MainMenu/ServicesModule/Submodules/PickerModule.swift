@@ -2,7 +2,6 @@ import UIKit
 import DesignKit
 
 final class PickerModule: NSObject, IServiceModule {
-    private let handler = RequestHandler<ServicesResponse>()
 
     private var services: [IService] = []
 
@@ -40,8 +39,6 @@ final class PickerModule: NSObject, IServiceModule {
     init(with type: ServiceType) {
         serviceType = type
         super.init()
-
-        setupRequestHandlers()
     }
 
     // MARK: - Public methods
@@ -93,32 +90,6 @@ final class PickerModule: NSObject, IServiceModule {
         default:
             return []
         }
-    }
-
-    // MARK: - Private methods
-    private func setupRequestHandlers() {
-        handler
-            .observe(on: .main)
-            .bind(onSuccess: { [weak self] response in
-                self?.successCompletion(response)
-            }, onFailure: { [weak self] errorResponse in
-                self?.failureCompletion(errorResponse)
-            })
-    }
-
-    private func successCompletion<TResponse: IServiceResponse>(
-        _ response: TResponse
-    ) {
-        services = response.array.isEmpty ? [.empty] : response.array
-        DispatchQueue.main.async { [weak self] in
-            self?.internalView.fadeIn()
-            self?.internalView.picker.reloadAllComponents()
-            self?.state = .didDownload
-        }
-    }
-
-    private func failureCompletion(_ errorResponse: ErrorResponse) {
-        state = .error(.requestError(errorResponse.message))
     }
 
     @objc private func serviceDidSelect() {
