@@ -177,7 +177,9 @@ class BaseServiceController: BaseViewController, Loadable {
     }
 
     func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
-        PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
+        PopUp.display(.error(
+            description: error.message ?? AppErrors.unknownError.rawValue
+        ))
         stopLoading()
         navigationController?.popViewController(animated: true)
     }
