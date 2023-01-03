@@ -1,7 +1,7 @@
 import UIKit
 import DesignKit
 
-class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
+class BaseServiceController: BaseViewController, Loadable {
     let loadingView = LoadingView()
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -9,7 +9,7 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     let bookButton = CustomizableButton()
 
     // MARK: - Models
-    let bookingRequestHandler = DefaultRequestHandler()
+    let bookingService: IBookingService
     let serviceType: ServiceType
     let user: UserProxy
 
@@ -35,15 +35,15 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
 
     init(_ service: ServiceType,
          _ modules: [IServiceModule],
-         _ user: UserProxy
+         _ user: UserProxy,
+         _ bookingService: IBookingService = NewInfoService()
     ) {
         self.modules = modules
         self.user = user
         self.serviceType = service
+        self.bookingService = bookingService
 
         super.init()
-
-        setupRequestHandlers()
     }
 
     override func viewDidLoad() {
@@ -142,34 +142,44 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
             params.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(.init(page: .services(.bookService),
-                                         body: AnyBody(items: params)),
-                                   handler: bookingRequestHandler)
+        Task {
+            await makeBookingRequest(params)
+        }
     }
 
-    func setupRequestHandlers() {
-        bookingRequestHandler
-            .bind { [weak self] _ in
-                PopUp.display(.success(description: .common(.bookingSuccess))) {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            } onFailure: { [weak bookButton] error in
-                PopUp.display(.error(
-                    description: error.message ?? .error(.servicesError)
-                ))
-                bookButton?.isEnabled = true
-            }
+    func makeBookingRequest(_ params: RequestItems) async {
+        switch await bookingService.bookService(BookServiceBody(items: params)) {
+        case .success:
+            navigationController?.popViewController(animated: true)
+            PopUp.display(.success(description: .common(.bookingSuccess)))
+        case let .failure(error):
+            PopUp.display(.error(
+                description: error.message ?? .error(.servicesError)
+            ))
+            bookButton.isEnabled = true
+        }
     }
 
     // MARK: - Modules updates processing
     func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
-            self?.handleUpdate(of: module)
+        switch module.state {
+        case .idle:
+            return
+        case .didDownload:
+            stopLoading()
+        case let .error(error):
+            didRaiseError(module, error)
+        case let .block(message):
+            didBlock(module, message)
+        case let .didChose(service):
+            didChose(service, in: module)
         }
     }
 
     func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
-        PopUp.display(.error(description: error.message ?? AppErrors.unknownError.rawValue))
+        PopUp.display(.error(
+            description: error.message ?? AppErrors.unknownError.rawValue
+        ))
         stopLoading()
         navigationController?.popViewController(animated: true)
     }
@@ -185,7 +195,8 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
-        guard let nextModule = module.nextModule else {
+        guard let index = modules.firstIndex(where: { $0 === module}),
+              let nextModule = modules[safe: index + 1] else {
             stopLoading()
             if !stackView.arrangedSubviews.contains(bookButton) {
                 stackView.addArrangedSubview(bookButton)
@@ -200,21 +211,6 @@ class BaseServiceController: BaseViewController, ModuleDelegate, Loadable {
         nextModule.start(with: params)
         if !stackView.arrangedSubviews.contains(nextModule.view) {
             stackView.addArrangedSubview(nextModule.view)
-        }
-    }
-
-    private func handleUpdate(of module: IServiceModule) {
-        switch module.state {
-            case .idle:
-                return
-            case .didDownload:
-                stopLoading()
-            case let .error(error):
-                didRaiseError(module, error)
-            case let .block(message):
-                didBlock(module, message)
-            case let .didChose(service):
-                didChose(service, in: module)
         }
     }
 

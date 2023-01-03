@@ -30,8 +30,8 @@ enum ServicesFlow {
         user: UserProxy
     ) -> UIViewController {
 
-        var controller: ModuleDelegate!
-        let modules = buildModules(with: serviceType, for: controlType)
+        let controller: BaseServiceController
+        let modules = makeChainedModules(with: serviceType, for: controlType)
 
         switch serviceType.id {
         case CustomServices.TestDrive:
@@ -39,57 +39,52 @@ enum ServicesFlow {
         default:
             controller = BaseServiceController(serviceType, modules, user)
         }
-        modules.forEach { $0.delegate = controller }
+
+        modules.forEach {
+            $0.onUpdate = { [weak controller] module in
+                DispatchQueue.main.async {
+                    controller?.moduleDidUpdate(module)
+                }
+            }
+        }
 
         return controller
     }
 
-    private static func buildModules(
+    private static func makeChainedModules(
         with serviceType: ServiceType,
         for controlType: ServiceViewType
     ) -> [IServiceModule] {
 
         var modules: [IServiceModule] = []
         switch controlType {
-            case .notDefined: break
-            case .timepick:
-                modules.append(TimePickerModule(with: serviceType))
-            case .map:
-                modules.append(MapModule())
-            case .onePick:
-                modules.append(PickerModule(with: serviceType))
-            case .onePickMap:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(MapModule())
-            case .onePickTime:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-            case .onePickTimeMap:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-                modules.append(MapModule())
-            case .threePicksTime:
-                modules.append(PickerModule(with: serviceType))
-                modules.append(PickerModule(with: serviceType))
-                modules.append(PickerModule(with: serviceType))
-                modules.append(TimePickerModule(with: serviceType))
-            default: break
+        case .notDefined:
+            break
+        case .timepick:
+            modules.append(TimePickerModule(serviceType))
+        case .map:
+            modules.append(MapModule())
+        case .onePick:
+            modules.append(PickerModule(serviceType))
+        case .onePickMap:
+            modules.append(PickerModule(serviceType))
+            modules.append(MapModule())
+        case .onePickTime:
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
+        case .onePickTimeMap:
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
+            modules.append(MapModule())
+        case .threePicksTime:
+            modules.append(PickerModule(serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(PickerModule(serviceType))
+            modules.append(TimePickerModule(serviceType))
+        default:
+            break
         }
 
-        return modules.chained()
-    }
-}
-
-private extension Array where Element == IServiceModule {
-    func chained() -> Self {
-        guard isNotEmpty else {
-            return self
-        }
-
-        for i in 0...count - 1 {
-            self[i].nextModule = i + 1 <= count - 1 ? self[i + 1] : nil
-        }
-
-        return self
+        return modules
     }
 }

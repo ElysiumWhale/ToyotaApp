@@ -77,13 +77,6 @@ final class InfoService {
         }
     }
 
-    func bookService(with body: BookServiceBody,
-                     handler: RequestHandler<SimpleResponse>) {
-        perform(with: handler) {
-            Request(page: .services(.bookService), body: body)
-        }
-    }
-
     func getCarsFTD(with body: GetCarsForTestDriveBody,
                     handler: RequestHandler<CarsResponse>) {
         perform(with: handler) {

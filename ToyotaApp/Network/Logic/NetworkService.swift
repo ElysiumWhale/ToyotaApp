@@ -18,43 +18,6 @@ class NetworkService {
         return session
     }()
 
-    class func makeRequest<TResponse>(
-        page: RequestPath,
-        params: RequestItems = .empty,
-        completion: @escaping ResponseHandler<TResponse>
-    ) where TResponse: IResponse {
-
-        let request = buildPostRequest(for: page.rawValue,
-                                       with: params.asQueryItems)
-
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                completion(Result.failure(.lostConnection))
-                return
-            }
-
-            guard let data = data else {
-                completion(Result.failure(.corruptedData))
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            if let response = try? JSONDecoder().decode(TResponse.self, from: data) {
-                completion(Result.success(response))
-            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                completion(Result.failure(errorResponse))
-            } else {
-                completion(Result.failure(.corruptedData))
-            }
-        }
-
-        task.resume()
-    }
-
     class func makeRequest<Response>(
         _ request: Request,
         handler: RequestHandler<Response>
@@ -94,13 +57,17 @@ class NetworkService {
 
     class func makeRequest(_ request: Request) {
         session.dataTask(
-            with: buildPostRequest(for: request.page.rawValue,
-                                   with: request.body.asRequestItems)
+            with: buildPostRequest(
+                for: request.page.rawValue,
+                with: request.body.asRequestItems
+            )
         ).resume()
     }
 
-    class private func buildPostRequest(for page: String,
-                                        with params: [URLQueryItem] = []) -> URLRequest {
+    class private func buildPostRequest(
+        for page: String,
+        with params: [URLQueryItem] = []
+    ) -> URLRequest {
         var mainURL = UrlFactory.mainUrl
         mainURL.path.append(page)
         mainURL.queryItems = params
@@ -111,7 +78,7 @@ class NetworkService {
         // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
         // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
-        //                                        options: JSONSerialization.WritingOptions.prettyPrinted)
+        //                                        options: JSONSerialisation.WritingOptions.prettyPrinted)
         // request.httpBody = data
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request

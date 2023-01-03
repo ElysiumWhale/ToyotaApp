@@ -40,8 +40,11 @@ extension Keyboardable {
 
         // Workaround of the situation when height is less than 300 inset does not change
         let heightInset = keyboardSize.cgRectValue.height < 300 ? 300 : keyboardSize.cgRectValue.height
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
-                                         bottom: heightInset, right: 0.0)
+        let contentInsets = UIEdgeInsets(
+            top: 0.0, left: 0.0,
+            bottom: heightInset, right: 0.0
+        )
+
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
       }

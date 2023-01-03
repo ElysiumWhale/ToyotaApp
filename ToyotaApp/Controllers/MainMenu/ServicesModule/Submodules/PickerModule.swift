@@ -2,7 +2,7 @@ import UIKit
 import DesignKit
 
 final class PickerModule: NSObject, IServiceModule {
-    private let handler = RequestHandler<ServicesResponse>()
+    private let serviceType: ServiceType
 
     private var services: [IService] = []
 
@@ -21,114 +21,84 @@ final class PickerModule: NSObject, IServiceModule {
         return internalView
     }()
 
-    let serviceType: ServiceType
-
     var view: UIView {
         internalView
     }
 
     private(set) var state: ModuleStates = .idle {
         didSet {
-            delegate?.moduleDidUpdate(self)
+            onUpdate?(self)
         }
     }
 
     weak var nextModule: IServiceModule?
-    weak var delegate: ModuleDelegate?
 
-    init(with type: ServiceType) {
-        serviceType = type
+    var onUpdate: ((IServiceModule) -> Void)?
+
+    init(_ serviceType: ServiceType) {
+        self.serviceType = serviceType
         super.init()
-
-        setupRequestHandlers()
     }
 
-    // MARK: - Public methods
+    // MARK: - IServiceModule
     func configure(appearance: [ModuleAppearances]) {
         internalView.configure(appearance: appearance)
     }
 
     func start(with params: RequestItems) {
-        state = .idle
-        internalView.textField.text = .empty
-
         var queryParams = params
         queryParams.append((.services(.serviceTypeId), serviceType.id))
 
-        NetworkService.makeRequest(
-            Request(
-                page: .services(.getServices),
-                body: AnyBody(items: queryParams)
-            ),
-            handler: handler
+        customStart(
+            request: (.services(.getServices), queryParams),
+            response: ServicesResponse.self
         )
     }
 
     func customStart<TResponse: IServiceResponse>(
-        page: RequestPath,
-        with params: RequestItems,
+        request: (path: RequestPath, items: RequestItems),
         response type: TResponse.Type
     ) {
         state = .idle
         internalView.textField.text = .empty
 
-        NetworkService.makeRequest(
-            page: page,
-            params: params
-        ) { [weak self] (response: Response<TResponse>) in
-            switch response {
-            case .failure(let error):
-                self?.failureCompletion(error)
-            case .success(let data):
-                self?.successCompletion(data)
+        let newRequest = Request(
+            page: request.path,
+            body: AnyBody(items: request.items)
+        )
+        Task {
+            let result: NewResponse<TResponse> = await NewNetworkService.shared.makeRequest(newRequest)
+            switch result {
+            case let .success(response):
+                services = response.array.isEmpty ? [.empty] : response.array
+                DispatchQueue.main.async { [weak self] in
+                    self?.internalView.fadeIn()
+                    self?.internalView.picker.reloadAllComponents()
+                    self?.state = .didDownload
+                }
+            case let .failure(error):
+                state = .error(.requestError(error.message))
             }
         }
     }
 
     func buildQueryItems() -> RequestItems {
         switch state {
-        case .didChose(let data):
+        case let .didChose(data):
             return [(.services(.serviceId), data.id)]
         default:
             return []
         }
     }
 
-    // MARK: - Private methods
-    private func setupRequestHandlers() {
-        handler
-            .observe(on: .main)
-            .bind(onSuccess: { [weak self] response in
-                self?.successCompletion(response)
-            }, onFailure: { [weak self] errorResponse in
-                self?.failureCompletion(errorResponse)
-            })
-    }
-
-    private func successCompletion<TResponse: IServiceResponse>(_ response: TResponse) {
-        services = response.array.isEmpty ? [.empty] : response.array
-        DispatchQueue.main.async { [weak self] in
-            self?.internalView.fadeIn()
-            self?.internalView.picker.reloadAllComponents()
-            self?.state = .didDownload
-        }
-    }
-
-    private func failureCompletion(_ errorResponse: ErrorResponse) {
-        state = .error(.requestError(errorResponse.message))
-    }
-
     @objc private func serviceDidSelect() {
-        guard services.isNotEmpty,
-              let service = services[safe: internalView.picker.selectedRow],
+        view.endEditing(true)
+        guard let service = services[safe: internalView.picker.selectedRow],
               service.id != "-1" else {
-
-            view.endEditing(true)
             return
         }
 
         internalView.textField.text = service.name
-        internalView.endEditing(true)
         state = .didChose(service)
     }
 }

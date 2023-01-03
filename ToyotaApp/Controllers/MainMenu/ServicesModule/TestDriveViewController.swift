@@ -1,36 +1,34 @@
 import UIKit
 
-class TestDriveViewController: BaseServiceController {
+final class TestDriveViewController: BaseServiceController {
     override var hasCarSelection: Bool {
         false
     }
 
     override func start() {
-        let configs = configurationForModules()
-
-        for (module, config) in zip(modules, configs) {
-            stackView.addArrangedSubview(module.view)
-            module.configure(appearance: config)
-        }
+        configureModulesAppearance()
         stackView.addArrangedSubview(bookButton)
         view.addSubview(loadingView)
         loadingView.fadeIn()
         modules.first?.customStart(
-            page: .profile(.getCities),
-            with: [(.auth(.brandId), Brand.Toyota)],
+            request: (
+                path: .profile(.getCities),
+                items: [(.auth(.brandId), Brand.Toyota)]
+            ),
             response: CitiesResponse.self
         )
     }
 
     override func moduleDidUpdate(_ module: IServiceModule) {
-        DispatchQueue.main.async { [weak self] in
-            switch module.state {
-                case .idle: return
-                case .didDownload: self?.stopLoading()
-                case .error(let error): self?.didRaiseError(module, error)
-                case .block: break
-                case .didChose(let service): self?.didChose(service, in: module)
-            }
+        switch module.state {
+        case .idle, .block:
+            return
+        case .didDownload:
+            stopLoading()
+        case let .error(error):
+            didRaiseError(module, error)
+        case let .didChose(service):
+            didChose(service, in: module)
         }
     }
 
@@ -48,21 +46,18 @@ class TestDriveViewController: BaseServiceController {
         let params = buildParams(for: index, value: service.id)
         switch index {
         case 0:
-            module.nextModule?.customStart(
-                page: .services(.getTestDriveCars),
-                with: params,
+            modules[safe: index + 1]?.customStart(
+                request: (.services(.getTestDriveCars), params),
                 response: CarsResponse.self
             )
         case 1:
-            module.nextModule?.customStart(
-                page: .services(.getTestDriveShowrooms),
-                with: params,
+            modules[safe: index + 1]?.customStart(
+                request: (.services(.getTestDriveShowrooms), params),
                 response: ShowroomsResponse.self
             )
         case 2:
-            module.nextModule?.customStart(
-                page: .services(.getFreeTime),
-                with: params,
+            modules[safe: index + 1]?.customStart(
+                request: (.services(.getFreeTime), params),
                 response: CarsResponse.self
             )
         case 3:
@@ -74,19 +69,24 @@ class TestDriveViewController: BaseServiceController {
 
     private func buildParams(for index: Int, value: String) -> RequestItems {
         switch index {
-            case 0:
-                return [(.carInfo(.cityId), value),
-                        (.auth(.brandId), Brand.Toyota)]
-            case 1:
-                return [(.auth(.brandId), Brand.Toyota),
-                        (.carInfo(.cityId),
-                        modules[0].state.getService()?.id),
-                        (.services(.serviceId), value)]
-            case 2:
-                return [(.carInfo(.showroomId), value),
-                        (.services(.serviceId),
-                        modules[1].state.getService()?.id)]
-            default: return []
+        case 0:
+            return [
+                (.carInfo(.cityId), value),
+                (.auth(.brandId), Brand.Toyota)
+            ]
+        case 1:
+            return [
+                (.auth(.brandId), Brand.Toyota),
+                (.carInfo(.cityId), modules[0].state.service?.id),
+                (.services(.serviceId), value)
+            ]
+        case 2:
+            return [
+                (.carInfo(.showroomId), value),
+                (.services(.serviceId), modules[1].state.service?.id)
+            ]
+        default:
+            return []
         }
     }
 
@@ -103,24 +103,34 @@ class TestDriveViewController: BaseServiceController {
     }
 
     override func bookService() {
-        guard let showroomId = modules[2].state.getService()?.id,
-              let carId = modules[1].state.getService()?.id else {
+        guard let showroomId = modules[2].state.service?.id,
+              let carId = modules[1].state.service?.id else {
             return
         }
 
-        var params: RequestItems = [(.auth(.userId), user.id),
-                                    (.carInfo(.showroomId), showroomId),
-                                    (.services(.serviceId), carId)]
+        var params: RequestItems = [
+            (.auth(.userId), user.id),
+            (.carInfo(.showroomId), showroomId),
+            (.services(.serviceId), carId)
+        ]
         params.append(contentsOf: modules[3].buildQueryItems())
 
-        NetworkService.makeRequest(.init(page: .services(.bookService),
-                                         body: AnyBody(items: params)),
-                                   handler: bookingRequestHandler)
+        Task {
+            await makeBookingRequest(params)
+        }
     }
 }
 
 // MARK: - Modules configurations
 extension TestDriveViewController {
+    func configureModulesAppearance() {
+        let configs = configurationForModules()
+        for (module, config) in zip(modules, configs) {
+            stackView.addArrangedSubview(module.view)
+            module.configure(appearance: config)
+        }
+    }
+
     func configurationForModules() -> [[ModuleAppearances]] {
         [
             [.title(.common(.chooseCity)), .placeholder(.common(.city))],

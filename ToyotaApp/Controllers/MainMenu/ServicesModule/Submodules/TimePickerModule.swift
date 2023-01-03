@@ -6,32 +6,12 @@ private struct FreeTime {
 }
 
 final class TimePickerModule: NSObject, IServiceModule {
-    private let requestHandler = RequestHandler<FreeTimeResponse>()
-
-    var view: UIView { internalView }
-
-    weak var delegate: ModuleDelegate?
-    weak var nextModule: IServiceModule?
-
-    private(set) var serviceType: ServiceType
-
-    private(set) var state: ModuleStates = .idle {
-        didSet {
-            delegate?.moduleDidUpdate(self)
-        }
-    }
-
-    // MARK: - Private properties
-    private lazy var internalView: TimePickerView = {
-        let view = TimePickerView()
-        view.picker.delegate = self
-        view.picker.dataSource = self
-        view.alpha = 0
-        return view
-    }()
+    private let serviceType: ServiceType
 
     private var dates: [FreeTime] = []
     private var timeRows = (date: 0, time: 0)
+
+    private lazy var internalView = TimePickerView(delegate: self, alpha: 0)
 
     private var selectedDate: (date: String, time: String)? {
         guard dates.isNotEmpty else {
@@ -39,18 +19,30 @@ final class TimePickerModule: NSObject, IServiceModule {
         }
 
         let freeTime = dates[timeRows.date]
-        return (date: freeTime.date.asString(.server),
-                time: freeTime.freeTime[timeRows.time].hourAndMinute)
+        return (
+            date: freeTime.date.asString(.server),
+            time: freeTime.freeTime[timeRows.time].hourAndMinute
+        )
     }
 
-    init(with type: ServiceType) {
-        serviceType = type
+    var view: UIView { internalView }
+
+    var onUpdate: ((IServiceModule) -> Void)?
+
+    weak var nextModule: IServiceModule?
+
+    private(set) var state: ModuleStates = .idle {
+        didSet {
+            onUpdate?(self)
+        }
+    }
+
+    init(_ serviceType: ServiceType) {
+        self.serviceType = serviceType
         super.init()
-
-        setupRequestHandlers()
     }
 
-    // MARK: - Public methods
+    // MARK: - IServiceModule
     func configure(appearance: [ModuleAppearances]) {
         internalView.configure(appearance: appearance)
     }
@@ -62,28 +54,30 @@ final class TimePickerModule: NSObject, IServiceModule {
             queryParams.append((.services(.serviceId), serviceType.id))
         }
 
-        NetworkService.makeRequest(
-            Request(
-                page: .services(.getFreeTime),
-                body: AnyBody(items: queryParams)
-            ),
-            handler: requestHandler
+        let request = Request(
+            page: .services(.getFreeTime),
+            body: AnyBody(items: queryParams)
         )
+        Task {
+            let result: NewResponse<FreeTimeResponse> = await NewNetworkService.shared.makeRequest(request)
+            switch result {
+            case let .success(response):
+                prepareTime(from: response.freeTimeDict)
+                DispatchQueue.main.async { [weak self] in
+                    self?.internalView.dataDidDownload()
+                    self?.changeState()
+                }
+            case let .failure(error):
+                state = .error(.requestError(error.message))
+            }
+        }
     }
 
     func customStart<TResponse: IServiceResponse>(
-        page: RequestPath,
-        with params: RequestItems,
+        request: (page: RequestPath, items: RequestItems),
         response type: TResponse.Type
     ) {
-        state = .idle
-        NetworkService.makeRequest(
-            Request(
-                page: .services(.getFreeTime),
-                body: AnyBody(items: params)
-            ),
-            handler: requestHandler
-        )
+        start(with: request.items)
     }
 
     func buildQueryItems() -> RequestItems {
@@ -97,25 +91,8 @@ final class TimePickerModule: NSObject, IServiceModule {
     }
 
     // MARK: - Private methods
-    private func setupRequestHandlers() {
-        requestHandler
-            .bind { [weak self] data in
-                self?.completion(for: data)
-            } onFailure: { [weak self] error in
-                self?.state = .error(.requestError(error.message))
-            }
-    }
-
     private func rowIn(component: Int) -> Int {
         internalView.picker.selectedRow(inComponent: component)
-    }
-
-    private func completion(for response: FreeTimeResponse) {
-        prepareTime(from: response.freeTimeDict)
-        internalView.dataDidDownload()
-        DispatchQueue.main.async { [weak self] in
-            self?.changeState()
-        }
     }
 
     private func changeState() {
@@ -155,12 +132,17 @@ extension TimePickerModule: UIPickerViewDataSource {
         2
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         switch component {
         case 0:
             return dates.count
         case 1:
-            return dates.isNotEmpty ? dates[rowIn(component: 0)].freeTime.count : 0
+            return dates.isNotEmpty
+            ? dates[rowIn(component: 0)].freeTime.count
+            : 0
         default:
             return 0
         }
