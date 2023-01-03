@@ -193,7 +193,8 @@ class BaseServiceController: BaseViewController, Loadable {
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
-        guard let nextModule = module.nextModule else {
+        guard let index = modules.firstIndex(where: { $0 === module}),
+              let nextModule = modules[safe: index + 1] else {
             stopLoading()
             if !stackView.arrangedSubviews.contains(bookButton) {
                 stackView.addArrangedSubview(bookButton)

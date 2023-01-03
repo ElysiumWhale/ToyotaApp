@@ -85,20 +85,6 @@ enum ServicesFlow {
             break
         }
 
-        return modules.chained()
-    }
-}
-
-private extension Array where Element == IServiceModule {
-    func chained() -> Self {
-        guard !isEmpty else {
-            return self
-        }
-
-        for i in 0..<count {
-            self[i].nextModule = self[safe: i + 1]
-        }
-
-        return self
+        return modules
     }
 }

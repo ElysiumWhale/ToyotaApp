@@ -46,17 +46,17 @@ final class TestDriveViewController: BaseServiceController {
         let params = buildParams(for: index, value: service.id)
         switch index {
         case 0:
-            module.nextModule?.customStart(
+            modules[safe: index + 1]?.customStart(
                 request: (.services(.getTestDriveCars), params),
                 response: CarsResponse.self
             )
         case 1:
-            module.nextModule?.customStart(
+            modules[safe: index + 1]?.customStart(
                 request: (.services(.getTestDriveShowrooms), params),
                 response: ShowroomsResponse.self
             )
         case 2:
-            module.nextModule?.customStart(
+            modules[safe: index + 1]?.customStart(
                 request: (.services(.getFreeTime), params),
                 response: CarsResponse.self
             )
