@@ -762,6 +762,16 @@
 			path = BookingsModule;
 			sourceTree = "<group>";
 		};
+		A7679D7E29645AC200AB5E9C /* OrderModule */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
+				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
+				146590F926EAB5CD0056E37D /* Submodules */,
+			);
+			path = OrderModule;
+			sourceTree = "<group>";
+		};
 		A7777519259BFA00006D30EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,9 +822,7 @@
 				A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
-				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
-				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
-				146590F926EAB5CD0056E37D /* Submodules */,
+				A7679D7E29645AC200AB5E9C /* OrderModule */,
 				14F4A79928592BC900400B36 /* SupportModule */,
 			);
 			path = ServicesModule;
