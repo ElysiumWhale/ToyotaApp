@@ -33,7 +33,9 @@ final class NetworkService {
         )
 
         let task = fetcher.fetch(request) { [weak handler, weak self] in
-            self?.handleResponse($0, $1, $2, handler)
+            if let self, let handler {
+                self.handleResponse($0, $1, $2, handler)
+            }
         }
 
         handler.start(with: task)
@@ -53,15 +55,15 @@ final class NetworkService {
         _ data: Data?,
         _ response: URLResponse?,
         _ error: Error?,
-        _ handler: RequestHandler<Response>?
+        _ handler: RequestHandler<Response>
     ) {
         guard error == nil else {
-            handler?.invokeFailure(.lostConnection)
+            handler.invokeFailure(.lostConnection)
             return
         }
 
         guard let data = data else {
-            handler?.invokeFailure(.corruptedData)
+            handler.invokeFailure(.corruptedData)
             return
         }
 
@@ -71,11 +73,11 @@ final class NetworkService {
         #endif
 
         if let response = try? decoder.decode(Response.self, from: data) {
-            handler?.invokeSuccess(response)
+            handler.invokeSuccess(response)
         } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-            handler?.invokeFailure(errorResponse)
+            handler.invokeFailure(errorResponse)
         } else {
-            handler?.invokeFailure(.corruptedData)
+            handler.invokeFailure(.corruptedData)
         }
     }
 
