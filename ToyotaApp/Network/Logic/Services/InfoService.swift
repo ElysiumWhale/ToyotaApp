@@ -56,11 +56,17 @@ protocol CitiesService {
 }
 
 final class InfoService {
+    private let networkService: NetworkService
+
+    init(networkService: NetworkService = .shared) {
+        self.networkService = networkService
+    }
+
     func perform<TResponse>(
         with handler: RequestHandler<TResponse>,
         _ requestFactory: ValueClosure<Request>
     ) where TResponse: IResponse {
-        NetworkService.makeRequest(requestFactory(), handler: handler)
+        networkService.makeRequest(requestFactory(), handler: handler)
     }
 
     func getShowroomsFTD(with body: GetShowroomsForTestDriveBody,
@@ -110,7 +116,7 @@ extension InfoService: AuthService {
 
     func deleteTemporaryPhone(with body: DeletePhoneBody) {
         let request = Request(page: .registration(.deleteTemp), body: body)
-        NetworkService.makeRequest(request)
+        networkService.makeRequest(request)
     }
 
     func checkCode(with body: CheckSmsCodeBody,
