@@ -29,8 +29,6 @@ final class TimePickerModule: NSObject, IServiceModule {
 
     var onUpdate: ((IServiceModule) -> Void)?
 
-    weak var nextModule: IServiceModule?
-
     private(set) var state: ModuleStates = .idle {
         didSet {
             onUpdate?(self)

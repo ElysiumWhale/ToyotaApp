@@ -31,7 +31,6 @@ final class PickerModule: NSObject, IServiceModule {
         }
     }
 
-    weak var nextModule: IServiceModule?
 
     var onUpdate: ((IServiceModule) -> Void)?
 

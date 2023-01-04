@@ -21,7 +21,6 @@ final class MapModule: NSObject, IServiceModule {
         }
     }
 
-    weak var nextModule: IServiceModule?
 
     var onUpdate: ((IServiceModule) -> Void)?
 
