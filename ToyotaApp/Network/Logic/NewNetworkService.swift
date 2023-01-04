@@ -65,8 +65,10 @@ actor NewNetworkService {
         // MARK: - Future
         // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
-        // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
-        //                                        options: JSONSerialization.WritingOptions.prettyPrinted)
+        // let data = try? JSONSerialization.data(
+        //     withJSONObject: paramsDict,
+        //     options: JSONSerialization.WritingOptions.prettyPrinted
+        // )
         // request.httpBody = data
         request.httpBody = Data(mainURL.url!.query!.utf8)
         return request

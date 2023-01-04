@@ -21,7 +21,6 @@ final class MapModule: NSObject, IServiceModule {
         }
     }
 
-
     var onUpdate: ((IServiceModule) -> Void)?
 
     func start(with params: RequestItems) {
