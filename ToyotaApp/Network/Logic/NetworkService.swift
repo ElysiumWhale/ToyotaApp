@@ -8,25 +8,26 @@ struct Request {
     let body: IBody
 }
 
-class NetworkService {
-    private static let session: URLSession = {
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 20
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.httpCookieStorage?.cookieAcceptPolicy = .never
-        let session = URLSession(configuration: config)
-        return session
-    }()
+final class NetworkService {
+    static let shared = NetworkService()
 
-    class func makeRequest<Response>(
+    private let fetcher: Fetcher
+
+    init(fetcher: Fetcher = DefaultAsyncFetcher()) {
+        self.fetcher = fetcher
+    }
+
+    func makeRequest<Response>(
         _ request: Request,
         handler: RequestHandler<Response>
     ) where Response: IResponse {
 
-        let request = buildPostRequest(for: request.page.rawValue,
-                                       with: request.body.asRequestItems)
+        let request = buildPostRequest(
+            for: request.page.rawValue,
+            with: request.body.asRequestItems
+        )
 
-        let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
+        let task = fetcher.fetch(request) { [weak handler] (data, response, error) in
             guard error == nil else {
                 handler?.invokeFailure(.lostConnection)
                 return
@@ -55,16 +56,17 @@ class NetworkService {
         handler.start(with: task)
     }
 
-    class func makeRequest(_ request: Request) {
-        session.dataTask(
-            with: buildPostRequest(
+    func makeRequest(_ request: Request) {
+        fetcher.fetch(
+            buildPostRequest(
                 for: request.page.rawValue,
                 with: request.body.asRequestItems
-            )
+            ),
+            { _, _, _ in }
         ).resume()
     }
 
-    class private func buildPostRequest(
+    private func buildPostRequest(
         for page: String,
         with params: [URLQueryItem] = []
     ) -> URLRequest {
@@ -84,7 +86,7 @@ class NetworkService {
         return request
     }
 
-    class func buildImageUrl(_ path: String) -> URL? {
+    func buildImageUrl(_ path: String) -> URL? {
         guard path.isNotEmpty else {
             return nil
         }
@@ -103,8 +105,6 @@ typealias RequestItems = [RequestItem]
 
 extension Array where Element == RequestItem {
     var asQueryItems: [URLQueryItem] {
-        map { key, value in .init(name: key.rawValue, value: value) }
+        map(URLQueryItem.init)
     }
-
-    static let empty: RequestItems = []
 }
