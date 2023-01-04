@@ -12,9 +12,14 @@ final class NetworkService {
     static let shared = NetworkService()
 
     private let fetcher: Fetcher
+    private let decoder: JSONDecoder
 
-    init(fetcher: Fetcher = DefaultAsyncFetcher()) {
+    init(
+        fetcher: Fetcher = DefaultAsyncFetcher(),
+        decoder: JSONDecoder = .init()
+    ) {
         self.fetcher = fetcher
+        self.decoder = decoder
     }
 
     func makeRequest<Response>(
@@ -65,7 +70,6 @@ final class NetworkService {
         print(json ?? "Error while parsing json object")
         #endif
 
-        let decoder = JSONDecoder()
         if let response = try? decoder.decode(Response.self, from: data) {
             handler?.invokeSuccess(response)
         } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
