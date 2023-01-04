@@ -24,6 +24,11 @@ final class ManagersInteractor {
         )
     }
 
+    func makeManagerUrl(for row: Int) -> URL? {
+        let manager = managers[row]
+        return NetworkService.shared.buildImageUrl(manager.imageUrl)
+    }
+
     private func setupRequestHandlers() {
         managersRequestHandler
             .observe(on: .main)

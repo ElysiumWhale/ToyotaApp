@@ -76,7 +76,7 @@ extension ManagersViewController: UICollectionViewDataSource {
         let manager = interactor.managers[indexPath.row]
         cell.render(.init(
             manager: manager,
-            photoUrl: NetworkService.buildImageUrl(manager.imageUrl)
+            photoUrl: interactor.makeManagerUrl(for: indexPath.row)
         ))
         return cell
     }
