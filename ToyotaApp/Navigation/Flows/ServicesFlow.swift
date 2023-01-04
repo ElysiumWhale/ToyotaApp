@@ -31,7 +31,7 @@ enum ServicesFlow {
     ) -> UIViewController {
 
         let controller: BaseServiceController
-        let modules = makeChainedModules(with: serviceType, for: controlType)
+        let modules = makeModules(with: serviceType, for: controlType)
 
         switch serviceType.id {
         case CustomServices.TestDrive:
@@ -51,7 +51,7 @@ enum ServicesFlow {
         return controller
     }
 
-    private static func makeChainedModules(
+    private static func makeModules(
         with serviceType: ServiceType,
         for controlType: ServiceViewType
     ) -> [IServiceModule] {
