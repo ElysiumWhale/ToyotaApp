@@ -24,7 +24,7 @@ final class BookingsInteractor {
     func getBookings() {
         bookingsService.getBookings(
             with: GetBookingsBody(userId: userId),
-            handler: bookingsHandler
+            bookingsHandler
         )
     }
 

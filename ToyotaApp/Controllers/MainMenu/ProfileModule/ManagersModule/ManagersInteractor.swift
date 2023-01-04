@@ -20,7 +20,7 @@ final class ManagersInteractor {
     func getManagers() {
         managersService.getManagers(
             with: GetManagersBody(userId: userId, brandId: Brand.Toyota),
-            handler: managersRequestHandler
+            managersRequestHandler
         )
     }
 
