@@ -1,10 +1,17 @@
 import Foundation
 
+protocol Fetcher {
+    func fetch(
+        _ request: URLRequest,
+        _ completion: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
+    ) -> RequestTask
+}
+
 protocol AsyncFetcher {
     func fetch(_ request: URLRequest) async throws -> (Data, URLResponse)
 }
 
-struct DefaultAsyncFetcher: AsyncFetcher {
+struct DefaultAsyncFetcher: AsyncFetcher, Fetcher {
     private let session: URLSession
 
     init(timeout: TimeInterval = 20) {
@@ -17,5 +24,12 @@ struct DefaultAsyncFetcher: AsyncFetcher {
 
     func fetch(_ request: URLRequest) async throws -> (Data, URLResponse) {
         try await session.data(for: request)
+    }
+
+    func fetch(
+        _ request: URLRequest,
+        _ completion: @escaping (Data?, URLResponse?, Error?) -> Void
+    ) -> RequestTask {
+        session.dataTask(with: request, completionHandler: completion)
     }
 }
