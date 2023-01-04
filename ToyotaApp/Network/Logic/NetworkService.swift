@@ -27,30 +27,8 @@ final class NetworkService {
             with: request.body.asRequestItems
         )
 
-        let task = fetcher.fetch(request) { [weak handler] (data, response, error) in
-            guard error == nil else {
-                handler?.invokeFailure(.lostConnection)
-                return
-            }
-
-            guard let data = data else {
-                handler?.invokeFailure(.corruptedData)
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            let decoder = JSONDecoder()
-            if let response = try? decoder.decode(Response.self, from: data) {
-                handler?.invokeSuccess(response)
-            } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-                handler?.invokeFailure(errorResponse)
-            } else {
-                handler?.invokeFailure(.corruptedData)
-            }
+        let task = fetcher.fetch(request) { [weak handler, weak self] in
+            self?.handleResponse($0, $1, $2, handler)
         }
 
         handler.start(with: task)
@@ -64,6 +42,37 @@ final class NetworkService {
             ),
             { _, _, _ in }
         ).resume()
+    }
+
+    private func handleResponse<Response: IResponse>(
+        _ data: Data?,
+        _ response: URLResponse?,
+        _ error: Error?,
+        _ handler: RequestHandler<Response>?
+    ) {
+        guard error == nil else {
+            handler?.invokeFailure(.lostConnection)
+            return
+        }
+
+        guard let data = data else {
+            handler?.invokeFailure(.corruptedData)
+            return
+        }
+
+        #if DEBUG
+        let json = try? JSONSerialization.jsonObject(with: data)
+        print(json ?? "Error while parsing json object")
+        #endif
+
+        let decoder = JSONDecoder()
+        if let response = try? decoder.decode(Response.self, from: data) {
+            handler?.invokeSuccess(response)
+        } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
+            handler?.invokeFailure(errorResponse)
+        } else {
+            handler?.invokeFailure(.corruptedData)
+        }
     }
 
     private func buildPostRequest(
