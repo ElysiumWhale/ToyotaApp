@@ -19,7 +19,7 @@ final class NetworkService {
 
     func makeRequest<Response>(
         _ request: Request,
-        handler: RequestHandler<Response>
+        _ handler: RequestHandler<Response>
     ) where Response: IResponse {
 
         let request = buildPostRequest(
