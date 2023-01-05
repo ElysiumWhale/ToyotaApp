@@ -33,7 +33,7 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
 
         infoService.setProfile(
             with: SetProfileBody.from(request),
-            handler: requestHandler
+            requestHandler
         )
     }
 

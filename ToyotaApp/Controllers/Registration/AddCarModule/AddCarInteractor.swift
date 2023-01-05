@@ -78,20 +78,20 @@ final class AddCarInteractor {
             vinCode: vin,
             year: selectedYear
         )
-        service.addCar(with: body, handler: setCarHandler)
+        service.addCar(with: body, setCarHandler)
     }
 
     func skipRegister() {
         service.skipSetCar(
             with: SkipSetCarBody(userId: KeychainManager<UserId>.get()!.value),
-            handler: skipAddCarHandler
+            skipAddCarHandler
         )
     }
 
     func loadModelsAndColors() {
         service.getModelsAndColors(
             with: GetModelsAndColorsBody(brandId: Brand.Toyota),
-            handler: modelsAndColorsHandler
+            modelsAndColorsHandler
         )
     }
 

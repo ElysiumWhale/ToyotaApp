@@ -94,6 +94,7 @@
 		A735058C29565A8C0005C7F2 /* NewNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058B29565A8C0005C7F2 /* NewNetworkService.swift */; };
 		A735058E29565AB00005C7F2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058D29565AB00005C7F2 /* Fetcher.swift */; };
 		A735059029565B960005C7F2 /* NewInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058F29565B960005C7F2 /* NewInfoService.swift */; };
+		A74306C5296641E9001F0FF6 /* InfoServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74306C4296641E9001F0FF6 /* InfoServiceProtocols.swift */; };
 		A74999E52890A2ED00C6E027 /* EventNotificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74999E42890A2ED00C6E027 /* EventNotificator.swift */; };
 		A74D2899253680FB00A1C856 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D2898253680FB00A1C856 /* UrlBuilder.swift */; };
 		A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759468B2523E32F00312EBE /* AppDelegate.swift */; };
@@ -285,6 +286,7 @@
 		A735058F29565B960005C7F2 /* NewInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfoService.swift; sourceTree = "<group>"; };
 		A73990C328C6877B005C1A92 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		A73990C628C698AE005C1A92 /* ILoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILoadingView.swift; sourceTree = "<group>"; };
+		A74306C4296641E9001F0FF6 /* InfoServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoServiceProtocols.swift; sourceTree = "<group>"; };
 		A74999E42890A2ED00C6E027 /* EventNotificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificator.swift; sourceTree = "<group>"; };
 		A74D2898253680FB00A1C856 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		A75946882523E32F00312EBE /* ToyotaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyotaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +423,7 @@
 		141A520527F0A13F00E7B9B2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A74306C4296641E9001F0FF6 /* InfoServiceProtocols.swift */,
 				141A520627F0A18700E7B9B2 /* InfoService.swift */,
 				A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */,
 				A735058F29565B960005C7F2 /* NewInfoService.swift */,
@@ -762,6 +765,16 @@
 			path = BookingsModule;
 			sourceTree = "<group>";
 		};
+		A7679D7E29645AC200AB5E9C /* OrderModule */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
+				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
+				146590F926EAB5CD0056E37D /* Submodules */,
+			);
+			path = OrderModule;
+			sourceTree = "<group>";
+		};
 		A7777519259BFA00006D30EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,9 +825,7 @@
 				A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
-				14C7E66426501770000B24B6 /* BaseServiceViewController.swift */,
-				1419C7372683E102001F7EF3 /* TestDriveViewController.swift */,
-				146590F926EAB5CD0056E37D /* Submodules */,
+				A7679D7E29645AC200AB5E9C /* OrderModule */,
 				14F4A79928592BC900400B36 /* SupportModule */,
 			);
 			path = ServicesModule;
@@ -1203,6 +1214,7 @@
 				14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */,
 				A760C6D728B0CF6400984E44 /* CarsInteractor.swift in Sources */,
 				14A8D8952617C25F0086BC12 /* Mocks.swift in Sources */,
+				A74306C5296641E9001F0FF6 /* InfoServiceProtocols.swift in Sources */,
 				149FA73D26889B00002B0658 /* SubmodulesProtocols.swift in Sources */,
 				14C7E66626501770000B24B6 /* BaseServiceViewController.swift in Sources */,
 				14B2A7E4275BECF3002A6ADF /* CityCell.swift in Sources */,
@@ -1514,7 +1526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1547,7 +1559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

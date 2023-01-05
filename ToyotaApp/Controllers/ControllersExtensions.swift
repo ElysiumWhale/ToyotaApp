@@ -2,8 +2,7 @@ import UIKit
 
 // MARK: - Navigation
 extension UIViewController {
-
-    @IBAction func customDismiss(sender: Any? = nil) {
+    @objc private func customDismiss() {
         dismiss(animated: true)
     }
 
@@ -36,9 +35,7 @@ extension UIViewController {
         }
 
         if let font = font {
-            navigation.navigationBar.titleTextAttributes = [
-                .font: font
-            ]
+            navigation.navigationBar.titleTextAttributes = [.font: font]
         }
     }
 }

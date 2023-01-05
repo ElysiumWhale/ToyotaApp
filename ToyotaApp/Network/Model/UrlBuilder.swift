@@ -38,6 +38,16 @@ enum UrlFactory {
         URLComponents(host: host, path: imgPath)
         #endif
     }
+
+    static func makeImageUrl(_ path: String) -> URL? {
+        guard path.isNotEmpty else {
+            return nil
+        }
+
+        var query = UrlFactory.imageUrl
+        query.path.append(path)
+        return query.url
+    }
 }
 
 private extension URLComponents {
@@ -47,5 +57,27 @@ private extension URLComponents {
         self.scheme = scheme
         self.host = host
         self.path = path
+    }
+}
+
+enum RequestFactory {
+    static func make(
+        for page: String,
+        with params: [URLQueryItem] = []
+    ) -> URLRequest {
+        var mainURL = UrlFactory.mainUrl
+        mainURL.path.append(page)
+        mainURL.queryItems = params
+        var request = URLRequest(url: mainURL.url!)
+        request.httpMethod = RequestType.POST.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        // MARK: - Future
+        // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
+        // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
+        //                                        options: JSONSerialisation.WritingOptions.prettyPrinted)
+        // request.httpBody = data
+        request.httpBody = Data(mainURL.url!.query!.utf8)
+        return request
     }
 }
