@@ -25,8 +25,11 @@ final class ManagersInteractor {
     }
 
     func makeManagerUrl(for row: Int) -> URL? {
-        let manager = managers[row]
-        return NetworkService.shared.buildImageUrl(manager.imageUrl)
+        guard let manager = managers[safe: row] else {
+            return nil
+        }
+
+        return UrlFactory.makeImageUrl(manager.imageUrl)
     }
 
     private func setupRequestHandlers() {
