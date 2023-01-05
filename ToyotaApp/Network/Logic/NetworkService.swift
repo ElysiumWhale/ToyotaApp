@@ -27,7 +27,7 @@ final class NetworkService {
         _ handler: RequestHandler<Response>
     ) where Response: IResponse {
 
-        let request = buildPostRequest(
+        let request = RequestFactory.make(
             for: request.page.rawValue,
             with: request.body.asRequestItems
         )
@@ -43,7 +43,7 @@ final class NetworkService {
 
     func makeRequest(_ request: Request) {
         fetcher.fetch(
-            buildPostRequest(
+            RequestFactory.make(
                 for: request.page.rawValue,
                 with: request.body.asRequestItems
             ),
@@ -79,36 +79,6 @@ final class NetworkService {
         } else {
             handler.invokeFailure(.corruptedData)
         }
-    }
-
-    private func buildPostRequest(
-        for page: String,
-        with params: [URLQueryItem] = []
-    ) -> URLRequest {
-        var mainURL = UrlFactory.mainUrl
-        mainURL.path.append(page)
-        mainURL.queryItems = params
-        var request = URLRequest(url: mainURL.url!)
-        request.httpMethod = RequestType.POST.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        // MARK: - Future
-        // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
-        // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
-        //                                        options: JSONSerialisation.WritingOptions.prettyPrinted)
-        // request.httpBody = data
-        request.httpBody = Data(mainURL.url!.query!.utf8)
-        return request
-    }
-
-    func buildImageUrl(_ path: String) -> URL? {
-        guard path.isNotEmpty else {
-            return nil
-        }
-
-        var query = UrlFactory.imageUrl
-        query.path.append(path)
-        return query.url
     }
 }
 
