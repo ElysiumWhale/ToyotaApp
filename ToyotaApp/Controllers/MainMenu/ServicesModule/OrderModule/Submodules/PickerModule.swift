@@ -65,7 +65,7 @@ final class PickerModule: NSObject, IServiceModule {
             body: AnyBody(items: request.items)
         )
         Task {
-            let result: NewResponse<TResponse> = await NewNetworkService.shared.makeRequest(newRequest)
+            let result: NewResponse<TResponse> = await NetworkService.shared.makeRequest(newRequest)
             switch result {
             case let .success(response):
                 services = response.array.isEmpty ? [.empty] : response.array

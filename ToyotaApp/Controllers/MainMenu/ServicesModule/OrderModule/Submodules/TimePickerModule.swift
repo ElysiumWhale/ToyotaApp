@@ -57,7 +57,7 @@ final class TimePickerModule: NSObject, IServiceModule {
             body: AnyBody(items: queryParams)
         )
         Task {
-            let result: NewResponse<FreeTimeResponse> = await NewNetworkService.shared.makeRequest(request)
+            let result: NewResponse<FreeTimeResponse> = await NetworkService.shared.makeRequest(request)
             switch result {
             case let .success(response):
                 prepareTime(from: response.freeTimeDict)

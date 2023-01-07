@@ -21,9 +21,9 @@ protocol IBookingService {
 }
 
 actor NewInfoService {
-    private let networkService: NewNetworkService
+    private let networkService: NetworkService
 
-    init(networkService: NewNetworkService = .init()) {
+    init(networkService: NetworkService = .init()) {
         self.networkService = networkService
     }
 }
