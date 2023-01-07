@@ -30,8 +30,6 @@ final class PersonalInfoView: BaseViewController,
     let loadingView = LoadingView()
     let interactor: PersonalInfoViewOutput
 
-    var isLoading: Bool = false
-
     init(interactor: PersonalInfoViewOutput) {
         self.interactor = interactor
 

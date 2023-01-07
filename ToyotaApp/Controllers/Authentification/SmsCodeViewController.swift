@@ -13,8 +13,6 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     init(interactor: SmsCodeInteractor) {
         self.interactor = interactor
 

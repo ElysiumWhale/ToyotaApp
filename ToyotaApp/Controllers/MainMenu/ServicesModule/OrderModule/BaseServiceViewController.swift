@@ -15,8 +15,6 @@ class BaseServiceController: BaseViewController, Loadable {
 
     private(set) var modules: [IServiceModule] = []
 
-    var isLoading: Bool = false
-
     var hasCarSelection: Bool {
         true
     }

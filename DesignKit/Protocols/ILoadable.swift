@@ -5,7 +5,6 @@ public protocol Loadable: UIViewController {
     associatedtype TLoadingView: ILoadingView
 
     var loadingView: TLoadingView { get }
-    var isLoading: Bool { get set }
 
     func startLoading()
     func stopLoading()
@@ -13,26 +12,30 @@ public protocol Loadable: UIViewController {
 
 public extension Loadable {
     func startLoading() {
-        isLoading = true
+        loadingView.isUserInteractionEnabled = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let ref = self, ref.isLoading else {
-                return
-            }
-
-            ref.loadingView.alpha = 0
-            ref.view.addSubview(ref.loadingView)
-            ref.loadingView.frame = ref.view.frame
-            ref.loadingView.startAnimating()
-            ref.loadingView.fadeIn()
-            ref.isLoading = false
+            self?.animateLoadingViewIfNeeded()
         }
     }
 
     func stopLoading() {
-        isLoading = false
+        loadingView.isUserInteractionEnabled = false
         loadingView.fadeOut(1) { [weak self] in
             self?.loadingView.stopAnimating()
             self?.loadingView.removeFromSuperview()
         }
+    }
+
+    private func animateLoadingViewIfNeeded() {
+        guard loadingView.isUserInteractionEnabled else {
+            return
+        }
+
+        loadingView.alpha = 0
+        view.addSubview(loadingView)
+        loadingView.frame = view.frame
+        loadingView.startAnimating()
+        loadingView.fadeIn()
+        loadingView.isUserInteractionEnabled = false
     }
 }

@@ -18,8 +18,6 @@ final class AuthViewController: BaseViewController, Loadable {
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     init(interactor: AuthInteractor) {
         self.interactor = interactor
         super.init()

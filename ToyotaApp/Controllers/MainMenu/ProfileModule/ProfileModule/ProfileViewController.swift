@@ -61,8 +61,6 @@ final class ProfileViewController: BaseViewController,
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     var onShowBookings: Closure?
     var onShowSettings: Closure?
     var onShowCars: Closure?

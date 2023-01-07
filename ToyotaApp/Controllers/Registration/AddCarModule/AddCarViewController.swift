@@ -20,8 +20,6 @@ final class AddCarViewController: BaseViewController, Loadable {
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     init(interactor: AddCarInteractor) {
         self.interactor = interactor
 
