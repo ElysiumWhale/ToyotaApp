@@ -7,7 +7,6 @@ public protocol Refreshable: UIViewController {
     var refreshControl: UIRefreshControl { get }
     var refreshableView: RefreshableView { get }
 
-    func configureRefresh()
     func startRefreshing()
     func endRefreshing()
 }
@@ -28,9 +27,11 @@ public extension Refreshable {
     }
 
     func endRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5,
-                                      execute: { [weak refreshControl] in
-            refreshControl?.stopRefreshing()
-        })
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + 0.5,
+            execute: { [weak refreshControl] in
+                refreshControl?.stopRefreshing()
+            }
+        )
     }
 }
