@@ -11,17 +11,18 @@ struct Request {
 final class NetworkService {
     static let shared = NetworkService()
 
-    private let fetcher: Fetcher
+    private let fetcher: Fetcher & AsyncFetcher
     private let decoder: JSONDecoder
 
     init(
-        fetcher: Fetcher = DefaultAsyncFetcher(),
+        fetcher: Fetcher & AsyncFetcher = DefaultAsyncFetcher(),
         decoder: JSONDecoder = .init()
     ) {
         self.fetcher = fetcher
         self.decoder = decoder
     }
 
+    // MARK: - Closure based request
     func makeRequest<Response>(
         _ request: Request,
         _ handler: RequestHandler<Response>
@@ -51,7 +52,41 @@ final class NetworkService {
         ).resume()
     }
 
-    private func handleResponse<Response: IResponse>(
+    // MARK: - Async/Await based request
+    func makeRequest<TResponse: Decodable>(
+        _ request: Request,
+        _ acceptableCodes: Set<Int> = Set((200...299))
+    ) async -> Result<TResponse, ErrorResponse> {
+        let postRequest = RequestFactory.make(
+            for: request.page.rawValue,
+            with: request.body.asRequestItems
+        )
+
+        let response = try? await fetcher.fetch(postRequest)
+        guard let httpResponse = response?.1 as? HTTPURLResponse,
+              let data = response?.0 else {
+            return .failure(ErrorResponse(code: .corruptedData))
+        }
+
+        guard acceptableCodes.contains(httpResponse.statusCode) else {
+            return .failure(ErrorResponse(code: .lostConnection))
+        }
+
+        debugLog(data)
+
+        if let result = try? decoder.decode(TResponse.self, from: data) {
+            return .success(result)
+        } else if let error = try? decoder.decode(ErrorResponse.self, from: data) {
+            return .failure(error)
+        } else {
+            return .failure(ErrorResponse(code: .corruptedData))
+        }
+    }
+}
+
+// MARK: - Helper
+private extension NetworkService {
+    func handleResponse<Response: IResponse>(
         _ data: Data?,
         _ response: URLResponse?,
         _ error: Error?,
@@ -67,10 +102,7 @@ final class NetworkService {
             return
         }
 
-        #if DEBUG
-        let json = try? JSONSerialization.jsonObject(with: data)
-        print(json ?? "Error while parsing json object")
-        #endif
+        debugLog(data)
 
         if let response = try? decoder.decode(Response.self, from: data) {
             handler.invokeSuccess(response)
@@ -79,6 +111,16 @@ final class NetworkService {
         } else {
             handler.invokeFailure(.corruptedData)
         }
+    }
+}
+
+// MARK: - Debug Log
+private extension NetworkService {
+    func debugLog(_ data: Data) {
+        #if DEBUG
+        let json = try? JSONSerialization.jsonObject(with: data)
+        print(json ?? "Error while parsing json object")
+        #endif
     }
 }
 
