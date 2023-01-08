@@ -7,8 +7,6 @@ final class CarsViewController: BaseViewController, Loadable {
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
 

@@ -12,13 +12,11 @@ final class AuthViewController: BaseViewController, Loadable {
     private let agreementStack = UIStackView()
     private let agreementLabel = UILabel()
     private let agreementButton = UIButton()
-    private let sendPhoneButton = CustomizableButton()
+    private let sendPhoneButton = CustomizableButton(configuration: .toyotaAction())
 
     private let interactor: AuthInteractor
 
     let loadingView = LoadingView()
-
-    var isLoading: Bool = false
 
     init(interactor: AuthInteractor) {
         self.interactor = interactor
@@ -82,12 +80,6 @@ final class AuthViewController: BaseViewController, Loadable {
         agreementLabel.textColor = .appTint(.signatureGray)
         agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)
         agreementButton.setTitleColor(.link, for: .normal)
-
-        sendPhoneButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        sendPhoneButton.setTitleColor(.white, for: .normal)
-        sendPhoneButton.normalColor = .appTint(.secondarySignatureRed)
-        sendPhoneButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        sendPhoneButton.rounded = true
     }
 
     override func localize() {

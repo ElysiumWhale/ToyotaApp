@@ -124,6 +124,8 @@ private extension NetworkService {
     }
 }
 
+extension String: Error { }
+
 extension URLSessionDataTask: RequestTask { }
 
 // MARK: - Request items
