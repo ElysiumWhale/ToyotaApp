@@ -6,7 +6,7 @@ class BaseServiceController: BaseViewController, Loadable {
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     let carPickView = PickerModuleView()
-    let bookButton = CustomizableButton()
+    let bookButton = CustomizableButton(configuration: .toyotaAction())
 
     // MARK: - Models
     let bookingService: IBookingService
@@ -81,11 +81,6 @@ class BaseServiceController: BaseViewController, Loadable {
     override func configureAppearance() {
         configureNavBarAppearance()
         view.backgroundColor = .systemBackground
-        bookButton.normalColor = .appTint(.secondarySignatureRed)
-        bookButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        bookButton.rounded = true
-        bookButton.setTitleColor(.white, for: .normal)
-        bookButton.titleLabel?.font = .toyotaType(.regular, of: 20)
         bookButton.alpha = 0
     }
 

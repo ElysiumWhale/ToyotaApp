@@ -13,7 +13,7 @@ final class PersonalInfoView: BaseViewController,
     private let birthTextField = InputTextField()
     private let containerView = UIView()
     private let fieldsStackView = UIStackView()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
     private let datePicker = UIDatePicker()
 
     private var fields: [InputTextField] {
@@ -89,10 +89,6 @@ final class PersonalInfoView: BaseViewController,
         scrollView.keyboardDismissMode = .interactive
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
         configureFields()
 
         view.backgroundColor = .systemBackground

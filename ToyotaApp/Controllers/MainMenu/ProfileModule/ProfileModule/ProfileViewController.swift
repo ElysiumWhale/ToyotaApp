@@ -27,9 +27,9 @@ final class ProfileViewController: BaseViewController,
     private let lastNameTextField = InputTextField()
     private let emailTextField = InputTextField()
     private let birthTextField = NoPasteTextField()
-    private let managerButton = CustomizableButton()
-    private let cancelButton = CustomizableButton()
-    private let saveButton = CustomizableButton()
+    private let managerButton = CustomizableButton(configuration: .toyotaAction(18))
+    private let cancelButton = CustomizableButton(configuration: .toyotaAction(18))
+    private let saveButton = CustomizableButton(configuration: .toyotaAction(18))
     private let bookingsButton = CustomizableButton()
     private let carsButton = CustomizableButton()
     private let fieldsStack = UIStackView()
@@ -173,13 +173,6 @@ final class ProfileViewController: BaseViewController,
         birthTextField.rule = .notEmpty
         birthTextField.tintColor = .clear
 
-        for button in buttons {
-            button.rounded = true
-            button.titleLabel?.font = .toyotaType(.regular, of: 18)
-            button.normalColor = .appTint(.secondarySignatureRed)
-            button.highlightedColor = .appTint(.dimmedSignatureRed)
-        }
-
         for bottomButton in [bookingsButton, carsButton] {
             bottomButton.normalColor = .appTint(.background)
             bottomButton.highlightedColor = .appTint(.secondarySignatureRed)
@@ -298,14 +291,6 @@ final class ProfileViewController: BaseViewController,
 
 // MARK: - UI helpers
 private extension ProfileViewController {
-    var buttons: [CustomizableButton] {
-        [
-            managerButton,
-            cancelButton,
-            saveButton
-        ]
-    }
-
     var fields: [InputTextField] {
         [
             firstNameTextField,

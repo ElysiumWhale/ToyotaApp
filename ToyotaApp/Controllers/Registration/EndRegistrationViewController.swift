@@ -8,7 +8,7 @@ final class EndRegistrationViewController: BaseViewController {
     private let thanksLabel = UILabel()
     private let infoLabel = UILabel()
     private let wishesLabel = UILabel()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
 
     override func addViews() {
         addSubviews(logoImageView, infoStack, actionButton)
@@ -46,11 +46,6 @@ final class EndRegistrationViewController: BaseViewController {
             label.textAlignment = .center
             label.backgroundColor = view.backgroundColor
         }
-
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
     }
 
     override func localize() {

@@ -7,7 +7,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     private let codeTextField = InputTextField()
     private let errorLabel = UILabel()
     private let codeStack = UIStackView()
-    private let sendCodeButton = CustomizableButton()
+    private let sendCodeButton = CustomizableButton(configuration: .toyotaAction())
 
     private let interactor: SmsCodeInteractor
 
@@ -73,12 +73,6 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         errorLabel.textColor = .systemRed
         errorLabel.alpha = .zero
         errorLabel.textAlignment = .center
-
-        sendCodeButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        sendCodeButton.setTitleColor(.white, for: .normal)
-        sendCodeButton.normalColor = .appTint(.secondarySignatureRed)
-        sendCodeButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        sendCodeButton.rounded = true
     }
 
     override func localize() {

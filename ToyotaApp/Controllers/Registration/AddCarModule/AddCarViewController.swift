@@ -10,7 +10,7 @@ final class AddCarViewController: BaseViewController, Loadable {
     private let modelTextField = InputTextField()
     private let yearTextField = InputTextField()
     private let colorTextField = InputTextField()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
     private let skipButton = UIButton()
     private let modelPicker = UIPickerView()
     private let yearPicker = UIPickerView()
@@ -92,11 +92,6 @@ final class AddCarViewController: BaseViewController, Loadable {
         skipButton.titleLabel?.font = .toyotaType(.regular, of: 18)
         skipButton.isHidden = interactor.type != .register
         skipButton.setTitleColor(.systemBlue, for: .normal)
-
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
     }
 
     override func localize() {
