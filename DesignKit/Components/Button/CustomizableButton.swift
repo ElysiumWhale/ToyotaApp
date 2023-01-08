@@ -9,11 +9,7 @@ open class CustomizableButton: UIButton, BottomKeyboardBinded {
 
     private(set) public var constant: CGFloat = .zero
 
-    public var rounded: Bool = false {
-        didSet {
-            layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
-        }
-    }
+    public var rounded: Bool = false
 
     public var highlightedColor: UIColor = .clear
 
@@ -29,14 +25,16 @@ open class CustomizableButton: UIButton, BottomKeyboardBinded {
         }
     }
 
+    open override var backgroundColor: UIColor? {
+        didSet {
+            titleLabel?.backgroundColor = backgroundColor
+        }
+    }
+
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        setTitleColor(.white, for: .highlighted)
-        titleLabel?.backgroundColor = backgroundColor
         layer.cornerRadius = rounded ? frame.size.height / 2 : .zero
-        layer.borderWidth = borderWidth
-        layer.borderColor = borderColor.cgColor
         if rounded {
             clipsToBounds = true
         }
