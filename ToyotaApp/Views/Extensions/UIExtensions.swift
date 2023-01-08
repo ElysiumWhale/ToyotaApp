@@ -159,6 +159,7 @@ extension CustomizableButton.Configuration {
             titleColor: .white,
             normalColor: .appTint(.secondarySignatureRed),
             highlightedColor: .appTint(.dimmedSignatureRed),
+            tintColor: .white,
             rounded: true
         )
     }
