@@ -1,6 +1,6 @@
 import Foundation
 
-protocol IResponse: Codable { }
+protocol IResponse: Decodable { }
 
 // MARK: - Default response
 struct SimpleResponse: IResponse {
@@ -44,12 +44,6 @@ struct CitiesResponse: IServiceResponse {
     var array: [City] { cities }
 }
 
-// MARK: - ShowroomsResponse
-struct ShowroomsResponse: IResponse {
-    let result: String
-    let showrooms: [Showroom]
-}
-
 // MARK: - ModelsAndColorsResponse
 struct ModelsAndColorsResponse: IResponse {
     let result: String
@@ -68,8 +62,8 @@ struct CarSetResponse: IResponse {
     }
 }
 
-// MARK: - ShoroomsResponce
-struct ShoroomsResponce: IServiceResponse {
+// MARK: - ShowroomsResponse
+struct ShowroomsResponse: IServiceResponse {
     let result: String
     let showrooms: [Showroom]
 

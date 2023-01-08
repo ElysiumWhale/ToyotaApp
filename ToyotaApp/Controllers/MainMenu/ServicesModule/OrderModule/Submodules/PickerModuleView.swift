@@ -45,9 +45,9 @@ final class PickerModuleView: BaseView {
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
-            case .title(let title):
+            case let .title(title):
                 label.text = title
-            case .placeholder(let placeholder):
+            case let .placeholder(placeholder):
                 textField.placeholder = placeholder
             }
         }

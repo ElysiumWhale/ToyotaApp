@@ -78,20 +78,20 @@ final class AddCarInteractor {
             vinCode: vin,
             year: selectedYear
         )
-        service.addCar(with: body, handler: setCarHandler)
+        service.addCar(with: body, setCarHandler)
     }
 
     func skipRegister() {
         service.skipSetCar(
             with: SkipSetCarBody(userId: KeychainManager<UserId>.get()!.value),
-            handler: skipAddCarHandler
+            skipAddCarHandler
         )
     }
 
     func loadModelsAndColors() {
         service.getModelsAndColors(
             with: GetModelsAndColorsBody(brandId: Brand.Toyota),
-            handler: modelsAndColorsHandler
+            modelsAndColorsHandler
         )
     }
 
@@ -118,8 +118,8 @@ final class AddCarInteractor {
 
         skipAddCarHandler
             .observe(on: .main)
-            .bind { [weak self] _ in
-                if case .register = self?.type {
+            .bind { [weak self, type] _ in
+                if case .register = type {
                     self?.view?.handleCarAdded()
                 }
             } onFailure: { [weak self] error in

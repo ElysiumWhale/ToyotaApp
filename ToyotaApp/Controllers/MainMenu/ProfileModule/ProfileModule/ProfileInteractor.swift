@@ -26,7 +26,7 @@ final class ProfileInteractor {
 
         service.updateProfile(
             with: EditProfileBody.from(person),
-            handler: updateUserHandler
+            updateUserHandler
         )
     }
 

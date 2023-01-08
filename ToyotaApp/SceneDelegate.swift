@@ -4,8 +4,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    private var requestHandler: RequestHandler<CheckUserOrSmsCodeResponse>?
-
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -28,25 +26,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        requestHandler = .init { [weak self] response in
-            self?.handle(success: response)
-        } onFailure: { [weak self] error in
-            self?.handle(error: error)
-        }
+        checkUserAuthorization(userId, secretKey, Brand.Toyota)
+    }
 
+    private func checkUserAuthorization(
+        _ userId: String,
+        _ secret: String,
+        _ brandId: String
+    ) {
         let body = CheckUserBody(
             userId: userId,
-            secret: secretKey,
+            secret: secret,
             brandId: Brand.Toyota
         )
-        InfoService().checkUser(
-            with: body,
-            handler: requestHandler!
-        )
+
+        Task {
+            switch await NewInfoService().checkUser(body) {
+            case let .success(data):
+                handle(success: data)
+            case let .failure(error):
+                handle(error: error)
+            }
+        }
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
-        requestHandler = nil
         KeychainManager.set(SecretKey(response.secretKey))
         NavigationService.resolveNavigation(
             with: CheckUserContext(response: response)
@@ -56,7 +60,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func handle(error response: ErrorResponse) {
-        requestHandler = nil
         switch response.errorCode {
         case .lostConnection:
             NavigationService.loadConnectionLost()

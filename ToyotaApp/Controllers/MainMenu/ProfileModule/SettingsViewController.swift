@@ -4,7 +4,7 @@ import DesignKit
 final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField()
-    private let changeNumberButton = CustomizableButton()
+    private let changeNumberButton = CustomizableButton(configuration: .toyotaAction(18))
     private let bottomStack = UIStackView()
     private let agreementButton = CustomizableButton()
     private let companyNameLabel = UILabel()
@@ -50,8 +50,7 @@ final class SettingsViewController: BaseViewController {
 
         changeNumberButton.topToBottom(of: phoneTextField, offset: 10)
         changeNumberButton.centerXToSuperview()
-        changeNumberButton.width(160)
-        changeNumberButton.height(40)
+        changeNumberButton.size(.init(width: 160, height: 43))
 
         bottomStack.axis = .vertical
         bottomStack.alignment = .center
@@ -74,11 +73,6 @@ final class SettingsViewController: BaseViewController {
         phoneTextField.backgroundColor = .appTint(.background)
         phoneTextField.textAlignment = .center
         phoneTextField.cornerRadius = 10
-
-        changeNumberButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        changeNumberButton.normalColor = .appTint(.secondarySignatureRed)
-        changeNumberButton.setTitleColor(.white, for: .normal)
-        changeNumberButton.rounded = true
 
         agreementButton.setTitleColor(.link, for: .normal)
         agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)
@@ -116,7 +110,7 @@ final class SettingsViewController: BaseViewController {
             with: .common(.confirmation),
             description: .question(.changeNumber)
         ) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber)
+            let module = AuthFlow.authModule(authType: .changeNumber(userId: user.id))
             navigationController?.pushViewController(module, animated: true)
         }
     }
@@ -135,7 +129,7 @@ extension SettingsViewController: ObservesEvents {
             return
         }
 
-        dispatch { [self] in
+        DispatchQueue.main.async { [self] in
             phoneTextField.text = user.phone
         }
     }

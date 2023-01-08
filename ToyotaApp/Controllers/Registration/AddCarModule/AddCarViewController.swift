@@ -10,7 +10,7 @@ final class AddCarViewController: BaseViewController, Loadable {
     private let modelTextField = InputTextField()
     private let yearTextField = InputTextField()
     private let colorTextField = InputTextField()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
     private let skipButton = UIButton()
     private let modelPicker = UIPickerView()
     private let yearPicker = UIPickerView()
@@ -19,8 +19,6 @@ final class AddCarViewController: BaseViewController, Loadable {
     private let interactor: AddCarInteractor
 
     let loadingView = LoadingView()
-
-    var isLoading: Bool = false
 
     init(interactor: AddCarInteractor) {
         self.interactor = interactor
@@ -94,11 +92,6 @@ final class AddCarViewController: BaseViewController, Loadable {
         skipButton.titleLabel?.font = .toyotaType(.regular, of: 18)
         skipButton.isHidden = interactor.type != .register
         skipButton.setTitleColor(.systemBlue, for: .normal)
-
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
     }
 
     override func localize() {
@@ -162,8 +155,10 @@ final class AddCarViewController: BaseViewController, Loadable {
         }
 
         startLoading()
-        interactor.setCar(vin: vinCodeTextField.inputText,
-                          plate: plateTextField.inputText)
+        interactor.setCar(
+            vin: vinCodeTextField.inputText,
+            plate: plateTextField.inputText
+        )
     }
 }
 
@@ -208,9 +203,11 @@ extension AddCarViewController: AddCarViewInput {
 
 // MARK: - UIPickerViewDelegate
 extension AddCarViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         switch pickerView {
         case modelPicker:
             return interactor.models[row].name
@@ -224,26 +221,34 @@ extension AddCarViewController: UIPickerViewDelegate {
     }
 
     @objc private func modelDidPick() {
-        pick(from: modelPicker,
-             to: modelTextField,
-             setProperty: interactor.setSelectedModel)
+        pick(
+            from: modelPicker,
+            to: modelTextField,
+            setProperty: interactor.setSelectedModel
+        )
     }
 
     @objc private func yearDidPick() {
-        pick(from: yearPicker,
-             to: yearTextField,
-             setProperty: interactor.setSelectedYear)
+        pick(
+            from: yearPicker,
+            to: yearTextField,
+            setProperty: interactor.setSelectedYear
+        )
     }
 
     @objc private func colorDidPick() {
-        pick(from: colorPicker,
-             to: colorTextField,
-             setProperty: interactor.setSelectedColor)
+        pick(
+            from: colorPicker,
+            to: colorTextField,
+            setProperty: interactor.setSelectedColor
+        )
     }
 
-    private func pick(from picker: UIPickerView,
-                      to textField: UITextField,
-                      setProperty: (Int) -> String?) {
+    private func pick(
+        from picker: UIPickerView,
+        to textField: UITextField,
+        setProperty: (Int) -> String?
+    ) {
         view.endEditing(true)
         let index = picker.selectedRow
         textField.text = setProperty(index)
@@ -256,8 +261,10 @@ extension AddCarViewController: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         switch pickerView {
         case modelPicker:
             return interactor.models.count

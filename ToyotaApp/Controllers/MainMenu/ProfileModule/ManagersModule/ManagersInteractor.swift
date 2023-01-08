@@ -20,8 +20,16 @@ final class ManagersInteractor {
     func getManagers() {
         managersService.getManagers(
             with: GetManagersBody(userId: userId, brandId: Brand.Toyota),
-            handler: managersRequestHandler
+            managersRequestHandler
         )
+    }
+
+    func makeManagerUrl(for row: Int) -> URL? {
+        guard let manager = managers[safe: row] else {
+            return nil
+        }
+
+        return UrlFactory.makeImageUrl(manager.imageUrl)
     }
 
     private func setupRequestHandlers() {

@@ -6,24 +6,28 @@ protocol Keyboardable: UIViewController {
 
     var scrollView: ScrollableView! { get }
 
-    func setupKeyboard(isSubcribing: Bool)
+    func setupKeyboard(isSubscribing: Bool)
 }
 
 extension Keyboardable {
-    func setupKeyboard(isSubcribing: Bool) {
-        guard isSubcribing else {
+    func setupKeyboard(isSubscribing: Bool) {
+        guard isSubscribing else {
             NotificationCenter.default.removeObserver(self)
             return
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                               object: nil, queue: .main) { [weak self] notification in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil, queue: .main
+        ) { [weak self] notification in
             self?.keyboardWillShow(notification: notification)
         }
 
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] _ in
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
             self?.keyboardWillHide()
         }
     }
@@ -36,8 +40,11 @@ extension Keyboardable {
 
         // Workaround of the situation when height is less than 300 inset does not change
         let heightInset = keyboardSize.cgRectValue.height < 300 ? 300 : keyboardSize.cgRectValue.height
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
-                                         bottom: heightInset, right: 0.0)
+        let contentInsets = UIEdgeInsets(
+            top: 0.0, left: 0.0,
+            bottom: heightInset, right: 0.0
+        )
+
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
       }
@@ -48,15 +55,3 @@ extension Keyboardable {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 }
-
-protocol MainQueueRunnable { }
-
-extension MainQueueRunnable {
-    func dispatch(action: Closure?) {
-        DispatchQueue.main.async {
-            action?()
-        }
-    }
-}
-
-extension UIViewController: MainQueueRunnable { }

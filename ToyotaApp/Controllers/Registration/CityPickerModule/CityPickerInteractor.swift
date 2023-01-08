@@ -32,7 +32,7 @@ final class CityPickerInteractor {
     func loadCities() {
         service.getCities(
             with: GetCitiesBody(brandId: Brand.Toyota),
-            handler: cityRequestHandler
+            cityRequestHandler
         )
     }
 

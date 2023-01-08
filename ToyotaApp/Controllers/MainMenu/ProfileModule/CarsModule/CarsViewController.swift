@@ -7,8 +7,6 @@ final class CarsViewController: BaseViewController, Loadable {
 
     let loadingView = LoadingView()
 
-    var isLoading: Bool = false
-
     init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
 
@@ -69,7 +67,7 @@ final class CarsViewController: BaseViewController, Loadable {
     }
 
     private func removeCar(with id: String) {
-        PopUp.display(.choise(description: .question(.removeCar))) { [self] in
+        PopUp.display(.choice(description: .question(.removeCar))) { [self] in
             startLoading()
             interactor.removeCar(with: id)
         }
@@ -95,8 +93,10 @@ final class CarsViewController: BaseViewController, Loadable {
 }
 
 extension CarsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         interactor.cars.count
     }
 
@@ -116,13 +116,15 @@ extension CarsViewController: UICollectionViewDataSource {
 
 // MARK: - ObservesEvents
 extension CarsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents,
-                notificator: EventNotificator) {
+    func handle(
+        event: EventNotificator.AppEvents,
+        notificator: EventNotificator
+    ) {
         switch event {
         case .userUpdate:
-            dispatch { [self] in
-                carsCollection.reloadData()
-                updateBackground()
+            DispatchQueue.main.async { [weak self] in
+                self?.carsCollection.reloadData()
+                self?.updateBackground()
             }
         default:
             return

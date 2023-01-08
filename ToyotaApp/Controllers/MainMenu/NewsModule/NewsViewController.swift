@@ -128,7 +128,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         endRefreshing()
     }
 
-    @objc func showroomDidSelect() {
+    @objc private func showroomDidSelect() {
         if interactor.selectShowroomIfNeeded(at: showroomPicker.selectedRow) {
             showroomField.text = interactor.selectedShowroom?.showroomName
             refreshControl.refreshManually()

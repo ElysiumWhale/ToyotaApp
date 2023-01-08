@@ -13,7 +13,6 @@ final class ServiceTypeCell: BaseCollectionCell {
         typeNameLabel.edgesToSuperview(insets: .uniform(16))
 
         layer.cornerRadius = 8
-        configureShadow(with: 8)
         clipsToBounds = true
     }
 

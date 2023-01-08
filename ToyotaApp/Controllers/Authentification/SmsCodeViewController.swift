@@ -7,13 +7,11 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     private let codeTextField = InputTextField()
     private let errorLabel = UILabel()
     private let codeStack = UIStackView()
-    private let sendCodeButton = CustomizableButton()
+    private let sendCodeButton = CustomizableButton(configuration: .toyotaAction())
 
     private let interactor: SmsCodeInteractor
 
     let loadingView = LoadingView()
-
-    var isLoading: Bool = false
 
     init(interactor: SmsCodeInteractor) {
         self.interactor = interactor
@@ -38,6 +36,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
         codeStack.axis = .vertical
         codeStack.alignment = .fill
+        codeStack.spacing = 8
         codeStack.horizontalToSuperview(insets: .horizontal(30))
         codeStack.topToSuperview(offset: 200)
 
@@ -74,12 +73,6 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         errorLabel.textColor = .systemRed
         errorLabel.alpha = .zero
         errorLabel.textAlignment = .center
-
-        sendCodeButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        sendCodeButton.setTitleColor(.white, for: .normal)
-        sendCodeButton.normalColor = .appTint(.secondarySignatureRed)
-        sendCodeButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        sendCodeButton.rounded = true
     }
 
     override func localize() {
@@ -98,18 +91,6 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         sendCodeButton.addAction { [weak self] in
             self?.checkCode()
         }
-
-        interactor.onSuccess = { [weak self] params in
-            self?.stopLoading()
-            self?.sendCodeButton.fadeIn()
-            self?.resolveNavigation(authType: params.0, context: params.1)
-        }
-
-        interactor.onError = { [weak self] errorMessage in
-            self?.stopLoading()
-            self?.sendCodeButton.fadeIn()
-            PopUp.display(.error(description: errorMessage))
-        }
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -121,9 +102,10 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     }
 
     private func checkCode() {
-        guard let code = codeTextField.text,
-              codeTextField.validate(for: .requiredSymbolsCount(4),
-                                     toggleState: true) else {
+        guard codeTextField.validate(
+            for: .requiredSymbolsCount(4),
+            toggleState: true
+        ) else {
             errorLabel.fadeIn(0.3)
             return
         }
@@ -132,7 +114,18 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         startLoading()
         view.endEditing(true)
 
-        interactor.checkCode(code: code)
+        Task {
+            switch await interactor.checkCode(code: codeTextField.inputText) {
+            case let .success(params):
+                stopLoading()
+                sendCodeButton.fadeIn()
+                resolveNavigation(authType: params.0, context: params.1)
+            case let .failure(message):
+                stopLoading()
+                sendCodeButton.fadeIn()
+                PopUp.display(.error(description: message))
+            }
+        }
     }
 
     private func resolveNavigation(authType: AuthScenario, context: CheckUserContext?) {

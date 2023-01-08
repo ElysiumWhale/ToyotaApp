@@ -12,7 +12,7 @@ final class CityPickerViewController: BaseViewController,
     private let interactor: CityPickerInteractor
 
     private let subtitleLabel = UILabel()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
 
     let refreshableView = TableView<CityCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()
@@ -30,9 +30,11 @@ final class CityPickerViewController: BaseViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor.cities.isEmpty
-            ? startRefreshing()
-            : refreshableView.reloadData()
+        if interactor.cities.isEmpty {
+            startRefreshing()
+        } else {
+            refreshableView.reloadData()
+        }
     }
 
     override func addViews() {
@@ -69,10 +71,6 @@ final class CityPickerViewController: BaseViewController,
         subtitleLabel.backgroundColor = view.backgroundColor
 
         actionButton.alpha = 0
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
     }
 
     override func localize() {

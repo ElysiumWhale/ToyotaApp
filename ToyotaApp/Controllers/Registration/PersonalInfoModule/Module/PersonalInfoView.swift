@@ -13,7 +13,7 @@ final class PersonalInfoView: BaseViewController,
     private let birthTextField = InputTextField()
     private let containerView = UIView()
     private let fieldsStackView = UIStackView()
-    private let actionButton = CustomizableButton()
+    private let actionButton = CustomizableButton(configuration: .toyotaAction())
     private let datePicker = UIDatePicker()
 
     private var fields: [InputTextField] {
@@ -29,8 +29,6 @@ final class PersonalInfoView: BaseViewController,
     let scrollView: UIScrollView! = UIScrollView()
     let loadingView = LoadingView()
     let interactor: PersonalInfoViewOutput
-
-    var isLoading: Bool = false
 
     init(interactor: PersonalInfoViewOutput) {
         self.interactor = interactor
@@ -91,10 +89,6 @@ final class PersonalInfoView: BaseViewController,
         scrollView.keyboardDismissMode = .interactive
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        actionButton.rounded = true
-        actionButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        actionButton.normalColor = .appTint(.secondarySignatureRed)
-        actionButton.highlightedColor = .appTint(.dimmedSignatureRed)
         configureFields()
 
         view.backgroundColor = .systemBackground
@@ -125,11 +119,11 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: true)
+        setupKeyboard(isSubscribing: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        setupKeyboard(isSubcribing: false)
+        setupKeyboard(isSubscribing: false)
     }
 
     private func configureFields() {
@@ -193,7 +187,7 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
         actionButton.fadeIn()
 
         switch viewModel {
-        case .success(let cities, let models, let colors):
+        case let .success(cities, models, colors):
             let cityPickerModule = RegisterFlow.cityModule(cities)
 
             cityPickerModule.onCityPick = { [weak self] _ in
@@ -210,8 +204,8 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
             navigationController?.pushViewController(
                 cityPickerModule, animated: true
             )
-        case .failure(let errorMessage):
-            PopUp.display(.error(description: errorMessage))
+        case let .failure(message):
+            PopUp.display(.error(description: message))
         }
     }
 }

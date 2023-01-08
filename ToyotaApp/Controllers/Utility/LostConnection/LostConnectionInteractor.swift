@@ -23,8 +23,10 @@ final class LostConnectionInteractor {
         let body = CheckUserBody(userId: userId,
                                  secret: secretKey,
                                  brandId: Brand.Toyota)
-        reconnectionService.checkUser(with: body,
-                                      handler: requestHandler)
+        reconnectionService.checkUser(
+            with: body,
+            requestHandler
+        )
     }
 
     private func setupRequestHandlers() {

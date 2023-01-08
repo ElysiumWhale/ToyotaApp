@@ -8,125 +8,123 @@ struct Request {
     let body: IBody
 }
 
-class NetworkService {
-    private static let session: URLSession = {
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 20
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.httpCookieStorage?.cookieAcceptPolicy = .never
-        let session = URLSession(configuration: config)
-        return session
-    }()
+final class NetworkService {
+    static let shared = NetworkService()
 
-    class func makeRequest<TResponse>(
-        page: RequestPath,
-        params: RequestItems = .empty,
-        completion: @escaping ResponseHandler<TResponse>
-    ) where TResponse: IResponse {
+    private let fetcher: Fetcher & AsyncFetcher
+    private let decoder: JSONDecoder
 
-        let request = buildPostRequest(for: page.rawValue,
-                                       with: params.asQueryItems)
-
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                completion(Result.failure(.lostConnection))
-                return
-            }
-
-            guard let data = data else {
-                completion(Result.failure(.corruptedData))
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            if let response = try? JSONDecoder().decode(TResponse.self, from: data) {
-                completion(Result.success(response))
-            } else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                completion(Result.failure(errorResponse))
-            } else {
-                completion(Result.failure(.corruptedData))
-            }
-        }
-
-        task.resume()
+    init(
+        fetcher: Fetcher & AsyncFetcher = DefaultAsyncFetcher(),
+        decoder: JSONDecoder = .init()
+    ) {
+        self.fetcher = fetcher
+        self.decoder = decoder
     }
 
-    class func makeRequest<Response>(
+    // MARK: - Closure based request
+    func makeRequest<Response>(
         _ request: Request,
-        handler: RequestHandler<Response>
+        _ handler: RequestHandler<Response>
     ) where Response: IResponse {
 
-        let request = buildPostRequest(for: request.page.rawValue,
-                                       with: request.body.asRequestItems)
+        let request = RequestFactory.make(
+            for: request.page.rawValue,
+            with: request.body.asRequestItems
+        )
 
-        let task = session.dataTask(with: request) { [weak handler] (data, response, error) in
-            guard error == nil else {
-                handler?.invokeFailure(.lostConnection)
-                return
-            }
-
-            guard let data = data else {
-                handler?.invokeFailure(.corruptedData)
-                return
-            }
-
-            #if DEBUG
-            let json = try? JSONSerialization.jsonObject(with: data)
-            print(json ?? "Error while parsing json object")
-            #endif
-
-            let decoder = JSONDecoder()
-            if let response = try? decoder.decode(Response.self, from: data) {
-                handler?.invokeSuccess(response)
-            } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-                handler?.invokeFailure(errorResponse)
-            } else {
-                handler?.invokeFailure(.corruptedData)
+        let task = fetcher.fetch(request) { [weak handler, weak self] in
+            if let self, let handler {
+                self.handleResponse($0, $1, $2, handler)
             }
         }
 
         handler.start(with: task)
     }
 
-    class func makeRequest(_ request: Request) {
-        session.dataTask(
-            with: buildPostRequest(for: request.page.rawValue,
-                                   with: request.body.asRequestItems)
+    func makeRequest(_ request: Request) {
+        fetcher.fetch(
+            RequestFactory.make(
+                for: request.page.rawValue,
+                with: request.body.asRequestItems
+            ),
+            { _, _, _ in }
         ).resume()
     }
 
-    class private func buildPostRequest(for page: String,
-                                        with params: [URLQueryItem] = []) -> URLRequest {
-        var mainURL = UrlFactory.mainUrl
-        mainURL.path.append(page)
-        mainURL.queryItems = params
-        var request = URLRequest(url: mainURL.url!)
-        request.httpMethod = RequestType.POST.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        // MARK: - Future
-        // request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        // let paramsDict = Dictionary(uniqueKeysWithValues: params.map { ($0.name, $0.value) })
-        // let data = try? JSONSerialization.data(withJSONObject: paramsDict,
-        //                                        options: JSONSerialization.WritingOptions.prettyPrinted)
-        // request.httpBody = data
-        request.httpBody = Data(mainURL.url!.query!.utf8)
-        return request
-    }
+    // MARK: - Async/Await based request
+    func makeRequest<TResponse: Decodable>(
+        _ request: Request,
+        _ acceptableCodes: Set<Int> = Set((200...299))
+    ) async -> Result<TResponse, ErrorResponse> {
+        let postRequest = RequestFactory.make(
+            for: request.page.rawValue,
+            with: request.body.asRequestItems
+        )
 
-    class func buildImageUrl(_ path: String) -> URL? {
-        guard path.isNotEmpty else {
-            return nil
+        let response = try? await fetcher.fetch(postRequest)
+        guard let httpResponse = response?.1 as? HTTPURLResponse,
+              let data = response?.0 else {
+            return .failure(ErrorResponse(code: .corruptedData))
         }
 
-        var query = UrlFactory.imageUrl
-        query.path.append(path)
-        return query.url
+        guard acceptableCodes.contains(httpResponse.statusCode) else {
+            return .failure(ErrorResponse(code: .lostConnection))
+        }
+
+        debugLog(data)
+
+        if let result = try? decoder.decode(TResponse.self, from: data) {
+            return .success(result)
+        } else if let error = try? decoder.decode(ErrorResponse.self, from: data) {
+            return .failure(error)
+        } else {
+            return .failure(ErrorResponse(code: .corruptedData))
+        }
     }
 }
+
+// MARK: - Helper
+private extension NetworkService {
+    func handleResponse<Response: IResponse>(
+        _ data: Data?,
+        _ response: URLResponse?,
+        _ error: Error?,
+        _ handler: RequestHandler<Response>
+    ) {
+        guard error == nil else {
+            handler.invokeFailure(.lostConnection)
+            return
+        }
+
+        guard let data = data else {
+            handler.invokeFailure(.corruptedData)
+            return
+        }
+
+        debugLog(data)
+
+        if let response = try? decoder.decode(Response.self, from: data) {
+            handler.invokeSuccess(response)
+        } else if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
+            handler.invokeFailure(errorResponse)
+        } else {
+            handler.invokeFailure(.corruptedData)
+        }
+    }
+}
+
+// MARK: - Debug Log
+private extension NetworkService {
+    func debugLog(_ data: Data) {
+        #if DEBUG
+        let json = try? JSONSerialization.jsonObject(with: data)
+        print(json ?? "Error while parsing json object")
+        #endif
+    }
+}
+
+extension String: Error { }
 
 extension URLSessionDataTask: RequestTask { }
 
@@ -136,8 +134,6 @@ typealias RequestItems = [RequestItem]
 
 extension Array where Element == RequestItem {
     var asQueryItems: [URLQueryItem] {
-        map { key, value in .init(name: key.rawValue, value: value) }
+        map(URLQueryItem.init)
     }
-
-    static let empty: RequestItems = []
 }

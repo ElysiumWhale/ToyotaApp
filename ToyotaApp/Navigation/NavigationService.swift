@@ -1,6 +1,7 @@
 import UIKit
 
-final class NavigationService: MainQueueRunnable {
+@MainActor
+final class NavigationService {
     enum RegistrationStates {
         case error(message: String)
         case firstPage
@@ -9,8 +10,10 @@ final class NavigationService: MainQueueRunnable {
 
     static var switchRootView: ((UIViewController) -> Void)?
 
-    static func resolveNavigation(with context: CheckUserContext,
-                                  fallbackCompletion: Closure) {
+    static func resolveNavigation(
+        with context: CheckUserContext,
+        fallbackCompletion: Closure
+    ) {
         switch context.state {
         case .empty:
             fallbackCompletion()

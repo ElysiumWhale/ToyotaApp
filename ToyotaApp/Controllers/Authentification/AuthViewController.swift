@@ -12,13 +12,11 @@ final class AuthViewController: BaseViewController, Loadable {
     private let agreementStack = UIStackView()
     private let agreementLabel = UILabel()
     private let agreementButton = UIButton()
-    private let sendPhoneButton = CustomizableButton()
+    private let sendPhoneButton = CustomizableButton(configuration: .toyotaAction())
 
     private let interactor: AuthInteractor
 
     let loadingView = LoadingView()
-
-    var isLoading: Bool = false
 
     init(interactor: AuthInteractor) {
         self.interactor = interactor
@@ -33,8 +31,6 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureLayout() {
-        view.hideKeyboardWhenSwipedDown()
-
         logo.size(.init(width: 128, height: 128))
         logo.aspectRatio(1)
         logo.centerXToSuperview()
@@ -84,12 +80,6 @@ final class AuthViewController: BaseViewController, Loadable {
         agreementLabel.textColor = .appTint(.signatureGray)
         agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)
         agreementButton.setTitleColor(.link, for: .normal)
-
-        sendPhoneButton.titleLabel?.font = .toyotaType(.regular, of: 22)
-        sendPhoneButton.setTitleColor(.white, for: .normal)
-        sendPhoneButton.normalColor = .appTint(.secondarySignatureRed)
-        sendPhoneButton.highlightedColor = .appTint(.dimmedSignatureRed)
-        sendPhoneButton.rounded = true
     }
 
     override func localize() {
@@ -110,6 +100,8 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     override func configureActions() {
+        view.hideKeyboardWhenSwipedDown()
+
         phoneNumber.addTarget(
             self,
             action: #selector(phoneDidChange),
@@ -125,15 +117,6 @@ final class AuthViewController: BaseViewController, Loadable {
             action: #selector(openAgreement),
             for: .touchUpInside
         )
-
-        interactor.onSuccess = { [weak self] in
-            self?.handle(isSuccess: true)
-        }
-
-        interactor.onFailure = { [weak self] errorMessage in
-            self?.handle(isSuccess: false)
-            PopUp.display(.error(description: errorMessage))
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -157,7 +140,15 @@ final class AuthViewController: BaseViewController, Loadable {
         startLoading()
         view.endEditing(true)
 
-        interactor.sendPhone(phone)
+        Task {
+            switch await interactor.sendPhone(phone) {
+            case .success:
+                handle(isSuccess: true)
+            case let .failure(message):
+                handle(isSuccess: false)
+                PopUp.display(.error(description: message))
+            }
+        }
     }
 
     @objc private func openAgreement() {
@@ -172,7 +163,7 @@ final class AuthViewController: BaseViewController, Loadable {
         guard isSuccess else {
             return
         }
-        
+
         let vc = AuthFlow.codeModule(
             phone: phoneNumber.validPhone!,
             authType: interactor.type

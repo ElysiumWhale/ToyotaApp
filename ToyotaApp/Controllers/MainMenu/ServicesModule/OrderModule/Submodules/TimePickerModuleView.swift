@@ -2,19 +2,36 @@ import UIKit
 import DesignKit
 
 final class TimePickerView: BaseView {
+    private let label = UILabel()
+
     let picker = UIPickerView()
-    let label = UILabel()
+
+    init(
+        delegate: (UIPickerViewDelegate & UIPickerViewDataSource)? = nil,
+        alpha: CGFloat = 1
+    ) {
+        super.init(frame: .zero)
+
+        picker.delegate = delegate
+        picker.dataSource = delegate
+        self.alpha = alpha
+    }
 
     override func addViews() {
         addSubviews(label, picker)
     }
 
     override func configureLayout() {
-        label.edgesToSuperview(excluding: .bottom,
-                                       usingSafeArea: true)
+        label.edgesToSuperview(
+            excluding: .bottom,
+            usingSafeArea: true
+        )
         label.bottomToTop(of: picker, offset: -5)
 
-        picker.edgesToSuperview(excluding: .top, usingSafeArea: true)
+        picker.edgesToSuperview(
+            excluding: .top,
+            usingSafeArea: true
+        )
         picker.height(150)
     }
 
@@ -32,7 +49,7 @@ final class TimePickerView: BaseView {
     func configure(appearance: [ModuleAppearances]) {
         for appearance in appearance {
             switch appearance {
-            case .title(let title):
+            case let .title(title):
                 label.text = title
             default:
                 return
