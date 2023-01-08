@@ -148,3 +148,18 @@ extension UIContentConfiguration where Self == UIListContentConfiguration {
         return result
     }
 }
+
+// MARK: - CustomizableButton.Configuration presets
+extension CustomizableButton.Configuration {
+    static func toyotaAction(
+        _ fontSize: CGFloat = 22
+    ) -> CustomizableButton.Configuration {
+        .init(
+            font: .toyotaType(.regular, of: fontSize),
+            titleColor: .white,
+            normalColor: .appTint(.secondarySignatureRed),
+            highlightedColor: .appTint(.dimmedSignatureRed),
+            rounded: true
+        )
+    }
+}
