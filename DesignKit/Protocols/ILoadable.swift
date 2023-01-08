@@ -20,7 +20,7 @@ public extension Loadable {
 
     func stopLoading() {
         loadingView.isUserInteractionEnabled = false
-        loadingView.fadeOut(1) { [weak self] in
+        loadingView.fadeOut() { [weak self] in
             self?.loadingView.stopAnimating()
             self?.loadingView.removeFromSuperview()
         }
