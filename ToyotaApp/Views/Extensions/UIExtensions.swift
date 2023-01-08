@@ -163,4 +163,15 @@ extension CustomizableButton.Configuration {
             rounded: true
         )
     }
+
+    static var toyotaSecondary: CustomizableButton.Configuration {
+        .init(
+            font: .toyotaType(.semibold, of: 18),
+            titleColor: .appTint(.signatureGray),
+            normalColor: .appTint(.background),
+            highlightedColor: .appTint(.secondarySignatureRed),
+            tintColor: .appTint(.signatureGray),
+            rounded: false
+        )
+    }
 }

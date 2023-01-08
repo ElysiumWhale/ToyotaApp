@@ -30,8 +30,8 @@ final class ProfileViewController: BaseViewController,
     private let managerButton = CustomizableButton(configuration: .toyotaAction(18))
     private let cancelButton = CustomizableButton(configuration: .toyotaAction(18))
     private let saveButton = CustomizableButton(configuration: .toyotaAction(18))
-    private let bookingsButton = CustomizableButton()
-    private let carsButton = CustomizableButton()
+    private let bookingsButton = CustomizableButton(configuration: .toyotaSecondary)
+    private let carsButton = CustomizableButton(configuration: .toyotaSecondary)
     private let fieldsStack = UIStackView()
     private let bottomButtonsStack = UIStackView()
     private let datePicker = UIDatePicker()
@@ -172,14 +172,6 @@ final class ProfileViewController: BaseViewController,
 
         birthTextField.rule = .notEmpty
         birthTextField.tintColor = .clear
-
-        for bottomButton in [bookingsButton, carsButton] {
-            bottomButton.normalColor = .appTint(.background)
-            bottomButton.highlightedColor = .appTint(.secondarySignatureRed)
-            bottomButton.setTitleColor(.appTint(.signatureGray), for: .normal)
-            bottomButton.tintColor = .appTint(.signatureGray)
-            bottomButton.titleLabel?.font = .toyotaType(.semibold, of: 18)
-        }
 
         bookingsButton.setImage(.bookings, for: .normal)
         carsButton.setImage(.car, for: .normal)
