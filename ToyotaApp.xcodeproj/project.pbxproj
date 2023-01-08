@@ -141,6 +141,7 @@
 		A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */; };
 		A7D4A7F628BD791A009747E4 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */; };
 		A7D8FE6C292ADF6C00AA5CAC /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D8FE6B292ADF6C00AA5CAC /* Tabs.swift */; };
+		A7F73F3F296A3B9C0057A4CC /* CustomizableButton+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F73F3E296A3B9C0057A4CC /* CustomizableButton+Configuration.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
 		A7FA6867294E65D600008AFB /* DesignKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FA6861294E65D600008AFB /* DesignKit.framework */; };
 		A7FA6868294E65D600008AFB /* DesignKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7FA6861294E65D600008AFB /* DesignKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -334,6 +335,7 @@
 		A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattingTests.swift; sourceTree = "<group>"; };
 		A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		A7D8FE6B292ADF6C00AA5CAC /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
+		A7F73F3E296A3B9C0057A4CC /* CustomizableButton+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomizableButton+Configuration.swift"; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		A7FA6861294E65D600008AFB /* DesignKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FA6881294E6E5200008AFB /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				14CFEF0A2714E22C0034046C /* CustomizableButton.swift */,
+				A7F73F3E296A3B9C0057A4CC /* CustomizableButton+Configuration.swift */,
 				14F519912777E39900FF695D /* TintedImageButton.swift */,
 			);
 			path = Button;
@@ -1263,6 +1266,7 @@
 				A7FA687E294E6D8200008AFB /* CustomizableButton.swift in Sources */,
 				A7FA6891294E78DB00008AFB /* IRefreshable.swift in Sources */,
 				A7FA6878294E681C00008AFB /* InitialazableView.swift in Sources */,
+				A7F73F3F296A3B9C0057A4CC /* CustomizableButton+Configuration.swift in Sources */,
 				A7FA6873294E671500008AFB /* BaseCollectionCell.swift in Sources */,
 				A7FA686F294E666500008AFB /* BaseView.swift in Sources */,
 				A7FA6882294E6E5200008AFB /* UITableView+Ext.swift in Sources */,
