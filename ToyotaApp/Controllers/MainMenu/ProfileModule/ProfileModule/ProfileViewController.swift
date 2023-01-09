@@ -190,11 +190,9 @@ final class ProfileViewController: BaseViewController,
         managerButton.addAction { [weak self] in
             self?.onShowManagers?()
         }
-
         bookingsButton.addAction { [weak self] in
             self?.onShowBookings?()
         }
-
         carsButton.addAction { [weak self] in
             self?.onShowCars?()
         }
@@ -274,7 +272,7 @@ final class ProfileViewController: BaseViewController,
         }
 
         state = .loading
-        interactor.updateProfile(.init(
+        interactor.updateProfile(Person(
             firstName: firstNameTextField.inputText,
             lastName: lastNameTextField.inputText,
             secondName: secondNameTextField.inputText,
@@ -308,10 +306,11 @@ private extension ProfileViewController {
             ? cancelButton.trailingToSuperview(offset: 16)
             : cancelButton.centerXToSuperview()
 
-        UIView.animate(withDuration: 0.4,
-                       delay: .zero,
-                       options: .curveEaseInOut,
-                       animations: { [self] in
+        UIView.animate(
+            withDuration: 0.5,
+            delay: .zero,
+            options: .curveEaseInOut
+        ) { [unowned self] in
             for field in fields {
                 field.isEnabled = isEditing
                 field.backgroundColor = isEditing
@@ -320,7 +319,7 @@ private extension ProfileViewController {
             }
 
             view.layoutIfNeeded()
-        })
+        }
 
         if state != .loading {
             stopLoading()
