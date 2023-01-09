@@ -161,7 +161,6 @@ final class ProfileViewController: BaseViewController,
 
         for field in fields {
             field.rule = .personalInfo
-            field.cornerRadius = 10
             field.backgroundColor = .appTint(.background)
             field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 22)
@@ -225,6 +224,10 @@ final class ProfileViewController: BaseViewController,
         bookingsButton.setTitle("  " + .common(.bookings), for: .normal)
         carsButton.setTitle("  " + .common(.myAuto), for: .normal)
         navigationItem.title = .common(.profile)
+    }
+
+    override func viewDidLayoutSubviews() {
+        fields.forEach { $0.applyCornerMask(radius: 10) }
     }
 
     // MARK: - Actions
