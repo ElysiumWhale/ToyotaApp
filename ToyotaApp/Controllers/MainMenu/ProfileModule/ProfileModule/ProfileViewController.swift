@@ -131,13 +131,13 @@ final class ProfileViewController: BaseViewController,
 
         for button in [saveButton, cancelButton] {
             button.topToBottom(of: fieldsStack, offset: 18)
-            button.size(.init(width: 160, height: 43))
+            button.size(.toyotaActionS)
         }
 
         saveLeadingConstraint = saveButton.centerXToSuperview()
         cancelLeadingConstraint = cancelButton.centerXToSuperview()
 
-        managerButton.size(.init(width: 160, height: 43))
+        managerButton.size(.toyotaActionS)
         managerButton.topToBottom(of: saveButton, offset: 18)
         managerButton.centerXToSuperview()
 

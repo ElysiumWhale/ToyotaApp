@@ -60,7 +60,7 @@ final class AddCarViewController: BaseViewController, Loadable {
                                      usingSafeArea: true)
 
         actionButton.centerXToSuperview()
-        actionButton.size(.init(width: 245, height: 43))
+        actionButton.size(.toyotaActionL)
         actionButton.bottomToSuperview(offset: -16,
                                        usingSafeArea: true)
     }

@@ -136,6 +136,11 @@ extension UIButton {
     }
 }
 
+extension CGSize {
+    static let toyotaActionL = CGSize(width: 244, height: 44)
+    static let toyotaActionS = CGSize(width: 160, height: 44)
+}
+
 // MARK: - City picking cell configuration
 extension UIContentConfiguration where Self == UIListContentConfiguration {
     static func cellConfiguration(with text: String, isSelected: Bool) -> Self {
