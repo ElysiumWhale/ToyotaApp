@@ -74,14 +74,6 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         super.editingRect(forBounds: bounds).inset(by: withPaddingInset)
     }
-
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-
-        if cornerRadius > 0 {
-            applyCornerMask(radius: cornerRadius)
-        }
-    }
 }
 
 extension InputTextField {

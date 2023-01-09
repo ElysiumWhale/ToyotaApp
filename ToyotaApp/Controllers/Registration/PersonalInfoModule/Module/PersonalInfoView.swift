@@ -76,7 +76,7 @@ final class PersonalInfoView: BaseViewController,
         fieldsStackView.axis = .vertical
 
         actionButton.centerXToSuperview()
-        actionButton.size(.init(width: 245, height: 43))
+        actionButton.size(.toyotaActionL)
         actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
     }
 
@@ -126,12 +126,15 @@ final class PersonalInfoView: BaseViewController,
         setupKeyboard(isSubscribing: false)
     }
 
+    override func viewDidLayoutSubviews() {
+        fields.forEach { $0.applyCornerMask(radius: 10) }
+    }
+
     private func configureFields() {
         fields.forEach { field in
             field.backgroundColor = .appTint(.background)
             field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 23)
-            field.cornerRadius = 10
             field.leftPadding = 15
             field.maxSymbolCount = 30
             field.rule = .personalInfo

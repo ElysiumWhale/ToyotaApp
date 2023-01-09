@@ -131,13 +131,13 @@ final class ProfileViewController: BaseViewController,
 
         for button in [saveButton, cancelButton] {
             button.topToBottom(of: fieldsStack, offset: 18)
-            button.size(.init(width: 160, height: 43))
+            button.size(.toyotaActionS)
         }
 
         saveLeadingConstraint = saveButton.centerXToSuperview()
         cancelLeadingConstraint = cancelButton.centerXToSuperview()
 
-        managerButton.size(.init(width: 160, height: 43))
+        managerButton.size(.toyotaActionS)
         managerButton.topToBottom(of: saveButton, offset: 18)
         managerButton.centerXToSuperview()
 
@@ -161,7 +161,6 @@ final class ProfileViewController: BaseViewController,
 
         for field in fields {
             field.rule = .personalInfo
-            field.cornerRadius = 10
             field.backgroundColor = .appTint(.background)
             field.tintColor = .appTint(.secondarySignatureRed)
             field.font = .toyotaType(.light, of: 22)
@@ -191,11 +190,9 @@ final class ProfileViewController: BaseViewController,
         managerButton.addAction { [weak self] in
             self?.onShowManagers?()
         }
-
         bookingsButton.addAction { [weak self] in
             self?.onShowBookings?()
         }
-
         carsButton.addAction { [weak self] in
             self?.onShowCars?()
         }
@@ -225,6 +222,10 @@ final class ProfileViewController: BaseViewController,
         bookingsButton.setTitle("  " + .common(.bookings), for: .normal)
         carsButton.setTitle("  " + .common(.myAuto), for: .normal)
         navigationItem.title = .common(.profile)
+    }
+
+    override func viewDidLayoutSubviews() {
+        fields.forEach { $0.applyCornerMask(radius: 10) }
     }
 
     // MARK: - Actions
@@ -271,7 +272,7 @@ final class ProfileViewController: BaseViewController,
         }
 
         state = .loading
-        interactor.updateProfile(.init(
+        interactor.updateProfile(Person(
             firstName: firstNameTextField.inputText,
             lastName: lastNameTextField.inputText,
             secondName: secondNameTextField.inputText,
@@ -305,10 +306,11 @@ private extension ProfileViewController {
             ? cancelButton.trailingToSuperview(offset: 16)
             : cancelButton.centerXToSuperview()
 
-        UIView.animate(withDuration: 0.4,
-                       delay: .zero,
-                       options: .curveEaseInOut,
-                       animations: { [self] in
+        UIView.animate(
+            withDuration: 0.5,
+            delay: .zero,
+            options: .curveEaseInOut
+        ) { [unowned self] in
             for field in fields {
                 field.isEnabled = isEditing
                 field.backgroundColor = isEditing
@@ -317,7 +319,7 @@ private extension ProfileViewController {
             }
 
             view.layoutIfNeeded()
-        })
+        }
 
         if state != .loading {
             stopLoading()

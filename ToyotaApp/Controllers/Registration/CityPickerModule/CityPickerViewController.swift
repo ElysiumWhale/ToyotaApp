@@ -54,7 +54,7 @@ final class CityPickerViewController: BaseViewController,
                                          usingSafeArea: true)
         refreshableView.topToBottom(of: subtitleLabel)
         actionButton.centerXToSuperview()
-        actionButton.size(.init(width: 245, height: 43))
+        actionButton.size(.toyotaActionL)
         actionButton.bottomToSuperview(offset: -16,
                                        usingSafeArea: true)
     }

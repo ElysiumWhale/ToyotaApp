@@ -50,7 +50,7 @@ final class SettingsViewController: BaseViewController {
 
         changeNumberButton.topToBottom(of: phoneTextField, offset: 10)
         changeNumberButton.centerXToSuperview()
-        changeNumberButton.size(.init(width: 160, height: 43))
+        changeNumberButton.size(.toyotaActionS)
 
         bottomStack.axis = .vertical
         bottomStack.alignment = .center

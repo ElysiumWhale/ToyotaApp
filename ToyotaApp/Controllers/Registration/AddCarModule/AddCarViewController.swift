@@ -60,7 +60,7 @@ final class AddCarViewController: BaseViewController, Loadable {
                                      usingSafeArea: true)
 
         actionButton.centerXToSuperview()
-        actionButton.size(.init(width: 245, height: 43))
+        actionButton.size(.toyotaActionL)
         actionButton.bottomToSuperview(offset: -16,
                                        usingSafeArea: true)
     }
@@ -79,7 +79,6 @@ final class AddCarViewController: BaseViewController, Loadable {
 
         for field in textFields {
             field.backgroundColor = .appTint(.background)
-            field.cornerRadius = 10
             field.font = .toyotaType(.light, of: 18)
             field.textAlignment = .center
             field.textColor = .appTint(.signatureGray)
@@ -134,6 +133,10 @@ final class AddCarViewController: BaseViewController, Loadable {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        textFields.forEach { $0.applyCornerMask(radius: 10) }
+    }
+
     private func skipButtonDidPress() {
         guard interactor.type == .register else {
             return
@@ -162,7 +165,7 @@ final class AddCarViewController: BaseViewController, Loadable {
     }
 }
 
-extension AddCarViewController {
+private extension AddCarViewController {
     var textFields: [InputTextField] {
         [
             vinCodeTextField,
