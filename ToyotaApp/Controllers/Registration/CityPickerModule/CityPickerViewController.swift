@@ -12,7 +12,7 @@ final class CityPickerViewController: BaseViewController,
     private let interactor: CityPickerInteractor
 
     private let subtitleLabel = UILabel()
-    private let actionButton = CustomizableButton(configuration: .toyotaAction())
+    private let actionButton = CustomizableButton(.toyotaAction())
 
     let refreshableView = TableView<CityCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()

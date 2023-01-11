@@ -13,7 +13,7 @@ final class PersonalInfoView: BaseViewController,
     private let birthTextField = InputTextField()
     private let containerView = UIView()
     private let fieldsStackView = UIStackView()
-    private let actionButton = CustomizableButton(configuration: .toyotaAction())
+    private let actionButton = CustomizableButton(.toyotaAction())
     private let datePicker = UIDatePicker()
 
     private var fields: [InputTextField] {

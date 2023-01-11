@@ -10,7 +10,7 @@ final class AddCarViewController: BaseViewController, Loadable {
     private let modelTextField = InputTextField()
     private let yearTextField = InputTextField()
     private let colorTextField = InputTextField()
-    private let actionButton = CustomizableButton(configuration: .toyotaAction())
+    private let actionButton = CustomizableButton(.toyotaAction())
     private let skipButton = UIButton()
     private let modelPicker = UIPickerView()
     private let yearPicker = UIPickerView()

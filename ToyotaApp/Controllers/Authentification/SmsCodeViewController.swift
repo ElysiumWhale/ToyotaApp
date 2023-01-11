@@ -7,7 +7,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     private let codeTextField = InputTextField()
     private let errorLabel = UILabel()
     private let codeStack = UIStackView()
-    private let sendCodeButton = CustomizableButton(configuration: .toyotaAction())
+    private let sendCodeButton = CustomizableButton(.toyotaAction())
 
     private let interactor: SmsCodeInteractor
 

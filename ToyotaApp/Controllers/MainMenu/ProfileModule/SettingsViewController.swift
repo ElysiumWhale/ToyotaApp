@@ -4,7 +4,7 @@ import DesignKit
 final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField()
-    private let changeNumberButton = CustomizableButton(configuration: .toyotaAction(18))
+    private let changeNumberButton = CustomizableButton(.toyotaAction(18))
     private let bottomStack = UIStackView()
     private let agreementButton = CustomizableButton()
     private let companyNameLabel = UILabel()

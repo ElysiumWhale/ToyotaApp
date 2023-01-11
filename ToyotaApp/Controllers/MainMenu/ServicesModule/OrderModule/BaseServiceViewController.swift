@@ -6,7 +6,7 @@ class BaseServiceController: BaseViewController, Loadable {
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     let carPickView = PickerModuleView()
-    let bookButton = CustomizableButton(configuration: .toyotaAction())
+    let bookButton = CustomizableButton(.toyotaAction())
 
     // MARK: - Models
     let bookingService: IBookingService
