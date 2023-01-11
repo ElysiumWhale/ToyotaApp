@@ -143,7 +143,7 @@ extension CGSize {
 
 // MARK: - City picking cell configuration
 extension UIContentConfiguration where Self == UIListContentConfiguration {
-    static func cellConfiguration(with text: String, isSelected: Bool) -> Self {
+    static func cellConfiguration(with text: String?, isSelected: Bool) -> Self {
         var result = UIListContentConfiguration.cell()
         result.text = text
         result.textProperties.color = isSelected
