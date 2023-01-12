@@ -86,6 +86,7 @@
 		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
+		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
@@ -276,6 +277,7 @@
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
+		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				149092612696502100390D04 /* PhoneTextField.swift */,
 				1433C7C7269F304C00BCB70B /* InputTextField.swift */,
 				A78A4EF72548EA600026B76B /* NoPasteTextField.swift */,
+				A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
 				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
 				1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */,
+				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
 				A735059029565B960005C7F2 /* NewInfoService.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
