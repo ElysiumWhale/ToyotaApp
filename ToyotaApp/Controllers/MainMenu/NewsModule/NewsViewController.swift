@@ -7,7 +7,7 @@ final class NewsViewController: BaseViewController, Refreshable {
     private let showroomPicker = UIPickerView()
 
     let refreshableView = TableView<NewsCell>()
-    let showroomField = NoCopyPasteTextField()
+    let showroomField = NoCopyPasteTextField(.toyota(tintColor: .clear))
     let refreshControl = UIRefreshControl()
 
     private var selectedRow: IndexPath?
@@ -57,15 +57,9 @@ final class NewsViewController: BaseViewController, Refreshable {
         configureNavBarAppearance(color: nil)
         view.backgroundColor = .systemBackground
 
-        showroomField.tintColor = .clear
         showroomField.rightViewMode = .always
-        showroomField.backgroundColor = .appTint(.background)
-        showroomField.font = .toyotaType(.light, of: 25)
-        showroomField.textColor = .appTint(.signatureGray)
         showroomField.adjustsFontSizeToFitWidth = true
         showroomField.minimumFontSize = 17
-        showroomField.textAlignment = .center
-        showroomField.cornerRadius = 10
 
         refreshableView.separatorStyle = .singleLine
         refreshableView.separatorColor = .appTint(.secondaryGray)

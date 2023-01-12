@@ -22,11 +22,11 @@ final class ProfileViewController: BaseViewController,
     private let interactor: ProfileInteractor
 
     // MARK: - UI
-    private let firstNameTextField = InputTextField()
-    private let secondNameTextField = InputTextField()
-    private let lastNameTextField = InputTextField()
-    private let emailTextField = InputTextField()
-    private let birthTextField = NoPasteTextField()
+    private let firstNameTextField = InputTextField(.toyota)
+    private let secondNameTextField = InputTextField(.toyota)
+    private let lastNameTextField = InputTextField(.toyota)
+    private let emailTextField = InputTextField(.toyota)
+    private let birthTextField = NoPasteTextField(.toyota)
     private let managerButton = CustomizableButton(.toyotaAction(18))
     private let cancelButton = CustomizableButton(.toyotaAction(18))
     private let saveButton = CustomizableButton(.toyotaAction(18))
@@ -159,14 +159,9 @@ final class ProfileViewController: BaseViewController,
             .font: UIFont.toyotaType(.regular, of: 17)
         ]
 
-        for field in fields {
-            field.rule = .personalInfo
-            field.backgroundColor = .appTint(.background)
-            field.tintColor = .appTint(.secondarySignatureRed)
-            field.font = .toyotaType(.light, of: 22)
-            field.textAlignment = .center
-            field.tintColor = .appTint(.secondarySignatureRed)
-            field.isEnabled = false
+        fields.forEach {
+            $0.rule = .personalInfo
+            $0.isEnabled = false
         }
 
         birthTextField.rule = .notEmpty
@@ -222,10 +217,6 @@ final class ProfileViewController: BaseViewController,
         bookingsButton.setTitle("  " + .common(.bookings), for: .normal)
         carsButton.setTitle("  " + .common(.myAuto), for: .normal)
         navigationItem.title = .common(.profile)
-    }
-
-    override func viewDidLayoutSubviews() {
-        fields.forEach { $0.applyCornerMask(radius: 10) }
     }
 
     // MARK: - Actions

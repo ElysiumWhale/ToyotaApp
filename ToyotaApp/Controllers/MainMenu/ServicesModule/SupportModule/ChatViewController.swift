@@ -3,7 +3,7 @@ import DesignKit
 
 final class ChatViewController: BaseViewController {
     private let stabLabel = UILabel()
-    private let messageField = InputTextField()
+    private let messageField = InputTextField(.toyotaLeft)
     private let sendButton = CustomizableButton(type: .custom)
 
     override func addViews() {
@@ -32,10 +32,8 @@ final class ChatViewController: BaseViewController {
         stabLabel.font = .toyotaType(.semibold, of: 22)
         stabLabel.textColor = .appTint(.signatureGray)
         stabLabel.numberOfLines = .zero
-        messageField.backgroundColor = .appTint(.background)
-        messageField.cornerRadius = 10
-        messageField.tintColor = .appTint(.secondarySignatureRed)
         messageField.rightViewMode = .always
+        messageField.leftPadding = 15
         sendButton.setImage(.send, for: .normal)
         sendButton.tintColor = .appTint(.secondarySignatureRed)
     }

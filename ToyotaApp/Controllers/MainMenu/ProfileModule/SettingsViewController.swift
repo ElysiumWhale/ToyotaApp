@@ -3,7 +3,7 @@ import DesignKit
 
 final class SettingsViewController: BaseViewController {
     private let phoneLabel = UILabel()
-    private let phoneTextField = InputTextField()
+    private let phoneTextField = InputTextField(.toyota)
     private let changeNumberButton = CustomizableButton(.toyotaAction(18))
     private let bottomStack = UIStackView()
     private let agreementButton = CustomizableButton()
@@ -68,11 +68,6 @@ final class SettingsViewController: BaseViewController {
         phoneLabel.textColor = .appTint(.signatureGray)
         phoneLabel.textAlignment = .center
         phoneLabel.backgroundColor = view.backgroundColor
-
-        phoneTextField.font = .toyotaType(.light, of: 22)
-        phoneTextField.backgroundColor = .appTint(.background)
-        phoneTextField.textAlignment = .center
-        phoneTextField.cornerRadius = 10
 
         agreementButton.setTitleColor(.link, for: .normal)
         agreementButton.titleLabel?.font = .toyotaType(.semibold, of: 15)

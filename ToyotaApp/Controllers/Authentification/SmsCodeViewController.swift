@@ -4,7 +4,7 @@ import DesignKit
 final class SmsCodeViewController: BaseViewController, Loadable {
     private let infoLabel = UILabel()
     private let phoneLabel = UILabel()
-    private let codeTextField = InputTextField()
+    private let codeTextField = InputTextField(.toyota)
     private let errorLabel = UILabel()
     private let codeStack = UIStackView()
     private let sendCodeButton = CustomizableButton(.toyotaAction())
@@ -59,13 +59,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         phoneLabel.textColor = .appTint(.signatureGray)
         phoneLabel.textAlignment = .center
 
-        codeTextField.font = .toyotaType(.light, of: 22)
-        codeTextField.textColor = .appTint(.signatureGray)
-        codeTextField.tintColor = .appTint(.secondarySignatureRed)
-        codeTextField.backgroundColor = .appTint(.background)
         codeTextField.maxSymbolCount = 4 // future: 6
-        codeTextField.textAlignment = .center
-        codeTextField.cornerRadius = 10
         codeTextField.keyboardType = .numberPad
         codeTextField.rule = smsRule
 

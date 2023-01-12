@@ -6,11 +6,13 @@ final class PersonalInfoView: BaseViewController,
                               Loadable {
 
     private let subtitleLabel = UILabel()
-    private let firstNameTextField = InputTextField()
-    private let secondNameTextField = InputTextField()
-    private let lastNameTextField = InputTextField()
-    private let emailTextField = InputTextField()
-    private let birthTextField = InputTextField()
+    private let firstNameTextField = InputTextField(.toyotaLeft)
+    private let secondNameTextField = InputTextField(.toyotaLeft)
+    private let lastNameTextField = InputTextField(.toyotaLeft)
+    private let emailTextField = InputTextField(.toyotaLeft)
+    private let birthTextField = InputTextField(.toyota(
+        tintColor: .clear, alignment: .left
+    ))
     private let containerView = UIView()
     private let fieldsStackView = UIStackView()
     private let actionButton = CustomizableButton(.toyotaAction())
@@ -126,29 +128,20 @@ final class PersonalInfoView: BaseViewController,
         setupKeyboard(isSubscribing: false)
     }
 
-    override func viewDidLayoutSubviews() {
-        fields.forEach { $0.applyCornerMask(radius: 10) }
-    }
-
     private func configureFields() {
         fields.forEach { field in
-            field.backgroundColor = .appTint(.background)
-            field.tintColor = .appTint(.secondarySignatureRed)
-            field.font = .toyotaType(.light, of: 23)
             field.leftPadding = 15
             field.maxSymbolCount = 30
             field.rule = .personalInfo
             field.delegate = self
         }
-
-        birthTextField.tintColor = .clear
     }
 
     private func configureTextIfNeeded(for state: PersonalDataStoreState) {
         switch state {
         case .empty:
             return
-        case .configured(let profile):
+        case let .configured(profile):
             firstNameTextField.text = profile.firstName
             secondNameTextField.text = profile.secondName
             lastNameTextField.text = profile.lastName

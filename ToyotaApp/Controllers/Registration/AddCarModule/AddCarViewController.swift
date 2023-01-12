@@ -5,11 +5,11 @@ final class AddCarViewController: BaseViewController, Loadable {
 
     private let subtitleLabel = UILabel()
     private let fieldsStack = UIStackView()
-    private let vinCodeTextField = InputTextField()
-    private let plateTextField = InputTextField()
-    private let modelTextField = InputTextField()
-    private let yearTextField = InputTextField()
-    private let colorTextField = InputTextField()
+    private let vinCodeTextField = InputTextField(.toyota)
+    private let plateTextField = InputTextField(.toyota)
+    private let modelTextField = InputTextField(.toyota)
+    private let yearTextField = InputTextField(.toyota)
+    private let colorTextField = InputTextField(.toyota)
     private let actionButton = CustomizableButton(.toyotaAction())
     private let skipButton = UIButton()
     private let modelPicker = UIPickerView()
@@ -77,15 +77,7 @@ final class AddCarViewController: BaseViewController, Loadable {
         vinCodeTextField.maxSymbolCount = 17
         plateTextField.maxSymbolCount = 12
 
-        for field in textFields {
-            field.backgroundColor = .appTint(.background)
-            field.font = .toyotaType(.light, of: 18)
-            field.textAlignment = .center
-            field.textColor = .appTint(.signatureGray)
-            field.rule = .notEmpty
-            field.tintColor = .appTint(.secondarySignatureRed)
-        }
-
+        textFields.forEach { $0.rule = .notEmpty }
         plateTextField.rule = nil
 
         skipButton.titleLabel?.font = .toyotaType(.regular, of: 18)
@@ -131,10 +123,6 @@ final class AddCarViewController: BaseViewController, Loadable {
         actionButton.addAction { [weak self] in
             self?.actionButtonDidPress()
         }
-    }
-
-    override func viewDidLayoutSubviews() {
-        textFields.forEach { $0.applyCornerMask(radius: 10) }
     }
 
     private func skipButtonDidPress() {
