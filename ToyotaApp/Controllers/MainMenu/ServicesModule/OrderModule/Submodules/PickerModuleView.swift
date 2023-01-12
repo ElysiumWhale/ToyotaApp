@@ -4,7 +4,7 @@ import DesignKit
 final class PickerModuleView: BaseView {
     let picker = UIPickerView()
     let label = UILabel()
-    let textField = NoCopyPasteTextField()
+    let textField = NoCopyPasteTextField(.toyota(tintColor: .clear))
 
     override func addViews() {
         addSubviews(label, textField)
@@ -29,13 +29,6 @@ final class PickerModuleView: BaseView {
         label.textAlignment = .left
         label.textColor = .appTint(.signatureGray)
         label.backgroundColor = .systemBackground
-
-        textField.font = .toyotaType(.light, of: 22)
-        textField.textColor = .appTint(.signatureGray)
-        textField.textAlignment = .center
-        textField.tintColor = .clear
-        textField.cornerRadius = 10
-        textField.backgroundColor = .appTint(.background)
     }
 
     override func localize() {

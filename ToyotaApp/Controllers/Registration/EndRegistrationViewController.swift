@@ -8,7 +8,7 @@ final class EndRegistrationViewController: BaseViewController {
     private let thanksLabel = UILabel()
     private let infoLabel = UILabel()
     private let wishesLabel = UILabel()
-    private let actionButton = CustomizableButton(configuration: .toyotaAction())
+    private let actionButton = CustomizableButton(.toyotaAction())
 
     override func addViews() {
         addSubviews(logoImageView, infoStack, actionButton)

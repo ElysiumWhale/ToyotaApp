@@ -12,7 +12,7 @@ final class AuthViewController: BaseViewController, Loadable {
     private let agreementStack = UIStackView()
     private let agreementLabel = UILabel()
     private let agreementButton = UIButton()
-    private let sendPhoneButton = CustomizableButton(configuration: .toyotaAction())
+    private let sendPhoneButton = CustomizableButton(.toyotaAction())
 
     private let interactor: AuthInteractor
 

@@ -35,7 +35,7 @@ public extension CustomizableButton {
         rounded = configuration.rounded
     }
 
-    convenience init(frame: CGRect = .zero, configuration: Configuration) {
+    convenience init(frame: CGRect = .zero, _ configuration: Configuration) {
         self.init(frame: frame)
 
         apply(configuration: configuration)

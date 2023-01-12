@@ -3,7 +3,9 @@ import DesignKit
 
 final class ServicesViewController: BaseViewController, Refreshable {
     let refreshableView = UICollectionView(layout: .servicesLayout)
-    let showroomField = NoCopyPasteTextField()
+    let showroomField = NoCopyPasteTextField(.toyota(
+        backgroundColor: .appTint(.cell), tintColor: .clear
+    ))
     let refreshControl = UIRefreshControl()
 
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
@@ -88,14 +90,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
         configureNavBarAppearance(font: nil)
         view.backgroundColor = .appTint(.blackBackground)
         refreshableView.backgroundColor = .appTint(.blackBackground)
-        showroomField.textAlignment = .center
-        showroomField.font = .toyotaType(.light, of: 25)
-        showroomField.textColor = .appTint(.signatureGray)
-        showroomField.cornerRadius = 10
         showroomField.minimumFontSize = 17
         showroomField.adjustsFontSizeToFitWidth = true
-        showroomField.backgroundColor = .appTint(.cell)
-        showroomField.tintColor = .clear
         showroomField.rightViewMode = .always
     }
 
