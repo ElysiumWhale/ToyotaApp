@@ -222,27 +222,33 @@ extension ServicesViewController: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         interactor.showrooms.isEmpty ? 1 : interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         interactor.showrooms.isEmpty
             ? .common(.noShowrooms)
-            : interactor.showrooms[row].name
+            : interactor.showrooms[safe: row]?.name
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
 
         guard let service = interactor.serviceTypes[safe: indexPath.row],
               let viewType = ServiceViewType(rawValue: service.controlTypeId) else {
