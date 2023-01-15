@@ -25,20 +25,19 @@ public extension UITextField {
         UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 0.2,
             delay: 0,
-            options: [.curveEaseOut],
-            animations: {
-                self.layer.borderColor = hasError
+            options: [.curveEaseOut]
+        ) { [self] in
+            layer.borderColor = hasError
                 ? UIColor.systemRed.cgColor
                 : UIColor.clear.cgColor
-                self.layer.borderWidth = hasError ? 1 : 0
-            }
-        )
+            layer.borderWidth = hasError ? 1 : 0
+        }
     }
 
     func setRightView(from view: UIView, width: Double = 30, height: Double) {
         NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
         rightView = nil
-        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        let rect = CGRect(width: width, height: height)
         view.frame = rect
         let resultView = UIView(frame: rect)
         resultView.addSubview(view)

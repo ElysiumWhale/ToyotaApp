@@ -87,6 +87,7 @@ extension UIButton {
     }
 }
 
+// MARK: - Size presets
 extension CGSize {
     static let toyotaActionL = CGSize(width: 244, height: 44)
     static let toyotaActionS = CGSize(width: 160, height: 44)

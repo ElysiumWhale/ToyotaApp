@@ -43,10 +43,9 @@ public extension UIView {
             return
         }
 
-        UIView.animate(
-            withDuration: duration,
-            animations: { self.alpha = 1 }
-        )
+        UIView.animate(withDuration: duration) {
+            self.alpha = 1
+        }
     }
 
     // MARK: - FadeOut UIView Animation
@@ -124,15 +123,14 @@ public extension UIView {
         return swipe
     }
 
-    // MARK: - SetTitleIfButtonFirst
     func setTitleIfButtonFirst(_ title: String) {
-        if let button = self.subviews.first as? UIButton {
+        if let button = subviews.first as? UIButton {
             button.setTitle(title, for: .normal)
         }
     }
 }
 
-// MARK: - UIView
+// MARK: - UIView shadow configuration
 public extension UIView {
     struct ShadowState {
         let color: UIColor
