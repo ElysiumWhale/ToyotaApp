@@ -76,18 +76,13 @@ extension UIColor {
 // MARK: - UIButton
 extension UIButton {
     static func imageButton(
-        imageName: String = "chevron.down",
-        action: (() -> Void)? = nil
+        image: UIImage = .chevronDown,
+        action: @escaping () -> Void = { }
     ) -> UIButton {
         let button = UIButton()
-        let image = UIImage(systemName: imageName)
-        button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),
-                        for: .normal)
+        button.setImage(image, for: .normal)
         button.imageView?.tintColor = .appTint(.secondarySignatureRed)
-        if let action = action {
-            button.addAction(action)
-        }
-
+        button.addAction(action)
         return button
     }
 }

@@ -32,7 +32,7 @@ final class NewsViewController: BaseViewController, Refreshable {
     }
 
     override func addViews() {
-        let button: UIButton = .imageButton { [weak self] in
+        let button = UIButton.imageButton { [weak self] in
             self?.showroomField.becomeFirstResponder()
         }
         showroomField.setRightView(from: button,

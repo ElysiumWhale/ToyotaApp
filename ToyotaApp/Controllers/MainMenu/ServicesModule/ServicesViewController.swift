@@ -10,7 +10,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
-    private let chevronButton: UIButton = .imageButton()
+    private let chevronButton = UIButton.imageButton()
 
     private let interactor: ServicesInteractor
     private let user: UserProxy
