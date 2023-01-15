@@ -96,7 +96,7 @@ class BaseServiceController: BaseViewController, Loadable {
         carPickView.picker.configure(
             delegate: self,
             for: carPickView.textField,
-            .buildToolbar(with: #selector(carDidSelect))
+            .makeToolbar(#selector(carDidSelect))
         )
         bookButton.addAction { [weak self] in
             self?.bookService()

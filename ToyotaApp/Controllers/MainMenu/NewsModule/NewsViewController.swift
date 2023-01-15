@@ -76,7 +76,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         showroomPicker.configure(
             delegate: self,
             for: showroomField,
-            .buildToolbar(with: #selector(showroomDidSelect))
+            .makeToolbar(#selector(showroomDidSelect))
         )
 
         interactor.onSuccessNewsLoad = { [weak self] in

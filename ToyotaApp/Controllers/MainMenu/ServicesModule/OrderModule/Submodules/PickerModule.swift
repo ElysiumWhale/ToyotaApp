@@ -11,8 +11,8 @@ final class PickerModule: NSObject, IServiceModule {
         internalView.picker.configure(
             delegate: self,
             for: internalView.textField,
-            .buildToolbar(
-                with: #selector(serviceDidSelect),
+            .makeToolbar(
+                #selector(serviceDidSelect),
                 target: self
             )
         )

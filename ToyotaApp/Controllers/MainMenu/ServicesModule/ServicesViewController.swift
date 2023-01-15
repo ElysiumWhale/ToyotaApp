@@ -99,7 +99,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomPicker.configure(
             delegate: self,
             for: showroomField,
-            .buildToolbar(with: #selector(showroomDidSelect))
+            .makeToolbar(#selector(showroomDidSelect))
         )
 
         chevronButton.addAction { [weak self] in

@@ -178,7 +178,7 @@ final class ProfileViewController: BaseViewController,
         view.hideKeyboard(when: .tapAndSwipe)
 
         datePicker.configure(
-            .buildToolbar(with: #selector(dateDidSelect)),
+            .makeToolbar(#selector(dateDidSelect)),
             for: birthTextField
         )
 

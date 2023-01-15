@@ -3,25 +3,28 @@ import DesignKit
 
 // MARK: - Toolbar for controls
 extension UIView {
-    static func buildToolbar(
-        with action: Selector,
-        target: Any? = nil
+    static func makeToolbar(
+        _ action: Selector,
+        target: Any? = nil,
+        title: String = .common(.choose),
+        tintColor: UIColor = .appTint(.secondarySignatureRed)
     ) -> UIToolbar {
         let toolBar = UIToolbar()
-        toolBar.sizeToFit()
         let flexible = UIBarButtonItem(
             barButtonSystemItem: .flexibleSpace,
-            target: target,
+            target: nil,
             action: nil
         )
         let doneButton = UIBarButtonItem(
-            title: .common(.choose),
+            title: title,
             style: .done,
             target: target,
             action: action
         )
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
+        doneButton.tintColor = tintColor
+        toolBar.setItems([flexible, doneButton], animated: false)
+        toolBar.sizeToFit()
+
         return toolBar
     }
 }
