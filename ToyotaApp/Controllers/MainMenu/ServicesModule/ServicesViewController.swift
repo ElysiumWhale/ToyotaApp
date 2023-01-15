@@ -89,7 +89,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
     override func configureAppearance() {
         configureNavBarAppearance(font: nil)
         view.backgroundColor = .appTint(.blackBackground)
-        refreshableView.backgroundColor = .appTint(.blackBackground)
+        refreshableView.backgroundColor = view.backgroundColor
         showroomField.minimumFontSize = 17
         showroomField.adjustsFontSizeToFitWidth = true
         showroomField.rightViewMode = .always
