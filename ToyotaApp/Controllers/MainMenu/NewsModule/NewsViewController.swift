@@ -137,7 +137,7 @@ extension NewsViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        guard let url = interactor.news[indexPath.row].url else {
+        guard let url = interactor.news[safe: indexPath.row]?.url else {
             return
         }
 
@@ -164,8 +164,8 @@ extension NewsViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell: NewsCell = tableView.dequeue(for: indexPath)
-        let news = interactor.news[indexPath.item]
-        cell.render(.init(title: news.title, url: news.imgUrl))
+        let news = interactor.news[safe: indexPath.item]
+        cell.render(.init(title: news?.title, url: news?.imgUrl))
         return cell
     }
 }
@@ -189,6 +189,6 @@ extension NewsViewController: UIPickerViewDelegate {
         titleForRow row: Int,
         forComponent component: Int
     ) -> String? {
-        interactor.showrooms[row].showroomName
+        interactor.showrooms[safe: row]?.showroomName
     }
 }
