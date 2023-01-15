@@ -34,17 +34,25 @@ public extension UITextField {
         }
     }
 
-    func setRightView(from view: UIView, width: Double = 30, height: Double) {
-        NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
-        rightView = nil
-        let rect = CGRect(width: width, height: height)
-        view.frame = rect
-        let resultView = UIView(frame: rect)
+    func setRightView(
+        _ view: UIView,
+        _ customFrame: CGRect? = nil
+    ) {
+        if let customFrame {
+            view.frame = customFrame
+        }
+        let resultView = UIView(frame: view.frame)
         resultView.addSubview(view)
         NSLayoutConstraint.activate([
             view.centerYAnchor.constraint(equalTo: resultView.centerYAnchor),
-            view.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -10)
+            view.trailingAnchor.constraint(
+                equalTo: resultView.trailingAnchor,
+                constant: -10
+            )
         ])
+        if customFrame == nil {
+            view.sizeToFit()
+        }
         rightView = resultView
     }
 }

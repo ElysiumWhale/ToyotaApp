@@ -16,10 +16,6 @@ final class ServicesViewController: BaseViewController, Refreshable {
     private let user: UserProxy
     private let dataSource: ServicesDataSource
 
-    private var fieldHeight: CGFloat {
-        showroomField.frame.height
-    }
-
     init(user: UserProxy, interactor: ServicesInteractor = .init()) {
         self.user = user
         self.interactor = interactor
@@ -63,11 +59,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
             action: #selector(chatButtonDidPress)
         )
         navigationItem.setRightBarButton(chatButton, animated: false)
-        showroomField.setRightView(
-            from: chevronButton,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(chevronButton)
     }
 
     override func configureLayout() {
@@ -77,6 +69,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
             usingSafeArea: true
         )
         showroomField.height(45)
+        showroomField.leftPadding = 0
         refreshableView.edgesToSuperview(excluding: .top)
         refreshableView.topToBottom(of: showroomField, offset: 8)
     }
@@ -118,11 +111,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
-            showroomField.setRightView(
-                from: showroomIndicator,
-                width: 30,
-                height: fieldHeight
-            )
+            showroomField.setRightView(showroomIndicator)
             interactor.loadShowrooms()
         } else {
             interactor.loadServiceTypes()
@@ -134,11 +123,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
-        showroomField.setRightView(
-            from: showroomIndicator,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(showroomIndicator)
         interactor.loadShowrooms()
     }
 
@@ -193,11 +178,7 @@ extension ServicesViewController: ServicesView {
         )
         showroomField.text = interactor.selectedShowroom?.name
         showroomIndicator.stopAnimating()
-        showroomField.setRightView(
-            from: chevronButton,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(chevronButton)
     }
 
     func didLoadServiceTypes() {

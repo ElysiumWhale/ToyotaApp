@@ -35,8 +35,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         let button = UIButton.imageButton { [weak self] in
             self?.showroomField.becomeFirstResponder()
         }
-        showroomField.setRightView(from: button,
-                                   height: 45)
+        showroomField.setRightView(button)
 
         addSubviews(showroomField, refreshableView)
     }
