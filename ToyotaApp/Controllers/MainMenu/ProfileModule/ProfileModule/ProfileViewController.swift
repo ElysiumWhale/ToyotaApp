@@ -122,15 +122,12 @@ final class ProfileViewController: BaseViewController,
         fieldsStack.axis = .vertical
         fieldsStack.distribution = .fillEqually
         fieldsStack.spacing = 15
-        fieldsStack.edgesToSuperview(
-            excluding: .bottom,
-            insets: .uniform(16),
-            usingSafeArea: true
-        )
+        fieldsStack.horizontalToSuperview(insets: .horizontal(16))
+        fieldsStack.topToSuperview(offset: 8, usingSafeArea: true)
         firstNameTextField.height(45)
 
         for button in [saveButton, cancelButton] {
-            button.topToBottom(of: fieldsStack, offset: 18)
+            button.topToBottom(of: fieldsStack, offset: 16)
             button.size(.toyotaActionS)
         }
 
@@ -138,7 +135,7 @@ final class ProfileViewController: BaseViewController,
         cancelLeadingConstraint = cancelButton.centerXToSuperview()
 
         managerButton.size(.toyotaActionS)
-        managerButton.topToBottom(of: saveButton, offset: 18)
+        managerButton.topToBottom(of: saveButton, offset: 16)
         managerButton.centerXToSuperview()
 
         bottomButtonsStack.distribution = .fillEqually
@@ -178,7 +175,7 @@ final class ProfileViewController: BaseViewController,
         view.hideKeyboard(when: .tapAndSwipe)
 
         datePicker.configure(
-            .buildToolbar(with: #selector(dateDidSelect)),
+            .makeToolbar(#selector(dateDidSelect)),
             for: birthTextField
         )
 

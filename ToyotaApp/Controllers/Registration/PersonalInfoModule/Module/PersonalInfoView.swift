@@ -112,7 +112,7 @@ final class PersonalInfoView: BaseViewController,
 
     override func configureActions() {
         datePicker.configure(
-            .buildToolbar(with: #selector(dateDidSelect)),
+            .makeToolbar(#selector(dateDidSelect)),
             for: birthTextField
         )
         actionButton.addTarget(

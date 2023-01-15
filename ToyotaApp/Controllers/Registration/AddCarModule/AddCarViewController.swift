@@ -103,17 +103,17 @@ final class AddCarViewController: BaseViewController, Loadable {
         modelPicker.configure(
             delegate: self,
             for: modelTextField,
-            .buildToolbar(with: #selector(modelDidPick))
+            .makeToolbar(#selector(modelDidPick))
         )
         yearPicker.configure(
             delegate: self,
             for: yearTextField,
-            .buildToolbar(with: #selector(yearDidPick))
+            .makeToolbar(#selector(yearDidPick))
         )
         colorPicker.configure(
             delegate: self,
             for: colorTextField,
-            .buildToolbar(with: #selector(colorDidPick))
+            .makeToolbar(#selector(colorDidPick))
         )
 
         skipButton.addAction { [weak self] in

@@ -32,11 +32,10 @@ final class NewsViewController: BaseViewController, Refreshable {
     }
 
     override func addViews() {
-        let button: UIButton = .imageButton { [weak self] in
+        let button = UIButton.imageButton { [weak self] in
             self?.showroomField.becomeFirstResponder()
         }
-        showroomField.setRightView(from: button,
-                                   height: 45)
+        showroomField.setRightView(button)
 
         addSubviews(showroomField, refreshableView)
     }
@@ -44,11 +43,13 @@ final class NewsViewController: BaseViewController, Refreshable {
     override func configureLayout() {
         showroomField.height(45)
         showroomField.horizontalToSuperview(insets: .horizontal(16))
-        showroomField.topToSuperview(offset: 5, usingSafeArea: true)
+        showroomField.topToSuperview(offset: 8, usingSafeArea: true)
 
         refreshableView.topToBottom(of: showroomField, offset: 5)
-        refreshableView.edgesToSuperview(excluding: .top,
-                                         usingSafeArea: true)
+        refreshableView.edgesToSuperview(
+            excluding: .top,
+            usingSafeArea: true
+        )
 
         refreshableView.alwaysBounceVertical = true
     }
@@ -76,7 +77,7 @@ final class NewsViewController: BaseViewController, Refreshable {
         showroomPicker.configure(
             delegate: self,
             for: showroomField,
-            .buildToolbar(with: #selector(showroomDidSelect))
+            .makeToolbar(#selector(showroomDidSelect))
         )
 
         interactor.onSuccessNewsLoad = { [weak self] in
@@ -138,7 +139,7 @@ extension NewsViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        guard let url = interactor.news[indexPath.row].url else {
+        guard let url = interactor.news[safe: indexPath.row]?.url else {
             return
         }
 
@@ -146,8 +147,10 @@ extension NewsViewController: UITableViewDelegate {
 
         let webController = SFSafariViewController(url: url)
         webController.preferredControlTintColor = .appTint(.secondarySignatureRed)
-        navigationController?.present(webController,
-                                      animated: true)
+        navigationController?.present(
+            webController,
+            animated: true
+        )
     }
 }
 
@@ -165,8 +168,8 @@ extension NewsViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell: NewsCell = tableView.dequeue(for: indexPath)
-        let news = interactor.news[indexPath.item]
-        cell.render(.init(title: news.title, url: news.imgUrl))
+        let news = interactor.news[safe: indexPath.item]
+        cell.render(.init(title: news?.title, url: news?.imgUrl))
         return cell
     }
 }
@@ -190,6 +193,6 @@ extension NewsViewController: UIPickerViewDelegate {
         titleForRow row: Int,
         forComponent component: Int
     ) -> String? {
-        interactor.showrooms[row].showroomName
+        interactor.showrooms[safe: row]?.showroomName
     }
 }

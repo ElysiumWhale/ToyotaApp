@@ -1,11 +1,14 @@
 import UIKit
 
 extension UIImage {
-    private static func image(name: String,
-                              scale: UIImage.SymbolScale) -> UIImage {
-        UIImage(systemName: name,
-                withConfiguration: SymbolConfiguration(scale: scale))!
-            .withRenderingMode(.alwaysTemplate)
+    private static func image(
+        name: String,
+        scale: UIImage.SymbolScale
+    ) -> UIImage {
+        UIImage(
+            systemName: name,
+            withConfiguration: SymbolConfiguration(scale: scale)
+        )!.withRenderingMode(.automatic)
     }
 
     static var toyotaLogo: UIImage {
@@ -79,5 +82,13 @@ extension UIImage {
 
     static var car: UIImage {
         image(name: "car", scale: .medium)
+    }
+
+    static var chevronRight: UIImage {
+        image(name: "chevron.right", scale: .default)
+    }
+
+    static var chevronDown: UIImage {
+        image(name: "chevron.down", scale: .large)
     }
 }

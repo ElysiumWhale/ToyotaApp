@@ -86,6 +86,7 @@
 		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
+		A70BC1F22974757100D65A94 /* ServicesTitleViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -277,6 +278,7 @@
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
+		A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTitleViewFactory.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 			children = (
 				A7BDE30928D291EE005F8AF2 /* ServicesDataSource.swift */,
 				A791FDDE2524E1D700A595BB /* ServicesViewController.swift */,
+				A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */,
 				14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */,
 				A7679D7E29645AC200AB5E9C /* OrderModule */,
 				14F4A79928592BC900400B36 /* SupportModule */,
@@ -1151,6 +1154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A70BC1F22974757100D65A94 /* ServicesTitleViewFactory.swift in Sources */,
 				1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */,
 				14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */,
 				14DFB9252763F5BA00465736 /* AddCarInteractor.swift in Sources */,

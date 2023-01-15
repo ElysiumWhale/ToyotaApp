@@ -10,15 +10,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     private let showroomIndicator = UIActivityIndicatorView(style: .medium)
     private let showroomPicker = UIPickerView()
-    private let chevronButton: UIButton = .imageButton()
+    private let chevronButton = UIButton.imageButton()
 
     private let interactor: ServicesInteractor
     private let user: UserProxy
     private let dataSource: ServicesDataSource
-
-    private var fieldHeight: CGFloat {
-        showroomField.frame.height
-    }
 
     init(user: UserProxy, interactor: ServicesInteractor = .init()) {
         self.user = user
@@ -51,10 +47,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     override func addViews() {
         addSubviews(showroomField, refreshableView)
-        navigationItem.titleView = .titleViewFor(
-            title: interactor.selectedCity?.name ?? .common(.chooseCity),
+        navigationItem.titleView = ServicesTitleViewFactory.make(
+            interactor.selectedCity?.name ?? .common(.chooseCity),
             .appTint(.blackBackground),
-            action: chooseCityDidTap
+            chooseCityDidTap
         )
         let chatButton = UIBarButtonItem(
             image: .chat.withTintColor(.appTint(.secondarySignatureRed)),
@@ -63,20 +59,14 @@ final class ServicesViewController: BaseViewController, Refreshable {
             action: #selector(chatButtonDidPress)
         )
         navigationItem.setRightBarButton(chatButton, animated: false)
-        showroomField.setRightView(
-            from: chevronButton,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(chevronButton)
     }
 
     override func configureLayout() {
-        showroomField.edgesToSuperview(
-            excluding: .bottom,
-            insets: .uniform(16),
-            usingSafeArea: true
-        )
+        showroomField.horizontalToSuperview(insets: .horizontal(16))
+        showroomField.topToSuperview(offset: 8, usingSafeArea: true)
         showroomField.height(45)
+        showroomField.leftPadding = 0
         refreshableView.edgesToSuperview(excluding: .top)
         refreshableView.topToBottom(of: showroomField, offset: 8)
     }
@@ -89,7 +79,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
     override func configureAppearance() {
         configureNavBarAppearance(font: nil)
         view.backgroundColor = .appTint(.blackBackground)
-        refreshableView.backgroundColor = .appTint(.blackBackground)
+        refreshableView.backgroundColor = view.backgroundColor
         showroomField.minimumFontSize = 17
         showroomField.adjustsFontSizeToFitWidth = true
         showroomField.rightViewMode = .always
@@ -99,7 +89,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomPicker.configure(
             delegate: self,
             for: showroomField,
-            .buildToolbar(with: #selector(showroomDidSelect))
+            .makeToolbar(#selector(showroomDidSelect))
         )
 
         chevronButton.addAction { [weak self] in
@@ -118,11 +108,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
             endRefreshing()
         } else if interactor.showrooms.isEmpty && interactor.selectedShowroom == nil {
             showroomIndicator.startAnimating()
-            showroomField.setRightView(
-                from: showroomIndicator,
-                width: 30,
-                height: fieldHeight
-            )
+            showroomField.setRightView(showroomIndicator)
             interactor.loadShowrooms()
         } else {
             interactor.loadServiceTypes()
@@ -134,11 +120,7 @@ final class ServicesViewController: BaseViewController, Refreshable {
         showroomField.text = .empty
         showroomField.placeholder = .common(.showroomsLoading)
         showroomIndicator.startAnimating()
-        showroomField.setRightView(
-            from: showroomIndicator,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(showroomIndicator)
         interactor.loadShowrooms()
     }
 
@@ -193,11 +175,7 @@ extension ServicesViewController: ServicesView {
         )
         showroomField.text = interactor.selectedShowroom?.name
         showroomIndicator.stopAnimating()
-        showroomField.setRightView(
-            from: chevronButton,
-            width: 30,
-            height: fieldHeight
-        )
+        showroomField.setRightView(chevronButton)
     }
 
     func didLoadServiceTypes() {
@@ -241,27 +219,33 @@ extension ServicesViewController: UIPickerViewDataSource {
         1
     }
 
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        numberOfRowsInComponent component: Int
+    ) -> Int {
         interactor.showrooms.isEmpty ? 1 : interactor.showrooms.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension ServicesViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
         interactor.showrooms.isEmpty
-            ? .common(.noShoworooms)
-            : interactor.showrooms[row].name
+            ? .common(.noShowrooms)
+            : interactor.showrooms[safe: row]?.name
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension ServicesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
 
         guard let service = interactor.serviceTypes[safe: indexPath.row],
               let viewType = ServiceViewType(rawValue: service.controlTypeId) else {
