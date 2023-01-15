@@ -18,7 +18,6 @@ final class ServiceTypeCell: BaseCollectionCell {
 
     override func configureAppearance() {
         contentView.backgroundColor = .appTint(.cell)
-        typeNameLabel.layer.backgroundColor = UIColor.appTint(.cell).cgColor
         typeNameLabel.numberOfLines = 2
         typeNameLabel.font = .toyotaType(.semibold, of: 17)
         typeNameLabel.lineBreakMode = .byWordWrapping
@@ -41,6 +40,5 @@ extension ServiceTypeCell {
     func render(_ viewState: ViewState) {
         contentView.backgroundColor = viewState.backgroundColor
         typeNameLabel.textColor = viewState.textColor
-        typeNameLabel.layer.backgroundColor = viewState.backgroundColor.cgColor
     }
 }
