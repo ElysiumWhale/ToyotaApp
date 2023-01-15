@@ -104,7 +104,7 @@ extension String {
         /// Загрузка салонов
         case showroomsLoading = "Загрузка салонов"
         /// Нет доступных салонов
-        case noShoworooms = "Нет доступных салонов"
+        case noShowrooms = "Нет доступных салонов"
         /// Не исполнено
         case bookingCancelled = "Не исполнено"
         /// Предстоит

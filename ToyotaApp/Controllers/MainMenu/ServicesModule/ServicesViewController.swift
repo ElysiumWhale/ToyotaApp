@@ -253,7 +253,7 @@ extension ServicesViewController: UIPickerViewDelegate {
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
         interactor.showrooms.isEmpty
-            ? .common(.noShoworooms)
+            ? .common(.noShowrooms)
             : interactor.showrooms[row].name
     }
 }
