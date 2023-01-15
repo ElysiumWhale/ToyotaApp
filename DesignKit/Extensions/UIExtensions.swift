@@ -1,5 +1,18 @@
 import UIKit
 
+public extension CGRect {
+    init(
+        width: CGFloat,
+        height: CGFloat
+    ) {
+        self.init(x: 0, y: 0, width: width, height: height)
+    }
+
+    init(side: CGFloat) {
+        self.init(width: side, height: side)
+    }
+}
+
 // MARK: - UITextField
 public extension UITextField {
     enum FieldState {
