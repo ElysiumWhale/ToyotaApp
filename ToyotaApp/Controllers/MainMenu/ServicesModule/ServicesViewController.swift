@@ -63,11 +63,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
     }
 
     override func configureLayout() {
-        showroomField.edgesToSuperview(
-            excluding: .bottom,
-            insets: .uniform(16),
-            usingSafeArea: true
-        )
+        showroomField.horizontalToSuperview(insets: .horizontal(16))
+        showroomField.topToSuperview(offset: 8, usingSafeArea: true)
         showroomField.height(45)
         showroomField.leftPadding = 0
         refreshableView.edgesToSuperview(excluding: .top)

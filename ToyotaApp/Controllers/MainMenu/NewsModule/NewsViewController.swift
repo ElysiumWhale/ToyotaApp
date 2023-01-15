@@ -43,7 +43,7 @@ final class NewsViewController: BaseViewController, Refreshable {
     override func configureLayout() {
         showroomField.height(45)
         showroomField.horizontalToSuperview(insets: .horizontal(16))
-        showroomField.topToSuperview(offset: 5, usingSafeArea: true)
+        showroomField.topToSuperview(offset: 8, usingSafeArea: true)
 
         refreshableView.topToBottom(of: showroomField, offset: 5)
         refreshableView.edgesToSuperview(
