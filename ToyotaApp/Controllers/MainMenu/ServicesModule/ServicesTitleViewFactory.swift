@@ -13,7 +13,7 @@ enum ServicesTitleViewFactory {
         )
 
         let rightButton = UIButton()
-        rightButton.setImage(.chevron, for: .normal)
+        rightButton.setImage(.chevronRight, for: .normal)
         rightButton.tintColor = .appTint(.secondarySignatureRed)
         rightButton.imageView?.backgroundColor = backgroundColor
         rightButton.addAction(action)

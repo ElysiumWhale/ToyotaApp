@@ -84,7 +84,11 @@ extension UIImage {
         image(name: "car", scale: .medium)
     }
 
-    static var chevron: UIImage {
+    static var chevronRight: UIImage {
         image(name: "chevron.right", scale: .default)
+    }
+
+    static var chevronDown: UIImage {
+        image(name: "chevron.down", scale: .large)
     }
 }
