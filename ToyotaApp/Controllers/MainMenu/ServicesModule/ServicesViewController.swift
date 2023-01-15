@@ -51,10 +51,10 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     override func addViews() {
         addSubviews(showroomField, refreshableView)
-        navigationItem.titleView = .titleViewFor(
-            title: interactor.selectedCity?.name ?? .common(.chooseCity),
+        navigationItem.titleView = ServicesTitleViewFactory.make(
+            interactor.selectedCity?.name ?? .common(.chooseCity),
             .appTint(.blackBackground),
-            action: chooseCityDidTap
+            chooseCityDidTap
         )
         let chatButton = UIBarButtonItem(
             image: .chat.withTintColor(.appTint(.secondarySignatureRed)),

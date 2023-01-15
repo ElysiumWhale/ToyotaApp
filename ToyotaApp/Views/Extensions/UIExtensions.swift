@@ -1,37 +1,8 @@
 import UIKit
 import DesignKit
 
+// MARK: - Toolbar for controls
 extension UIView {
-    static func titleViewFor(
-        title: String,
-        _ backgroundColor: UIColor,
-        action: @escaping () -> Void
-    ) -> UIView {
-        let button = UIButton.titleButton(with: title, action: action)
-        button.titleLabel?.backgroundColor = backgroundColor
-        let rightButton = UIButton(frame: .init(
-            x: 0, y: 0, width: 20, height: 20)
-        )
-        rightButton.setImage(UIImage(systemName: "chevron.right"),
-                             for: .normal)
-        rightButton.tintColor = .appTint(.secondarySignatureRed)
-        rightButton.imageView?.backgroundColor = backgroundColor
-        rightButton.addAction(action)
-
-        let container = UIView(frame: .init(
-            x: 0, y: 0, width: 100, height: 30)
-        )
-        container.addSubviews(button, rightButton)
-
-        button.edgesToSuperview(excluding: .trailing)
-        rightButton.trailingToSuperview()
-        button.trailingToLeading(of: rightButton)
-        button.centerY(to: rightButton, offset: -3)
-
-        return container
-    }
-
-    // MARK: - Toolbar for controls
     static func buildToolbar(
         with action: Selector,
         target: Any? = nil
@@ -104,21 +75,6 @@ extension UIColor {
 
 // MARK: - UIButton
 extension UIButton {
-    static func titleButton(
-        with text: String,
-        action: @escaping () -> Void
-    ) -> UIButton {
-        let button =  UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        button.backgroundColor = .clear
-        button.setTitleColor(.appTint(.signatureGray), for: .normal)
-        button.setTitleColor(.appTint(.secondarySignatureRed), for: .highlighted)
-        button.titleLabel?.font = .toyotaType(.regular, of: 17)
-        button.setTitle(text, for: .normal)
-        button.addAction(action)
-        return button
-    }
-
     static func imageButton(
         imageName: String = "chevron.down",
         action: (() -> Void)? = nil
