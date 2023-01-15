@@ -46,8 +46,10 @@ final class NewsViewController: BaseViewController, Refreshable {
         showroomField.topToSuperview(offset: 5, usingSafeArea: true)
 
         refreshableView.topToBottom(of: showroomField, offset: 5)
-        refreshableView.edgesToSuperview(excluding: .top,
-                                         usingSafeArea: true)
+        refreshableView.edgesToSuperview(
+            excluding: .top,
+            usingSafeArea: true
+        )
 
         refreshableView.alwaysBounceVertical = true
     }
@@ -145,8 +147,10 @@ extension NewsViewController: UITableViewDelegate {
 
         let webController = SFSafariViewController(url: url)
         webController.preferredControlTintColor = .appTint(.secondarySignatureRed)
-        navigationController?.present(webController,
-                                      animated: true)
+        navigationController?.present(
+            webController,
+            animated: true
+        )
     }
 }
 
