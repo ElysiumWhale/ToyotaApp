@@ -60,7 +60,7 @@ enum RegisterFlow {
     ) -> UIViewController {
         let nvc = UINavigationController()
         nvc.navigationBar.prefersLargeTitles = true
-        nvc.navigationBar.tintColor = UIColor.appTint(.secondarySignatureRed)
+        nvc.navigationBar.tintColor = .appTint(.secondarySignatureRed)
         let vcs = controllers.isNotEmpty ? controllers : [personalModule()]
         nvc.setViewControllers(vcs, animated: false)
         return nvc
