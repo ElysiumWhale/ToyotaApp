@@ -10,6 +10,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
 
+        guard !isTesting else {
+            return
+        }
+
         guard let windowScene = scene as? UIWindowScene else {
             return
         }
@@ -72,8 +76,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+// MARK: - isTesting
+private extension SceneDelegate {
+    var isTesting: Bool {
+        ProcessInfo.processInfo.arguments.contains("isTesting")
+    }
+}
+
 // MARK: - Navigation
-extension SceneDelegate {
+private extension SceneDelegate {
     func changeRootViewController(_ vc: UIViewController) {
         guard let window = window else {
             return

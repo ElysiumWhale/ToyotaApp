@@ -20,7 +20,7 @@ final class ChatViewController: BaseViewController {
         )
         messageField.bindToKeyboard()
         messageField.height(45)
-        messageField.setRightView(from: sendButton, width: 40, height: 40)
+        messageField.setRightView(sendButton, .init(side: 40))
         sendButton.contentVerticalAlignment = .fill
         sendButton.contentHorizontalAlignment = .fill
         sendButton.imageView?.contentMode = .scaleAspectFit

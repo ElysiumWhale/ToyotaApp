@@ -34,9 +34,12 @@ final class FlowsTests: XCTestCase {
         let entry = RegisterFlow.entryPoint(
             with: [personalModule, cityModule, addCarModule]
         )
-        XCTAssertTrue(entry is UINavigationController)
-        let nvc = entry as? UINavigationController
-        XCTAssertTrue(nvc!.topViewController is AddCarViewController)
+
+        guard let nvc = entry as? UINavigationController else {
+            XCTFail()
+            return
+        }
+        XCTAssertTrue(nvc.topViewController is AddCarViewController)
     }
 
     func testMainMenuFlow() throws {

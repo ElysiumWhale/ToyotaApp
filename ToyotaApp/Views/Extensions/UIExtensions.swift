@@ -1,56 +1,30 @@
 import UIKit
 import DesignKit
 
+// MARK: - Toolbar for controls
 extension UIView {
-    static func titleViewFor(
-        title: String,
-        _ backgroundColor: UIColor,
-        action: @escaping () -> Void
-    ) -> UIView {
-        let button = UIButton.titleButton(with: title, action: action)
-        button.titleLabel?.backgroundColor = backgroundColor
-        let rightButton = UIButton(frame: .init(
-            x: 0, y: 0, width: 20, height: 20)
-        )
-        rightButton.setImage(UIImage(systemName: "chevron.right"),
-                             for: .normal)
-        rightButton.tintColor = .appTint(.secondarySignatureRed)
-        rightButton.imageView?.backgroundColor = backgroundColor
-        rightButton.addAction(action)
-
-        let container = UIView(frame: .init(
-            x: 0, y: 0, width: 100, height: 30)
-        )
-        container.addSubviews(button, rightButton)
-
-        button.edgesToSuperview(excluding: .trailing)
-        rightButton.trailingToSuperview()
-        button.trailingToLeading(of: rightButton)
-        button.centerY(to: rightButton, offset: -3)
-
-        return container
-    }
-
-    // MARK: - Toolbar for controls
-    static func buildToolbar(
-        with action: Selector,
-        target: Any? = nil
+    static func makeToolbar(
+        _ action: Selector,
+        target: Any? = nil,
+        title: String = .common(.choose),
+        tintColor: UIColor = .appTint(.secondarySignatureRed)
     ) -> UIToolbar {
         let toolBar = UIToolbar()
-        toolBar.sizeToFit()
         let flexible = UIBarButtonItem(
             barButtonSystemItem: .flexibleSpace,
-            target: target,
+            target: nil,
             action: nil
         )
         let doneButton = UIBarButtonItem(
-            title: .common(.choose),
+            title: title,
             style: .done,
             target: target,
             action: action
         )
-        doneButton.tintColor = .appTint(.secondarySignatureRed)
-        toolBar.setItems([flexible, doneButton], animated: true)
+        doneButton.tintColor = tintColor
+        toolBar.setItems([flexible, doneButton], animated: false)
+        toolBar.sizeToFit()
+
         return toolBar
     }
 }
@@ -104,38 +78,19 @@ extension UIColor {
 
 // MARK: - UIButton
 extension UIButton {
-    static func titleButton(
-        with text: String,
-        action: @escaping () -> Void
-    ) -> UIButton {
-        let button =  UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        button.backgroundColor = .clear
-        button.setTitleColor(.appTint(.signatureGray), for: .normal)
-        button.setTitleColor(.appTint(.secondarySignatureRed), for: .highlighted)
-        button.titleLabel?.font = .toyotaType(.regular, of: 17)
-        button.setTitle(text, for: .normal)
-        button.addAction(action)
-        return button
-    }
-
     static func imageButton(
-        imageName: String = "chevron.down",
-        action: (() -> Void)? = nil
+        image: UIImage = .chevronDown,
+        action: @escaping () -> Void = { }
     ) -> UIButton {
         let button = UIButton()
-        let image = UIImage(systemName: imageName)
-        button.setImage(image?.applyingSymbolConfiguration(.init(scale: .large)),
-                        for: .normal)
+        button.setImage(image, for: .normal)
         button.imageView?.tintColor = .appTint(.secondarySignatureRed)
-        if let action = action {
-            button.addAction(action)
-        }
-
+        button.addAction(action)
         return button
     }
 }
 
+// MARK: - Size presets
 extension CGSize {
     static let toyotaActionL = CGSize(width: 244, height: 44)
     static let toyotaActionS = CGSize(width: 160, height: 44)

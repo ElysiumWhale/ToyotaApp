@@ -1,5 +1,18 @@
 import UIKit
 
+public extension CGRect {
+    init(
+        width: CGFloat,
+        height: CGFloat
+    ) {
+        self.init(x: 0, y: 0, width: width, height: height)
+    }
+
+    init(side: CGFloat) {
+        self.init(width: side, height: side)
+    }
+}
+
 // MARK: - UITextField
 public extension UITextField {
     enum FieldState {
@@ -12,40 +25,35 @@ public extension UITextField {
         UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 0.2,
             delay: 0,
-            options: [.curveEaseOut],
-            animations: {
-                self.layer.borderColor = hasError
+            options: [.curveEaseOut]
+        ) { [self] in
+            layer.borderColor = hasError
                 ? UIColor.systemRed.cgColor
                 : UIColor.clear.cgColor
-                self.layer.borderWidth = hasError ? 1 : 0
-            }
-        )
+            layer.borderWidth = hasError ? 1 : 0
+        }
     }
 
-    func setRightView(from view: UIView, width: Double = 30, height: Double) {
-        NSLayoutConstraint.deactivate(rightView?.constraints ?? [])
-        rightView = nil
-        let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        view.frame = rect
-        let resultView = UIView(frame: rect)
+    func setRightView(
+        _ view: UIView,
+        _ customFrame: CGRect? = nil
+    ) {
+        if let customFrame {
+            view.frame = customFrame
+        }
+        let resultView = UIView(frame: view.frame)
         resultView.addSubview(view)
         NSLayoutConstraint.activate([
             view.centerYAnchor.constraint(equalTo: resultView.centerYAnchor),
-            view.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -10)
+            view.trailingAnchor.constraint(
+                equalTo: resultView.trailingAnchor,
+                constant: -10
+            )
         ])
+        if customFrame == nil {
+            view.sizeToFit()
+        }
         rightView = resultView
-    }
-}
-
-// MARK: - UICollectionViewCell
-public extension UICollectionViewCell {
-    func configureShadow(with cornerRadius: CGFloat, shadowRadius: CGFloat = 3) {
-        layer.shadowColor = UIColor.black.cgColor.copy(alpha: 0.5)
-        layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = 0.7
-        layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
     }
 }
 

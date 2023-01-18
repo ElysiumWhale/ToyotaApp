@@ -43,10 +43,9 @@ public extension UIView {
             return
         }
 
-        UIView.animate(
-            withDuration: duration,
-            animations: { self.alpha = 1 }
-        )
+        UIView.animate(withDuration: duration) {
+            self.alpha = 1
+        }
     }
 
     // MARK: - FadeOut UIView Animation
@@ -124,13 +123,47 @@ public extension UIView {
         return swipe
     }
 
-    // MARK: - TitleView
-
-    // MARK: - SetTitleIfButtonFirst
     func setTitleIfButtonFirst(_ title: String) {
-        if let button = self.subviews.first as? UIButton {
+        if let button = subviews.first as? UIButton {
             button.setTitle(title, for: .normal)
         }
+    }
+}
+
+// MARK: - UIView shadow configuration
+public extension UIView {
+    struct ShadowState {
+        let color: UIColor
+        let offset: CGSize
+        let radius: CGFloat
+        let opacity: Float
+        let cornerRadius: CGFloat
+
+        public init(
+            color: UIColor,
+            offset: CGSize,
+            radius: CGFloat,
+            opacity: Float,
+            cornerRadius: CGFloat
+        ) {
+            self.color = color
+            self.offset = offset
+            self.radius = radius
+            self.opacity = opacity
+            self.cornerRadius = cornerRadius
+        }
+    }
+
+    func renderShadow(_ shadowState: ShadowState, in layer: CALayer) {
+        layer.shadowColor = shadowState.color.cgColor
+        layer.shadowOffset = shadowState.offset
+        layer.shadowRadius = shadowState.radius
+        layer.shadowOpacity = shadowState.opacity
+        layer.masksToBounds = false
+        layer.shadowPath = UIBezierPath(
+            roundedRect: bounds,
+            cornerRadius: shadowState.cornerRadius
+        ).cgPath
     }
 }
 

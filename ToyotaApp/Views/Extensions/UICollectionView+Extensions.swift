@@ -12,7 +12,7 @@ extension UICollectionViewLayout {
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = .init(
-            top: 10, leading: 8, bottom: 0, trailing: 8
+            top: 8, leading: 4, bottom: 0, trailing: 4
         )
 
         let groupSize = NSCollectionLayoutSize(
@@ -23,7 +23,7 @@ extension UICollectionViewLayout {
             layoutSize: groupSize, subitem: item, count: 2
         )
         group.contentInsets = .init(
-            top: 0, leading: 8, bottom: 0, trailing: 8
+            top: 0, leading: 12, bottom: 0, trailing: 12
         )
 
         let section = NSCollectionLayoutSection(group: group)

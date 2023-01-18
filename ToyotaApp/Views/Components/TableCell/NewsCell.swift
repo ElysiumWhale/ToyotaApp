@@ -38,7 +38,7 @@ final class NewsCell: BaseTableCell {
 // MARK: - State rendering
 extension NewsCell {
     struct ViewState {
-        let title: String
+        let title: String?
         let url: URL?
     }
 
