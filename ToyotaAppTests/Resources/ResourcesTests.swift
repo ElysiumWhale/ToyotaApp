@@ -1,7 +1,7 @@
 import XCTest
 @testable import ToyotaApp
 
-final class FontsTests: XCTestCase {
+final class ResourcesTests: XCTestCase {
     func testToyotaFonts() throws {
         for type in UIFont.ToyotaFonts.allCases {
             let font = UIFont(name: type.name, size: 10)
@@ -9,9 +9,7 @@ final class FontsTests: XCTestCase {
             XCTAssertNotNil(font)
         }
     }
-}
 
-final class TintsTests: XCTestCase {
     func testAppTints() throws {
         for tint in UIColor.AppTints.allCases {
             let color = UIColor(named: tint.rawValue)

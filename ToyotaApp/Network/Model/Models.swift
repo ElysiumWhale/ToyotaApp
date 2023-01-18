@@ -7,7 +7,7 @@ struct RegisteredUser: Codable {
 }
 
 // MARK: - Profile
-struct Profile: Codable {
+struct Profile: Codable, Equatable {
     let phone: String?
     let firstName: String?
     let lastName: String?

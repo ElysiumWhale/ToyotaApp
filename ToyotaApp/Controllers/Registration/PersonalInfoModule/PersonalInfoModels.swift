@@ -1,6 +1,6 @@
 import Foundation
 
-enum PersonalDataStoreState {
+enum PersonalDataStoreState: Equatable {
     case empty
     case configured(with: Profile)
 
