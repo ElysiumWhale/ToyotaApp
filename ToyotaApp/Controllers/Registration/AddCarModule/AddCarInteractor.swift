@@ -11,6 +11,7 @@ final class AddCarInteractor {
     private let modelsAndColorsHandler = RequestHandler<ModelsAndColorsResponse>()
     private let skipAddCarHandler = DefaultRequestHandler()
     private let service: CarsService
+    private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
 
     weak var view: AddCarViewInput?
 
@@ -34,12 +35,14 @@ final class AddCarInteractor {
         type: AddInfoScenario = .register,
         models: [Model] = [],
         colors: [Color] = [],
-        service: CarsService = InfoService()
+        service: CarsService = InfoService(),
+        keychain: any ModelKeyedCodableStorage<KeychainKeys> = KeychainService.shared
     ) {
         self.type = type
         self.models = models
         self.colors = colors
         self.service = service
+        self.keychain = keychain
 
         setupRequestHandlers()
     }
@@ -63,7 +66,7 @@ final class AddCarInteractor {
     func setCar(vin: String, plate: String) {
         guard let modelId = selectedModel?.id,
               let colorId = selectedColor?.id,
-              let userId = KeychainManager<UserId>.get()?.value else {
+              let userId: UserId = keychain.get() else {
             return
         }
 
@@ -71,7 +74,7 @@ final class AddCarInteractor {
         self.plate = plate
         let body = SetCarBody(
             brandId: Brand.Toyota,
-            userId: userId,
+            userId: userId.value,
             carModelId: modelId,
             colorId: colorId,
             licensePlate: plate,
@@ -82,8 +85,12 @@ final class AddCarInteractor {
     }
 
     func skipRegister() {
+        guard let userId: UserId = keychain.get() else {
+            return
+        }
+
         service.skipSetCar(
-            with: SkipSetCarBody(userId: KeychainManager<UserId>.get()!.value),
+            with: SkipSetCarBody(userId: userId.value),
             skipAddCarHandler
         )
     }
@@ -148,7 +155,7 @@ final class AddCarInteractor {
 
         switch type {
         case .register:
-            KeychainManager.set(Cars([car]))
+            keychain.set(Cars([car]))
         case .update(let userProxy):
             userProxy.addNew(car: car)
         }

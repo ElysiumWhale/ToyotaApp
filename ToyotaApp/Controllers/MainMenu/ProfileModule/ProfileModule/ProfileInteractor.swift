@@ -25,7 +25,7 @@ final class ProfileInteractor {
         changedPerson = person
 
         service.updateProfile(
-            with: EditProfileBody.from(person),
+            with: EditProfileBody.from(person, userId: user.id),
             updateUserHandler
         )
     }
@@ -51,10 +51,10 @@ final class ProfileInteractor {
 }
 
 private extension EditProfileBody {
-    static func from(_ person: Person) -> Self {
+    static func from(_ person: Person, userId: String) -> Self {
         EditProfileBody(
             brandId: Brand.Toyota,
-            userId: KeychainManager<UserId>.get()!.value,
+            userId: userId,
             firstName: person.firstName,
             secondName: person.secondName,
             lastName: person.lastName,

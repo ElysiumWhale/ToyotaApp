@@ -74,9 +74,9 @@ final class NavigationService {
     // MARK: - LoadMain overloads
     static func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
-            KeychainManager.set(user.profile.toDomain())
+            KeychainService.shared.set(user.profile.toDomain())
             if let cars = user.cars {
-                KeychainManager.set(Cars(cars))
+                KeychainService.shared.set(Cars(cars))
             }
         }
 

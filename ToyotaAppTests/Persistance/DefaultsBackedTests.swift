@@ -2,9 +2,11 @@ import XCTest
 @testable import ToyotaApp
 
 final class DefaultsBackedTest: XCTestCase {
+    private let defaults = DefaultsService(container: .testContainer)
+
     @DefaultsBacked<City>(
         key: .testSelectedCity,
-        container: .defaultsBackedTestContainer
+        container: .testContainer
     )
     var city
 
@@ -12,8 +14,7 @@ final class DefaultsBackedTest: XCTestCase {
 
     override func setUpWithError() throws {
         city = nil
-        let testCity: City? = nil
-        DefaultsManager.push(info: testCity, for: .testSelectedCity)
+        defaults.set(value: city, key: .testSelectedCity)
     }
 
     override func tearDownWithError() throws {
@@ -40,20 +41,13 @@ final class DefaultsBackedTest: XCTestCase {
     func testAnotherContainer() throws {
         try testDataSafety()
 
-        let anotherContainerCity: City? = DefaultsManager.retrieve(for: .testSelectedCity)
+        let anotherContainerCity: City? = DefaultsService.shared.get(key: .testSelectedCity)
         XCTAssertNil(anotherContainerCity)
     }
 }
 
-// MARK: - defaultsBackedTestContainer
-private extension UserDefaults {
-    static var defaultsBackedTestContainer: UserDefaults {
-        let name = "DefaultsBackedTest"
-        if let container = UserDefaults(suiteName: name) {
-            return container
-        }
-
-        standard.addSuite(named: name)
-        return UserDefaults(suiteName: name)!
+private extension DefaultsContainer {
+    static var testContainer: Self {
+        DefaultsContainer(name: "DefaultsBackedTest")
     }
 }

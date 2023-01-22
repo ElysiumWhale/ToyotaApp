@@ -90,8 +90,8 @@ extension MainMenuFlow {
                 confirmText: .common(.yes),
                 declineText: .common(.no)
             ) {
-                KeychainManager.clearAll()
-                DefaultsManager.clearAll()
+                KeychainService.shared.removeAll()
+                DefaultsService.shared.removeAll()
                 NavigationService.loadAuth()
             }
         }

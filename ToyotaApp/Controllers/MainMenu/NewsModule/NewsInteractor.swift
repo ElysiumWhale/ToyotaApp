@@ -22,7 +22,7 @@ final class NewsInteractor {
     init(newsService: NewsService = NewsInfoService()) {
         self.newsService = newsService
 
-        selectedShowroom = DefaultsManager.retrieve(for: .selectedShowroom) ?? .aurora
+        selectedShowroom = DefaultsService.shared.get(key: .selectedShowroom) ?? .aurora
     }
 
     func loadNews() {

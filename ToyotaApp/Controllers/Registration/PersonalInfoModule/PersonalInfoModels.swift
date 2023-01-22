@@ -34,13 +34,18 @@ enum PersonalInfoModels {
 }
 
 extension IBody where Self == SetProfileBody {
-    static func from(_ request: PersonalInfoModels.SetPersonRequest) -> Self {
-        .init(brandId: Brand.Toyota,
-              userId: KeychainManager<UserId>.get()!.value,
-              firstName: request.firstName,
-              secondName: request.secondName,
-              lastName: request.lastName,
-              email: request.email,
-              birthday: request.date)
+    static func from(
+        _ request: PersonalInfoModels.SetPersonRequest,
+        userId: String
+    ) -> Self {
+        .init(
+            brandId: Brand.Toyota,
+            userId: userId,
+            firstName: request.firstName,
+            secondName: request.secondName,
+            lastName: request.lastName,
+            email: request.email,
+            birthday: request.date
+        )
     }
 }
