@@ -62,6 +62,7 @@
 		14920D6227A5DAB400B28D51 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14920D6127A5DAB400B28D51 /* DateFormatting.swift */; };
 		1494038D26B0796F0088C7E4 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1494038C26B0796F0088C7E4 /* SwiftKeychainWrapper */; };
 		1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeychainManager.swift */; };
+		1494038F26B0929F0088C7E4 /* KeyedCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeyedCodableModel.swift */; };
 		1495723F25B9FEE40031A5AA /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495723E25B9FEE40031A5AA /* NewsCell.swift */; };
 		149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC28626765AB700B5172A /* TimePickerModule.swift */; };
 		149FA73D26889B00002B0658 /* SubmodulesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149FA73C26889B00002B0658 /* SubmodulesProtocols.swift */; };
@@ -87,6 +88,7 @@
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
 		A70BC1F22974757100D65A94 /* ServicesTitleViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */; };
+		A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A7297D720700D740D4 /* CodableStorage.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -249,6 +251,7 @@
 		149092612696502100390D04 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		14920D6127A5DAB400B28D51 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		1494038E26B0929F0088C7E4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		1494038E26B0929F0088C7E4 /* KeyedCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedCodableModel.swift; sourceTree = "<group>"; };
 		1495723E25B9FEE40031A5AA /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		149CC28626765AB700B5172A /* TimePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerModule.swift; sourceTree = "<group>"; };
 		149FA73C26889B00002B0658 /* SubmodulesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmodulesProtocols.swift; sourceTree = "<group>"; };
@@ -279,6 +282,7 @@
 		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		14F519912777E39900FF695D /* TintedImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedImageButton.swift; sourceTree = "<group>"; };
 		A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTitleViewFactory.swift; sourceTree = "<group>"; };
+		A722D9A7297D720700D740D4 /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -439,6 +443,8 @@
 			isa = PBXGroup;
 			children = (
 				1494038E26B0929F0088C7E4 /* KeychainManager.swift */,
+				1494038E26B0929F0088C7E4 /* KeyedCodableModel.swift */,
+				A722D9A7297D720700D740D4 /* CodableStorage.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
 			);
@@ -1200,6 +1206,7 @@
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
 				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
+				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
 				1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */,
 				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
 				A735059029565B960005C7F2 /* NewInfoService.swift in Sources */,
@@ -1213,6 +1220,7 @@
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
 				1494038F26B0929F0088C7E4 /* KeychainManager.swift in Sources */,
+				1494038F26B0929F0088C7E4 /* KeyedCodableModel.swift in Sources */,
 				143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */,
 				A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */,
 				A7FA688D294E776500008AFB /* UIExtensions.swift in Sources */,
