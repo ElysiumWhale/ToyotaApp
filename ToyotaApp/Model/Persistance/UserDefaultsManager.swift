@@ -6,8 +6,10 @@ enum DefaultKeys: String {
     case selectedCity
     case selectedShowroom
 
+    #if DEBUG
     /// **Warning!** Used only for tests
     case testSelectedCity
+    #endif
 }
 
 public class DefaultsManager {
@@ -51,23 +53,7 @@ public class DefaultsManager {
 
 extension Bool {
     static var cityIsSelected: Self {
-        let city: City? = DefaultsManager.retrieve(for: .selectedCity)
+        let city: City? = DefaultsService.shared.get(key: .selectedCity)
         return city != nil
-    }
-}
-
-// MARK: - DefaultsBacked
-@propertyWrapper struct DefaultsBacked<T: Codable> {
-    let key: DefaultKeys
-    let container: UserDefaults
-
-    var wrappedValue: T? {
-        get { DefaultsManager.retrieve(for: key, from: container) }
-        set { DefaultsManager.push(info: newValue, for: key, to: container) }
-    }
-
-    init(key: DefaultKeys, container: UserDefaults = .standard) {
-        self.key = key
-        self.container = container
     }
 }
