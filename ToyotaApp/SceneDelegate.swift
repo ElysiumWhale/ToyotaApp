@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         NavigationService.switchRootView = changeRootViewController
 
-        guard let userId = KeychainManager<UserId>.get()?.value,
-              let secretKey = KeychainManager<SecretKey>.get()?.value else {
+        guard let userId: UserId = KeychainService.shared.get(),
+              let secretKey: SecretKey = KeychainService.shared.get() else {
             NavigationService.loadAuth()
             return
         }
@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
-        KeychainManager.set(SecretKey(response.secretKey))
+        KeychainService.shared.set(SecretKey(response.secretKey))
         NavigationService.resolveNavigation(
             with: CheckUserContext(response: response)
         ) {
@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .lostConnection:
             NavigationService.loadConnectionLost()
         default:
-            KeychainManager<SecretKey>.clear()
+            KeychainService.shared.remove(SecretKey.self)
             NavigationService.loadAuth(
                 with: response.message ?? .error(.errorWhileAuth)
             )

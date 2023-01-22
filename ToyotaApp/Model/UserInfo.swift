@@ -25,7 +25,8 @@ final class UserInfo {
     private(set) var cars: Cars
 
     var phone: String {
-        KeychainManager<Phone>.get()?.value ?? .empty
+        let phone: Phone? = KeychainService.shared.get()
+        return phone?.value ?? .empty
     }
 
     fileprivate init(
@@ -42,13 +43,13 @@ final class UserInfo {
     }
 
     static func build() -> Result<UserProxy, AppErrors> {
-        guard let userId = KeychainManager<UserId>.get(),
-              let phone = KeychainManager<Phone>.get(),
-              let person = KeychainManager<Person>.get() else {
+        guard let userId: UserId = KeychainService.shared.get(),
+              let phone: Phone = KeychainService.shared.get(),
+              let person: Person = KeychainService.shared.get() else {
             return Result.failure(.notFullProfile)
         }
 
-        let cars = KeychainManager<Cars>.get() ?? Cars([])
+        let cars: Cars = KeychainService.shared.get() ?? Cars([])
 
         return Result.success(UserInfo(userId, phone, person, cars))
     }
@@ -66,7 +67,7 @@ extension UserInfo: UserProxy {
 
     func updatePerson(from person: Person) {
         self.person = person
-        KeychainManager.set(person)
+        KeychainService.shared.set(person)
         notificator.notify(with: .userUpdate)
     }
 
@@ -75,13 +76,13 @@ extension UserInfo: UserProxy {
         if cars.defaultCar == nil {
             cars.defaultCar = car
         }
-        KeychainManager.set(cars)
+        KeychainService.shared.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
     func updateSelected(car: Car) {
         cars.defaultCar = car
-        KeychainManager.set(cars)
+        KeychainService.shared.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
@@ -91,20 +92,24 @@ extension UserInfo: UserProxy {
         if cars.defaultCar?.id == id {
             updatedCars.defaultCar = updatedCars.value.first
         }
-        KeychainManager.set(updatedCars)
+        KeychainService.shared.set(updatedCars)
         notificator.notify(with: .userUpdate)
     }
 }
 
 extension UserProxy where Self == UserInfo {
     static var mock: UserInfo {
-        UserInfo(.init(.empty),
-                 .init(.empty),
-                 .init(firstName: .empty,
-                       lastName: .empty,
-                       secondName: .empty,
-                       email: .empty,
-                       birthday: .empty),
-                 .init([]))
+        UserInfo(
+            .init(.empty),
+            .init(.empty),
+            .init(
+                firstName: .empty,
+                lastName: .empty,
+                secondName: .empty,
+                email: .empty,
+                birthday: .empty
+            ),
+            .init([])
+        )
     }
 }

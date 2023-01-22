@@ -18,7 +18,7 @@ final class AuthInteractor {
         switch await authService.registerPhone(.init(phone: phone)) {
         case .success:
             if case .register = type {
-                KeychainManager.set(Phone(phone))
+                KeychainService.shared.set(Phone(phone))
             }
             return .success(())
         case let .failure(error):

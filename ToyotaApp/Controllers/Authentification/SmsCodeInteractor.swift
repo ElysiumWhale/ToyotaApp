@@ -49,9 +49,9 @@ final class SmsCodeInteractor {
         switch await authService.checkCode(body) {
         case let .success(response):
             if let userId = response.userId {
-                KeychainManager.set(UserId(userId))
+                KeychainService.shared.set(UserId(userId))
             }
-            KeychainManager.set(SecretKey(response.secretKey))
+            KeychainService.shared.set(SecretKey(response.secretKey))
             return .success((type, .init(response)))
         case let .failure(error):
             return .failure(error.message ?? .error(.unknownError))
@@ -69,7 +69,7 @@ final class SmsCodeInteractor {
         )
         switch await authService.changePhone(body) {
         case .success:
-            KeychainManager.set(Phone(phone))
+            KeychainService.shared.set(Phone(phone))
             EventNotificator.shared.notify(with: .phoneUpdate)
             return .success((type, nil))
         case let .failure(error):
