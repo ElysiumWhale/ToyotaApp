@@ -92,7 +92,6 @@
 		A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A9297D9DD100D740D4 /* DefaultsService.swift */; };
 		A722D9AC297DA0D500D740D4 /* DefaultsBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
-		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
@@ -288,7 +287,6 @@
 		A722D9A9297D9DD100D740D4 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
 		A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBacked.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
-		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
 		A728FAE328A701D100326DA5 /* ManagersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersInteractor.swift; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 				A722D9A5297D718B00D740D4 /* KeychainService.swift */,
 				A722D9A9297D9DD100D740D4 /* DefaultsService.swift */,
 				A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */,
-				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
 			);
 			path = Persistance;
@@ -1255,7 +1252,6 @@
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
-				A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */,
 				14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */,
 				14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */,
 				A7FA6889294E72A300008AFB /* InputTextField.swift in Sources */,
