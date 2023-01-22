@@ -93,6 +93,7 @@
 		A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A5297D718B00D740D4 /* KeychainService.swift */; };
 		A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A7297D720700D740D4 /* CodableStorage.swift */; };
 		A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A9297D9DD100D740D4 /* DefaultsService.swift */; };
+		A722D9AC297DA0D500D740D4 /* DefaultsBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -291,6 +292,7 @@
 		A722D9A5297D718B00D740D4 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		A722D9A7297D720700D740D4 /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
 		A722D9A9297D9DD100D740D4 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
+		A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBacked.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				A722D9A7297D720700D740D4 /* CodableStorage.swift */,
 				A722D9A5297D718B00D740D4 /* KeychainService.swift */,
 				A722D9A9297D9DD100D740D4 /* DefaultsService.swift */,
+				A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
 			);
@@ -1217,6 +1220,7 @@
 				1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */,
 				A7A72DC82554A5C500A44984 /* CarCell.swift in Sources */,
 				A7FA688C294E75D700008AFB /* PhoneTextField.swift in Sources */,
+				A722D9AC297DA0D500D740D4 /* DefaultsBacked.swift in Sources */,
 				141A520727F0A18700E7B9B2 /* InfoService.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,

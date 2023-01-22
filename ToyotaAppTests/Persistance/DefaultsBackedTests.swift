@@ -4,7 +4,7 @@ import XCTest
 final class DefaultsBackedTest: XCTestCase {
     @DefaultsBacked<City>(
         key: .testSelectedCity,
-        container: .defaultsBackedTestContainer
+        container: .init(name: "DefaultsBackedTest")
     )
     var city
 
@@ -42,18 +42,5 @@ final class DefaultsBackedTest: XCTestCase {
 
         let anotherContainerCity: City? = DefaultsManager.retrieve(for: .testSelectedCity)
         XCTAssertNil(anotherContainerCity)
-    }
-}
-
-// MARK: - defaultsBackedTestContainer
-private extension UserDefaults {
-    static var defaultsBackedTestContainer: UserDefaults {
-        let name = "DefaultsBackedTest"
-        if let container = UserDefaults(suiteName: name) {
-            return container
-        }
-
-        standard.addSuite(named: name)
-        return UserDefaults(suiteName: name)!
     }
 }
