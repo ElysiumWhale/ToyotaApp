@@ -91,7 +91,7 @@ extension MainMenuFlow {
                 declineText: .common(.no)
             ) {
                 KeychainService.shared.removeAll()
-                DefaultsManager.clearAll()
+                DefaultsService.shared.removeAll()
                 NavigationService.loadAuth()
             }
         }

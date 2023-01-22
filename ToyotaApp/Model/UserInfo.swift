@@ -58,11 +58,11 @@ final class UserInfo {
 // MARK: - UserProxy
 extension UserInfo: UserProxy {
     var selectedShowroom: Showroom? {
-        DefaultsManager.retrieve(for: .selectedShowroom)
+        DefaultsService.shared.get(key: .selectedShowroom)
     }
 
     var selectedCity: City? {
-        DefaultsManager.retrieve(for: .selectedCity)
+        DefaultsService.shared.get(key: .selectedCity)
     }
 
     func updatePerson(from person: Person) {

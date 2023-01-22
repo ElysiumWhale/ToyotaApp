@@ -3,6 +3,7 @@ import Foundation
 final class CityPickerInteractor {
     private let cityRequestHandler = RequestHandler<CitiesResponse>()
     private let service: CitiesService
+    private let defaults: any KeyedCodableStorage<DefaultKeys>
 
     private(set) var cities: [City] = [] {
         didSet {
@@ -14,9 +15,14 @@ final class CityPickerInteractor {
 
     weak var view: CityPickerViewController?
 
-    init(cities: [City] = [], service: CitiesService = InfoService()) {
+    init(
+        cities: [City] = [],
+        service: CitiesService = InfoService(),
+        defaults: any KeyedCodableStorage<DefaultKeys> = DefaultsService.shared
+    ) {
         self.cities = cities
         self.service = service
+        self.defaults = defaults
 
         setupRequestHandlers()
     }
@@ -41,8 +47,8 @@ final class CityPickerInteractor {
             return false
         }
 
-        return DefaultsManager.push(info: selectedCity,
-                                    for: .selectedCity)
+        defaults.set(value: selectedCity, key: .selectedCity)
+        return true
     }
 
     private func setupRequestHandlers() {
