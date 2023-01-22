@@ -56,6 +56,7 @@
 		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */; };
+		147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsServiceTests.swift */; };
 		147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789327FFA8190017ACA7 /* UIImage+Constants.swift */; };
 		147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789527FFACB80017ACA7 /* MainTabBarController.swift */; };
 		147E789827FFB2090017ACA7 /* UtilsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789727FFB2090017ACA7 /* UtilsFlow.swift */; };
@@ -91,6 +92,7 @@
 		A70BC1F22974757100D65A94 /* ServicesTitleViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */; };
 		A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A5297D718B00D740D4 /* KeychainService.swift */; };
 		A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A7297D720700D740D4 /* CodableStorage.swift */; };
+		A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A9297D9DD100D740D4 /* DefaultsService.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
 		A727F40E2587E8EB00B8CB79 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */; };
 		A727F4112588263C00B8CB79 /* ControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* ControllersProtocols.swift */; };
@@ -247,6 +249,7 @@
 		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
+		147D4A3027E63D1300010E63 /* DefaultsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsServiceTests.swift; sourceTree = "<group>"; };
 		147E789327FFA8190017ACA7 /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
 		147E789527FFACB80017ACA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		147E789727FFB2090017ACA7 /* UtilsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsFlow.swift; sourceTree = "<group>"; };
@@ -287,6 +290,7 @@
 		A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTitleViewFactory.swift; sourceTree = "<group>"; };
 		A722D9A5297D718B00D740D4 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		A722D9A7297D720700D740D4 /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
+		A722D9A9297D9DD100D740D4 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
 		A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* ControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersProtocols.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 				1494038E26B0929F0088C7E4 /* KeyedCodableModel.swift */,
 				A722D9A7297D720700D740D4 /* CodableStorage.swift */,
 				A722D9A5297D718B00D740D4 /* KeychainService.swift */,
+				A722D9A9297D9DD100D740D4 /* DefaultsService.swift */,
 				A727F40D2587E8EB00B8CB79 /* UserDefaultsManager.swift */,
 				1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */,
 			);
@@ -484,6 +489,7 @@
 				147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */,
 				147D4A3027E63D1300010E63 /* DefaultsManagerTests.swift */,
 				14CB6AD527E91C4200715A5D /* KeychainManagerTests.swift */,
+				147D4A3027E63D1300010E63 /* DefaultsServiceTests.swift */,
 				14CB6AD527E91C4200715A5D /* KeychainServiceTests.swift */,
 			);
 			path = Persistance;
@@ -1155,6 +1161,7 @@
 				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsManagerTests.swift in Sources */,
+				147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
 				14CB6AD627E91C4200715A5D /* KeychainManagerTests.swift in Sources */,
@@ -1193,6 +1200,7 @@
 				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
+				A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
 				A7FA687C294E6C5E00008AFB /* Validatable.swift in Sources */,
 				14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */,
