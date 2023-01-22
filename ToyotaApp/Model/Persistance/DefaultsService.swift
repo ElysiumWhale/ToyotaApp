@@ -17,6 +17,18 @@ struct DefaultsContainer {
     }
 }
 
+/// Keys for information **pushing to** and **retrieving from**  `UserDefaults`
+enum DefaultKeys: String {
+    case noCarsMessage
+    case selectedCity
+    case selectedShowroom
+
+    #if DEBUG
+    /// **Warning!** Used only for tests
+    case testSelectedCity
+    #endif
+}
+
 final class DefaultsService: KeyedCodableStorage {
     static let shared = DefaultsService()
 
@@ -73,5 +85,12 @@ final class DefaultsService: KeyedCodableStorage {
         set {
             set(value: newValue, key: key)
         }
+    }
+}
+
+extension Bool {
+    static var cityIsSelected: Self {
+        let city: City? = DefaultsService.shared.get(key: .selectedCity)
+        return city != nil
     }
 }
