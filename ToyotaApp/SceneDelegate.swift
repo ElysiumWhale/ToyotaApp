@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        checkUserAuthorization(userId, secretKey, Brand.Toyota)
+        checkUserAuthorization(userId.value, secretKey.value, Brand.Toyota)
     }
 
     private func checkUserAuthorization(
