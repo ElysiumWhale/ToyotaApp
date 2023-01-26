@@ -87,7 +87,7 @@ final class SettingsViewController: BaseViewController {
         changeNumberButton.setTitle(.common(.change), for: .normal)
         agreementButton.setTitle(.common(.terms), for: .normal)
         companyNameLabel.text = .common(.alyansPro)
-        versionLabel.text = "Версия 0.1 alpha"
+        versionLabel.text = "\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild)) "
     }
 
     override func configureActions() {
