@@ -19,10 +19,13 @@ final class NewsInteractor {
     var onSuccessNewsLoad: Closure?
     var onFailureNewsLoad: Closure?
 
-    init(newsService: NewsService = NewsInfoService()) {
+    init(
+        newsService: NewsService = NewsInfoService(),
+        defaults: any KeyedCodableStorage<DefaultKeys> = DefaultsService.shared
+    ) {
         self.newsService = newsService
 
-        selectedShowroom = DefaultsService.shared.get(key: .selectedShowroom) ?? .aurora
+        selectedShowroom = defaults.get(key: .selectedShowroom) ?? .aurora
     }
 
     func loadNews() {

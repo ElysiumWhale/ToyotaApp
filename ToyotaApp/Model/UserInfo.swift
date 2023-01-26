@@ -18,6 +18,9 @@ protocol UserStorage {
 }
 
 final class UserInfo {
+    private let defaults: any KeyedCodableStorage<DefaultKeys>
+    private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
+
     let notificator: EventNotificator
     let id: String
 
@@ -32,14 +35,18 @@ final class UserInfo {
     fileprivate init(
         _ userId: UserId,
         _ userPhone: Phone,
-        _ personInfo: Person,
-        _ carsInfo: Cars,
-        notificator: EventNotificator = .shared
+        _ person: Person,
+        _ cars: Cars,
+        notificator: EventNotificator = .shared,
+        defaults: any KeyedCodableStorage<DefaultKeys> = DefaultsService.shared,
+        keychain: any ModelKeyedCodableStorage<KeychainKeys> = KeychainService.shared
     ) {
-        id = userId.value
-        person = personInfo
-        cars = carsInfo
+        self.id = userId.value
+        self.person = person
+        self.cars = cars
         self.notificator = notificator
+        self.defaults = defaults
+        self.keychain = keychain
     }
 
     static func build() -> Result<UserProxy, AppErrors> {
@@ -58,16 +65,16 @@ final class UserInfo {
 // MARK: - UserProxy
 extension UserInfo: UserProxy {
     var selectedShowroom: Showroom? {
-        DefaultsService.shared.get(key: .selectedShowroom)
+        defaults.get(key: .selectedShowroom)
     }
 
     var selectedCity: City? {
-        DefaultsService.shared.get(key: .selectedCity)
+        defaults.get(key: .selectedCity)
     }
 
     func updatePerson(from person: Person) {
         self.person = person
-        KeychainService.shared.set(person)
+        keychain.set(person)
         notificator.notify(with: .userUpdate)
     }
 
@@ -76,13 +83,13 @@ extension UserInfo: UserProxy {
         if cars.defaultCar == nil {
             cars.defaultCar = car
         }
-        KeychainService.shared.set(cars)
+        keychain.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
     func updateSelected(car: Car) {
         cars.defaultCar = car
-        KeychainService.shared.set(cars)
+        keychain.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
@@ -92,7 +99,7 @@ extension UserInfo: UserProxy {
         if cars.defaultCar?.id == id {
             updatedCars.defaultCar = updatedCars.value.first
         }
-        KeychainService.shared.set(updatedCars)
+        keychain.set(updatedCars)
         notificator.notify(with: .userUpdate)
     }
 }
