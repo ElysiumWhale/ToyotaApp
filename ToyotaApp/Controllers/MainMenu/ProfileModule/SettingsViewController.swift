@@ -96,7 +96,7 @@ final class SettingsViewController: BaseViewController, SettingsModule {
         changeNumberButton.setTitle(.common(.change), for: .normal)
         agreementButton.setTitle(.common(.terms), for: .normal)
         companyNameLabel.text = .common(.alyansPro)
-        versionLabel.text = "\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild)) "
+        versionLabel.text = "\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))"
     }
 
     override func configureActions() {
@@ -121,8 +121,10 @@ final class SettingsViewController: BaseViewController, SettingsModule {
 
 // MARK: - ObservesEvents
 extension SettingsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents,
-                notificator: EventNotificator) {
+    func handle(
+        event: EventNotificator.AppEvents,
+        notificator: EventNotificator
+    ) {
         guard event == .phoneUpdate else {
             return
         }
