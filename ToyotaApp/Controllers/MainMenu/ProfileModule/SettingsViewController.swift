@@ -1,7 +1,14 @@
 import UIKit
 import DesignKit
 
-final class SettingsViewController: BaseViewController {
+enum SettingsOutput {
+    case changePhone(_ userId: String)
+    case showAgreement
+}
+
+protocol SettingsModule: UIViewController, Outputable<SettingsOutput> { }
+
+final class SettingsViewController: BaseViewController, SettingsModule {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField(.toyota)
     private let changeNumberButton = CustomizableButton(.toyotaAction(18))
@@ -11,6 +18,8 @@ final class SettingsViewController: BaseViewController {
     private let versionLabel = UILabel()
 
     private let user: UserProxy
+
+    var output: ParameterClosure<SettingsOutput>?
 
     init(user: UserProxy, notificator: EventNotificator = .shared) {
         self.user = user
@@ -96,7 +105,7 @@ final class SettingsViewController: BaseViewController {
         }
 
         agreementButton.addAction { [weak self] in
-            self?.showAgreement()
+            self?.output?(.showAgreement)
         }
     }
 
@@ -105,14 +114,8 @@ final class SettingsViewController: BaseViewController {
             with: .common(.confirmation),
             description: .question(.changeNumber)
         ) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber(userId: user.id))
-            navigationController?.pushViewController(module, animated: true)
+            output?(.changePhone(user.id))
         }
-    }
-
-    private func showAgreement() {
-        present(UtilsFlow.agreementModule().wrappedInNavigation,
-                animated: true)
     }
 }
 
