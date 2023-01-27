@@ -2,7 +2,7 @@ import UIKit
 
 enum AuthScenario: Equatable {
     case register
-    case changeNumber(userId: String)
+    case changeNumber(_ userId: String)
 }
 
 @MainActor

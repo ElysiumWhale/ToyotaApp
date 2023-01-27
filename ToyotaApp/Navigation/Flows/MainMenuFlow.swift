@@ -77,10 +77,25 @@ extension MainMenuFlow {
         }
 
         profileModule.onShowSettings = {
-            navigationFactory()?.present(
-                settingsModule(with: SettingsPayload(user: payload.user))
-                    .wrappedInNavigation,
-                animated: true)
+            let module = settingsModule(with: SettingsPayload(user: payload.user))
+            let navigation = module.wrappedInNavigation
+
+            module.withOutput { [weak navigation] output in
+                switch output {
+                case .showAgreement:
+                    navigation?.present(
+                        UtilsFlow.agreementModule().wrappedInNavigation,
+                        animated: true
+                    )
+                case let .changePhone(userId):
+                    navigation?.pushViewController(
+                        AuthFlow.authModule(authType: .changeNumber(userId)),
+                        animated: true
+                    )
+                }
+            }
+
+            navigationFactory()?.present(navigation, animated: true)
         }
 
         profileModule.onLogout = {
@@ -130,7 +145,7 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func settingsModule(with payload: SettingsPayload) -> UIViewController {
+    static func settingsModule(with payload: SettingsPayload) -> any SettingsModule {
         SettingsViewController(user: payload.user)
     }
 }
