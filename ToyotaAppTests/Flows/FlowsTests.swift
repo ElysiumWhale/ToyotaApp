@@ -82,6 +82,26 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(cars is CarsViewController)
     }
 
+    func testSettingsModuleOutput() {
+        let payload = MainMenuFlow.SettingsPayload(user: .mock)
+        let settingsModule = MainMenuFlow.settingsModule(payload)
+
+        var agreementExpectation = false
+        var changePhoneExpectation = false
+        settingsModule.withOutput { output in
+            switch output {
+            case .showAgreement:
+                agreementExpectation = true
+            case .changePhone:
+                changePhoneExpectation = true
+            }
+        }
+        settingsModule.output?(.showAgreement)
+        settingsModule.output?(.changePhone(""))
+        XCTAssertTrue(agreementExpectation)
+        XCTAssertTrue(changePhoneExpectation)
+    }
+
     func testUtilsFlow() throws {
         let connection = UtilsFlow.connectionLostModule()
         XCTAssertTrue(connection is LostConnectionViewController)
