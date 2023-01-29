@@ -5,12 +5,12 @@ enum MainMenuFlow {
     static func entryPoint(for user: UserProxy) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
 
-        let payload = ProfilePayload(user: user)
-        let profileModule = makeProfileModule(with: payload) { [weak tbvc] in
-            tbvc?.tabsRoots[.profile]
+        let servicesModule = servicesModule(ServicesPayload(user: user))
+        let profileModule = makeProfileModule(
+            ProfilePayload(user: user)
+        ) { [weak tbvc] module in
+            tbvc?.tabsRoots[.profile]?.present(module, animated: true)
         }
-
-        let servicesModule = servicesModule(with: ServicesPayload(user: user))
 
         tbvc.setControllersForTabs(
             (newsModule(), .news),
@@ -47,15 +47,37 @@ extension MainMenuFlow {
     }
 
     static func makeProfileModule(
-        with payload: ProfilePayload,
-        navigationFactory: @escaping ValueClosure<UINavigationController?>
+        _ payload: ProfilePayload,
+        _ router: @escaping (_ to: UIViewController) -> Void
     ) -> UIViewController {
-
-        let profileModule = profileModule(with: payload)
+        profileModule(payload).withOutput { output in
+            switch output {
+            case .logout:
+                KeychainService.shared.removeAll()
+                DefaultsService.shared.removeAll()
+                NavigationService.loadAuth()
+            case .showSettings:
+                let payload = SettingsPayload(user: payload.user)
+                let module = settingsModule(payload)
+                let localRouter = module.wrappedInNavigation
+                module.setupOutput(localRouter)
+                router(localRouter)
+            case .showManagers:
+                let payload = ManagersPayload(userId: payload.user.id)
+                let module = managersModule(payload)
+                router(module.wrappedInNavigation)
+            case .showCars:
+                let payload = CarsPayload(user: payload.user)
+                let carsModule = carsModule(payload)
+                    .wrappedInNavigation
+                carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                router(carsModule)
+            case.showBookings:
+                let payload = BookingsPayload(userId: payload.user.id)
+                let module = bookingsModule(payload)
+                router(module.wrappedInNavigation)
             }
         }
-
-        return profileModule
     }
 }
 
@@ -93,6 +115,29 @@ extension MainMenuFlow {
         _ payload: SettingsPayload
     ) -> any SettingsModule {
         SettingsViewController(user: payload.user)
+    }
+}
+
+// MARK: - Settings Output
+extension SettingsModule {
+    @MainActor
+    func setupOutput(
+        _ router: UINavigationController
+    ) {
+        withOutput { [weak router] output in
+            switch output {
+            case let .changePhone(userId):
+                router?.pushViewController(
+                    AuthFlow.authModule(authType: .changeNumber(userId)),
+                    animated: true
+                )
+            case .showAgreement:
+                router?.present(
+                    UtilsFlow.agreementModule().wrappedInNavigation,
+                    animated: true
+                )
+            }
+        }
     }
 }
 
