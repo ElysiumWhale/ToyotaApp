@@ -52,64 +52,6 @@ extension MainMenuFlow {
     ) -> UIViewController {
 
         let profileModule = profileModule(with: payload)
-
-        profileModule.onShowCars = {
-            let carsModule = carsModule(with: CarsPayload(user: payload.user))
-                .wrappedInNavigation
-            carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-            navigationFactory()?.present(
-                carsModule, animated: true
-            )
-        }
-
-        profileModule.onShowBookings = {
-            navigationFactory()?.present(
-                bookingsModule(with: BookingsPayload(userId: payload.user.id))
-                    .wrappedInNavigation,
-                animated: true
-            )
-        }
-
-        profileModule.onShowManagers = {
-            navigationFactory()?.present(
-                managersModule(with: ManagersPayload(userId: payload.user.id))
-                    .wrappedInNavigation,
-                animated: true
-            )
-        }
-
-        profileModule.onShowSettings = {
-            let module = settingsModule(with: SettingsPayload(user: payload.user))
-            let navigation = module.wrappedInNavigation
-
-            module.withOutput { [weak navigation] output in
-                switch output {
-                case .showAgreement:
-                    navigation?.present(
-                        UtilsFlow.agreementModule().wrappedInNavigation,
-                        animated: true
-                    )
-                case let .changePhone(userId):
-                    navigation?.pushViewController(
-                        AuthFlow.authModule(authType: .changeNumber(userId)),
-                        animated: true
-                    )
-                }
-            }
-
-            navigationFactory()?.present(navigation, animated: true)
-        }
-
-        profileModule.onLogout = {
-            PopUp.displayChoice(
-                with: .common(.actionConfirmation),
-                description: .question(.quit),
-                confirmText: .common(.yes),
-                declineText: .common(.no)
-            ) {
-                KeychainService.shared.removeAll()
-                DefaultsService.shared.removeAll()
-                NavigationService.loadAuth()
             }
         }
 
