@@ -38,7 +38,9 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func profileModule(with payload: ProfilePayload) -> ProfileModule {
+    static func profileModule(
+        _ payload: ProfilePayload
+    ) -> any ProfileModule {
         let interactor = ProfileInteractor(user: payload.user)
         let controller = ProfileViewController(interactor: interactor)
         return controller
@@ -121,7 +123,7 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func servicesModule(with payload: ServicesPayload) -> UIViewController {
+    static func servicesModule(_ payload: ServicesPayload) -> UIViewController {
         ServicesViewController(user: payload.user)
     }
 }
@@ -132,7 +134,7 @@ extension MainMenuFlow {
         let userId: String
     }
 
-    static func managersModule(with payload: ManagersPayload) -> UIViewController {
+    static func managersModule(_ payload: ManagersPayload) -> UIViewController {
         let interactor = ManagersInteractor(userId: payload.userId)
         let controller = ManagersViewController(interactor: interactor)
         return controller
@@ -145,7 +147,9 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func settingsModule(with payload: SettingsPayload) -> any SettingsModule {
+    static func settingsModule(
+        _ payload: SettingsPayload
+    ) -> any SettingsModule {
         SettingsViewController(user: payload.user)
     }
 }
@@ -156,7 +160,7 @@ extension MainMenuFlow {
         let userId: String
     }
 
-    static func bookingsModule(with payload: BookingsPayload) -> UIViewController {
+    static func bookingsModule(_ payload: BookingsPayload) -> UIViewController {
         let interactor = BookingsInteractor(userId: payload.userId)
         return BookingsViewController(interactor: interactor)
     }
@@ -168,7 +172,7 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func carsModule(with payload: CarsPayload) -> UIViewController {
+    static func carsModule(_ payload: CarsPayload) -> UIViewController {
         let interactor = CarsInteractor(user: payload.user)
         let controller = CarsViewController(interactor: interactor)
         return controller
