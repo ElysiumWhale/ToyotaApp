@@ -184,13 +184,13 @@ final class ProfileViewController: BaseViewController,
         )
 
         managerButton.addAction { [weak self] in
-            self?.onShowManagers?()
+            self?.output?(.showManagers)
         }
         bookingsButton.addAction { [weak self] in
-            self?.onShowBookings?()
+            self?.output?(.showBookings)
         }
         carsButton.addAction { [weak self] in
-            self?.onShowCars?()
+            self?.output?(.showCars)
         }
 
         saveButton.addTarget(
@@ -327,11 +327,18 @@ private extension ProfileViewController {
 // MARK: - Navigation
 private extension ProfileViewController {
     @objc func showSettings() {
-        onShowSettings?()
+        output?(.showSettings)
     }
 
     @objc func logout() {
-        onLogout?()
+        PopUp.displayChoice(
+            with: .common(.actionConfirmation),
+            description: .question(.quit),
+            confirmText: .common(.yes),
+            declineText: .common(.no)
+        ) { [weak self] in
+            self?.output?(.logout)
+        }
     }
 }
 
