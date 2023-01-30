@@ -1,13 +1,15 @@
 import UIKit
 import DesignKit
 
-protocol CityPikerModule: UIViewController {
-    var onCityPick: ParameterClosure<City>? { get set }
+enum CityPickerOutput: Hashable {
+    case cityDidPick(City)
 }
+
+protocol CityPickerModule: UIViewController, Outputable<CityPickerOutput> { }
 
 final class CityPickerViewController: BaseViewController,
                                       Refreshable,
-                                      CityPikerModule {
+                                      CityPickerModule {
 
     private let interactor: CityPickerInteractor
 
@@ -17,7 +19,7 @@ final class CityPickerViewController: BaseViewController,
     let refreshableView = TableView<CityCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
-    var onCityPick: ParameterClosure<City>?
+    var output: ParameterClosure<CityPickerOutput>?
 
     init(interactor: CityPickerInteractor) {
         self.interactor = interactor
@@ -114,7 +116,7 @@ final class CityPickerViewController: BaseViewController,
             return
         }
 
-        onCityPick?(selectedCity)
+        output?(.cityDidPick(selectedCity))
     }
 }
 
