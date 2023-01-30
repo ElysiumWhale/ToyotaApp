@@ -85,21 +85,21 @@ final class FlowsTests: XCTestCase {
     func testSettingsModuleOutput() {
         let payload = MainMenuFlow.SettingsPayload(user: .mock)
         let settingsModule = MainMenuFlow.settingsModule(payload)
+        var expectations = [SettingsOutput: Bool]()
+        settingsModule.withOutput { expectations[$0] = true }
+        settingsModule.sendAllOutputs()
+        XCTAssertTrue(expectations.count == SettingsOutput.allCases.count)
+        XCTAssertTrue(expectations.allSatisfy(\.value))
+    }
 
-        var agreementExpectation = false
-        var changePhoneExpectation = false
-        settingsModule.withOutput { output in
-            switch output {
-            case .showAgreement:
-                agreementExpectation = true
-            case .changePhone:
-                changePhoneExpectation = true
-            }
-        }
-        settingsModule.output?(.showAgreement)
-        settingsModule.output?(.changePhone(""))
-        XCTAssertTrue(agreementExpectation)
-        XCTAssertTrue(changePhoneExpectation)
+    func testProfileModuleOutput() {
+        let payload = MainMenuFlow.ProfilePayload(user: .mock)
+        let module = MainMenuFlow.profileModule(payload)
+        var expectations = [ProfileOutput: Bool]()
+        module.withOutput { expectations[$0] = true }
+        module.sendAllOutputs()
+        XCTAssertTrue(expectations.count == ProfileOutput.allCases.count)
+        XCTAssertTrue(expectations.allSatisfy(\.value))
     }
 
     func testUtilsFlow() throws {
