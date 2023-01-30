@@ -2,7 +2,22 @@ import UIKit
 
 @MainActor
 enum MainMenuFlow {
-    static func entryPoint(for user: UserProxy) -> any NavigationRootHolder<Tabs> {
+    struct Environment {
+        let userProxy: UserProxy
+        let notificator: EventNotificator
+        let defaults: any KeyedCodableStorage<DefaultKeys>
+        let keychain: any KeyedCodableStorage<KeychainKeys>
+        let newsService: NewsService
+        let servicesService: ServicesService
+        let personalService: PersonalInfoService
+        let managersService: ManagersService
+        let carsService: CarsService
+        let bookingsService: BookingsService
+    }
+
+    static func entryPoint(
+        _ environment: Environment
+    ) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
 
         let servicesModule = servicesModule(ServicesPayload(user: user))
