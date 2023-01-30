@@ -1,7 +1,22 @@
 import UIKit
 import DesignKit
 
-final class SettingsViewController: BaseViewController {
+enum SettingsOutput: Hashable {
+    case changePhone(_ userId: String)
+    case showAgreement
+}
+
+#if DEBUG
+extension SettingsOutput: CaseIterable {
+    static var allCases: [SettingsOutput] {
+        [.showAgreement, .changePhone(.empty)]
+    }
+}
+#endif
+
+protocol SettingsModule: UIViewController, Outputable<SettingsOutput> { }
+
+final class SettingsViewController: BaseViewController, SettingsModule {
     private let phoneLabel = UILabel()
     private let phoneTextField = InputTextField(.toyota)
     private let changeNumberButton = CustomizableButton(.toyotaAction(18))
@@ -11,6 +26,8 @@ final class SettingsViewController: BaseViewController {
     private let versionLabel = UILabel()
 
     private let user: UserProxy
+
+    var output: ParameterClosure<SettingsOutput>?
 
     init(user: UserProxy, notificator: EventNotificator = .shared) {
         self.user = user
@@ -87,7 +104,7 @@ final class SettingsViewController: BaseViewController {
         changeNumberButton.setTitle(.common(.change), for: .normal)
         agreementButton.setTitle(.common(.terms), for: .normal)
         companyNameLabel.text = .common(.alyansPro)
-        versionLabel.text = "\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild)) "
+        versionLabel.text = "\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))"
     }
 
     override func configureActions() {
@@ -96,7 +113,7 @@ final class SettingsViewController: BaseViewController {
         }
 
         agreementButton.addAction { [weak self] in
-            self?.showAgreement()
+            self?.output?(.showAgreement)
         }
     }
 
@@ -105,21 +122,17 @@ final class SettingsViewController: BaseViewController {
             with: .common(.confirmation),
             description: .question(.changeNumber)
         ) { [self] in
-            let module = AuthFlow.authModule(authType: .changeNumber(userId: user.id))
-            navigationController?.pushViewController(module, animated: true)
+            output?(.changePhone(user.id))
         }
-    }
-
-    private func showAgreement() {
-        present(UtilsFlow.agreementModule().wrappedInNavigation,
-                animated: true)
     }
 }
 
 // MARK: - ObservesEvents
 extension SettingsViewController: ObservesEvents {
-    func handle(event: EventNotificator.AppEvents,
-                notificator: EventNotificator) {
+    func handle(
+        event: EventNotificator.AppEvents,
+        notificator: EventNotificator
+    ) {
         guard event == .phoneUpdate else {
             return
         }

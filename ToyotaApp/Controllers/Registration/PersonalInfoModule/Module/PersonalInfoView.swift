@@ -184,21 +184,21 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 
         switch viewModel {
         case let .success(cities, models, colors):
-            let cityPickerModule = RegisterFlow.cityModule(cities)
-
-            cityPickerModule.onCityPick = { [weak self] _ in
-                let addCar = RegisterFlow.addCarModule(
-                    scenario: .register,
-                    models: models,
-                    colors: colors
-                )
-                self?.navigationController?.pushViewController(
-                    addCar, animated: true
-                )
+            let cityModule = RegisterFlow.cityModule(cities)
+            cityModule.withOutput { [weak router = navigationController] output in
+                switch output {
+                case .cityDidPick:
+                    let addCar = RegisterFlow.addCarModule(
+                        scenario: .register,
+                        models: models,
+                        colors: colors
+                    )
+                    router?.pushViewController(addCar, animated: true)
+                }
             }
 
             navigationController?.pushViewController(
-                cityPickerModule, animated: true
+                cityModule, animated: true
             )
         case let .failure(message):
             PopUp.display(.error(description: message))

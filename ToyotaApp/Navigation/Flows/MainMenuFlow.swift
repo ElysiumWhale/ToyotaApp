@@ -5,12 +5,12 @@ enum MainMenuFlow {
     static func entryPoint(for user: UserProxy) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
 
-        let payload = ProfilePayload(user: user)
-        let profileModule = makeProfileModule(with: payload) { [weak tbvc] in
-            tbvc?.tabsRoots[.profile]
+        let servicesModule = servicesModule(ServicesPayload(user: user))
+        let profileModule = makeProfileModule(
+            ProfilePayload(user: user)
+        ) { [weak tbvc] module in
+            tbvc?.tabsRoots[.profile]?.present(module, animated: true)
         }
-
-        let servicesModule = servicesModule(with: ServicesPayload(user: user))
 
         tbvc.setControllersForTabs(
             (newsModule(), .news),
@@ -38,65 +38,46 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func profileModule(with payload: ProfilePayload) -> ProfileModule {
+    static func profileModule(
+        _ payload: ProfilePayload
+    ) -> any ProfileModule {
         let interactor = ProfileInteractor(user: payload.user)
         let controller = ProfileViewController(interactor: interactor)
         return controller
     }
 
     static func makeProfileModule(
-        with payload: ProfilePayload,
-        navigationFactory: @escaping ValueClosure<UINavigationController?>
+        _ payload: ProfilePayload,
+        _ router: @escaping (_ to: UIViewController) -> Void
     ) -> UIViewController {
-
-        let profileModule = profileModule(with: payload)
-
-        profileModule.onShowCars = {
-            let carsModule = carsModule(with: CarsPayload(user: payload.user))
-                .wrappedInNavigation
-            carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-            navigationFactory()?.present(
-                carsModule, animated: true
-            )
-        }
-
-        profileModule.onShowBookings = {
-            navigationFactory()?.present(
-                bookingsModule(with: BookingsPayload(userId: payload.user.id))
-                    .wrappedInNavigation,
-                animated: true
-            )
-        }
-
-        profileModule.onShowManagers = {
-            navigationFactory()?.present(
-                managersModule(with: ManagersPayload(userId: payload.user.id))
-                    .wrappedInNavigation,
-                animated: true
-            )
-        }
-
-        profileModule.onShowSettings = {
-            navigationFactory()?.present(
-                settingsModule(with: SettingsPayload(user: payload.user))
-                    .wrappedInNavigation,
-                animated: true)
-        }
-
-        profileModule.onLogout = {
-            PopUp.displayChoice(
-                with: .common(.actionConfirmation),
-                description: .question(.quit),
-                confirmText: .common(.yes),
-                declineText: .common(.no)
-            ) {
+        profileModule(payload).withOutput { output in
+            switch output {
+            case .logout:
                 KeychainService.shared.removeAll()
                 DefaultsService.shared.removeAll()
                 NavigationService.loadAuth()
+            case .showSettings:
+                let payload = SettingsPayload(user: payload.user)
+                let module = settingsModule(payload)
+                let localRouter = module.wrappedInNavigation
+                module.setupOutput(localRouter)
+                router(localRouter)
+            case .showManagers:
+                let payload = ManagersPayload(userId: payload.user.id)
+                let module = managersModule(payload)
+                router(module.wrappedInNavigation)
+            case .showCars:
+                let payload = CarsPayload(user: payload.user)
+                let carsModule = carsModule(payload)
+                    .wrappedInNavigation
+                carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                router(carsModule)
+            case.showBookings:
+                let payload = BookingsPayload(userId: payload.user.id)
+                let module = bookingsModule(payload)
+                router(module.wrappedInNavigation)
             }
         }
-
-        return profileModule
     }
 }
 
@@ -106,7 +87,7 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func servicesModule(with payload: ServicesPayload) -> UIViewController {
+    static func servicesModule(_ payload: ServicesPayload) -> UIViewController {
         ServicesViewController(user: payload.user)
     }
 }
@@ -117,7 +98,7 @@ extension MainMenuFlow {
         let userId: String
     }
 
-    static func managersModule(with payload: ManagersPayload) -> UIViewController {
+    static func managersModule(_ payload: ManagersPayload) -> UIViewController {
         let interactor = ManagersInteractor(userId: payload.userId)
         let controller = ManagersViewController(interactor: interactor)
         return controller
@@ -130,8 +111,33 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func settingsModule(with payload: SettingsPayload) -> UIViewController {
+    static func settingsModule(
+        _ payload: SettingsPayload
+    ) -> any SettingsModule {
         SettingsViewController(user: payload.user)
+    }
+}
+
+// MARK: - Settings Output
+extension SettingsModule {
+    @MainActor
+    func setupOutput(
+        _ router: UINavigationController
+    ) {
+        withOutput { [weak router] output in
+            switch output {
+            case let .changePhone(userId):
+                router?.pushViewController(
+                    AuthFlow.authModule(authType: .changeNumber(userId)),
+                    animated: true
+                )
+            case .showAgreement:
+                router?.present(
+                    UtilsFlow.agreementModule().wrappedInNavigation,
+                    animated: true
+                )
+            }
+        }
     }
 }
 
@@ -141,7 +147,7 @@ extension MainMenuFlow {
         let userId: String
     }
 
-    static func bookingsModule(with payload: BookingsPayload) -> UIViewController {
+    static func bookingsModule(_ payload: BookingsPayload) -> UIViewController {
         let interactor = BookingsInteractor(userId: payload.userId)
         return BookingsViewController(interactor: interactor)
     }
@@ -153,7 +159,7 @@ extension MainMenuFlow {
         let user: UserProxy
     }
 
-    static func carsModule(with payload: CarsPayload) -> UIViewController {
+    static func carsModule(_ payload: CarsPayload) -> UIViewController {
         let interactor = CarsInteractor(user: payload.user)
         let controller = CarsViewController(interactor: interactor)
         return controller

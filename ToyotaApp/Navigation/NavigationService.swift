@@ -49,23 +49,29 @@ final class NavigationService {
     static func loadRegister(_ state: RegistrationStates) {
         var controllers: [UIViewController] = []
         switch state {
-        case .error(let message):
+        case let .error(message):
             PopUp.display(.error(description: message))
         case .firstPage:
             break
-        case .secondPage(let profile, let cities):
+        case let .secondPage(profile, cities):
             let personalModule = RegisterFlow.personalModule(profile)
             let cityModule = RegisterFlow.cityModule(cities ?? [])
             let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
+            let router = personalModule.navigationController
 
-            cityModule.onCityPick = { [weak personalModule] _ in
-                let addCar = RegisterFlow.addCarModule()
-                personalModule?.navigationController?.pushViewController(addCar, animated: true)
+            cityModule.withOutput { [weak router] output in
+                switch output {
+                case .cityDidPick:
+                    let carModule = RegisterFlow.addCarModule()
+                    router?.pushViewController(carModule, animated: true)
+                }
             }
 
-            controllers = [personalModule,
-                           cityModule,
-                           carModule].compactMap { $0 }
+            controllers = [
+                personalModule,
+                cityModule,
+                carModule
+            ].compactMap { $0 }
         }
 
         switchRootView?(RegisterFlow.entryPoint(with: controllers))

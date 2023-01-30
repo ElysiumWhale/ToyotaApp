@@ -62,7 +62,7 @@ struct Car: IService {
 }
 
 // MARK: - City
-struct City: IService {
+struct City: IService, Hashable {
     let id: String
     let name: String
 

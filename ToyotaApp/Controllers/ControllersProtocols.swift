@@ -1,5 +1,20 @@
 import UIKit
 
+// MARK: - Outputable
+protocol Outputable<TOutput>: AnyObject {
+    associatedtype TOutput
+
+    var output: ParameterClosure<TOutput>? { get set }
+}
+
+extension Outputable {
+    @discardableResult
+    func withOutput(_ output: ParameterClosure<TOutput>?) -> Self {
+        self.output = output
+        return self
+    }
+}
+
 // MARK: - Keyboard auto insets
 protocol Keyboardable: UIViewController {
     associatedtype ScrollableView: UIScrollView

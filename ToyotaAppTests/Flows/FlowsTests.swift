@@ -51,41 +51,55 @@ final class FlowsTests: XCTestCase {
     }
 
     func testMainMenuFlowFabrics() throws {
-        let chat = MainMenuFlow.chatModule()
-        XCTAssertTrue(chat is ChatViewController)
-
-        let services = MainMenuFlow.servicesModule(
-            with: MainMenuFlow.ServicesPayload(user: .mock)
-        )
-        XCTAssertTrue(services is ServicesViewController)
-
-        let profile = MainMenuFlow.profileModule(
-            with: MainMenuFlow.ProfilePayload(user: .mock)
-        )
-        XCTAssertTrue(profile is ProfileViewController)
-
         let news = MainMenuFlow.newsModule()
         XCTAssertTrue(news is NewsViewController)
 
-        let bookings = MainMenuFlow.bookingsModule(
-            with: MainMenuFlow.BookingsPayload(userId: "-1")
-        )
+        let chat = MainMenuFlow.chatModule()
+        XCTAssertTrue(chat is ChatViewController)
+
+        let payload = MainMenuFlow.ServicesPayload(user: .mock)
+        let services = MainMenuFlow.servicesModule(payload)
+        XCTAssertTrue(services is ServicesViewController)
+
+        let payload1 = MainMenuFlow.ProfilePayload(user: .mock)
+        let profile = MainMenuFlow.profileModule(payload1)
+        XCTAssertTrue(profile is ProfileViewController)
+
+        let payload2 = MainMenuFlow.BookingsPayload(userId: "-1")
+        let bookings = MainMenuFlow.bookingsModule(payload2)
         XCTAssertTrue(bookings is BookingsViewController)
 
-        let settings = MainMenuFlow.settingsModule(
-            with: MainMenuFlow.SettingsPayload(user: .mock)
-        )
+        let payload3 = MainMenuFlow.SettingsPayload(user: .mock)
+        let settings = MainMenuFlow.settingsModule(payload3)
         XCTAssertTrue(settings is SettingsViewController)
 
-        let managers = MainMenuFlow.managersModule(
-            with: MainMenuFlow.ManagersPayload(userId: "-1")
-        )
+        let payload4 = MainMenuFlow.ManagersPayload(userId: "-1")
+        let managers = MainMenuFlow.managersModule(payload4)
         XCTAssertTrue(managers is ManagersViewController)
 
-        let cars = MainMenuFlow.carsModule(
-            with: MainMenuFlow.CarsPayload(user: .mock)
-        )
+        let payload5 = MainMenuFlow.CarsPayload(user: .mock)
+        let cars = MainMenuFlow.carsModule(payload5)
         XCTAssertTrue(cars is CarsViewController)
+    }
+
+    func testSettingsModuleOutput() {
+        let payload = MainMenuFlow.SettingsPayload(user: .mock)
+        let settingsModule = MainMenuFlow.settingsModule(payload)
+        var expectations = [SettingsOutput: Bool]()
+        settingsModule.withOutput { expectations[$0] = true }
+        settingsModule.sendAllOutputs()
+        XCTAssertTrue(expectations.count == SettingsOutput.allCases.count)
+        XCTAssertTrue(expectations.allSatisfy(\.value))
+    }
+
+    func testProfileModuleOutput() {
+        let payload = MainMenuFlow.ProfilePayload(user: .mock)
+        let module = MainMenuFlow.profileModule(payload)
+        var expectations = [ProfileOutput: Bool]()
+        module.withOutput { expectations[$0] = true }
+        module.sendAllOutputs()
+        XCTAssertTrue(expectations.count == ProfileOutput.allCases.count)
+        XCTAssertTrue(expectations.allSatisfy(\.value))
     }
 
     func testUtilsFlow() throws {
@@ -133,5 +147,13 @@ private extension ServiceType {
             controlTypeId: .empty,
             controlTypeDesc: .empty
         )
+    }
+}
+
+private extension Outputable where TOutput: CaseIterable {
+    func sendAllOutputs() {
+        for item in TOutput.allCases {
+            output?(item)
+        }
     }
 }

@@ -1,13 +1,19 @@
 import UIKit
 import DesignKit
 
-protocol ProfileModule: UIViewController {
-    var onShowBookings: Closure? { get set }
-    var onShowSettings: Closure? { get set }
-    var onShowCars: Closure? { get set }
-    var onShowManagers: Closure? { get set }
-    var onLogout: Closure? { get set }
+enum ProfileOutput: Hashable {
+    case showBookings
+    case showSettings
+    case showCars
+    case showManagers
+    case logout
 }
+
+#if DEBUG
+extension ProfileOutput: CaseIterable { }
+#endif
+
+protocol ProfileModule: UIViewController, Outputable<ProfileOutput> { }
 
 final class ProfileViewController: BaseViewController,
                                    Loadable,
@@ -60,6 +66,8 @@ final class ProfileViewController: BaseViewController,
     }
 
     let loadingView = LoadingView()
+
+    var output: ParameterClosure<ProfileOutput>?
 
     var onShowBookings: Closure?
     var onShowSettings: Closure?
@@ -180,13 +188,13 @@ final class ProfileViewController: BaseViewController,
         )
 
         managerButton.addAction { [weak self] in
-            self?.onShowManagers?()
+            self?.output?(.showManagers)
         }
         bookingsButton.addAction { [weak self] in
-            self?.onShowBookings?()
+            self?.output?(.showBookings)
         }
         carsButton.addAction { [weak self] in
-            self?.onShowCars?()
+            self?.output?(.showCars)
         }
 
         saveButton.addTarget(
@@ -323,11 +331,18 @@ private extension ProfileViewController {
 // MARK: - Navigation
 private extension ProfileViewController {
     @objc func showSettings() {
-        onShowSettings?()
+        output?(.showSettings)
     }
 
     @objc func logout() {
-        onLogout?()
+        PopUp.displayChoice(
+            with: .common(.actionConfirmation),
+            description: .question(.quit),
+            confirmText: .common(.yes),
+            declineText: .common(.no)
+        ) { [weak self] in
+            self?.output?(.logout)
+        }
     }
 }
 
