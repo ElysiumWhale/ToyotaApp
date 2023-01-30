@@ -15,6 +15,8 @@ final class ServicesInteractor {
     private let showroomsHandler = RequestHandler<ShowroomsResponse>()
     private let service: ServicesService
 
+    let user: UserProxy
+
     private(set) var serviceTypes: [ServiceType] = []
     private(set) var showrooms: [Showroom] = []
 
@@ -50,7 +52,8 @@ final class ServicesInteractor {
         return showrooms.firstIndex(where: { $0.id == showroom.id })
     }
 
-    init(service: ServicesService = InfoService()) {
+    init(user: UserProxy, service: ServicesService = InfoService()) {
+        self.user = user
         self.service = service
 
         setupRequestHandlers()
