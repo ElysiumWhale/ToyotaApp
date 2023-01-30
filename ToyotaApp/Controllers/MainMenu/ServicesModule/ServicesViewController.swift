@@ -135,9 +135,12 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
         let cityPickerModule = RegisterFlow.cityModule()
         cityPickerModule.hidesBottomBarWhenPushed = true
-        cityPickerModule.onCityPick = { [weak self] city in
-            self?.navigationController?.popViewController(animated: true)
-            self?.cityDidSelect(city)
+        cityPickerModule.withOutput { [weak self] output in
+            switch output {
+            case let .cityDidPick(city):
+                self?.navigationController?.popViewController(animated: true)
+                self?.cityDidSelect(city)
+            }
         }
 
         navigationController?.pushViewController(
