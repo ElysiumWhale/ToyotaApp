@@ -20,24 +20,27 @@ enum MainMenuFlow {
     ) -> any NavigationRootHolder<Tabs> {
         let tbvc = MainTabBarController()
 
-        let servicesModule = servicesModule(ServicesPayload(user: user))
-        let profileModule = makeProfileModule(
-            ProfilePayload(user: user)
-        ) { [weak tbvc] module in
+        let servicesModule = servicesModule(ServicesPayload(
+            user: environment.userProxy,
+            service: environment.servicesService
+        ))
+
+        let newsModule = newsModule(NewsPayload(
+            service: environment.newsService,
+            defaults: environment.defaults
+        ))
+
+        let profileModule = makeProfileModule(environment) { [weak tbvc] module in
             tbvc?.tabsRoots[.profile]?.present(module, animated: true)
         }
 
         tbvc.setControllersForTabs(
-            (newsModule(), .news),
+            (newsModule, .news),
             (servicesModule, .services),
             (profileModule, .profile)
         )
 
         return tbvc
-    }
-
-    static func newsModule() -> UIViewController {
-        NewsViewController()
     }
 
     static func chatModule() -> UIViewController {
@@ -47,48 +50,84 @@ enum MainMenuFlow {
     }
 }
 
+// MARK: - News
+extension MainMenuFlow {
+    struct NewsPayload {
+        let service: NewsService
+        let defaults: any KeyedCodableStorage<DefaultKeys>
+    }
+
+    static func newsModule(
+        _ payload: NewsPayload
+    ) -> UIViewController {
+        let newsInteractor = NewsInteractor(
+            newsService: payload.service,
+            defaults: payload.defaults
+        )
+        return NewsViewController(interactor: newsInteractor)
+    }
+}
+
 // MARK: - Profile
 extension MainMenuFlow {
     struct ProfilePayload {
         let user: UserProxy
+        let service: PersonalInfoService
     }
 
     static func profileModule(
         _ payload: ProfilePayload
     ) -> any ProfileModule {
-        let interactor = ProfileInteractor(user: payload.user)
-        let controller = ProfileViewController(interactor: interactor)
-        return controller
+        let interactor = ProfileInteractor(
+            user: payload.user,
+            service: payload.service
+        )
+        return ProfileViewController(interactor: interactor)
     }
 
     static func makeProfileModule(
-        _ payload: ProfilePayload,
+        _ environment: Environment,
         _ router: @escaping (_ to: UIViewController) -> Void
     ) -> UIViewController {
-        profileModule(payload).withOutput { output in
+        profileModule(ProfilePayload(
+            user: environment.userProxy,
+            service: environment.personalService
+        )).withOutput { output in
             switch output {
             case .logout:
-                KeychainService.shared.removeAll()
-                DefaultsService.shared.removeAll()
+                environment.keychain.removeAll()
+                environment.defaults.removeAll()
                 NavigationService.loadAuth()
             case .showSettings:
-                let payload = SettingsPayload(user: payload.user)
+                let payload = SettingsPayload(
+                    user: environment.userProxy,
+                    notificator: environment.notificator
+                )
                 let module = settingsModule(payload)
                 let localRouter = module.wrappedInNavigation
                 module.setupOutput(localRouter)
                 router(localRouter)
             case .showManagers:
-                let payload = ManagersPayload(userId: payload.user.id)
+                let payload = ManagersPayload(
+                    userId: environment.userProxy.id,
+                    service: environment.managersService
+                )
                 let module = managersModule(payload)
                 router(module.wrappedInNavigation)
             case .showCars:
-                let payload = CarsPayload(user: payload.user)
+                let payload = CarsPayload(
+                    user: environment.userProxy,
+                    service: environment.carsService
+                )
                 let carsModule = carsModule(payload)
                     .wrappedInNavigation
                 carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
                 router(carsModule)
             case.showBookings:
-                let payload = BookingsPayload(userId: payload.user.id)
+                let payload = BookingsPayload(
+                    userId: environment.userProxy.id,
+                    service: environment.bookingsService
+                )
                 let module = bookingsModule(payload)
                 router(module.wrappedInNavigation)
             }
@@ -100,10 +139,15 @@ extension MainMenuFlow {
 extension MainMenuFlow {
     struct ServicesPayload {
         let user: UserProxy
+        let service: ServicesService
     }
 
     static func servicesModule(_ payload: ServicesPayload) -> UIViewController {
-        ServicesViewController(user: payload.user)
+        let interactor = ServicesInteractor(
+            user: payload.user,
+            service: payload.service
+        )
+        return ServicesViewController(interactor: interactor)
     }
 }
 
@@ -111,12 +155,15 @@ extension MainMenuFlow {
 extension MainMenuFlow {
     struct ManagersPayload {
         let userId: String
+        let service: ManagersService
     }
 
     static func managersModule(_ payload: ManagersPayload) -> UIViewController {
-        let interactor = ManagersInteractor(userId: payload.userId)
-        let controller = ManagersViewController(interactor: interactor)
-        return controller
+        let interactor = ManagersInteractor(
+            userId: payload.userId,
+            managersService: payload.service
+        )
+        return ManagersViewController(interactor: interactor)
     }
 }
 
@@ -124,12 +171,16 @@ extension MainMenuFlow {
 extension MainMenuFlow {
     struct SettingsPayload {
         let user: UserProxy
+        let notificator: EventNotificator
     }
 
     static func settingsModule(
         _ payload: SettingsPayload
     ) -> any SettingsModule {
-        SettingsViewController(user: payload.user)
+        SettingsViewController(
+            user: payload.user,
+            notificator: payload.notificator
+        )
     }
 }
 
@@ -160,10 +211,14 @@ extension SettingsModule {
 extension MainMenuFlow {
     struct BookingsPayload {
         let userId: String
+        let service: BookingsService
     }
 
     static func bookingsModule(_ payload: BookingsPayload) -> UIViewController {
-        let interactor = BookingsInteractor(userId: payload.userId)
+        let interactor = BookingsInteractor(
+            userId: payload.userId,
+            bookingsService: payload.service
+        )
         return BookingsViewController(interactor: interactor)
     }
 }
@@ -172,11 +227,14 @@ extension MainMenuFlow {
 extension MainMenuFlow {
     struct CarsPayload {
         let user: UserProxy
+        let service: CarsService
     }
 
     static func carsModule(_ payload: CarsPayload) -> UIViewController {
-        let interactor = CarsInteractor(user: payload.user)
-        let controller = CarsViewController(interactor: interactor)
-        return controller
+        let interactor = CarsInteractor(
+            carsService: payload.service,
+            user: payload.user
+        )
+        return CarsViewController(interactor: interactor)
     }
 }
