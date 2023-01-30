@@ -1,13 +1,17 @@
 import UIKit
 import DesignKit
 
-enum ProfileOutput {
+enum ProfileOutput: Hashable {
     case showBookings
     case showSettings
     case showCars
     case showManagers
     case logout
 }
+
+#if DEBUG
+extension ProfileOutput: CaseIterable { }
+#endif
 
 protocol ProfileModule: UIViewController, Outputable<ProfileOutput> { }
 

@@ -1,10 +1,18 @@
 import UIKit
 import DesignKit
 
-enum SettingsOutput {
+enum SettingsOutput: Hashable {
     case changePhone(_ userId: String)
     case showAgreement
 }
+
+#if DEBUG
+extension SettingsOutput: CaseIterable {
+    static var allCases: [SettingsOutput] {
+        [.showAgreement, .changePhone(.empty)]
+    }
+}
+#endif
 
 protocol SettingsModule: UIViewController, Outputable<SettingsOutput> { }
 

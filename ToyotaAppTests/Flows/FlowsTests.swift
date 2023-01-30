@@ -149,3 +149,11 @@ private extension ServiceType {
         )
     }
 }
+
+private extension Outputable where TOutput: CaseIterable {
+    func sendAllOutputs() {
+        for item in TOutput.allCases {
+            output?(item)
+        }
+    }
+}
