@@ -86,11 +86,30 @@ final class NavigationService {
             }
         }
 
-        switch UserInfo.build() {
+        switch UserInfo.make(KeychainService.shared) {
         case .failure:
             loadRegister(.error(message: .error(.profileLoadError)))
-        case .success(let user):
-            switchRootView?(MainMenuFlow.entryPoint(for: user).root)
+        case let .success(user):
+            let entry = MainMenuFlow.entryPoint(.makeDefault(from: user))
+            switchRootView?(entry.root)
         }
+    }
+}
+
+extension MainMenuFlow.Environment {
+    static func makeDefault(from user: UserProxy) -> Self {
+        let infoService = InfoService()
+        return .init(
+            userProxy: user,
+            notificator: .shared,
+            defaults: DefaultsService.shared,
+            keychain: KeychainService.shared,
+            newsService: NewsInfoService.init(),
+            servicesService: infoService,
+            personalService: infoService,
+            managersService: infoService,
+            carsService: infoService,
+            bookingsService: infoService
+        )
     }
 }

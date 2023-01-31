@@ -13,11 +13,9 @@ final class ServicesViewController: BaseViewController, Refreshable {
     private let chevronButton = UIButton.imageButton()
 
     private let interactor: ServicesInteractor
-    private let user: UserProxy
     private let dataSource: ServicesDataSource
 
-    init(user: UserProxy, interactor: ServicesInteractor = .init()) {
-        self.user = user
+    init(interactor: ServicesInteractor) {
         self.interactor = interactor
         self.dataSource = ServicesDataSource(refreshableView)
         super.init()
@@ -250,15 +248,17 @@ extension ServicesViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
 
-        guard let service = interactor.serviceTypes[safe: indexPath.row],
-              let viewType = ServiceViewType(rawValue: service.controlTypeId) else {
+        guard
+            let service = interactor.serviceTypes[safe: indexPath.row],
+            let viewType = ServiceViewType(rawValue: service.controlTypeId)
+        else {
             return
         }
 
         let controller = ServicesFlow.buildModule(
             serviceType: service,
             for: viewType,
-            user: user
+            user: interactor.user
         )
         navigationController?.pushViewController(controller, animated: true)
     }
