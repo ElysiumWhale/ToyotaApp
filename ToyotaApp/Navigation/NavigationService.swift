@@ -86,7 +86,7 @@ final class NavigationService {
             }
         }
 
-        switch UserInfo.build() {
+        switch UserInfo.make(KeychainService.shared) {
         case .failure:
             loadRegister(.error(message: .error(.profileLoadError)))
         case let .success(user):
@@ -96,7 +96,7 @@ final class NavigationService {
     }
 }
 
-private extension MainMenuFlow.Environment {
+extension MainMenuFlow.Environment {
     static func makeDefault(from user: UserProxy) -> Self {
         let infoService = InfoService()
         return .init(

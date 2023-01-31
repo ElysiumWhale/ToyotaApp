@@ -20,8 +20,8 @@ protocol UserStorage {
 final class UserInfo {
     private let defaults: any KeyedCodableStorage<DefaultKeys>
     private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    private let notificator: EventNotificator
 
-    let notificator: EventNotificator
     let id: String
 
     private(set) var person: Person
@@ -49,14 +49,18 @@ final class UserInfo {
         self.keychain = keychain
     }
 
-    static func build() -> Result<UserProxy, AppErrors> {
-        guard let userId: UserId = KeychainService.shared.get(),
-              let phone: Phone = KeychainService.shared.get(),
-              let person: Person = KeychainService.shared.get() else {
+    static func make(
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    ) -> Result<UserProxy, AppErrors> {
+        guard
+            let userId: UserId = keychain.get(),
+            let phone: Phone = keychain.get(),
+            let person: Person = keychain.get()
+        else {
             return Result.failure(.notFullProfile)
         }
 
-        let cars: Cars = KeychainService.shared.get() ?? Cars([])
+        let cars: Cars = keychain.get() ?? Cars([])
 
         return Result.success(UserInfo(userId, phone, person, cars))
     }
@@ -104,6 +108,7 @@ extension UserInfo: UserProxy {
     }
 }
 
+#if DEBUG
 extension UserProxy where Self == UserInfo {
     static var mock: UserInfo {
         UserInfo(
@@ -120,3 +125,4 @@ extension UserProxy where Self == UserInfo {
         )
     }
 }
+#endif
