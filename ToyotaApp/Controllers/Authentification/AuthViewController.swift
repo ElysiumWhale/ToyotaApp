@@ -1,7 +1,14 @@
 import UIKit
 import DesignKit
 
-final class AuthViewController: BaseViewController, Loadable {
+enum AuthModuleOutput: Hashable {
+    case showAgreement
+    case successPhoneCheck(_ phone: String, _ authScenario: AuthScenario)
+}
+
+protocol AuthModule: UIViewController, Outputable<AuthModuleOutput> { }
+
+final class AuthViewController: BaseViewController, Loadable, AuthModule {
     private let logo = UIImageView(image: .toyotaLogo)
 
     private let infoStack = UIStackView()
@@ -17,6 +24,8 @@ final class AuthViewController: BaseViewController, Loadable {
     private let interactor: AuthInteractor
 
     let loadingView = LoadingView()
+
+    var output: ParameterClosure<AuthModuleOutput>?
 
     init(interactor: AuthInteractor) {
         self.interactor = interactor
@@ -102,21 +111,15 @@ final class AuthViewController: BaseViewController, Loadable {
     override func configureActions() {
         view.hideKeyboardWhenSwipedDown()
 
-        phoneNumber.addTarget(
-            self,
-            action: #selector(phoneDidChange),
-            for: .editingChanged
-        )
-        sendPhoneButton.addTarget(
-            self,
-            action: #selector(sendPhoneDidPress),
-            for: .touchUpInside
-        )
-        agreementButton.addTarget(
-            self,
-            action: #selector(openAgreement),
-            for: .touchUpInside
-        )
+        phoneNumber.addAction { [weak self] in
+            self?.phoneDidChange()
+        }
+        sendPhoneButton.addAction { [weak self] in
+            self?.sendPhoneDidPress()
+        }
+        agreementButton.addAction { [weak self] in
+            self?.output?(.showAgreement)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -124,12 +127,12 @@ final class AuthViewController: BaseViewController, Loadable {
     }
 
     // MARK: - Private methods
-    @objc private func phoneDidChange() {
+    private func phoneDidChange() {
         incorrectLabel.fadeOut(0.3)
         phoneNumber.toggle(state: .normal)
     }
 
-    @objc private func sendPhoneDidPress() {
+    private func sendPhoneDidPress() {
         guard let phone = phoneNumber.validPhone else {
             phoneNumber.toggle(state: .error)
             incorrectLabel.fadeIn(0.3)
@@ -151,23 +154,14 @@ final class AuthViewController: BaseViewController, Loadable {
         }
     }
 
-    @objc private func openAgreement() {
-        present(UtilsFlow.agreementModule().wrappedInNavigation,
-                animated: true)
-    }
-
     private func handle(isSuccess: Bool) {
         stopLoading()
         sendPhoneButton.fadeIn()
 
-        guard isSuccess else {
+        guard isSuccess, let phone = phoneNumber.validPhone else {
             return
         }
 
-        let vc = AuthFlow.codeModule(
-            phone: phoneNumber.validPhone!,
-            authType: interactor.type
-        )
-        navigationController?.pushViewController(vc, animated: true)
+        output?(.successPhoneCheck(phone, interactor.type))
     }
 }
