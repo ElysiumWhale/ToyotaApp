@@ -1,5 +1,11 @@
 import UIKit
 
+enum RoutingTypes {
+    case selfRouted
+    case routed(by: UINavigationController)
+    case none
+}
+
 @MainActor
 final class NavigationService {
     enum RegistrationStates {
