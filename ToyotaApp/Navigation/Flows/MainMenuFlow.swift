@@ -13,6 +13,7 @@ enum MainMenuFlow {
         let managersService: ManagersService
         let carsService: CarsService
         let bookingsService: BookingsService
+        let registrationService: IRegistrationService
     }
 
     static func entryPoint(

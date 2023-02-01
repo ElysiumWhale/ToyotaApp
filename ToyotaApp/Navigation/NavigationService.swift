@@ -110,12 +110,13 @@ extension MainMenuFlow.Environment {
             notificator: .shared,
             defaults: DefaultsService.shared,
             keychain: KeychainService.shared,
-            newsService: NewsInfoService.init(),
+            newsService: NewsInfoService(),
             servicesService: infoService,
             personalService: infoService,
             managersService: infoService,
             carsService: infoService,
-            bookingsService: infoService
+            bookingsService: infoService,
+            registrationService: NewInfoService()
         )
     }
 }
