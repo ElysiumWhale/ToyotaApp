@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - Context for navigation
-struct CheckUserContext {
+struct CheckUserContext: Hashable {
     enum States {
         case empty
         case startRegister
