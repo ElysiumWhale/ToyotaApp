@@ -13,6 +13,7 @@ enum MainMenuFlow {
         let managersService: ManagersService
         let carsService: CarsService
         let bookingsService: BookingsService
+        let registrationService: IRegistrationService
     }
 
     static func entryPoint(
@@ -105,7 +106,7 @@ extension MainMenuFlow {
                 )
                 let module = settingsModule(payload)
                 let localRouter = module.wrappedInNavigation
-                module.setupOutput(localRouter)
+                module.setupOutput(localRouter, environment.registrationService)
                 router(localRouter)
             case .showManagers:
                 let payload = ManagersPayload(
@@ -188,13 +189,22 @@ extension MainMenuFlow {
 extension SettingsModule {
     @MainActor
     func setupOutput(
-        _ router: UINavigationController
+        _ router: UINavigationController,
+        _ service: IRegistrationService
     ) {
         withOutput { [weak router] output in
             switch output {
             case let .changePhone(userId):
-                router?.pushViewController(
-                    AuthFlow.authModule(authType: .changeNumber(userId)),
+                guard let router else {
+                    return
+                }
+
+                let environment = AuthFlow.Environment(
+                    scenario: .changeNumber(userId),
+                    service: service
+                )
+                router.pushViewController(
+                    AuthFlow.entryPoint(environment, .routed(by: router)),
                     animated: true
                 )
             case .showAgreement:

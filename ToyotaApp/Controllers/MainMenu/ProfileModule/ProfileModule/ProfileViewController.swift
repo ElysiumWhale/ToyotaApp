@@ -9,10 +9,6 @@ enum ProfileOutput: Hashable {
     case logout
 }
 
-#if DEBUG
-extension ProfileOutput: CaseIterable { }
-#endif
-
 protocol ProfileModule: UIViewController, Outputable<ProfileOutput> { }
 
 final class ProfileViewController: BaseViewController,

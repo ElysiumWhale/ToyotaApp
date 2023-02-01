@@ -23,11 +23,11 @@ final class NavigationService {
         switch context.state {
         case .empty:
             fallbackCompletion()
-        case .main(let user):
+        case let .main(user):
             loadMain(from: user)
         case .startRegister:
             loadRegister(.firstPage)
-        case .register(let page, let user, let cities):
+        case let .register(page, user, cities):
             switch page {
             case 2:
                 loadRegister(.secondPage(user.profile, cities))
@@ -48,7 +48,10 @@ final class NavigationService {
             PopUp.display(.error(description: error))
         }
 
-        switchRootView?(AuthFlow.entryPoint())
+        switchRootView?(AuthFlow.entryPoint(
+            .init(scenario: .register, service: NewInfoService()),
+            .selfRouted
+        ))
     }
 
     // MARK: - LoadRegister overloads
@@ -110,12 +113,13 @@ extension MainMenuFlow.Environment {
             notificator: .shared,
             defaults: DefaultsService.shared,
             keychain: KeychainService.shared,
-            newsService: NewsInfoService.init(),
+            newsService: NewsInfoService(),
             servicesService: infoService,
             personalService: infoService,
             managersService: infoService,
             carsService: infoService,
-            bookingsService: infoService
+            bookingsService: infoService,
+            registrationService: NewInfoService()
         )
     }
 }

@@ -1,40 +1,131 @@
 import UIKit
 
-enum AuthScenario: Equatable {
+enum AuthScenario: Hashable {
     case register
     case changeNumber(_ userId: String)
 }
 
 @MainActor
 enum AuthFlow {
-    static func authModule(
-        authType: AuthScenario = .register,
-        authService: IRegistrationService = NewInfoService()
-    ) -> UIViewController {
-        let interactor = AuthInteractor(type: authType, authService: authService)
-        return AuthViewController(interactor: interactor)
-    }
-
-    static func codeModule(
-        phone: String,
-        authType: AuthScenario = .register,
-        authService: IRegistrationService = NewInfoService()
-    ) -> UIViewController {
-        let interactor = SmsCodeInteractor(
-            type: authType, phone: phone, authService: authService
-        )
-        return SmsCodeViewController(interactor: interactor)
+    struct Environment {
+        let scenario: AuthScenario
+        let service: IRegistrationService
     }
 
     static func entryPoint(
-        with controllers: [UIViewController] = []
+        _ environment: Environment,
+        _ routingType: RoutingTypes
     ) -> UIViewController {
-        let module = authModule().wrappedInNavigation
-        module.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-        if controllers.isNotEmpty {
-            module.setViewControllers(controllers, animated: false)
-        }
+        let payload = AuthPayload(
+            scenario: environment.scenario,
+            service: environment.service
+        )
+        let module = authModule(payload)
 
-        return module
+        switch routingType {
+        case .selfRouted:
+            let router = module.wrappedInNavigation
+            router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+            module.setupOutput(router, environment.service)
+            return router
+        case let .routed(router):
+            module.setupOutput(router, environment.service)
+            return module
+        case .none:
+            return module
+        }
+    }
+}
+
+// MARK: - Auth module
+extension AuthFlow {
+    struct AuthPayload {
+        let scenario: AuthScenario
+        let service: IRegistrationService
+    }
+
+    static func authModule(
+        _ payload: AuthPayload
+    ) -> any AuthModule {
+        let interactor = AuthInteractor(
+            type: payload.scenario,
+            authService: payload.service
+        )
+        return AuthViewController(interactor: interactor)
+    }
+}
+
+// MARK: - Auth output
+extension AuthModule {
+    @MainActor
+    func setupOutput(
+        _ router: UINavigationController,
+        _ service: IRegistrationService
+    ) {
+        withOutput { [weak router] output in
+            switch output {
+            case .showAgreement:
+                router?.present(
+                    UtilsFlow.agreementModule().wrappedInNavigation,
+                    animated: true
+                )
+            case let .successPhoneCheck(phone, authScenario):
+                let codePayload = AuthFlow.CodePayload(
+                    phone: phone,
+                    scenario: authScenario,
+                    service: service
+                )
+                let codeModule = AuthFlow.codeModule(codePayload)
+                if let router {
+                    codeModule.setupOutput(router)
+                }
+
+                router?.pushViewController(
+                    codeModule,
+                    animated: true
+                )
+            }
+        }
+    }
+}
+
+// MARK: - Code module
+extension AuthFlow {
+    struct CodePayload {
+        let phone: String
+        let scenario: AuthScenario
+        let service: IRegistrationService
+    }
+
+    static func codeModule(
+        _ payload: CodePayload
+    ) -> any SmsCodeModule {
+        let interactor = SmsCodeInteractor(
+            type: payload.scenario,
+            phone: payload.phone,
+            authService: payload.service
+        )
+        return SmsCodeViewController(interactor: interactor)
+    }
+}
+
+// MARK: - Code output
+extension SmsCodeModule {
+    @MainActor
+    func setupOutput(_ router: UINavigationController) {
+        withOutput { [weak router] output in
+            switch output {
+            case let .successfulCheck(.register, context):
+                guard let context else {
+                    return
+                }
+
+                NavigationService.resolveNavigation(with: context) {
+                    NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
+                }
+            case .successfulCheck(.changeNumber, _):
+                router?.popViewController(animated: true)
+            }
+        }
     }
 }
