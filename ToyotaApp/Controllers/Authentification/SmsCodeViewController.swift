@@ -1,7 +1,16 @@
 import UIKit
 import DesignKit
 
-final class SmsCodeViewController: BaseViewController, Loadable {
+enum SmsCodeModuleOutput: Hashable {
+    case successfulCheck(
+        _ authScenario: AuthScenario,
+        _ context: CheckUserContext?
+    )
+}
+
+protocol SmsCodeModule: UIViewController, Outputable<SmsCodeModuleOutput> { }
+
+final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
     private let infoLabel = UILabel()
     private let phoneLabel = UILabel()
     private let codeTextField = InputTextField(.toyota)
@@ -12,6 +21,8 @@ final class SmsCodeViewController: BaseViewController, Loadable {
     private let interactor: SmsCodeInteractor
 
     let loadingView = LoadingView()
+
+    var output: ParameterClosure<SmsCodeModuleOutput>?
 
     init(interactor: SmsCodeInteractor) {
         self.interactor = interactor
@@ -122,19 +133,16 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         }
     }
 
-    private func resolveNavigation(authType: AuthScenario, context: CheckUserContext?) {
+    private func resolveNavigation(
+        authType: AuthScenario,
+        context: CheckUserContext?
+    ) {
         switch authType {
         case .register:
-            guard let context = context else {
-                return
-            }
-
-            NavigationService.resolveNavigation(with: context) {
-                NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
-            }
+            output?(.successfulCheck(authType, context))
         case .changeNumber:
             PopUp.display(.success(description: .common(.phoneChanged)))
-            navigationController?.popToRootViewController(animated: true)
+            output?(.successfulCheck(authType, nil))
         }
     }
 }
