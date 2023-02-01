@@ -6,14 +6,6 @@ enum SettingsOutput: Hashable {
     case showAgreement
 }
 
-#if DEBUG
-extension SettingsOutput: CaseIterable {
-    static var allCases: [SettingsOutput] {
-        [.showAgreement, .changePhone(.empty)]
-    }
-}
-#endif
-
 protocol SettingsModule: UIViewController, Outputable<SettingsOutput> { }
 
 final class SettingsViewController: BaseViewController, SettingsModule {

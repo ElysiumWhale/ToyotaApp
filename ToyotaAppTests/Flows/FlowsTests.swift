@@ -5,19 +5,32 @@ import XCTest
 final class FlowsTests: XCTestCase {
     private let service = InfoService()
 
-    func testAuthFlow() throws {
-        let authModule = AuthFlow.authModule(authType: .register)
+    func testAuthFlowFabrics() {
+        let authModule = AuthFlow.authModule(.init(
+            scenario: .register, service: NewInfoService()
+        ))
         XCTAssertTrue(authModule is AuthViewController)
 
-        let codeModule = AuthFlow.codeModule(phone: "1", authType: .register)
+        let codeModule = AuthFlow.codeModule(.init(
+            phone: "", scenario: .register, service: NewInfoService()
+        ))
         XCTAssertTrue(codeModule is SmsCodeViewController)
+    }
 
-        let entry = AuthFlow.entryPoint(with: [authModule, codeModule])
-        guard let nvc = entry as? UINavigationController else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(nvc.topViewController is SmsCodeViewController)
+    func testAuthModuleOutput() {
+        let payload = AuthFlow.AuthPayload(
+            scenario: .register, service: NewInfoService()
+        )
+        let module = AuthFlow.authModule(payload)
+        testOutputable(module: module)
+    }
+
+    func testCodeModuleOutput() {
+        let payload = AuthFlow.CodePayload(
+            phone: "", scenario: .register, service: NewInfoService()
+        )
+        let module = AuthFlow.codeModule(payload)
+        testOutputable(module: module)
     }
 
     func testRegisterFlow() throws {
@@ -103,12 +116,8 @@ final class FlowsTests: XCTestCase {
         let payload = MainMenuFlow.SettingsPayload(
             user: .mock, notificator: .shared
         )
-        let settingsModule = MainMenuFlow.settingsModule(payload)
-        var expectations = [SettingsOutput: Bool]()
-        settingsModule.withOutput { expectations[$0] = true }
-        settingsModule.sendAllOutputs()
-        XCTAssertTrue(expectations.count == SettingsOutput.allCases.count)
-        XCTAssertTrue(expectations.allSatisfy(\.value))
+        let module = MainMenuFlow.settingsModule(payload)
+        testOutputable(module: module)
     }
 
     func testProfileModuleOutput() {
@@ -116,11 +125,7 @@ final class FlowsTests: XCTestCase {
             user: .mock, service: service
         )
         let module = MainMenuFlow.profileModule(payload)
-        var expectations = [ProfileOutput: Bool]()
-        module.withOutput { expectations[$0] = true }
-        module.sendAllOutputs()
-        XCTAssertTrue(expectations.count == ProfileOutput.allCases.count)
-        XCTAssertTrue(expectations.allSatisfy(\.value))
+        testOutputable(module: module)
     }
 
     func testUtilsFlow() throws {
@@ -151,6 +156,28 @@ final class FlowsTests: XCTestCase {
     }
 }
 
+// MARK: - Helpers
+extension FlowsTests {
+    func testOutputable<TModule: Outputable>(
+        module: TModule
+    ) where TModule.TOutput: Hashable & CaseIterable {
+        var expectations = [TModule.TOutput: Bool]()
+        module.withOutput { expectations[$0] = true }
+        module.sendAllOutputs()
+        XCTAssertTrue(expectations.count == TModule.TOutput.allCases.count)
+        XCTAssertTrue(expectations.allSatisfy(\.value))
+    }
+}
+
+private extension Outputable where TOutput: CaseIterable {
+    func sendAllOutputs() {
+        for item in TOutput.allCases {
+            output?(item)
+        }
+    }
+}
+
+// MARK: - Mocks
 private extension ServiceType {
     static var mock: Self {
         .init(
@@ -171,10 +198,28 @@ private extension ServiceType {
     }
 }
 
-private extension Outputable where TOutput: CaseIterable {
-    func sendAllOutputs() {
-        for item in TOutput.allCases {
-            output?(item)
-        }
+#if DEBUG
+extension ProfileOutput: CaseIterable {
+    public static var allCases: [ProfileOutput] {
+        [.logout, .showBookings, .showCars, .showManagers, .showSettings]
     }
 }
+
+extension AuthModuleOutput: CaseIterable {
+    public static var allCases: [AuthModuleOutput] {
+        [.showAgreement, .successPhoneCheck("", .register)]
+    }
+}
+
+extension SettingsOutput: CaseIterable {
+    public static var allCases: [SettingsOutput] {
+        [.showAgreement, .changePhone(.empty)]
+    }
+}
+
+extension SmsCodeModuleOutput: CaseIterable {
+    public static var allCases: [SmsCodeModuleOutput] {
+        [.successfulCheck(.register, nil)]
+    }
+}
+#endif
