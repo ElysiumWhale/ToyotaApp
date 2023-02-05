@@ -1,7 +1,20 @@
 import UIKit
 import DesignKit
 
+enum PersonalInfoOutput: Hashable {
+    struct Response: Hashable {
+        let cities: [City]
+        let models: [Model]
+        let colors: [Color]
+    }
+
+    case profileDidSet(_ response: Response)
+}
+
+protocol PersonalInfoModule: UIViewController, Outputable<PersonalInfoOutput> { }
+
 final class PersonalInfoView: BaseViewController,
+                              PersonalInfoModule,
                               Keyboardable,
                               Loadable {
 
@@ -31,6 +44,8 @@ final class PersonalInfoView: BaseViewController,
     let scrollView: UIScrollView! = UIScrollView()
     let loadingView = LoadingView()
     let interactor: PersonalInfoViewOutput
+
+    var output: ParameterClosure<PersonalInfoOutput>?
 
     init(interactor: PersonalInfoViewOutput) {
         self.interactor = interactor
@@ -184,22 +199,11 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
 
         switch viewModel {
         case let .success(cities, models, colors):
-            let cityModule = RegisterFlow.cityModule(cities)
-            cityModule.withOutput { [weak router = navigationController] output in
-                switch output {
-                case .cityDidPick:
-                    let addCar = RegisterFlow.addCarModule(
-                        scenario: .register,
-                        models: models,
-                        colors: colors
-                    )
-                    router?.pushViewController(addCar, animated: true)
-                }
-            }
-
-            navigationController?.pushViewController(
-                cityModule, animated: true
-            )
+            output?(.profileDidSet(.init(
+                cities: cities,
+                models: models,
+                colors: colors
+            )))
         case let .failure(message):
             PopUp.display(.error(description: message))
         }

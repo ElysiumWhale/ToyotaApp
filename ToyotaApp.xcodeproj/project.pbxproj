@@ -28,7 +28,6 @@
 		140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59927A6CD73002A7423 /* CheckUserContext.swift */; };
 		14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14117EA9284EA86B001585CD /* SplashScreenViewController.swift */; };
 		1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */; };
-		1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834327E28663004573A1 /* PersonalInfoPresenter.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
 		141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */; };
@@ -214,7 +213,6 @@
 		14117EA9284EA86B001585CD /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		14188032278B3498000B82DD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
-		1419834327E28663004573A1 /* PersonalInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoPresenter.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyProtocols.swift; sourceTree = "<group>"; };
@@ -626,7 +624,6 @@
 			children = (
 				143CCB5A286261C900842050 /* PersonalInfoView.swift */,
 				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
-				1419834327E28663004573A1 /* PersonalInfoPresenter.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1214,7 +1211,6 @@
 				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
 				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
 				A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */,
-				1419834427E28663004573A1 /* PersonalInfoPresenter.swift in Sources */,
 				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
 				A735059029565B960005C7F2 /* NewInfoService.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* FoundationExtensions.swift in Sources */,

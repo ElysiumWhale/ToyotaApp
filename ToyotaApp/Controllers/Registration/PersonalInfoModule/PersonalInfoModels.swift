@@ -22,11 +22,6 @@ enum PersonalInfoModels {
         let date: String
     }
 
-    enum SetPersonResponse {
-        case success(response: CitiesResponse)
-        case failure(response: ErrorResponse)
-    }
-
     enum SetPersonViewModel {
         case success(cities: [City], models: [Model], colors: [Color])
         case failure(message: String)

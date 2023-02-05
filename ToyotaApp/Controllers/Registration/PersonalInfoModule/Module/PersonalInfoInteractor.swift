@@ -2,21 +2,20 @@ import Foundation
 
 final class PersonalInfoInteractor: PersonalInfoViewOutput {
     private let requestHandler = RequestHandler<CitiesResponse>()
-    private let keychain: KeychainService
+    private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
 
     private var onSavePerson: Closure?
 
     let infoService: PersonalInfoService
-    let presenter: PersonalInfoInteractorOutput
     let state: PersonalDataStoreState
 
+    weak var view: PersonalInfoView?
+
     init(
-        output: PersonalInfoInteractorOutput,
         state: PersonalDataStoreState = .empty,
         service: PersonalInfoService = InfoService(),
-        keychain: KeychainService = .shared
+        keychain: any ModelKeyedCodableStorage<KeychainKeys> = KeychainService.shared
     ) {
-        presenter = output
         infoService = service
         self.state = state
         self.keychain = keychain
@@ -52,12 +51,16 @@ final class PersonalInfoInteractor: PersonalInfoViewOutput {
             .bind { [weak self] response in
                 self?.handle(success: response)
             } onFailure: { [weak self] error in
-                self?.presenter.personDidSet(response: .failure(response: error))
+                self?.view?.handle(state: .failure(message: error.message ?? .error(.requestError)))
             }
     }
 
     private func handle(success response: CitiesResponse) {
         onSavePerson?()
-        presenter.personDidSet(response: .success(response: response))
+        view?.handle(state: .success(
+            cities: response.cities,
+            models: response.models ?? [],
+            colors: response.colors ?? []
+        ))
     }
 }
