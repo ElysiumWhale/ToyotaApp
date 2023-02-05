@@ -1,7 +1,13 @@
 import UIKit
 import DesignKit
 
-final class AddCarViewController: BaseViewController, Loadable {
+enum AddCarOutput {
+    case carDidAdd(_ scenario: AddInfoScenario)
+}
+
+protocol AddCarModule: UIViewController, Outputable<AddCarOutput> { }
+
+final class AddCarViewController: BaseViewController, Loadable, AddCarModule {
 
     private let subtitleLabel = UILabel()
     private let fieldsStack = UIStackView()
@@ -19,6 +25,8 @@ final class AddCarViewController: BaseViewController, Loadable {
     private let interactor: AddCarInteractor
 
     let loadingView = LoadingView()
+
+    var output: ParameterClosure<AddCarOutput>?
 
     init(interactor: AddCarInteractor) {
         self.interactor = interactor
@@ -170,14 +178,7 @@ extension AddCarViewController: AddCarViewInput {
     func handleCarAdded() {
         stopLoading()
 
-        switch interactor.type {
-        case .register:
-            let vc = RegisterFlow.endRegistrationModule()
-            vc.modalPresentationStyle = .fullScreen
-            navigationController?.present(vc, animated: true)
-        case .update:
-            navigationController?.popToRootViewController(animated: true)
-        }
+        output?(.carDidAdd(interactor.type))
     }
 
     func handleFailure(with message: String) {

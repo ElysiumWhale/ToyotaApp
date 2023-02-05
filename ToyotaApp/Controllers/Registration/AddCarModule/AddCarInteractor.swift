@@ -64,9 +64,11 @@ final class AddCarInteractor {
     }
 
     func setCar(vin: String, plate: String) {
-        guard let modelId = selectedModel?.id,
-              let colorId = selectedColor?.id,
-              let userId: UserId = keychain.get() else {
+        guard
+            let modelId = selectedModel?.id,
+            let colorId = selectedColor?.id,
+            let userId: UserId = keychain.get()
+        else {
             return
         }
 
@@ -110,7 +112,9 @@ final class AddCarInteractor {
                 self?.saveCar(with: data.carId)
                 self?.view?.handleCarAdded()
             } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+                self?.view?.handleFailure(
+                    with: error.message ?? .error(.unknownError)
+                )
             }
 
         modelsAndColorsHandler
@@ -120,7 +124,9 @@ final class AddCarInteractor {
                 self?.colors = data.colors
                 self?.view?.handleModelsLoaded()
             } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.unknownError))
+                self?.view?.handleFailure(
+                    with: error.message ?? .error(.unknownError)
+                )
             }
 
         skipAddCarHandler
@@ -130,15 +136,19 @@ final class AddCarInteractor {
                     self?.view?.handleCarAdded()
                 }
             } onFailure: { [weak self] error in
-                self?.view?.handleFailure(with: error.message ?? .error(.requestError))
+                self?.view?.handleFailure(
+                    with: error.message ?? .error(.requestError)
+                )
             }
     }
 
     private func saveCar(with id: String) {
-        guard let selectedModel = selectedModel,
-              let selectedColor = selectedColor,
-              selectedYear.isNotEmpty,
-              vin.isNotEmpty else {
+        guard
+            let selectedModel = selectedModel,
+            let selectedColor = selectedColor,
+            selectedYear.isNotEmpty,
+            vin.isNotEmpty
+        else {
             return
         }
 
@@ -156,7 +166,7 @@ final class AddCarInteractor {
         switch type {
         case .register:
             keychain.set(Cars([car]))
-        case .update(let userProxy):
+        case let .update(userProxy):
             userProxy.addNew(car: car)
         }
     }
