@@ -202,48 +202,32 @@ extension AddCarViewController: UIPickerViewDelegate {
     ) -> String? {
         switch pickerView {
         case modelPicker:
-            return interactor.models[row].name
+            return interactor.models[safe: row]?.name
         case yearPicker:
-            return interactor.years[row]
+            return interactor.years[safe: row]
         case colorPicker:
-            return interactor.colors[row].name
+            return interactor.colors[safe: row]?.name
         default:
             return .empty
         }
     }
 
     @objc private func modelDidPick() {
-        pick(
-            from: modelPicker,
-            to: modelTextField,
-            setProperty: interactor.setSelectedModel
-        )
+        view.endEditing(true)
+        let index = modelPicker.selectedRow
+        modelTextField.text = interactor.setSelectedModel(for: index)
     }
 
     @objc private func yearDidPick() {
-        pick(
-            from: yearPicker,
-            to: yearTextField,
-            setProperty: interactor.setSelectedYear
-        )
+        view.endEditing(true)
+        let index = yearPicker.selectedRow
+        yearTextField.text = interactor.setSelectedYear(for: index)
     }
 
     @objc private func colorDidPick() {
-        pick(
-            from: colorPicker,
-            to: colorTextField,
-            setProperty: interactor.setSelectedColor
-        )
-    }
-
-    private func pick(
-        from picker: UIPickerView,
-        to textField: UITextField,
-        setProperty: (Int) -> String?
-    ) {
         view.endEditing(true)
-        let index = picker.selectedRow
-        textField.text = setProperty(index)
+        let index = colorPicker.selectedRow
+        colorTextField.text = interactor.setSelectedColor(for: index)
     }
 }
 
