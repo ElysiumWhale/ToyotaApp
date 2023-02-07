@@ -167,7 +167,7 @@ final class FlowsTests: XCTestCase {
     }
 
     func testUtilsFlowFabrics() {
-        let connection = UtilsFlow.connectionLostModule()
+        let connection = UtilsFlow.reconnectionModule()
         XCTAssertTrue(connection is LostConnectionViewController)
 
         let agreement = UtilsFlow.agreementModule()
