@@ -4,22 +4,25 @@ import XCTest
 @MainActor
 final class FlowsTests: XCTestCase {
     private let service = InfoService()
+    private let newService = NewInfoService()
 
     func testAuthFlowFabrics() {
         let authModule = AuthFlow.authModule(.init(
-            scenario: .register, service: NewInfoService()
+            scenario: .register, service: newService
         ))
         XCTAssertTrue(authModule is AuthViewController)
 
         let codeModule = AuthFlow.codeModule(.init(
-            phone: "", scenario: .register, service: NewInfoService()
+            phone: .empty,
+            scenario: .register,
+            service: newService
         ))
         XCTAssertTrue(codeModule is SmsCodeViewController)
     }
 
     func testAuthModuleOutput() {
         let payload = AuthFlow.AuthPayload(
-            scenario: .register, service: NewInfoService()
+            scenario: .register, service: newService
         )
         let module = AuthFlow.authModule(payload)
         testOutputable(module: module)
@@ -27,37 +30,72 @@ final class FlowsTests: XCTestCase {
 
     func testCodeModuleOutput() {
         let payload = AuthFlow.CodePayload(
-            phone: "", scenario: .register, service: NewInfoService()
+            phone: .empty,
+            scenario: .register,
+            service: newService
         )
         let module = AuthFlow.codeModule(payload)
         testOutputable(module: module)
     }
 
-    func testRegisterFlow() throws {
-        let personalModule = RegisterFlow.personalModule()
+    func testRegisterFlowFabrics() {
+        let personalModule = RegisterFlow.personalModule(.init(
+            profile: nil,
+            service: service,
+            keychain: KeychainService.shared
+        ))
         XCTAssertTrue(personalModule is PersonalInfoView)
 
-        let cityModule = RegisterFlow.cityModule([])
+        let cityModule = RegisterFlow.cityModule(.init(
+            cities: [],
+            service: service,
+            defaults: DefaultsService.shared
+        ))
         XCTAssertTrue(cityModule is CityPickerViewController)
 
-        let addCarModule = RegisterFlow.addCarModule()
+        let addCarModule = RegisterFlow.addCarModule(.init(
+            scenario: .register,
+            models: [],
+            colors: [],
+            service: service,
+            keychain: KeychainService.shared
+        ))
         XCTAssertTrue(addCarModule is AddCarViewController)
 
-        let endRegistrationModule = RegisterFlow.endRegistrationModule()
-        XCTAssertTrue(endRegistrationModule is EndRegistrationViewController)
-
-        let entry = RegisterFlow.entryPoint(
-            with: [personalModule, cityModule, addCarModule]
-        )
-
-        guard let nvc = entry as? UINavigationController else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(nvc.topViewController is AddCarViewController)
+        let endRegisterModule = RegisterFlow.endRegistrationModule()
+        XCTAssertTrue(endRegisterModule is EndRegistrationViewController)
     }
 
-    func testMainMenuFlow() throws {
+    func testPersonalModuleOutput() {
+        let personalModule = RegisterFlow.personalModule(.init(
+            profile: nil,
+            service: service,
+            keychain: KeychainService.shared
+        ))
+        testOutputable(module: personalModule)
+    }
+
+    func testCityPickerModuleOutput() {
+        let cityPickerModule = RegisterFlow.cityModule(.init(
+            cities: [],
+            service: service,
+            defaults: DefaultsService.shared
+        ))
+        testOutputable(module: cityPickerModule)
+    }
+
+    func testAddCarModuleOutput() {
+        let addCarModule = RegisterFlow.addCarModule(.init(
+            scenario: .register,
+            models: [],
+            colors: [],
+            service: service,
+            keychain: KeychainService.shared
+        ))
+        testOutputable(module: addCarModule)
+    }
+
+    func testMainMenuFlowEntryPoint() {
         let tab = MainMenuFlow.entryPoint(.makeDefault(from: .mock))
         XCTAssertTrue(tab.root is MainTabBarController)
         XCTAssertTrue(tab.tabsRoots[.news]?.topViewController is NewsViewController)
@@ -65,7 +103,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(tab.tabsRoots[.profile]?.topViewController is ProfileViewController)
     }
 
-    func testMainMenuFlowFabrics() throws {
+    func testMainMenuFlowFabrics() {
         let chat = MainMenuFlow.chatModule()
         XCTAssertTrue(chat is ChatViewController)
 
@@ -82,7 +120,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(profile is ProfileViewController)
 
         let payload2 = MainMenuFlow.BookingsPayload(
-            userId: "-1", service: service
+            userId: .empty, service: service
         )
         let bookings = MainMenuFlow.bookingsModule(payload2)
         XCTAssertTrue(bookings is BookingsViewController)
@@ -94,7 +132,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(settings is SettingsViewController)
 
         let payload4 = MainMenuFlow.ManagersPayload(
-            userId: "-1", service: service
+            userId: .empty, service: service
         )
         let managers = MainMenuFlow.managersModule(payload4)
         XCTAssertTrue(managers is ManagersViewController)
@@ -128,7 +166,7 @@ final class FlowsTests: XCTestCase {
         testOutputable(module: module)
     }
 
-    func testUtilsFlow() throws {
+    func testUtilsFlowFabrics() {
         let connection = UtilsFlow.connectionLostModule()
         XCTAssertTrue(connection is LostConnectionViewController)
 
@@ -139,7 +177,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(splash is SplashScreenViewController)
     }
 
-    func testServicesFlow() throws {
+    func testServicesFlow() {
         let service = ServicesFlow.buildModule(
             serviceType: .mock,
             for: .onePick,
@@ -207,7 +245,11 @@ extension ProfileOutput: CaseIterable {
 
 extension AuthModuleOutput: CaseIterable {
     public static var allCases: [AuthModuleOutput] {
-        [.showAgreement, .successPhoneCheck("", .register)]
+        [
+            .showAgreement,
+            .successPhoneCheck(.empty, .register),
+            .successPhoneCheck(.empty, .changeNumber(.empty))
+        ]
     }
 }
 
@@ -219,7 +261,28 @@ extension SettingsOutput: CaseIterable {
 
 extension SmsCodeModuleOutput: CaseIterable {
     public static var allCases: [SmsCodeModuleOutput] {
-        [.successfulCheck(.register, nil)]
+        [
+            .successfulCheck(.register, nil),
+            .successfulCheck(.changeNumber(.empty), nil)
+        ]
+    }
+}
+
+extension PersonalInfoOutput: CaseIterable {
+    public static var allCases: [PersonalInfoOutput] {
+        [.profileDidSet(.init(cities: [], models: [], colors: []))]
+    }
+}
+
+extension CityPickerOutput: CaseIterable {
+    public static var allCases: [CityPickerOutput] {
+        [.cityDidPick(.init(id: .empty, name: .empty))]
+    }
+}
+
+extension AddCarOutput: CaseIterable {
+    public static var allCases: [AddCarOutput] {
+        [.carDidAdd(.register), .carDidAdd(.update(with: .mock))]
     }
 }
 #endif

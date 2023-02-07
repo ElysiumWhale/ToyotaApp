@@ -131,7 +131,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
     @objc private func chooseCityDidTap() {
         view.endEditing(true)
 
-        let cityPickerModule = RegisterFlow.cityModule()
+        let cityPickerModule = RegisterFlow.cityModule(.init(
+            cities: [],
+            service: InfoService(),
+            defaults: DefaultsService.shared
+        ))
         cityPickerModule.hidesBottomBarWhenPushed = true
         cityPickerModule.withOutput { [weak self] output in
             switch output {

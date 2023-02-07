@@ -1,20 +1,29 @@
 import XCTest
 @testable import ToyotaApp
 
+@MainActor
 final class PersonalInfoVCTest: XCTestCase {
     func testEmptyModuleState() throws {
-        let controller = RegisterFlow.personalModule() as? PersonalInfoView
+        let controller = RegisterFlow.personalModule(.init(
+            profile: nil,
+            service: InfoService(),
+            keychain: KeychainService.shared
+        )) as? PersonalInfoView
         XCTAssertEqual(controller?.interactor.state, .empty)
     }
 
     func testConfiguredModuleState() throws {
-        let controller = RegisterFlow.personalModule(.mock) as? PersonalInfoView
+        let controller = RegisterFlow.personalModule(.init(
+            profile: .mock,
+            service: InfoService(),
+            keychain: KeychainService.shared
+        )) as? PersonalInfoView
         XCTAssertEqual(controller?.interactor.state, .configured(with: .mock))
     }
 }
 
-private extension Profile {
-    static var mock: Profile {
+extension Profile {
+    static var mock: Self {
         .init(
             phone: "123",
             firstName: "Valera",

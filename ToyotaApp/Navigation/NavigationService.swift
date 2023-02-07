@@ -14,6 +14,20 @@ final class NavigationService {
         case secondPage(_ profile: Profile, _ cities: [City]?)
     }
 
+    struct Environment {
+        let service: InfoService
+        let newService: NewInfoService
+        let defaults: any KeyedCodableStorage<DefaultKeys>
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    }
+
+    static var environment = Environment(
+        service: InfoService(),
+        newService: NewInfoService(),
+        defaults: DefaultsService.shared,
+        keychain: KeychainService.shared
+    )
+
     static var switchRootView: ((UIViewController) -> Void)?
 
     static func resolveNavigation(
@@ -49,53 +63,96 @@ final class NavigationService {
         }
 
         switchRootView?(AuthFlow.entryPoint(
-            .init(scenario: .register, service: NewInfoService()),
+            .init(scenario: .register, service: environment.newService),
             .selfRouted
         ))
     }
 
     // MARK: - LoadRegister overloads
     static func loadRegister(_ state: RegistrationStates) {
-        var controllers: [UIViewController] = []
+        let router = UINavigationController()
+        router.navigationBar.prefersLargeTitles = true
+        router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+
         switch state {
         case let .error(message):
             PopUp.display(.error(description: message))
+            fallthrough
         case .firstPage:
-            break
+            let entry = RegisterFlow.entryPoint(
+                .routed(by: router),
+                RegisterFlow.Environment(
+                    profile: nil,
+                    defaults: environment.defaults,
+                    keychain: environment.keychain,
+                    cityService: environment.service,
+                    personalService: environment.service,
+                    carsService: environment.service
+                )
+            )
+            router.setViewControllers([entry], animated: true)
+            switchRootView?(router)
         case let .secondPage(profile, cities):
-            let personalModule = RegisterFlow.personalModule(profile)
-            let cityModule = RegisterFlow.cityModule(cities ?? [])
-            let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
-            let router = personalModule.navigationController
+            let personalModule = RegisterFlow.personalModule(.init(
+                profile: profile,
+                service: environment.service,
+                keychain: environment.keychain
+            ))
+            personalModule.setupOutput(router, .init(
+                profile: profile,
+                defaults: environment.defaults,
+                keychain: environment.keychain,
+                cityService: environment.service,
+                personalService: environment.service,
+                carsService: environment.service
+            ))
 
-            cityModule.withOutput { [weak router] output in
-                switch output {
-                case .cityDidPick:
-                    let carModule = RegisterFlow.addCarModule()
-                    router?.pushViewController(carModule, animated: true)
-                }
+            let cityPickerModule = RegisterFlow.cityModule(.init(
+                cities: cities ?? [],
+                service: environment.service,
+                defaults: environment.defaults
+            ))
+            cityPickerModule.setupOutput(router, .init(
+                scenario: .register,
+                models: [],
+                colors: [],
+                service: environment.service,
+                keychain: environment.keychain
+            ))
+
+            if .cityIsSelected {
+                let addCarModule = RegisterFlow.addCarModule(.init(
+                    scenario: .register,
+                    models: [],
+                    colors: [],
+                    service: environment.service,
+                    keychain: environment.keychain
+                ))
+                addCarModule.setupOutput(router)
+                router.setViewControllers(
+                    [personalModule, cityPickerModule, addCarModule],
+                    animated: true
+                )
+            } else {
+                router.setViewControllers(
+                    [personalModule, cityPickerModule],
+                    animated: true
+                )
             }
-
-            controllers = [
-                personalModule,
-                cityModule,
-                carModule
-            ].compactMap { $0 }
+            switchRootView?(router)
         }
-
-        switchRootView?(RegisterFlow.entryPoint(with: controllers))
     }
 
     // MARK: - LoadMain overloads
     static func loadMain(from user: RegisteredUser? = nil) {
         if let user = user {
-            KeychainService.shared.set(user.profile.toDomain())
+            environment.keychain.set(user.profile.toDomain())
             if let cars = user.cars {
-                KeychainService.shared.set(Cars(cars))
+                environment.keychain.set(Cars(cars))
             }
         }
 
-        switch UserInfo.make(KeychainService.shared) {
+        switch UserInfo.make(environment.keychain) {
         case .failure:
             loadRegister(.error(message: .error(.profileLoadError)))
         case let .success(user):

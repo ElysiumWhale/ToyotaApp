@@ -13,8 +13,3 @@ protocol PersonalInfoDataStore {
 protocol PersonalInfoViewOutput: PersonalInfoDataStore {
     func setPerson(request: PersonalInfoModels.SetPersonRequest)
 }
-
-// MARK: - Presenter
-protocol PersonalInfoInteractorOutput {
-    func personDidSet(response: PersonalInfoModels.SetPersonResponse)
-}

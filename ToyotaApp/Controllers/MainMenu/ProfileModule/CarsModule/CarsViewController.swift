@@ -75,12 +75,17 @@ final class CarsViewController: BaseViewController, Loadable {
 
     private func handle(_ response: ModelsAndColorsResponse) {
         stopLoading()
-        let vc = RegisterFlow.addCarModule(
+        let addCarModule = RegisterFlow.addCarModule(.init(
             scenario: .update(with: interactor.user),
             models: response.models,
-            colors: response.colors
+            colors: response.colors,
+            service: InfoService(),
+            keychain: KeychainService.shared
+        ))
+        addCarModule.setupOutput(navigationController)
+        navigationController?.pushViewController(
+            addCarModule, animated: true
         )
-        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func updateBackground() {
