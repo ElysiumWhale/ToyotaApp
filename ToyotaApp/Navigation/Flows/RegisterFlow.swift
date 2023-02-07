@@ -108,7 +108,7 @@ enum RegisterFlow {
         return modules
     }
 
-    static func endRegistrationModule() -> UIViewController {
+    static func endRegistrationModule() -> any EndRegistrationModule {
         EndRegistrationViewController()
     }
 }
@@ -244,8 +244,16 @@ extension AddCarModule {
         withOutput { [weak router] output in
             switch output {
             case .carDidAdd(.register):
-                let endModule = EndRegistrationViewController()
+                let endModule = RegisterFlow.endRegistrationModule()
                 endModule.modalPresentationStyle = .fullScreen
+                endModule.withOutput { output in
+                    switch output {
+                    case .registerDidEnd:
+                        // TODO: Move to upper injection level
+                        NavigationService.loadMain()
+                    }
+                }
+
                 router?.present(endModule, animated: true)
             case .carDidAdd(.update):
                 router?.popViewController(animated: true)

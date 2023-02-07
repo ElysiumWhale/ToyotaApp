@@ -1,7 +1,14 @@
 import UIKit
 import DesignKit
 
-final class EndRegistrationViewController: BaseViewController {
+enum EndRegistrationOutput: Hashable, CaseIterable {
+    case registerDidEnd
+}
+
+protocol EndRegistrationModule: UIViewController, Outputable<EndRegistrationOutput> { }
+
+final class EndRegistrationViewController: BaseViewController,
+                                           EndRegistrationModule {
 
     private let logoImageView = UIImageView(image: .toyotaLogo)
     private let infoStack = UIStackView()
@@ -9,6 +16,8 @@ final class EndRegistrationViewController: BaseViewController {
     private let infoLabel = UILabel()
     private let wishesLabel = UILabel()
     private let actionButton = CustomizableButton(.toyotaAction())
+
+    var output: ParameterClosure<EndRegistrationOutput>?
 
     override func addViews() {
         addSubviews(logoImageView, infoStack, actionButton)
@@ -20,8 +29,7 @@ final class EndRegistrationViewController: BaseViewController {
         infoStack.spacing = 12
 
         logoImageView.size(.init(width: 128, height: 128))
-        logoImageView.topToSuperview(offset: 45,
-                                     usingSafeArea: true)
+        logoImageView.topToSuperview(offset: 45, usingSafeArea: true)
         logoImageView.centerXToSuperview()
 
         infoStack.topToBottom(of: logoImageView, offset: 5)
@@ -29,8 +37,7 @@ final class EndRegistrationViewController: BaseViewController {
 
         actionButton.centerXToSuperview()
         actionButton.size(.toyotaActionL)
-        actionButton.bottomToSuperview(offset: -16,
-                                       usingSafeArea: true)
+        actionButton.bottomToSuperview(offset: -16, usingSafeArea: true)
     }
 
     override func configureAppearance() {
@@ -56,8 +63,8 @@ final class EndRegistrationViewController: BaseViewController {
     }
 
     override func configureActions() {
-        actionButton.addAction {
-            NavigationService.loadMain()
+        actionButton.addAction { [weak self] in
+            self?.output?(.registerDidEnd)
         }
     }
 }
