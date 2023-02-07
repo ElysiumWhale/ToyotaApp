@@ -145,6 +145,7 @@
 		A7CAA4A928BAD69600F7BAB5 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */; };
 		A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */; };
 		A7D4A7F628BD791A009747E4 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */; };
+		A7D831D329930510003438B9 /* Outputs+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D831D229930510003438B9 /* Outputs+CaseIterable.swift */; };
 		A7D8FE6C292ADF6C00AA5CAC /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D8FE6B292ADF6C00AA5CAC /* Tabs.swift */; };
 		A7F73F3F296A3B9C0057A4CC /* CustomizableButton+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F73F3E296A3B9C0057A4CC /* CustomizableButton+Configuration.swift */; };
 		A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8BFE325695E76002AC621 /* NavigationService.swift */; };
@@ -344,6 +345,7 @@
 		A7CAA4A828BAD69600F7BAB5 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A7CBAC9028CA02E200639758 /* DateFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattingTests.swift; sourceTree = "<group>"; };
 		A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		A7D831D229930510003438B9 /* Outputs+CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outputs+CaseIterable.swift"; sourceTree = "<group>"; };
 		A7D8FE6B292ADF6C00AA5CAC /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		A7F73F3E296A3B9C0057A4CC /* CustomizableButton+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomizableButton+Configuration.swift"; sourceTree = "<group>"; };
 		A7F8BFE325695E76002AC621 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 		14CB6AD727E92A9A00715A5D /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				A7D831D229930510003438B9 /* Outputs+CaseIterable.swift */,
 				14CB6AD827E92AB300715A5D /* FlowsTests.swift */,
 				A77424792990715600DFEEE9 /* NavigationServiceTests.swift */,
 			);
@@ -1155,6 +1158,7 @@
 				A774247A2990715600DFEEE9 /* NavigationServiceTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
+				A7D831D329930510003438B9 /* Outputs+CaseIterable.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
 				14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */,
 			);
