@@ -1,6 +1,6 @@
 import UIKit
 
-enum AddInfoScenario: Equatable {
+enum AddInfoScenario: Hashable {
     case register
     case update(with: UserProxy)
 
@@ -10,6 +10,17 @@ enum AddInfoScenario: Equatable {
             return true
         default:
             return false
+        }
+    }
+
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .register:
+            hasher.combine("register")
+        case let .update(userProxy):
+            hasher.combine("update")
+            hasher.combine(userProxy.id)
+            hasher.combine(userProxy.phone)
         }
     }
 }

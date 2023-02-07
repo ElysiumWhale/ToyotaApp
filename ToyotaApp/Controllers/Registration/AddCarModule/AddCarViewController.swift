@@ -1,7 +1,7 @@
 import UIKit
 import DesignKit
 
-enum AddCarOutput {
+enum AddCarOutput: Hashable {
     case carDidAdd(_ scenario: AddInfoScenario)
 }
 
