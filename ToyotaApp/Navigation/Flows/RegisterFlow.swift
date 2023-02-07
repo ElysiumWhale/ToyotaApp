@@ -60,7 +60,55 @@ enum RegisterFlow {
         }
     }
 
-    static func endRegistrationModule() -> UIViewController {
+    static func makeFlowStack(
+        _ router: UINavigationController,
+        _ environment: Environment,
+        _ cities: [City],
+        _ citySelected: Bool
+    ) -> [UIViewController] {
+        var modules: [UIViewController] = []
+        let personalModule = personalModule(.init(
+            profile: environment.profile,
+            service: environment.personalService,
+            keychain: environment.keychain
+        ))
+        personalModule.setupOutput(router, environment)
+        modules.append(personalModule)
+
+        guard environment.profile != nil else {
+            return modules
+        }
+
+        let cityModule = cityModule(.init(
+            cities: cities,
+            service: environment.cityService,
+            defaults: environment.defaults
+        ))
+        let addCarPayload = AddCarPayload(
+            scenario: .register,
+            models: [],
+            colors: [],
+            service: environment.carsService,
+            keychain: environment.keychain
+        )
+        cityModule.setupOutput(
+            router,
+            addCarPayload
+        )
+        modules.append(cityModule)
+
+        guard citySelected else {
+            return modules
+        }
+
+        let addCarModule = addCarModule(addCarPayload)
+        addCarModule.setupOutput(router)
+        modules.append(addCarModule)
+
+        return modules
+    }
+
+    static func endRegistrationModule() -> any EndRegistrationModule {
         EndRegistrationViewController()
     }
 }
@@ -196,8 +244,16 @@ extension AddCarModule {
         withOutput { [weak router] output in
             switch output {
             case .carDidAdd(.register):
-                let endModule = EndRegistrationViewController()
+                let endModule = RegisterFlow.endRegistrationModule()
                 endModule.modalPresentationStyle = .fullScreen
+                endModule.withOutput { output in
+                    switch output {
+                    case .registerDidEnd:
+                        // TODO: Move to upper injection level
+                        NavigationService.loadMain()
+                    }
+                }
+
                 router?.present(endModule, animated: true)
             case .carDidAdd(.update):
                 router?.popViewController(animated: true)

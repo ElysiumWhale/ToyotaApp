@@ -53,7 +53,18 @@ final class NavigationService {
 
     // MARK: - LoadConnectionLost
     static func loadConnectionLost() {
-        switchRootView?(UtilsFlow.connectionLostModule())
+        let module = UtilsFlow.reconnectionModule()
+        module.withOutput { output in
+            switch output {
+            case let .didReconnect(context):
+                resolveNavigation(with: context) {
+                    loadAuth()
+                }
+            case let .didReceiveError(message):
+                loadAuth(with: message)
+            }
+        }
+        switchRootView?(module)
     }
 
     // MARK: - LoadAuth
@@ -68,83 +79,51 @@ final class NavigationService {
         ))
     }
 
-    // MARK: - LoadRegister overloads
+    // MARK: - LoadRegister
     static func loadRegister(_ state: RegistrationStates) {
         let router = UINavigationController()
         router.navigationBar.prefersLargeTitles = true
         router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
 
+        var payloadProfile: Profile? = nil
+        var payloadCities: [City] = []
+
         switch state {
         case let .error(message):
             PopUp.display(.error(description: message))
-            fallthrough
         case .firstPage:
-            let entry = RegisterFlow.entryPoint(
-                .routed(by: router),
-                RegisterFlow.Environment(
-                    profile: nil,
-                    defaults: environment.defaults,
-                    keychain: environment.keychain,
-                    cityService: environment.service,
-                    personalService: environment.service,
-                    carsService: environment.service
-                )
-            )
-            router.setViewControllers([entry], animated: true)
-            switchRootView?(router)
+            break
         case let .secondPage(profile, cities):
-            let personalModule = RegisterFlow.personalModule(.init(
-                profile: profile,
-                service: environment.service,
-                keychain: environment.keychain
-            ))
-            personalModule.setupOutput(router, .init(
-                profile: profile,
+            payloadProfile = profile
+            payloadCities = cities ?? []
+        }
+
+        let flowStack = RegisterFlow.makeFlowStack(
+            router,
+            RegisterFlow.Environment(
+                profile: payloadProfile,
                 defaults: environment.defaults,
                 keychain: environment.keychain,
                 cityService: environment.service,
                 personalService: environment.service,
                 carsService: environment.service
-            ))
-
-            let cityPickerModule = RegisterFlow.cityModule(.init(
-                cities: cities ?? [],
-                service: environment.service,
-                defaults: environment.defaults
-            ))
-            cityPickerModule.setupOutput(router, .init(
-                scenario: .register,
-                models: [],
-                colors: [],
-                service: environment.service,
-                keychain: environment.keychain
-            ))
-
-            if .cityIsSelected {
-                let addCarModule = RegisterFlow.addCarModule(.init(
-                    scenario: .register,
-                    models: [],
-                    colors: [],
-                    service: environment.service,
-                    keychain: environment.keychain
-                ))
-                addCarModule.setupOutput(router)
-                router.setViewControllers(
-                    [personalModule, cityPickerModule, addCarModule],
-                    animated: true
-                )
-            } else {
-                router.setViewControllers(
-                    [personalModule, cityPickerModule],
-                    animated: true
-                )
-            }
-            switchRootView?(router)
-        }
+            ),
+            payloadCities,
+            .cityIsSelected
+        )
+        router.setViewControllers(flowStack, animated: true)
+        switchRootView?(router)
     }
 
-    // MARK: - LoadMain overloads
-    static func loadMain(from user: RegisteredUser? = nil) {
+    // MARK: - LoadMain
+    typealias UserInfoFactory = (
+        any ModelKeyedCodableStorage<KeychainKeys>
+    ) -> Result<UserProxy, AppErrors>
+
+    static func loadMain(
+        from user: RegisteredUser? = nil,
+        userInfoFactory: UserInfoFactory = UserInfo.make
+    ) {
         if let user = user {
             environment.keychain.set(user.profile.toDomain())
             if let cars = user.cars {
@@ -152,7 +131,7 @@ final class NavigationService {
             }
         }
 
-        switch UserInfo.make(environment.keychain) {
+        switch userInfoFactory(environment.keychain) {
         case .failure:
             loadRegister(.error(message: .error(.profileLoadError)))
         case let .success(user):

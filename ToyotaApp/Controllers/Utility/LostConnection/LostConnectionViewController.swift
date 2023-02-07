@@ -1,14 +1,23 @@
 import UIKit
 import DesignKit
 
-// MARK: - ViewController
-final class LostConnectionViewController: BaseViewController {
+enum ReconnectionOutput: Hashable {
+    case didReconnect(_ context: CheckUserContext)
+    case didReceiveError(_ message: String)
+}
+
+protocol ReconnectionModule: UIViewController, Outputable<ReconnectionOutput> { }
+
+final class LostConnectionViewController: BaseViewController,
+                                          ReconnectionModule {
     private let logoView = UIImageView(image: .toyotaLogo)
     private let textLabel = UILabel()
     private let retryButton = CustomizableButton()
     private let indicator = UIActivityIndicatorView()
 
     private let interactor: LostConnectionInteractor
+
+    var output: ParameterClosure<ReconnectionOutput>?
 
     init(interactor: LostConnectionInteractor) {
         self.interactor = interactor
@@ -62,18 +71,17 @@ final class LostConnectionViewController: BaseViewController {
             self, action: #selector(reconnect), for: .touchUpInside
         )
 
-        interactor.onSuccess = { context in
-            NavigationService.resolveNavigation(with: context) {
-                NavigationService.loadAuth()
-            }
+        interactor.onSuccess = { [weak self] context in
+            self?.output?(.didReconnect(context))
         }
 
-        interactor.onError = { [weak self] errorResponse in
-            switch errorResponse.errorCode {
-                case .lostConnection:
-                    self?.displayError()
-                default:
-                    NavigationService.loadAuth(with: errorResponse.message ?? .error(.errorWhileAuth))
+        interactor.onError = { [weak self] response in
+            switch response.errorCode {
+            case .lostConnection:
+                self?.displayError()
+            default:
+                let message = response.message ?? .error(.errorWhileAuth)
+                self?.output?(.didReceiveError(message))
             }
         }
     }

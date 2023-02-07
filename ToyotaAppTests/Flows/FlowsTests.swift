@@ -167,7 +167,7 @@ final class FlowsTests: XCTestCase {
     }
 
     func testUtilsFlowFabrics() {
-        let connection = UtilsFlow.connectionLostModule()
+        let connection = UtilsFlow.reconnectionModule()
         XCTAssertTrue(connection is LostConnectionViewController)
 
         let agreement = UtilsFlow.agreementModule()
@@ -235,54 +235,3 @@ private extension ServiceType {
         )
     }
 }
-
-#if DEBUG
-extension ProfileOutput: CaseIterable {
-    public static var allCases: [ProfileOutput] {
-        [.logout, .showBookings, .showCars, .showManagers, .showSettings]
-    }
-}
-
-extension AuthModuleOutput: CaseIterable {
-    public static var allCases: [AuthModuleOutput] {
-        [
-            .showAgreement,
-            .successPhoneCheck(.empty, .register),
-            .successPhoneCheck(.empty, .changeNumber(.empty))
-        ]
-    }
-}
-
-extension SettingsOutput: CaseIterable {
-    public static var allCases: [SettingsOutput] {
-        [.showAgreement, .changePhone(.empty)]
-    }
-}
-
-extension SmsCodeModuleOutput: CaseIterable {
-    public static var allCases: [SmsCodeModuleOutput] {
-        [
-            .successfulCheck(.register, nil),
-            .successfulCheck(.changeNumber(.empty), nil)
-        ]
-    }
-}
-
-extension PersonalInfoOutput: CaseIterable {
-    public static var allCases: [PersonalInfoOutput] {
-        [.profileDidSet(.init(cities: [], models: [], colors: []))]
-    }
-}
-
-extension CityPickerOutput: CaseIterable {
-    public static var allCases: [CityPickerOutput] {
-        [.cityDidPick(.init(id: .empty, name: .empty))]
-    }
-}
-
-extension AddCarOutput: CaseIterable {
-    public static var allCases: [AddCarOutput] {
-        [.carDidAdd(.register), .carDidAdd(.update(with: .mock))]
-    }
-}
-#endif
