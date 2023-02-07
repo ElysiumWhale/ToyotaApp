@@ -111,6 +111,7 @@
 		A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F6289C1FC500FA46F0 /* StatusView.swift */; };
 		A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0F8289C1FD000FA46F0 /* TimeView.swift */; };
 		A763B0FC289C86CC00FA46F0 /* BookingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */; };
+		A774247A2990715600DFEEE9 /* NavigationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77424792990715600DFEEE9 /* NavigationServiceTests.swift */; };
 		A775BB4E258E48ED00B8CA8A /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* ControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* ControllersExtensions.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
@@ -311,6 +312,7 @@
 		A763B0F6289C1FC500FA46F0 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		A763B0F8289C1FD000FA46F0 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		A763B0FB289C86CC00FA46F0 /* BookingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsInteractor.swift; sourceTree = "<group>"; };
+		A77424792990715600DFEEE9 /* NavigationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceTests.swift; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* ControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersExtensions.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				14CB6AD827E92AB300715A5D /* FlowsTests.swift */,
+				A77424792990715600DFEEE9 /* NavigationServiceTests.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -1149,6 +1152,7 @@
 				A793294C298B2C3B0081DC47 /* KeychainServiceTests.swift in Sources */,
 				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
+				A774247A2990715600DFEEE9 /* NavigationServiceTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */,
 				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
