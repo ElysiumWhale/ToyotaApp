@@ -39,7 +39,7 @@ final class NavigationServiceTests: XCTestCase {
         let city: City? = nil
         DefaultsService.shared.set(value: city, key: .selectedCity)
 
-        testPage(state: .secondPage(.mock, []), modulesCount: 2) { router in
+        testPage(state: .secondPage(.mock, nil), modulesCount: 2) { router in
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is PersonalInfoView }
             ))

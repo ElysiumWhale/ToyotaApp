@@ -68,7 +68,7 @@ final class NavigationService {
         ))
     }
 
-    // MARK: - LoadRegister overloads
+    // MARK: - LoadRegister
     static func loadRegister(_ state: RegistrationStates) {
         let router = UINavigationController()
         router.navigationBar.prefersLargeTitles = true
@@ -104,8 +104,15 @@ final class NavigationService {
         switchRootView?(router)
     }
 
-    // MARK: - LoadMain overloads
-    static func loadMain(from user: RegisteredUser? = nil) {
+    // MARK: - LoadMain
+    typealias UserInfoFactory = (
+        any ModelKeyedCodableStorage<KeychainKeys>
+    ) -> Result<UserProxy, AppErrors>
+
+    static func loadMain(
+        from user: RegisteredUser? = nil,
+        userInfoFactory: UserInfoFactory = UserInfo.make
+    ) {
         if let user = user {
             environment.keychain.set(user.profile.toDomain())
             if let cars = user.cars {
@@ -113,7 +120,7 @@ final class NavigationService {
             }
         }
 
-        switch UserInfo.make(environment.keychain) {
+        switch userInfoFactory(environment.keychain) {
         case .failure:
             loadRegister(.error(message: .error(.profileLoadError)))
         case let .success(user):
