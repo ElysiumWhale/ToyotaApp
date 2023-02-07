@@ -19,8 +19,10 @@ final class LostConnectionInteractor {
     }
 
     func reconnect() {
-        guard let userId: UserId = keychain.get(),
-              let secretKey: SecretKey = keychain.get() else {
+        guard
+            let userId: UserId = keychain.get(),
+            let secretKey: SecretKey = keychain.get()
+        else {
             onError?(ErrorResponse(code: .corruptedData, message: nil))
             return
         }

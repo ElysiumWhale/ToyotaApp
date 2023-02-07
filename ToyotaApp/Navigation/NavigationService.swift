@@ -53,7 +53,18 @@ final class NavigationService {
 
     // MARK: - LoadConnectionLost
     static func loadConnectionLost() {
-        switchRootView?(UtilsFlow.connectionLostModule())
+        let module = UtilsFlow.reconnectionModule()
+        module.withOutput { output in
+            switch output {
+            case let .didReconnect(context):
+                resolveNavigation(with: context) {
+                    loadAuth()
+                }
+            case let .didReceiveError(message):
+                loadAuth(with: message)
+            }
+        }
+        switchRootView?(module)
     }
 
     // MARK: - LoadAuth

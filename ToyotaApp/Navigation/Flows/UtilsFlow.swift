@@ -1,9 +1,9 @@
 import UIKit
 
 enum UtilsFlow {
-    static func connectionLostModule(
+    static func reconnectionModule(
         reconnectionService: ReconnectionService = InfoService()
-    ) -> UIViewController {
+    ) -> any ReconnectionModule {
         let interactor = LostConnectionInteractor(
             reconnectionService: reconnectionService
         )
