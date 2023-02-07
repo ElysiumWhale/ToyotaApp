@@ -245,7 +245,11 @@ extension ProfileOutput: CaseIterable {
 
 extension AuthModuleOutput: CaseIterable {
     public static var allCases: [AuthModuleOutput] {
-        [.showAgreement, .successPhoneCheck(.empty, .register)]
+        [
+            .showAgreement,
+            .successPhoneCheck(.empty, .register),
+            .successPhoneCheck(.empty, .changeNumber(.empty))
+        ]
     }
 }
 
@@ -257,7 +261,10 @@ extension SettingsOutput: CaseIterable {
 
 extension SmsCodeModuleOutput: CaseIterable {
     public static var allCases: [SmsCodeModuleOutput] {
-        [.successfulCheck(.register, nil)]
+        [
+            .successfulCheck(.register, nil),
+            .successfulCheck(.changeNumber(.empty), nil)
+        ]
     }
 }
 
@@ -275,7 +282,7 @@ extension CityPickerOutput: CaseIterable {
 
 extension AddCarOutput: CaseIterable {
     public static var allCases: [AddCarOutput] {
-        [.carDidAdd(.register)]
+        [.carDidAdd(.register), .carDidAdd(.update(with: .mock))]
     }
 }
 #endif
