@@ -53,7 +53,9 @@ final class NavigationService {
 
     // MARK: - LoadConnectionLost
     static func loadConnectionLost() {
-        let module = UtilsFlow.reconnectionModule()
+        let module = UtilsFlow.reconnectionModule(
+            reconnectionService: environment.service
+        )
         module.withOutput { output in
             switch output {
             case let .didReconnect(context):
