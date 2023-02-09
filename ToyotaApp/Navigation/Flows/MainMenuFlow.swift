@@ -239,13 +239,35 @@ extension MainMenuFlow {
     struct CarsPayload {
         let user: UserProxy
         let service: CarsService
+        let notificator: EventNotificator
     }
 
-    static func carsModule(_ payload: CarsPayload) -> UIViewController {
+    static func carsModule(_ payload: CarsPayload) -> any CarsModule {
         let interactor = CarsInteractor(
             carsService: payload.service,
             user: payload.user
         )
-        return CarsViewController(interactor: interactor)
+        return CarsViewController(
+            interactor: interactor,
+            notificator: payload.notificator
+        )
+    }
+}
+
+// MARK: - Cars module output
+extension CarsModule {
+    @MainActor
+    func setupOutput(
+        _ router: UINavigationController?,
+        _ addCarFactory: @escaping ([Model], [Color]) -> any AddCarModule
+    ) {
+        withOutput { [weak router] output in
+            switch output {
+            case let .addCar(models, colors):
+                let addCarModule = addCarFactory(models, colors)
+                addCarModule.setupOutput(router)
+                router?.pushViewController(addCarModule, animated: true)
+            }
+        }
     }
 }
