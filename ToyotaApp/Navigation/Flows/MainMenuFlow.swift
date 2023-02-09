@@ -144,7 +144,9 @@ extension MainMenuFlow {
         let service: ServicesService
     }
 
-    static func servicesModule(_ payload: ServicesPayload) -> UIViewController {
+    static func servicesModule(
+        _ payload: ServicesPayload
+    ) -> any ServicesModule {
         let interactor = ServicesInteractor(
             user: payload.user,
             service: payload.service
@@ -160,7 +162,9 @@ extension MainMenuFlow {
         let service: ManagersService
     }
 
-    static func managersModule(_ payload: ManagersPayload) -> UIViewController {
+    static func managersModule(
+        _ payload: ManagersPayload
+    ) -> UIViewController {
         let interactor = ManagersInteractor(
             userId: payload.userId,
             managersService: payload.service
@@ -190,7 +194,7 @@ extension MainMenuFlow {
 extension SettingsModule {
     @MainActor
     func setupOutput(
-        _ router: UINavigationController,
+        _ router: UINavigationController?,
         _ service: IRegistrationService
     ) {
         withOutput { [weak router] output in
@@ -225,7 +229,9 @@ extension MainMenuFlow {
         let service: BookingsService
     }
 
-    static func bookingsModule(_ payload: BookingsPayload) -> UIViewController {
+    static func bookingsModule(
+        _ payload: BookingsPayload
+    ) -> UIViewController {
         let interactor = BookingsInteractor(
             userId: payload.userId,
             bookingsService: payload.service
