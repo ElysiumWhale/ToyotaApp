@@ -207,6 +207,20 @@ extension CityPickerModule {
             }
         }
     }
+
+    @MainActor
+    func setupOutputServices(
+        _ router: UINavigationController?,
+        _ inputable: (any Inputable<ServicesInput>)?
+    ) {
+        withOutput { [weak router, weak inputable] output in
+            switch output {
+            case let .cityDidPick(city):
+                router?.popViewController(animated: true)
+                inputable?.input(.cityDidPick(city))
+            }
+        }
+    }
 }
 
 // MARK: - Add car module

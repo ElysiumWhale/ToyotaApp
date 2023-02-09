@@ -143,7 +143,7 @@ struct ServiceType: IService, Identifiable, Hashable {
 }
 
 // MARK: - Service
-struct Service: IService {
+struct Service: IService, Hashable {
     let id: String
     let name: String
 

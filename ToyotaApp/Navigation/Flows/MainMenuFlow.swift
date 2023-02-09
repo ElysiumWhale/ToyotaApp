@@ -26,6 +26,9 @@ enum MainMenuFlow {
             user: environment.userProxy,
             service: environment.servicesService
         ))
+        servicesModule.setupOutput(environment) { [weak tbvc] in
+            tbvc?.tabsRoots[.services]
+        }
 
         let newsModule = newsModule(NewsPayload(
             service: environment.newsService,
@@ -162,6 +165,42 @@ extension MainMenuFlow {
             service: payload.service
         )
         return ServicesViewController(interactor: interactor)
+    }
+}
+
+extension ServicesModule {
+    @MainActor
+    func setupOutput(
+        _ environment: MainMenuFlow.Environment,
+        _ router: @escaping () -> UINavigationController?
+    ) {
+        withOutput { [weak self] output in
+            switch output {
+            case .showChat:
+                let chatModule = MainMenuFlow.chatModule()
+                router()?.pushViewController(chatModule, animated: true)
+            case .showCityPick:
+                let cityModule = RegisterFlow.cityModule(.init(
+                    cities: [],
+                    service: environment.citiesService,
+                    defaults: environment.defaults
+                ))
+                cityModule.hidesBottomBarWhenPushed = true
+                cityModule.setupOutputServices(router(), self)
+                router()?.pushViewController(cityModule, animated: true)
+            case let .showServiceOrder(type):
+                guard let viewType = type.serviceViewType else {
+                    return
+                }
+
+                let serviceModule = ServicesFlow.buildModule(
+                    serviceType: type,
+                    for: viewType,
+                    user: environment.userProxy
+                )
+                router()?.pushViewController(serviceModule, animated: true)
+            }
+        }
     }
 }
 
