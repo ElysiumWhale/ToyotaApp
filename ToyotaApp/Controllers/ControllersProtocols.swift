@@ -7,6 +7,13 @@ protocol Outputable<TOutput>: AnyObject {
     var output: ParameterClosure<TOutput>? { get set }
 }
 
+// MARK: - Inputable
+protocol Inputable<TInput>: AnyObject {
+    associatedtype TInput
+
+    func input(_ value: TInput)
+}
+
 extension Outputable {
     @discardableResult
     func withOutput(_ output: ParameterClosure<TOutput>?) -> Self {
