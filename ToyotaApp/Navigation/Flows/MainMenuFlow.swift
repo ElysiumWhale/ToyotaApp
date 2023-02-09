@@ -32,8 +32,8 @@ enum MainMenuFlow {
             defaults: environment.defaults
         ))
 
-        let profileModule = makeProfileModule(environment) { [weak tbvc] module in
-            tbvc?.tabsRoots[.profile]?.present(module, animated: true)
+        let profileModule = makeProfileModule(environment) { [weak tbvc] in
+            tbvc?.tabsRoots[.profile]
         }
 
         tbvc.setControllersForTabs(
@@ -89,7 +89,7 @@ extension MainMenuFlow {
 
     static func makeProfileModule(
         _ environment: Environment,
-        _ router: @escaping (_ to: UIViewController) -> Void
+        _ router: @escaping () -> UINavigationController?
     ) -> UIViewController {
         profileModule(ProfilePayload(
             user: environment.userProxy,
@@ -108,14 +108,14 @@ extension MainMenuFlow {
                 let module = settingsModule(payload)
                 let localRouter = module.wrappedInNavigation
                 module.setupOutput(localRouter, environment.registrationService)
-                router(localRouter)
+                router()?.present(localRouter, animated: true)
             case .showManagers:
                 let payload = ManagersPayload(
                     userId: environment.userProxy.id,
                     service: environment.managersService
                 )
                 let module = managersModule(payload)
-                router(module.wrappedInNavigation)
+                router()?.present(module.wrappedInNavigation, animated: true)
             case .showCars:
                 let payload = CarsPayload(
                     user: environment.userProxy,
@@ -124,14 +124,14 @@ extension MainMenuFlow {
                 let carsModule = carsModule(payload)
                     .wrappedInNavigation
                 carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-                router(carsModule)
+                router()?.present(carsModule, animated: true)
             case.showBookings:
                 let payload = BookingsPayload(
                     userId: environment.userProxy.id,
                     service: environment.bookingsService
                 )
                 let module = bookingsModule(payload)
-                router(module.wrappedInNavigation)
+                router()?.present(module.wrappedInNavigation, animated: true)
             }
         }
     }
