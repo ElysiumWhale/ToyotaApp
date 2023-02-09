@@ -15,7 +15,7 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
 
     var output: ParameterClosure<CarsOutput>?
 
-    init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
+    init(interactor: CarsInteractor, notificator: EventNotificator) {
         self.interactor = interactor
 
         super.init()
@@ -30,8 +30,10 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
         let action = UIAction(handler: { [weak self] _ in
             self?.addNewCar()
         })
-        let buttonItem = UIBarButtonItem(title: .common(.add),
-                                         primaryAction: action)
+        let buttonItem = UIBarButtonItem(
+            title: .common(.add),
+            primaryAction: action
+        )
         buttonItem.tintColor = .appTint(.secondarySignatureRed)
         navigationItem.leftBarButtonItem = buttonItem
 
@@ -69,7 +71,7 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
         }
     }
 
-    @objc private func addNewCar() {
+    private func addNewCar() {
         startLoading()
         interactor.getModelsAndColors()
     }
@@ -95,6 +97,7 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension CarsViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
