@@ -1,11 +1,19 @@
 import UIKit
 import DesignKit
 
-final class CarsViewController: BaseViewController, Loadable {
+enum CarsOutput: Hashable {
+    case addCar(models: [Model], colors: [Color])
+}
+
+protocol CarsModule: UIViewController, Outputable<CarsOutput> { }
+
+final class CarsViewController: BaseViewController, Loadable, CarsModule {
     private let interactor: CarsInteractor
     private let carsCollection = CollectionView<CarCell>(layout: .carsLayout)
 
     let loadingView = LoadingView()
+
+    var output: ParameterClosure<CarsOutput>?
 
     init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
         self.interactor = interactor
@@ -75,17 +83,7 @@ final class CarsViewController: BaseViewController, Loadable {
 
     private func handle(_ response: ModelsAndColorsResponse) {
         stopLoading()
-        let addCarModule = RegisterFlow.addCarModule(.init(
-            scenario: .update(with: interactor.user),
-            models: response.models,
-            colors: response.colors,
-            service: InfoService(),
-            keychain: KeychainService.shared
-        ))
-        addCarModule.setupOutput(navigationController)
-        navigationController?.pushViewController(
-            addCarModule, animated: true
-        )
+        output?(.addCar(models: response.models, colors: response.colors))
     }
 
     private func updateBackground() {
