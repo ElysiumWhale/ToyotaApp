@@ -157,6 +157,7 @@ extension MainMenuFlow.Environment {
             managersService: infoService,
             carsService: infoService,
             bookingsService: infoService,
+            citiesService: infoService,
             registrationService: NewInfoService()
         )
     }

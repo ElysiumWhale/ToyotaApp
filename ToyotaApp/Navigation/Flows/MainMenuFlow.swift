@@ -6,13 +6,14 @@ enum MainMenuFlow {
         let userProxy: UserProxy
         let notificator: EventNotificator
         let defaults: any KeyedCodableStorage<DefaultKeys>
-        let keychain: any KeyedCodableStorage<KeychainKeys>
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
         let newsService: NewsService
         let servicesService: ServicesService
         let personalService: PersonalInfoService
         let managersService: ManagersService
         let carsService: CarsService
         let bookingsService: BookingsService
+        let citiesService: CitiesService
         let registrationService: IRegistrationService
     }
 
