@@ -119,12 +119,22 @@ extension MainMenuFlow {
             case .showCars:
                 let payload = CarsPayload(
                     user: environment.userProxy,
-                    service: environment.carsService
+                    service: environment.carsService,
+                    notificator: environment.notificator
                 )
                 let carsModule = carsModule(payload)
-                    .wrappedInNavigation
-                carsModule.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-                router()?.present(carsModule, animated: true)
+                let carsRouter = carsModule.wrappedInNavigation
+                carsRouter.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                carsModule.setupOutput(carsRouter) {
+                    RegisterFlow.addCarModule(.init(
+                        scenario: .update(with: environment.userProxy),
+                        models: $0,
+                        colors: $1,
+                        service: environment.carsService,
+                        keychain: environment.keychain
+                    ))
+                }
+                router()?.present(carsRouter, animated: true)
             case.showBookings:
                 let payload = BookingsPayload(
                     userId: environment.userProxy.id,
