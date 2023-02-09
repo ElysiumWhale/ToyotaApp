@@ -251,16 +251,15 @@ extension ServicesViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-
         guard
-            let service = interactor.serviceTypes[safe: indexPath.row],
-            let viewType = ServiceViewType(rawValue: service.controlTypeId)
+            let serviceType = interactor.serviceTypes[safe: indexPath.row],
+            let viewType = serviceType.serviceViewType
         else {
             return
         }
 
         let controller = ServicesFlow.buildModule(
-            serviceType: service,
+            serviceType: serviceType,
             for: viewType,
             user: interactor.user
         )

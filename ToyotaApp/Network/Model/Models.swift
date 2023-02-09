@@ -130,6 +130,10 @@ struct ServiceType: IService, Identifiable, Hashable {
         serviceTypeName
     }
 
+    var serviceViewType: ServiceViewType? {
+        .init(rawValue: controlTypeId)
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case serviceTypeName = "service_type_name"
