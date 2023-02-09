@@ -1,7 +1,23 @@
 import UIKit
 import DesignKit
 
-final class ServicesViewController: BaseViewController, Refreshable {
+enum ServicesOutput: Hashable {
+    case showChat
+    case showServiceOrder(_ type: ServiceType)
+    case showCityPick
+}
+
+enum ServicesInput: Hashable {
+    case cityDidPick(City)
+}
+
+protocol ServicesModule: UIViewController,
+                         Outputable<ServicesOutput>,
+                         Inputable<ServicesInput> { }
+
+final class ServicesViewController: BaseViewController,
+                                    Refreshable,
+                                    ServicesModule {
     let refreshableView = UICollectionView(layout: .servicesLayout)
     let showroomField = NoCopyPasteTextField(.toyota(
         backgroundColor: .appTint(.cell), tintColor: .clear
@@ -14,6 +30,8 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     private let interactor: ServicesInteractor
     private let dataSource: ServicesDataSource
+
+    var output: ParameterClosure<ServicesOutput>?
 
     init(interactor: ServicesInteractor) {
         self.interactor = interactor
@@ -95,6 +113,13 @@ final class ServicesViewController: BaseViewController, Refreshable {
         }
     }
 
+    func input(_ value: ServicesInput) {
+        switch value {
+        case let .cityDidPick(city):
+            cityDidSelect(city)
+        }
+    }
+
     func startRefreshing() {
         view.endEditing(true)
         refreshControl.startRefreshing()
@@ -130,31 +155,11 @@ final class ServicesViewController: BaseViewController, Refreshable {
 
     @objc private func chooseCityDidTap() {
         view.endEditing(true)
-
-        let cityPickerModule = RegisterFlow.cityModule(.init(
-            cities: [],
-            service: InfoService(),
-            defaults: DefaultsService.shared
-        ))
-        cityPickerModule.hidesBottomBarWhenPushed = true
-        cityPickerModule.withOutput { [weak self] output in
-            switch output {
-            case let .cityDidPick(city):
-                self?.navigationController?.popViewController(animated: true)
-                self?.cityDidSelect(city)
-            }
-        }
-
-        navigationController?.pushViewController(
-            cityPickerModule, animated: true
-        )
+        output?(.showCityPick)
     }
 
     @objc private func chatButtonDidPress() {
-        navigationController?.pushViewController(
-            MainMenuFlow.chatModule(),
-            animated: true
-        )
+        output?(.showChat)
     }
 }
 
@@ -251,19 +256,11 @@ extension ServicesViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        guard
-            let serviceType = interactor.serviceTypes[safe: indexPath.row],
-            let viewType = serviceType.serviceViewType
-        else {
+        guard let type = interactor.serviceTypes[safe: indexPath.row] else {
             return
         }
 
-        let controller = ServicesFlow.buildModule(
-            serviceType: serviceType,
-            for: viewType,
-            user: interactor.user
-        )
-        navigationController?.pushViewController(controller, animated: true)
+        output?(.showServiceOrder(type))
     }
 
     func collectionView(

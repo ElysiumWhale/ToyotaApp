@@ -60,12 +60,14 @@ final class ServicesInteractor {
     }
 
     func selectShowroom(for row: Int) {
-        guard showrooms.isNotEmpty, showrooms.indices.contains(row),
-              showrooms[row].id != selectedShowroom?.id else {
+        guard
+            let showroom = showrooms[safe: row],
+            showroom.id != selectedShowroom?.id
+        else {
             return
         }
 
-        selectedShowroom = showrooms[row]
+        selectedShowroom = showroom
     }
 
     func loadServiceTypes() {
