@@ -138,7 +138,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(managers is ManagersViewController)
 
         let payload5 = MainMenuFlow.CarsPayload(
-            user: .mock, service: service
+            user: .mock, service: service, notificator: .shared
         )
         let cars = MainMenuFlow.carsModule(payload5)
         XCTAssertTrue(cars is CarsViewController)
@@ -163,6 +163,25 @@ final class FlowsTests: XCTestCase {
             user: .mock, service: service
         )
         let module = MainMenuFlow.profileModule(payload)
+        testOutputable(module: module)
+    }
+
+    func testServicesModuleOutput() {
+        let payload = MainMenuFlow.ServicesPayload(
+            user: .mock,
+            service: service
+        )
+        let module = MainMenuFlow.servicesModule(payload)
+        testOutputable(module: module)
+    }
+
+    func testCarsModuleOutput() {
+        let payload = MainMenuFlow.CarsPayload(
+            user: .mock,
+            service: service,
+            notificator: .shared
+        )
+        let module = MainMenuFlow.carsModule(payload)
         testOutputable(module: module)
     }
 
@@ -216,7 +235,7 @@ private extension Outputable where TOutput: CaseIterable {
 }
 
 // MARK: - Mocks
-private extension ServiceType {
+extension ServiceType {
     static var mock: Self {
         .init(
             id: .empty,
