@@ -24,20 +24,35 @@ enum ServiceViewType: String {
 }
 
 enum ServicesFlow {
-    static func buildModule(
-        serviceType: ServiceType,
-        for controlType: ServiceViewType,
-        user: UserProxy
-    ) -> UIViewController {
+    struct ServiceOrderPayload {
+        let serviceType: ServiceType
+        let controlType: ServiceViewType
+        let user: UserProxy
+    }
+
+    static func serviceOrderModule(
+        _ payload: ServiceOrderPayload
+    ) -> any ServiceOrderModule {
 
         let controller: BaseServiceController
-        let modules = makeModules(with: serviceType, for: controlType)
+        let modules = makeModules(
+            with: payload.serviceType,
+            for: payload.controlType
+        )
 
-        switch serviceType.id {
+        switch payload.serviceType.id {
         case CustomServices.TestDrive:
-            controller = TestDriveViewController(serviceType, modules, user)
+            controller = TestDriveViewController(
+                payload.serviceType,
+                modules,
+                payload.user
+            )
         default:
-            controller = BaseServiceController(serviceType, modules, user)
+            controller = BaseServiceController(
+                payload.serviceType,
+                modules,
+                payload.user
+            )
         }
 
         modules.forEach {
@@ -86,5 +101,17 @@ enum ServicesFlow {
         }
 
         return modules
+    }
+}
+
+extension ServiceOrderModule {
+    @MainActor
+    func setupOutput(_ router: UINavigationController?) {
+        withOutput { [weak router] output in
+            switch output {
+            case .internalError, .successOrder:
+                router?.popViewController(animated: true)
+            }
+        }
     }
 }

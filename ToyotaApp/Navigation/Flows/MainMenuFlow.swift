@@ -193,11 +193,12 @@ extension ServicesModule {
                     return
                 }
 
-                let serviceModule = ServicesFlow.buildModule(
+                let serviceModule = ServicesFlow.serviceOrderModule(.init(
                     serviceType: type,
-                    for: viewType,
+                    controlType: viewType,
                     user: environment.userProxy
-                )
+                ))
+                serviceModule.setupOutput(router())
                 router()?.pushViewController(serviceModule, animated: true)
             }
         }
