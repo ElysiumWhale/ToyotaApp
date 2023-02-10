@@ -197,18 +197,18 @@ final class FlowsTests: XCTestCase {
     }
 
     func testServicesFlow() {
-        let service = ServicesFlow.buildModule(
+        let service = ServicesFlow.serviceOrderModule(.init(
             serviceType: .mock,
-            for: .onePick,
+            controlType: .onePick,
             user: .mock
-        )
+        ))
         XCTAssertTrue(service is BaseServiceController)
 
-        let testDrive = ServicesFlow.buildModule(
+        let testDrive = ServicesFlow.serviceOrderModule(.init(
             serviceType: .testDriveMock,
-            for: .onePick,
+            controlType: .onePick,
             user: .mock
-        )
+        ))
         XCTAssertTrue(testDrive is TestDriveViewController)
     }
 }

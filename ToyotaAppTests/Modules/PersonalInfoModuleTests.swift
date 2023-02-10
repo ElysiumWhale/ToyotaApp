@@ -23,14 +23,12 @@ final class PersonalInfoVCTest: XCTestCase {
 }
 
 extension Profile {
-    static var mock: Self {
-        .init(
-            phone: "123",
-            firstName: "Valera",
-            lastName: "Ivanov",
-            secondName: "Ivanovich",
-            email: "aboba@aboba.com",
-            birthday: "2021-05-05"
-        )
-    }
+    static let mock = Profile(
+        phone: "123",
+        firstName: "Valera",
+        lastName: "Ivanov",
+        secondName: "Ivanovich",
+        email: "aboba@aboba.com",
+        birthday: "2021-05-05"
+    )
 }
