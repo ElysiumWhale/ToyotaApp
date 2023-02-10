@@ -1,7 +1,16 @@
 import UIKit
 import DesignKit
 
-class BaseServiceController: BaseViewController, Loadable {
+enum ServiceOrderOutput: Hashable, CaseIterable {
+    case successOrder
+    case internalError
+}
+
+protocol ServiceOrderModule: UIViewController, Outputable<ServiceOrderOutput> { }
+
+class BaseServiceController: BaseViewController,
+                             Loadable,
+                             ServiceOrderModule {
     let loadingView = LoadingView()
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -30,6 +39,8 @@ class BaseServiceController: BaseViewController, Loadable {
     private var showroomItem: RequestItem {
         (.carInfo(.showroomId), user.selectedShowroom?.id)
     }
+
+    var output: ParameterClosure<ServiceOrderOutput>?
 
     init(_ service: ServiceType,
          _ modules: [IServiceModule],
@@ -143,7 +154,7 @@ class BaseServiceController: BaseViewController, Loadable {
     func makeBookingRequest(_ params: RequestItems) async {
         switch await bookingService.bookService(BookServiceBody(items: params)) {
         case .success:
-            navigationController?.popViewController(animated: true)
+            output?(.successOrder)
             PopUp.display(.success(description: .common(.bookingSuccess)))
         case let .failure(error):
             PopUp.display(.error(
@@ -174,7 +185,7 @@ class BaseServiceController: BaseViewController, Loadable {
             description: error.message ?? AppErrors.unknownError.rawValue
         ))
         stopLoading()
-        navigationController?.popViewController(animated: true)
+        output?(.internalError)
     }
 
     func didBlock(_ module: IServiceModule, _ message: String?) {
