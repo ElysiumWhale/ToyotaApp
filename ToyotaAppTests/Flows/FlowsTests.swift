@@ -138,7 +138,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(managers is ManagersViewController)
 
         let payload5 = MainMenuFlow.CarsPayload(
-            user: .mock, service: service
+            user: .mock, service: service, notificator: .shared
         )
         let cars = MainMenuFlow.carsModule(payload5)
         XCTAssertTrue(cars is CarsViewController)
@@ -166,6 +166,25 @@ final class FlowsTests: XCTestCase {
         testOutputable(module: module)
     }
 
+    func testServicesModuleOutput() {
+        let payload = MainMenuFlow.ServicesPayload(
+            user: .mock,
+            service: service
+        )
+        let module = MainMenuFlow.servicesModule(payload)
+        testOutputable(module: module)
+    }
+
+    func testCarsModuleOutput() {
+        let payload = MainMenuFlow.CarsPayload(
+            user: .mock,
+            service: service,
+            notificator: .shared
+        )
+        let module = MainMenuFlow.carsModule(payload)
+        testOutputable(module: module)
+    }
+
     func testUtilsFlowFabrics() {
         let connection = UtilsFlow.reconnectionModule()
         XCTAssertTrue(connection is LostConnectionViewController)
@@ -178,18 +197,18 @@ final class FlowsTests: XCTestCase {
     }
 
     func testServicesFlow() {
-        let service = ServicesFlow.buildModule(
+        let service = ServicesFlow.serviceOrderModule(.init(
             serviceType: .mock,
-            for: .onePick,
+            controlType: .onePick,
             user: .mock
-        )
+        ))
         XCTAssertTrue(service is BaseServiceController)
 
-        let testDrive = ServicesFlow.buildModule(
+        let testDrive = ServicesFlow.serviceOrderModule(.init(
             serviceType: .testDriveMock,
-            for: .onePick,
+            controlType: .onePick,
             user: .mock
-        )
+        ))
         XCTAssertTrue(testDrive is TestDriveViewController)
     }
 }
@@ -216,7 +235,7 @@ private extension Outputable where TOutput: CaseIterable {
 }
 
 // MARK: - Mocks
-private extension ServiceType {
+extension ServiceType {
     static var mock: Self {
         .init(
             id: .empty,

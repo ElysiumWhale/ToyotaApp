@@ -130,6 +130,10 @@ struct ServiceType: IService, Identifiable, Hashable {
         serviceTypeName
     }
 
+    var serviceViewType: ServiceViewType? {
+        .init(rawValue: controlTypeId)
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case serviceTypeName = "service_type_name"
@@ -139,7 +143,7 @@ struct ServiceType: IService, Identifiable, Hashable {
 }
 
 // MARK: - Service
-struct Service: IService {
+struct Service: IService, Hashable {
     let id: String
     let name: String
 

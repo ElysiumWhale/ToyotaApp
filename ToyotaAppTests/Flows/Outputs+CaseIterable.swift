@@ -49,4 +49,16 @@ extension AddCarOutput: CaseIterable {
         [.carDidAdd(.register), .carDidAdd(.update(with: .mock))]
     }
 }
+
+extension ServicesOutput: CaseIterable {
+    public static var allCases: [ServicesOutput] {
+        [.showChat, .showCityPick, .showServiceOrder(.mock)]
+    }
+}
+
+extension CarsOutput: CaseIterable {
+    public static var allCases: [CarsOutput] {
+        [.addCar(models: [], colors: [])]
+    }
+}
 #endif

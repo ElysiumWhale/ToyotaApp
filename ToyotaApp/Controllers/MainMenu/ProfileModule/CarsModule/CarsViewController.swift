@@ -1,13 +1,21 @@
 import UIKit
 import DesignKit
 
-final class CarsViewController: BaseViewController, Loadable {
+enum CarsOutput: Hashable {
+    case addCar(models: [Model], colors: [Color])
+}
+
+protocol CarsModule: UIViewController, Outputable<CarsOutput> { }
+
+final class CarsViewController: BaseViewController, Loadable, CarsModule {
     private let interactor: CarsInteractor
     private let carsCollection = CollectionView<CarCell>(layout: .carsLayout)
 
     let loadingView = LoadingView()
 
-    init(interactor: CarsInteractor, notificator: EventNotificator = .shared) {
+    var output: ParameterClosure<CarsOutput>?
+
+    init(interactor: CarsInteractor, notificator: EventNotificator) {
         self.interactor = interactor
 
         super.init()
@@ -22,8 +30,10 @@ final class CarsViewController: BaseViewController, Loadable {
         let action = UIAction(handler: { [weak self] _ in
             self?.addNewCar()
         })
-        let buttonItem = UIBarButtonItem(title: .common(.add),
-                                         primaryAction: action)
+        let buttonItem = UIBarButtonItem(
+            title: .common(.add),
+            primaryAction: action
+        )
         buttonItem.tintColor = .appTint(.secondarySignatureRed)
         navigationItem.leftBarButtonItem = buttonItem
 
@@ -61,7 +71,7 @@ final class CarsViewController: BaseViewController, Loadable {
         }
     }
 
-    @objc private func addNewCar() {
+    private func addNewCar() {
         startLoading()
         interactor.getModelsAndColors()
     }
@@ -75,17 +85,7 @@ final class CarsViewController: BaseViewController, Loadable {
 
     private func handle(_ response: ModelsAndColorsResponse) {
         stopLoading()
-        let addCarModule = RegisterFlow.addCarModule(.init(
-            scenario: .update(with: interactor.user),
-            models: response.models,
-            colors: response.colors,
-            service: InfoService(),
-            keychain: KeychainService.shared
-        ))
-        addCarModule.setupOutput(navigationController)
-        navigationController?.pushViewController(
-            addCarModule, animated: true
-        )
+        output?(.addCar(models: response.models, colors: response.colors))
     }
 
     private func updateBackground() {
@@ -97,6 +97,7 @@ final class CarsViewController: BaseViewController, Loadable {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension CarsViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
