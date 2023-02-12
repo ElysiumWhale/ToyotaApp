@@ -3,20 +3,20 @@ import XCTest
 
 @MainActor
 final class NavigationServiceTests: XCTestCase {
-    var city: City?
+    private let environment = NavigationService.Environment(
+        service: InfoService(),
+        newService: NewInfoService(),
+        defaults: DefaultsService(container: .init(name: "test")),
+        keychain: KeychainService(wrapper: .init(serviceName: "test"))
+    )
 
     override func setUpWithError() throws {
-        NavigationService.environment = .init(
-            service: InfoService(),
-            newService: NewInfoService(),
-            defaults: DefaultsService(container: .init(name: "test")),
-            keychain: KeychainService(wrapper: .init(serviceName: "test"))
-        )
+        NavigationService.environment = environment
     }
 
     override func tearDownWithError() throws {
-        NavigationService.environment.keychain.removeAll()
-        NavigationService.environment.defaults.removeAll()
+        environment.keychain.removeAll()
+        environment.defaults.removeAll()
     }
 
     // MARK: - Auth
@@ -53,7 +53,7 @@ final class NavigationServiceTests: XCTestCase {
 
     func testRegisterSecondPage() {
         let city: City? = nil
-        DefaultsService.shared.set(value: city, key: .selectedCity)
+        environment.defaults.set(value: city, key: .selectedCity)
 
         testRegisterPage(state: .secondPage(.mock, nil), modulesCount: 2) { router in
             XCTAssertTrue(router.viewControllers.contains(
@@ -67,7 +67,7 @@ final class NavigationServiceTests: XCTestCase {
 
     func testRegisterThirdPage() {
         let city = City(id: .empty, name: .empty)
-        DefaultsService.shared.set(value: city, key: .selectedCity)
+        environment.defaults.set(value: city, key: .selectedCity)
 
         testRegisterPage(state: .secondPage(.mock, []), modulesCount: 3) { router in
             XCTAssertTrue(router.viewControllers.contains(
@@ -87,11 +87,11 @@ final class NavigationServiceTests: XCTestCase {
     func testMainSuccessFullUserInfo() {
         NavigationService.switchRootView = { [unowned self] entry in
             testMainSuccessFlow(entry)
-            NavigationService.environment.keychain.removeAll()
+            environment.keychain.removeAll()
         }
 
-        NavigationService.environment.keychain.set(UserId(.empty))
-        NavigationService.environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(.empty))
+        environment.keychain.set(Phone(.empty))
         NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
     }
 
@@ -99,7 +99,7 @@ final class NavigationServiceTests: XCTestCase {
     func testMainFailureOnlyPersonInfo() {
         NavigationService.switchRootView = { [unowned self] in
             testNavigationStackTop($0, AuthViewController.self)
-            NavigationService.environment.keychain.removeAll()
+            environment.keychain.removeAll()
         }
 
         NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
@@ -108,12 +108,12 @@ final class NavigationServiceTests: XCTestCase {
     func testMainSuccessExistedFullUserInfo() {
         NavigationService.switchRootView = { [unowned self] entry in
             testMainSuccessFlow(entry)
-            NavigationService.environment.keychain.removeAll()
+            environment.keychain.removeAll()
         }
 
-        NavigationService.environment.keychain.set(UserId(.empty))
-        NavigationService.environment.keychain.set(Phone(.empty))
-        NavigationService.environment.keychain.set(Profile.mock.toDomain())
+        environment.keychain.set(UserId(.empty))
+        environment.keychain.set(Phone(.empty))
+        environment.keychain.set(Profile.mock.toDomain())
         NavigationService.loadMain()
     }
 
@@ -128,11 +128,11 @@ final class NavigationServiceTests: XCTestCase {
     func testMainWithUserIdAndPhoneFailure() {
         NavigationService.switchRootView = { [unowned self] in
             testNavigationStackTop($0, PersonalInfoView.self)
-            NavigationService.environment.keychain.removeAll()
+            environment.keychain.removeAll()
         }
 
-        NavigationService.environment.keychain.set(UserId(.empty))
-        NavigationService.environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(.empty))
+        environment.keychain.set(Phone(.empty))
         NavigationService.loadMain()
     }
 }
