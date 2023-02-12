@@ -31,10 +31,10 @@ final class NavigationService {
     static var switchRootView: ((UIViewController) -> Void)?
 
     static func resolveNavigation(
-        with context: CheckUserContext,
+        context: CheckUserContext,
         fallbackCompletion: Closure
     ) {
-        switch context.state {
+        switch context {
         case .empty:
             fallbackCompletion()
         case let .main(user):
@@ -59,7 +59,7 @@ final class NavigationService {
         module.withOutput { output in
             switch output {
             case let .didReconnect(context):
-                resolveNavigation(with: context) {
+                resolveNavigation(context: context) {
                     loadAuth()
                 }
             case let .didReceiveError(message):

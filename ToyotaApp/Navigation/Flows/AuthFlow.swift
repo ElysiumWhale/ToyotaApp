@@ -120,7 +120,7 @@ extension SmsCodeModule {
                     return
                 }
 
-                NavigationService.resolveNavigation(with: context) {
+                NavigationService.resolveNavigation(context: context) {
                     NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
                 }
             case .successfulCheck(.changeNumber, _):

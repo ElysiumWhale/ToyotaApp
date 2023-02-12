@@ -1,38 +1,27 @@
 import Foundation
 
-// MARK: - Context for navigation
-struct CheckUserContext: Hashable {
-    enum States {
-        case empty
-        case startRegister
-        case register(_ page: Int, _ user: RegisteredUser, _ cities: [City])
-        case main(_ user: RegisteredUser?)
-    }
+enum CheckUserContext: Hashable {
+    case empty
+    case startRegister
+    case register(_ page: Int, _ user: RegisteredUser, _ cities: [City])
+    case main(_ user: RegisteredUser?)
 
-    private let response: CheckUserOrSmsCodeResponse
-
-    var state: States {
+    init(response: CheckUserOrSmsCodeResponse) {
         if response.registerStatus == nil {
             let page = response.registerPage ?? .zero
 
             if page < 2 {
-                return .startRegister
+                self = .startRegister
             } else if let user = response.registeredUser {
-                return .register(page, user, response.cities ?? [])
+                self = .register(page, user, response.cities ?? [])
             } else {
-                return .empty
+                self = .empty
             }
+        } else if response.registerStatus == 1, response.registerPage == nil {
+            self = .main(response.registeredUser)
+        } else {
+            self = .empty
         }
-
-        if response.registerStatus == 1, response.registerPage == nil {
-            return .main(response.registeredUser)
-        }
-
-        return .empty
-    }
-
-    init(response: CheckUserOrSmsCodeResponse) {
-        self.response = response
     }
 
     init?(_ nullableResponse: CheckUserOrSmsCodeResponse?) {
@@ -40,6 +29,6 @@ struct CheckUserContext: Hashable {
             return nil
         }
 
-        self.response = response
+        self.init(response: response)
     }
 }
