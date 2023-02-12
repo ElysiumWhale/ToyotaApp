@@ -254,3 +254,20 @@ extension ServiceType {
         )
     }
 }
+extension Car {
+    static var mock: Car {
+        .init(
+            id: .empty,
+            brand: .empty,
+            model: .init(id: .empty, name: .empty, brandId: .empty),
+            color: .init(
+                id: .empty, name: .empty, code: .empty,
+                colorDescription: .empty, isMetallic: .empty, hex: .empty
+            ),
+            year: .empty,
+            plate: .empty,
+            vin: .empty,
+            isChecked: false
+        )
+    }
+}

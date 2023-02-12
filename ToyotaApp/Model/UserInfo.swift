@@ -54,7 +54,12 @@ final class UserInfo {
     ) -> Result<UserProxy, AppErrors> {
         guard
             let userId: UserId = keychain.get(),
-            let phone: Phone = keychain.get(),
+            let phone: Phone = keychain.get()
+        else  {
+            return Result.failure(.noUserIdAndPhone)
+        }
+
+        guard
             let person: Person = keychain.get()
         else {
             return Result.failure(.notFullProfile)

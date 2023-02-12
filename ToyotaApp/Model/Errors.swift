@@ -24,6 +24,7 @@ enum AppErrors: String, Error {
     case keyValueDoesNotExist
     case wrongKeyForValue
     case notFullProfile
+    case noUserIdAndPhone
     /// Произошла непредвиденная ошибка, повторите действие
     case unknownError = "Произошла непредвиденная ошибка, повторите действие"
     /// Ошибка при запросе данных
