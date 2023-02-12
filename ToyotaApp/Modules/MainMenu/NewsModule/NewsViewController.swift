@@ -28,7 +28,10 @@ final class NewsViewController: BaseViewController, Refreshable {
         if let index = interactor.selectedShowroomIndex {
             showroomPicker.selectRow(index, inComponent: 0, animated: false)
         }
+
+        #if !DEBUG
         startRefreshing()
+        #endif
     }
 
     override func addViews() {

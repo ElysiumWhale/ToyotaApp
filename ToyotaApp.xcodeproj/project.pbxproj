@@ -708,7 +708,7 @@
 			children = (
 				A75946A22523ECD400312EBE /* Model */,
 				14D55FF62753AB7100546587 /* Network */,
-				A7777519259BFA00006D30EA /* Controllers */,
+				A7777519259BFA00006D30EA /* Modules */,
 				140BA59127A6C261002A7423 /* Navigation */,
 				A791FDE225266F2700A595BB /* Views */,
 				A759468B2523E32F00312EBE /* AppDelegate.swift */,
@@ -799,7 +799,7 @@
 			path = OrderModule;
 			sourceTree = "<group>";
 		};
-		A7777519259BFA00006D30EA /* Controllers */ = {
+		A7777519259BFA00006D30EA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				A727F4102588263C00B8CB79 /* Protocols.swift */,
@@ -809,7 +809,7 @@
 				A791FDD82524E17300A595BB /* MainMenu */,
 				14117EA8284EA7E9001585CD /* Utility */,
 			);
-			path = Controllers;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		A77DEA11294EA15C00431CFD /* Frameworks */ = {
