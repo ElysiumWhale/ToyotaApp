@@ -20,7 +20,7 @@ final class NavigationServiceTests: XCTestCase {
     }
 
     func testRegisterErrorState() {
-        testPage(state: .error(message: .empty), modulesCount: 1) { router in
+        testRegisterPage(state: .error(message: .empty), modulesCount: 1) { router in
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is PersonalInfoView }
             ))
@@ -28,7 +28,7 @@ final class NavigationServiceTests: XCTestCase {
     }
 
     func testRegisterFirstPage() {
-        testPage(state: .firstPage, modulesCount: 1) { router in
+        testRegisterPage(state: .firstPage, modulesCount: 1) { router in
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is PersonalInfoView }
             ))
@@ -39,7 +39,7 @@ final class NavigationServiceTests: XCTestCase {
         let city: City? = nil
         DefaultsService.shared.set(value: city, key: .selectedCity)
 
-        testPage(state: .secondPage(.mock, nil), modulesCount: 2) { router in
+        testRegisterPage(state: .secondPage(.mock, nil), modulesCount: 2) { router in
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is PersonalInfoView }
             ))
@@ -53,7 +53,7 @@ final class NavigationServiceTests: XCTestCase {
         let city = City(id: .empty, name: .empty)
         DefaultsService.shared.set(value: city, key: .selectedCity)
 
-        testPage(state: .secondPage(.mock, []), modulesCount: 3) { router in
+        testRegisterPage(state: .secondPage(.mock, []), modulesCount: 3) { router in
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is PersonalInfoView }
             ))
@@ -70,7 +70,7 @@ final class NavigationServiceTests: XCTestCase {
 
 // MARK: - Helpers
 extension NavigationServiceTests {
-    private func testPage(
+    private func testRegisterPage(
         state: NavigationService.RegistrationStates,
         modulesCount: Int,
         testRouterClosure: @escaping (UINavigationController) -> Void
