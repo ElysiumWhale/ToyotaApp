@@ -98,7 +98,7 @@ final class NavigationServiceTests: XCTestCase {
     /// TEST: Flow falls back to `loadRegister` because of `UserId` and `Phone` lack
     func testMainFailureOnlyPersonInfo() {
         NavigationService.switchRootView = { [unowned self] in
-            testMainFailureFlow($0, AuthViewController.self)
+            testNavigationStackTop($0, AuthViewController.self)
             NavigationService.environment.keychain.removeAll()
         }
 
@@ -119,7 +119,7 @@ final class NavigationServiceTests: XCTestCase {
 
     func testMainFailureEmptyInfo() {
         NavigationService.switchRootView = { [unowned self] in
-            testMainFailureFlow($0, AuthViewController.self)
+            testNavigationStackTop($0, AuthViewController.self)
         }
 
         NavigationService.loadMain()
@@ -127,7 +127,7 @@ final class NavigationServiceTests: XCTestCase {
 
     func testMainWithUserIdAndPhoneFailure() {
         NavigationService.switchRootView = { [unowned self] in
-            testMainFailureFlow($0, PersonalInfoView.self)
+            testNavigationStackTop($0, PersonalInfoView.self)
             NavigationService.environment.keychain.removeAll()
         }
 
@@ -156,7 +156,7 @@ extension NavigationServiceTests {
         NavigationService.loadRegister(state)
     }
 
-    func testMainFailureFlow<T: UIViewController>(
+    func testNavigationStackTop<T: UIViewController>(
         _ root: UIViewController,
         _ entryType: T.Type
     ) {
@@ -165,7 +165,7 @@ extension NavigationServiceTests {
             return
         }
 
-        XCTAssertTrue(router.viewControllers.contains(where: { $0 is T }))
+        XCTAssertTrue(router.topViewController is T)
     }
 
     func testMainSuccessFlow(_ root: UIViewController) {
