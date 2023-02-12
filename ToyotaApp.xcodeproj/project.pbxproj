@@ -642,6 +642,7 @@
 		A73990C228C686F9005C1A92 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */,
 				A7D4A7F528BD791A009747E4 /* UICollectionView+Extensions.swift */,
 				147E789327FFA8190017ACA7 /* UIImage+Constants.swift */,
 				A7FA688A294E736800008AFB /* UIExtensions.swift */,
@@ -802,8 +803,6 @@
 			isa = PBXGroup;
 			children = (
 				A727F4102588263C00B8CB79 /* Protocols.swift */,
-				1466B49F27FB91930026677B /* BaseViewController.swift */,
-				A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */,
 				1449CDD925C590CF00BBDAAE /* Foundation+Extension.swift */,
 				A759469F2523E7D200312EBE /* Authentification */,
 				A7D1205D253E6A7F005F85B0 /* Registration */,
@@ -869,7 +868,6 @@
 			children = (
 				A791FDE8252672FA00A595BB /* Components */,
 				A73990C228C686F9005C1A92 /* Extensions */,
-				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -877,6 +875,8 @@
 		A791FDE8252672FA00A595BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1466B49F27FB91930026677B /* BaseViewController.swift */,
+				A7A1AB0D255D9F75008182A2 /* PopUp.swift */,
 				14C64D282793804C0023C850 /* Validatable.swift */,
 				14AB8D602714C81A004D225F /* LoadingView.swift */,
 				14D55FFD2753B0B300546587 /* TextField */,
