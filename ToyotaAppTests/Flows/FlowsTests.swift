@@ -196,7 +196,7 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(splash is SplashScreenViewController)
     }
 
-    func testServicesFlow() {
+    func testServiceOrderFlowFabrics() {
         let service = ServicesFlow.serviceOrderModule(.init(
             serviceType: .mock,
             controlType: .onePick,
@@ -210,6 +210,15 @@ final class FlowsTests: XCTestCase {
             user: .mock
         ))
         XCTAssertTrue(testDrive is TestDriveViewController)
+    }
+
+    func testServiceOrderModuleOutput() {
+        let module = ServicesFlow.serviceOrderModule(.init(
+            serviceType: .mock,
+            controlType: .onePick,
+            user: .mock
+        ))
+        testOutputable(module: module)
     }
 }
 
