@@ -111,7 +111,7 @@ final class NavigationService {
                 carsService: environment.service
             ),
             payloadCities,
-            .cityIsSelected
+            .cityIsSelected(environment.defaults)
         )
         router.setViewControllers(flowStack, animated: true)
         switchRootView?(router)

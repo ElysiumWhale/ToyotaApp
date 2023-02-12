@@ -89,8 +89,10 @@ final class DefaultsService: KeyedCodableStorage {
 }
 
 extension Bool {
-    static var cityIsSelected: Self {
-        let city: City? = DefaultsService.shared.get(key: .selectedCity)
+    static func cityIsSelected(
+        _ defaults: any KeyedCodableStorage<DefaultKeys> = DefaultsService.shared
+    ) -> Self {
+        let city: City? = defaults.get(key: .selectedCity)
         return city != nil
     }
 }
