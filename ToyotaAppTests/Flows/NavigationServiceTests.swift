@@ -82,6 +82,59 @@ final class NavigationServiceTests: XCTestCase {
             XCTAssertTrue(router.topViewController is AddCarViewController)
         }
     }
+
+    // MARK: - Main
+    func testMainSuccessFullUserInfo() {
+        NavigationService.switchRootView = { [unowned self] entry in
+            testMainSuccessFlow(entry)
+            NavigationService.environment.keychain.removeAll()
+        }
+
+        NavigationService.environment.keychain.set(UserId(.empty))
+        NavigationService.environment.keychain.set(Phone(.empty))
+        NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
+    }
+
+    /// TEST: Flow falls back to `loadRegister` because of `UserId` and `Phone` lack
+    func testMainFailureOnlyPersonInfo() {
+        NavigationService.switchRootView = { [unowned self] in
+            testMainFailureFlow($0, AuthViewController.self)
+            NavigationService.environment.keychain.removeAll()
+        }
+
+        NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
+    }
+
+    func testMainSuccessExistedFullUserInfo() {
+        NavigationService.switchRootView = { [unowned self] entry in
+            testMainSuccessFlow(entry)
+            NavigationService.environment.keychain.removeAll()
+        }
+
+        NavigationService.environment.keychain.set(UserId(.empty))
+        NavigationService.environment.keychain.set(Phone(.empty))
+        NavigationService.environment.keychain.set(Profile.mock.toDomain())
+        NavigationService.loadMain()
+    }
+
+    func testMainFailureEmptyInfo() {
+        NavigationService.switchRootView = { [unowned self] in
+            testMainFailureFlow($0, AuthViewController.self)
+        }
+
+        NavigationService.loadMain()
+    }
+
+    func testMainWithUserIdAndPhoneFailure() {
+        NavigationService.switchRootView = { [unowned self] in
+            testMainFailureFlow($0, PersonalInfoView.self)
+            NavigationService.environment.keychain.removeAll()
+        }
+
+        NavigationService.environment.keychain.set(UserId(.empty))
+        NavigationService.environment.keychain.set(Phone(.empty))
+        NavigationService.loadMain()
+    }
 }
 
 // MARK: - Helpers
@@ -101,5 +154,31 @@ extension NavigationServiceTests {
         }
 
         NavigationService.loadRegister(state)
+    }
+
+    func testMainFailureFlow<T: UIViewController>(
+        _ root: UIViewController,
+        _ entryType: T.Type
+    ) {
+        guard let router = root as? UINavigationController else {
+            XCTFail()
+            return
+        }
+
+        XCTAssertTrue(router.viewControllers.contains(where: { $0 is T }))
+    }
+
+    func testMainSuccessFlow(_ root: UIViewController) {
+        guard let tabHolder = root as? MainTabBarController else {
+            XCTFail()
+            return
+        }
+
+        XCTAssertNotNil(tabHolder.tabsRoots[.news])
+        XCTAssertTrue(tabHolder.tabsRoots[.news]?.topViewController is NewsViewController)
+        XCTAssertNotNil(tabHolder.tabsRoots[.services])
+        XCTAssertTrue(tabHolder.tabsRoots[.services]?.topViewController is ServicesViewController)
+        XCTAssertNotNil(tabHolder.tabsRoots[.profile])
+        XCTAssertTrue(tabHolder.tabsRoots[.profile]?.topViewController is ProfileViewController)
     }
 }
