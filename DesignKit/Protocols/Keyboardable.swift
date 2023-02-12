@@ -1,29 +1,7 @@
 import UIKit
 
-// MARK: - Outputable
-protocol Outputable<TOutput>: AnyObject {
-    associatedtype TOutput
-
-    var output: ParameterClosure<TOutput>? { get set }
-}
-
-// MARK: - Inputable
-protocol Inputable<TInput>: AnyObject {
-    associatedtype TInput
-
-    func input(_ value: TInput)
-}
-
-extension Outputable {
-    @discardableResult
-    func withOutput(_ output: ParameterClosure<TOutput>?) -> Self {
-        self.output = output
-        return self
-    }
-}
-
-// MARK: - Keyboard auto insets
-protocol Keyboardable: UIViewController {
+/// Keyboard auto insets
+public protocol Keyboardable: AnyObject {
     associatedtype ScrollableView: UIScrollView
 
     var scrollView: ScrollableView! { get }
@@ -32,7 +10,7 @@ protocol Keyboardable: UIViewController {
 }
 
 extension Keyboardable {
-    func setupKeyboard(isSubscribing: Bool) {
+    public func setupKeyboard(isSubscribing: Bool) {
         guard isSubscribing else {
             NotificationCenter.default.removeObserver(self)
             return
