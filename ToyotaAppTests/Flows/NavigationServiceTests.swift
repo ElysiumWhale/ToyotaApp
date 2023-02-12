@@ -135,6 +135,61 @@ final class NavigationServiceTests: XCTestCase {
         environment.keychain.set(Phone(.empty))
         NavigationService.loadMain()
     }
+
+    // MARK: - Test resolving navigation
+    func testResolveNavigationEmptyFallback() {
+        var fallbackDidHit = false
+        NavigationService.resolveNavigation(
+            context: .empty,
+            fallbackCompletion: { fallbackDidHit = true }
+        )
+        XCTAssertTrue(fallbackDidHit)
+    }
+
+    func testResolveNavigationStartRegister() {
+        NavigationService.switchRootView = { [unowned self] module in
+            testNavigationStackTop(module, PersonalInfoView.self)
+        }
+
+        NavigationService.resolveNavigation(
+            context: .startRegister,
+            fallbackCompletion: { XCTFail() }
+        )
+    }
+
+    func testResolveNavigationRegisterSecondPage() {
+        NavigationService.switchRootView = { [unowned self] module in
+            testNavigationStackTop(module, CityPickerViewController.self)
+        }
+
+        NavigationService.resolveNavigation(
+            context: .register(2, .init(profile: .mock, cars: []), []),
+            fallbackCompletion: { XCTFail() }
+        )
+    }
+
+    func testResolveNavigationRegisterFallback() {
+        var fallbackDidHit = false
+        NavigationService.resolveNavigation(
+            context: .register(3, .init(profile: .mock, cars: []), []),
+            fallbackCompletion: { fallbackDidHit = true }
+        )
+        XCTAssertTrue(fallbackDidHit)
+    }
+
+    func testResolveNavigationMain() {
+        NavigationService.switchRootView = { [unowned self] module in
+            testMainSuccessFlow(module)
+            environment.keychain.removeAll()
+        }
+
+        environment.keychain.set(UserId(.empty))
+        environment.keychain.set(Phone(.empty))
+        NavigationService.resolveNavigation(
+            context: .main(.init(profile: .mock, cars: [])),
+            fallbackCompletion: { XCTFail() }
+        )
+    }
 }
 
 // MARK: - Helpers
