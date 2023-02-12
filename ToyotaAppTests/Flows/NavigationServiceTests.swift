@@ -19,6 +19,22 @@ final class NavigationServiceTests: XCTestCase {
         NavigationService.environment.defaults.removeAll()
     }
 
+    // MARK: - Auth
+    func testAuth() {
+        NavigationService.switchRootView = { entry in
+            guard let router = entry as? UINavigationController else {
+                XCTFail()
+                return
+            }
+
+            XCTAssertTrue(router.viewControllers.contains(
+                where: { $0 is AuthViewController }
+            ))
+        }
+        NavigationService.loadAuth()
+    }
+
+    // MARK: - Register
     func testRegisterErrorState() {
         testRegisterPage(state: .error(message: .empty), modulesCount: 1) { router in
             XCTAssertTrue(router.viewControllers.contains(
