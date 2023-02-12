@@ -21,15 +21,8 @@ final class NavigationServiceTests: XCTestCase {
 
     // MARK: - Auth
     func testAuth() {
-        NavigationService.switchRootView = { entry in
-            guard let router = entry as? UINavigationController else {
-                XCTFail()
-                return
-            }
-
-            XCTAssertTrue(router.viewControllers.contains(
-                where: { $0 is AuthViewController }
-            ))
+        NavigationService.switchRootView = { [unowned self] entry in
+            testNavigationStackTop(entry, AuthViewController.self)
         }
         NavigationService.loadAuth()
     }
