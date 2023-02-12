@@ -134,8 +134,13 @@ final class NavigationService {
         }
 
         switch userInfoFactory(environment.keychain) {
-        case .failure:
-            loadRegister(.error(message: .error(.profileLoadError)))
+        case let .failure(error):
+            switch error {
+            case .noUserIdAndPhone:
+                loadAuth(with: .error(.profileLoadError))
+            default:
+                loadRegister(.error(message: .error(.profileLoadError)))
+            }
         case let .success(user):
             let entry = MainMenuFlow.entryPoint(.makeDefault(from: user))
             switchRootView?(entry.root)
