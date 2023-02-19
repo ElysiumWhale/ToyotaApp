@@ -24,6 +24,7 @@ enum AppErrors: String, Error {
     case keyValueDoesNotExist
     case wrongKeyForValue
     case notFullProfile
+    case noUserIdAndPhone
     /// Произошла непредвиденная ошибка, повторите действие
     case unknownError = "Произошла непредвиденная ошибка, повторите действие"
     /// Ошибка при запросе данных
@@ -71,7 +72,7 @@ enum AppErrors: String, Error {
 }
 
 // MARK: - ErrorResponse
-struct ErrorResponse: Codable, Error {
+struct ErrorResponse: Codable, Hashable, Error {
     let code: String
     let message: String?
 
