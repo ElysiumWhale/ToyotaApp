@@ -37,6 +37,6 @@ final class MainTabBarController: UITabBarController,
         }
 
         tabBar.tintColor = .appTint(.secondarySignatureRed)
-        setViewControllers(controllers, animated: true)
+        setViewControllers(controllers, animated: false)
     }
 }

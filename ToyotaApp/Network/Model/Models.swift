@@ -1,13 +1,13 @@
 import Foundation
 
 // MARK: - RegisteredUser
-struct RegisteredUser: Codable {
+struct RegisteredUser: Codable, Hashable {
     let profile: Profile
     let cars: [Car]?
 }
 
 // MARK: - Profile
-struct Profile: Codable, Equatable {
+struct Profile: Codable, Hashable {
     let phone: String?
     let firstName: String?
     let lastName: String?
@@ -36,7 +36,7 @@ struct Profile: Codable, Equatable {
 }
 
 // MARK: - Car
-struct Car: IService {
+struct Car: IService, Hashable {
     let id: String
     let brand: String
     let model: Model
@@ -62,7 +62,7 @@ struct Car: IService {
 }
 
 // MARK: - City
-struct City: IService {
+struct City: IService, Hashable {
     let id: String
     let name: String
 
@@ -88,7 +88,7 @@ struct Showroom: IService {
 }
 
 // MARK: - Model
-struct Model: IService {
+struct Model: IService, Hashable {
     let id: String
     let name: String
     let brandId: String
@@ -101,7 +101,7 @@ struct Model: IService {
 }
 
 // MARK: - Color
-struct Color: IService {
+struct Color: IService, Hashable {
     let id: String
     let name: String
     let code: String
@@ -130,6 +130,10 @@ struct ServiceType: IService, Identifiable, Hashable {
         serviceTypeName
     }
 
+    var serviceViewType: ServiceViewType? {
+        .init(rawValue: controlTypeId)
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case serviceTypeName = "service_type_name"
@@ -139,7 +143,7 @@ struct ServiceType: IService, Identifiable, Hashable {
 }
 
 // MARK: - Service
-struct Service: IService {
+struct Service: IService, Hashable {
     let id: String
     let name: String
 

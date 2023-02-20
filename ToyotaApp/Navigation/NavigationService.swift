@@ -1,5 +1,11 @@
 import UIKit
 
+enum RoutingTypes {
+    case selfRouted
+    case routed(by: UINavigationController)
+    case none
+}
+
 @MainActor
 final class NavigationService {
     enum RegistrationStates {
@@ -8,20 +14,34 @@ final class NavigationService {
         case secondPage(_ profile: Profile, _ cities: [City]?)
     }
 
+    struct Environment {
+        let service: InfoService
+        let newService: NewInfoService
+        let defaults: any KeyedCodableStorage<DefaultKeys>
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    }
+
+    static var environment = Environment(
+        service: InfoService(),
+        newService: NewInfoService(),
+        defaults: DefaultsService.shared,
+        keychain: KeychainService.shared
+    )
+
     static var switchRootView: ((UIViewController) -> Void)?
 
     static func resolveNavigation(
-        with context: CheckUserContext,
+        context: CheckUserContext,
         fallbackCompletion: Closure
     ) {
-        switch context.state {
+        switch context {
         case .empty:
             fallbackCompletion()
-        case .main(let user):
+        case let .main(user):
             loadMain(from: user)
         case .startRegister:
             loadRegister(.firstPage)
-        case .register(let page, let user, let cities):
+        case let .register(page, user, cities):
             switch page {
             case 2:
                 loadRegister(.secondPage(user.profile, cities))
@@ -33,7 +53,20 @@ final class NavigationService {
 
     // MARK: - LoadConnectionLost
     static func loadConnectionLost() {
-        switchRootView?(UtilsFlow.connectionLostModule())
+        let module = UtilsFlow.reconnectionModule(
+            reconnectionService: environment.service
+        )
+        module.withOutput { output in
+            switch output {
+            case let .didReconnect(context):
+                resolveNavigation(context: context) {
+                    loadAuth()
+                }
+            case let .didReceiveError(message):
+                loadAuth(with: message)
+            }
+        }
+        switchRootView?(module)
     }
 
     // MARK: - LoadAuth
@@ -42,49 +75,95 @@ final class NavigationService {
             PopUp.display(.error(description: error))
         }
 
-        switchRootView?(AuthFlow.entryPoint())
+        switchRootView?(AuthFlow.entryPoint(
+            .init(scenario: .register, service: environment.newService),
+            .selfRouted
+        ))
     }
 
-    // MARK: - LoadRegister overloads
+    // MARK: - LoadRegister
     static func loadRegister(_ state: RegistrationStates) {
-        var controllers: [UIViewController] = []
+        let router = UINavigationController()
+        router.navigationBar.prefersLargeTitles = true
+        router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+
+        var payloadProfile: Profile? = nil
+        var payloadCities: [City] = []
+
         switch state {
-        case .error(let message):
+        case let .error(message):
             PopUp.display(.error(description: message))
         case .firstPage:
             break
-        case .secondPage(let profile, let cities):
-            let personalModule = RegisterFlow.personalModule(profile)
-            let cityModule = RegisterFlow.cityModule(cities ?? [])
-            let carModule = .cityIsSelected ? RegisterFlow.addCarModule() : nil
-
-            cityModule.onCityPick = { [weak personalModule] _ in
-                let addCar = RegisterFlow.addCarModule()
-                personalModule?.navigationController?.pushViewController(addCar, animated: true)
-            }
-
-            controllers = [personalModule,
-                           cityModule,
-                           carModule].compactMap { $0 }
+        case let .secondPage(profile, cities):
+            payloadProfile = profile
+            payloadCities = cities ?? []
         }
 
-        switchRootView?(RegisterFlow.entryPoint(with: controllers))
+        let flowStack = RegisterFlow.makeFlowStack(
+            router,
+            RegisterFlow.Environment(
+                profile: payloadProfile,
+                defaults: environment.defaults,
+                keychain: environment.keychain,
+                cityService: environment.service,
+                personalService: environment.service,
+                carsService: environment.service
+            ),
+            payloadCities,
+            .cityIsSelected(environment.defaults)
+        )
+        router.setViewControllers(flowStack, animated: true)
+        switchRootView?(router)
     }
 
-    // MARK: - LoadMain overloads
-    static func loadMain(from user: RegisteredUser? = nil) {
+    // MARK: - LoadMain
+    typealias UserInfoFactory = (
+        any ModelKeyedCodableStorage<KeychainKeys>
+    ) -> Result<UserProxy, AppErrors>
+
+    static func loadMain(
+        from user: RegisteredUser? = nil,
+        userInfoFactory: UserInfoFactory = UserInfo.make
+    ) {
         if let user = user {
-            KeychainService.shared.set(user.profile.toDomain())
+            environment.keychain.set(user.profile.toDomain())
             if let cars = user.cars {
-                KeychainService.shared.set(Cars(cars))
+                environment.keychain.set(Cars(cars))
             }
         }
 
-        switch UserInfo.build() {
-        case .failure:
-            loadRegister(.error(message: .error(.profileLoadError)))
-        case .success(let user):
-            switchRootView?(MainMenuFlow.entryPoint(for: user).root)
+        switch userInfoFactory(environment.keychain) {
+        case let .failure(error):
+            switch error {
+            case .noUserIdAndPhone:
+                loadAuth(with: .error(.profileLoadError))
+            default:
+                loadRegister(.error(message: .error(.profileLoadError)))
+            }
+        case let .success(user):
+            let entry = MainMenuFlow.entryPoint(.makeDefault(from: user))
+            switchRootView?(entry.root)
         }
+    }
+}
+
+extension MainMenuFlow.Environment {
+    static func makeDefault(from user: UserProxy) -> Self {
+        let infoService = InfoService()
+        return .init(
+            userProxy: user,
+            notificator: .shared,
+            defaults: DefaultsService.shared,
+            keychain: KeychainService.shared,
+            newsService: NewsInfoService(),
+            servicesService: infoService,
+            personalService: infoService,
+            managersService: infoService,
+            carsService: infoService,
+            bookingsService: infoService,
+            citiesService: infoService,
+            registrationService: NewInfoService()
+        )
     }
 }

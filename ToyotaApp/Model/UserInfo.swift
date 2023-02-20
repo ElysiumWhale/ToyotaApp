@@ -18,7 +18,10 @@ protocol UserStorage {
 }
 
 final class UserInfo {
-    let notificator: EventNotificator
+    private let defaults: any KeyedCodableStorage<DefaultKeys>
+    private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    private let notificator: EventNotificator
+
     let id: String
 
     private(set) var person: Person
@@ -32,24 +35,37 @@ final class UserInfo {
     fileprivate init(
         _ userId: UserId,
         _ userPhone: Phone,
-        _ personInfo: Person,
-        _ carsInfo: Cars,
-        notificator: EventNotificator = .shared
+        _ person: Person,
+        _ cars: Cars,
+        notificator: EventNotificator = .shared,
+        defaults: any KeyedCodableStorage<DefaultKeys> = DefaultsService.shared,
+        keychain: any ModelKeyedCodableStorage<KeychainKeys> = KeychainService.shared
     ) {
-        id = userId.value
-        person = personInfo
-        cars = carsInfo
+        self.id = userId.value
+        self.person = person
+        self.cars = cars
         self.notificator = notificator
+        self.defaults = defaults
+        self.keychain = keychain
     }
 
-    static func build() -> Result<UserProxy, AppErrors> {
-        guard let userId: UserId = KeychainService.shared.get(),
-              let phone: Phone = KeychainService.shared.get(),
-              let person: Person = KeychainService.shared.get() else {
+    static func make(
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
+    ) -> Result<UserProxy, AppErrors> {
+        guard
+            let userId: UserId = keychain.get(),
+            let phone: Phone = keychain.get()
+        else  {
+            return Result.failure(.noUserIdAndPhone)
+        }
+
+        guard
+            let person: Person = keychain.get()
+        else {
             return Result.failure(.notFullProfile)
         }
 
-        let cars: Cars = KeychainService.shared.get() ?? Cars([])
+        let cars: Cars = keychain.get() ?? Cars([])
 
         return Result.success(UserInfo(userId, phone, person, cars))
     }
@@ -58,16 +74,16 @@ final class UserInfo {
 // MARK: - UserProxy
 extension UserInfo: UserProxy {
     var selectedShowroom: Showroom? {
-        DefaultsService.shared.get(key: .selectedShowroom)
+        defaults.get(key: .selectedShowroom)
     }
 
     var selectedCity: City? {
-        DefaultsService.shared.get(key: .selectedCity)
+        defaults.get(key: .selectedCity)
     }
 
     func updatePerson(from person: Person) {
         self.person = person
-        KeychainService.shared.set(person)
+        keychain.set(person)
         notificator.notify(with: .userUpdate)
     }
 
@@ -76,13 +92,13 @@ extension UserInfo: UserProxy {
         if cars.defaultCar == nil {
             cars.defaultCar = car
         }
-        KeychainService.shared.set(cars)
+        keychain.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
     func updateSelected(car: Car) {
         cars.defaultCar = car
-        KeychainService.shared.set(cars)
+        keychain.set(cars)
         notificator.notify(with: .userUpdate)
     }
 
@@ -92,11 +108,12 @@ extension UserInfo: UserProxy {
         if cars.defaultCar?.id == id {
             updatedCars.defaultCar = updatedCars.value.first
         }
-        KeychainService.shared.set(updatedCars)
+        keychain.set(updatedCars)
         notificator.notify(with: .userUpdate)
     }
 }
 
+#if DEBUG
 extension UserProxy where Self == UserInfo {
     static var mock: UserInfo {
         UserInfo(
@@ -113,3 +130,4 @@ extension UserProxy where Self == UserInfo {
         )
     }
 }
+#endif

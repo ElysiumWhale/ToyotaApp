@@ -12,7 +12,7 @@ struct SimpleResponse: IResponse {
 }
 
 // MARK: - CheckUserOrSmsCodeResponse
-struct CheckUserOrSmsCodeResponse: IResponse {
+struct CheckUserOrSmsCodeResponse: IResponse, Hashable {
     let result: String
     let secretKey: String
     let userId: String?
