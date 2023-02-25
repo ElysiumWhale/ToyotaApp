@@ -3,22 +3,25 @@ import Foundation
 @MainActor
 final class AuthInteractor {
     private let authService: IRegistrationService
+    private let keychain: any ModelKeyedCodableStorage<KeychainKeys>
 
     let type: AuthScenario
 
     init(
-        type: AuthScenario = .register,
-        authService: IRegistrationService = NewInfoService()
+        type: AuthScenario,
+        authService: IRegistrationService,
+        keychain: any ModelKeyedCodableStorage<KeychainKeys>
     ) {
         self.type = type
         self.authService = authService
+        self.keychain = keychain
     }
 
     func sendPhone(_ phone: String) async -> Result<Void, String> {
         switch await authService.registerPhone(.init(phone: phone)) {
         case .success:
             if case .register = type {
-                KeychainService.shared.set(Phone(phone))
+                keychain.set(Phone(phone))
             }
             return .success(())
         case let .failure(error):

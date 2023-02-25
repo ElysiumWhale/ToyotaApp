@@ -76,7 +76,11 @@ final class NavigationService {
         }
 
         switchRootView?(AuthFlow.entryPoint(
-            .init(scenario: .register, service: environment.newService),
+            .init(
+                scenario: .register,
+                service: environment.newService,
+                keychain: environment.keychain
+            ),
             .selfRouted
         ))
     }
