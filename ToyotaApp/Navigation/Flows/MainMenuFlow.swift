@@ -110,7 +110,11 @@ extension MainMenuFlow {
                 )
                 let module = settingsModule(payload)
                 let localRouter = module.wrappedInNavigation
-                module.setupOutput(localRouter, environment.registrationService)
+                module.setupOutput(
+                    localRouter,
+                    environment.registrationService,
+                    environment.keychain
+                )
                 router()?.present(localRouter, animated: true)
             case .showManagers:
                 let payload = ManagersPayload(
@@ -245,7 +249,8 @@ extension SettingsModule {
     @MainActor
     func setupOutput(
         _ router: UINavigationController?,
-        _ service: IRegistrationService
+        _ service: IRegistrationService,
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
     ) {
         withOutput { [weak router] output in
             switch output {
@@ -256,7 +261,8 @@ extension SettingsModule {
 
                 let environment = AuthFlow.Environment(
                     scenario: .changeNumber(userId),
-                    service: service
+                    service: service,
+                    keychain: keychain
                 )
                 router.pushViewController(
                     AuthFlow.entryPoint(environment, .routed(by: router)),
