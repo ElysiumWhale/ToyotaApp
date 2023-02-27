@@ -14,7 +14,11 @@ final class AuthViewController: BaseViewController, Loadable, AuthModule {
     private let infoStack = UIStackView()
     private let informationLabel = UILabel()
     private let phoneNumber = PhoneTextField()
-    private let incorrectLabel = UILabel()
+    private let incorrectLabel: UILabel = {
+        let label = UILabel()
+        label.alpha = 0
+        return label
+    }()
 
     private let agreementStack = UIStackView()
     private let agreementLabel = UILabel()
