@@ -55,7 +55,6 @@ extension AuthFlow {
             authService: payload.service,
             keychain: payload.keychain
         )
-        )
         return AuthViewController(interactor: interactor)
     }
 }
