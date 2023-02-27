@@ -48,7 +48,9 @@ enum RegisterFlow {
         ))
         switch routingType {
         case .selfRouted:
-            let router = personalModule.wrappedInNavigation
+            let router = personalModule.wrappedInNavigation(
+                .appTint(.secondarySignatureRed)
+            )
             router.navigationBar.prefersLargeTitles = true
             router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
             return router

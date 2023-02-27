@@ -10,6 +10,16 @@ extension UIViewController {
         UINavigationController(rootViewController: self)
     }
 
+    func wrappedInNavigation(
+        _ navBarTint: UIColor? = nil
+    ) -> UINavigationController {
+        let router = UINavigationController(rootViewController: self)
+        if let navBarTint {
+            router.navigationBar.tintColor = navBarTint
+        }
+        return router
+    }
+
     func addDismissRightButton(
         title: String = .common(.done),
         color: UIColor = .appTint(.secondarySignatureRed)

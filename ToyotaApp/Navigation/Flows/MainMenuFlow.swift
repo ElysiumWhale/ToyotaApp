@@ -109,7 +109,9 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let module = settingsModule(payload)
-                let localRouter = module.wrappedInNavigation
+                let localRouter = module.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
                 module.setupOutput(
                     localRouter,
                     environment.registrationService,
@@ -130,8 +132,9 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let carsModule = carsModule(payload)
-                let carsRouter = carsModule.wrappedInNavigation
-                carsRouter.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                let carsRouter = carsModule.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
                 carsModule.setupOutput(carsRouter) {
                     RegisterFlow.addCarModule(.init(
                         scenario: .update(with: environment.userProxy),
