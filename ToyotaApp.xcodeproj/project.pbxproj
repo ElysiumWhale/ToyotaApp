@@ -92,6 +92,7 @@
 		A727F4112588263C00B8CB79 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* Protocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
+		A72DB19929AAC10200BA8479 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A72DB19829AAC10200BA8479 /* ComposableArchitecture */; };
 		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
 		A735058E29565AB00005C7F2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058D29565AB00005C7F2 /* Fetcher.swift */; };
 		A735059029565B960005C7F2 /* NewInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058F29565B960005C7F2 /* NewInfoService.swift */; };
@@ -376,6 +377,7 @@
 			files = (
 				A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */,
 				14DF1E44272D8F3C00B4556E /* SwiftSoup in Frameworks */,
+				A72DB19929AAC10200BA8479 /* ComposableArchitecture in Frameworks */,
 				147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */,
 				A77DEA13294EA15C00431CFD /* NukeUI in Frameworks */,
 				A7FA6867294E65D600008AFB /* DesignKit.framework in Frameworks */,
@@ -1018,6 +1020,7 @@
 				14DF1E43272D8F3C00B4556E /* SwiftSoup */,
 				147BEB9527F66B1B005B3B6D /* TinyConstraints */,
 				A77DEA12294EA15C00431CFD /* NukeUI */,
+				A72DB19829AAC10200BA8479 /* ComposableArchitecture */,
 			);
 			productName = ToyotaApp;
 			productReference = A75946882523E32F00312EBE /* ToyotaApp.app */;
@@ -1081,6 +1084,7 @@
 				14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				14D55FFE2753D1FA00546587 /* XCRemoteSwiftPackageReference "Nuke" */,
 				147BEB9427F66B1B005B3B6D /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				A72DB19729AAC10200BA8479 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = A75946892523E32F00312EBE /* Products */;
 			projectDirPath = "";
@@ -1709,6 +1713,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A72DB19729AAC10200BA8479 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 		A7A085FB255C869C00807225 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
@@ -1734,6 +1746,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 14DF1E42272D8F3C00B4556E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		A72DB19829AAC10200BA8479 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A72DB19729AAC10200BA8479 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 		A77DEA12294EA15C00431CFD /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
