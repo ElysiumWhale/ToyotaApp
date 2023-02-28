@@ -51,9 +51,6 @@ struct AuthFeature: ReducerProtocol {
             return .task { [phone = state.phone] in
                 switch await registerPhone(.init(phone: phone)) {
                 case .success:
-                    #if DEBUG
-                    try? await Task.sleep(nanoseconds: 3000)
-                    #endif
                     return .successfulPhoneSend(phone)
                 case let .failure(error):
                     return .failurePhoneSend(
