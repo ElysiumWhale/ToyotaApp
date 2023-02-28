@@ -10,6 +10,7 @@ enum AuthFlow {
     struct Environment {
         let scenario: AuthScenario
         let service: IRegistrationService
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
     static func entryPoint(
@@ -18,7 +19,8 @@ enum AuthFlow {
     ) -> UIViewController {
         let payload = AuthPayload(
             scenario: environment.scenario,
-            service: environment.service
+            service: environment.service,
+            keychain: environment.keychain
         )
         let module = authModule(payload)
 
@@ -42,6 +44,7 @@ extension AuthFlow {
     struct AuthPayload {
         let scenario: AuthScenario
         let service: IRegistrationService
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
     static func authModule(
@@ -49,7 +52,8 @@ extension AuthFlow {
     ) -> any AuthModule {
         let interactor = AuthInteractor(
             type: payload.scenario,
-            authService: payload.service
+            authService: payload.service,
+            keychain: payload.keychain
         )
         return AuthViewController(interactor: interactor)
     }

@@ -109,8 +109,14 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let module = settingsModule(payload)
-                let localRouter = module.wrappedInNavigation
-                module.setupOutput(localRouter, environment.registrationService)
+                let localRouter = module.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
+                module.setupOutput(
+                    localRouter,
+                    environment.registrationService,
+                    environment.keychain
+                )
                 router()?.present(localRouter, animated: true)
             case .showManagers:
                 let payload = ManagersPayload(
@@ -126,8 +132,9 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let carsModule = carsModule(payload)
-                let carsRouter = carsModule.wrappedInNavigation
-                carsRouter.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                let carsRouter = carsModule.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
                 carsModule.setupOutput(carsRouter) {
                     RegisterFlow.addCarModule(.init(
                         scenario: .update(with: environment.userProxy),
@@ -245,7 +252,8 @@ extension SettingsModule {
     @MainActor
     func setupOutput(
         _ router: UINavigationController?,
-        _ service: IRegistrationService
+        _ service: IRegistrationService,
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
     ) {
         withOutput { [weak router] output in
             switch output {
@@ -256,7 +264,8 @@ extension SettingsModule {
 
                 let environment = AuthFlow.Environment(
                     scenario: .changeNumber(userId),
-                    service: service
+                    service: service,
+                    keychain: keychain
                 )
                 router.pushViewController(
                     AuthFlow.entryPoint(environment, .routed(by: router)),
