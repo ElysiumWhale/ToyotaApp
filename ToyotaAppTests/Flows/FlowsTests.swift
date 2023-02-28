@@ -10,6 +10,14 @@ final class FlowsTests: XCTestCase {
     )
 
     func testAuthFlowFabrics() {
+        let payload = AuthFlow.AuthPayload(
+            scenario: .register,
+            service: newService,
+            keychain: keychain
+        )
+        let authModule = AuthFlow.makeAuthModule(payload)
+        XCTAssertTrue(authModule.ui is AuthViewController)
+
         let codeModule = AuthFlow.codeModule(.init(
             phone: .empty,
             scenario: .register,

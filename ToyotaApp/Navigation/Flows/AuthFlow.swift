@@ -1,4 +1,5 @@
 import UIKit
+import ComposableArchitecture
 
 enum AuthScenario: Hashable {
     case register
@@ -22,19 +23,20 @@ enum AuthFlow {
             service: environment.service,
             keychain: environment.keychain
         )
-        let module = authModule(payload)
+        let module = makeAuthModule(payload)
 
         switch routingType {
         case .selfRouted:
-            let router = module.wrappedInNavigation
-            router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
-            module.setupOutput(router, environment.service)
+            let router = module.ui.wrappedInNavigation(
+                .appTint(.secondarySignatureRed)
+            )
+            module.outputStore.setup(router, environment.service)
             return router
         case let .routed(router):
-            module.setupOutput(router, environment.service)
-            return module
+            module.outputStore.setup(router, environment.service)
+            return module.ui
         case .none:
-            return module
+            return module.ui
         }
     }
 }
@@ -47,22 +49,34 @@ extension AuthFlow {
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
-    static func authModule(
+    static func makeAuthModule(
         _ payload: AuthPayload
-    ) -> any AuthModule {
-        let interactor = AuthInteractor(
-            type: payload.scenario,
-            authService: payload.service,
-            keychain: payload.keychain
+    ) -> (
+        ui: UIViewController,
+        outputStore: OutputStore<AuthFeature.Output>
+    ) {
+        let state = AuthFeature.State(scenario: payload.scenario)
+        let outputStore = OutputStore<AuthFeature.Output>()
+        let feature = AuthFeature(
+            registerPhone: payload.service.registerPhone,
+            storeInKeychain: {
+                payload.keychain.set(Phone($0))
+            },
+            outputStore: outputStore
         )
-        return AuthViewController(interactor: interactor)
+        let store = Store(initialState: state, reducer: feature)
+
+        return (
+            ui: AuthViewController(store: store),
+            outputStore: outputStore
+        )
     }
 }
 
 // MARK: - Auth output
-extension AuthModule {
+extension OutputStore where TOutput == AuthFeature.Output {
     @MainActor
-    func setupOutput(
+    func setup(
         _ router: UINavigationController,
         _ service: IRegistrationService
     ) {
