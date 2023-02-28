@@ -5,10 +5,15 @@ import XCTest
 final class FlowsTests: XCTestCase {
     private let service = InfoService()
     private let newService = NewInfoService()
+    private let keychain = KeychainService(
+        wrapper: .init(serviceName: "test")
+    )
 
     func testAuthFlowFabrics() {
         let authModule = AuthFlow.authModule(.init(
-            scenario: .register, service: newService
+            scenario: .register,
+            service: newService,
+            keychain: keychain
         ))
         XCTAssertTrue(authModule is AuthViewController)
 
@@ -22,7 +27,9 @@ final class FlowsTests: XCTestCase {
 
     func testAuthModuleOutput() {
         let payload = AuthFlow.AuthPayload(
-            scenario: .register, service: newService
+            scenario: .register,
+            service: newService,
+            keychain: keychain
         )
         let module = AuthFlow.authModule(payload)
         testOutputable(module: module)
