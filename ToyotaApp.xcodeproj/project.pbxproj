@@ -89,6 +89,7 @@
 		A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9A9297D9DD100D740D4 /* DefaultsService.swift */; };
 		A722D9AC297DA0D500D740D4 /* DefaultsBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */; };
 		A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */; };
+		A726E0EA29AAC1EC00E98E77 /* AuthFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */; };
 		A727F4112588263C00B8CB79 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* Protocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
@@ -290,6 +291,7 @@
 		A722D9A9297D9DD100D740D4 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
 		A722D9AB297DA0D500D740D4 /* DefaultsBacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBacked.swift; sourceTree = "<group>"; };
 		A7238C77296CCA3600684AE4 /* InputTextField+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputTextField+Configuration.swift"; sourceTree = "<group>"; };
+		A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFeature.swift; sourceTree = "<group>"; };
 		A727F4102588263C00B8CB79 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
 		A728FAE328A701D100326DA5 /* ManagersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersInteractor.swift; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
+				A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */,
 				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
@@ -1228,6 +1231,7 @@
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
 				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
+				A726E0EA29AAC1EC00E98E77 /* AuthFeature.swift in Sources */,
 				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
 				A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */,
 				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
