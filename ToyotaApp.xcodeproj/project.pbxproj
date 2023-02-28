@@ -137,6 +137,7 @@
 		A7924D1E254B743F001B67C1 /* ToyotaType-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7924CFF254B70E8001B67C1 /* ToyotaType-Semibold.ttf */; };
 		A793294B298B23090081DC47 /* KeyedCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494038E26B0929F0088C7E4 /* KeyedCodableModel.swift */; };
 		A793294C298B2C3B0081DC47 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CB6AD527E91C4200715A5D /* KeychainServiceTests.swift */; };
+		A79BA61229AEB2BE00670CD1 /* AuthFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */; };
 		A7A085F5255C7BC600807225 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A085F4255C7BC600807225 /* UserInfo.swift */; };
 		A7A085FD255C869C00807225 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7A085FC255C869C00807225 /* SwiftEntryKit */; };
 		A7A1AB0E255D9F75008182A2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1AB0D255D9F75008182A2 /* PopUp.swift */; };
@@ -341,6 +342,7 @@
 		A7924D00254B70E8001B67C1 /* ToyotaType-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-SemiboldIt.ttf"; sourceTree = "<group>"; };
 		A7924D01254B70E8001B67C1 /* ToyotaType-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ToyotaType-BoldIt.ttf"; sourceTree = "<group>"; };
 		A799474228B95693007D4FA0 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFeatureTests.swift; sourceTree = "<group>"; };
 		A7A085F4255C7BC600807225 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		A7A1AB0D255D9F75008182A2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		A7A72DC72554A5C500A44984 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */,
+				A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1165,6 +1168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79BA61229AEB2BE00670CD1 /* AuthFeatureTests.swift in Sources */,
 				A793294C298B2C3B0081DC47 /* KeychainServiceTests.swift in Sources */,
 				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
