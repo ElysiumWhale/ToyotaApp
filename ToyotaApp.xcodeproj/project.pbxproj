@@ -44,7 +44,6 @@
 		1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4C7280A09B9005636E0 /* ResourcesTests.swift */; };
 		1443FDB1260BFAB6007CEBB1 /* KeychainableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */; };
 		1449CDDA25C590CF00BBDAAE /* Foundation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CDD925C590CF00BBDAAE /* Foundation+Extension.swift */; };
-		14550602283195890035F47D /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14550601283195890035F47D /* AuthInteractor.swift */; };
 		1466B4A027FB91930026677B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466B49F27FB91930026677B /* BaseViewController.swift */; };
 		1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79625DD726500E318D3 /* BookingsViewController.swift */; };
 		1467F79A25DD73BC00E318D3 /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467F79925DD73BC00E318D3 /* BookingCell.swift */; };
@@ -240,7 +239,6 @@
 		1443FDB0260BFAB6007CEBB1 /* KeychainableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainableModels.swift; sourceTree = "<group>"; };
 		1449CDD925C590CF00BBDAAE /* Foundation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extension.swift"; sourceTree = "<group>"; };
 		144B8C6726D5A3D9006D7F29 /* BottomKeyboardBinded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomKeyboardBinded.swift; sourceTree = "<group>"; };
-		14550601283195890035F47D /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		1466B49F27FB91930026677B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1467F78825D339DF00E318D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1467F79625DD726500E318D3 /* BookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
@@ -729,7 +727,6 @@
 			children = (
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 				A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */,
-				14550601283195890035F47D /* AuthInteractor.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
 			);
@@ -1243,7 +1240,6 @@
 				1449CDDA25C590CF00BBDAAE /* Foundation+Extension.swift in Sources */,
 				149CC28726765AB700B5172A /* TimePickerModule.swift in Sources */,
 				14C50A0725F3CCFE00608056 /* SettingsViewController.swift in Sources */,
-				14550602283195890035F47D /* AuthInteractor.swift in Sources */,
 				14D55FFA2753AC0C00546587 /* RequestPath.swift in Sources */,
 				A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */,
 				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,
