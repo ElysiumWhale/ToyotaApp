@@ -7,16 +7,6 @@ extension ProfileOutput: CaseIterable {
     }
 }
 
-extension AuthModuleOutput: CaseIterable {
-    public static var allCases: [AuthModuleOutput] {
-        [
-            .showAgreement,
-            .successPhoneCheck(.empty, .register),
-            .successPhoneCheck(.empty, .changeNumber(.empty))
-        ]
-    }
-}
-
 extension SettingsOutput: CaseIterable {
     public static var allCases: [SettingsOutput] {
         [.showAgreement, .changePhone(.empty)]
