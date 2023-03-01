@@ -67,7 +67,7 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
 
         interactor.onRequestError = { [weak self] message in
             self?.stopLoading()
-            PopUp.display(.error(description: message))
+            PopUp.display(.error(message))
         }
     }
 
@@ -77,7 +77,7 @@ final class CarsViewController: BaseViewController, Loadable, CarsModule {
     }
 
     private func removeCar(with id: String) {
-        PopUp.display(.choice(description: .question(.removeCar))) { [self] in
+        PopUp.display(.choice(.question(.removeCar))) { [self] in
             startLoading()
             interactor.removeCar(with: id)
         }

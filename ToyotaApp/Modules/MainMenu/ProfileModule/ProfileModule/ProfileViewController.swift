@@ -201,7 +201,7 @@ final class ProfileViewController: BaseViewController,
         )
 
         interactor.onUserUpdateFailure = { [weak self] errorMessage in
-            PopUp.display(.error(description: errorMessage))
+            PopUp.display(.error(errorMessage))
             self?.state = .editing
         }
     }
@@ -259,7 +259,7 @@ final class ProfileViewController: BaseViewController,
         }
 
         guard fields.areValid else {
-            PopUp.display(.error(description: .error(.checkInput)))
+            PopUp.display(.error(.error(.checkInput)))
             return
         }
 

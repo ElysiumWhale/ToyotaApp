@@ -72,7 +72,7 @@ final class NavigationService {
     // MARK: - LoadAuth
     static func loadAuth(with error: String? = nil) {
         if let error = error {
-            PopUp.display(.error(description: error))
+            PopUp.display(.error( error))
         }
 
         switchRootView?(AuthFlow.entryPoint(
@@ -96,7 +96,7 @@ final class NavigationService {
 
         switch state {
         case let .error(message):
-            PopUp.display(.error(description: message))
+            PopUp.display(.error( message))
         case .firstPage:
             break
         case let .secondPage(profile, cities):

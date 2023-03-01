@@ -61,7 +61,7 @@ class BaseServiceController: BaseViewController,
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
             if user.cars.value.isEmpty {
-                PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
+                PopUp.display(.warning(.error(.blockFunctionsAlert)))
                 carPickView.textField.placeholder = .common(.noCars)
                 carPickView.textField.isEnabled = false
                 carPickView.textField.toggle(state: .error)
@@ -155,11 +155,9 @@ class BaseServiceController: BaseViewController,
         switch await bookingService.bookService(BookServiceBody(items: params)) {
         case .success:
             output?(.successOrder)
-            PopUp.display(.success(description: .common(.bookingSuccess)))
+            PopUp.display(.success(.common(.bookingSuccess)))
         case let .failure(error):
-            PopUp.display(.error(
-                description: error.message ?? .error(.servicesError)
-            ))
+            PopUp.display(.error(error.message ?? .error(.servicesError)))
             bookButton.isEnabled = true
         }
     }
@@ -182,7 +180,7 @@ class BaseServiceController: BaseViewController,
 
     func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
         PopUp.display(.error(
-            description: error.message ?? AppErrors.unknownError.rawValue
+            error.message ?? AppErrors.unknownError.rawValue
         ))
         stopLoading()
         output?(.internalError)
@@ -195,7 +193,7 @@ class BaseServiceController: BaseViewController,
         }
         bookButton.isEnabled = false
 
-        PopUp.display(.warning(description: message ?? .error(.requestError)))
+        PopUp.display(.warning(message ?? .error(.requestError)))
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {

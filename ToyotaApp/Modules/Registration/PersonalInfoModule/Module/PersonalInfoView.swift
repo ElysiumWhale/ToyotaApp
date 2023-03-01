@@ -170,7 +170,7 @@ final class PersonalInfoView: BaseViewController,
 extension PersonalInfoView {
     @objc private func actionButtonDidPress() {
         guard fields.areValid else {
-            PopUp.display(.error(description: .error(.checkInput)))
+            PopUp.display(.error(.error(.checkInput)))
             return
         }
 
@@ -205,7 +205,7 @@ extension PersonalInfoView: PersonalInfoPresenterOutput {
                 colors: colors
             )))
         case let .failure(message):
-            PopUp.display(.error(description: message))
+            PopUp.display(.error(message))
         }
     }
 }

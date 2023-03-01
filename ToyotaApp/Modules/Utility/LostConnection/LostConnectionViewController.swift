@@ -95,7 +95,7 @@ final class LostConnectionViewController: BaseViewController,
     private func displayError() {
         indicator.stopAnimating()
         retryButton.fadeIn()
-        PopUp.display(.error(description: .error(.stillNoConnection)))
+        PopUp.display(.error(.error(.stillNoConnection)))
     }
 }
 

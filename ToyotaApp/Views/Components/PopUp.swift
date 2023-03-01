@@ -200,11 +200,11 @@ enum PopUp {
 
 // MARK: - Helper methods
 extension PopUp {
-    enum MessageTypes {
-        case error(description: String)
-        case warning(description: String)
-        case success(description: String)
-        case choice(description: String)
+    enum MessageTypes: Hashable {
+        case error(_ description: String)
+        case warning(_ description: String)
+        case success(_ description: String)
+        case choice(_ description: String)
     }
 
     static func display(

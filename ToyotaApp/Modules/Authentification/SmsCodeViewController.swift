@@ -128,7 +128,6 @@ final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
             case let .failure(message):
                 stopLoading()
                 sendCodeButton.fadeIn()
-                PopUp.display(.error(description: message))
             }
         }
     }
@@ -141,7 +140,6 @@ final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
         case .register:
             output?(.successfulCheck(authType, context))
         case .changeNumber:
-            PopUp.display(.success(description: .common(.phoneChanged)))
             output?(.successfulCheck(authType, nil))
         }
     }
