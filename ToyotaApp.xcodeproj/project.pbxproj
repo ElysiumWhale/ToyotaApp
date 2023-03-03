@@ -37,7 +37,6 @@
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
-		142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B292728382B58007DC48D /* SmsCodeInteractor.swift */; };
 		143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoView.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServicesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */; };
@@ -230,7 +229,6 @@
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		142B292728382B58007DC48D /* SmsCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeInteractor.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CCB5A286261C900842050 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableView.swift; sourceTree = "<group>"; };
@@ -733,7 +731,6 @@
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 				A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
-				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
 				A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */,
 			);
 			path = Authentification;
@@ -1270,7 +1267,6 @@
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
 				A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */,
-				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
