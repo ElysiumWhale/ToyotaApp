@@ -41,9 +41,6 @@ final class AuthFeatureTests: XCTestCase {
             $0.isLoading = false
             $0.popupMessage = errorMessage
         }
-        await store.receive(.popupDidShow) {
-            $0.popupMessage = nil
-        }
     }
 
     func testSendValidPhoneSuccess() async {

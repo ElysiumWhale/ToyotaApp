@@ -62,7 +62,7 @@ struct AuthFeature: ReducerProtocol {
         case let .failurePhoneSend(message):
             state.isLoading = false
             state.popupMessage = message
-            return .send(.popupDidShow)
+            return .none
         case let .successfulPhoneSend(phone):
             state.isLoading = false
             if case .register = state.scenario {
