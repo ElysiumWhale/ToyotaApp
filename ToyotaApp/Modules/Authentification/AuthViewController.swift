@@ -137,12 +137,8 @@ final class AuthViewController: BaseViewController, Loadable {
         viewStore.publisher.isValid
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] in
+                incorrectLabel.fade($0 ? .out(0.3) : .in(0.3))
                 phoneNumber.toggle(state: $0 ? .normal : .error)
-                if $0 {
-                    incorrectLabel.fadeOut(0.3)
-                } else {
-                    incorrectLabel.fadeIn(0.3)
-                }
             }
             .store(in: &cancellables)
 
@@ -150,21 +146,18 @@ final class AuthViewController: BaseViewController, Loadable {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] in
                 if $0 {
-                    sendPhoneButton.fadeOut()
                     startLoading()
                     view.endEditing(true)
                 } else {
                     stopLoading()
-                    sendPhoneButton.fadeIn()
                 }
+                sendPhoneButton.fade($0 ? .out() : .in())
             }
             .store(in: &cancellables)
 
         viewStore.publisher.popupMessage
             .compactMap { $0 }
-            .sink {
-                PopUp.display(.error(description: $0))
-            }
+            .sink { PopUp.display(.error($0)) }
             .store(in: &cancellables)
     }
 
