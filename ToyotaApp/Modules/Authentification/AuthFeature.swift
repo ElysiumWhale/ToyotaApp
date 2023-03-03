@@ -18,6 +18,7 @@ struct AuthFeature: ReducerProtocol {
         case successfulPhoneSend(_ phone: String)
         case failurePhoneSend(_ message: String)
         case showAgreement
+        case popupDidShow
     }
 
     enum Output: Hashable {
@@ -61,7 +62,7 @@ struct AuthFeature: ReducerProtocol {
         case let .failurePhoneSend(message):
             state.isLoading = false
             state.popupMessage = message
-            return .none
+            return .send(.popupDidShow)
         case let .successfulPhoneSend(phone):
             state.isLoading = false
             if case .register = state.scenario {
@@ -78,6 +79,9 @@ struct AuthFeature: ReducerProtocol {
             return .fireAndForget {
                 outputStore.output?(.showAgreement)
             }
+        case .popupDidShow:
+            state.popupMessage = nil
+            return .none
         }
     }
 }
