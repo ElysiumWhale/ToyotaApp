@@ -104,6 +104,7 @@
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
+		A759588329AFEDAB00C4E014 /* SmsCodeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */; };
 		A7598D1328BE9F1700F6A1E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */; };
 		A7598D1528BE9F4700F6A1E7 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
@@ -309,6 +310,7 @@
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeFeature.swift; sourceTree = "<group>"; };
 		A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
 				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
+				A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				A726E0EA29AAC1EC00E98E77 /* AuthFeature.swift in Sources */,
 				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
 				A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */,
+				A759588329AFEDAB00C4E014 /* SmsCodeFeature.swift in Sources */,
 				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
 				A735059029565B960005C7F2 /* NewInfoService.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* Foundation+Extension.swift in Sources */,
