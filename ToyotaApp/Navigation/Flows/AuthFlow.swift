@@ -30,10 +30,18 @@ enum AuthFlow {
             let router = module.ui.wrappedInNavigation(
                 .appTint(.secondarySignatureRed)
             )
-            module.outputStore.setup(router, environment.service)
+            module.outputStore.setup(
+                router,
+                environment.service,
+                environment.keychain
+            )
             return router
         case let .routed(router):
-            module.outputStore.setup(router, environment.service)
+            module.outputStore.setup(
+                router,
+                environment.service,
+                environment.keychain
+            )
             return module.ui
         case .none:
             return module.ui
@@ -65,11 +73,9 @@ extension AuthFlow {
             outputStore: outputStore
         )
         let store = Store(initialState: state, reducer: feature)
+        let ui = AuthViewController(store: store)
 
-        return (
-            ui: AuthViewController(store: store),
-            outputStore: outputStore
-        )
+        return (ui: ui, outputStore: outputStore)
     }
 }
 
@@ -78,9 +84,10 @@ extension OutputStore where TOutput == AuthFeature.Output {
     @MainActor
     func setup(
         _ router: UINavigationController,
-        _ service: IRegistrationService
+        _ service: IRegistrationService,
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
     ) {
-        withOutput { [weak router] output in
+        output = { [weak router] output in
             switch output {
             case .showAgreement:
                 router?.present(
@@ -91,7 +98,8 @@ extension OutputStore where TOutput == AuthFeature.Output {
                 let codePayload = AuthFlow.CodePayload(
                     phone: phone,
                     scenario: authScenario,
-                    service: service
+                    service: service,
+                    keychain: keychain
                 )
                 let codeModule = AuthFlow.codeModule(codePayload)
                 if let router {
