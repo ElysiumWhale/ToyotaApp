@@ -13,15 +13,6 @@ extension SettingsOutput: CaseIterable {
     }
 }
 
-extension SmsCodeModuleOutput: CaseIterable {
-    public static var allCases: [SmsCodeModuleOutput] {
-        [
-            .successfulCheck(.register, nil),
-            .successfulCheck(.changeNumber(.empty), nil)
-        ]
-    }
-}
-
 extension PersonalInfoOutput: CaseIterable {
     public static var allCases: [PersonalInfoOutput] {
         [.profileDidSet(.init(cities: [], models: [], colors: []))]
