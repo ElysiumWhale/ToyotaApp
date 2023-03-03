@@ -120,6 +120,7 @@
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
 		A77DEA13294EA15C00431CFD /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A77DEA12294EA15C00431CFD /* NukeUI */; };
+		A77E2ED929B1607C00FC75B5 /* SmsCodeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* TimeMap.swift */; };
@@ -325,6 +326,7 @@
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeFeatureTests.swift; sourceTree = "<group>"; };
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			children = (
 				147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */,
 				A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */,
+				A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A79BA61229AEB2BE00670CD1 /* AuthFeatureTests.swift in Sources */,
+				A77E2ED929B1607C00FC75B5 /* SmsCodeFeatureTests.swift in Sources */,
 				A793294C298B2C3B0081DC47 /* KeychainServiceTests.swift in Sources */,
 				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
