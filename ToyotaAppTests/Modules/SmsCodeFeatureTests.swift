@@ -39,9 +39,6 @@ final class SmsCodeFeatureTests: XCTestCase {
             $0.isLoading = false
             $0.popupMessage = message
         }
-        await store.receive(.popupDidShow) {
-            $0.popupMessage = nil
-        }
     }
 
     func testCheckValidCodeSuccess() async {

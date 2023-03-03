@@ -130,7 +130,10 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
         viewStore.publisher.popupMessage
             .compactMap { $0 }
-            .sink { PopUp.display(.error($0)) }
+            .sink { [unowned self] in
+                PopUp.display(.error($0))
+                viewStore.send(.popupDidShow)
+            }
             .store(in: &cancellables)
     }
 

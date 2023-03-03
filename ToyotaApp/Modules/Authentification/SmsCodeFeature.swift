@@ -84,7 +84,7 @@ struct SmsCodeFeature: ReducerProtocol {
         case let .failureCodeCheck(message):
             state.isLoading = false
             state.popupMessage = message
-            return .send(.popupDidShow)
+            return .none
         case .deleteTemporaryPhone:
             return .fireAndForget { [phone = state.phone] in
                 Task.detached {
