@@ -1,33 +1,27 @@
 import UIKit
 import DesignKit
+import ComposableArchitecture
+import Combine
 
-enum SmsCodeModuleOutput: Hashable {
-    case successfulCheck(
-        _ authScenario: AuthScenario,
-        _ context: CheckUserContext?
-    )
-}
-
-protocol SmsCodeModule: UIViewController, Outputable<SmsCodeModuleOutput> { }
-
-final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
+final class SmsCodeViewController: BaseViewController, Loadable {
     private let infoLabel = UILabel()
     private let phoneLabel = UILabel()
     private let codeTextField = InputTextField(.toyota)
     private let errorLabel = UILabel()
     private let codeStack = UIStackView()
     private let sendCodeButton = CustomizableButton(.toyotaAction())
-
-    private let interactor: SmsCodeInteractor
-
     let loadingView = LoadingView()
 
-    var output: ParameterClosure<SmsCodeModuleOutput>?
+    private let viewStore: ViewStoreOf<SmsCodeFeature>
 
-    init(interactor: SmsCodeInteractor) {
-        self.interactor = interactor
+    private var cancellables: Set<AnyCancellable> = []
+
+    init(store: StoreOf<SmsCodeFeature>) {
+        self.viewStore = ViewStore(store)
 
         super.init()
+
+        setupSubscriptions()
     }
 
     override func addViews() {
@@ -72,7 +66,6 @@ final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
 
         codeTextField.maxSymbolCount = 4 // future: 6
         codeTextField.keyboardType = .numberPad
-        codeTextField.rule = smsRule
 
         errorLabel.font = .toyotaType(.regular, of: 18)
         errorLabel.textColor = .systemRed
@@ -82,19 +75,26 @@ final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
 
     override func localize() {
         infoLabel.text = .common(.enterCodeFromSmsFor)
-        phoneLabel.text = interactor.phone
+        phoneLabel.text = viewStore.phone
         codeTextField.placeholder = .common(.codeFromSms)
         sendCodeButton.setTitle(.common(.next), for: .normal)
         errorLabel.text = .error(.wrongCodeEntered)
 
-        if interactor.type != .register {
+        if case .changeNumber = viewStore.scenario {
             setBackButtonTitle(.common(.phoneEntering))
         }
     }
 
     override func configureActions() {
+        codeTextField.addTarget(
+            self,
+            action: #selector(textDidChange),
+            for: .editingChanged
+        )
+
         sendCodeButton.addAction { [weak self] in
-            self?.checkCode()
+            let code = self?.codeTextField.text ?? .empty
+            self?.viewStore.send(.checkCode(code))
         }
     }
 
@@ -102,55 +102,39 @@ final class SmsCodeViewController: BaseViewController, Loadable, SmsCodeModule {
         super.willMove(toParent: parent)
         // parent == nil means that controller will be popped (backward navigation)
         if parent == nil {
-            interactor.deleteTemporaryPhone()
+            viewStore.send(.deleteTemporaryPhone)
         }
     }
 
-    private func checkCode() {
-        guard codeTextField.validate(
-            for: .requiredSymbolsCount(4),
-            toggleState: true
-        ) else {
-            errorLabel.fadeIn(0.3)
-            return
-        }
-
-        sendCodeButton.fadeOut()
-        startLoading()
-        view.endEditing(true)
-
-        Task {
-            switch await interactor.checkCode(code: codeTextField.inputText) {
-            case let .success(params):
-                stopLoading()
-                sendCodeButton.fadeIn()
-                resolveNavigation(authType: params.0, context: params.1)
-            case let .failure(message):
-                stopLoading()
-                sendCodeButton.fadeIn()
+    private func setupSubscriptions() {
+        viewStore.publisher.isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] in
+                if $0 {
+                    startLoading()
+                    view.endEditing(true)
+                } else {
+                    stopLoading()
+                }
+                sendCodeButton.fade($0 ? .out() : .in())
             }
-        }
+            .store(in: &cancellables)
+
+        viewStore.publisher.isValid
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] in
+                errorLabel.fade($0 ? .out(0.3) : .in(0.3) )
+                codeTextField.toggle(state: $0 ? .normal : .error)
+            }
+            .store(in: &cancellables)
+
+        viewStore.publisher.popupMessage
+            .compactMap { $0 }
+            .sink { PopUp.display(.error($0)) }
+            .store(in: &cancellables)
     }
 
-    private func resolveNavigation(
-        authType: AuthScenario,
-        context: CheckUserContext?
-    ) {
-        switch authType {
-        case .register:
-            output?(.successfulCheck(authType, context))
-        case .changeNumber:
-            output?(.successfulCheck(authType, nil))
-        }
-    }
-}
-
-private extension SmsCodeViewController {
-    var smsRule: ValidationRule {
-        ValidationRule { [weak self] _ in
-            self?.errorLabel.fadeOut(0.3)
-
-            return true
-        }
+    @objc private func textDidChange() {
+        viewStore.send(.codeDidChange(codeTextField.inputText))
     }
 }
