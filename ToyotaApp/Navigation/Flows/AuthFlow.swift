@@ -101,13 +101,13 @@ extension OutputStore where TOutput == AuthFeature.Output {
                     service: service,
                     keychain: keychain
                 )
-                let codeModule = AuthFlow.codeModule(codePayload)
+                let codeModule = AuthFlow.makeSmsCodeModule(codePayload)
                 if let router {
-                    codeModule.setupOutput(router)
+                    codeModule.outputStore.setup(router)
                 }
 
                 router?.pushViewController(
-                    codeModule,
+                    codeModule.ui,
                     animated: true
                 )
             }
@@ -121,36 +121,91 @@ extension AuthFlow {
         let phone: String
         let scenario: AuthScenario
         let service: IRegistrationService
+        let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
-    static func codeModule(
+    static func makeSmsCodeModule(
         _ payload: CodePayload
-    ) -> any SmsCodeModule {
-        let interactor = SmsCodeInteractor(
-            type: payload.scenario,
-            phone: payload.phone,
-            authService: payload.service
+    ) -> (
+        ui: UIViewController,
+        outputStore: OutputStore<SmsCodeFeature.Output>
+    ) {
+        let state = SmsCodeFeature.State(
+            scenario: payload.scenario,
+            phone: payload.phone
         )
-        return SmsCodeViewController(interactor: interactor)
+        let outputStore = OutputStore<SmsCodeFeature.Output>()
+        let feature = SmsCodeFeature(
+            outputStore: outputStore,
+            storeInKeychain: { model in payload.keychain.set(model) },
+            deleteTemporaryPhoneRequest: { phone in
+                _ = await payload.service.deleteTemporaryPhone(
+                    DeletePhoneBody(phone: phone)
+                )
+            },
+            checkCodeRequest: SmsCodeRequest(
+                service: payload.service,
+                phone: payload.phone
+            ).make
+        )
+        let store = Store(initialState: state, reducer: feature)
+        let ui = SmsCodeViewController(store: store)
+
+        return (ui, outputStore)
     }
 }
 
 // MARK: - Code output
-extension SmsCodeModule {
+extension OutputStore where TOutput == SmsCodeFeature.Output {
     @MainActor
-    func setupOutput(_ router: UINavigationController) {
-        withOutput { [weak router] output in
+    func setup(_ router: UINavigationController) {
+        output = { [weak router] output in
             switch output {
-            case let .successfulCheck(.register, context):
+            case let .successfulCodeCheck(.register, context):
                 guard let context else {
+                    assertionFailure("Context should exist when register")
                     return
                 }
 
                 NavigationService.resolveNavigation(context: context) {
                     NavigationService.loadRegister(.error(message: .error(.serverBadResponse)))
                 }
-            case .successfulCheck(.changeNumber, _):
-                router?.popViewController(animated: true)
+            case .successfulCodeCheck(.changeNumber, _):
+                PopUp.display(.success(.common(.phoneChanged)))
+                EventNotificator.shared.notify(with: .phoneUpdate)
+                router?.popToRootViewController(animated: true)
+            }
+        }
+    }
+}
+
+extension AuthFlow {
+    struct SmsCodeRequest {
+        private let service: IRegistrationService
+        private let phone: String
+
+        init(service: IRegistrationService, phone: String) {
+            self.service = service
+            self.phone = phone
+        }
+
+        func make(
+            _ code: String,
+            scenario: AuthScenario
+        ) async -> Result<CheckUserOrSmsCodeResponse?, ErrorResponse> {
+            switch scenario {
+            case .register:
+                return await service.checkCode(CheckSmsCodeBody(
+                    phone: phone,
+                    code: code,
+                    brandId: Brand.Toyota
+                )).map { $0 }
+            case let .changeNumber(userId):
+                return await service.changePhone(ChangePhoneBody(
+                    userId: userId,
+                    code: code,
+                    newPhone: phone
+                )).map { _ in nil }
             }
         }
     }

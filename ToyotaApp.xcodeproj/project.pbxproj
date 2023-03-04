@@ -37,7 +37,6 @@
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
-		142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B292728382B58007DC48D /* SmsCodeInteractor.swift */; };
 		143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoView.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServicesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */; };
@@ -104,6 +103,7 @@
 		A75946952523E33400312EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75946942523E33400312EBE /* Assets.xcassets */; };
 		A75946982523E33400312EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75946962523E33400312EBE /* LaunchScreen.storyboard */; };
 		A75946A12523E80400312EBE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75946A02523E80400312EBE /* AuthViewController.swift */; };
+		A759588329AFEDAB00C4E014 /* SmsCodeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */; };
 		A7598D1328BE9F1700F6A1E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */; };
 		A7598D1528BE9F4700F6A1E7 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */; };
 		A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */; };
@@ -119,6 +119,7 @@
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
 		A77DEA13294EA15C00431CFD /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A77DEA12294EA15C00431CFD /* NukeUI */; };
+		A77E2ED929B1607C00FC75B5 /* SmsCodeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */; };
 		A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDDE2524E1D700A595BB /* ServicesViewController.swift */; };
 		A791FDE12524E1E400A595BB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE02524E1E400A595BB /* NewsViewController.swift */; };
 		A791FDEA25267A1A00A595BB /* TimeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791FDE925267A1A00A595BB /* TimeMap.swift */; };
@@ -228,7 +229,6 @@
 		141A64A8270651BB00EEFC6E /* MapModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleView.swift; sourceTree = "<group>"; };
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		142B292728382B58007DC48D /* SmsCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeInteractor.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		143CCB5A286261C900842050 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableView.swift; sourceTree = "<group>"; };
@@ -309,6 +309,7 @@
 		A75946972523E33400312EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A75946992523E33400312EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75946A02523E80400312EBE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeFeature.swift; sourceTree = "<group>"; };
 		A7598D1228BE9F1700F6A1E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A7598D1428BE9F4700F6A1E7 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		A75FB5D525589B8D001CA3D1 /* EndRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRegistrationViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeFeatureTests.swift; sourceTree = "<group>"; };
 		A78A4EF72548EA600026B76B /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		A791FDDE2524E1D700A595BB /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A791FDE02524E1E400A595BB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			children = (
 				147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */,
 				A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */,
+				A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -728,7 +731,7 @@
 				A75946A02523E80400312EBE /* AuthViewController.swift */,
 				A726E0E929AAC1EC00E98E77 /* AuthFeature.swift */,
 				A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */,
-				142B292728382B58007DC48D /* SmsCodeInteractor.swift */,
+				A759588229AFEDAB00C4E014 /* SmsCodeFeature.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -1166,6 +1169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A79BA61229AEB2BE00670CD1 /* AuthFeatureTests.swift in Sources */,
+				A77E2ED929B1607C00FC75B5 /* SmsCodeFeatureTests.swift in Sources */,
 				A793294C298B2C3B0081DC47 /* KeychainServiceTests.swift in Sources */,
 				A7CBAC9128CA02E200639758 /* DateFormattingTests.swift in Sources */,
 				1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */,
@@ -1235,6 +1239,7 @@
 				A726E0EA29AAC1EC00E98E77 /* AuthFeature.swift in Sources */,
 				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
 				A722D9A6297D718B00D740D4 /* KeychainService.swift in Sources */,
+				A759588329AFEDAB00C4E014 /* SmsCodeFeature.swift in Sources */,
 				A7238C78296CCA3600684AE4 /* InputTextField+Configuration.swift in Sources */,
 				A735059029565B960005C7F2 /* NewInfoService.swift in Sources */,
 				1449CDDA25C590CF00BBDAAE /* Foundation+Extension.swift in Sources */,
@@ -1262,7 +1267,6 @@
 				A791FDDF2524E1D700A595BB /* ServicesViewController.swift in Sources */,
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
 				A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */,
-				142B292828382B58007DC48D /* SmsCodeInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
 				A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
