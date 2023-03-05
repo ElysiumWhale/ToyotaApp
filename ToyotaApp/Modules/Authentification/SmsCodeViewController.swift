@@ -108,8 +108,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
 
     private func setupSubscriptions() {
         viewStore.publisher.isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] in
+            .sinkOnMain { [unowned self] in
                 if $0 {
                     startLoading()
                     view.endEditing(true)
@@ -121,8 +120,7 @@ final class SmsCodeViewController: BaseViewController, Loadable {
             .store(in: &cancellables)
 
         viewStore.publisher.isValid
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] in
+            .sinkOnMain { [unowned self] in
                 errorLabel.fade($0 ? .out(0.3) : .in(0.3) )
                 codeTextField.toggle(state: $0 ? .normal : .error)
             }

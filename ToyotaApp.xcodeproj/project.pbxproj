@@ -115,6 +115,7 @@
 		A774247A2990715600DFEEE9 /* NavigationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77424792990715600DFEEE9 /* NavigationServiceTests.swift */; };
 		A775BB4E258E48ED00B8CA8A /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */; };
+		A7786CF929B4CAA400C5CA7B /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7786CF829B4CAA400C5CA7B /* Combine+Extension.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
@@ -321,6 +322,7 @@
 		A77424792990715600DFEEE9 /* NavigationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceTests.swift; sourceTree = "<group>"; };
 		A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		A7786CF829B4CAA400C5CA7B /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
@@ -812,6 +814,7 @@
 			children = (
 				A727F4102588263C00B8CB79 /* Protocols.swift */,
 				1449CDD925C590CF00BBDAAE /* Foundation+Extension.swift */,
+				A7786CF829B4CAA400C5CA7B /* Combine+Extension.swift */,
 				A759469F2523E7D200312EBE /* Authentification */,
 				A7D1205D253E6A7F005F85B0 /* Registration */,
 				A791FDD82524E17300A595BB /* MainMenu */,
@@ -1232,6 +1235,7 @@
 				A7A72DC82554A5C500A44984 /* CarCell.swift in Sources */,
 				A7FA688C294E75D700008AFB /* PhoneTextField.swift in Sources */,
 				A722D9AC297DA0D500D740D4 /* DefaultsBacked.swift in Sources */,
+				A7786CF929B4CAA400C5CA7B /* Combine+Extension.swift in Sources */,
 				141A520727F0A18700E7B9B2 /* InfoService.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
 				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
