@@ -135,16 +135,14 @@ final class AuthViewController: BaseViewController, Loadable {
     // MARK: - Private methods
     private func setupSubscriptions() {
         viewStore.publisher.isValid
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] in
+            .sinkOnMain { [unowned self] in
                 incorrectLabel.fade($0 ? .out(0.3) : .in(0.3))
                 phoneNumber.toggle(state: $0 ? .normal : .error)
             }
             .store(in: &cancellables)
 
         viewStore.publisher.isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] in
+            .sinkOnMain { [unowned self] in
                 if $0 {
                     startLoading()
                     view.endEditing(true)
