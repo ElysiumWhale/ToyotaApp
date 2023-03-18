@@ -35,6 +35,15 @@ class InputTextField: UITextField, Validatable, BottomKeyboardBinded {
         }
     }
 
+    @discardableResult
+    func isValid(toggle: Bool = true) -> Bool {
+        if let rule = rule {
+            return validate(for: rule, toggleState: toggle)
+        } else {
+            return true
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 

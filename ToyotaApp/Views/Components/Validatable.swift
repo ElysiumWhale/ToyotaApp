@@ -40,3 +40,15 @@ extension ValidationRule {
         }
     }
 }
+
+extension ValidationRule {
+    static func compose(rules: ValidationRule...) -> ValidationRule {
+        ValidationRule { text in
+            var result = true
+            rules.forEach { rule in
+                result = result && rule.validate(text: text)
+            }
+            return result
+        }
+    }
+}
