@@ -32,7 +32,7 @@ final class FlowsTests: XCTestCase {
         let personalModule = RegisterFlow.personalModule(.init(
             userId: .empty,
             profile: nil,
-            service: service,
+            service: newService,
             keychain: KeychainService.shared
         ))
         XCTAssertTrue(personalModule.ui is PersonalInfoViewController)

@@ -63,6 +63,9 @@ final class SmsCodeFeatureTests: XCTestCase {
             $0.isLoading = false
         }
         await store.receive(.storeResponseData(mockResponse))
+        await store.receive(.output(.successfulCodeCheck(
+            .register, CheckUserContext(response: mockResponse)
+        )))
 
         XCTAssertTrue(responseDidStore)
         XCTAssertTrue(outputDidSend)
