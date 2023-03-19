@@ -37,7 +37,7 @@
 		141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A64A8270651BB00EEFC6E /* MapModuleView.swift */; };
 		1425230426FFBD7C00B177B7 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230326FFBD7C00B177B7 /* RequestHandler.swift */; };
 		1425230626FFBF8F00B177B7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425230526FFBF8F00B177B7 /* Strings.swift */; };
-		143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoView.swift */; };
+		143CCB5B286261C900842050 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CCB5A286261C900842050 /* PersonalInfoViewController.swift */; };
 		143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A6266CEA4100811FA3 /* PickerModule.swift */; };
 		143CF0A9266CEDF600811FA3 /* ServicesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */; };
 		1442F4D5280A1A05005636E0 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442F4C7280A09B9005636E0 /* ResourcesTests.swift */; };
@@ -231,7 +231,7 @@
 		1425230326FFBD7C00B177B7 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		1425230526FFBF8F00B177B7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		1433C7C7269F304C00BCB70B /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
-		143CCB5A286261C900842050 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
+		143CCB5A286261C900842050 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		143CF0A4266BDB2A00811FA3 /* InitialazableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialazableView.swift; sourceTree = "<group>"; };
 		143CF0A6266CEA4100811FA3 /* PickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModule.swift; sourceTree = "<group>"; };
 		143CF0A8266CEDF600811FA3 /* ServicesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesFlow.swift; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
 				A7346F6B287CDBC1007A7668 /* Module */,
 				A7786CFA29B4E61000C5CA7B /* PersonalInfoFeature.swift */,
+				143CCB5A286261C900842050 /* PersonalInfoViewController.swift */,
 			);
 			path = PersonalInfoModule;
 			sourceTree = "<group>";
@@ -643,7 +644,6 @@
 		A7346F6B287CDBC1007A7668 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				143CCB5A286261C900842050 /* PersonalInfoView.swift */,
 				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
 			);
 			path = Module;
@@ -1254,7 +1254,7 @@
 				147E789627FFACB80017ACA7 /* MainTabBarController.swift in Sources */,
 				A75FB5D625589B8D001CA3D1 /* EndRegistrationViewController.swift in Sources */,
 				140BA59427A6C2A1002A7423 /* RegisterFlow.swift in Sources */,
-				143CCB5B286261C900842050 /* PersonalInfoView.swift in Sources */,
+				143CCB5B286261C900842050 /* PersonalInfoViewController.swift in Sources */,
 				A763B0F9289C1FD000FA46F0 /* TimeView.swift in Sources */,
 				A7FA688D294E776500008AFB /* UIExtensions.swift in Sources */,
 				A7598D1528BE9F4700F6A1E7 /* ProfileInteractor.swift in Sources */,
