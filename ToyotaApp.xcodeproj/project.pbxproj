@@ -50,7 +50,6 @@
 		146E348327D5339000534B6F /* Bodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E348227D5339000534B6F /* Bodies.swift */; };
 		1471C958284942B2000624FC /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C957284942B2000624FC /* AgreementViewController.swift */; };
 		147BEB9627F66B1B005B3B6D /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 147BEB9527F66B1B005B3B6D /* TinyConstraints */; };
-		147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */; };
 		147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */; };
 		147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D4A3027E63D1300010E63 /* DefaultsServiceTests.swift */; };
 		147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E789327FFA8190017ACA7 /* UIImage+Constants.swift */; };
@@ -248,7 +247,6 @@
 		146CED0226B9EE8D00427A1F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		146E348227D5339000534B6F /* Bodies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bodies.swift; sourceTree = "<group>"; };
 		1471C957284942B2000624FC /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
-		147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModuleTests.swift; sourceTree = "<group>"; };
 		147D4A2E27E6170600010E63 /* DefaultsBackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsBackedTests.swift; sourceTree = "<group>"; };
 		147D4A3027E63D1300010E63 /* DefaultsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsServiceTests.swift; sourceTree = "<group>"; };
 		147E789327FFA8190017ACA7 /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
@@ -506,7 +504,6 @@
 		147D4A2B27E614E400010E63 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				147D4A2C27E6152100010E63 /* PersonalInfoModuleTests.swift */,
 				A79BA61129AEB2BE00670CD1 /* AuthFeatureTests.swift */,
 				A77E2ED829B1607C00FC75B5 /* SmsCodeFeatureTests.swift */,
 			);
@@ -1182,7 +1179,6 @@
 				A7E1532C299995F90047BD09 /* CheckUserContextTests.swift in Sources */,
 				A774247A2990715600DFEEE9 /* NavigationServiceTests.swift in Sources */,
 				147D4A3127E63D1300010E63 /* DefaultsServiceTests.swift in Sources */,
-				147D4A2D27E6152100010E63 /* PersonalInfoModuleTests.swift in Sources */,
 				A7D831D329930510003438B9 /* Outputs+CaseIterable.swift in Sources */,
 				147D4A2F27E6170600010E63 /* DefaultsBackedTests.swift in Sources */,
 				14CB6AD927E92AB300715A5D /* FlowsTests.swift in Sources */,

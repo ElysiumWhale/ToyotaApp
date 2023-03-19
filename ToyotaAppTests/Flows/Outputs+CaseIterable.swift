@@ -13,12 +13,6 @@ extension SettingsOutput: CaseIterable {
     }
 }
 
-extension PersonalInfoOutput: CaseIterable {
-    public static var allCases: [PersonalInfoOutput] {
-        [.profileDidSet(.init(cities: [], models: [], colors: []))]
-    }
-}
-
 extension CityPickerOutput: CaseIterable {
     public static var allCases: [CityPickerOutput] {
         [.cityDidPick(.init(id: .empty, name: .empty))]

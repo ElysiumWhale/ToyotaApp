@@ -56,15 +56,6 @@ final class FlowsTests: XCTestCase {
         XCTAssertTrue(endRegisterModule is EndRegistrationViewController)
     }
 
-    func testPersonalModuleOutput() {
-        let personalModule = RegisterFlow.personalModule(.init(
-            profile: nil,
-            service: service,
-            keychain: KeychainService.shared
-        ))
-        testOutputable(module: personalModule)
-    }
-
     func testCityPickerModuleOutput() {
         let cityPickerModule = RegisterFlow.cityModule(.init(
             cities: [],
