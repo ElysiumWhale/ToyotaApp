@@ -30,6 +30,7 @@ final class FlowsTests: XCTestCase {
 
     func testRegisterFlowFabrics() {
         let personalModule = RegisterFlow.personalModule(.init(
+            userId: .empty,
             profile: nil,
             service: service,
             keychain: KeychainService.shared

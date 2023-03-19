@@ -12,6 +12,7 @@ final class NavigationServiceTests: XCTestCase {
 
     override func setUpWithError() throws {
         NavigationService.environment = environment
+        environment.keychain.set(UserId(value: .empty))
     }
 
     override func tearDownWithError() throws {
@@ -83,9 +84,8 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(value: .empty))
         environment.keychain.set(Phone(value: .empty))
-        NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
+        NavigationService.loadMain(from: RegisteredUser(profile: .mock, cars: [.mock]))
     }
 
     /// TEST: Flow falls back to `loadRegister` because of `UserId` and `Phone` lack
@@ -95,7 +95,7 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
+        NavigationService.loadMain(from: RegisteredUser(profile: .mock, cars: [.mock]))
     }
 
     func testMainSuccessExistedFullUserInfo() {
@@ -104,7 +104,6 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(value: .empty))
         environment.keychain.set(Phone(value: .empty))
         environment.keychain.set(Profile.mock.toDomain())
         NavigationService.loadMain()
@@ -124,7 +123,6 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(value: .empty))
         environment.keychain.set(Phone(value: .empty))
         NavigationService.loadMain()
     }
@@ -176,7 +174,6 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(value: .empty))
         environment.keychain.set(Phone(value: .empty))
         NavigationService.resolveNavigation(
             context: .main(.init(profile: .mock, cars: [])),
