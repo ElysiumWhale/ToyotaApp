@@ -35,7 +35,7 @@ struct CheckUserOrSmsCodeResponse: IResponse, Hashable {
 }
 
 // MARK: - CitiesResponse
-struct CitiesResponse: IServiceResponse {
+struct CitiesResponse: IServiceResponse, Equatable {
     let result: String
     let cities: [City]
     let models: [Model]?
