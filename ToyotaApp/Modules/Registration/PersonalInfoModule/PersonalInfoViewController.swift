@@ -3,9 +3,9 @@ import Combine
 import ComposableArchitecture
 import DesignKit
 
-final class PersonalInfoView: BaseViewController,
-                              Keyboardable,
-                              Loadable {
+final class PersonalInfoViewController: BaseViewController,
+                                        Keyboardable,
+                                        Loadable {
 
     private let subtitleLabel = UILabel()
     private let firstNameTextField = InputTextField(.toyotaLeft)
@@ -188,7 +188,7 @@ final class PersonalInfoView: BaseViewController,
 }
 
 // MARK: - Actions
-private extension PersonalInfoView {
+private extension PersonalInfoViewController {
     @objc func dateDidSelect() {
         birthTextField.setText(datePicker.date.asString(.client))
         view.endEditing(true)
@@ -228,7 +228,7 @@ private extension PersonalInfoView {
 }
 
 // MARK: - UITextFieldDelegate
-extension PersonalInfoView: UITextFieldDelegate {
+extension PersonalInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:

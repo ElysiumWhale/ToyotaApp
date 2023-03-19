@@ -34,7 +34,7 @@ final class FlowsTests: XCTestCase {
             service: service,
             keychain: KeychainService.shared
         ))
-        XCTAssertTrue(personalModule is PersonalInfoView)
+        XCTAssertTrue(personalModule.ui is PersonalInfoViewController)
 
         let cityModule = RegisterFlow.cityModule(.init(
             cities: [],

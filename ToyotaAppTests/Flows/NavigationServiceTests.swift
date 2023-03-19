@@ -31,7 +31,7 @@ final class NavigationServiceTests: XCTestCase {
     func testRegisterErrorState() {
         testRegisterPage(state: .error(message: .empty), modulesCount: 1) { router in
             XCTAssertTrue(router.viewControllers.contains(
-                where: { $0 is PersonalInfoView }
+                where: { $0 is PersonalInfoViewController }
             ))
         }
     }
@@ -39,7 +39,7 @@ final class NavigationServiceTests: XCTestCase {
     func testRegisterFirstPage() {
         testRegisterPage(state: .firstPage, modulesCount: 1) { router in
             XCTAssertTrue(router.viewControllers.contains(
-                where: { $0 is PersonalInfoView }
+                where: { $0 is PersonalInfoViewController }
             ))
         }
     }
@@ -50,7 +50,7 @@ final class NavigationServiceTests: XCTestCase {
 
         testRegisterPage(state: .secondPage(.mock, nil), modulesCount: 2) { router in
             XCTAssertTrue(router.viewControllers.contains(
-                where: { $0 is PersonalInfoView }
+                where: { $0 is PersonalInfoViewController }
             ))
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is CityPickerViewController }
@@ -64,7 +64,7 @@ final class NavigationServiceTests: XCTestCase {
 
         testRegisterPage(state: .secondPage(.mock, []), modulesCount: 3) { router in
             XCTAssertTrue(router.viewControllers.contains(
-                where: { $0 is PersonalInfoView }
+                where: { $0 is PersonalInfoViewController }
             ))
             XCTAssertTrue(router.viewControllers.contains(
                 where: { $0 is CityPickerViewController }
@@ -83,8 +83,8 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(.empty))
-        environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(value: .empty))
+        environment.keychain.set(Phone(value: .empty))
         NavigationService.loadMain(from: .init(profile: .mock, cars: [.mock]))
     }
 
@@ -104,8 +104,8 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(.empty))
-        environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(value: .empty))
+        environment.keychain.set(Phone(value: .empty))
         environment.keychain.set(Profile.mock.toDomain())
         NavigationService.loadMain()
     }
@@ -120,12 +120,12 @@ final class NavigationServiceTests: XCTestCase {
 
     func testMainWithUserIdAndPhoneFailure() {
         NavigationService.switchRootView = { [unowned self] in
-            testNavigationStackTop($0, PersonalInfoView.self)
+            testNavigationStackTop($0, PersonalInfoViewController.self)
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(.empty))
-        environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(value: .empty))
+        environment.keychain.set(Phone(value: .empty))
         NavigationService.loadMain()
     }
 
@@ -141,7 +141,7 @@ final class NavigationServiceTests: XCTestCase {
 
     func testResolveNavigationStartRegister() {
         NavigationService.switchRootView = { [unowned self] module in
-            testNavigationStackTop(module, PersonalInfoView.self)
+            testNavigationStackTop(module, PersonalInfoViewController.self)
         }
 
         NavigationService.resolveNavigation(
@@ -176,8 +176,8 @@ final class NavigationServiceTests: XCTestCase {
             environment.keychain.removeAll()
         }
 
-        environment.keychain.set(UserId(.empty))
-        environment.keychain.set(Phone(.empty))
+        environment.keychain.set(UserId(value: .empty))
+        environment.keychain.set(Phone(value: .empty))
         NavigationService.resolveNavigation(
             context: .main(.init(profile: .mock, cars: [])),
             fallbackCompletion: { XCTFail() }
