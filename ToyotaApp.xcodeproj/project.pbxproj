@@ -116,6 +116,7 @@
 		A775BB4E258E48ED00B8CA8A /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */; };
 		A7777514259BF8DE006D30EA /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */; };
 		A7786CF929B4CAA400C5CA7B /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7786CF829B4CAA400C5CA7B /* Combine+Extension.swift */; };
+		A7786CFB29B4E61000C5CA7B /* PersonalInfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7786CFA29B4E61000C5CA7B /* PersonalInfoFeature.swift */; };
 		A77AA963252E7993004D12E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA962252E7993004D12E8 /* NetworkService.swift */; };
 		A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */; };
 		A77B9312253B035F0011282E /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B9311253B035F0011282E /* Responses.swift */; };
@@ -323,6 +324,7 @@
 		A775BB4D258E48ED00B8CA8A /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		A7777513259BF8DE006D30EA /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A7786CF829B4CAA400C5CA7B /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
+		A7786CFA29B4E61000C5CA7B /* PersonalInfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoFeature.swift; sourceTree = "<group>"; };
 		A77AA962252E7993004D12E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A77AA965252E7F21004D12E8 /* SmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsCodeViewController.swift; sourceTree = "<group>"; };
 		A77B9311253B035F0011282E /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */,
 				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
 				A7346F6B287CDBC1007A7668 /* Module */,
+				A7786CFA29B4E61000C5CA7B /* PersonalInfoFeature.swift */,
 			);
 			path = PersonalInfoModule;
 			sourceTree = "<group>";
@@ -1216,6 +1219,7 @@
 				A7D8FE6C292ADF6C00AA5CAC /* Tabs.swift in Sources */,
 				A7AABF8025A9EACB00C72F65 /* ServiceTypeCell.swift in Sources */,
 				A759468C2523E32F00312EBE /* AppDelegate.swift in Sources */,
+				A7786CFB29B4E61000C5CA7B /* PersonalInfoFeature.swift in Sources */,
 				A7F8BFE425695E76002AC621 /* NavigationService.swift in Sources */,
 				A722D9AA297D9DD100D740D4 /* DefaultsService.swift in Sources */,
 				14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */,
