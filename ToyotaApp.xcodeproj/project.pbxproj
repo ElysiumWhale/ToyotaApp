@@ -27,7 +27,6 @@
 		140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59727A6CB67002A7423 /* MainMenuFlow.swift */; };
 		140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BA59927A6CD73002A7423 /* CheckUserContext.swift */; };
 		14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14117EA9284EA86B001585CD /* SplashScreenViewController.swift */; };
-		1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */; };
 		1419C7382683E102001F7EF3 /* TestDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419C7372683E102001F7EF3 /* TestDriveViewController.swift */; };
 		1419D0C827752F6500D95B7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419D0C727752F6500D95B7F /* Models.swift */; };
 		141A520427F08F9E00E7B9B2 /* BodyProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */; };
@@ -77,7 +76,6 @@
 		14E5A9CF26345D7C0057BEF3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5A9CE26345D7C0057BEF3 /* Errors.swift */; };
 		14E7B1E6276F676B00C8D26B /* ServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */; };
 		14EE77862790C4B4005D89D3 /* ShowroomsUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */; };
-		14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */; };
 		14F2B43F2762BC88006CD697 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2B43E2762BC88006CD697 /* AddCarViewController.swift */; };
 		14F4A79B2859300000400B36 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F4A79A2859300000400B36 /* ChatViewController.swift */; };
 		A70BC1F22974757100D65A94 /* ServicesTitleViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70BC1F12974757100D65A94 /* ServicesTitleViewFactory.swift */; };
@@ -91,7 +89,6 @@
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
 		A72DB19929AAC10200BA8479 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A72DB19829AAC10200BA8479 /* ComposableArchitecture */; };
-		A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */; };
 		A735058E29565AB00005C7F2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058D29565AB00005C7F2 /* Fetcher.swift */; };
 		A735059029565B960005C7F2 /* NewInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058F29565B960005C7F2 /* NewInfoService.swift */; };
 		A74306C5296641E9001F0FF6 /* InfoServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74306C4296641E9001F0FF6 /* InfoServiceProtocols.swift */; };
@@ -220,7 +217,6 @@
 		140BA59927A6CD73002A7423 /* CheckUserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserContext.swift; sourceTree = "<group>"; };
 		14117EA9284EA86B001585CD /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		14188032278B3498000B82DD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
 		1419C7372683E102001F7EF3 /* TestDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDriveViewController.swift; sourceTree = "<group>"; };
 		1419D0C727752F6500D95B7F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		141A520327F08F9E00E7B9B2 /* BodyProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyProtocols.swift; sourceTree = "<group>"; };
@@ -279,7 +275,6 @@
 		14E7B1E5276F676B00C8D26B /* ServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesInteractor.swift; sourceTree = "<group>"; };
 		14EC744C27F8F98100AC6648 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
 		14EE77852790C4B4005D89D3 /* ShowroomsUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsUrl.swift; sourceTree = "<group>"; };
-		14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
 		14F0920427E3EB7500B03130 /* ToyotaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyotaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F2B43E2762BC88006CD697 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		14F4A79A2859300000400B36 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -294,7 +289,6 @@
 		A727F4102588263C00B8CB79 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
 		A728FAE328A701D100326DA5 /* ManagersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersInteractor.swift; sourceTree = "<group>"; };
-		A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProtocols.swift; sourceTree = "<group>"; };
 		A735058D29565AB00005C7F2 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		A735058F29565B960005C7F2 /* NewInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfoService.swift; sourceTree = "<group>"; };
 		A73990C328C6877B005C1A92 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
@@ -437,9 +431,6 @@
 		1419834027E28572004573A1 /* PersonalInfoModule */ = {
 			isa = PBXGroup;
 			children = (
-				A7346F69287CDBAD007A7668 /* PersonalInfoProtocols.swift */,
-				14F091FC27E3D6E000B03130 /* PersonalInfoModels.swift */,
-				A7346F6B287CDBC1007A7668 /* Module */,
 				A7786CFA29B4E61000C5CA7B /* PersonalInfoFeature.swift */,
 				143CCB5A286261C900842050 /* PersonalInfoViewController.swift */,
 			);
@@ -639,14 +630,6 @@
 				A728FAE328A701D100326DA5 /* ManagersInteractor.swift */,
 			);
 			path = ManagersModule;
-			sourceTree = "<group>";
-		};
-		A7346F6B287CDBC1007A7668 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				1419834127E285E4004573A1 /* PersonalInfoInteractor.swift */,
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		A73990C228C686F9005C1A92 /* Extensions */ = {
@@ -1238,7 +1221,6 @@
 				A7786CF929B4CAA400C5CA7B /* Combine+Extension.swift in Sources */,
 				141A520727F0A18700E7B9B2 /* InfoService.swift in Sources */,
 				1467F79725DD726500E318D3 /* BookingsViewController.swift in Sources */,
-				1419834227E285E4004573A1 /* PersonalInfoInteractor.swift in Sources */,
 				A763B0F7289C1FC500FA46F0 /* StatusView.swift in Sources */,
 				A726E0EA29AAC1EC00E98E77 /* AuthFeature.swift in Sources */,
 				A722D9A8297D720700D740D4 /* CodableStorage.swift in Sources */,
@@ -1272,12 +1254,10 @@
 				140BA59A27A6CD73002A7423 /* CheckUserContext.swift in Sources */,
 				A763B0F1289C17F800FA46F0 /* LostConnectionInteractor.swift in Sources */,
 				141A64A52706519E00EEFC6E /* PickerModuleView.swift in Sources */,
-				A7346F6A287CDBAD007A7668 /* PersonalInfoProtocols.swift in Sources */,
 				14025194267AAB89006CF4E2 /* MapModule.swift in Sources */,
 				A77AA966252E7F21004D12E8 /* SmsCodeViewController.swift in Sources */,
 				143CF0A7266CEA4100811FA3 /* PickerModule.swift in Sources */,
 				141A64A9270651BB00EEFC6E /* MapModuleView.swift in Sources */,
-				14F091FD27E3D6E000B03130 /* PersonalInfoModels.swift in Sources */,
 				14117EAA284EA86B001585CD /* SplashScreenViewController.swift in Sources */,
 				A7FA6889294E72A300008AFB /* InputTextField.swift in Sources */,
 				1419D0C827752F6500D95B7F /* Models.swift in Sources */,
