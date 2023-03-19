@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
-        KeychainService.shared.set(SecretKey(response.secretKey))
+        KeychainService.shared.set(SecretKey(value: response.secretKey))
         NavigationService.resolveNavigation(
             context: CheckUserContext(response: response)
         ) {

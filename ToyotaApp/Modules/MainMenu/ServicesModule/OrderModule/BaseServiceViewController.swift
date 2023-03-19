@@ -40,6 +40,10 @@ class BaseServiceController: BaseViewController,
         (.carInfo(.showroomId), user.selectedShowroom?.id)
     }
 
+    private var cars: [Car] {
+        user.cars.cars
+    }
+
     var output: ParameterClosure<ServiceOrderOutput>?
 
     init(_ service: ServiceType,
@@ -60,7 +64,7 @@ class BaseServiceController: BaseViewController,
 
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
-            if user.cars.value.isEmpty {
+            if cars.isEmpty {
                 PopUp.display(.warning(.error(.blockFunctionsAlert)))
                 carPickView.textField.placeholder = .common(.noCars)
                 carPickView.textField.isEnabled = false
@@ -218,11 +222,11 @@ class BaseServiceController: BaseViewController,
 
     @objc private func carDidSelect() {
         view.endEditing(true)
-        guard user.cars.value.isNotEmpty else {
+        guard cars.isNotEmpty else {
             return
         }
 
-        selectedCar = user.cars.value[safe: carPickView.picker.selectedRow]
+        selectedCar = cars[safe: carPickView.picker.selectedRow]
     }
 }
 
@@ -236,7 +240,7 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         _ pickerView: UIPickerView,
         numberOfRowsInComponent component: Int
     ) -> Int {
-        user.cars.value.count
+        cars.count
     }
 
     func pickerView(
@@ -244,6 +248,6 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         titleForRow row: Int,
         forComponent component: Int
     ) -> String? {
-        user.cars.value[safe: row]?.name
+        cars[safe: row]?.name
     }
 }

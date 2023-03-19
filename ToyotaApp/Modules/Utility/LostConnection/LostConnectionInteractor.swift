@@ -42,7 +42,7 @@ final class LostConnectionInteractor {
         requestHandler
             .observe(on: .main)
             .bind { [weak self] response in
-                self?.keychain.set(SecretKey(response.secretKey))
+                self?.keychain.set(SecretKey(value: response.secretKey))
                 self?.onSuccess?(CheckUserContext(response: response))
             } onFailure: { [weak self] errorResponse in
                 self?.onError?(errorResponse)

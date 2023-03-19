@@ -75,10 +75,10 @@ struct SmsCodeFeature: ReducerProtocol {
         case let .storeResponseData(response):
             return .fireAndForget {
                 if let secretKey = response?.secretKey {
-                    storeInKeychain(SecretKey(secretKey))
+                    storeInKeychain(SecretKey(value: secretKey))
                 }
                 if let userId = response?.userId {
-                    storeInKeychain(UserId(userId))
+                    storeInKeychain(UserId(value: userId))
                 }
             }
         case let .failureCodeCheck(message):
