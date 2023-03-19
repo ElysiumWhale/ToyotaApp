@@ -117,6 +117,7 @@ final class NavigationService {
                 keychain: environment.keychain,
                 cityService: environment.service,
                 personalService: environment.service,
+                newPersonalService: environment.newService,
                 carsService: environment.service
             ),
             payloadCities,

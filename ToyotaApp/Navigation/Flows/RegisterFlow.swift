@@ -35,6 +35,7 @@ enum RegisterFlow {
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
         let cityService: CitiesService
         let personalService: PersonalInfoService
+        let newPersonalService: IRegistrationService
         let carsService: CarsService
     }
 
@@ -46,7 +47,7 @@ enum RegisterFlow {
         let personalModule = personalModule(PersonalPayload(
             userId: environment.userId,
             profile: environment.profile,
-            service: environment.personalService,
+            service: environment.newPersonalService,
             keychain: environment.keychain
         ))
         switch routingType {
@@ -75,7 +76,7 @@ enum RegisterFlow {
         let personalModule = personalModule(PersonalPayload(
             userId: environment.userId,
             profile: environment.profile,
-            service: environment.personalService,
+            service: environment.newPersonalService,
             keychain: environment.keychain
         ))
         personalModule.outputStore.setup(router, environment)
@@ -124,7 +125,7 @@ extension RegisterFlow {
     struct PersonalPayload {
         let userId: String
         let profile: Profile?
-        let service: PersonalInfoService
+        let service: IRegistrationService
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
@@ -140,8 +141,10 @@ extension RegisterFlow {
         )
         let outputStore = OutputStore<PersonalInfoFeature.Output>()
         let feature = PersonalInfoFeature(
-            setPersonRequest: { _ in .failure(.lostConnection) },
-            storeInKeychain: { _ in },
+            setPersonRequest: {
+                await payload.service.setPerson($0)
+            },
+            storeInKeychain: { payload.keychain.set($0) },
             outputStore: outputStore
         )
         let store =  StoreOf<PersonalInfoFeature>(
