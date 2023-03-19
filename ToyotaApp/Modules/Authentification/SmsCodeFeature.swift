@@ -18,6 +18,7 @@ struct SmsCodeFeature: ReducerProtocol {
         case makeRequest(_ code: String)
         case successfulCodeCheck(AuthScenario, CheckUserOrSmsCodeResponse?)
         case storeResponseData(CheckUserOrSmsCodeResponse?)
+        case output(Output)
         case failureCodeCheck(_ message: String)
         case deleteTemporaryPhone
         case popupDidShow
@@ -66,21 +67,21 @@ struct SmsCodeFeature: ReducerProtocol {
             state.isLoading = false
             return .concatenate(
                 .send(.storeResponseData(response)),
-                .fireAndForget {
-                    outputStore.output?(
-                        .successfulCodeCheck(scenario, .init(response))
-                    )
-                }
+                .send(.output(.successfulCodeCheck(
+                    scenario, CheckUserContext(response)
+                )))
             )
         case let .storeResponseData(response):
-            return .fireAndForget {
-                if let secretKey = response?.secretKey {
-                    storeInKeychain(SecretKey(value: secretKey))
-                }
-                if let userId = response?.userId {
-                    storeInKeychain(UserId(value: userId))
-                }
+            if let secretKey = response?.secretKey {
+                storeInKeychain(SecretKey(value: secretKey))
             }
+            if let userId = response?.userId {
+                storeInKeychain(UserId(value: userId))
+            }
+            return .none
+        case let .output(output):
+            outputStore.output?(output)
+            return .none
         case let .failureCodeCheck(message):
             state.isLoading = false
             state.popupMessage = message
