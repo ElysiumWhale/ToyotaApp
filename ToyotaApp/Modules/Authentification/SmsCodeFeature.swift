@@ -64,7 +64,7 @@ struct SmsCodeFeature: ReducerProtocol {
             }
         case let .successfulCodeCheck(scenario, response):
             state.isLoading = false
-            return .merge(
+            return .concatenate(
                 .send(.storeResponseData(response)),
                 .fireAndForget {
                     outputStore.output?(
