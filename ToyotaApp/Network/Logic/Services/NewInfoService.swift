@@ -14,6 +14,7 @@ protocol IRegistrationService {
     func changePhone(_ body: ChangePhoneBody) async -> DefaultResponse
     func deleteTemporaryPhone(_ body: DeletePhoneBody) async -> DefaultResponse
     func checkCode(_ body: CheckSmsCodeBody) async -> NewResponse<CheckUserOrSmsCodeResponse>
+    func setPerson(_ body: SetProfileBody) async -> NewResponse<CitiesResponse>
 }
 
 protocol IBookingService {
@@ -67,6 +68,13 @@ extension NewInfoService: IRegistrationService {
         await networkService.makeRequest(Request(
             page: .registration(.checkCode), body: body
         ))
+    }
+
+    func setPerson(
+        _ body: SetProfileBody
+    ) async -> NewResponse<CitiesResponse> {
+        await networkService.makeRequest(Request(
+            page: .registration(.setProfile), body: body))
     }
 }
 
