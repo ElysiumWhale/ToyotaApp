@@ -104,14 +104,20 @@ final class NavigationService {
             payloadCities = cities ?? []
         }
 
+        guard let userId: UserId = environment.keychain.get() else {
+            assertionFailure("UserId must be not empty")
+            return
+        }
         let flowStack = RegisterFlow.makeFlowStack(
             router,
             RegisterFlow.Environment(
+                userId: userId.value,
                 profile: payloadProfile,
                 defaults: environment.defaults,
                 keychain: environment.keychain,
                 cityService: environment.service,
                 personalService: environment.service,
+                newPersonalService: environment.newService,
                 carsService: environment.service
             ),
             payloadCities,

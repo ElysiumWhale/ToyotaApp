@@ -1,4 +1,5 @@
 import UIKit
+import ComposableArchitecture
 
 enum AddInfoScenario: Hashable {
     case register
@@ -28,11 +29,13 @@ enum AddInfoScenario: Hashable {
 @MainActor
 enum RegisterFlow {
     struct Environment {
+        let userId: String
         let profile: Profile?
         let defaults: any KeyedCodableStorage<DefaultKeys>
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
         let cityService: CitiesService
         let personalService: PersonalInfoService
+        let newPersonalService: IRegistrationService
         let carsService: CarsService
     }
 
@@ -42,23 +45,24 @@ enum RegisterFlow {
     ) -> UIViewController {
 
         let personalModule = personalModule(PersonalPayload(
+            userId: environment.userId,
             profile: environment.profile,
-            service: environment.personalService,
+            service: environment.newPersonalService,
             keychain: environment.keychain
         ))
         switch routingType {
         case .selfRouted:
-            let router = personalModule.wrappedInNavigation(
+            let router = personalModule.ui.wrappedInNavigation(
                 .appTint(.secondarySignatureRed)
             )
             router.navigationBar.prefersLargeTitles = true
             router.navigationBar.tintColor = .appTint(.secondarySignatureRed)
             return router
         case let .routed(router):
-            personalModule.setupOutput(router, environment)
-            return personalModule
+            personalModule.outputStore.setup(router, environment)
+            return personalModule.ui
         case .none:
-            return personalModule
+            return personalModule.ui
         }
     }
 
@@ -69,13 +73,14 @@ enum RegisterFlow {
         _ citySelected: Bool
     ) -> [UIViewController] {
         var modules: [UIViewController] = []
-        let personalModule = personalModule(.init(
+        let personalModule = personalModule(PersonalPayload(
+            userId: environment.userId,
             profile: environment.profile,
-            service: environment.personalService,
+            service: environment.newPersonalService,
             keychain: environment.keychain
         ))
-        personalModule.setupOutput(router, environment)
-        modules.append(personalModule)
+        personalModule.outputStore.setup(router, environment)
+        modules.append(personalModule.ui)
 
         guard environment.profile != nil else {
             return modules
@@ -118,33 +123,49 @@ enum RegisterFlow {
 // MARK: - Personal module
 extension RegisterFlow {
     struct PersonalPayload {
+        let userId: String
         let profile: Profile?
-        let service: PersonalInfoService
+        let service: IRegistrationService
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
     }
 
-    static func personalModule(_ payload: PersonalPayload) -> any PersonalInfoModule {
-        let interactor = PersonalInfoInteractor(
-            state: .from(payload.profile),
-            service: payload.service,
-            keychain: payload.keychain
+    static func personalModule(
+        _ payload: PersonalPayload
+    ) -> (
+        ui: UIViewController,
+        outputStore: OutputStore<PersonalInfoFeature.Output>
+    ) {
+        let state = PersonalInfoFeature.State(
+            userId: payload.userId,
+            personState: .make(from: payload.profile)
         )
-        let view = PersonalInfoView(interactor: interactor)
-        interactor.view = view
-        return view
+        let outputStore = OutputStore<PersonalInfoFeature.Output>()
+        let feature = PersonalInfoFeature(
+            setPersonRequest: {
+                await payload.service.setPerson($0)
+            },
+            storeInKeychain: { payload.keychain.set($0) },
+            outputStore: outputStore
+        )
+        let store =  StoreOf<PersonalInfoFeature>(
+            initialState: state,
+            reducer: feature
+        )
+        let view = PersonalInfoViewController(store: store)
+        return (ui: view, outputStore: outputStore)
     }
 }
 
 // MARK: - Personal module output
-extension PersonalInfoModule {
+extension OutputStore where TOutput == PersonalInfoFeature.Output {
     @MainActor
-    func setupOutput(
+    func setup(
         _ router: UINavigationController?,
         _ environment: RegisterFlow.Environment
     ) {
-        withOutput { [weak router] output in
+        output = { [weak router] output in
             switch output {
-            case let .profileDidSet(response):
+            case let .personDidSet(response):
                 let cityModule = RegisterFlow.cityModule(.init(
                     cities: response.cities,
                     service: environment.cityService,

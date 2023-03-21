@@ -1,22 +1,11 @@
 import UIKit
+import Combine
+import ComposableArchitecture
 import DesignKit
 
-enum PersonalInfoOutput: Hashable {
-    struct Response: Hashable {
-        let cities: [City]
-        let models: [Model]
-        let colors: [Color]
-    }
-
-    case profileDidSet(_ response: Response)
-}
-
-protocol PersonalInfoModule: UIViewController, Outputable<PersonalInfoOutput> { }
-
-final class PersonalInfoView: BaseViewController,
-                              PersonalInfoModule,
-                              Keyboardable,
-                              Loadable {
+final class PersonalInfoViewController: BaseViewController,
+                                        Keyboardable,
+                                        Loadable {
 
     private let subtitleLabel = UILabel()
     private let firstNameTextField = InputTextField(.toyotaLeft)
@@ -31,6 +20,10 @@ final class PersonalInfoView: BaseViewController,
     private let actionButton = CustomizableButton(.toyotaAction())
     private let datePicker = UIDatePicker()
 
+    private let viewStore: ViewStoreOf<PersonalInfoFeature>
+
+    private var cancellables = Set<AnyCancellable>()
+
     private var fields: [InputTextField] {
         [
             firstNameTextField,
@@ -43,16 +36,13 @@ final class PersonalInfoView: BaseViewController,
 
     let scrollView: UIScrollView! = UIScrollView()
     let loadingView = LoadingView()
-    let interactor: PersonalInfoViewOutput
 
-    var output: ParameterClosure<PersonalInfoOutput>?
-
-    init(interactor: PersonalInfoViewOutput) {
-        self.interactor = interactor
+    init(store: StoreOf<PersonalInfoFeature>) {
+        self.viewStore = ViewStore(store)
 
         super.init()
 
-        navigationItem.title = .common(.data)
+        setupSubscriptions()
     }
 
     // MARK: - Initialazable
@@ -114,6 +104,7 @@ final class PersonalInfoView: BaseViewController,
     }
 
     override func localize() {
+        navigationItem.title = .common(.data)
         subtitleLabel.text = .common(.fillPersonalInfo)
         firstNameTextField.placeholder = .common(.name)
         lastNameTextField.placeholder = .common(.lastName)
@@ -121,8 +112,7 @@ final class PersonalInfoView: BaseViewController,
         emailTextField.placeholder = .common(.email)
         birthTextField.placeholder = .common(.birthDate)
         actionButton.setTitle(.common(.next), for: .normal)
-
-        configureTextIfNeeded(for: interactor.state)
+        configureTextIfNeeded()
     }
 
     override func configureActions() {
@@ -130,17 +120,36 @@ final class PersonalInfoView: BaseViewController,
             .makeToolbar(#selector(dateDidSelect)),
             for: birthTextField
         )
-        actionButton.addTarget(
-            self, action: #selector(actionButtonDidPress), for: .touchUpInside
-        )
+        actionButton.addAction { [weak self] in
+            self?.viewStore.send(.actionButtonDidPress)
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    private func setupSubscriptions() {
         setupKeyboard(isSubscribing: true)
-    }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        setupKeyboard(isSubscribing: false)
+        viewStore.publisher.isLoading
+            .sinkOnMain { [unowned self] in
+                $0 ? startLoading() : stopLoading()
+                loadingView.fade($0 ? .in() : .out())
+            }
+            .store(in: &cancellables)
+
+        viewStore.publisher.popupMessage
+            .compactMap { $0 }
+            .sink { [unowned self] in
+                PopUp.display(.error($0))
+                viewStore.send(.popupDidShow)
+            }
+            .store(in: &cancellables)
+
+        viewStore.publisher.needsValidation
+            .filter { $0 }
+            .sinkOnMain { [unowned self] _ in
+                fields.forEach { $0.isValid(toggle: true) }
+                viewStore.send(.fieldsDidValidate)
+            }
+            .store(in: &cancellables)
     }
 
     private func configureFields() {
@@ -149,69 +158,77 @@ final class PersonalInfoView: BaseViewController,
             field.maxSymbolCount = 30
             field.rule = .personalInfo
             field.delegate = self
+            field.addTarget(
+                self,
+                action: #selector(textDidChange),
+                for: .editingChanged
+            )
         }
     }
 
-    private func configureTextIfNeeded(for state: PersonalDataStoreState) {
-        switch state {
-        case .empty:
-            return
-        case let .configured(profile):
-            firstNameTextField.text = profile.firstName
-            secondNameTextField.text = profile.secondName
-            lastNameTextField.text = profile.lastName
-            emailTextField.text = profile.email
-            birthTextField.text = profile.birthdayDate?.asString(.client)
+    private func configureTextIfNeeded() {
+        if let firstName = viewStore.personState[.firstName]?.value {
+            firstNameTextField.setText(firstName)
+        }
+        if let secondName = viewStore.personState[.secondName]?.value {
+            secondNameTextField.setText(secondName)
+        }
+        if let lastName = viewStore.personState[.lastName]?.value {
+            lastNameTextField.setText(lastName)
+        }
+        if let email = viewStore.personState[.email]?.value {
+            emailTextField.setText(email)
+        }
+        if let birth = viewStore.personState[.birth]?.value,
+           let date = birth.asDate(with: .server) {
+            datePicker.date = date
+            birthTextField.setText(date.asString(.client))
         }
     }
 }
 
 // MARK: - Actions
-extension PersonalInfoView {
-    @objc private func actionButtonDidPress() {
-        guard fields.areValid else {
-            PopUp.display(.error(.error(.checkInput)))
-            return
-        }
-
-        actionButton.fadeOut()
-        startLoading()
-        interactor.setPerson(request: .init(
-            firstName: firstNameTextField.inputText,
-            secondName: secondNameTextField.inputText,
-            lastName: lastNameTextField.inputText,
-            email: emailTextField.inputText,
-            date: datePicker.date.asString(.server)
-        ))
-    }
-
-    @objc private func dateDidSelect() {
-        birthTextField.text = datePicker.date.asString(.client)
+private extension PersonalInfoViewController {
+    @objc func dateDidSelect() {
+        birthTextField.setText(datePicker.date.asString(.client))
         view.endEditing(true)
     }
-}
 
-// MARK: - PersonalInfoPresenterOutput
-extension PersonalInfoView: PersonalInfoPresenterOutput {
-    func handle(state viewModel: PersonalInfoModels.SetPersonViewModel) {
-        stopLoading()
-        actionButton.fadeIn()
+    typealias FieldState = PersonalInfoFeature.FieldState
+    typealias Field = PersonalInfoFeature.Fields
 
-        switch viewModel {
-        case let .success(cities, models, colors):
-            output?(.profileDidSet(.init(
-                cities: cities,
-                models: models,
-                colors: colors
-            )))
-        case let .failure(message):
-            PopUp.display(.error(message))
+    @objc func textDidChange(_ sender: InputTextField) {
+        let isValid = sender.isValid(toggle: false)
+        switch sender {
+        case firstNameTextField:
+            sendFieldState(field: .firstName, sender.inputText, isValid)
+        case secondNameTextField:
+            sendFieldState(field: .secondName, sender.inputText, isValid)
+        case lastNameTextField:
+            sendFieldState(field: .lastName, sender.inputText, isValid)
+        case emailTextField:
+            sendFieldState(field: .email, sender.inputText, isValid)
+        case birthTextField:
+            sendFieldState(
+                field: .birth,
+                sender.inputText.toDateAsString(.client, .server) ?? .empty,
+                isValid
+            )
+        default:
+            return
         }
+    }
+
+    func sendFieldState(field: Fields, _ value: String, _ isValid: Bool) {
+        viewStore.send(.personDidChange(field, FieldState(
+            value: value,
+            isValid: isValid
+        )))
     }
 }
 
 // MARK: - UITextFieldDelegate
-extension PersonalInfoView: UITextFieldDelegate {
+extension PersonalInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:

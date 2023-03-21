@@ -3,8 +3,8 @@ import class SwiftKeychainWrapper.KeychainWrapper
 @testable import ToyotaApp
 
 final class KeychainServiceTests: XCTestCase {
-    let testUserId = UserId("-100")
-    let testPhone = Phone("1")
+    let testUserId = UserId(value: "-100")
+    let testPhone = Phone(value: "1")
     let keychain = KeychainService(wrapper: .testWrapper)
 
     override func tearDownWithError() throws {
@@ -48,7 +48,7 @@ final class KeychainServiceTests: XCTestCase {
         testGetSet()
 
         keychain.set(testUserId)
-        keychain.update { _ in UserId("-200") }
+        keychain.update { _ in UserId(value: "-200") }
 
         let result: UserId? = keychain.get()
         XCTAssertNotEqual(result?.value, testUserId.value)
@@ -58,7 +58,7 @@ final class KeychainServiceTests: XCTestCase {
         testGetSet()
 
         keychain.remove(Phone.self)
-        keychain.update { _ in Phone("123") }
+        keychain.update { _ in Phone(value: "123") }
         let notNilExpectation: Phone? = keychain.get()
         XCTAssertNotNil(notNilExpectation)
     }

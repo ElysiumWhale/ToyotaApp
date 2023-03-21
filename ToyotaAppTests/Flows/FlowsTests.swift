@@ -30,11 +30,12 @@ final class FlowsTests: XCTestCase {
 
     func testRegisterFlowFabrics() {
         let personalModule = RegisterFlow.personalModule(.init(
+            userId: .empty,
             profile: nil,
-            service: service,
+            service: newService,
             keychain: KeychainService.shared
         ))
-        XCTAssertTrue(personalModule is PersonalInfoView)
+        XCTAssertTrue(personalModule.ui is PersonalInfoViewController)
 
         let cityModule = RegisterFlow.cityModule(.init(
             cities: [],
@@ -54,15 +55,6 @@ final class FlowsTests: XCTestCase {
 
         let endRegisterModule = RegisterFlow.endRegistrationModule()
         XCTAssertTrue(endRegisterModule is EndRegistrationViewController)
-    }
-
-    func testPersonalModuleOutput() {
-        let personalModule = RegisterFlow.personalModule(.init(
-            profile: nil,
-            service: service,
-            keychain: KeychainService.shared
-        ))
-        testOutputable(module: personalModule)
     }
 
     func testCityPickerModuleOutput() {

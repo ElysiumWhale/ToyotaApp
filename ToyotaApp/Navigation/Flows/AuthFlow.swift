@@ -68,7 +68,7 @@ extension AuthFlow {
         let feature = AuthFeature(
             registerPhone: payload.service.registerPhone,
             storeInKeychain: {
-                payload.keychain.set(Phone($0))
+                payload.keychain.set(Phone(value: $0))
             },
             outputStore: outputStore
         )

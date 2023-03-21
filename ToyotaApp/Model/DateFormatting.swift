@@ -23,6 +23,10 @@ extension String {
     func asDate(with formatter: DateFormatter) -> Date? {
         formatter.date(from: self)
     }
+
+    func toDateAsString(_ date: DateFormatter, _ string: DateFormatter) -> String? {
+        asDate(with: date)?.asString(string)
+    }
 }
 
 extension Date {

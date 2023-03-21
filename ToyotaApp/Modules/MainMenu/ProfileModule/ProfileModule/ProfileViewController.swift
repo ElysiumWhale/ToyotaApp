@@ -249,7 +249,7 @@ final class ProfileViewController: BaseViewController,
         emailTextField.text = interactor.profile.email
         datePicker.date = interactor.profile.birthday.asDate(with: .server) ?? Date()
         dateDidSelect()
-        managerButton.isHidden = interactor.user.cars.value.count < 1
+        managerButton.isHidden = interactor.user.cars.cars.count < 1
     }
 
     private func updateUserInfo() {
