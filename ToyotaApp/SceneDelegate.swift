@@ -1,6 +1,6 @@
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
@@ -24,8 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         NavigationService.switchRootView = changeRootViewController
 
-        guard let userId: UserId = KeychainService.shared.get(),
-              let secretKey: SecretKey = KeychainService.shared.get() else {
+        guard
+            let userId: UserId = KeychainService.shared.get(),
+            let secretKey: SecretKey = KeychainService.shared.get()
+        else {
             NavigationService.loadAuth()
             return
         }

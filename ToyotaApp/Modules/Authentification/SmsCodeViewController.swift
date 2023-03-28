@@ -106,6 +106,10 @@ final class SmsCodeViewController: BaseViewController, Loadable {
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        viewStore.send(.cancelTasks)
+    }
+
     private func setupSubscriptions() {
         viewStore.publisher.isLoading
             .sinkOnMain { [unowned self] in

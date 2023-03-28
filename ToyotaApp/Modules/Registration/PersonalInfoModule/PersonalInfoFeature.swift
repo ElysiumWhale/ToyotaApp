@@ -38,6 +38,7 @@ struct PersonalInfoFeature: ReducerProtocol {
         case popupDidShow
         case fieldsDidValidate
         case personDidChange(Fields, FieldState)
+        case cancelTasks
     }
 
     enum Output: Equatable {
@@ -50,6 +51,8 @@ struct PersonalInfoFeature: ReducerProtocol {
         case personDidSet(_ response: Payload)
     }
 
+    enum TaskId { }
+
     let setPersonRequest: (SetProfileBody) async -> NewResponse<CitiesResponse>
     let storeInKeychain: (any Keychainable) -> Void
     let outputStore: OutputStore<Output>
@@ -60,6 +63,8 @@ struct PersonalInfoFeature: ReducerProtocol {
         case let .personDidChange(field, fieldState):
             state.personState[field] = fieldState
             return .none
+        case .cancelTasks:
+            return .cancel(id: TaskId.self)
         case .fieldsDidValidate:
             state.needsValidation = false
             return .none
@@ -97,7 +102,7 @@ struct PersonalInfoFeature: ReducerProtocol {
                 case let .success(response):
                     return .successResponse(response, request)
                 }
-            }
+            }.cancellable(id: TaskId.self)
         case let .successResponse(response, person):
             state.isLoading = false
             storeInKeychain(person)

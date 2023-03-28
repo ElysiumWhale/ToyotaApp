@@ -19,12 +19,15 @@ struct AuthFeature: ReducerProtocol {
         case failurePhoneSend(_ message: String)
         case showAgreement
         case popupDidShow
+        case cancelTasks
     }
 
     enum Output: Hashable {
         case showAgreement
         case successPhoneCheck(_ phone: String, _ authScenario: AuthScenario)
     }
+
+    enum TaskId { }
 
     let registerPhone: (_ body: RegisterPhoneBody) async -> DefaultResponse
     let storeInKeychain: (String) -> Void
@@ -58,7 +61,7 @@ struct AuthFeature: ReducerProtocol {
                         error.message ?? .error(.unknownError)
                     )
                 }
-            }
+            }.cancellable(id: TaskId.self)
         case let .failurePhoneSend(message):
             state.isLoading = false
             state.popupMessage = message
@@ -82,6 +85,8 @@ struct AuthFeature: ReducerProtocol {
         case .popupDidShow:
             state.popupMessage = nil
             return .none
+        case .cancelTasks:
+            return .cancel(id: TaskId.self)
         }
     }
 }

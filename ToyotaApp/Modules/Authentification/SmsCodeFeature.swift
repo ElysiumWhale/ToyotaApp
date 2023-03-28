@@ -22,11 +22,14 @@ struct SmsCodeFeature: ReducerProtocol {
         case failureCodeCheck(_ message: String)
         case deleteTemporaryPhone
         case popupDidShow
+        case cancelTasks
     }
 
     enum Output: Equatable {
         case successfulCodeCheck(AuthScenario, CheckUserContext?)
     }
+
+    enum TaskId { }
 
     // MARK: Environment
     let outputStore: OutputStore<Output>
@@ -62,7 +65,7 @@ struct SmsCodeFeature: ReducerProtocol {
                         error.message ?? .error(.requestError)
                     )
                 }
-            }
+            }.cancellable(id: TaskId.self)
         case let .successfulCodeCheck(scenario, response):
             state.isLoading = false
             return .concatenate(
@@ -95,6 +98,8 @@ struct SmsCodeFeature: ReducerProtocol {
         case .popupDidShow:
             state.popupMessage = nil
             return .none
+        case .cancelTasks:
+            return .cancel(id: TaskId.self)
         }
     }
 }
