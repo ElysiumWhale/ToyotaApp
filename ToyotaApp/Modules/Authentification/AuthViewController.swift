@@ -132,6 +132,9 @@ final class AuthViewController: BaseViewController, Loadable {
         sendPhoneButton.fadeIn()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        viewStore.send(.cancelTasks)
+    }
     // MARK: - Private methods
     private func setupSubscriptions() {
         viewStore.publisher.isValid
