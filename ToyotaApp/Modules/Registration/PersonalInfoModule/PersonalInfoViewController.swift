@@ -125,6 +125,10 @@ final class PersonalInfoViewController: BaseViewController,
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        viewStore.send(.cancelTasks)
+    }
+
     private func setupSubscriptions() {
         setupKeyboard(isSubscribing: true)
 
