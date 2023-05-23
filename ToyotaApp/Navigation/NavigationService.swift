@@ -115,7 +115,7 @@ final class NavigationService {
                 profile: payloadProfile,
                 defaults: environment.defaults,
                 keychain: environment.keychain,
-                cityService: environment.service,
+                cityService: environment.newService,
                 personalService: environment.service,
                 newPersonalService: environment.newService,
                 carsService: environment.service
@@ -161,9 +161,10 @@ final class NavigationService {
 extension MainMenuFlow.Environment {
     static func makeDefault(from user: UserProxy) -> Self {
         let infoService = InfoService()
-        return .init(
+        let newInfoService = NewInfoService()
+        return MainMenuFlow.Environment(
             userProxy: user,
-            notificator: .shared,
+            notificator: EventNotificator.shared,
             defaults: DefaultsService.shared,
             keychain: KeychainService.shared,
             newsService: NewsInfoService(),
@@ -172,8 +173,8 @@ extension MainMenuFlow.Environment {
             managersService: infoService,
             carsService: infoService,
             bookingsService: infoService,
-            citiesService: infoService,
-            registrationService: NewInfoService()
+            citiesService: newInfoService,
+            registrationService: newInfoService
         )
     }
 }
