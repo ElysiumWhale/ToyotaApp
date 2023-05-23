@@ -21,6 +21,10 @@ protocol IBookingService {
     func bookService(_ body: BookServiceBody) async -> DefaultResponse
 }
 
+protocol ICitiesService {
+    func getCities(_ body: GetCitiesBody) async -> NewResponse<CitiesResponse>
+}
+
 actor NewInfoService {
     private let networkService: NetworkService
 
@@ -83,6 +87,15 @@ extension NewInfoService: IBookingService {
     func bookService(_ body: BookServiceBody) async -> DefaultResponse {
         await networkService.makeRequest(Request(
             page: .services(.bookService), body: body
+        ))
+    }
+}
+
+// MARK: - ICitiesService
+extension NewInfoService: ICitiesService {
+    func getCities(_ body: GetCitiesBody) async -> NewResponse<CitiesResponse> {
+        await networkService.makeRequest(Request(
+            page: .profile(.getCities), body: body
         ))
     }
 }
