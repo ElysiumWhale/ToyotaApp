@@ -13,12 +13,6 @@ extension SettingsOutput: CaseIterable {
     }
 }
 
-extension CityPickerOutput: CaseIterable {
-    public static var allCases: [CityPickerOutput] {
-        [.cityDidPick(.init(id: .empty, name: .empty))]
-    }
-}
-
 extension AddCarOutput: CaseIterable {
     public static var allCases: [AddCarOutput] {
         [.carDidAdd(.register), .carDidAdd(.update(with: .mock))]

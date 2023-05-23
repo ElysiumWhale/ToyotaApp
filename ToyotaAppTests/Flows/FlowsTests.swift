@@ -39,10 +39,10 @@ final class FlowsTests: XCTestCase {
 
         let cityModule = RegisterFlow.cityModule(.init(
             cities: [],
-            service: service,
+            service: newService,
             defaults: DefaultsService.shared
         ))
-        XCTAssertTrue(cityModule is CityPickerViewController)
+        XCTAssertTrue(cityModule.ui is CityPickerViewController)
 
         let addCarModule = RegisterFlow.addCarModule(.init(
             scenario: .register,
@@ -55,15 +55,6 @@ final class FlowsTests: XCTestCase {
 
         let endRegisterModule = RegisterFlow.endRegistrationModule()
         XCTAssertTrue(endRegisterModule is EndRegistrationViewController)
-    }
-
-    func testCityPickerModuleOutput() {
-        let cityPickerModule = RegisterFlow.cityModule(.init(
-            cities: [],
-            service: service,
-            defaults: DefaultsService.shared
-        ))
-        testOutputable(module: cityPickerModule)
     }
 
     func testAddCarModuleOutput() {
