@@ -1,6 +1,6 @@
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
@@ -24,8 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         NavigationService.switchRootView = changeRootViewController
 
-        guard let userId: UserId = KeychainService.shared.get(),
-              let secretKey: SecretKey = KeychainService.shared.get() else {
+        guard
+            let userId: UserId = KeychainService.shared.get(),
+            let secretKey: SecretKey = KeychainService.shared.get()
+        else {
             NavigationService.loadAuth()
             return
         }
@@ -55,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func handle(success response: CheckUserOrSmsCodeResponse) {
-        KeychainService.shared.set(SecretKey(response.secretKey))
+        KeychainService.shared.set(SecretKey(value: response.secretKey))
         NavigationService.resolveNavigation(
             context: CheckUserContext(response: response)
         ) {

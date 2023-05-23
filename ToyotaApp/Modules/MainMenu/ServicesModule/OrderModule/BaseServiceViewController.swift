@@ -40,6 +40,10 @@ class BaseServiceController: BaseViewController,
         (.carInfo(.showroomId), user.selectedShowroom?.id)
     }
 
+    private var cars: [Car] {
+        user.cars.cars
+    }
+
     var output: ParameterClosure<ServiceOrderOutput>?
 
     init(_ service: ServiceType,
@@ -60,8 +64,8 @@ class BaseServiceController: BaseViewController,
 
         if hasCarSelection {
             stackView.addArrangedSubview(carPickView)
-            if user.cars.value.isEmpty {
-                PopUp.display(.warning(description: .error(.blockFunctionsAlert)))
+            if cars.isEmpty {
+                PopUp.display(.warning(.error(.blockFunctionsAlert)))
                 carPickView.textField.placeholder = .common(.noCars)
                 carPickView.textField.isEnabled = false
                 carPickView.textField.toggle(state: .error)
@@ -155,11 +159,9 @@ class BaseServiceController: BaseViewController,
         switch await bookingService.bookService(BookServiceBody(items: params)) {
         case .success:
             output?(.successOrder)
-            PopUp.display(.success(description: .common(.bookingSuccess)))
+            PopUp.display(.success(.common(.bookingSuccess)))
         case let .failure(error):
-            PopUp.display(.error(
-                description: error.message ?? .error(.servicesError)
-            ))
+            PopUp.display(.error(error.message ?? .error(.servicesError)))
             bookButton.isEnabled = true
         }
     }
@@ -182,7 +184,7 @@ class BaseServiceController: BaseViewController,
 
     func didRaiseError(_ module: IServiceModule, _ error: ErrorResponse) {
         PopUp.display(.error(
-            description: error.message ?? AppErrors.unknownError.rawValue
+            error.message ?? AppErrors.unknownError.rawValue
         ))
         stopLoading()
         output?(.internalError)
@@ -195,7 +197,7 @@ class BaseServiceController: BaseViewController,
         }
         bookButton.isEnabled = false
 
-        PopUp.display(.warning(description: message ?? .error(.requestError)))
+        PopUp.display(.warning(message ?? .error(.requestError)))
     }
 
     func didChose(_ service: IService, in module: IServiceModule) {
@@ -220,11 +222,11 @@ class BaseServiceController: BaseViewController,
 
     @objc private func carDidSelect() {
         view.endEditing(true)
-        guard user.cars.value.isNotEmpty else {
+        guard cars.isNotEmpty else {
             return
         }
 
-        selectedCar = user.cars.value[safe: carPickView.picker.selectedRow]
+        selectedCar = cars[safe: carPickView.picker.selectedRow]
     }
 }
 
@@ -238,7 +240,7 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         _ pickerView: UIPickerView,
         numberOfRowsInComponent component: Int
     ) -> Int {
-        user.cars.value.count
+        cars.count
     }
 
     func pickerView(
@@ -246,6 +248,6 @@ extension BaseServiceController: UIPickerViewDelegate, UIPickerViewDataSource {
         titleForRow row: Int,
         forComponent component: Int
     ) -> String? {
-        user.cars.value[safe: row]?.name
+        cars[safe: row]?.name
     }
 }

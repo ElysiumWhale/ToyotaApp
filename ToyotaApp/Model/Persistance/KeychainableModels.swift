@@ -1,47 +1,39 @@
 import Foundation
 
-final class UserId: Keychainable {
-    static var key: KeychainKeys = .userId
+struct UserId: Keychainable, Equatable {
+    static var key: KeychainKeys { .userId }
+
     let value: String
-
-    init(_ value: String) {
-        self.value = value
-    }
 }
 
-final class SecretKey: Keychainable {
-    static var key: KeychainKeys = .secretKey
+struct SecretKey: Keychainable, Equatable {
+    static var key: KeychainKeys { .secretKey }
+
     let value: String
-
-    init(_ key: String) {
-        value = key
-    }
 }
 
-final class Phone: Keychainable {
-    static var key: KeychainKeys = .phone
-    var value: String
+struct Phone: Keychainable, Equatable {
+    static var key: KeychainKeys { .phone }
 
-    init(_ number: String) {
-        value = number
-    }
+    let value: String
 }
 
-final class Person: Keychainable {
-    static var key: KeychainKeys = .person
+struct Person: Keychainable, Equatable {
+    static var key: KeychainKeys { .person }
 
-    var firstName: String
-    var lastName: String
-    var secondName: String
-    var email: String
-    var birthday: String
+    let firstName: String
+    let lastName: String
+    let secondName: String
+    let email: String
+    let birthday: String
 
-    init(firstName: String?,
-         lastName: String?,
-         secondName: String?,
-         email: String?,
-         birthday: String?) {
-
+    init(
+        firstName: String?,
+        lastName: String?,
+        secondName: String?,
+        email: String?,
+        birthday: String?
+    ) {
         self.firstName = firstName ?? .empty
         self.lastName = lastName ?? .empty
         self.secondName = secondName ?? .empty
@@ -50,14 +42,18 @@ final class Person: Keychainable {
     }
 }
 
-final class Cars: Keychainable {
-    static var key: KeychainKeys = .cars
+struct Cars: Keychainable, Equatable {
+    static var key: KeychainKeys { .cars }
 
+    var cars: [Car]
     var defaultCar: Car?
-    var value: [Car]
 
-    init(_ cars: [Car]) {
-        value = cars
-        defaultCar = value.first
+    init(_ cars: [Car], _ selected: Car? = nil) {
+        self.cars = cars
+        if let selected = selected, cars.contains(selected) {
+            self.defaultCar = selected
+        } else {
+            self.defaultCar = cars.first
+        }
     }
 }

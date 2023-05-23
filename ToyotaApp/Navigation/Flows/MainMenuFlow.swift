@@ -13,7 +13,7 @@ enum MainMenuFlow {
         let managersService: ManagersService
         let carsService: CarsService
         let bookingsService: BookingsService
-        let citiesService: CitiesService
+        let citiesService: ICitiesService
         let registrationService: IRegistrationService
     }
 
@@ -109,8 +109,14 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let module = settingsModule(payload)
-                let localRouter = module.wrappedInNavigation
-                module.setupOutput(localRouter, environment.registrationService)
+                let localRouter = module.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
+                module.setupOutput(
+                    localRouter,
+                    environment.registrationService,
+                    environment.keychain
+                )
                 router()?.present(localRouter, animated: true)
             case .showManagers:
                 let payload = ManagersPayload(
@@ -126,8 +132,9 @@ extension MainMenuFlow {
                     notificator: environment.notificator
                 )
                 let carsModule = carsModule(payload)
-                let carsRouter = carsModule.wrappedInNavigation
-                carsRouter.navigationBar.tintColor = .appTint(.secondarySignatureRed)
+                let carsRouter = carsModule.wrappedInNavigation(
+                    .appTint(.secondarySignatureRed)
+                )
                 carsModule.setupOutput(carsRouter) {
                     RegisterFlow.addCarModule(.init(
                         scenario: .update(with: environment.userProxy),
@@ -180,14 +187,14 @@ extension ServicesModule {
                 let chatModule = MainMenuFlow.chatModule()
                 router()?.pushViewController(chatModule, animated: true)
             case .showCityPick:
-                let cityModule = RegisterFlow.cityModule(.init(
+                let cityModule = RegisterFlow.cityModule(RegisterFlow.CityModulePayload(
                     cities: [],
                     service: environment.citiesService,
                     defaults: environment.defaults
                 ))
-                cityModule.hidesBottomBarWhenPushed = true
-                cityModule.setupOutputServices(router(), self)
-                router()?.pushViewController(cityModule, animated: true)
+                cityModule.ui.hidesBottomBarWhenPushed = true
+                cityModule.outputStore.setupOutputServices(router(), self)
+                router()?.pushViewController(cityModule.ui, animated: true)
             case let .showServiceOrder(type):
                 guard let viewType = type.serviceViewType else {
                     return
@@ -245,7 +252,8 @@ extension SettingsModule {
     @MainActor
     func setupOutput(
         _ router: UINavigationController?,
-        _ service: IRegistrationService
+        _ service: IRegistrationService,
+        _ keychain: any ModelKeyedCodableStorage<KeychainKeys>
     ) {
         withOutput { [weak router] output in
             switch output {
@@ -256,7 +264,8 @@ extension SettingsModule {
 
                 let environment = AuthFlow.Environment(
                     scenario: .changeNumber(userId),
-                    service: service
+                    service: service,
+                    keychain: keychain
                 )
                 router.pushViewController(
                     AuthFlow.entryPoint(environment, .routed(by: router)),

@@ -7,40 +7,9 @@ extension ProfileOutput: CaseIterable {
     }
 }
 
-extension AuthModuleOutput: CaseIterable {
-    public static var allCases: [AuthModuleOutput] {
-        [
-            .showAgreement,
-            .successPhoneCheck(.empty, .register),
-            .successPhoneCheck(.empty, .changeNumber(.empty))
-        ]
-    }
-}
-
 extension SettingsOutput: CaseIterable {
     public static var allCases: [SettingsOutput] {
         [.showAgreement, .changePhone(.empty)]
-    }
-}
-
-extension SmsCodeModuleOutput: CaseIterable {
-    public static var allCases: [SmsCodeModuleOutput] {
-        [
-            .successfulCheck(.register, nil),
-            .successfulCheck(.changeNumber(.empty), nil)
-        ]
-    }
-}
-
-extension PersonalInfoOutput: CaseIterable {
-    public static var allCases: [PersonalInfoOutput] {
-        [.profileDidSet(.init(cities: [], models: [], colors: []))]
-    }
-}
-
-extension CityPickerOutput: CaseIterable {
-    public static var allCases: [CityPickerOutput] {
-        [.cityDidPick(.init(id: .empty, name: .empty))]
     }
 }
 

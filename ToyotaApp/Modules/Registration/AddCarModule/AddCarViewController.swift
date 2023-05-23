@@ -182,7 +182,7 @@ extension AddCarViewController: AddCarViewInput {
     }
 
     func handleFailure(with message: String) {
-        PopUp.display(.error(description: message))
+        PopUp.display(.error(message))
         stopLoading()
     }
 

@@ -21,3 +21,7 @@ extension Outputable {
         return self
     }
 }
+
+final class OutputStore<TOutput>: Outputable {
+    var output: ParameterClosure<TOutput>?
+}

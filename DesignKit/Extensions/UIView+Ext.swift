@@ -37,7 +37,21 @@ public extension UIView {
         }
     }
 
-    // MARK: - FadeIn UIView Animation
+    // MARK: - FadeIn and FadeOut UIView Animation
+    enum Fade {
+        case `in`(_ duration: TimeInterval = 0.5)
+        case `out`(_ duration: TimeInterval = 0.5)
+    }
+
+    func fade(_ fade: Fade) {
+        switch fade {
+        case let .in(duration):
+            fadeIn(duration)
+        case let .out(duration):
+            fadeOut(duration)
+        }
+    }
+
     func fadeIn(_ duration: TimeInterval = 0.5) {
         guard alpha == 0 else {
             return
@@ -48,7 +62,6 @@ public extension UIView {
         }
     }
 
-    // MARK: - FadeOut UIView Animation
     func fadeOut(
         _ duration: TimeInterval = 0.5,
         completion: @escaping () -> Void = { }

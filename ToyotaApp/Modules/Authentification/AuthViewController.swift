@@ -1,35 +1,37 @@
 import UIKit
 import DesignKit
+import ComposableArchitecture
+import Combine
 
-enum AuthModuleOutput: Hashable {
-    case showAgreement
-    case successPhoneCheck(_ phone: String, _ authScenario: AuthScenario)
-}
+final class AuthViewController: BaseViewController, Loadable {
+    private let viewStore: ViewStoreOf<AuthFeature>
 
-protocol AuthModule: UIViewController, Outputable<AuthModuleOutput> { }
-
-final class AuthViewController: BaseViewController, Loadable, AuthModule {
     private let logo = UIImageView(image: .toyotaLogo)
 
     private let infoStack = UIStackView()
     private let informationLabel = UILabel()
     private let phoneNumber = PhoneTextField()
-    private let incorrectLabel = UILabel()
+    private let incorrectLabel: UILabel = {
+        let label = UILabel()
+        label.alpha = 0
+        return label
+    }()
 
     private let agreementStack = UIStackView()
     private let agreementLabel = UILabel()
     private let agreementButton = UIButton()
     private let sendPhoneButton = CustomizableButton(.toyotaAction())
 
-    private let interactor: AuthInteractor
+    private var cancellables: Set<AnyCancellable> = []
 
     let loadingView = LoadingView()
 
-    var output: ParameterClosure<AuthModuleOutput>?
+    init(store: StoreOf<AuthFeature>) {
+        self.viewStore = ViewStore(store)
 
-    init(interactor: AuthInteractor) {
-        self.interactor = interactor
         super.init()
+
+        setupSubscriptions()
     }
 
     // MARK: - Overrides
@@ -65,8 +67,6 @@ final class AuthViewController: BaseViewController, Loadable, AuthModule {
 
     override func configureAppearance() {
         view.backgroundColor = .systemBackground
-        configureNavBarAppearance(font: nil)
-
         informationLabel.font = .toyotaType(.semibold, of: 22)
         informationLabel.textColor = .appTint(.signatureGray)
         informationLabel.textAlignment = .center
@@ -100,10 +100,11 @@ final class AuthViewController: BaseViewController, Loadable, AuthModule {
         agreementButton.setTitle(.common(.terms).lowercased(), for: .normal)
         sendPhoneButton.setTitle(.common(.next), for: .normal)
 
-        if case .changeNumber = interactor.type {
+        switch viewStore.scenario {
+        case .changeNumber:
             informationLabel.text = .common(.enterNewNumber)
             agreementStack.isHidden = true
-        } else {
+        case .register:
             setBackButtonTitle(.common(.phoneEntering))
         }
     }
@@ -111,14 +112,19 @@ final class AuthViewController: BaseViewController, Loadable, AuthModule {
     override func configureActions() {
         view.hideKeyboardWhenSwipedDown()
 
-        phoneNumber.addAction { [weak self] in
-            self?.phoneDidChange()
-        }
         sendPhoneButton.addAction { [weak self] in
-            self?.sendPhoneDidPress()
+            let validPhone = self?.phoneNumber.validPhone
+            self?.viewStore.send(.sendButtonDidPress(validPhone))
         }
-        agreementButton.addAction { [weak self] in
-            self?.output?(.showAgreement)
+
+        phoneNumber.addTarget(
+            self,
+            action: #selector(textDidChange),
+            for: .editingChanged
+        )
+
+        agreementButton.addAction { [weak viewStore] in
+            viewStore?.send(.showAgreement)
         }
     }
 
@@ -126,42 +132,40 @@ final class AuthViewController: BaseViewController, Loadable, AuthModule {
         sendPhoneButton.fadeIn()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        viewStore.send(.cancelTasks)
+    }
     // MARK: - Private methods
-    private func phoneDidChange() {
-        incorrectLabel.fadeOut(0.3)
-        phoneNumber.toggle(state: .normal)
-    }
-
-    private func sendPhoneDidPress() {
-        guard let phone = phoneNumber.validPhone else {
-            phoneNumber.toggle(state: .error)
-            incorrectLabel.fadeIn(0.3)
-            return
-        }
-
-        sendPhoneButton.fadeOut()
-        startLoading()
-        view.endEditing(true)
-
-        Task {
-            switch await interactor.sendPhone(phone) {
-            case .success:
-                handle(isSuccess: true)
-            case let .failure(message):
-                handle(isSuccess: false)
-                PopUp.display(.error(description: message))
+    private func setupSubscriptions() {
+        viewStore.publisher.isValid
+            .sinkOnMain { [unowned self] in
+                incorrectLabel.fade($0 ? .out(0.3) : .in(0.3))
+                phoneNumber.toggle(state: $0 ? .normal : .error)
             }
-        }
+            .store(in: &cancellables)
+
+        viewStore.publisher.isLoading
+            .sinkOnMain { [unowned self] in
+                if $0 {
+                    startLoading()
+                    view.endEditing(true)
+                } else {
+                    stopLoading()
+                }
+                sendPhoneButton.fade($0 ? .out() : .in())
+            }
+            .store(in: &cancellables)
+
+        viewStore.publisher.popupMessage
+            .compactMap { $0 }
+            .sink { [unowned self] in
+                PopUp.display(.error($0))
+                viewStore.send(.popupDidShow)
+            }
+            .store(in: &cancellables)
     }
 
-    private func handle(isSuccess: Bool) {
-        stopLoading()
-        sendPhoneButton.fadeIn()
-
-        guard isSuccess, let phone = phoneNumber.validPhone else {
-            return
-        }
-
-        output?(.successPhoneCheck(phone, interactor.type))
+    @objc private func textDidChange() {
+        viewStore.send(.phoneChanged(phoneNumber.phone ?? ""))
     }
 }

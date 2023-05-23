@@ -40,3 +40,18 @@ extension ValidationRule {
         }
     }
 }
+
+extension ValidationRule {
+    static func compose(rules: ValidationRule...) -> ValidationRule {
+        ValidationRule { text in
+            for rule in rules {
+                if rule.validate(text: text) {
+                    continue
+                } else {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+}

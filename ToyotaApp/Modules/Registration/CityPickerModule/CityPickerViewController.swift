@@ -1,17 +1,11 @@
 import UIKit
 import DesignKit
+import ComposableArchitecture
+import Combine
 
-enum CityPickerOutput: Hashable {
-    case cityDidPick(City)
-}
+final class CityPickerViewController: BaseViewController, Refreshable {
 
-protocol CityPickerModule: UIViewController, Outputable<CityPickerOutput> { }
-
-final class CityPickerViewController: BaseViewController,
-                                      Refreshable,
-                                      CityPickerModule {
-
-    private let interactor: CityPickerInteractor
+    private let viewStore: ViewStoreOf<CityPickerFeature>
 
     private let subtitleLabel = UILabel()
     private let actionButton = CustomizableButton(.toyotaAction())
@@ -19,20 +13,19 @@ final class CityPickerViewController: BaseViewController,
     let refreshableView = TableView<CityCell>(style: .insetGrouped)
     let refreshControl = UIRefreshControl()
 
-    var output: ParameterClosure<CityPickerOutput>?
+    private var cancellables: Set<AnyCancellable> = []
 
-    init(interactor: CityPickerInteractor) {
-        self.interactor = interactor
+    init(store: StoreOf<CityPickerFeature>) {
+        self.viewStore = ViewStore(store)
 
         super.init()
-
-        navigationItem.title = .common(.city)
+        setupSubscriptions()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if interactor.cities.isEmpty {
+        if viewStore.cities.isEmpty {
             startRefreshing()
         } else {
             refreshableView.reloadData()
@@ -80,43 +73,51 @@ final class CityPickerViewController: BaseViewController,
     }
 
     override func localize() {
+        navigationItem.title = .common(.city)
         subtitleLabel.text = .common(.chooseCity)
         actionButton.setTitle(.common(.choose), for: .normal)
     }
 
     override func configureActions() {
         actionButton.addAction { [weak self] in
-            self?.actionButtonDidPress()
+            self?.viewStore.send(.chooseButtonDidPress)
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        viewStore.send(.cancelTasks)
     }
 
     func startRefreshing() {
-        refreshControl.startRefreshing()
-        interactor.loadCities()
+        viewStore.send(.loadCities)
     }
 
-    func handleSuccess() {
-        actionButton.fadeOut()
-        refreshableView.backgroundView = nil
-        refreshableView.reloadData()
-        endRefreshing()
-    }
+    private func setupSubscriptions() {
+        viewStore.publisher.cities
+            .sinkOnMain { [unowned self] cities in
+                refreshableView.reloadData()
+                refreshableView.setBackground(cities.isEmpty
+                    ? .label(.background(.noCities), .toyotaType(.semibold, of: 25))
+                    : .empty
+                )
+            }
+            .store(in: &cancellables)
 
-    func handleFailure() {
-        refreshableView.reloadData()
-        refreshableView.setBackground(.label(
-            .background(.noCities), .toyotaType(.semibold, of: 25)
-        ))
-        endRefreshing()
-    }
+        viewStore.publisher.isLoading
+            .sinkOnMain { [unowned self] in
+                $0 ? refreshControl.startRefreshing() : endRefreshing()
+            }
+            .store(in: &cancellables)
 
-    private func actionButtonDidPress() {
-        guard interactor.saveCity(),
-              let selectedCity = interactor.selectedCity else {
-            return
-        }
-
-        output?(.cityDidPick(selectedCity))
+        viewStore.publisher.popupMessage
+            .compactMap { $0 }
+            .sinkOnMain { [unowned self] in
+                PopUp.display(.error($0))
+                viewStore.send(.popupDidShow)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -127,7 +128,7 @@ extension CityPickerViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         if setCell(from: tableView, for: indexPath, isSelected: true) {
-            interactor.selectCity(for: indexPath.row)
+            viewStore.send(.cityDidSelect(index: indexPath.row))
             actionButton.fadeIn()
         }
     }
@@ -153,7 +154,7 @@ extension CityPickerViewController: UITableViewDelegate {
             ? .appTint(.secondarySignatureRed)
             : .appTint(.background)
         cell.contentConfiguration = .cellConfiguration(
-            with: interactor.cities[safe: indexPath.row]?.name,
+            with: viewStore.cities[safe: indexPath.row]?.name,
             isSelected: isSelected
         )
         return true
@@ -166,7 +167,7 @@ extension CityPickerViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        interactor.cities.count
+        viewStore.cities.count
     }
 
     func tableView(
@@ -175,7 +176,7 @@ extension CityPickerViewController: UITableViewDataSource {
     ) -> UITableViewCell {
         let cell: CityCell = tableView.dequeue(for: indexPath)
         cell.contentConfiguration = .cellConfiguration(
-            with: interactor.cities[safe: indexPath.row]?.name,
+            with: viewStore.cities[safe: indexPath.row]?.name,
             isSelected: false
         )
         return cell

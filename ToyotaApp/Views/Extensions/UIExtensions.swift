@@ -90,6 +90,14 @@ extension UIButton {
     }
 }
 
+// MARK: - UITextField
+extension UITextField {
+    func setText(_ text: String) {
+        self.text = text
+        sendActions(for: .editingChanged)
+    }
+}
+
 // MARK: - Size presets
 extension CGSize {
     static let toyotaActionL = CGSize(width: 244, height: 44)

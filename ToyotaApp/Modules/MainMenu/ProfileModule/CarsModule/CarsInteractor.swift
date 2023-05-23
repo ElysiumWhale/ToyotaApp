@@ -15,7 +15,7 @@ final class CarsInteractor {
 
     var cars: [Car] {
         #if DEBUG
-        user.cars.value + Mocks.createCars()
+        user.cars.cars + Mocks.createCars()
         #else
         user.cars.value
         #endif

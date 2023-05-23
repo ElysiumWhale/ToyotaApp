@@ -43,6 +43,10 @@ final class PhoneTextField: UITextField {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
 
+        prefixLabel = UILabel(frame: CGRect(
+            width: frame.size.height + 10,
+            height: frame.size.height
+        ))
         customizeView()
     }
 
@@ -51,8 +55,22 @@ final class PhoneTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func draw(_ rect: CGRect) {
-        prefixLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.height + 10, height: frame.size.height))
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        super.textRect(forBounds: bounds).inset(
+            by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        )
+    }
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        super.editingRect(forBounds: bounds).inset(
+            by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        )
+    }
+
+    func customizeView() {
+        delegate = self
+        layer.cornerRadius = 10
+        clipsToBounds = true
         prefixLabel.font = .toyotaType(.light, of: 20)
         prefixLabel.backgroundColor = .clear
         prefixLabel.textAlignment = .center
@@ -60,34 +78,26 @@ final class PhoneTextField: UITextField {
         prefixLabel.text = countryPrefix.rawValue
         leftView = prefixLabel
         leftViewMode = .always
-    }
 
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        super.textRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
-    }
-
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        super.editingRect(forBounds: bounds).inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
-    }
-
-    func customizeView() {
-        delegate = self
-        layer.cornerRadius = 10
-        clipsToBounds = true
-
-        if let placeholder = placeholder {
-            let place = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.placeholderText])
-            attributedPlaceholder = place
-            textColor = .label
+        guard let placeholder = placeholder else {
+            return
         }
+        let place = NSAttributedString(
+            string: placeholder,
+            attributes: [.foregroundColor: UIColor.placeholderText]
+        )
+        attributedPlaceholder = place
+        textColor = .label
     }
 }
 
 // MARK: - UITextFieldDelegate
 extension PhoneTextField: UITextFieldDelegate {
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
         range.location < 10
     }
 }

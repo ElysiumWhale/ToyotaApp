@@ -5,53 +5,44 @@ import XCTest
 final class FlowsTests: XCTestCase {
     private let service = InfoService()
     private let newService = NewInfoService()
+    private let keychain = KeychainService(
+        wrapper: .init(serviceName: "test")
+    )
 
     func testAuthFlowFabrics() {
-        let authModule = AuthFlow.authModule(.init(
-            scenario: .register, service: newService
-        ))
-        XCTAssertTrue(authModule is AuthViewController)
-
-        let codeModule = AuthFlow.codeModule(.init(
-            phone: .empty,
-            scenario: .register,
-            service: newService
-        ))
-        XCTAssertTrue(codeModule is SmsCodeViewController)
-    }
-
-    func testAuthModuleOutput() {
         let payload = AuthFlow.AuthPayload(
-            scenario: .register, service: newService
+            scenario: .register,
+            service: newService,
+            keychain: keychain
         )
-        let module = AuthFlow.authModule(payload)
-        testOutputable(module: module)
-    }
+        let authModule = AuthFlow.makeAuthModule(payload)
+        XCTAssertTrue(authModule.ui is AuthViewController)
 
-    func testCodeModuleOutput() {
-        let payload = AuthFlow.CodePayload(
+        let codePayload = AuthFlow.CodePayload(
             phone: .empty,
             scenario: .register,
-            service: newService
+            service: newService,
+            keychain: keychain
         )
-        let module = AuthFlow.codeModule(payload)
-        testOutputable(module: module)
+        let codeModule = AuthFlow.makeSmsCodeModule(codePayload)
+        XCTAssertTrue(codeModule.ui is SmsCodeViewController)
     }
 
     func testRegisterFlowFabrics() {
         let personalModule = RegisterFlow.personalModule(.init(
+            userId: .empty,
             profile: nil,
-            service: service,
+            service: newService,
             keychain: KeychainService.shared
         ))
-        XCTAssertTrue(personalModule is PersonalInfoView)
+        XCTAssertTrue(personalModule.ui is PersonalInfoViewController)
 
         let cityModule = RegisterFlow.cityModule(.init(
             cities: [],
-            service: service,
+            service: newService,
             defaults: DefaultsService.shared
         ))
-        XCTAssertTrue(cityModule is CityPickerViewController)
+        XCTAssertTrue(cityModule.ui is CityPickerViewController)
 
         let addCarModule = RegisterFlow.addCarModule(.init(
             scenario: .register,
@@ -64,24 +55,6 @@ final class FlowsTests: XCTestCase {
 
         let endRegisterModule = RegisterFlow.endRegistrationModule()
         XCTAssertTrue(endRegisterModule is EndRegistrationViewController)
-    }
-
-    func testPersonalModuleOutput() {
-        let personalModule = RegisterFlow.personalModule(.init(
-            profile: nil,
-            service: service,
-            keychain: KeychainService.shared
-        ))
-        testOutputable(module: personalModule)
-    }
-
-    func testCityPickerModuleOutput() {
-        let cityPickerModule = RegisterFlow.cityModule(.init(
-            cities: [],
-            service: service,
-            defaults: DefaultsService.shared
-        ))
-        testOutputable(module: cityPickerModule)
     }
 
     func testAddCarModuleOutput() {

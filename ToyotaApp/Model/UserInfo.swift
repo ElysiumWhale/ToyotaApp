@@ -88,7 +88,7 @@ extension UserInfo: UserProxy {
     }
 
     func addNew(car: Car) {
-        cars.value.append(car)
+        cars.cars.append(car)
         if cars.defaultCar == nil {
             cars.defaultCar = car
         }
@@ -103,12 +103,11 @@ extension UserInfo: UserProxy {
     }
 
     func removeCar(with id: String) {
-        let updatedCars = cars
-        updatedCars.value.removeAll(where: { $0.id == id })
+        cars.cars.removeAll(where: { $0.id == id })
         if cars.defaultCar?.id == id {
-            updatedCars.defaultCar = updatedCars.value.first
+            cars.defaultCar = cars.cars.first
         }
-        keychain.set(updatedCars)
+        keychain.set(cars)
         notificator.notify(with: .userUpdate)
     }
 }
@@ -117,8 +116,8 @@ extension UserInfo: UserProxy {
 extension UserProxy where Self == UserInfo {
     static var mock: UserInfo {
         UserInfo(
-            .init(.empty),
-            .init(.empty),
+            .init(value: .empty),
+            .init(value: .empty),
             .init(
                 firstName: .empty,
                 lastName: .empty,

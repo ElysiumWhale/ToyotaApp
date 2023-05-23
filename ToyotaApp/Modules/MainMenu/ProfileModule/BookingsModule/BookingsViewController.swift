@@ -62,7 +62,7 @@ final class BookingsViewController: BaseViewController,
     }
 
     func handleBookingsFailure(with message: String) {
-        PopUp.display(.error(description: message))
+        PopUp.display(.error(message))
         endRefreshing()
         refreshableView.setBackground(BackgroundConfig.label(
             .background(.somethingWentWrong), .toyotaType(.semibold, of: 25)

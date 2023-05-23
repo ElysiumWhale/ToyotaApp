@@ -72,11 +72,15 @@ final class NavigationService {
     // MARK: - LoadAuth
     static func loadAuth(with error: String? = nil) {
         if let error = error {
-            PopUp.display(.error(description: error))
+            PopUp.display(.error( error))
         }
 
         switchRootView?(AuthFlow.entryPoint(
-            .init(scenario: .register, service: environment.newService),
+            .init(
+                scenario: .register,
+                service: environment.newService,
+                keychain: environment.keychain
+            ),
             .selfRouted
         ))
     }
@@ -92,7 +96,7 @@ final class NavigationService {
 
         switch state {
         case let .error(message):
-            PopUp.display(.error(description: message))
+            PopUp.display(.error( message))
         case .firstPage:
             break
         case let .secondPage(profile, cities):
@@ -100,14 +104,20 @@ final class NavigationService {
             payloadCities = cities ?? []
         }
 
+        guard let userId: UserId = environment.keychain.get() else {
+            assertionFailure("UserId must be not empty")
+            return
+        }
         let flowStack = RegisterFlow.makeFlowStack(
             router,
             RegisterFlow.Environment(
+                userId: userId.value,
                 profile: payloadProfile,
                 defaults: environment.defaults,
                 keychain: environment.keychain,
-                cityService: environment.service,
+                cityService: environment.newService,
                 personalService: environment.service,
+                newPersonalService: environment.newService,
                 carsService: environment.service
             ),
             payloadCities,
@@ -151,9 +161,10 @@ final class NavigationService {
 extension MainMenuFlow.Environment {
     static func makeDefault(from user: UserProxy) -> Self {
         let infoService = InfoService()
-        return .init(
+        let newInfoService = NewInfoService()
+        return MainMenuFlow.Environment(
             userProxy: user,
-            notificator: .shared,
+            notificator: EventNotificator.shared,
             defaults: DefaultsService.shared,
             keychain: KeychainService.shared,
             newsService: NewsInfoService(),
@@ -162,8 +173,8 @@ extension MainMenuFlow.Environment {
             managersService: infoService,
             carsService: infoService,
             bookingsService: infoService,
-            citiesService: infoService,
-            registrationService: NewInfoService()
+            citiesService: newInfoService,
+            registrationService: newInfoService
         )
     }
 }

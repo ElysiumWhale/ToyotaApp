@@ -201,7 +201,7 @@ final class ProfileViewController: BaseViewController,
         )
 
         interactor.onUserUpdateFailure = { [weak self] errorMessage in
-            PopUp.display(.error(description: errorMessage))
+            PopUp.display(.error(errorMessage))
             self?.state = .editing
         }
     }
@@ -249,7 +249,7 @@ final class ProfileViewController: BaseViewController,
         emailTextField.text = interactor.profile.email
         datePicker.date = interactor.profile.birthday.asDate(with: .server) ?? Date()
         dateDidSelect()
-        managerButton.isHidden = interactor.user.cars.value.count < 1
+        managerButton.isHidden = interactor.user.cars.cars.count < 1
     }
 
     private func updateUserInfo() {
@@ -259,7 +259,7 @@ final class ProfileViewController: BaseViewController,
         }
 
         guard fields.areValid else {
-            PopUp.display(.error(description: .error(.checkInput)))
+            PopUp.display(.error(.error(.checkInput)))
             return
         }
 
