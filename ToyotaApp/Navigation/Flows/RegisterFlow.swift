@@ -33,7 +33,7 @@ enum RegisterFlow {
         let profile: Profile?
         let defaults: any KeyedCodableStorage<DefaultKeys>
         let keychain: any ModelKeyedCodableStorage<KeychainKeys>
-        let cityService: CitiesService
+        let cityService: ICitiesService
         let personalService: PersonalInfoService
         let newPersonalService: IRegistrationService
         let carsService: CarsService
@@ -86,7 +86,7 @@ enum RegisterFlow {
             return modules
         }
 
-        let cityModule = cityModule(.init(
+        let cityModule = cityModule(CityModulePayload(
             cities: cities,
             service: environment.cityService,
             defaults: environment.defaults
@@ -98,11 +98,11 @@ enum RegisterFlow {
             service: environment.carsService,
             keychain: environment.keychain
         )
-        cityModule.setupOutput(
+        cityModule.outputStore.setupOutput(
             router,
             addCarPayload
         )
-        modules.append(cityModule)
+        modules.append(cityModule.ui)
 
         guard citySelected else {
             return modules
@@ -166,12 +166,12 @@ extension OutputStore where TOutput == PersonalInfoFeature.Output {
         output = { [weak router] output in
             switch output {
             case let .personDidSet(response):
-                let cityModule = RegisterFlow.cityModule(.init(
+                let cityModule = RegisterFlow.cityModule(RegisterFlow.CityModulePayload(
                     cities: response.cities,
                     service: environment.cityService,
                     defaults: environment.defaults
                 ))
-                cityModule.setupOutput(router, RegisterFlow.AddCarPayload(
+                cityModule.outputStore.setupOutput(router, RegisterFlow.AddCarPayload(
                     scenario: .register,
                     models: response.models,
                     colors: response.colors,
@@ -179,7 +179,7 @@ extension OutputStore where TOutput == PersonalInfoFeature.Output {
                     keychain: environment.keychain
                 ))
 
-                router?.pushViewController(cityModule, animated: true)
+                router?.pushViewController(cityModule.ui, animated: true)
             }
         }
     }
@@ -189,26 +189,41 @@ extension OutputStore where TOutput == PersonalInfoFeature.Output {
 extension RegisterFlow {
     struct CityModulePayload {
         let cities: [City]
-        let service: CitiesService
+        let service: ICitiesService
         let defaults: any KeyedCodableStorage<DefaultKeys>
     }
 
     static func cityModule(
         _ payload: CityModulePayload
-    ) -> any CityPickerModule {
-        let interactor = CityPickerInteractor(
-            cities: payload.cities,
-            service: payload.service,
-            defaults: payload.defaults
+    ) -> (
+        ui: UIViewController,
+        outputStore: OutputStore<CityPickerFeature.Output>
+    ) {
+        let state = CityPickerFeature.State(
+            brandId: Brand.Toyota,
+            cities: payload.cities
         )
-        let module = CityPickerViewController(interactor: interactor)
-        interactor.view = module
-        return module
+        let outputStore = OutputStore<CityPickerFeature.Output>()
+        let feature = CityPickerFeature(
+            storeInDefaults: {
+                payload.defaults.set(value: $0, key: .selectedCity)
+            },
+            getCities: {
+                await payload.service.getCities(GetCitiesBody(brandId: $0))
+            },
+            outputStore: outputStore
+        )
+        let store =  StoreOf<CityPickerFeature>(
+            initialState: state,
+            reducer: feature
+        )
+        let view = CityPickerViewController(store: store)
+        return (ui: view, outputStore: outputStore)
     }
 }
 
 // MARK: - City module output
-extension CityPickerModule {
+extension OutputStore where TOutput == CityPickerFeature.Output {
     @MainActor
     func setupOutput(
         _ router: UINavigationController?,
@@ -216,7 +231,7 @@ extension CityPickerModule {
     ) {
         withOutput { [weak router] output in
             switch output {
-            case .cityDidPick:
+            case .cityDidSelect:
                 let addCarModule = RegisterFlow.addCarModule(.init(
                     scenario: addCarPayload.scenario,
                     models: addCarPayload.models,
@@ -238,7 +253,7 @@ extension CityPickerModule {
     ) {
         withOutput { [weak router, weak inputable] output in
             switch output {
-            case let .cityDidPick(city):
+            case let .cityDidSelect(city):
                 router?.popViewController(animated: true)
                 inputable?.input(.cityDidPick(city))
             }
