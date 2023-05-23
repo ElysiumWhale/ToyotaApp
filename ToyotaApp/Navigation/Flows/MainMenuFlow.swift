@@ -13,7 +13,7 @@ enum MainMenuFlow {
         let managersService: ManagersService
         let carsService: CarsService
         let bookingsService: BookingsService
-        let citiesService: CitiesService
+        let citiesService: ICitiesService
         let registrationService: IRegistrationService
     }
 
@@ -187,14 +187,14 @@ extension ServicesModule {
                 let chatModule = MainMenuFlow.chatModule()
                 router()?.pushViewController(chatModule, animated: true)
             case .showCityPick:
-                let cityModule = RegisterFlow.cityModule(.init(
+                let cityModule = RegisterFlow.cityModule(RegisterFlow.CityModulePayload(
                     cities: [],
                     service: environment.citiesService,
                     defaults: environment.defaults
                 ))
-                cityModule.hidesBottomBarWhenPushed = true
-                cityModule.setupOutputServices(router(), self)
-                router()?.pushViewController(cityModule, animated: true)
+                cityModule.ui.hidesBottomBarWhenPushed = true
+                cityModule.outputStore.setupOutputServices(router(), self)
+                router()?.pushViewController(cityModule.ui, animated: true)
             case let .showServiceOrder(type):
                 guard let viewType = type.serviceViewType else {
                     return
