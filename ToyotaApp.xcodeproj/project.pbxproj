@@ -88,6 +88,7 @@
 		A727F4112588263C00B8CB79 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727F4102588263C00B8CB79 /* Protocols.swift */; };
 		A728FAE128A66EA900326DA5 /* ManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE028A66EA900326DA5 /* ManagerCell.swift */; };
 		A728FAE428A701D100326DA5 /* ManagersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FAE328A701D100326DA5 /* ManagersInteractor.swift */; };
+		A72BF84D29CA69B100AEC700 /* CityPickerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BF84C29CA69B100AEC700 /* CityPickerFeature.swift */; };
 		A72DB19929AAC10200BA8479 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A72DB19829AAC10200BA8479 /* ComposableArchitecture */; };
 		A735058E29565AB00005C7F2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058D29565AB00005C7F2 /* Fetcher.swift */; };
 		A735059029565B960005C7F2 /* NewInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735058F29565B960005C7F2 /* NewInfoService.swift */; };
@@ -290,6 +291,7 @@
 		A727F4102588263C00B8CB79 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A728FAE028A66EA900326DA5 /* ManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCell.swift; sourceTree = "<group>"; };
 		A728FAE328A701D100326DA5 /* ManagersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersInteractor.swift; sourceTree = "<group>"; };
+		A72BF84C29CA69B100AEC700 /* CityPickerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerFeature.swift; sourceTree = "<group>"; };
 		A735058D29565AB00005C7F2 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		A735058F29565B960005C7F2 /* NewInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfoService.swift; sourceTree = "<group>"; };
 		A73990C328C6877B005C1A92 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 			children = (
 				14A4DA3E27581989009D66EA /* CityPickerViewController.swift */,
 				14B2A7E7275C0996002A6ADF /* CityPickerInteractor.swift */,
+				A72BF84C29CA69B100AEC700 /* CityPickerFeature.swift */,
 			);
 			path = CityPickerModule;
 			sourceTree = "<group>";
@@ -1277,6 +1280,7 @@
 				147E789427FFA8190017ACA7 /* UIImage+Constants.swift in Sources */,
 				A7777514259BF8DE006D30EA /* UIViewController+Extension.swift in Sources */,
 				1471C958284942B2000624FC /* AgreementViewController.swift in Sources */,
+				A72BF84D29CA69B100AEC700 /* CityPickerFeature.swift in Sources */,
 				A7598D1328BE9F1700F6A1E7 /* ProfileViewController.swift in Sources */,
 				140BA59827A6CB67002A7423 /* MainMenuFlow.swift in Sources */,
 			);
