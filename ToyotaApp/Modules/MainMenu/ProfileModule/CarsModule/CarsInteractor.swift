@@ -17,7 +17,7 @@ final class CarsInteractor {
         #if DEBUG
         user.cars.cars + Mocks.createCars()
         #else
-        user.cars.value
+        user.cars.cars
         #endif
     }
 
